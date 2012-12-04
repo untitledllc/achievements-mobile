@@ -6,9 +6,8 @@
     p1:layout_height="fill_parent"
     p1:id="@+id/relativeLayout1">
     <ImageView
-        p1:src="@android:drawable/ic_menu_gallery"
         p1:layout_width="fill_parent"
-        p1:layout_height="wrap_content"
+        p1:layout_height="35dp"
         p1:id="@+id/imageView1"
         p1:background="#ff434343" />
     <HorizontalScrollView
@@ -62,6 +61,7 @@
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
-        p1:id="@+id/CategoryTitle"
-        p1:layout_marginTop="4dp" />
+        p1:id="@+id/CurentCategoryTitle"
+        p1:layout_marginTop="5dp"
+        p1:layout_marginLeft="10dp" />
 </RelativeLayout>

@@ -111,16 +111,16 @@ namespace Achievements.Android
 
             int width = MeasureSpec.GetSize(widthMeasureSpec);
             MeasureSpecMode widthMode = MeasureSpec.GetMode(widthMeasureSpec);
-            if (widthMode != MeasureSpecMode.Exactly)
-            {
-                throw new Exception("ViewSwithcer can only be used in EXACTLY mode.");
-            }
+            //if (widthMode != MeasureSpecMode.Exactly)
+            //{
+            //    throw new Exception("ViewSwithcer can only be used in EXACTLY mode.");
+            //}
 
             MeasureSpecMode heightMode = MeasureSpec.GetMode(heightMeasureSpec);
-            if (heightMode != MeasureSpecMode.Exactly)
-            {
-                throw new Exception("ViewSwithcer can only be used in EXACTLY mode.");
-            }
+            //if (heightMode != MeasureSpecMode.Exactly)
+            //{
+            //    throw new Exception("ViewSwithcer can only be used in EXACTLY mode.");
+            //}
 
             int count = this.ChildCount;
             for (int i = 0; i < count; i++)

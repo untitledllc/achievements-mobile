@@ -9,44 +9,111 @@ using Android.OS;
 
 using Android.Support.V4.Widget;
 using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.Content.PM;
+using Android.Support.V4.App;
+using Android.Support.V4.View;
 
 namespace Achievements.Android
 {
     [Activity(Label = "Achievements.Android", MainLauncher = true, Icon = "@drawable/icon", 
-        Theme = "@android:style/Theme.NoTitleBar.Fullscreen"/*,
-                ScreenOrientation = ScreenOrientation.Landscape*/)]
-    public class MainCategoriesActivity : Activity
+        Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
+                ScreenOrientation = ScreenOrientation.Portrait)]
+    public class FragmentPagerSupport : FragmentActivity
     {
-         protected override void OnCreate(Bundle bundle)
+        const int NUM_ITEMS = 10;
+        MyAdapter adapter;
+        ViewPager pager;
+
+        static Intent _startActivityIntent;
+
+        protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            var display = WindowManager.DefaultDisplay;
-            var horiPager = new HorizontalPager(this.ApplicationContext, display);
 
-            var backgroundColors = new Color[] { Color.Red, Color.Blue, Color.Cyan, Color.Green, Color.Yellow };
+            SetContentView(Resource.Layout.MainLayout);
 
-            ImageView tittleImage = new ImageView(this.ApplicationContext);
-            tittleImage.SetImageBitmap(BitmapFactory.DecodeStream(Assets.Open("category_medicine.png")));
+            adapter = new MyAdapter(SupportFragmentManager);
 
-            ImageView tittleImage2 = new ImageView(this.ApplicationContext);
-            tittleImage2.SetImageBitmap(BitmapFactory.DecodeStream(Assets.Open("category_medicine.png")));
-
-
-            AddCategory(horiPager, tittleImage);
-            AddCategory(horiPager, tittleImage2);
-
-            tittleImage.Click += delegate { StartActivity(typeof(UnderCategoryActivity)); };
-
-
-            SetContentView(horiPager);
+            pager = FindViewById<ViewPager>(Resource.Id.pager);
+            pager.Adapter = adapter;
+            
+            _startActivityIntent = new Intent(this, typeof(SubcategoryActivity));
         }
 
-         private void AddCategory(HorizontalPager h_pager, ImageView image)
-         {
-             h_pager.AddView(image);
-         }
+        protected class ArrayListFragment : Fragment
+        {
+            int num;
 
+            public ArrayListFragment()
+            {
+
+            }
+
+            public ArrayListFragment(int num)
+            {
+                var args = new Bundle();
+                args.PutInt("num", num);
+                Arguments = args;
+            }
+
+            public override void OnCreate(Bundle p0)
+            {
+                base.OnCreate(p0);
+
+                num = Arguments != null ? Arguments.GetInt("num") : 1;
+            }
+
+            public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+            {
+                var v = inflater.Inflate(Resource.Layout.CategoryLayout, container, false);
+
+                TextView categoryName = v.FindViewById<TextView>(Resource.Id.CategoryName);
+                ImageView miniCategoryImage = v.FindViewById<ImageView>(Resource.Id.miniCategoryImage);
+                ImageView mainCategoryImage = v.FindViewById<ImageView>(Resource.Id.mainCategoryImage);
+
+                if (num == 1)
+                {
+                    categoryName.Text = "Здравоохранение";
+                    mainCategoryImage.SetImageResource(Resource.Drawable.zdravoohranenie);// SetImageBitmap(BitmapFactory.DecodeStream(Assets.Open("category_medicine.png")));
+                    mainCategoryImage.Click += delegate 
+                    {
+                        Console.WriteLine("Click! " + num);
+                        StartActivity(_startActivityIntent);
+                    };
+                    return v;
+                }
+                return v;
+            }
+
+            public override void OnActivityCreated(Bundle p0)
+            {
+                base.OnActivityCreated(p0);
+            }
+        }
+
+
+        protected class MyAdapter : FragmentPagerAdapter
+        {
+            public MyAdapter(FragmentManager fm)
+                : base(fm)
+            {
+            }
+
+            public override int Count
+            {
+                get
+                {
+                    return NUM_ITEMS;
+                }
+            }
+
+            public override Fragment GetItem(int position)
+            {
+                return new ArrayListFragment(position);
+            }
+
+        }
     }
 }
 
