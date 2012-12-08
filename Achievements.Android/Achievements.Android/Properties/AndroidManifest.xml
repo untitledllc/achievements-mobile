@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="internalOnly" package="Achievements.install" android:versionCode="0" android:versionName="berta">
+  <uses-sdk android:targetSdkVersion="8" />
+  <application android:label="Achievements">
+  </application>
+</manifest>

@@ -13,6 +13,7 @@ using Android.Graphics.Drawables;
 using Android.Content.PM;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
+using Achievements.Android.WebControls;
 
 namespace Achievements.Android
 {
@@ -26,11 +27,12 @@ namespace Achievements.Android
         ViewPager pager;
 
         static Intent _startActivityIntent;
+        static Intent _startActivityIntent2;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
+            
             SetContentView(Resource.Layout.MainLayout);
 
             adapter = new MyAdapter(SupportFragmentManager);
@@ -39,6 +41,7 @@ namespace Achievements.Android
             pager.Adapter = adapter;
             
             _startActivityIntent = new Intent(this, typeof(SubcategoryActivity));
+            _startActivityIntent2 = new Intent(this, typeof(LoginScreenActivity));
         }
 
         protected class ArrayListFragment : Fragment
@@ -71,6 +74,18 @@ namespace Achievements.Android
                 TextView categoryName = v.FindViewById<TextView>(Resource.Id.CategoryName);
                 ImageView miniCategoryImage = v.FindViewById<ImageView>(Resource.Id.miniCategoryImage);
                 ImageView mainCategoryImage = v.FindViewById<ImageView>(Resource.Id.mainCategoryImage);
+
+                if (num == 0)
+                {
+                    categoryName.Text = "Facebook!";
+                    mainCategoryImage.SetImageResource(Resource.Drawable.zdravoohranenie);// SetImageBitmap(BitmapFactory.DecodeStream(Assets.Open("category_medicine.png")));
+                    mainCategoryImage.Click += delegate
+                    {
+                        Console.WriteLine("Click! " + num);
+                        StartActivity(_startActivityIntent2);
+                    };
+                    return v;
+                }
 
                 if (num == 1)
                 {
