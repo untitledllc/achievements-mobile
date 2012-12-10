@@ -14,7 +14,7 @@ using Android.Content.PM;
 using System.Net;
 using System.IO;
 
-namespace Achievements.Android
+namespace Achievements.AndroidPlatform
 {
     [Activity(Label = "My Activity", Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
                 ScreenOrientation = ScreenOrientation.Portrait)]
@@ -22,7 +22,10 @@ namespace Achievements.Android
     {
         public static TextView textChanged;
         bool _isCodeGotten = false;
+        public static string _urlWithCode = "Null";
         string _code = "Null";
+        public static string _accessToken = "Null";
+
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -43,9 +46,9 @@ namespace Achievements.Android
                 WebView webView = FindViewById<WebView>(Resource.Id.webView1);
                 textChanged.TextChanged += delegate
                 {
-                    if (webView.Url!=null)
+                    if (_urlWithCode.StartsWith("https://arcane-river-8945.herokuapp.com/?code="))
                     {
-                        _code = webView.Url.Replace("http://arcane-river-8945.herokuapp.com/?code=", "");
+                        _code = _urlWithCode.Remove(0, "http://arcane-river-8945.herokuapp.com/?code=".Length+1);
                         _isCodeGotten = true;
                         OnCreate(bundle);
                     }
@@ -73,7 +76,7 @@ namespace Achievements.Android
                 Stream stream = response.GetResponseStream();
                 Encoding encode = System.Text.Encoding.GetEncoding("utf-8");
                 StreamReader streamReader = new StreamReader(stream, encode);
-                string accessToken = streamReader.ReadToEnd().Replace("access_token=", "");
+                _accessToken = streamReader.ReadToEnd().Replace("access_token=", "");
                 streamReader.Close();
                 response.Close();
 
@@ -81,10 +84,20 @@ namespace Achievements.Android
                 string url2 = "https://graph.facebook.com/me?access_token={0}";
 
                 //create the request to https://graph.facebook.com/me
-                request = WebRequest.Create(string.Format(url2, accessToken));
+                request = WebRequest.Create(string.Format(url2, _accessToken));
 
                 //Get the response
                 response = request.GetResponse();
+
+                if (_accessToken != "Null")
+                {
+                    Finish();
+                }
+                if (_accessToken == "Null")
+                {
+                    _isCodeGotten = false;
+                    OnCreate(bundle);
+                }
             }
 
         }
@@ -102,7 +115,8 @@ namespace Achievements.Android
             {
                 if (url.StartsWith("https://arcane-river-8945.herokuapp.com/?code="))
                 {
-                        LoginScreenActivity.textChanged.Text = "NewURL!";
+                    LoginScreenActivity._urlWithCode = url;
+                    LoginScreenActivity.textChanged.Text = "NewURL!";
                 }
                 base.OnPageStarted(view, url, favicon);
             }

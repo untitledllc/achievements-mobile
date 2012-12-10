@@ -13,14 +13,14 @@ using Android.Graphics.Drawables;
 using Android.Content.PM;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
-using Achievements.Android.WebControls;
+using Achievements.AndroidPlatform.WebControls;
 
-namespace Achievements.Android
+namespace Achievements.AndroidPlatform
 {
     [Activity(Label = "Achievements.Android", MainLauncher = true, Icon = "@drawable/icon", 
         Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
                 ScreenOrientation = ScreenOrientation.Portrait)]
-    public class FragmentPagerSupport : FragmentActivity
+    public class MainCategoriesActivity : FragmentActivity
     {
         const int NUM_ITEMS = 10;
         MyAdapter adapter;

@@ -7,7 +7,7 @@
     p1:id="@+id/relativeLayout1">
     <ImageView
         p1:layout_width="fill_parent"
-        p1:layout_height="35dp"
+        p1:layout_height="70dp"
         p1:id="@+id/imageView1"
         p1:background="#ff434343" />
     <HorizontalScrollView
@@ -17,7 +17,8 @@
         p1:layout_height="80dp"
         p1:layout_below="@id/imageView1"
         p1:id="@+id/horizontalScrollView1"
-        p1:background="#ffc3c3c3" />
+        p1:background="#ffc3c3c3"
+        p1:layout_marginLeft="40dp" />
     <ImageView
         p1:src="@android:drawable/ic_menu_gallery"
         p1:layout_width="fill_parent"
@@ -32,7 +33,8 @@
         p1:layout_height="80dp"
         p1:layout_below="@id/imageView2"
         p1:id="@+id/horizontalScrollView2"
-        p1:background="#ffc3c3c3" />
+        p1:background="#ffc3c3c3"
+        p1:layout_marginLeft="40dp" />
     <ImageView
         p1:src="@android:drawable/ic_menu_gallery"
         p1:layout_width="fill_parent"
@@ -41,27 +43,35 @@
         p1:id="@+id/imageView3"
         p1:background="#ff434343" />
     <TextView
-        p1:text="Донорство"
+        p1:text="Blood Donation"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
         p1:layout_below="@id/horizontalScrollView1"
         p1:id="@+id/textView1"
-        p1:layout_marginTop="4dp" />
+        p1:layout_marginTop="4dp"
+        p1:layout_marginLeft="40dp" />
     <TextView
-        p1:text="Здоровый образ жизни"
+        p1:text="Healthcare"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
         p1:layout_below="@id/horizontalScrollView2"
         p1:id="@+id/textView2"
-        p1:layout_marginTop="4dp" />
+        p1:layout_marginTop="4dp"
+        p1:layout_marginLeft="40dp" />
     <TextView
-        p1:text="&lt; Здравоохранение"
+        p1:text="Healthcare"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
         p1:id="@+id/CurentCategoryTitle"
-        p1:layout_marginTop="5dp"
-        p1:layout_marginLeft="10dp" />
+        p1:layout_marginTop="25dp"
+        p1:layout_marginLeft="40dp" />
+    <ImageView
+        p1:layout_width="fill_parent"
+        p1:layout_height="20dp"
+        p1:id="@+id/imageView4"
+        p1:background="#ff545454"
+        p1:layout_alignParentBottom="true" />
 </RelativeLayout>

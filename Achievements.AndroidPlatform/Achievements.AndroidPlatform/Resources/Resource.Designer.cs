@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Achievements.Android
+namespace Achievements.AndroidPlatform
 {
 	
 	
@@ -58,8 +58,8 @@ namespace Achievements.Android
 			// aapt resource value: 0x7f050012
 			public const int CurentCategoryTitle = 2131034130;
 			
-			// aapt resource value: 0x7f05000d
-			public const int horizontalScrollView1 = 2131034125;
+			// aapt resource value: 0x7f05000e
+			public const int horizontalScrollView1 = 2131034126;
 			
 			// aapt resource value: 0x7f05000f
 			public const int horizontalScrollView2 = 2131034127;
@@ -67,11 +67,14 @@ namespace Achievements.Android
 			// aapt resource value: 0x7f050001
 			public const int imageView1 = 2131034113;
 			
-			// aapt resource value: 0x7f05000e
-			public const int imageView2 = 2131034126;
+			// aapt resource value: 0x7f05000d
+			public const int imageView2 = 2131034125;
 			
 			// aapt resource value: 0x7f050010
 			public const int imageView3 = 2131034128;
+			
+			// aapt resource value: 0x7f050013
+			public const int imageView4 = 2131034131;
 			
 			// aapt resource value: 0x7f050007
 			public const int mainCategoryImage = 2131034119;

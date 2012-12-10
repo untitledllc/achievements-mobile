@@ -14,7 +14,7 @@ using System.Net;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace Achievements.Android.WebControls
+namespace Achievements.AndroidPlatform.WebControls
 {
     public static class WebControls
     {
