@@ -129,7 +129,7 @@ namespace Achievements.AndroidPlatform
 			public const int MainLayout = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int SubcategoryLayout = 2130903044;
+			public const int ProjectsLayout = 2130903044;
 			
 			private Layout()
 			{

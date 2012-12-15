@@ -15,7 +15,7 @@ namespace Achievements.AndroidPlatform.JsonProcessor
         {
             string _jsonResponse;
 
-            public JArray jArray;
+            public JToken jToken;
 
             public JSonCategories(string access_token)
             {
@@ -23,39 +23,39 @@ namespace Achievements.AndroidPlatform.JsonProcessor
                     String.Format("http://www.itsbeta.com/info/categories.json?access_token={0}", 
                     access_token));
 
-                jArray = JArray.Parse(_jsonResponse);
+                jToken = JToken.Parse(_jsonResponse);
             }
 
             public int Count
             {
                 get
                 {
-                    return jArray.Count;
+                    return jToken.Count();
                 }
                 private set {}
             }  
         }
 
-        public class JSonProducts
+        public class JSonProjects
         {
             string _jsonResponse;
 
-            JArray jArray;
+            public JToken jToken;
 
-            public JSonProducts(string access_token, string categoryId)
+            public JSonProjects(string access_token, string categoryId)
             {
                 _jsonResponse = WebControls.WebControls.GetMethod(
                     String.Format("http://www.itsbeta.com/info/projects.json?access_token={0}&category_id={1}",
                     access_token, categoryId));
 
-                jArray = JArray.Parse(_jsonResponse);
+                jToken = JToken.Parse(_jsonResponse);
             }
 
             public int Count
             {
                 get
                 {
-                    return jArray.Count;
+                    return jToken.Count();
                 }
                 private set { }
             }

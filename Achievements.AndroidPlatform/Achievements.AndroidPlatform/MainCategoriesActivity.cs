@@ -30,8 +30,7 @@ namespace Achievements.AndroidPlatform
 
         static Categories _categories;
 
-        static Intent _startActivityIntent;
-        static Intent _startActivityIntent2;
+        static Intent[] _intentArray;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -51,8 +50,12 @@ namespace Achievements.AndroidPlatform
 
             pager = FindViewById<ViewPager>(Resource.Id.pager);
             pager.Adapter = adapter;
-            
-            _startActivityIntent = new Intent(this, typeof(SubcategoryActivity));
+
+            _intentArray = new Intent[NUM_ITEMS];
+            for (int i = 0; i < NUM_ITEMS; i++)
+            {
+                _intentArray[i] = new Intent(this, typeof(ProjectsActivity));
+            }
         }
 
         protected class ArrayListFragment : Fragment
@@ -85,18 +88,24 @@ namespace Achievements.AndroidPlatform
                 TextView categoryName = v.FindViewById<TextView>(Resource.Id.CategoryName);
                 ImageView miniCategoryImage = v.FindViewById<ImageView>(Resource.Id.miniCategoryImage);
                 ImageView mainCategoryImage = v.FindViewById<ImageView>(Resource.Id.mainCategoryImage);
-                
-                if (num == 1)
+
+                for (int i = 0; i < NUM_ITEMS; i++)
                 {
-                    categoryName.Text = _categories.CategoriesArray()[1].Name; //"Здравоохранение";
-                    mainCategoryImage.SetImageResource(Resource.Drawable.zdravoohranenie);// SetImageBitmap(BitmapFactory.DecodeStream(Assets.Open("category_medicine.png")));
-                    mainCategoryImage.Click += delegate 
+                    if (num == i)
                     {
-                        Console.WriteLine("Click! " + num);
-                        StartActivity(_startActivityIntent);
-                    };
-                    return v;
+                        categoryName.Text = _categories.CategoriesArray()[i].Title;
+                        //mainCategoryImage.SetImageResource(Resource.Drawable.zdravoohranenie);// SetImageBitmap(BitmapFactory.DecodeStream(Assets.Open("category_medicine.png")));
+                        mainCategoryImage.Click += delegate
+                        {
+                            Console.WriteLine("Click! " + num);
+                            _intentArray[i].PutExtra("category_name", categoryName.Text);
+                            _intentArray[i].PutExtra("category_id", _categories.CategoriesArray()[i].Id);
+                            StartActivity(_intentArray[i]);
+                        };
+                        return v;
+                    }
                 }
+                
                 return v;
             }
 

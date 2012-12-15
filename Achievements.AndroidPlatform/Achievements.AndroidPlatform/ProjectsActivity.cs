@@ -16,16 +16,27 @@ namespace Achievements.AndroidPlatform
 	[Activity(Label = "UnderCategoryActivity",
 	          Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
                 ScreenOrientation = ScreenOrientation.Portrait)]
-    public class SubcategoryActivity : Activity
+    public class ProjectsActivity : Activity
     {
         int _achieveNumber = 10;
+        string access_token = "059db4f010c5f40bf4a73a28222dd3e3";
+        Projects projects;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.SubcategoryLayout);
-            
+            SetContentView(Resource.Layout.ProjectsLayout);
+
+            TextView categoryName = FindViewById<TextView>(Resource.Id.CurentCategoryTitle);
+            categoryName.Text = Intent.GetStringExtra("category_name");
+
+            projects = new Projects(access_token, Intent.GetStringExtra("category_id"));
+            TextView projectName = FindViewById<TextView>(Resource.Id.textView1);
+            projectName.Text = projects.ProductsArray()[0].Title;
+
+
+
 			//Cheating(not forever):
             HorizontalScrollView firstLine = FindViewById<HorizontalScrollView>(Resource.Id.horizontalScrollView1);
 			LinearLayout linearLayout = new LinearLayout(this);

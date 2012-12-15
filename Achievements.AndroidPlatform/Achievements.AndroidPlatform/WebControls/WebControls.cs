@@ -44,6 +44,7 @@ namespace Achievements.AndroidPlatform.WebControls
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(getUrl);
             request.ContentType = "application/json; charset=utf-8";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2";
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 

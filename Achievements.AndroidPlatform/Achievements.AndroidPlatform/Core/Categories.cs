@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 
 using Achievements.AndroidPlatform.JsonProcessor;
+using Newtonsoft.Json.Linq;
 
 namespace Achievements.AndroidPlatform
 {
@@ -36,26 +37,26 @@ namespace Achievements.AndroidPlatform
         {
             Category[] array = new Category[Count];
 
-            for (int i = 0; i < Count - 1; i++)
+            for (int i = 0; i < Count; i++)
             {
                 array[i] = new Category()
                 {
-                    Name = (string)jSonCategories.jArray[i]["name"]
+                    Name = jSonCategories.jToken[i]["name"].Value<string>(),
+                    Title = jSonCategories.jToken[i]["title"].Value<string>(),
+                    Id = jSonCategories.jToken[i]["id"].Value<string>()
                 };
             }
 
-            return null;
+            return array;
         }
 
         public class Category
         {
             public string Name { get; set; }
             public string Id { get; set; }
+            public string Title { get; set; }
 
             public ImageView Picture { get; set; }
-
-            public Product[] Products { get; set; }
-
         }
     }
 }
