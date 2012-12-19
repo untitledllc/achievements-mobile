@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="150dp"
+    p1:layout_width="fill_parent"
+    p1:layout_height="150dp"
+    p1:id="@+id/relativeLayout1"
+    p1:background="#ffe8e8e8">
+    <ImageView
+        p1:src="@android:drawable/ic_menu_gallery"
+        p1:layout_width="70dp"
+        p1:layout_height="70dp"
+        p1:id="@+id/AchiveImageView"
+        p1:layout_marginLeft="25dp"
+        p1:layout_marginTop="20dp" />
+    <Button
+        p1:text="f"
+        p1:layout_width="30dp"
+        p1:layout_height="30dp"
+        p1:layout_below="@id/AchiveImageView"
+        p1:id="@+id/facebook_button"
+        p1:layout_marginLeft="10dp"
+        p1:layout_marginTop="20dp"
+        p1:textSize="8dp" />
+    <Button
+        p1:text="t"
+        p1:layout_width="30dp"
+        p1:layout_height="30dp"
+        p1:layout_toRightOf="@id/facebook_button"
+        p1:id="@+id/twitter_button"
+        p1:layout_below="@+id/AchiveImageView"
+        p1:layout_marginLeft="5dp"
+        p1:layout_marginTop="20dp"
+        p1:textSize="8dp" />
+    <Button
+        p1:text="B"
+        p1:layout_width="30dp"
+        p1:layout_height="30dp"
+        p1:layout_toRightOf="@id/twitter_button"
+        p1:id="@+id/vk_button"
+        p1:layout_below="@+id/AchiveImageView"
+        p1:layout_marginLeft="5dp"
+        p1:layout_marginTop="20dp"
+        p1:textSize="8dp" />
+    <RelativeLayout
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="fill_parent"
+        p1:layout_height="fill_parent"
+        p1:layout_toRightOf="@id/vk_button"
+        p1:id="@+id/relativeLayout2">
+        <TextView
+            p1:text="Large Text"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/AchiveNameTextView"
+            p1:textColor="#ffff0000"
+            p1:layout_marginLeft="10dp"
+            p1:layout_marginTop="20dp" />
+        <TextView
+            p1:text="Small Text"
+            p1:textAppearance="?android:attr/textAppearanceSmall"
+            p1:layout_width="fill_parent"
+            p1:layout_height="70dp"
+            p1:layout_below="@id/AchiveNameTextView"
+            p1:id="@+id/AchiveDescriptionTextView"
+            p1:layout_marginLeft="10dp"
+            p1:layout_marginRight="10dp"
+            p1:textColor="#ff474747" />
+        <TextView
+            p1:text="Receive date"
+            p1:textAppearance="?android:attr/textAppearanceSmall"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/AchiveDescriptionTextView"
+            p1:id="@+id/AchiveReceiveDateTextView"
+            p1:layout_marginLeft="10dp"
+            p1:textColor="#ff8b8b8b" />
+    </RelativeLayout>
+</RelativeLayout>

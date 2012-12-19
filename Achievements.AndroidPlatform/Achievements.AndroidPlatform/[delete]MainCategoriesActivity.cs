@@ -19,7 +19,7 @@ using Achievements.AndroidPlatform.JsonProcessor;
 
 namespace Achievements.AndroidPlatform
 {
-    [Activity(Label = "Achievements.Android", MainLauncher = true, Icon = "@drawable/icon", 
+    [Activity(Label = "Achievements.Android",  Icon = "@drawable/icon", 
         Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainCategoriesActivity : FragmentActivity

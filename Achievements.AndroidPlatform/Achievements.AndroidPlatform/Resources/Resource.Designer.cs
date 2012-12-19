@@ -57,32 +57,65 @@ namespace Achievements.AndroidPlatform
 			// aapt resource value: 0x7f050004
 			public const int AchieveImage = 2131034116;
 			
+			// aapt resource value: 0x7f05001a
+			public const int AchiveDescriptionTextView = 2131034138;
+			
+			// aapt resource value: 0x7f050014
+			public const int AchiveImageView = 2131034132;
+			
+			// aapt resource value: 0x7f050019
+			public const int AchiveNameTextView = 2131034137;
+			
+			// aapt resource value: 0x7f05001b
+			public const int AchiveReceiveDateTextView = 2131034139;
+			
+			// aapt resource value: 0x7f05000f
+			public const int AchivementsListView = 2131034127;
+			
 			// aapt resource value: 0x7f050005
 			public const int AchvieveTitle = 2131034117;
+			
+			// aapt resource value: 0x7f05000b
+			public const int BadgesBarBackgroundImageView = 2131034123;
+			
+			// aapt resource value: 0x7f05000c
+			public const int BadgesBarImageView = 2131034124;
 			
 			// aapt resource value: 0x7f050008
 			public const int CategoryName = 2131034120;
 			
-			// aapt resource value: 0x7f050012
-			public const int CurentCategoryTitle = 2131034130;
+			// aapt resource value: 0x7f050020
+			public const int CurentCategoryTitle = 2131034144;
+			
+			// aapt resource value: 0x7f05000d
+			public const int PointersImageView = 2131034125;
+			
+			// aapt resource value: 0x7f050010
+			public const int expandableListView1 = 2131034128;
+			
+			// aapt resource value: 0x7f050015
+			public const int facebook_button = 2131034133;
 			
 			// aapt resource value: 0x7f05000e
-			public const int horizontalScrollView1 = 2131034126;
+			public const int gridView = 2131034126;
 			
-			// aapt resource value: 0x7f05000f
-			public const int horizontalScrollView2 = 2131034127;
+			// aapt resource value: 0x7f05001c
+			public const int horizontalScrollView1 = 2131034140;
+			
+			// aapt resource value: 0x7f05001d
+			public const int horizontalScrollView2 = 2131034141;
 			
 			// aapt resource value: 0x7f050001
 			public const int imageView1 = 2131034113;
 			
-			// aapt resource value: 0x7f05000d
-			public const int imageView2 = 2131034125;
-			
-			// aapt resource value: 0x7f050010
-			public const int imageView3 = 2131034128;
-			
 			// aapt resource value: 0x7f050013
-			public const int imageView4 = 2131034131;
+			public const int imageView2 = 2131034131;
+			
+			// aapt resource value: 0x7f05001e
+			public const int imageView3 = 2131034142;
+			
+			// aapt resource value: 0x7f050021
+			public const int imageView4 = 2131034145;
 			
 			// aapt resource value: 0x7f050007
 			public const int mainCategoryImage = 2131034119;
@@ -90,20 +123,29 @@ namespace Achievements.AndroidPlatform
 			// aapt resource value: 0x7f050009
 			public const int miniCategoryImage = 2131034121;
 			
-			// aapt resource value: 0x7f05000b
-			public const int pager = 2131034123;
+			// aapt resource value: 0x7f050011
+			public const int pager = 2131034129;
 			
 			// aapt resource value: 0x7f050000
 			public const int relativeLayout1 = 2131034112;
 			
+			// aapt resource value: 0x7f050018
+			public const int relativeLayout2 = 2131034136;
+			
 			// aapt resource value: 0x7f050002
 			public const int subcategoryName = 2131034114;
 			
-			// aapt resource value: 0x7f05000c
-			public const int textView1 = 2131034124;
+			// aapt resource value: 0x7f050012
+			public const int textView1 = 2131034130;
 			
-			// aapt resource value: 0x7f050011
-			public const int textView2 = 2131034129;
+			// aapt resource value: 0x7f05001f
+			public const int textView2 = 2131034143;
+			
+			// aapt resource value: 0x7f050016
+			public const int twitter_button = 2131034134;
+			
+			// aapt resource value: 0x7f050017
+			public const int vk_button = 2131034135;
 			
 			// aapt resource value: 0x7f05000a
 			public const int webView1 = 2131034122;
@@ -126,10 +168,16 @@ namespace Achievements.AndroidPlatform
 			public const int FacebookLoginLayout = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int MainLayout = 2130903043;
+			public const int MainActivityLayout = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int ProjectsLayout = 2130903044;
+			public const int MainLayout = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int MainLayoutListRow = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int ProjectsLayout = 2130903046;
 			
 			private Layout()
 			{
