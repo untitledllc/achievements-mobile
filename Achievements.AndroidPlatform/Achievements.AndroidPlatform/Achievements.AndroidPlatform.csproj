@@ -40,7 +40,6 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkSkip />
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -78,6 +77,8 @@
     <AndroidResource Include="Resources\Layout\AchieveLayout.axml" />
     <AndroidResource Include="Resources\Layout\MainActivityLayout.axml" />
     <AndroidResource Include="Resources\Layout\MainLayoutListRow.xml" />
+    <AndroidResource Include="Resources\Layout\MainLayoutCategoryDropDownList.axml" />
+    <AndroidResource Include="Resources\Layout\MainLayoutCategoryDropDownListRow.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Layout\ProjectsLayout.axml" />

@@ -49,4 +49,10 @@
         p1:layout_width="wrap_content"
         p1:layout_height="50dp"
         p1:id="@+id/expandableListView1" />
+    <Button
+        p1:text="Button"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/BadgesBarBackgroundImageView"
+        p1:id="@+id/button1" />
 </RelativeLayout>
