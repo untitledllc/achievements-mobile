@@ -26,7 +26,7 @@ namespace Achievements.AndroidPlatform
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.ProjectsLayout);
+            //SetContentView(Resource.Layout.ProjectsLayout);
 
             TextView categoryName = FindViewById<TextView>(Resource.Id.CurentCategoryTitle);
             categoryName.Text = Intent.GetStringExtra("category_name");

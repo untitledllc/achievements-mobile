@@ -5,17 +5,17 @@
     p1:layout_width="fill_parent"
     p1:layout_height="fill_parent"
     p1:id="@+id/relativeLayout1">
-    <ImageView
+    <ImageButton
         p1:layout_width="fill_parent"
         p1:layout_height="50dp"
-        p1:id="@+id/BadgesBarBackgroundImageView"
+        p1:id="@+id/BadgesBarBackgroundImageButton"
         p1:background="#ff434343"
         p1:src="#ff4a4a4a" />
     <ImageView
         p1:src="@android:drawable/ic_menu_gallery"
         p1:layout_width="150dp"
         p1:layout_height="40dp"
-        p1:layout_toLeftOf="@id/BadgesBarBackgroundImageView"
+        p1:layout_toLeftOf="@id/BadgesBarBackgroundImageButton"
         p1:id="@+id/BadgesBarImageView"
         p1:layout_margin="5dp"
         p1:background="#ff878787" />
@@ -27,32 +27,21 @@
         p1:layout_margin="5dp"
         p1:layout_alignParentRight="true"
         p1:background="#ffbfbfbf" />
-    <GridView
+    <LinearLayout
+        p1:orientation="horizontal"
         p1:minWidth="25px"
         p1:minHeight="25px"
         p1:layout_width="fill_parent"
         p1:layout_height="40dp"
-        p1:layout_below="@id/BadgesBarBackgroundImageView"
-        p1:id="@+id/gridView"
-        p1:background="#ff393939" />
+        p1:layout_below="@id/BadgesBarBackgroundImageButton"
+        p1:id="@+id/SelectedCategoriesLinearLayout"
+        p1:background="#ff737373" />
     <ListView
         p1:minWidth="25px"
         p1:minHeight="25px"
         p1:layout_width="fill_parent"
         p1:layout_height="fill_parent"
-        p1:layout_below="@id/gridView"
+        p1:layout_below="@id/SelectedCategoriesLinearLayout"
         p1:id="@+id/AchivementsListView"
         p1:background="#ffe8e8e8" />
-    <ExpandableListView
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:layout_width="wrap_content"
-        p1:layout_height="50dp"
-        p1:id="@+id/expandableListView1" />
-    <Button
-        p1:text="Button"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/BadgesBarBackgroundImageView"
-        p1:id="@+id/button1" />
 </RelativeLayout>

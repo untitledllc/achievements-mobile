@@ -22,7 +22,6 @@ namespace Achievements.AndroidPlatform
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.AchieveLayout);
         }
     }
 }

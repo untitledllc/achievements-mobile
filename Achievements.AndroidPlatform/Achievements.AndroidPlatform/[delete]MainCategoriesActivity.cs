@@ -36,7 +36,7 @@ namespace Achievements.AndroidPlatform
         {
             base.OnCreate(bundle);
             
-            SetContentView(Resource.Layout.MainLayout);
+            //SetContentView(Resource.Layout.MainLayout);
 
             string access_token = "059db4f010c5f40bf4a73a28222dd3e3";
 
@@ -83,7 +83,7 @@ namespace Achievements.AndroidPlatform
 
             public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
             {
-                var v = inflater.Inflate(Resource.Layout.CategoryLayout, container, false);
+                var v = inflater.Inflate(0/*Resource.Layout.CategoryLayout*/, container, false);
 
                 TextView categoryName = v.FindViewById<TextView>(Resource.Id.CategoryName);
                 ImageView miniCategoryImage = v.FindViewById<ImageView>(Resource.Id.miniCategoryImage);

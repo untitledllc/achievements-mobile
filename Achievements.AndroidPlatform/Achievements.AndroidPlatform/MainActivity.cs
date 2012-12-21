@@ -18,16 +18,22 @@ namespace Achievements.AndroidPlatform
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : Activity
     {
-        ImageView badgesBarBackgroundImageView;
+        Display _display;
+        bool _isBarCategoriesListOpen = false;
+        ListView _categoriesListView;
+        public static List<bool> _selectedCategoriesList = new List<bool>();
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            _display = WindowManager.DefaultDisplay;
 
             SetContentView(Resource.Layout.MainActivityLayout);
 
-            ImageView badgesBarBackgroundImageView = FindViewById<ImageView>(Resource.Id.BadgesBarBackgroundImageView);
-
+            ImageButton badgesBarBackgroundImageButton = FindViewById<ImageButton>(Resource.Id.BadgesBarBackgroundImageButton);
+            //---------------------------------------------------------------------------------------
+            //---------------------------------------------------------------------------------------
+            
             #region AchievementsList Local
             List<AchievementsListData> achievementsList = new List<AchievementsListData>();
 
@@ -37,49 +43,88 @@ namespace Achievements.AndroidPlatform
 			}
 
             ListView achievementsListView = FindViewById<ListView>(Resource.Id.AchivementsListView);
-            achievementsListView.Visibility = ViewStates.Invisible;
-
+            
             var adapter = new AchievementsListItemAdapter(this, Resource.Layout.MainLayoutListRow, achievementsList);
             achievementsListView.Adapter = adapter;
             #endregion
-
-
+            //---------------------------------------------------------------------------------------
+            //---------------------------------------------------------------------------------------
+            
             #region CategoriesList Local
             List<CategoriesListData> categoriesList = new List<CategoriesListData>();
 
             for (int i = 0; i < 3; i++)
             {
-                categoriesList.Add(new CategoriesListData() { CategoryNameText = String.Format("Category [{0}]", i) });
+                categoriesList.Add(new CategoriesListData() { CategoryNameText = String.Format("Category [{0}]", i), IsCategoryActive = true });
+                _selectedCategoriesList.Add(categoriesList[i].IsCategoryActive);
             }
 
-            ListView categoriesListView = new ListView(this);//FindViewById<ListView>(Resource.Id.AchivementsListView);
+            _categoriesListView = new ListView(this);
 
             var categoriesAdapter = new CategoriesListItemAdapter(this, Resource.Layout.MainLayoutCategoryDropDownListRow, categoriesList);
             
-            categoriesListView.Adapter = categoriesAdapter;
-            #endregion
+            _categoriesListView.Adapter = categoriesAdapter;
+            
 
             LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-            LinearLayout ll = new LinearLayout(this);
-            //View popupView = layoutInflater.Inflate(Resource.Layout.MainLayoutCategoryDropDownList, null);
-            //PopupWindow popupWindow = new PopupWindow(
-            //   popupView,
-            //   LinearLayout.LayoutParams.WrapContent,
-            //   LinearLayout.LayoutParams.WrapContent);
 
-            PopupWindow popupWindow = new PopupWindow(categoriesListView, 
+            PopupWindow categoriesPopupWindow = new PopupWindow(_categoriesListView, 
                 LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
 
-            FindViewById<Button>(Resource.Id.button1).Click += delegate
+            FindViewById<ImageButton>(Resource.Id.BadgesBarBackgroundImageButton).Click += delegate
             {
-                popupWindow.ShowAsDropDown(FindViewById<ImageView>(Resource.Id.BadgesBarBackgroundImageView), 0, 0);
+                if (!_isBarCategoriesListOpen)
+                {
+                    categoriesPopupWindow.ShowAsDropDown(FindViewById<ImageButton>(Resource.Id.BadgesBarBackgroundImageButton), 0, 0);
+                    _isBarCategoriesListOpen = true;
+                    return;
+                }
+                if (_isBarCategoriesListOpen)
+                {
+                    categoriesPopupWindow.Dismiss();
+                    _isBarCategoriesListOpen = false;
+                }
             };
+            #endregion
+
+            //---------------------------------------------------------------------------------------
+            //---------------------------------------------------------------------------------------
+            
+            #region SubCategories Local
+            
+
+            Button[] categoryButtons;
+            LinearLayout categoriesLinearLayout = FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout);
+            
+            FindViewById<ImageButton>(Resource.Id.BadgesBarBackgroundImageButton).Click += delegate
+            {
+
+                int checkedCategoriesCount = _selectedCategoriesList.Count(e => e == true);
+                categoryButtons = new Button[checkedCategoriesCount];
+                //исправить нумурацию на ключи
+                for (int i = 0; i < checkedCategoriesCount; i++)
+                {
+                    categoryButtons[i] = new Button(this);
+                    categoryButtons[i].Text = "aa" + i.ToString();
+                    categoriesLinearLayout.AddView(categoryButtons[i]);
+                    categoryButtons[i].SetBackgroundColor(global::Android.Graphics.Color.DarkGray);
+                    categoryButtons[i].SetTextColor(global::Android.Graphics.Color.Gray);
+                    categoryButtons[i].Gravity = GravityFlags.Left;
+                    categoryButtons[i].LayoutParameters.Width = _display.Width / checkedCategoriesCount;
+                }
+            };
+            #endregion
+            //---------------------------------------------------------------------------------------
+            //---------------------------------------------------------------------------------------
             
         }
+
+
 
         protected override void OnStart()
         {
             base.OnStart();
+            
         }
     }
 
@@ -131,6 +176,7 @@ namespace Achievements.AndroidPlatform
                 TextView achiveDescriptionTextView = (TextView)view.FindViewById(Resource.Id.AchiveDescriptionTextView);
                 //achiveDescriptionTextView.Text = item.AchieveDescriptionText;
 
+
                 return view;
             }
         }
@@ -162,6 +208,9 @@ namespace Achievements.AndroidPlatform
             TextView categoryNameTextView = (TextView)view.FindViewById(Resource.Id.checkBox1);
             categoryNameTextView.Text = item.CategoryNameText;
             
+            CheckBox categoriesCheckBox = (CheckBox)view.FindViewById(Resource.Id.checkBox1);
+            categoriesCheckBox.Checked = item.IsCategoryActive;
+
             return view;
         }
     }

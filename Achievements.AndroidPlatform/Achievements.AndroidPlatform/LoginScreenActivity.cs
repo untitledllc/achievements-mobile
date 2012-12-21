@@ -31,7 +31,7 @@ namespace Achievements.AndroidPlatform
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.FacebookLoginLayout);
+            SetContentView(Resource.Layout.LoginLayout);
 
             textChanged = new TextView(this);
 

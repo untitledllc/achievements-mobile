@@ -61,7 +61,7 @@
     <Compile Include="[delete]AchieveActivity.cs" />
     <Compile Include="Core\Categories.cs" />
     <Compile Include="[delete]Database.cs" />
-    <Compile Include="GuiControls\HorizontalPager.cs" />
+    <Compile Include="Resources\Layout\GuiControls\HorizontalPager.cs" />
     <Compile Include="JsonProcessor\Json.cs" />
     <Compile Include="LoginScreenActivity.cs" />
     <Compile Include="MainActivity.cs" />
@@ -73,16 +73,15 @@
     <Compile Include="WebControls\WebControls.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Layout\CategoryLayout.axml" />
-    <AndroidResource Include="Resources\Layout\AchieveLayout.axml" />
+    <AndroidResource Include="Resources\Layout\__CategoryLayout.axml" />
+    <AndroidResource Include="Resources\Layout\__AchieveLayout.axml" />
     <AndroidResource Include="Resources\Layout\MainActivityLayout.axml" />
     <AndroidResource Include="Resources\Layout\MainLayoutListRow.xml" />
-    <AndroidResource Include="Resources\Layout\MainLayoutCategoryDropDownList.axml" />
     <AndroidResource Include="Resources\Layout\MainLayoutCategoryDropDownListRow.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Layout\ProjectsLayout.axml" />
-    <AndroidResource Include="Resources\Layout\MainLayout.axml" />
+    <AndroidResource Include="Resources\Layout\__ProjectsLayout.axml" />
+    <AndroidResource Include="Resources\Layout\__MainLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
@@ -101,7 +100,7 @@
     <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Layout\FacebookLoginLayout.axml" />
+    <AndroidResource Include="Resources\Layout\LoginLayout.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
