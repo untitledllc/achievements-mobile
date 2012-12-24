@@ -21,7 +21,7 @@ namespace Achievements.AndroidPlatform
         Display _display;
         bool _isBarCategoriesListOpen = false;
         ListView _categoriesListView;
-        public static List<bool> _selectedCategoriesList = new List<bool>();
+        public static Dictionary<string,bool> _selectedCategoriesDictionary = new Dictionary<string,bool>();
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -56,21 +56,21 @@ namespace Achievements.AndroidPlatform
             for (int i = 0; i < 3; i++)
             {
                 categoriesList.Add(new CategoriesListData() { CategoryNameText = String.Format("Category [{0}]", i), IsCategoryActive = true });
-                _selectedCategoriesList.Add(categoriesList[i].IsCategoryActive);
+                _selectedCategoriesDictionary.Add(categoriesList[i].CategoryNameText, categoriesList[i].IsCategoryActive);
             }
+            
 
             _categoriesListView = new ListView(this);
 
             var categoriesAdapter = new CategoriesListItemAdapter(this, Resource.Layout.MainLayoutCategoryDropDownListRow, categoriesList);
             
             _categoriesListView.Adapter = categoriesAdapter;
-            
 
             LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
 
             PopupWindow categoriesPopupWindow = new PopupWindow(_categoriesListView, 
-                LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
-
+                LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
+            
             FindViewById<ImageButton>(Resource.Id.BadgesBarBackgroundImageButton).Click += delegate
             {
                 if (!_isBarCategoriesListOpen)
@@ -91,26 +91,44 @@ namespace Achievements.AndroidPlatform
             //---------------------------------------------------------------------------------------
             
             #region SubCategories Local
-            
 
-            Button[] categoryButtons;
+            _categoriesListView.Clickable = true;
+
             LinearLayout categoriesLinearLayout = FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout);
-            
+            int checkedCategoriesCount = _selectedCategoriesDictionary.Count(e => e.Value == true);
+
+            foreach (var item in _selectedCategoriesDictionary)
+            {
+                if (item.Value == true)
+                {
+                    var categoryButton = new Button(this);
+                    categoryButton.Text = item.Key;
+                    categoriesLinearLayout.AddView(categoryButton);
+                    categoryButton.SetBackgroundColor(global::Android.Graphics.Color.DarkGray);
+                    categoryButton.SetTextColor(global::Android.Graphics.Color.Gray);
+                    categoryButton.Gravity = GravityFlags.Left;
+                    categoryButton.LayoutParameters.Width = _display.Width / checkedCategoriesCount;
+                }
+            }
+
             FindViewById<ImageButton>(Resource.Id.BadgesBarBackgroundImageButton).Click += delegate
             {
-
-                int checkedCategoriesCount = _selectedCategoriesList.Count(e => e == true);
-                categoryButtons = new Button[checkedCategoriesCount];
+                categoriesLinearLayout.RemoveAllViewsInLayout();
+                categoriesLinearLayout.RemoveAllViews();
                 //исправить нумурацию на ключи
-                for (int i = 0; i < checkedCategoriesCount; i++)
+                checkedCategoriesCount = _selectedCategoriesDictionary.Count(e => e.Value == true);
+                foreach (var item in _selectedCategoriesDictionary) 
                 {
-                    categoryButtons[i] = new Button(this);
-                    categoryButtons[i].Text = "aa" + i.ToString();
-                    categoriesLinearLayout.AddView(categoryButtons[i]);
-                    categoryButtons[i].SetBackgroundColor(global::Android.Graphics.Color.DarkGray);
-                    categoryButtons[i].SetTextColor(global::Android.Graphics.Color.Gray);
-                    categoryButtons[i].Gravity = GravityFlags.Left;
-                    categoryButtons[i].LayoutParameters.Width = _display.Width / checkedCategoriesCount;
+                    if (item.Value == true)
+                    {
+                        var categoryButton = new Button(this);
+                        categoryButton.Text = item.Key;
+                        categoriesLinearLayout.AddView(categoryButton);
+                        categoryButton.SetBackgroundColor(global::Android.Graphics.Color.DarkGray);
+                        categoryButton.SetTextColor(global::Android.Graphics.Color.Gray);
+                        categoryButton.Gravity = GravityFlags.Left;
+                        categoryButton.LayoutParameters.Width = _display.Width / checkedCategoriesCount;
+                    }
                 }
             };
             #endregion
@@ -119,6 +137,8 @@ namespace Achievements.AndroidPlatform
             
         }
 
+        //_selectedCategoriesDictionary["Category ["+e.Position+"]"] = !_selectedCategoriesDictionary["Category ["+e.Position+"]"];
+       
 
 
         protected override void OnStart()
@@ -184,16 +204,18 @@ namespace Achievements.AndroidPlatform
     public class CategoriesListItemAdapter : ArrayAdapter<CategoriesListData>
     {
         private IList<CategoriesListData> Items;
+        
 
         public CategoriesListItemAdapter(Context context, int textViewResourceId, IList<CategoriesListData> items)
             : base(context, textViewResourceId, items)
         {
             Items = items;
+
         }
 
+        int cyclecount = 0;
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-
             View view = convertView;
             if (view == null)
             {
@@ -205,14 +227,41 @@ namespace Achievements.AndroidPlatform
             //получаем текущий элемент
             CategoriesListData item = Items[position];
 
+
             TextView categoryNameTextView = (TextView)view.FindViewById(Resource.Id.checkBox1);
             categoryNameTextView.Text = item.CategoryNameText;
             
             CheckBox categoriesCheckBox = (CheckBox)view.FindViewById(Resource.Id.checkBox1);
             categoriesCheckBox.Checked = item.IsCategoryActive;
 
+            categoriesCheckBox.Click += delegate
+            {
+                if (position == 0)
+                {
+                    cyclecount++;
+                    if(cyclecount == 1)
+                    {
+                        MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"] = categoriesCheckBox.Checked;
+                    }
+                    if (cyclecount == 2)
+                    {
+                        cyclecount = 0;
+                    }
+                }
+                if (position != 0)
+                {
+                    if (cyclecount == 0)
+                    {
+                        MainActivity._selectedCategoriesDictionary["Category [" + position + "]"] =
+                            !MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
+                    }
+                } 
+            };
+
             return view;
         }
+
+        
     }
     
 }
