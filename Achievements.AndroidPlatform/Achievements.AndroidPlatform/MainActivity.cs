@@ -67,7 +67,7 @@ namespace Achievements.AndroidPlatform
             _categoriesListView.Adapter = categoriesAdapter;
 
             LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-
+            _categoriesListView.SetWillNotCacheDrawing(true);
             PopupWindow categoriesPopupWindow = new PopupWindow(_categoriesListView, 
                 LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
             
@@ -92,8 +92,6 @@ namespace Achievements.AndroidPlatform
             
             #region SubCategories Local
 
-            _categoriesListView.Clickable = true;
-
             LinearLayout categoriesLinearLayout = FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout);
             int checkedCategoriesCount = _selectedCategoriesDictionary.Count(e => e.Value == true);
 
@@ -116,8 +114,9 @@ namespace Achievements.AndroidPlatform
                 categoriesLinearLayout.RemoveAllViewsInLayout();
                 categoriesLinearLayout.RemoveAllViews();
                 //исправить нумурацию на ключи
+
                 checkedCategoriesCount = _selectedCategoriesDictionary.Count(e => e.Value == true);
-                foreach (var item in _selectedCategoriesDictionary) 
+                foreach (var item in _selectedCategoriesDictionary)
                 {
                     if (item.Value == true)
                     {
@@ -136,9 +135,6 @@ namespace Achievements.AndroidPlatform
             //---------------------------------------------------------------------------------------
             
         }
-
-        //_selectedCategoriesDictionary["Category ["+e.Position+"]"] = !_selectedCategoriesDictionary["Category ["+e.Position+"]"];
-       
 
 
         protected override void OnStart()
@@ -227,13 +223,32 @@ namespace Achievements.AndroidPlatform
             //получаем текущий элемент
             CategoriesListData item = Items[position];
 
-
-            TextView categoryNameTextView = (TextView)view.FindViewById(Resource.Id.checkBox1);
-            categoryNameTextView.Text = item.CategoryNameText;
-            
             CheckBox categoriesCheckBox = (CheckBox)view.FindViewById(Resource.Id.checkBox1);
+            categoriesCheckBox.SetWillNotCacheDrawing(true);
+            categoriesCheckBox.Text = item.CategoryNameText;
             categoriesCheckBox.Checked = item.IsCategoryActive;
+            //categoriesCheckBox.Clickable = false;
+            if (position == 0)
+            {
+                cyclecount++;
+                if (cyclecount == 1)
+                {
+                   categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"];
+                }
+                if (cyclecount == 2)
+                {
+                    cyclecount = 0;
+                }
+            }
+            if (position != 0)
+            {
+                if (cyclecount == 0)
+                {
+                   categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
+                }
+            }
 
+            
             categoriesCheckBox.Click += delegate
             {
                 if (position == 0)
@@ -241,7 +256,8 @@ namespace Achievements.AndroidPlatform
                     cyclecount++;
                     if(cyclecount == 1)
                     {
-                        MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"] = categoriesCheckBox.Checked;
+                        MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"] = !MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"];
+                        categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"];
                     }
                     if (cyclecount == 2)
                     {
@@ -252,8 +268,8 @@ namespace Achievements.AndroidPlatform
                 {
                     if (cyclecount == 0)
                     {
-                        MainActivity._selectedCategoriesDictionary["Category [" + position + "]"] =
-                            !MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
+                        MainActivity._selectedCategoriesDictionary["Category [" + position + "]"] = !MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
+                        categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
                     }
                 } 
             };
