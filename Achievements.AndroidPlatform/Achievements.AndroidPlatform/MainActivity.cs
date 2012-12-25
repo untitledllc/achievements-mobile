@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Views.Animations;
 
 namespace Achievements.AndroidPlatform
 {
@@ -18,10 +19,13 @@ namespace Achievements.AndroidPlatform
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : Activity
     {
-        Display _display;
+        public static Display _display;
         bool _isBarCategoriesListOpen = false;
         ListView _categoriesListView;
+        ListView _subCategoriesListView;
         public static Dictionary<string,bool> _selectedCategoriesDictionary = new Dictionary<string,bool>();
+        public static Dictionary<string, bool> _selectedSubCategoriesDictionary = new Dictionary<string, bool>();
+        ImageButton badgesBarBackgroundImageButton;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -30,14 +34,20 @@ namespace Achievements.AndroidPlatform
 
             SetContentView(Resource.Layout.MainActivityLayout);
 
-            ImageButton badgesBarBackgroundImageButton = FindViewById<ImageButton>(Resource.Id.BadgesBarBackgroundImageButton);
+            Animation animation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.SlideInLeft);
+            Animation buttonAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
+            
+
+            LinearLayout categoriesLinearLayout = FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout);
+
+            badgesBarBackgroundImageButton = FindViewById<ImageButton>(Resource.Id.BadgesBarBackgroundImageButton);
             //---------------------------------------------------------------------------------------
             //---------------------------------------------------------------------------------------
             
             #region AchievementsList Local
             List<AchievementsListData> achievementsList = new List<AchievementsListData>();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 40; i++)
 			{
                 achievementsList.Add(new AchievementsListData(){AchieveNameText = String.Format("Achieve [{0}]",i)});
 			}
@@ -46,6 +56,9 @@ namespace Achievements.AndroidPlatform
             
             var adapter = new AchievementsListItemAdapter(this, Resource.Layout.MainLayoutListRow, achievementsList);
             achievementsListView.Adapter = adapter;
+
+                      
+
             #endregion
             //---------------------------------------------------------------------------------------
             //---------------------------------------------------------------------------------------
@@ -58,7 +71,7 @@ namespace Achievements.AndroidPlatform
                 categoriesList.Add(new CategoriesListData() { CategoryNameText = String.Format("Category [{0}]", i), IsCategoryActive = true });
                 _selectedCategoriesDictionary.Add(categoriesList[i].CategoryNameText, categoriesList[i].IsCategoryActive);
             }
-            
+
 
             _categoriesListView = new ListView(this);
 
@@ -70,8 +83,8 @@ namespace Achievements.AndroidPlatform
             _categoriesListView.SetWillNotCacheDrawing(true);
             PopupWindow categoriesPopupWindow = new PopupWindow(_categoriesListView, 
                 LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
-            
-            FindViewById<ImageButton>(Resource.Id.BadgesBarBackgroundImageButton).Click += delegate
+
+            badgesBarBackgroundImageButton.Click += delegate
             {
                 if (!_isBarCategoriesListOpen)
                 {
@@ -82,9 +95,11 @@ namespace Achievements.AndroidPlatform
                 if (_isBarCategoriesListOpen)
                 {
                     categoriesPopupWindow.Dismiss();
+                    categoriesLinearLayout.StartAnimation(animation);
                     _isBarCategoriesListOpen = false;
                 }
             };
+
             #endregion
 
             //---------------------------------------------------------------------------------------
@@ -92,7 +107,6 @@ namespace Achievements.AndroidPlatform
             
             #region SubCategories Local
 
-            LinearLayout categoriesLinearLayout = FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout);
             int checkedCategoriesCount = _selectedCategoriesDictionary.Count(e => e.Value == true);
 
             foreach (var item in _selectedCategoriesDictionary)
@@ -109,8 +123,9 @@ namespace Achievements.AndroidPlatform
                 }
             }
 
-            FindViewById<ImageButton>(Resource.Id.BadgesBarBackgroundImageButton).Click += delegate
+            badgesBarBackgroundImageButton.Click += delegate
             {
+                badgesBarBackgroundImageButton.StartAnimation(buttonAnimation);
                 categoriesLinearLayout.RemoveAllViewsInLayout();
                 categoriesLinearLayout.RemoveAllViews();
                 //исправить нумурацию на ключи
@@ -123,6 +138,7 @@ namespace Achievements.AndroidPlatform
                         var categoryButton = new Button(this);
                         categoryButton.Text = item.Key;
                         categoriesLinearLayout.AddView(categoryButton);
+                        categoryButton.Click += delegate { categoryButton.StartAnimation(buttonAnimation); };
                         categoryButton.SetBackgroundColor(global::Android.Graphics.Color.DarkGray);
                         categoryButton.SetTextColor(global::Android.Graphics.Color.Gray);
                         categoryButton.Gravity = GravityFlags.Left;
@@ -130,6 +146,30 @@ namespace Achievements.AndroidPlatform
                     }
                 }
             };
+
+
+            List<SubCategoriesListData> subCategoriesList = new List<SubCategoriesListData>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                subCategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = String.Format("SubCategory [{0}]", i), IsSubCategoryActive = true });
+                _selectedSubCategoriesDictionary.Add(subCategoriesList[i].SubCategoryNameText, subCategoriesList[i].IsSubCategoryActive);
+            }
+
+
+            _subCategoriesListView = new ListView(this);
+
+            var subCategoriesAdapter = new SubCategoriesListItemAdapter(this, Resource.Layout.MainLayoutCategoryDropDownListRow, subCategoriesList);
+
+            _categoriesListView.Adapter = categoriesAdapter;
+
+            LayoutInflater sublayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            _categoriesListView.SetWillNotCacheDrawing(true);
+            PopupWindow subCategoriesPopupWindow = new PopupWindow(_subCategoriesListView,
+                LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
+
+            
+
             #endregion
             //---------------------------------------------------------------------------------------
             //---------------------------------------------------------------------------------------
@@ -162,6 +202,13 @@ namespace Achievements.AndroidPlatform
         public bool IsCategoryActive;
     }
 
+    public class SubCategoriesListData
+    {
+        public string SubCategoryNameText;
+        public bool IsSubCategoryActive;
+    }
+
+
     public class AchievementsListItemAdapter : ArrayAdapter<AchievementsListData>
     {
         private IList<AchievementsListData> Items;
@@ -192,6 +239,13 @@ namespace Achievements.AndroidPlatform
                 TextView achiveDescriptionTextView = (TextView)view.FindViewById(Resource.Id.AchiveDescriptionTextView);
                 //achiveDescriptionTextView.Text = item.AchieveDescriptionText;
 
+                Animation listviewAnimation = new ScaleAnimation((float)1.0, (float)1.0, (float)0, (float)1.0);//new TranslateAnimation(0, 0, MainActivity._display.Height, 0);
+                Animation animation = new TranslateAnimation(MainActivity._display.Width / 2, 0, 0, 0);
+
+                listviewAnimation.Duration = 750;
+                animation.Duration = 750;
+                view.StartAnimation(listviewAnimation);
+                view.StartAnimation(animation);
 
                 return view;
             }
@@ -226,58 +280,107 @@ namespace Achievements.AndroidPlatform
             CheckBox categoriesCheckBox = (CheckBox)view.FindViewById(Resource.Id.checkBox1);
             categoriesCheckBox.SetWillNotCacheDrawing(true);
             categoriesCheckBox.Text = item.CategoryNameText;
-            categoriesCheckBox.Checked = item.IsCategoryActive;
+            //categoriesCheckBox.Checked = item.IsCategoryActive;
             //categoriesCheckBox.Clickable = false;
-            if (position == 0)
-            {
-                cyclecount++;
-                if (cyclecount == 1)
-                {
-                   categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"];
-                }
-                if (cyclecount == 2)
-                {
-                    cyclecount = 0;
-                }
-            }
-            if (position != 0)
-            {
-                if (cyclecount == 0)
-                {
-                   categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
-                }
-            }
-
+            //if (position == 0)
+            //{
+            //    cyclecount++;
+            //    if (cyclecount == 1)
+            //    {
+            //       categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"];
+            //    }
+            //    if (cyclecount == 2)
+            //    {
+            //        cyclecount = 0;
+            //    }
+            //}
+            //if (position != 0)
+            //{
+            //    if (cyclecount == 0)
+            //    {
+            //       categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
+            //    }
+            //}
+            categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
             
+
             categoriesCheckBox.Click += delegate
             {
-                if (position == 0)
-                {
-                    cyclecount++;
-                    if(cyclecount == 1)
-                    {
-                        MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"] = !MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"];
-                        categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"];
-                    }
-                    if (cyclecount == 2)
-                    {
-                        cyclecount = 0;
-                    }
-                }
-                if (position != 0)
-                {
-                    if (cyclecount == 0)
-                    {
-                        MainActivity._selectedCategoriesDictionary["Category [" + position + "]"] = !MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
-                        categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
-                    }
-                } 
+                MainActivity._selectedCategoriesDictionary["Category [" + position + "]"] = !MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
+                categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
+                   
+                //if (position == 0)
+                //{
+                //    cyclecount++;
+                //    if(cyclecount == 1)
+                //    {
+                //        MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"] = !MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"];
+                //        categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + 0 + "]"];
+                //    }
+                //    if (cyclecount == 2)
+                //    {
+                //        cyclecount = 0;
+                //    }
+                //}
+                //if (position != 0)
+                //{
+                //    if (cyclecount == 0)
+                //    {
+                //        MainActivity._selectedCategoriesDictionary["Category [" + position + "]"] = !MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
+                //        categoriesCheckBox.Checked = MainActivity._selectedCategoriesDictionary["Category [" + position + "]"];
+                //    }
+                //} 
             };
 
             return view;
         }
 
         
+    }
+
+    public class SubCategoriesListItemAdapter : ArrayAdapter<SubCategoriesListData>
+    {
+        private IList<SubCategoriesListData> Items;
+
+
+        public SubCategoriesListItemAdapter(Context context, int textViewResourceId, IList<SubCategoriesListData> items)
+            : base(context, textViewResourceId, items)
+        {
+            Items = items;
+
+        }
+
+        int cyclecount = 0;
+        public override View GetView(int position, View convertView, ViewGroup parent)
+        {
+            View view = convertView;
+            if (view == null)
+            {
+                LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
+                //выбираем разметку, которую будем наполнять данными.
+                view = inflater.Inflate(Resource.Layout.MainLayoutCategoryDropDownListRow, null);
+            }
+
+            //получаем текущий элемент
+            SubCategoriesListData item = Items[position];
+
+            CheckBox subCategoriesCheckBox = (CheckBox)view.FindViewById(Resource.Id.checkBox1);
+            subCategoriesCheckBox.SetWillNotCacheDrawing(true);
+            subCategoriesCheckBox.Text = item.SubCategoryNameText;
+
+            subCategoriesCheckBox.Checked = MainActivity._selectedSubCategoriesDictionary["SubCategory [" + position + "]"];
+
+
+            subCategoriesCheckBox.Click += delegate
+            {
+                MainActivity._selectedSubCategoriesDictionary["SubCategory [" + position + "]"] = !MainActivity._selectedSubCategoriesDictionary["SubCategory [" + position + "]"];
+                subCategoriesCheckBox.Checked = MainActivity._selectedSubCategoriesDictionary["SubCategory [" + position + "]"];
+            };
+
+            return view;
+        }
+
+
     }
     
 }

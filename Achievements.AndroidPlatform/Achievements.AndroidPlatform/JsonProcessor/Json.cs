@@ -33,7 +33,7 @@ namespace Achievements.AndroidPlatform.JsonProcessor
                     return jToken.Count();
                 }
                 private set {}
-            }  
+            } 
         }
 
         public class JSonProjects
