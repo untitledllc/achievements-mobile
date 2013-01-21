@@ -3,17 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
-using Achievements.AndroidPlatform.JsonProcessor;
 using Newtonsoft.Json.Linq;
+using ItsBeta.Json;
 
-namespace Achievements.AndroidPlatform
+namespace ItsBeta.Core
 {
     public class Categories
     {
@@ -41,9 +34,8 @@ namespace Achievements.AndroidPlatform
             {
                 array[i] = new Category()
                 {
-                    Name = jSonCategories.jToken[i]["name"].Value<string>(),
-                    Title = jSonCategories.jToken[i]["title"].Value<string>(),
-                    Id = jSonCategories.jToken[i]["id"].Value<string>()
+                    Name = jSonCategories.jToken[i]["api_name"].Value<string>(),
+                    Title = jSonCategories.jToken[i]["display_name"].Value<string>(),
                 };
             }
 
@@ -52,11 +44,8 @@ namespace Achievements.AndroidPlatform
 
         public class Category
         {
-            public string Name { get; set; }
-            public string Id { get; set; }
-            public string Title { get; set; }
-
-            public ImageView Picture { get; set; }
+            public string Name { get; set; } //API NAME
+            public string Title { get; set; } //Readable Name
         }
     }
 }

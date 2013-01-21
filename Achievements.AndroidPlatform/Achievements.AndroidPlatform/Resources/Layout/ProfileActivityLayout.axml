@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="fill_parent"
+    p1:layout_height="fill_parent"
+    p1:id="@+id/relativeLayout1">
+    <ImageButton
+        p1:layout_width="fill_parent"
+        p1:layout_height="55dp"
+        p1:id="@+id/NavigationBarImageButton"
+        p1:background="#ffffffff"
+        p1:src="@drawable/Navigation_bar"
+        p1:scaleType="fitXY"
+        p1:cropToPadding="true"
+        p1:layout_marginTop="-2dp" />
+    <ImageView
+        p1:src="@drawable/NavBar_appLogo"
+        p1:layout_width="150dp"
+        p1:layout_height="35dp"
+        p1:layout_toLeftOf="@id/NavigationBarImageButton"
+        p1:id="@+id/NavigationBarLogoImageView"
+        p1:layout_margin="5dp"
+        p1:background="#02878787" />
+    <ImageView
+        p1:src="@drawable/NavBar_btn_edit"
+        p1:layout_width="25dp"
+        p1:layout_height="40dp"
+        p1:id="@+id/NavigationBarMenuImageButton"
+        p1:layout_margin="5dp"
+        p1:layout_alignParentRight="true"
+        p1:background="#02bfbfbf" />
+    <RelativeLayout
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="fill_parent"
+        p1:layout_height="fill_parent"
+        p1:layout_below="@id/NavigationBarImageButton"
+        p1:id="@+id/relativeLayout2"
+        p1:layout_marginBottom="180dp"
+        p1:background="#ffffffff">
+        <TextView
+            p1:text="User Name"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/NavigationBarImageButton"
+            p1:id="@+id/userName"
+            p1:textColor="#ff5baaff"
+            p1:layout_marginLeft="30dp"
+            p1:layout_marginTop="20dp" />
+        <TextView
+            p1:text="User Info"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@+id/userName"
+            p1:id="@+id/UserInfo"
+            p1:textColor="#ff6f6f6f"
+            p1:layout_marginLeft="30dp" />
+        <Button
+            p1:layout_width="30dp"
+            p1:layout_height="30dp"
+            p1:layout_below="@id/UserInfo"
+            p1:id="@+id/pfacebook_button"
+            p1:layout_marginLeft="30dp"
+            p1:layout_marginTop="10dp" />
+        <Button
+            p1:layout_width="30dp"
+            p1:layout_height="30dp"
+            p1:layout_toRightOf="@id/pfacebook_button"
+            p1:id="@+id/ptwitter_button"
+            p1:layout_below="@+id/UserInfo"
+            p1:layout_marginTop="10dp"
+            p1:layout_marginLeft="10dp" />
+        <Button
+            p1:layout_width="30dp"
+            p1:layout_height="30dp"
+            p1:layout_toRightOf="@id/ptwitter_button"
+            p1:id="@+id/pvk_button"
+            p1:layout_below="@+id/UserInfo"
+            p1:layout_marginTop="10dp"
+            p1:layout_marginLeft="10dp" />
+        <TextView
+            p1:text="Join your social networks to application for share achievements to your friends and followers. Blah blah blah..."
+            p1:textAppearance="?android:attr/textAppearanceSmall"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/pfacebook_button"
+            p1:id="@+id/textView1"
+            p1:layout_marginLeft="30dp"
+            p1:textColor="#ff585858"
+            p1:layout_marginRight="30dp"
+            p1:textSize="12dp" />
+        <Button
+            p1:text="Logout"
+            p1:layout_width="200dp"
+            p1:layout_height="50dp"
+            p1:layout_below="@id/textView1"
+            p1:id="@+id/button1"
+            p1:layout_centerHorizontal="true"
+            p1:background="@drawable/Profile_Loginbutton"
+            p1:layout_marginTop="10dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="fill_parent"
+        p1:layout_height="fill_parent"
+        p1:layout_below="@id/relativeLayout2"
+        p1:id="@+id/relativeLayout3"
+        p1:layout_marginTop="-181dp"
+        p1:background="#ffececec">
+        <TextView
+            p1:text="Statistic"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_below="@id/NavigationBarImageButton"
+            p1:id="@+id/ProfileStatisticTitle"
+            p1:textColor="#ff5baaff"
+            p1:layout_marginLeft="30dp"
+            p1:layout_marginTop="20dp" />
+    </RelativeLayout>
+</RelativeLayout>

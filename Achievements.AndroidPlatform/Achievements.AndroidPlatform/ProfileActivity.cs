@@ -13,15 +13,15 @@ using Android.Content.PM;
 
 namespace Achievements.AndroidPlatform
 {
-    [Activity(Label = "AchieveActivity",
-	          Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
+    [Activity(Label = "Achievements", Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
                 ScreenOrientation = ScreenOrientation.Portrait)]
-    public class AchieveActivity : Activity
+    public class ProfileActivity : Activity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
+            SetContentView(Resource.Layout.ProfileActivityLayout);
         }
     }
 }

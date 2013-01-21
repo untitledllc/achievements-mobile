@@ -7,35 +7,43 @@
     p1:id="@+id/relativeLayout1">
     <ImageButton
         p1:layout_width="fill_parent"
-        p1:layout_height="50dp"
-        p1:id="@+id/BadgesBarBackgroundImageButton"
-        p1:background="#ff434343"
-        p1:src="#ff4a4a4a" />
+        p1:layout_height="55dp"
+        p1:id="@+id/NavigationBarImageButton"
+        p1:background="#ff000000"
+        p1:src="@drawable/Navigation_bar"
+        p1:scaleType="fitXY"
+        p1:cropToPadding="true"
+        p1:layout_marginTop="-2dp" />
     <ImageView
-        p1:src="@android:drawable/ic_menu_gallery"
+        p1:src="@drawable/NavBar_appLogo"
         p1:layout_width="150dp"
-        p1:layout_height="40dp"
-        p1:layout_toLeftOf="@id/BadgesBarBackgroundImageButton"
-        p1:id="@+id/BadgesBarImageView"
+        p1:layout_height="35dp"
+        p1:layout_toLeftOf="@id/NavigationBarImageButton"
+        p1:id="@+id/NavigationBarLogoImageView"
         p1:layout_margin="5dp"
-        p1:background="#ff878787" />
-    <ImageView
-        p1:src="@android:drawable/ic_menu_gallery"
+        p1:background="#02878787" />
+    <ImageButton
+        p1:src="@drawable/NavBar_btn_menu"
         p1:layout_width="20dp"
         p1:layout_height="40dp"
-        p1:id="@+id/PointersImageView"
-        p1:layout_margin="5dp"
+        p1:id="@+id/NavigationBarMenuImageButton"
         p1:layout_alignParentRight="true"
-        p1:background="#ffbfbfbf" />
+        p1:background="#02bfbfbf"
+        p1:layout_marginRight="5dp"
+        p1:layout_marginTop="4dp"
+        p1:scaleType="fitXY" />
     <LinearLayout
         p1:orientation="horizontal"
         p1:minWidth="25px"
         p1:minHeight="25px"
         p1:layout_width="fill_parent"
-        p1:layout_height="40dp"
-        p1:layout_below="@id/BadgesBarBackgroundImageButton"
+        p1:layout_height="45dp"
+        p1:layout_below="@id/NavigationBarImageButton"
         p1:id="@+id/SelectedCategoriesLinearLayout"
-        p1:background="#ff737373" />
+        p1:fadingEdge="vertical"
+        p1:fitsSystemWindows="true"
+        p1:background="@drawable/Categories_btn_norm"
+        p1:layout_marginTop="-8dp" />
     <ListView
         p1:minWidth="25px"
         p1:minHeight="25px"
@@ -43,5 +51,6 @@
         p1:layout_height="fill_parent"
         p1:layout_below="@id/SelectedCategoriesLinearLayout"
         p1:id="@+id/AchivementsListView"
-        p1:background="#ffe8e8e8" />
+        p1:background="#ffffffff"
+        p1:layout_marginTop="-12dp" />
 </RelativeLayout>

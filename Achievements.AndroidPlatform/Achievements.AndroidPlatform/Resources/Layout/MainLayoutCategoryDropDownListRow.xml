@@ -5,10 +5,29 @@
     p1:layout_width="fill_parent"
     p1:layout_height="50dp"
     p1:id="@+id/relativeLayout1"
-    p1:background="#ff434343">
-    <CheckBox
-        p1:text="CheckBox"
+    p1:background="#ff3f3f3f">
+    <TextView
+        p1:text="CategotyName"
+        p1:textAppearance="?android:attr/textAppearanceLarge"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/CategNameTextView"
+        p1:gravity="center_horizontal"
+        p1:layout_marginLeft="40dp"
+        p1:layout_centerVertical="true"
+        p1:textColor="#ffcbcbcb"
+        p1:textSize="17dp" />
+    <ImageView
+        p1:src="@drawable/Categories_panel_check"
+        p1:layout_width="25dp"
+        p1:layout_height="25dp"
+        p1:id="@+id/CheckImageView"
+        p1:layout_centerVertical="true"
+        p1:layout_marginLeft="7dp" />
+    <Button
         p1:layout_width="fill_parent"
         p1:layout_height="50dp"
-        p1:id="@+id/checkBox1" />
+        p1:id="@+id/check_button"
+        p1:background="#332f2f2f"
+        p1:visibility="visible" />
 </RelativeLayout>

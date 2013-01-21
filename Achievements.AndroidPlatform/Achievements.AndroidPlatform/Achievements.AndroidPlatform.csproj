@@ -40,6 +40,7 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkSkip />
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -57,31 +58,53 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Achieve.cs" />
-    <Compile Include="[delete]AchieveActivity.cs" />
-    <Compile Include="Core\Categories.cs" />
-    <Compile Include="[delete]Database.cs" />
-    <Compile Include="Resources\Layout\GuiControls\HorizontalPager.cs" />
+    <Compile Include="GUI\Копия CategoriesListItemAdapter.cs" />
+    <Compile Include="ItsBetaCore\[delete]Achieves.cs" />
+    <Compile Include="GUI\AchievementsListItemAdapter.cs" />
+    <Compile Include="GUI\CategoriesListItemAdapter.cs" />
+    <Compile Include="GUI\ListData.cs" />
+    <Compile Include="GUI\SubCategoriesListItemAdapter.cs" />
+    <Compile Include="ItsBetaCore\Categories.cs" />
+    <Compile Include="ItsBetaCore\Objs.cs" />
+    <Compile Include="ItsBetaCore\ObjTemplates.cs" />
+    <Compile Include="ItsBetaCore\ObjTypes.cs" />
     <Compile Include="JsonProcessor\Json.cs" />
     <Compile Include="LoginScreenActivity.cs" />
-    <Compile Include="MainActivity.cs" />
-    <Compile Include="[delete]MainCategoriesActivity.cs" />
-    <Compile Include="Core\Projects.cs" />
+    <Compile Include="WebControls\Facebook.cs" />
+    <Compile Include="[delete]LoginScreenActivity.cs" />
+    <Compile Include="MainActivityLiveCycle.cs" />
+    <Compile Include="ItsBetaCore\Projects.cs" />
+    <Compile Include="MainActivityViewModel.cs" />
+    <Compile Include="ProfileActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="[delete]ProjectsActivity.cs" />
     <Compile Include="WebControls\WebControls.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Layout\__CategoryLayout.axml" />
-    <AndroidResource Include="Resources\Layout\__AchieveLayout.axml" />
     <AndroidResource Include="Resources\Layout\MainActivityLayout.axml" />
     <AndroidResource Include="Resources\Layout\MainLayoutListRow.xml" />
+    <AndroidResource Include="Resources\Drawable\Navigation_bar.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_appLogo.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_btn_edit.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_btn_menu.png" />
+    <AndroidResource Include="Resources\Drawable\Table_socialNetwork_BK_btn_norm.png" />
+    <AndroidResource Include="Resources\Drawable\Table_socialNetwork_BK_btn_press.png" />
+    <AndroidResource Include="Resources\Drawable\Table_socialNetwork_FB_btn_norm.png" />
+    <AndroidResource Include="Resources\Drawable\Table_socialNetwork_FB_btn_press.png" />
+    <AndroidResource Include="Resources\Drawable\Table_socialNetwork_TW_btn_norm.png" />
+    <AndroidResource Include="Resources\Drawable\Table_socialNetwork_TW_btn_press.png" />
+    <AndroidResource Include="Resources\Drawable\FakeAchivePic.png" />
     <AndroidResource Include="Resources\Layout\MainLayoutCategoryDropDownListRow.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Layout\__ProjectsLayout.axml" />
-    <AndroidResource Include="Resources\Layout\__MainLayout.axml" />
+    <AndroidResource Include="Resources\Drawable\Categories_btn_arrow.png" />
+    <AndroidResource Include="Resources\Drawable\Categories_btn_divider.png" />
+    <AndroidResource Include="Resources\Drawable\Categories_btn_norm.png" />
+    <AndroidResource Include="Resources\Drawable\Categories_btn_press.png" />
+    <AndroidResource Include="Resources\Layout\ProfileActivityLayout.axml" />
+    <AndroidResource Include="Resources\Drawable\Profile_Loginbutton.png" />
+    <AndroidResource Include="Resources\Drawable\Categories_panel_check.png" />
+    <AndroidResource Include="Resources\Layout\LoginActivityLayout.axml" />
+    <AndroidResource Include="Resources\Drawable\line.png" />
+    <AndroidResource Include="Resources\Drawable\Login_Badge.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
@@ -94,13 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
-    <Folder Include="SupportLib\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Layout\LoginLayout.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

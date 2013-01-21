@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Achievements.AndroidPlatform.JsonProcessor;
 using Newtonsoft.Json.Linq;
+using ItsBeta.Json;
 
-namespace Achievements.AndroidPlatform
+namespace ItsBeta.Core
 {
     public class Projects
     {
@@ -32,7 +26,7 @@ namespace Achievements.AndroidPlatform
             private set { }
         }
 
-        public Project[] ProductsArray()
+        public Project[] ProjectsArray()
         {
             Project[] array = new Project[Count];
 
@@ -40,9 +34,10 @@ namespace Achievements.AndroidPlatform
             {
                 array[i] = new Project()
                 {
-                    Name = jSonProjects.jToken[i]["name"].Value<string>(),
-                    Title = jSonProjects.jToken[i]["title"].Value<string>(),
-                    Id = jSonProjects.jToken[i]["id"].Value<string>()
+                    Name = jSonProjects.jToken[i]["api_name"].Value<string>(),
+                    Title = jSonProjects.jToken[i]["display_name"].Value<string>(),
+                    Id = jSonProjects.jToken[i]["id"].Value<string>(),
+                    CategoryName = jSonProjects.jToken[i]["category_name"].Value<string>()
                 };
             }
 
@@ -53,9 +48,8 @@ namespace Achievements.AndroidPlatform
         {
             public string Name { get; set; }
             public string Title { get; set; }
-            public string Id { get; set; }
-
-            public string Picture { get; set; }
+            public string Id { get; set; } //Id in database
+            public string CategoryName { get; set; }
         }
     }
 
