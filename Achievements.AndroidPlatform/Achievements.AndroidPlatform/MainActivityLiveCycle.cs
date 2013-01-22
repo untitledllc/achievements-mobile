@@ -12,6 +12,7 @@ using Android.Widget;
 using Android.Content.PM;
 using Android.Views.Animations;
 using Achievements.AndroidPlatform.GUI;
+using ItsBeta.Core;
 
 namespace Achievements.AndroidPlatform
 {
@@ -21,8 +22,7 @@ namespace Achievements.AndroidPlatform
     public partial class MainActivity : Activity
     {
         string access_token = "059db4f010c5f40bf4a73a28222dd3e3";
-        string player_id = "50f4603a947a06706e000002";
-
+        string player_id = "50dc620e2a689053a8000008";
 
         public static Display _display;
         bool _isBarCategoriesListOpen = false;
@@ -38,9 +38,13 @@ namespace Achievements.AndroidPlatform
         ImageButton _navigationBarImageButton;
         LinearLayout categoriesLinearLayout;
         ImageButton _navigationBarMenuImageButton;
+        Achieves.ParentCategory[] achievesArray;
 
         protected override void OnCreate(Bundle bundle)
         {
+            Achieves achievesInfo = new Achieves(access_token, player_id);
+            achievesArray = achievesInfo.ParentCategoryArray();
+
             base.OnCreate(bundle);
             _display = WindowManager.DefaultDisplay;
 

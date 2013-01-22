@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Achievements.AndroidPlatform\LoginScreenActivity.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Achievements.AndroidPlatform\LoginScreenActivity.cs" Line="18" Column="65" />
+      <File FileName="Achievements.AndroidPlatform\LoginScreenActivity.cs" Line="9" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

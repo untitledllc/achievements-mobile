@@ -248,5 +248,29 @@ namespace ItsBeta.Json
             }
         }
 
+        public class JSonAchieves
+        {
+            string _jsonResponse;
+
+            public JToken jToken;
+
+            public JSonAchieves(string access_token, string player_id)
+            {
+                _jsonResponse = WebControls.WebControls.GetMethod(
+                    String.Format("http://www.itsbeta.com/s/info/achievements.json?access_token={0}&player_id={1}",
+                    access_token, player_id));
+
+                jToken = JToken.Parse(_jsonResponse);
+            }
+
+            public int Count
+            {
+                get
+                {
+                    return jToken.Count();
+                }
+                private set { }
+            }
+        }
     }
 }

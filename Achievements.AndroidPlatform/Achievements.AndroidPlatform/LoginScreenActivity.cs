@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using ItsBeta.Core;
 
 namespace Achievements.AndroidPlatform
 {
@@ -22,6 +23,8 @@ namespace Achievements.AndroidPlatform
         {
             base.OnCreate(bundle);
 
+
+
             SetContentView(Resource.Layout.LoginActivityLayout);
 
             Button signInButton = FindViewById<Button>(Resource.Id.signin_button);
@@ -30,6 +33,13 @@ namespace Achievements.AndroidPlatform
             { 
                 Finish();
                 StartActivity(typeof(MainActivity));
+            };
+
+            Button facebookButton = FindViewById<Button>(Resource.Id.facebook_button);
+
+            facebookButton.Click += delegate
+            {
+                StartActivity(typeof(LoginScreenWebActivity));
             };
         }
     }

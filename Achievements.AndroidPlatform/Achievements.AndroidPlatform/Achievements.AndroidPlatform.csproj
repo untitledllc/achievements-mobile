@@ -59,26 +59,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GUI\Копия CategoriesListItemAdapter.cs" />
-    <Compile Include="ItsBetaCore\[delete]Achieves.cs" />
     <Compile Include="GUI\AchievementsListItemAdapter.cs" />
     <Compile Include="GUI\CategoriesListItemAdapter.cs" />
     <Compile Include="GUI\ListData.cs" />
     <Compile Include="GUI\SubCategoriesListItemAdapter.cs" />
-    <Compile Include="ItsBetaCore\Categories.cs" />
-    <Compile Include="ItsBetaCore\Objs.cs" />
-    <Compile Include="ItsBetaCore\ObjTemplates.cs" />
-    <Compile Include="ItsBetaCore\ObjTypes.cs" />
-    <Compile Include="JsonProcessor\Json.cs" />
+    <Compile Include="ItsBeta\Core\Achieves.cs" />
+    <Compile Include="ItsBeta\Core\Categories.cs" />
+    <Compile Include="ItsBeta\Core\Objs.cs" />
+    <Compile Include="ItsBeta\Core\ObjTemplates.cs" />
+    <Compile Include="ItsBeta\Core\ObjTypes.cs" />
+    <Compile Include="ItsBeta\Core\Projects.cs" />
+    <Compile Include="ItsBeta\Json\Json.cs" />
+    <Compile Include="ItsBeta\WebControls\WebControls.cs" />
     <Compile Include="LoginScreenActivity.cs" />
-    <Compile Include="WebControls\Facebook.cs" />
+    <Compile Include="LoginScreenWebActivity.cs" />
     <Compile Include="[delete]LoginScreenActivity.cs" />
     <Compile Include="MainActivityLiveCycle.cs" />
-    <Compile Include="ItsBetaCore\Projects.cs" />
     <Compile Include="MainActivityViewModel.cs" />
     <Compile Include="ProfileActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebControls\WebControls.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Layout\MainActivityLayout.axml" />
@@ -105,6 +105,7 @@
     <AndroidResource Include="Resources\Layout\LoginActivityLayout.axml" />
     <AndroidResource Include="Resources\Drawable\line.png" />
     <AndroidResource Include="Resources\Drawable\Login_Badge.png" />
+    <AndroidResource Include="Resources\Layout\LoginActivityWebLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

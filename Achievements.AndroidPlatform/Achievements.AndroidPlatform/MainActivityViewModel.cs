@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 using Android.Views.Animations;
+
 using Achievements.AndroidPlatform.GUI;
 using ItsBeta.Core;
 
@@ -18,8 +19,8 @@ namespace Achievements.AndroidPlatform
 {
     public partial class MainActivity : Activity
     {
-
         List<CategoriesListData> _categoriesList;
+
         private void CreateCategoriesViewObject()
         {
             Categories categories = new Categories(access_token);
@@ -66,127 +67,126 @@ namespace Achievements.AndroidPlatform
 
         private void CreateSubCategoriesViewObject()
         {
-            int checkedCategoriesCount = _selectedCategoriesDictionary.Count(e => e.Value == true);
+            //int checkedCategoriesCount = _selectedCategoriesDictionary.Count(e => e.Value == true);
 
-            List<SubCategoriesListData> subCategoriesList = new List<SubCategoriesListData>();
+            //List<SubCategoriesListData> subCategoriesList = new List<SubCategoriesListData>();
 
-            for (int i = 0; i < 2; i++)
-            {
-                subCategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = String.Format("SubCategory [{0}]", i), IsSubCategoryActive = true });
-                _selectedSubCategoriesDictionary.Add(subCategoriesList[i].SubCategoryNameText, subCategoriesList[i].IsSubCategoryActive);
-            }
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    subCategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = String.Format("SubCategory [{0}]", i), IsSubCategoryActive = true });
+            //    _selectedSubCategoriesDictionary.Add(subCategoriesList[i].SubCategoryNameText, subCategoriesList[i].IsSubCategoryActive);
+            //}
 
-            _subCategoriesListView = new ListView(this);
+            //_subCategoriesListView = new ListView(this);
 
-            var subCategoriesAdapter = new SubCategoriesListItemAdapter(this, Resource.Layout.MainLayoutCategoryDropDownListRow, subCategoriesList, _selectedSubCategoriesDictionary);
+            //var subCategoriesAdapter = new SubCategoriesListItemAdapter(this, Resource.Layout.MainLayoutCategoryDropDownListRow, subCategoriesList, _selectedSubCategoriesDictionary);
 
-            _subCategoriesListView.Adapter = subCategoriesAdapter;
+            //_subCategoriesListView.Adapter = subCategoriesAdapter;
 
-            LayoutInflater sublayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-            _subCategoriesListView.SetWillNotCacheDrawing(true);
-            PopupWindow subCategoriesPopupWindow = new PopupWindow(_subCategoriesListView,
-                LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
-
-
-            bool _isBarSubCategoriesListOpen = false;
-            foreach (var item in _selectedCategoriesDictionary)
-            {
-                if (item.Value == true)
-                {
-                    var categoryButton = new Button(this);
-                    var cornerImageView = new ImageView(this);
-                    cornerImageView.LayoutParameters = new ViewGroup.LayoutParams(20, 20);
-                    cornerImageView.SetBackgroundResource(Resource.Drawable.Categories_btn_arrow);
-
-                    categoryButton.Text = item.Key;
-                    categoriesLinearLayout.AddView(categoryButton);
-                    categoryButton.SetBackgroundColor(global::Android.Graphics.Color.Argb(2,0,0,0));
-                    categoryButton.Click += delegate { categoryButton.StartAnimation(buttonClickAnimation); };
-                    categoryButton.SetTextColor(global::Android.Graphics.Color.Gray);
-                    categoryButton.Gravity = GravityFlags.Left;
-                    categoryButton.LayoutParameters.Width = _display.Width / checkedCategoriesCount;
-
-                    categoryButton.Click += delegate
-                    {
-                        if (!_isBarSubCategoriesListOpen)
-                        {
-                            subCategoriesPopupWindow.ShowAsDropDown(FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout), 0, -12);
-                            _isBarSubCategoriesListOpen = true;
-                            return;
-                        }
-                        if (_isBarSubCategoriesListOpen)
-                        {
-                            subCategoriesPopupWindow.Dismiss();
-                            _isBarSubCategoriesListOpen = false;
-                        }
-                    };
-                }
-            }
-
-            _navigationBarImageButton.Click += delegate
-            {
-                _navigationBarImageButton.StartAnimation(buttonClickAnimation);
-                categoriesLinearLayout.RemoveAllViewsInLayout();
-                categoriesLinearLayout.RemoveAllViews();
-                //исправить нумурацию на ключи
-
-                checkedCategoriesCount = _selectedCategoriesDictionary.Count(e => e.Value == true);
-                foreach (var item in _selectedCategoriesDictionary)
-                {
-                    if (item.Value == true)
-                    {
-                        var categoryButton = new Button(this);
-
-                        var cornerImageView = new ImageView(this);
-                        cornerImageView.LayoutParameters = new ViewGroup.LayoutParams(20, 20);
-                        cornerImageView.SetBackgroundResource(Resource.Drawable.Categories_btn_arrow);
+            //LayoutInflater sublayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            //_subCategoriesListView.SetWillNotCacheDrawing(true);
+            //PopupWindow subCategoriesPopupWindow = new PopupWindow(_subCategoriesListView,
+            //    LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
 
 
-                        categoryButton.Text = item.Key;
-                        categoriesLinearLayout.AddView(categoryButton);
-                        categoryButton.Click += delegate { categoryButton.StartAnimation(buttonClickAnimation); };
-                        categoryButton.SetBackgroundColor(global::Android.Graphics.Color.Argb(2, 0, 0, 0));
+            //bool _isBarSubCategoriesListOpen = false;
+            //foreach (var item in _selectedCategoriesDictionary)
+            //{
+            //    if (item.Value == true)
+            //    {
+            //        var categoryButton = new Button(this);
+            //        var cornerImageView = new ImageView(this);
+            //        cornerImageView.LayoutParameters = new ViewGroup.LayoutParams(20, 20);
+            //        cornerImageView.SetBackgroundResource(Resource.Drawable.Categories_btn_arrow);
 
-                        //categoryButton.SetBackgroundResource(Resource.Drawable.Categories_btn_norm);
+            //        categoryButton.Text = item.Key;
+            //        categoriesLinearLayout.AddView(categoryButton);
+            //        categoryButton.SetBackgroundColor(global::Android.Graphics.Color.Argb(2,0,0,0));
+            //        categoryButton.Click += delegate { categoryButton.StartAnimation(buttonClickAnimation); };
+            //        categoryButton.SetTextColor(global::Android.Graphics.Color.Gray);
+            //        categoryButton.Gravity = GravityFlags.Left;
+            //        categoryButton.LayoutParameters.Width = _display.Width / checkedCategoriesCount;
 
-                        categoryButton.SetTextColor(global::Android.Graphics.Color.Gray);
-                        categoryButton.Gravity = GravityFlags.Left;
-                        categoryButton.LayoutParameters.Width = _display.Width / checkedCategoriesCount;
+            //        categoryButton.Click += delegate
+            //        {
+            //            if (!_isBarSubCategoriesListOpen)
+            //            {
+            //                subCategoriesPopupWindow.ShowAsDropDown(FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout), 0, -12);
+            //                _isBarSubCategoriesListOpen = true;
+            //                return;
+            //            }
+            //            if (_isBarSubCategoriesListOpen)
+            //            {
+            //                subCategoriesPopupWindow.Dismiss();
+            //                _isBarSubCategoriesListOpen = false;
+            //            }
+            //        };
+            //    }
+            //}
 
-                        categoryButton.Click += delegate
-                        {
-                            if (!_isBarSubCategoriesListOpen)
-                            {
-                                subCategoriesPopupWindow.ShowAsDropDown(FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout), 0, -12);
-                                _isBarSubCategoriesListOpen = true;
-                                return;
-                            }
-                            if (_isBarSubCategoriesListOpen)
-                            {
-                                subCategoriesPopupWindow.Dismiss();
-                                _isBarSubCategoriesListOpen = false;
-                            }
-                        };
-                    }
-                }
-            };
+            //_navigationBarImageButton.Click += delegate
+            //{
+            //    _navigationBarImageButton.StartAnimation(buttonClickAnimation);
+            //    categoriesLinearLayout.RemoveAllViewsInLayout();
+            //    categoriesLinearLayout.RemoveAllViews();
+            //    //исправить нумурацию на ключи
+
+            //    checkedCategoriesCount = _selectedCategoriesDictionary.Count(e => e.Value == true);
+            //    foreach (var item in _selectedCategoriesDictionary)
+            //    {
+            //        if (item.Value == true)
+            //        {
+            //            var categoryButton = new Button(this);
+
+            //            var cornerImageView = new ImageView(this);
+            //            cornerImageView.LayoutParameters = new ViewGroup.LayoutParams(20, 20);
+            //            cornerImageView.SetBackgroundResource(Resource.Drawable.Categories_btn_arrow);
+
+
+            //            categoryButton.Text = item.Key;
+            //            categoriesLinearLayout.AddView(categoryButton);
+            //            categoryButton.Click += delegate { categoryButton.StartAnimation(buttonClickAnimation); };
+            //            categoryButton.SetBackgroundColor(global::Android.Graphics.Color.Argb(2, 0, 0, 0));
+
+            //            //categoryButton.SetBackgroundResource(Resource.Drawable.Categories_btn_norm);
+
+            //            categoryButton.SetTextColor(global::Android.Graphics.Color.Gray);
+            //            categoryButton.Gravity = GravityFlags.Left;
+            //            categoryButton.LayoutParameters.Width = _display.Width / checkedCategoriesCount;
+
+            //            categoryButton.Click += delegate
+            //            {
+            //                if (!_isBarSubCategoriesListOpen)
+            //                {
+            //                    subCategoriesPopupWindow.ShowAsDropDown(FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout), 0, -12);
+            //                    _isBarSubCategoriesListOpen = true;
+            //                    return;
+            //                }
+            //                if (_isBarSubCategoriesListOpen)
+            //                {
+            //                    subCategoriesPopupWindow.Dismiss();
+            //                    _isBarSubCategoriesListOpen = false;
+            //                }
+            //            };
+            //        }
+            //    }
+            //};
 
         }
 
-
         private void CreateAchievementsViewObject()
         {
-            List<AchievementsListData> achievementsList = new List<AchievementsListData>();
+            //List<AchievementsListData> achievementsList = new List<AchievementsListData>();
 
-            for (int i = 0; i < 40; i++)
-            {
-                achievementsList.Add(new AchievementsListData() { AchieveNameText = String.Format("Achieve [{0}]", i) });
-            }
+            //for (int i = 0; i < 40; i++)
+            //{
+            //    achievementsList.Add(new AchievementsListData() { AchieveNameText = String.Format("Achieve [{0}]", i) });
+            //}
 
-            ListView achievementsListView = FindViewById<ListView>(Resource.Id.AchivementsListView);
+            //ListView achievementsListView = FindViewById<ListView>(Resource.Id.AchivementsListView);
 
-            var adapter = new AchievementsListItemAdapter(this, Resource.Layout.MainLayoutListRow, achievementsList);
-            achievementsListView.Adapter = adapter;
+            //var adapter = new AchievementsListItemAdapter(this, Resource.Layout.MainLayoutListRow, achievementsList);
+            //achievementsListView.Adapter = adapter;
         }
     }
 }
