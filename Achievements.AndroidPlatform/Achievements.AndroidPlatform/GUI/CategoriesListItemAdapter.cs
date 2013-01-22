@@ -20,6 +20,7 @@ namespace Achievements.AndroidPlatform.GUI
             _selectedDictionary = selectedDictionary;
         }
 
+        bool tada = false;
         int cyclecount = 0;
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
@@ -41,23 +42,43 @@ namespace Achievements.AndroidPlatform.GUI
             Button checkButton = (Button)view.FindViewById(Resource.Id.check_button);
             categoryNameTextView.Text = item.CategoryNameText;
 
-            isChecked = _selectedDictionary["Category [" + position + "]"];
+            isChecked = _selectedDictionary[MainActivity._achievesArray[position].DisplayName];
 
+            
             checkButton.Click += delegate
             {
-                isChecked = !isChecked;
-                _selectedDictionary["Category [" + position + "]"] = isChecked;
+                if (position == 0)
+                {
+                    tada = true;
+                    isChecked = !isChecked;
+                    _selectedDictionary[MainActivity._achievesArray[position].DisplayName] = isChecked;
 
-                if (isChecked)
-                {
-                    checkImageView.Visibility = ViewStates.Visible;
+                    if (isChecked)
+                    {
+                        checkImageView.Visibility = ViewStates.Visible;
+                    }
+                    else
+                    {
+                        checkImageView.Visibility = ViewStates.Invisible;
+                    }
                 }
-                else
+                else if (tada == false)
                 {
-                    checkImageView.Visibility = ViewStates.Invisible;
+                    isChecked = !isChecked;
+                    _selectedDictionary[MainActivity._achievesArray[position].DisplayName] = isChecked;
+
+                    if (isChecked)
+                    {
+                        checkImageView.Visibility = ViewStates.Visible;
+                    }
+                    else
+                    {
+                        checkImageView.Visibility = ViewStates.Invisible;
+                    }
                 }
             };
-           
+
+            tada = false;
             return view;
         }
 

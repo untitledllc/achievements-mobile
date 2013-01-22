@@ -38,12 +38,13 @@ namespace Achievements.AndroidPlatform
         ImageButton _navigationBarImageButton;
         LinearLayout categoriesLinearLayout;
         ImageButton _navigationBarMenuImageButton;
-        Achieves.ParentCategory[] achievesArray;
+        public static Achieves.ParentCategory[] _achievesArray;
+        public static Achieves _achievesInfo;
 
         protected override void OnCreate(Bundle bundle)
         {
-            Achieves achievesInfo = new Achieves(access_token, player_id);
-            achievesArray = achievesInfo.ParentCategoryArray();
+            _achievesInfo = new Achieves(access_token, player_id);
+            _achievesArray = _achievesInfo.ParentCategoryArray();
 
             base.OnCreate(bundle);
             _display = WindowManager.DefaultDisplay;
@@ -62,6 +63,7 @@ namespace Achievements.AndroidPlatform
             #region CategoriesList Local
             CreateCategoriesViewObject();
             #endregion
+
 
             #region SubCategories Local
             CreateSubCategoriesViewObject();

@@ -17,7 +17,7 @@ namespace ItsBeta.Core
             jSonAchieves = new JSonProcessor.JSonAchieves(access_token, player_id);
         }
 
-        public int Count
+        public int CategoriesCount
         {
             get
             {
@@ -28,8 +28,8 @@ namespace ItsBeta.Core
 
         public ParentCategory[] ParentCategoryArray()
         {
-            ParentCategory[] array = new ParentCategory[Count];
-            for (int i = 0; i < Count; i++)
+            ParentCategory[] array = new ParentCategory[CategoriesCount];
+            for (int i = 0; i < CategoriesCount; i++)
             {
                 int projectsCount = jSonAchieves.jToken[i]["projects"].Count();
                 var pArray = new ParentCategory.ParentProject[projectsCount];

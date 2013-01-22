@@ -11,7 +11,7 @@ namespace Achievements.AndroidPlatform.GUI
         public string AchieveNameText;
         public string AchieveDescriptionText;
         public string AchieveReceiveDateText;
-        public ImageView AchieveImageView;
+        public string AchievePicUrl;
 
         public Button PostFacebookButton;
         public Button PostTwitterButton;

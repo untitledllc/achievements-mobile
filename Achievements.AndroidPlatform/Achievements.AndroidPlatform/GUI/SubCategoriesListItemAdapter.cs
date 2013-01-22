@@ -12,12 +12,15 @@ namespace Achievements.AndroidPlatform.GUI
     {
         private IList<SubCategoriesListData> Items;
         public Dictionary<string, bool> _selectedDictionary;
+        int _categoryButtonId;
 
-        public SubCategoriesListItemAdapter(Context context, int textViewResourceId, IList<SubCategoriesListData> items, Dictionary<string,bool> selectedDictionary)
+        public SubCategoriesListItemAdapter(Context context, int textViewResourceId,
+            IList<SubCategoriesListData> items, Dictionary<string, bool> selectedDictionary, int categoryButtonId)
             : base(context, textViewResourceId, items)
         {
             Items = items;
             _selectedDictionary = selectedDictionary;
+            _categoryButtonId = categoryButtonId;
         }
 
         int cyclecount = 0;
@@ -41,7 +44,7 @@ namespace Achievements.AndroidPlatform.GUI
             Button checkButton = (Button)view.FindViewById(Resource.Id.check_button);
             categoryNameTextView.Text = item.SubCategoryNameText;
 
-            isChecked = _selectedDictionary["SubCategory [" + position + "]"];
+            isChecked = _selectedDictionary[MainActivity._achievesArray[_categoryButtonId].Projects[position].DisplayName];
 
             checkButton.Click += delegate
             {
