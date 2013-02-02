@@ -76,6 +76,8 @@ namespace Achievements.AndroidPlatform.GUI
                         checkImageView.Visibility = ViewStates.Invisible;
                     }
                 }
+
+                MainActivity.RefreshEventListTextView.Text = "changed";
             };
 
             tada = false;

@@ -14,6 +14,9 @@ using Android.Views.Animations;
 
 using Achievements.AndroidPlatform.GUI;
 using ItsBeta.Core;
+using Android.Graphics;
+using System.IO;
+using Java.IO;
 
 namespace Achievements.AndroidPlatform
 {
@@ -33,7 +36,10 @@ namespace Achievements.AndroidPlatform
                     _achievesArray[i].DisplayName),
                     IsCategoryActive = true });
 
-                _selectedCategoriesDictionary.Add(_achievesArray[i].DisplayName, _categoriesList[i].IsCategoryActive);
+                if (!_selectedCategoriesDictionary.ContainsKey(_achievesArray[i].DisplayName))
+                {
+                    _selectedCategoriesDictionary.Add(_achievesArray[i].DisplayName, _categoriesList[i].IsCategoryActive);
+                }
             }
 
             _categoriesListView = new ListView(this);
@@ -42,6 +48,7 @@ namespace Achievements.AndroidPlatform
                 _categoriesList, _selectedCategoriesDictionary);
 
             _categoriesListView.Adapter = categoriesAdapter;
+            _categoriesListView.DividerHeight = 0;
 
             LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
             _categoriesListView.SetWillNotCacheDrawing(true);
@@ -52,7 +59,11 @@ namespace Achievements.AndroidPlatform
             {
                 if (!_isBarCategoriesListOpen)
                 {
-                    _categoriesPopupWindow.ShowAsDropDown(FindViewById<ImageButton>(Resource.Id.NavigationBarImageButton), 0, -5);
+                    if (_isBarSubCategoriesListOpen)
+                    {
+                     //   subCategoriesPopupWindow.Dismiss();
+                    }
+                    _categoriesPopupWindow.ShowAsDropDown(FindViewById<ImageButton>(Resource.Id.NavigationBarImageButton), 0, 0);
                     _isBarCategoriesListOpen = true;
                     return;
                 }
@@ -68,7 +79,8 @@ namespace Achievements.AndroidPlatform
 
         int checkedCategoriesCount;
         bool _isBarSubCategoriesListOpen = false;
-         PopupWindow subCategoriesPopupWindow;
+        
+
         private void CreateSubCategoriesViewObject()
         {
             checkedCategoriesCount = _selectedCategoriesDictionary.Count(e => e.Value == true);
@@ -78,20 +90,27 @@ namespace Achievements.AndroidPlatform
                 if (item.Value == true)
                 {
                     var categoryButton = new Button(this);
-                    var cornerImageView = new ImageView(this);
-                    cornerImageView.LayoutParameters = new ViewGroup.LayoutParams(20, 20);
-                    cornerImageView.SetBackgroundResource(Resource.Drawable.Categories_btn_arrow);
-
                     categoryButton.Text = item.Key;
+
                     categoriesLinearLayout.AddView(categoryButton);
+
                     categoryButton.SetBackgroundColor(global::Android.Graphics.Color.Argb(2, 0, 0, 0));
                     categoryButton.Click += delegate { categoryButton.StartAnimation(buttonClickAnimation); };
                     categoryButton.SetTextColor(global::Android.Graphics.Color.Gray);
                     categoryButton.Gravity = GravityFlags.Left;
                     categoryButton.LayoutParameters.Width = _display.Width / checkedCategoriesCount;
+                    categoryButton.SetSingleLine(true);
 
                     //middle
+
+                    ListView _subCategoriesListView = new ListView(this);
+                    _subCategoriesListView.DividerHeight = 0;
+
+                    PopupWindow subCategoriesPopupWindow = new PopupWindow(_subCategoriesListView,
+                                LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
                     
+                    List<string> subCategoriesArrayAdapterList = new List<string>();
+
                     List<SubCategoriesListData> subCategoriesList = new List<SubCategoriesListData>();
                     for (int i = 0; i < _achievesInfo.CategoriesCount; i++) 
                     {
@@ -104,45 +123,44 @@ namespace Achievements.AndroidPlatform
                                     SubCategoryNameText = String.Format("{0}", _achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName),
                                     IsSubCategoryActive = true
                                 });
-                                _selectedSubCategoriesDictionary.Add(_achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName, 
-                                    subCategoriesList[j].IsSubCategoryActive);
+
+                                subCategoriesArrayAdapterList.Add(_achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName);
+
+                                _selectedSubCategoriesDictionary.Add(_achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName,
+                                subCategoriesList[j].IsSubCategoryActive);
                             }
 
-                            _subCategoriesListView = new ListView(this);
-
                             var subCategoriesAdapter = new SubCategoriesListItemAdapter(this, Resource.Layout.MainLayoutCategoryDropDownListRow,
-                                subCategoriesList, _selectedSubCategoriesDictionary, i);
+                                subCategoriesList, _selectedSubCategoriesDictionary, subCategoriesArrayAdapterList);
 
                             _subCategoriesListView.Adapter = subCategoriesAdapter;
 
                             LayoutInflater sublayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
                             _subCategoriesListView.SetWillNotCacheDrawing(true);
 
-                            subCategoriesPopupWindow = new PopupWindow(_subCategoriesListView,
-                                LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
+                            
                         }
+
                         categoryButton.Click += delegate
                         {
                             if (!_isBarSubCategoriesListOpen)
                             {
                                 _categoriesPopupWindow.Dismiss();
-                                subCategoriesPopupWindow.ShowAsDropDown(FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout), 0, -12);
+                                subCategoriesPopupWindow.ShowAsDropDown(FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout), 0, 0);
                                 _isBarSubCategoriesListOpen = true;
+
                                 return;
                             }
+
                             if (_isBarSubCategoriesListOpen)
                             {
-                                _categoriesPopupWindow.Dismiss();
                                 subCategoriesPopupWindow.Dismiss();
+                                _categoriesPopupWindow.Dismiss();
                                 _isBarSubCategoriesListOpen = false;
 
                             }
                         };
                     }
-
-                    //middleend
-
-                    //end
                 }
             }
 
@@ -152,56 +170,103 @@ namespace Achievements.AndroidPlatform
                 _navigationBarImageButton.StartAnimation(buttonClickAnimation);
                 categoriesLinearLayout.RemoveAllViewsInLayout();
                 categoriesLinearLayout.RemoveAllViews();
-                //исправить нумурацию на ключи
 
                 checkedCategoriesCount = _selectedCategoriesDictionary.Count(e => e.Value == true);
+
                 foreach (var item in _selectedCategoriesDictionary)
                 {
                     if (item.Value == true)
                     {
                         var categoryButton = new Button(this);
-
-                        var cornerImageView = new ImageView(this);
-                        cornerImageView.LayoutParameters = new ViewGroup.LayoutParams(20, 20);
-                        cornerImageView.SetBackgroundResource(Resource.Drawable.Categories_btn_arrow);
-
-
                         categoryButton.Text = item.Key;
+
                         categoriesLinearLayout.AddView(categoryButton);
-                        categoryButton.Click += delegate { categoryButton.StartAnimation(buttonClickAnimation); };
+
                         categoryButton.SetBackgroundColor(global::Android.Graphics.Color.Argb(2, 0, 0, 0));
-
-                        //categoryButton.SetBackgroundResource(Resource.Drawable.Categories_btn_norm);
-
+                        categoryButton.Click += delegate { categoryButton.StartAnimation(buttonClickAnimation); };
                         categoryButton.SetTextColor(global::Android.Graphics.Color.Gray);
                         categoryButton.Gravity = GravityFlags.Left;
                         categoryButton.LayoutParameters.Width = _display.Width / checkedCategoriesCount;
+                        categoryButton.SetSingleLine(true);
 
-                        categoryButton.Click += delegate
+                        //middle
+
+
+                        ListView _subCategoriesListView = new ListView(this);
+                        _subCategoriesListView.DividerHeight = 0;
+
+                        PopupWindow subCategoriesPopupWindow = new PopupWindow(_subCategoriesListView,
+                                    LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
+
+                        List<string> subCategoriesArrayAdapterList = new List<string>();
+
+                        List<SubCategoriesListData> subCategoriesList = new List<SubCategoriesListData>();
+                        for (int i = 0; i < _achievesInfo.CategoriesCount; i++)
                         {
-                            if (!_isBarSubCategoriesListOpen)
+                            if (item.Key == _achievesInfo.ParentCategoryArray()[i].DisplayName)
                             {
-                                subCategoriesPopupWindow.ShowAsDropDown(FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout), 0, -12);
-                                _isBarSubCategoriesListOpen = true;
-                                return;
+                                for (int j = 0; j < _achievesInfo.ParentCategoryArray()[i].Projects.Count(); j++)
+                                {
+                                    subCategoriesList.Add(new SubCategoriesListData()
+                                    {
+                                        SubCategoryNameText = String.Format("{0}", _achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName),
+                                        IsSubCategoryActive = true
+                                    });
+
+                                    subCategoriesArrayAdapterList.Add(_achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName);
+
+                                    if (!_selectedSubCategoriesDictionary.ContainsKey(_achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName))
+                                    {
+                                        _selectedSubCategoriesDictionary.Add(_achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName,
+                                            subCategoriesList[j].IsSubCategoryActive);
+                                    }
+                                }
+
+                                var subCategoriesAdapter = new SubCategoriesListItemAdapter(this, Resource.Layout.MainLayoutCategoryDropDownListRow,
+                                    subCategoriesList, _selectedSubCategoriesDictionary, subCategoriesArrayAdapterList);
+
+                                _subCategoriesListView.Adapter = subCategoriesAdapter;
+
+                                LayoutInflater sublayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+                                _subCategoriesListView.SetWillNotCacheDrawing(true);
+
+
                             }
-                            if (_isBarSubCategoriesListOpen)
+
+                            categoryButton.Click += delegate
                             {
-                                subCategoriesPopupWindow.Dismiss();
-                                _isBarSubCategoriesListOpen = false;
-                            }
-                        };
+                                if (!_isBarSubCategoriesListOpen)
+                                {
+                                    subCategoriesPopupWindow.Dismiss();
+                                    _categoriesPopupWindow.Dismiss();
+                                    subCategoriesPopupWindow.ShowAsDropDown(FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout), 0, 0);
+                                    _isBarSubCategoriesListOpen = true;
+
+                                    return;
+                                }
+
+                                if (_isBarSubCategoriesListOpen)
+                                {
+                                    _categoriesPopupWindow.Dismiss();
+                                    subCategoriesPopupWindow.Dismiss();
+                                    _isBarSubCategoriesListOpen = false;
+
+                                }
+                            };
+                        }
                     }
                 }
+
             };
-        } //доделать...
 
-        
+        }
 
+        public static int achievesCount = 0;
         private void CreateAchievementsViewObject()
         {
             List<AchievementsListData> achievementsList = new List<AchievementsListData>();
 
+            Directory.CreateDirectory(@"/data/data/Achievements.install/cache/achPics/");
 
             for (int i = 0; i < _achievesInfo.CategoriesCount; i++) 
             {
@@ -209,23 +274,138 @@ namespace Achievements.AndroidPlatform
                 {
                     for (int k = 0; k < _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements.Count(); k++)   
                     {
-                        achievementsList.Add(new AchievementsListData() {
-                            AchieveNameText = String.Format("{0}", 
-                            _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].DisplayName),
-                            AchieveDescriptionText = String.Format("{0}",
-                            _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].Description),
-                            AchievePicUrl = String.Format("{0}",
-                            _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].PicUrl)
-                        });
+                        FileStream fs = new FileStream(@"/data/data/Achievements.install/cache/achPics/" +
+                            _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].ApiName + ".PNG", FileMode.OpenOrCreate,
+                            FileAccess.ReadWrite, FileShare.ReadWrite
+                            );
+
+                        if (!System.IO.File.Exists(@"/data/data/Achievements.install/cache/achPics/" + "achive" +
+                            _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].ApiName + ".PNG"))
+                        {
+                            GetImageBitmap(_achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].PicUrl).Compress(
+                            Bitmap.CompressFormat.Jpeg, 100, fs);
+
+                            System.IO.File.Copy(@"/data/data/Achievements.install/cache/achPics/" +
+                            _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].ApiName + ".PNG",
+                            @"/data/data/Achievements.install/cache/achPics/" + "achive" +
+                            _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].ApiName + ".PNG");
+
+                            System.IO.File.Delete(@"/data/data/Achievements.install/cache/achPics/" +
+                            _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].ApiName + ".PNG");
+                        }
+
+                        if (_selectedCategoriesDictionary[_achievesInfo.ParentCategoryArray()[i].DisplayName] == true
+                            &&
+                            _selectedSubCategoriesDictionary[_achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName] == true)  
+                        {
+                            achievementsList.Add(new AchievementsListData()
+                            {
+                                AchieveApiName = String.Format("{0}",
+                                _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].ApiName),
+                                AchieveNameText = String.Format("{0}",
+                                _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].DisplayName),
+                                AchieveDescriptionText = String.Format("{0}",
+                                _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].Description),
+                                AchievePicUrl = String.Format("{0}",
+                                _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].PicUrl),
+                                AchieveReceivedTime = String.Format("{0}",
+                                _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].CreateTime)
+                            });
+
+                            achievesCount++;
+                        }
+
                     }
                 }
             }
 
-
             ListView achievementsListView = FindViewById<ListView>(Resource.Id.AchivementsListView);
+
+            achievementsListView.DividerHeight = 0;
 
             var adapter = new AchievementsListItemAdapter(this, Resource.Layout.MainLayoutListRow, achievementsList);
             achievementsListView.Adapter = adapter;
+
+
+            
+        }
+
+
+        void achievementsListView_Click(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            Achieves.ParentCategory.ParentProject.Achieve achive = new Achieves.ParentCategory.ParentProject.Achieve();
+            int iID = 0;
+            int jID = 0;
+
+
+            for (int i = 0; i < _achievesInfo.ParentCategoryArray().Count(); i++)   
+            {
+                for (int j = 0; j < _achievesInfo.ParentCategoryArray()[i].Projects.Count(); j++)   
+                {
+                    for (int k = 0; k < _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements.Count(); k++)   
+                    {
+                        if (_achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].ApiName == e.Text.ToString())   
+                        {
+                            achive = _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k];
+                            iID = i;
+                            jID = j;
+                        }
+                    }
+                }
+            }
+
+            LayoutInflater inflater = (LayoutInflater)this.GetSystemService(LayoutInflaterService);
+            ViewGroup relativeAgedSummary = new RelativeLayout(this);
+
+            View layout = inflater.Inflate(Resource.Layout.BadgeListFrameLayout, relativeAgedSummary);
+
+            TextView badgeName = (TextView)layout.FindViewById(Resource.Id.badgenameTextView);
+            badgeName.Text = achive.DisplayName;
+
+            ImageView badgeImage = (ImageView)layout.FindViewById(Resource.Id.BadgeImageView);
+            badgeImage.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/Achievements.install/cache/achPics/" + "achive" +
+                achive.ApiName +
+                ".PNG"
+                ));
+
+            TextView categoryNameProjectName = (TextView)layout.FindViewById(Resource.Id.categoryProjectTextView);
+            categoryNameProjectName.Text = _achievesInfo.ParentCategoryArray()[iID].DisplayName + ", " + _achievesInfo.ParentCategoryArray()[iID].Projects[jID].DisplayName;
+
+            TextView badgeHowWonderDescr = (TextView)layout.FindViewById(Resource.Id.howWasEarnDescrTextView);
+            badgeHowWonderDescr.Text = achive.Description;
+
+            var badgePopupWindow = new PopupWindow(layout,
+                LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
+
+            badgePopupWindow.ShowAsDropDown(FindViewById<ImageButton>(Resource.Id.NavigationBarImageButton), 0, 0);
+
+            Button badgeReadyButton = (Button)layout.FindViewById(Resource.Id.badgereadybutton);
+
+            badgeReadyButton.Click += delegate
+            {
+                badgeReadyButton.StartAnimation(buttonClickAnimation);
+                badgePopupWindow.Dismiss();
+            };
+
+        }
+
+
+        private Bitmap GetImageBitmap(String url)
+        {
+            Bitmap bm = null;
+
+            Java.Net.URL aURL = new Java.Net.URL(url);
+            Java.Net.HttpURLConnection conn = (Java.Net.HttpURLConnection)aURL.OpenConnection();
+            conn.Connect();
+
+            Stream stream = conn.InputStream;
+            BufferedStream bsteam = new BufferedStream(stream);
+
+            bm = BitmapFactory.DecodeStream(bsteam);
+            bsteam.Close();
+            stream.Close();
+
+            return bm;
         }
     }
 }

@@ -7,12 +7,17 @@
     p1:id="@+id/relativeLayout1"
     p1:background="#ffffffff">
     <ImageView
-        p1:src="@drawable/FakeAchivePic"
+        p1:layout_width="fill_parent"
+        p1:layout_height="2dp"
+        p1:id="@+id/imageView1"
+        p1:background="#ff4a4a4a" />
+    <ImageView
         p1:layout_width="70dp"
         p1:layout_height="70dp"
         p1:id="@+id/AchiveImageView"
         p1:layout_marginLeft="20dp"
-        p1:layout_marginTop="20dp" />
+        p1:layout_marginTop="20dp"
+        p1:drawingCacheQuality="low" />
     <Button
         p1:layout_width="25dp"
         p1:layout_height="25dp"

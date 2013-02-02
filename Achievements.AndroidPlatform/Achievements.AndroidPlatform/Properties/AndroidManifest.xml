@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="internalOnly" package="Achievements.install" android:versionCode="0" android:versionName="berta">
   <uses-sdk android:targetSdkVersion="8" />
-  <application android:label="Achievements">
-  </application>
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.READ_OWNER_DATA" />
+  <uses-permission android:name="android.permission.WRITE_OWNER_DATA" />
 </manifest>

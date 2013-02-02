@@ -40,23 +40,37 @@ namespace Achievements.AndroidPlatform.GUI
             TextView achiveDescriptionTextView = (TextView)view.FindViewById(Resource.Id.AchiveDescriptionTextView);
             achiveDescriptionTextView.Text = item.AchieveDescriptionText;
 
-            ImageView achivePicture = (ImageView)view.FindViewById(Resource.Id.AchiveImageView);
-            //achivePicture.SetImageURI(null);
-            achivePicture.DrawingCacheEnabled = true;
-            achivePicture.SetImageBitmap(GetImageBitmap(item.AchievePicUrl));
 
-            //achivePicture.SetImageDrawable(Android.Graphics.Drawables.Drawable.CreateFromPath("http://cs419128.userapi.com/v419128252/2c14/p1yGlr_wlpM.jpg"));
-                //SetImageURI(Android.Net.Uri.Parse(item.AchievePicUrl));
+            TextView achiveReceivedDate = (TextView)view.FindViewById(Resource.Id.AchiveReceiveDateTextView);
+            achiveReceivedDate.Text = item.AchieveReceivedTime;
+
+            ImageView achivePicture = (ImageView)view.FindViewById(Resource.Id.AchiveImageView);
+
+            achivePicture.DrawingCacheEnabled = true;
+
+            achivePicture.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/Achievements.install/cache/achPics/" + "achive" +
+                item.AchieveApiName +
+                ".PNG"
+                ));
+
 
             Animation listviewAnimation = new ScaleAnimation((float)1.0, (float)1.0, (float)0, (float)1.0);//new TranslateAnimation(0, 0, MainActivity._display.Height, 0);
-            Animation animation = new TranslateAnimation(MainActivity._display.Width / 2, 0, 0, 0);
-            //Animation tranimation = new AlphaAnimation(0f, 0.9f);
+            Animation animation = new TranslateAnimation(MainActivity._display.Width, 0, 200, 0);
+            Animation animrotate = new RotateAnimation(45f, 0f);
+
 
             listviewAnimation.Duration = 750;
             animation.Duration = 750;
-            view.StartAnimation(listviewAnimation);
-            view.StartAnimation(animation);
-            //view.StartAnimation(tranimation);
+            animrotate.Duration = 750;
+
+            AnimationSet asa = new AnimationSet(true);
+            asa.AddAnimation(listviewAnimation);
+            asa.AddAnimation(animrotate);
+            asa.AddAnimation(animation);
+
+            view.StartAnimation(asa);
+            //view.StartAnimation(animation);
+            //view.StartAnimation(animrotate);
 
             Button twitterButton = (Button)view.FindViewById(Resource.Id.twitter_button);
             Button vkButton = (Button)view.FindViewById(Resource.Id.vk_button);
@@ -78,27 +92,11 @@ namespace Achievements.AndroidPlatform.GUI
                 //_buttonClickAnimation.Start();
             };
 
+            view.Click += delegate { MainActivity.AchieveListSelectedEventTextView.Text = item.AchieveApiName; };
 
             return view;
         }
 
-        private Bitmap GetImageBitmap(String url)
-        {
-            Bitmap bm = null;
-
-            Java.Net.URL aURL = new Java.Net.URL(url);
-            Java.Net.URLConnection conn = aURL.OpenConnection();
-            conn.Connect();
-
-            Stream stream = conn.InputStream;
-            BufferedStream bsteam = new BufferedStream(stream);
-
-            bm = BitmapFactory.DecodeStream(bsteam);
-            bsteam.Close();
-            stream.Close();
-
-            return bm;
-        } 
     }
 
 }

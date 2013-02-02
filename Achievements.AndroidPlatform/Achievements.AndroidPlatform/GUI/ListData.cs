@@ -8,10 +8,11 @@ namespace Achievements.AndroidPlatform.GUI
 
     public class AchievementsListData
     {
+        public string AchieveApiName;
         public string AchieveNameText;
         public string AchieveDescriptionText;
-        public string AchieveReceiveDateText;
         public string AchievePicUrl;
+        public string AchieveReceivedTime;
 
         public Button PostFacebookButton;
         public Button PostTwitterButton;

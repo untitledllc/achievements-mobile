@@ -30,4 +30,11 @@
         p1:id="@+id/check_button"
         p1:background="#332f2f2f"
         p1:visibility="visible" />
+    <ImageView
+        p1:src="@drawable/Categories_panel_divider"
+        p1:layout_width="fill_parent"
+        p1:layout_height="4dp"
+        p1:id="@+id/imageView1"
+        p1:scaleType="fitXY"
+        p1:layout_alignParentBottom="true" />
 </RelativeLayout>

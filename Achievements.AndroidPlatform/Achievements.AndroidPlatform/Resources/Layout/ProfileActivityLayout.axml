@@ -18,10 +18,10 @@
         p1:src="@drawable/NavBar_appLogo"
         p1:layout_width="150dp"
         p1:layout_height="35dp"
-        p1:layout_toLeftOf="@id/NavigationBarImageButton"
         p1:id="@+id/NavigationBarLogoImageView"
-        p1:layout_margin="5dp"
-        p1:background="#02878787" />
+        p1:background="#02878787"
+        p1:layout_alignLeft="@id/NavigationBarImageButton"
+        p1:layout_marginTop="8dp" />
     <ImageView
         p1:src="@drawable/NavBar_btn_edit"
         p1:layout_width="25dp"
@@ -64,7 +64,8 @@
             p1:layout_below="@id/UserInfo"
             p1:id="@+id/pfacebook_button"
             p1:layout_marginLeft="30dp"
-            p1:layout_marginTop="10dp" />
+            p1:layout_marginTop="10dp"
+            p1:background="@drawable/Table_socialNetwork_FB_btn_norm" />
         <Button
             p1:layout_width="30dp"
             p1:layout_height="30dp"
@@ -72,7 +73,8 @@
             p1:id="@+id/ptwitter_button"
             p1:layout_below="@+id/UserInfo"
             p1:layout_marginTop="10dp"
-            p1:layout_marginLeft="10dp" />
+            p1:layout_marginLeft="10dp"
+            p1:background="@drawable/Table_socialNetwork_TW_btn_press" />
         <Button
             p1:layout_width="30dp"
             p1:layout_height="30dp"
@@ -80,7 +82,8 @@
             p1:id="@+id/pvk_button"
             p1:layout_below="@+id/UserInfo"
             p1:layout_marginTop="10dp"
-            p1:layout_marginLeft="10dp" />
+            p1:layout_marginLeft="10dp"
+            p1:background="@drawable/Table_socialNetwork_BK_btn_press" />
         <TextView
             p1:text="Join your social networks to application for share achievements to your friends and followers. Blah blah blah..."
             p1:textAppearance="?android:attr/textAppearanceSmall"
@@ -97,7 +100,7 @@
             p1:layout_width="200dp"
             p1:layout_height="50dp"
             p1:layout_below="@id/textView1"
-            p1:id="@+id/button1"
+            p1:id="@+id/logoutbutton"
             p1:layout_centerHorizontal="true"
             p1:background="@drawable/Profile_Loginbutton"
             p1:layout_marginTop="10dp" />

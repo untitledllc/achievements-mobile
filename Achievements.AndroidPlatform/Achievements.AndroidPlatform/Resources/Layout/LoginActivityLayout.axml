@@ -7,123 +7,53 @@
     p1:id="@+id/relativeLayout1"
     p1:background="#ffffffff">
     <TextView
-        p1:text="Sign Up"
+        p1:text="Facebook sign up"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
         p1:id="@+id/signUpTextView"
-        p1:textColor="#ff00eeff"
+        p1:textColor="#ff00c5ff"
         p1:textStyle="normal"
         p1:typeface="normal"
         p1:textSize="14dp"
         p1:layout_centerHorizontal="true"
         p1:linksClickable="true"
-        p1:layout_centerVertical="true" />
-    <ImageView
-        p1:src="@drawable/line"
-        p1:layout_width="250dp"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/signUpTextView"
-        p1:id="@+id/textLine1"
+        p1:layout_centerVertical="true"
+        p1:layout_below="@+id/login"
+        p1:layout_marginTop="50dp" />
+    <Achievements.AndroidPlatform.LoginButton
+        p1:id="@+id/login"
+        p1:src="@drawable/singInFacebook"
+        p1:layout_width="300dp"
+        p1:layout_height="50dp"
+        p1:layout_below="@+id/badgestextView"
         p1:layout_centerHorizontal="true"
-        p1:layout_marginTop="30dp" />
-    <ImageView
-        p1:src="@drawable/line"
-        p1:layout_width="250dp"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/textLine1"
-        p1:id="@+id/textLine2"
-        p1:layout_centerHorizontal="true"
-        p1:layout_marginTop="30dp" />
-    <Button
-        p1:text="Sign In"
-        p1:layout_width="200dp"
-        p1:layout_height="40dp"
-        p1:layout_below="@id/textLine2"
-        p1:id="@+id/signin_button"
-        p1:layout_centerHorizontal="true"
-        p1:textSize="15dp"
-        p1:background="#ff565656"
-        p1:layout_marginTop="10dp" />
-    <Button
-        p1:layout_width="35dp"
-        p1:layout_height="35dp"
-        p1:layout_below="@id/signin_button"
-        p1:id="@+id/twitter_button"
-        p1:layout_centerHorizontal="true"
-        p1:layout_marginTop="30dp"
-        p1:background="@drawable/Table_socialNetwork_TW_btn_norm" />
-    <Button
-        p1:layout_width="35dp"
-        p1:layout_height="35dp"
-        p1:layout_toLeftOf="@id/twitter_button"
-        p1:id="@+id/facebook_button"
-        p1:layout_below="@+id/signin_button"
-        p1:layout_marginTop="30dp"
-        p1:layout_marginRight="15dp"
-        p1:background="@drawable/Table_socialNetwork_FB_btn_norm" />
-    <Button
-        p1:layout_width="35dp"
-        p1:layout_height="35dp"
-        p1:layout_toRightOf="@id/twitter_button"
-        p1:id="@+id/button1"
-        p1:layout_below="@+id/signin_button"
-        p1:layout_marginTop="30dp"
-        p1:layout_marginLeft="15dp"
-        p1:background="@drawable/Table_socialNetwork_BK_btn_norm" />
+        p1:layout_marginTop="40dp" />
     <ImageView
         p1:src="@drawable/Login_Badge"
-        p1:layout_width="120dp"
-        p1:layout_height="120dp"
+        p1:layout_width="150dp"
+        p1:layout_height="150dp"
         p1:id="@+id/BadgeImageView"
         p1:layout_centerHorizontal="true"
-        p1:layout_alignBottom="@id/signUpTextView"
-        p1:layout_marginBottom="70dp" />
+        p1:layout_above="@+id/badgestextView"
+        p1:layout_marginBottom="65dp" />
     <TextView
         p1:text="BADGES"
         p1:textAppearance="?android:attr/textAppearanceLarge"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
-        p1:layout_below="@id/BadgeImageView"
         p1:id="@+id/badgestextView"
         p1:textColor="#ff3b3b3b"
         p1:textStyle="bold"
         p1:layout_centerHorizontal="true"
-        p1:layout_marginTop="-60dp" />
-    <EditText
-        p1:layout_width="247dp"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/loginEditText"
-        p1:hint="Login"
-        p1:layout_alignBottom="@+id/textLine1"
-        p1:layout_alignLeft="@+id/textLine1"
-        p1:background="#ffffffff"
-        p1:layout_marginBottom="6dp"
-        p1:layout_marginLeft="3dp"
-        p1:enabled="true"
-        p1:singleLine="true"
-        p1:selectAllOnFocus="false" />
-    <EditText
-        p1:layout_width="247dp"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/passwordEditText"
-        p1:hint="Password"
-        p1:layout_alignBottom="@+id/textLine2"
-        p1:layout_alignLeft="@+id/textLine2"
-        p1:password="true"
-        p1:typeface="normal"
-        p1:background="#ffffffff"
-        p1:layout_marginBottom="6dp"
-        p1:layout_marginLeft="3dp"
-        p1:singleLine="true"
-        p1:enabled="true"
-        p1:selectAllOnFocus="false" />
+        p1:layout_marginTop="-60dp"
+        p1:layout_centerVertical="true" />
     <ImageView
-        p1:layout_width="50dp"
+        p1:layout_width="120dp"
         p1:layout_height="wrap_content"
         p1:layout_below="@id/signUpTextView"
         p1:id="@+id/imageView1"
-        p1:src="#ff00ffea"
+        p1:src="#ff00c5ff"
         p1:layout_centerHorizontal="true"
         p1:layout_marginTop="-3dp" />
 </RelativeLayout>

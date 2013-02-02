@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="fill_parent"
+    p1:layout_height="fill_parent"
+    p1:id="@+id/relativeLayout1"
+    p1:background="#c2313131">
+    <ImageView
+        p1:layout_width="160dp"
+        p1:layout_height="160dp"
+        p1:id="@+id/BadgeImageView"
+        p1:layout_centerHorizontal="true"
+        p1:layout_above="@+id/badgestextView"
+        p1:layout_marginBottom="65dp"
+        p1:layout_centerVertical="true"
+        p1:src="@drawable/itsbetabadge" />
+    <TextView
+        p1:text="Вы получили новый значек"
+        p1:textAppearance="?android:attr/textAppearanceMedium"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/textView1"
+        p1:layout_centerHorizontal="true"
+        p1:textStyle="bold"
+        p1:layout_marginTop="-60dp"
+        p1:layout_below="@id/BadgeImageView"
+        p1:textSize="12dp" />
+    <TextView
+        p1:text="Соберите все ваши достижения здесь"
+        p1:textAppearance="?android:attr/textAppearanceMedium"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@id/textView1"
+        p1:id="@+id/textView2"
+        p1:textSize="12dp"
+        p1:layout_centerHorizontal="true" />
+    <TextView
+        p1:text="itsbeta user"
+        p1:textAppearance="?android:attr/textAppearanceLarge"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:layout_above="@id/BadgeImageView"
+        p1:id="@+id/usertextView"
+        p1:layout_centerHorizontal="true"
+        p1:layout_marginBottom="50dp"
+        p1:textSize="35dp"
+        p1:typeface="normal"
+        p1:textStyle="normal" />
+    <Button
+        p1:text="Готово"
+        p1:layout_width="fill_parent"
+        p1:layout_height="50dp"
+        p1:id="@+id/badgereadybutton"
+        p1:layout_alignParentBottom="true"
+        p1:background="#c2292929"
+        p1:textSize="12dp"
+        p1:textColor="#ffffffff" />
+    <ImageView
+        p1:layout_width="fill_parent"
+        p1:layout_height="4dp"
+        p1:layout_above="@id/badgereadybutton"
+        p1:id="@+id/butlineimageView"
+        p1:src="@drawable/Categories_panel_divider"
+        p1:scaleType="fitXY" />
+</RelativeLayout>

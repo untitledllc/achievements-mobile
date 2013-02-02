@@ -237,12 +237,12 @@ namespace ItsBeta.Json
 
             public JToken jToken;
 
-            public JSonPostToFbOnce(string access_token, string category, string project, 
-                string user_id, string user_token, string activation_code)
+            public JSonPostToFbOnce(string access_token, string category, string project, string badge_name,
+                string user_id, string user_token)
             {
                 _jsonResponse = WebControls.WebControls.GetMethod(
-                    String.Format("http://www.itsbeta.com/s/{1}/{2}/achieves/posttofbonce.json?access_token={0}&user_id={3}&user_token={4}&activation_code={5}",
-                    access_token, category, project, user_id, user_token, activation_code));
+                    String.Format("http://www.itsbeta.com/s/{1}/{2}/achieves/posttofbonce.json?access_token={0}&badge_name={5}&user_id={3}&user_token={4}",
+                    access_token, category, project, user_id, user_token, badge_name));
 
                 jToken = JToken.Parse(_jsonResponse);
             }
@@ -270,6 +270,20 @@ namespace ItsBeta.Json
                     return jToken.Count();
                 }
                 private set { }
+            }
+        }
+
+        public class JSonFacebookUserInfo
+        {
+            string _jsonResponse;
+
+            public Dictionary<string, string> jDictionary;
+
+            public JSonFacebookUserInfo(string access_token)
+            {
+                jDictionary = WebControls.WebControls.GetFacebookMethod(
+                    String.Format("https://graph.facebook.com/me?access_token={0}",
+                    access_token));
             }
         }
     }

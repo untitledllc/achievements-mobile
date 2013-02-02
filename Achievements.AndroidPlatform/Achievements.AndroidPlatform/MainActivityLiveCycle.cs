@@ -21,13 +21,13 @@ namespace Achievements.AndroidPlatform
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public partial class MainActivity : Activity
     {
-        string access_token = "059db4f010c5f40bf4a73a28222dd3e3";
-        string player_id = "50dc620e2a689053a8000008";
+        
+        public static TextView RefreshEventListTextView;
+        public static TextView AchieveListSelectedEventTextView;
 
         public static Display _display;
         bool _isBarCategoriesListOpen = false;
         ListView _categoriesListView;
-        ListView _subCategoriesListView;
 
         public static Dictionary<string,bool> _selectedCategoriesDictionary = new Dictionary<string,bool>();
         public static Dictionary<string, bool> _selectedSubCategoriesDictionary = new Dictionary<string, bool>();
@@ -38,15 +38,18 @@ namespace Achievements.AndroidPlatform
         ImageButton _navigationBarImageButton;
         LinearLayout categoriesLinearLayout;
         ImageButton _navigationBarMenuImageButton;
+
         public static Achieves.ParentCategory[] _achievesArray;
         public static Achieves _achievesInfo;
 
         protected override void OnCreate(Bundle bundle)
         {
-            _achievesInfo = new Achieves(access_token, player_id);
-            _achievesArray = _achievesInfo.ParentCategoryArray();
+            _achievesInfo = FirstBadgeActivity._achievesInfo;
+            _achievesArray = FirstBadgeActivity._achievesInfo.ParentCategoryArray();
 
             base.OnCreate(bundle);
+
+
             _display = WindowManager.DefaultDisplay;
 
             SetContentView(Resource.Layout.MainActivityLayout);
@@ -58,12 +61,12 @@ namespace Achievements.AndroidPlatform
             _navigationBarImageButton = FindViewById<ImageButton>(Resource.Id.NavigationBarImageButton);
             _navigationBarMenuImageButton = FindViewById<ImageButton>(Resource.Id.NavigationBarMenuImageButton);
 
+            
             _navigationBarMenuImageButton.Click += delegate { StartActivity(typeof(ProfileActivity)); };
 
             #region CategoriesList Local
             CreateCategoriesViewObject();
             #endregion
-
 
             #region SubCategories Local
             CreateSubCategoriesViewObject();
@@ -71,8 +74,34 @@ namespace Achievements.AndroidPlatform
 
             #region AchievementsList Local
             CreateAchievementsViewObject();
+
             #endregion
 
+            RefreshEventListTextView = new TextView(this);
+            RefreshEventListTextView.TextChanged += delegate
+            {
+                CreateAchievementsViewObject();
+            };
+
+            AchieveListSelectedEventTextView = new TextView(this);
+
+            AchieveListSelectedEventTextView.TextChanged += new EventHandler<Android.Text.TextChangedEventArgs>(achievementsListView_Click);
+        }
+
+        public static bool isFinishFromProfile = false;
+        protected override void OnResume()
+        {
+            base.OnResume();
+            if (isFinishFromProfile)
+            {
+                _selectedCategoriesDictionary = new Dictionary<string, bool>();
+                _selectedSubCategoriesDictionary = new Dictionary<string, bool>();
+                isFinishFromProfile = false;
+                RunOnUiThread(()=> LoginScreenActivity.mFacebook.Logout(LoginScreenActivity.loginContext));
+                LoginScreenActivity.isCommingFromProfile = true;
+                Finish();
+                StartActivity(typeof(LoginScreenActivity));
+            }
         }
 
     }

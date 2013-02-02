@@ -47,7 +47,8 @@ namespace ItsBeta.Core
                             DisplayName = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["display_name"].Value<string>(),
                             Description = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["desc"].Value<string>(),
                             PicUrl = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["pic"].Value<string>(),
-                            FbId = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["fb_id"].Value<string>()
+                            FbId = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["fb_id"].Value<string>(),
+                            CreateTime = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["create_time"].Value<string>()
                         };
                     }
 
@@ -91,6 +92,7 @@ namespace ItsBeta.Core
                     public string Description { get; set; }
                     public string PicUrl { get; set; }
                     public string FbId { get; set; }
+                    public string CreateTime { get; set; }
                 }
             }
         }

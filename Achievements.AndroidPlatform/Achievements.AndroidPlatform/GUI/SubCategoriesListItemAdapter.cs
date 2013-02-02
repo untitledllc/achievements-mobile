@@ -12,17 +12,18 @@ namespace Achievements.AndroidPlatform.GUI
     {
         private IList<SubCategoriesListData> Items;
         public Dictionary<string, bool> _selectedDictionary;
-        int _categoryButtonId;
+        List<string> _subCategoryListName;
 
         public SubCategoriesListItemAdapter(Context context, int textViewResourceId,
-            IList<SubCategoriesListData> items, Dictionary<string, bool> selectedDictionary, int categoryButtonId)
+            IList<SubCategoriesListData> items, Dictionary<string, bool> selectedDictionary, List<string> subCategoryListName)
             : base(context, textViewResourceId, items)
         {
             Items = items;
             _selectedDictionary = selectedDictionary;
-            _categoryButtonId = categoryButtonId;
+            _subCategoryListName = subCategoryListName;
         }
 
+        bool tada = false;
         int cyclecount = 0;
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
@@ -44,23 +45,45 @@ namespace Achievements.AndroidPlatform.GUI
             Button checkButton = (Button)view.FindViewById(Resource.Id.check_button);
             categoryNameTextView.Text = item.SubCategoryNameText;
 
-            isChecked = _selectedDictionary[MainActivity._achievesArray[_categoryButtonId].Projects[position].DisplayName];
+            isChecked = _selectedDictionary[_subCategoryListName[position]];
 
             checkButton.Click += delegate
             {
-                isChecked = !isChecked;
-                _selectedDictionary["SubCategory [" + position + "]"] = isChecked;
+                
+                if (position == 0)
+                {
+                    tada = true;
+                    isChecked = !isChecked;
+                    _selectedDictionary[_subCategoryListName[position]] = isChecked;
 
-                if (isChecked)
-                {
-                    checkImageView.Visibility = ViewStates.Visible;
+                    if (isChecked)
+                    {
+                        checkImageView.Visibility = ViewStates.Visible;
+                    }
+                    else
+                    {
+                        checkImageView.Visibility = ViewStates.Invisible;
+                    }
                 }
-                else
+                else if (tada == false)
                 {
-                    checkImageView.Visibility = ViewStates.Invisible;
+                    isChecked = !isChecked;
+                    _selectedDictionary[_subCategoryListName[position]] = isChecked;
+
+                    if (isChecked)
+                    {
+                        checkImageView.Visibility = ViewStates.Visible;
+                    }
+                    else
+                    {
+                        checkImageView.Visibility = ViewStates.Invisible;
+                    }
                 }
+
+                MainActivity.RefreshEventListTextView.Text = "changed";
             };
-           
+                
+            tada = false;
             return view;
         }
     }
