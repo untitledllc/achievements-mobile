@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{757CBCE7-7632-4252-8B36-290D6DD1638B}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>com.achievements.android_v2</RootNamespace>
+    <AssemblyName>com.achievements.android_v2</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidApplication>true</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <TargetFrameworkVersion>v2.1</TargetFrameworkVersion>
+    <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
+    <AndroidStoreUncompressedFileExtensions />
+    <MandroidI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LoginActivity.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Values\Strings.xml" />
+    <AndroidResource Include="Resources\Layout\LoginActivityLayout.axml" />
+    <AndroidResource Include="Resources\Drawable\Login_logo.png" />
+    <AndroidResource Include="Resources\Drawable\Login_facebookbutton.png" />
+    <AndroidResource Include="Resources\Drawable\Login_background.png" />
+    <AndroidResource Include="Resources\Drawable\Login_background2.png" />
+    <AndroidResource Include="Resources\Layout\FirstBadgeActivityLayout.axml" />
+    <AndroidResource Include="Resources\Drawable\CategoriesBar_corner.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_background.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_firstScreenButton.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_globeb.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_leftWindow.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_ProfileButton.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_secondScreenButton.png" />
+    <AndroidResource Include="Resources\Drawable\FirstBadge.PNG" />
+    <AndroidResource Include="Resources\Drawable\BadgeSheet_CloseButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\itsbeta\itsbeta\itsbeta.csproj">
+      <Project>{F0E325C3-8C23-4FC5-ACCE-402E4F37671C}</Project>
+      <Name>itsbeta</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libs\Mono.Facebook\Mono.Facebook.csproj">
+      <Project>{33B8DF4F-E480-4B97-8DA1-BEB89CA6B644}</Project>
+      <Name>Mono.Facebook</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+     Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup />
+</Project>

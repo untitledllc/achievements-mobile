@@ -48,7 +48,7 @@ namespace Achievements.AndroidPlatform.GUI
 
             achivePicture.DrawingCacheEnabled = true;
 
-            achivePicture.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/Achievements.install/cache/achPics/" + "achive" +
+            achivePicture.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/Achievements.AndroidPlatform/cache/achPics/" + "achive" +
                 item.AchieveApiName +
                 ".PNG"
                 ));
