@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: Android.Runtime.ResourceDesignerAttribute("com.achievements.android_v2.Resource", IsApplication=true)]
+[assembly: Android.Runtime.ResourceDesignerAttribute("itsbeta.achievements.Resource", IsApplication=true)]
 
-namespace com.achievements.android_v2
+namespace itsbeta.achievements
 {
 	
 	
@@ -41,43 +41,40 @@ namespace com.achievements.android_v2
 			public const int CategoriesBar_corner = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int close = 2130837506;
+			public const int FirstBadge = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int facebook_icon = 2130837507;
+			public const int Icon = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int FirstBadge = 2130837508;
+			public const int Login_background = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int Login_background = 2130837509;
+			public const int Login_background2 = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int Login_background2 = 2130837510;
+			public const int Login_facebookbutton = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int Login_facebookbutton = 2130837511;
+			public const int Login_logo = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int Login_logo = 2130837512;
+			public const int NavBar_background = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int NavBar_background = 2130837513;
+			public const int NavBar_firstScreenButton = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int NavBar_firstScreenButton = 2130837514;
+			public const int NavBar_globeb = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int NavBar_globeb = 2130837515;
+			public const int NavBar_leftWindow = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int NavBar_leftWindow = 2130837516;
+			public const int NavBar_ProfileButton = 2130837516;
 			
 			// aapt resource value: 0x7f02000d
-			public const int NavBar_ProfileButton = 2130837517;
-			
-			// aapt resource value: 0x7f02000e
-			public const int NavBar_secondScreenButton = 2130837518;
+			public const int NavBar_secondScreenButton = 2130837517;
 			
 			private Drawable()
 			{
@@ -87,8 +84,8 @@ namespace com.achievements.android_v2
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050018
-			public const int BadgeImageView = 2131034136;
+			// aapt resource value: 0x7f050019
+			public const int BadgeImageView = 2131034137;
 			
 			// aapt resource value: 0x7f050008
 			public const int BadgeSheetImageView = 2131034120;
@@ -118,7 +115,7 @@ namespace com.achievements.android_v2
 			public const int NavBar_AchievesCountTextView = 2131034116;
 			
 			// aapt resource value: 0x7f050003
-			public const int NavBar_Globed'ImageView = 2131034115;
+			public const int NavBar_GlobedImageView = 2131034115;
 			
 			// aapt resource value: 0x7f050001
 			public const int NavBar_ImageButton = 2131034113;
@@ -135,23 +132,29 @@ namespace com.achievements.android_v2
 			// aapt resource value: 0x7f050009
 			public const int center = 2131034121;
 			
-			// aapt resource value: 0x7f050019
-			public const int imageView1 = 2131034137;
+			// aapt resource value: 0x7f050014
+			public const int dropdownachor = 2131034132;
 			
-			// aapt resource value: 0x7f050017
-			public const int login = 2131034135;
+			// aapt resource value: 0x7f05001a
+			public const int imageView1 = 2131034138;
+			
+			// aapt resource value: 0x7f050018
+			public const int login = 2131034136;
+			
+			// aapt resource value: 0x7f05001b
+			public const int loginWebView = 2131034139;
+			
+			// aapt resource value: 0x7f050016
+			public const int login_backgroundImageView = 2131034134;
 			
 			// aapt resource value: 0x7f050015
-			public const int login_backgroundImageView = 2131034133;
-			
-			// aapt resource value: 0x7f050014
-			public const int login_centerTextView = 2131034132;
+			public const int login_centerTextView = 2131034133;
 			
 			// aapt resource value: 0x7f050013
 			public const int relativeLayout1 = 2131034131;
 			
-			// aapt resource value: 0x7f050016
-			public const int signUpTextView = 2131034134;
+			// aapt resource value: 0x7f050017
+			public const int signUpTextView = 2131034135;
 			
 			// aapt resource value: 0x7f05000d
 			public const int textView1 = 2131034125;
@@ -178,6 +181,12 @@ namespace com.achievements.android_v2
 			
 			// aapt resource value: 0x7f030001
 			public const int LoginActivityLayout = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int LoginWebLayout = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int MainScreenActivityLayout = 2130903043;
 			
 			private Layout()
 			{

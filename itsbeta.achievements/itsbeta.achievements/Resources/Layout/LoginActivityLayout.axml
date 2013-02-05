@@ -6,6 +6,10 @@
     p1:layout_height="fill_parent"
     p1:id="@+id/relativeLayout1"
     p1:background="@drawable/Login_background2">
+    <TextView
+        p1:layout_width="1dp"
+        p1:layout_height="1dp"
+        p1:id="@+id/dropdownachor" />
     <ImageView
         p1:layout_width="300dp"
         p1:layout_height="300dp"

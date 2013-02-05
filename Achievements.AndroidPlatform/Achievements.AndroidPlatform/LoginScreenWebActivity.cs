@@ -104,8 +104,6 @@
 //            SessionEvents.AddAuthListener(new SampleAuthListener());
 //            SessionEvents.AddLogoutListener(new SampleLogoutListener());
 
-            
-
 
 //        }
 

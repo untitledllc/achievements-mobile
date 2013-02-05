@@ -7,10 +7,11 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Content.PM;
+using Android.Webkit;
 
-namespace com.achievements.android_v2
+namespace itsbeta.achievements
 {
-    [Activity(Label = "itsbeta Achievements", MainLauncher = true, Icon = "@drawable/icon", 
+    [Activity(Label = "itsbeta", MainLauncher = true, Icon = "@drawable/Login_logo",
         Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class LoginActivity : Activity
@@ -20,9 +21,17 @@ namespace com.achievements.android_v2
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.LoginActivityLayout);
-        }
-    }
 
-	
+            ImageButton loginButton = FindViewById<ImageButton>(Resource.Id.login);
+
+            loginButton.Click += delegate
+            {
+                //Finish();
+                StartActivity(typeof(LoginWebActivity));
+            };
+        }
+
+        
+    }
 }
 
