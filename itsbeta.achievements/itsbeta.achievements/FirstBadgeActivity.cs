@@ -15,7 +15,7 @@ using ItsBeta.Core;
 
 namespace itsbeta.achievements
 {
-    [Activity(Label = "123", Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
+    [Activity(Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class FirstBadgeActivity : Activity
     {
@@ -42,17 +42,18 @@ namespace itsbeta.achievements
 
                 ImageButton badgeReadyButton = FindViewById<ImageButton>(Resource.Id.BadgeSheet_CloseImageButton);
                 ImageButton badgeReadyButtonFake = FindViewById<ImageButton>(Resource.Id.BadgeSheet_CloseImageButtonFake);
+
                 badgeReadyButton.Click += delegate
                 {
                     badgeReadyButtonFake.StartAnimation(buttonClickAnimation);
                     Finish();
-                    StartActivity(typeof(LoginActivity));
+                    StartActivity(typeof(SecondScreenActivity));
                 };
             }
             else
             {
                 Finish();
-                StartActivity(typeof(LoginActivity));
+                StartActivity(typeof(SecondScreenActivity));
             }
 
         }

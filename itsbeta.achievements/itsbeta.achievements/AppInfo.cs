@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ItsBeta.Core;
+using Android.Views;
 
 namespace itsbeta.achievements
 {
@@ -17,5 +18,11 @@ namespace itsbeta.achievements
 
         public static string _fbAccessToken;
 
+        public static Achieves _achievesInfo;
+
+        public static Dictionary<string, bool> _selectedCategoriesDictionary = new Dictionary<string, bool>();
+        public static Dictionary<string, bool> _selectedSubCategoriesDictionary = new Dictionary<string, bool>();
+
+        public static Display _display;
     }
 }

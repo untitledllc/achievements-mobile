@@ -76,8 +76,6 @@
     <Compile Include="ItsBeta\Json\Json.cs" />
     <Compile Include="ItsBeta\WebControls\WebControls.cs" />
     <Compile Include="LoginScreenActivity.cs" />
-    <Compile Include="LoginScreenWebActivity.cs" />
-    <Compile Include="[delete]LoginScreenActivity.cs" />
     <Compile Include="MainActivityLiveCycle.cs" />
     <Compile Include="MainActivityViewModel.cs" />
     <Compile Include="ProfileActivity.cs" />
@@ -134,7 +132,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\Ivan\Desktop\Facebook\Mono.Facebook\Mono.Facebook.csproj">
+    <ProjectReference Include="..\..\libs\Mono.Facebook\Mono.Facebook.csproj">
       <Project>{33B8DF4F-E480-4B97-8DA1-BEB89CA6B644}</Project>
       <Name>Mono.Facebook</Name>
     </ProjectReference>

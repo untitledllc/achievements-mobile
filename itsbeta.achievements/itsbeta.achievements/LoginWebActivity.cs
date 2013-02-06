@@ -18,8 +18,7 @@ using ItsBeta.Core;
 
 namespace itsbeta.achievements
 {
-    [Activity(Label = "itsbeta web",
-        Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
+    [Activity(Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class LoginWebActivity : Activity
     {
@@ -33,13 +32,7 @@ namespace itsbeta.achievements
             base.OnCreate(bundle);
             
             SetContentView(Resource.Layout.LoginWebLayout);
-
             endlogin = new TextView(this);
-            endlogin.TextChanged += delegate
-            {
-                Finish();
-                StartActivity(typeof(FirstBadgeActivity));
-            };
 
             WebView loginWebView = FindViewById<WebView>(Resource.Id.loginWebView);
             //loginWebView.Settings.JavaScriptEnabled = true;
@@ -54,9 +47,18 @@ namespace itsbeta.achievements
             mDialog.SetMessage("Loading...");
             mDialog.SetCancelable(false);
             mDialog.Show();
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            endlogin.TextChanged += delegate //здесь инициализировать все необходимое перед запуском...
+            {
+                AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
+
+
+                Finish();
+                StartActivity(typeof(FirstBadgeActivity));
+            };
         }
 
-        
         class ItsbetaLoginWebViewClient : WebViewClient
         {
             LoginWebActivity _parent;
@@ -70,7 +72,6 @@ namespace itsbeta.achievements
             {
                 if (url.StartsWith(AppInfo._loginRedirectUri))
                 {
-                    mDialog.Show();
                     Regex access_tokenRegex = new Regex("access_token=(.*)&");
                     var v = access_tokenRegex.Match(url);
                     AppInfo._fbAccessToken = v.Groups[1].ToString();
@@ -91,17 +92,13 @@ namespace itsbeta.achievements
 
                     AppInfo._user.ItsBetaUserId = itsbetaService.GetItsBetaUserID(AppInfo._user.FacebookUserID);
 
-
-                    mDialog.Dismiss();
-                    endlogin.Text = "end";
-
-                    _parent.Finish();
-                    _parent.StartActivity(typeof(FirstBadgeActivity));
+                    endlogin.Text = "change";
                 }
                 view.LoadUrl(url);
                 return true;
             }
 
+            
             public override void OnPageStarted(WebView view, string url, Android.Graphics.Bitmap favicon)
             {
                 loadPreviousState = true;
@@ -112,7 +109,7 @@ namespace itsbeta.achievements
             {
                 if (loadPreviousState == true)
                 {
-                    mDialog.Dismiss();
+                    mDialog.Hide();
                 }
                 base.OnPageFinished(view, url);
             }

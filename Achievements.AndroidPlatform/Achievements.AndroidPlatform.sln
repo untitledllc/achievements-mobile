@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Achievements.AndroidPlatform", "Achievements.AndroidPlatform\Achievements.AndroidPlatform.csproj", "{DED31383-0704-4CDB-8165-5B3D658AD358}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Facebook", "C:\Users\Ivan\Desktop\Facebook\Mono.Facebook\Mono.Facebook.csproj", "{33B8DF4F-E480-4B97-8DA1-BEB89CA6B644}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Facebook", "..\libs\Mono.Facebook\Mono.Facebook.csproj", "{33B8DF4F-E480-4B97-8DA1-BEB89CA6B644}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

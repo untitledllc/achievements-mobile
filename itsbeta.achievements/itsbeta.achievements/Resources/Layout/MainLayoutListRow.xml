@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="150dp"
+    p1:layout_width="fill_parent"
+    p1:layout_height="150dp"
+    p1:id="@+id/relativeLayout1"
+    p1:background="#ffffffff">
+    <ImageView
+        p1:layout_width="fill_parent"
+        p1:layout_height="2dp"
+        p1:id="@+id/imageView1"
+        p1:background="#ff4a4a4a" />
+    <ImageView
+        p1:layout_width="85dp"
+        p1:layout_height="85dp"
+        p1:id="@+id/secondscr_row_imgImageView"
+        p1:layout_marginLeft="20dp"
+        p1:layout_marginTop="20dp"
+        p1:drawingCacheQuality="low"
+        p1:src="@drawable/FirstBadge" />
+    <TextView
+        p1:text="Got at 16.11.2012"
+        p1:textAppearance="?android:attr/textAppearanceSmall"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@+id/secondscr_row_imgImageView"
+        p1:id="@+id/secondscr_row_receiveddateTextView"
+        p1:layout_marginLeft="10dp"
+        p1:textColor="#ff00bcd9"
+        p1:layout_marginTop="15dp"
+        p1:textSize="13dp" />
+    <RelativeLayout
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="fill_parent"
+        p1:layout_height="fill_parent"
+        p1:layout_toRightOf="@+id/secondscr_row_receiveddateTextView"
+        p1:id="@+id/relativeLayout2">
+        <TextView
+            p1:text="Large Text"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/secondscr_row_titleTextView"
+            p1:textColor="#ffff0000"
+            p1:layout_marginLeft="20dp"
+            p1:layout_marginTop="20dp"
+            p1:textSize="20dp" />
+        <TextView
+            p1:text="To get this achievement you should make first blood donation on №153 and №2 clinic stations. Scan QR-code from individual clinic sertificate."
+            p1:textAppearance="?android:attr/textAppearanceSmall"
+            p1:layout_width="fill_parent"
+            p1:layout_height="80dp"
+            p1:id="@+id/secondscr_row_descrTextView"
+            p1:textColor="#ff474747"
+            p1:textSize="11dp"
+            p1:layout_alignParentBottom="true"
+            p1:layout_marginBottom="13dp"
+            p1:layout_marginLeft="20dp"
+            p1:layout_marginRight="5dp"
+            p1:gravity="top" />
+        <ImageView
+            p1:src="@drawable/listbonus_bonus"
+            p1:layout_width="60dp"
+            p1:layout_height="25dp"
+            p1:id="@+id/secondscr_BonusImageView"
+            p1:layout_alignParentRight="true"
+            p1:layout_marginTop="17dp"
+            p1:scaleType="fitStart"
+            p1:adjustViewBounds="false" />
+        <ImageView
+            p1:src="@drawable/listbonus_discount"
+            p1:layout_width="30dp"
+            p1:layout_height="25dp"
+            p1:id="@+id/secondscr_Bonus_DiscountImageView"
+            p1:layout_alignParentRight="true"
+            p1:layout_marginTop="17dp" />
+    </RelativeLayout>
+</RelativeLayout>

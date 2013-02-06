@@ -19,6 +19,7 @@
     <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -28,7 +29,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidLinkSkip />
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,10 +57,15 @@
   <ItemGroup>
     <Compile Include="AppInfo.cs" />
     <Compile Include="FirstBadgeActivity.cs" />
+    <Compile Include="Gui\AchievementsListItemAdapter.cs" />
+    <Compile Include="Gui\CategoriesListItemAdapter.cs" />
+    <Compile Include="Gui\ListData.cs" />
+    <Compile Include="Gui\SubCategoriesListItemAdapter.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="LoginWebActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecondScreenActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -64,7 +73,14 @@
     <AndroidResource Include="Resources\Layout\FirstBadgeActivityLayout.axml" />
     <AndroidResource Include="Resources\Layout\LoginActivityLayout.axml" />
     <AndroidResource Include="Resources\Layout\LoginWebLayout.axml" />
-    <AndroidResource Include="Resources\Layout\MainScreenActivityLayout.axml" />
+    <AndroidResource Include="Resources\Drawable\listbonus_bonus.png" />
+    <AndroidResource Include="Resources\Drawable\listbonus_discount.png" />
+    <AndroidResource Include="Resources\Layout\SecondScreenListRow.xml" />
+    <AndroidResource Include="Resources\Layout\FirstScreenActivityLayout.axml" />
+    <AndroidResource Include="Resources\Layout\SecondScreenActivityLayout.axml" />
+    <AndroidResource Include="Resources\Drawable\NavBar_addcode.png" />
+    <AndroidResource Include="Resources\Layout\SecondScreenDropDownListRow.xml" />
+    <AndroidResource Include="Resources\Drawable\Categories_panel_check.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
@@ -116,6 +132,9 @@
       <Project>{F0E325C3-8C23-4FC5-ACCE-402E4F37671C}</Project>
       <Name>itsbeta</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

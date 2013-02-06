@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Android.Content.PM;
 using Android.Webkit;
+using Android.Views.Animations;
 
 namespace itsbeta.achievements
 {
@@ -16,17 +17,22 @@ namespace itsbeta.achievements
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class LoginActivity : Activity
     {
+        Animation buttonClickAnimation;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            AppInfo._display = WindowManager.DefaultDisplay;
 
+            buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
             SetContentView(Resource.Layout.LoginActivityLayout);
 
             ImageButton loginButton = FindViewById<ImageButton>(Resource.Id.login);
 
             loginButton.Click += delegate
             {
-                //Finish();
+                loginButton.StartAnimation(buttonClickAnimation);
+                Finish();
                 StartActivity(typeof(LoginWebActivity));
             };
         }

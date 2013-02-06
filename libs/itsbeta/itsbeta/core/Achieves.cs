@@ -26,7 +26,16 @@ namespace ItsBeta.Core
             private set { }
         }
 
-        public ParentCategory[] ParentCategoryArray()
+        public ParentCategory[] CategoryArray 
+        {
+            get
+            {
+                return ParentCategoryArray();
+            }
+            private set { }
+        }
+
+        ParentCategory[] ParentCategoryArray()
         {
             ParentCategory[] array = new ParentCategory[CategoriesCount];
             for (int i = 0; i < CategoriesCount; i++)
@@ -48,7 +57,8 @@ namespace ItsBeta.Core
                             Description = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["desc"].Value<string>(),
                             PicUrl = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["pic"].Value<string>(),
                             FbId = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["fb_id"].Value<string>(),
-                            CreateTime = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["create_time"].Value<string>()
+                            CreateTime = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["create_time"].Value<string>(),
+                            BonusStatus = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["bonus"].Value<string>()
                         };
                     }
 
@@ -93,6 +103,7 @@ namespace ItsBeta.Core
                     public string PicUrl { get; set; }
                     public string FbId { get; set; }
                     public string CreateTime { get; set; }
+                    public string BonusStatus { get; set; }   
                 }
             }
         }
