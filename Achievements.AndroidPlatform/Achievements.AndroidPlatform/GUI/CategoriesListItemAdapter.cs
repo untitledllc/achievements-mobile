@@ -6,7 +6,7 @@ using Android.Content;
 using Android.Views;
 using Android.Views.Animations;
 
-namespace Achievements.AndroidPlatform.GUI
+namespace itsbeta.achievements.GUI
 {
     public class CategoriesListItemAdapter : ArrayAdapter<CategoriesListData>
     {

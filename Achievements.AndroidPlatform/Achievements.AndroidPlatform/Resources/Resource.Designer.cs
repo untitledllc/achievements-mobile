@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: Android.Runtime.ResourceDesignerAttribute("Achievements.AndroidPlatform.Resource", IsApplication=true)]
+[assembly: Android.Runtime.ResourceDesignerAttribute("itsbeta.achievements.Resource", IsApplication=true)]
 
-namespace Achievements.AndroidPlatform
+namespace itsbeta.achievements
 {
 	
 	
@@ -53,64 +53,67 @@ namespace Achievements.AndroidPlatform
 			public const int Categories_panel_divider = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int close = 2130837510;
+			public const int FakeAchivePic = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int facebook_icon = 2130837511;
+			public const int Icon = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int FakeAchivePic = 2130837512;
+			public const int itsbetabadge = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int Icon = 2130837513;
+			public const int line = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int itsbetabadge = 2130837514;
+			public const int Login_background = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int line = 2130837515;
+			public const int Login_background2 = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
 			public const int Login_Badge = 2130837516;
 			
 			// aapt resource value: 0x7f02000d
-			public const int NavBar_appLogo = 2130837517;
+			public const int Login_logo = 2130837517;
 			
 			// aapt resource value: 0x7f02000e
-			public const int NavBar_btn_edit = 2130837518;
+			public const int NavBar_appLogo = 2130837518;
 			
 			// aapt resource value: 0x7f02000f
-			public const int NavBar_btn_menu = 2130837519;
+			public const int NavBar_btn_edit = 2130837519;
 			
 			// aapt resource value: 0x7f020010
-			public const int Navigation_bar = 2130837520;
+			public const int NavBar_btn_menu = 2130837520;
 			
 			// aapt resource value: 0x7f020011
-			public const int Profile_Loginbutton = 2130837521;
+			public const int Navigation_bar = 2130837521;
 			
 			// aapt resource value: 0x7f020012
-			public const int singInFacebook = 2130837522;
+			public const int Profile_Loginbutton = 2130837522;
 			
 			// aapt resource value: 0x7f020013
-			public const int Table_socialNetwork_BK_btn_norm = 2130837523;
+			public const int singInFacebook = 2130837523;
 			
 			// aapt resource value: 0x7f020014
-			public const int Table_socialNetwork_BK_btn_press = 2130837524;
+			public const int Table_socialNetwork_BK_btn_norm = 2130837524;
 			
 			// aapt resource value: 0x7f020015
-			public const int Table_socialNetwork_FB_btn_norm = 2130837525;
+			public const int Table_socialNetwork_BK_btn_press = 2130837525;
 			
 			// aapt resource value: 0x7f020016
-			public const int Table_socialNetwork_FB_btn_press = 2130837526;
+			public const int Table_socialNetwork_FB_btn_norm = 2130837526;
 			
 			// aapt resource value: 0x7f020017
-			public const int Table_socialNetwork_TW_btn_norm = 2130837527;
+			public const int Table_socialNetwork_FB_btn_press = 2130837527;
 			
 			// aapt resource value: 0x7f020018
-			public const int Table_socialNetwork_TW_btn_press = 2130837528;
+			public const int Table_socialNetwork_TW_btn_norm = 2130837528;
 			
 			// aapt resource value: 0x7f020019
-			public const int zdravoohranenie = 2130837529;
+			public const int Table_socialNetwork_TW_btn_press = 2130837529;
+			
+			// aapt resource value: 0x7f02001a
+			public const int zdravoohranenie = 2130837530;
 			
 			private Drawable()
 			{
@@ -120,47 +123,47 @@ namespace Achievements.AndroidPlatform
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050024
-			public const int AchiveDescriptionTextView = 2131034148;
+			// aapt resource value: 0x7f050027
+			public const int AchiveDescriptionTextView = 2131034151;
 			
-			// aapt resource value: 0x7f05001e
-			public const int AchiveImageView = 2131034142;
+			// aapt resource value: 0x7f050021
+			public const int AchiveImageView = 2131034145;
 			
-			// aapt resource value: 0x7f050023
-			public const int AchiveNameTextView = 2131034147;
+			// aapt resource value: 0x7f050026
+			public const int AchiveNameTextView = 2131034150;
 			
-			// aapt resource value: 0x7f050025
-			public const int AchiveReceiveDateTextView = 2131034149;
+			// aapt resource value: 0x7f050028
+			public const int AchiveReceiveDateTextView = 2131034152;
 			
-			// aapt resource value: 0x7f05001a
-			public const int AchivementsListView = 2131034138;
+			// aapt resource value: 0x7f05001d
+			public const int AchivementsListView = 2131034141;
 			
 			// aapt resource value: 0x7f050002
 			public const int BadgeImageView = 2131034114;
 			
-			// aapt resource value: 0x7f05001b
-			public const int CategNameTextView = 2131034139;
+			// aapt resource value: 0x7f05001e
+			public const int CategNameTextView = 2131034142;
 			
-			// aapt resource value: 0x7f05001c
-			public const int CheckImageView = 2131034140;
-			
-			// aapt resource value: 0x7f050016
-			public const int NavigationBarImageButton = 2131034134;
-			
-			// aapt resource value: 0x7f050017
-			public const int NavigationBarLogoImageView = 2131034135;
-			
-			// aapt resource value: 0x7f050018
-			public const int NavigationBarMenuImageButton = 2131034136;
-			
-			// aapt resource value: 0x7f05002d
-			public const int ProfileStatisticTitle = 2131034157;
+			// aapt resource value: 0x7f05001f
+			public const int CheckImageView = 2131034143;
 			
 			// aapt resource value: 0x7f050019
-			public const int SelectedCategoriesLinearLayout = 2131034137;
+			public const int NavigationBarImageButton = 2131034137;
 			
-			// aapt resource value: 0x7f050027
-			public const int UserInfo = 2131034151;
+			// aapt resource value: 0x7f05001a
+			public const int NavigationBarLogoImageView = 2131034138;
+			
+			// aapt resource value: 0x7f05001b
+			public const int NavigationBarMenuImageButton = 2131034139;
+			
+			// aapt resource value: 0x7f050030
+			public const int ProfileStatisticTitle = 2131034160;
+			
+			// aapt resource value: 0x7f05001c
+			public const int SelectedCategoriesLinearLayout = 2131034140;
+			
+			// aapt resource value: 0x7f05002a
+			public const int UserInfo = 2131034154;
 			
 			// aapt resource value: 0x7f050004
 			public const int badgenameTextView = 2131034116;
@@ -189,14 +192,14 @@ namespace Achievements.AndroidPlatform
 			// aapt resource value: 0x7f05000a
 			public const int categoryProjectTextView = 2131034122;
 			
-			// aapt resource value: 0x7f05001d
-			public const int check_button = 2131034141;
+			// aapt resource value: 0x7f050020
+			public const int check_button = 2131034144;
 			
 			// aapt resource value: 0x7f050007
 			public const int civ = 2131034119;
 			
-			// aapt resource value: 0x7f05001f
-			public const int facebook_button = 2131034143;
+			// aapt resource value: 0x7f050022
+			public const int facebook_button = 2131034146;
 			
 			// aapt resource value: 0x7f050008
 			public const int howWasEarnDescrTextView = 2131034120;
@@ -207,26 +210,35 @@ namespace Achievements.AndroidPlatform
 			// aapt resource value: 0x7f050013
 			public const int login = 2131034131;
 			
+			// aapt resource value: 0x7f050018
+			public const int loginWebView = 2131034136;
+			
+			// aapt resource value: 0x7f050017
+			public const int login_backgroundImageView = 2131034135;
+			
+			// aapt resource value: 0x7f050016
+			public const int login_centerTextView = 2131034134;
+			
+			// aapt resource value: 0x7f05002e
+			public const int logoutbutton = 2131034158;
+			
 			// aapt resource value: 0x7f05002b
-			public const int logoutbutton = 2131034155;
+			public const int pfacebook_button = 2131034155;
 			
-			// aapt resource value: 0x7f050028
-			public const int pfacebook_button = 2131034152;
+			// aapt resource value: 0x7f05002c
+			public const int ptwitter_button = 2131034156;
 			
-			// aapt resource value: 0x7f050029
-			public const int ptwitter_button = 2131034153;
-			
-			// aapt resource value: 0x7f05002a
-			public const int pvk_button = 2131034154;
+			// aapt resource value: 0x7f05002d
+			public const int pvk_button = 2131034157;
 			
 			// aapt resource value: 0x7f050000
 			public const int relativeLayout1 = 2131034112;
 			
-			// aapt resource value: 0x7f050022
-			public const int relativeLayout2 = 2131034146;
+			// aapt resource value: 0x7f050025
+			public const int relativeLayout2 = 2131034149;
 			
-			// aapt resource value: 0x7f05002c
-			public const int relativeLayout3 = 2131034156;
+			// aapt resource value: 0x7f05002f
+			public const int relativeLayout3 = 2131034159;
 			
 			// aapt resource value: 0x7f050012
 			public const int signUpTextView = 2131034130;
@@ -240,17 +252,17 @@ namespace Achievements.AndroidPlatform
 			// aapt resource value: 0x7f050009
 			public const int textView3 = 2131034121;
 			
-			// aapt resource value: 0x7f050020
-			public const int twitter_button = 2131034144;
+			// aapt resource value: 0x7f050023
+			public const int twitter_button = 2131034147;
 			
-			// aapt resource value: 0x7f050026
-			public const int userName = 2131034150;
+			// aapt resource value: 0x7f050029
+			public const int userName = 2131034153;
 			
 			// aapt resource value: 0x7f050011
 			public const int usertextView = 2131034129;
 			
-			// aapt resource value: 0x7f050021
-			public const int vk_button = 2131034145;
+			// aapt resource value: 0x7f050024
+			public const int vk_button = 2131034148;
 			
 			// aapt resource value: 0x7f050015
 			public const int webView1 = 2131034133;
@@ -279,16 +291,19 @@ namespace Achievements.AndroidPlatform
 			public const int LoginActivityWebLayout = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int MainActivityLayout = 2130903044;
+			public const int LoginWebLayout = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int MainLayoutCategoryDropDownListRow = 2130903045;
+			public const int MainActivityLayout = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int MainLayoutListRow = 2130903046;
+			public const int MainLayoutCategoryDropDownListRow = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int ProfileActivityLayout = 2130903047;
+			public const int MainLayoutListRow = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int ProfileActivityLayout = 2130903048;
 			
 			private Layout()
 			{

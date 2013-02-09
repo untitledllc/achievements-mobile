@@ -6,7 +6,7 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using ItsBeta.Json;
 
-namespace Achievements.AndroidPlatform.ItsBeta.Core
+namespace ItsBeta.Core
 {
     public class User
     {

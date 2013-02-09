@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Achievements.AndroidPlatform</RootNamespace>
-    <AssemblyName>Achievements</AssemblyName>
+    <RootNamespace>itsbeta.achievements</RootNamespace>
+    <AssemblyName>itsbeta</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
@@ -60,6 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppInfo.cs" />
+    <Compile Include="LoginActivity.cs" />
+    <Compile Include="LoginWebActivity.cs" />
     <Compile Include="FirstBadgeActivity.cs" />
     <Compile Include="GUI\AchievementsListItemAdapter.cs" />
     <Compile Include="GUI\CategoriesListItemAdapter.cs" />
@@ -75,7 +78,7 @@
     <Compile Include="ItsBeta\Core\User.cs" />
     <Compile Include="ItsBeta\Json\Json.cs" />
     <Compile Include="ItsBeta\WebControls\WebControls.cs" />
-    <Compile Include="LoginScreenActivity.cs" />
+    <Compile Include="[old]LoginScreenActivity.cs" />
     <Compile Include="MainActivityLiveCycle.cs" />
     <Compile Include="MainActivityViewModel.cs" />
     <Compile Include="ProfileActivity.cs" />
@@ -130,12 +133,12 @@
     <Content Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
     </Content>
+    <AndroidResource Include="Resources\Drawable\Login_background.png" />
+    <AndroidResource Include="Resources\Drawable\Login_background2.png" />
+    <AndroidResource Include="Resources\Drawable\Login_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\Mono.Facebook\Mono.Facebook.csproj">
-      <Project>{33B8DF4F-E480-4B97-8DA1-BEB89CA6B644}</Project>
-      <Name>Mono.Facebook</Name>
-    </ProjectReference>
+    <AndroidResource Include="Resources\Layout\LoginWebLayout.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

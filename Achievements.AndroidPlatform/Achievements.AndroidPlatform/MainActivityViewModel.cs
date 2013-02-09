@@ -12,13 +12,13 @@ using Android.Widget;
 using Android.Content.PM;
 using Android.Views.Animations;
 
-using Achievements.AndroidPlatform.GUI;
 using ItsBeta.Core;
 using Android.Graphics;
 using System.IO;
 using Java.IO;
+using itsbeta.achievements.GUI;
 
-namespace Achievements.AndroidPlatform
+namespace itsbeta.achievements
 {
     public partial class MainActivity : Activity
     {
@@ -266,7 +266,7 @@ namespace Achievements.AndroidPlatform
         {
             List<AchievementsListData> achievementsList = new List<AchievementsListData>();
 
-            Directory.CreateDirectory(@"/data/data/Achievements.AndroidPlatform/cache/achPics/");
+            Directory.CreateDirectory(@"/data/data/itsbeta.achievements/cache/achPics/");
 
             for (int i = 0; i < _achievesInfo.CategoriesCount; i++) 
             {
@@ -274,23 +274,23 @@ namespace Achievements.AndroidPlatform
                 {
                     for (int k = 0; k < _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements.Count(); k++)   
                     {
-                        FileStream fs = new FileStream(@"/data/data/Achievements.AndroidPlatform/cache/achPics/" +
+                        FileStream fs = new FileStream(@"/data/data/itsbeta.achievements/cache/achPics/" +
                             _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].ApiName + ".PNG", FileMode.OpenOrCreate,
                             FileAccess.ReadWrite, FileShare.ReadWrite
                             );
 
-                        if (!System.IO.File.Exists(@"/data/data/Achievements.AndroidPlatform/cache/achPics/" + "achive" +
+                        if (!System.IO.File.Exists(@"/data/data/itsbeta.achievements/cache/achPics/" + "achive" +
                             _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].ApiName + ".PNG"))
                         {
                             GetImageBitmap(_achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].PicUrl).Compress(
                             Bitmap.CompressFormat.Jpeg, 100, fs);
 
-                            System.IO.File.Copy(@"/data/data/Achievements.AndroidPlatform/cache/achPics/" +
+                            System.IO.File.Copy(@"/data/data/itsbeta.achievements/cache/achPics/" +
                             _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].ApiName + ".PNG",
-                            @"/data/data/Achievements.AndroidPlatform/cache/achPics/" + "achive" +
+                            @"/data/data/itsbeta.achievements/cache/achPics/" + "achive" +
                             _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].ApiName + ".PNG");
 
-                            System.IO.File.Delete(@"/data/data/Achievements.AndroidPlatform/cache/achPics/" +
+                            System.IO.File.Delete(@"/data/data/itsbeta.achievements/cache/achPics/" +
                             _achievesInfo.ParentCategoryArray()[i].Projects[j].Achievements[k].ApiName + ".PNG");
                         }
 

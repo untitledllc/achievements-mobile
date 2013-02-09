@@ -29,10 +29,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>Full</AndroidLinkMode>
-    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkSkip />
-    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -63,6 +61,7 @@
     <Compile Include="Gui\SubCategoriesListItemAdapter.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="LoginWebActivity.cs" />
+    <Compile Include="ProfileActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecondScreenActivity.cs" />
@@ -81,6 +80,14 @@
     <AndroidResource Include="Resources\Drawable\NavBar_addcode.png" />
     <AndroidResource Include="Resources\Layout\SecondScreenDropDownListRow.xml" />
     <AndroidResource Include="Resources\Drawable\Categories_panel_check.png" />
+    <AndroidResource Include="Resources\Layout\ProfileScreenActivityLayout.axml" />
+    <AndroidResource Include="Resources\Drawable\profilescr_allbadgesback.png" />
+    <AndroidResource Include="Resources\Drawable\profilescr_bonusesback.png" />
+    <AndroidResource Include="Resources\Drawable\profilescr_exitbut.png" />
+    <AndroidResource Include="Resources\Drawable\profilescr_facebook.png" />
+    <AndroidResource Include="Resources\Drawable\profilescr_subcategback.png" />
+    <AndroidResource Include="Resources\Drawable\profilescr_titleback.png" />
+    <AndroidResource Include="Resources\Drawable\back.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

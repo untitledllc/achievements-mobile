@@ -12,9 +12,8 @@ using Android.Widget;
 using Android.Content.PM;
 using Android.Views.Animations;
 using ItsBeta.Core;
-using Achievements.AndroidPlatform.ItsBeta.Core;
 
-namespace Achievements.AndroidPlatform
+namespace itsbeta.achievements
 {
     [Activity(Label = "123", Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
                 ScreenOrientation = ScreenOrientation.Portrait)]
@@ -27,7 +26,7 @@ namespace Achievements.AndroidPlatform
 
         string access_token = "059db4f010c5f40bf4a73a28222dd3e3";
 
-        string player_id = LoginScreenActivity._user.ItsBetaUserId;
+        string player_id = AppInfo._user.ItsBetaUserId;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -39,16 +38,16 @@ namespace Achievements.AndroidPlatform
             MainActivity._selectedCategoriesDictionary = new Dictionary<string, bool>();
             MainActivity._selectedSubCategoriesDictionary = new Dictionary<string, bool>();
 
-            if (!LoginScreenActivity.isPlayerExist)
+            if (!LoginWebActivity.isPlayerExist)
             {
 
                 buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
                 SetContentView(Resource.Layout.FirstBadgeLayout);
 
                 TextView userName = FindViewById<TextView>(Resource.Id.usertextView);
-                if (LoginScreenActivity._user.Fullname != null)
+                if (AppInfo._user.Fullname != null)
                 {
-                    userName.Text = LoginScreenActivity._user.Fullname;
+                    userName.Text = AppInfo._user.Fullname;
                 }
 
                 Button badgeReadyButton = FindViewById<Button>(Resource.Id.badgereadybutton);

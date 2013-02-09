@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Android.Widget;
 
-namespace Achievements.AndroidPlatform.GUI
+namespace itsbeta.achievements.GUI
 {
 
     public class AchievementsListData

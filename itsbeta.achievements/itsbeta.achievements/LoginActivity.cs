@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Content.PM;
 using Android.Webkit;
 using Android.Views.Animations;
+using System.IO;
 
 namespace itsbeta.achievements
 {
@@ -23,6 +24,20 @@ namespace itsbeta.achievements
         {
             base.OnCreate(bundle);
             AppInfo._display = WindowManager.DefaultDisplay;
+
+            if (File.Exists(@"/data/data/itsbeta.achievements/data.txt"))
+            {
+                LoginWebActivity.isPlayerExist = true;
+                AppInfo._user.Fullname = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[0];
+                AppInfo._user.BirthDate = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[1];
+                AppInfo._user.FacebookUserID = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[2];
+                AppInfo._user.ItsBetaUserId = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[3];
+
+                Finish();
+                StartActivity(typeof(FirstBadgeActivity));
+            }
+
+
 
             buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
             SetContentView(Resource.Layout.LoginActivityLayout);

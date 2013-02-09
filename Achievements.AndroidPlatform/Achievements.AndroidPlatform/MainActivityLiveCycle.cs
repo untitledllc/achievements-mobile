@@ -11,10 +11,9 @@ using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
 using Android.Views.Animations;
-using Achievements.AndroidPlatform.GUI;
 using ItsBeta.Core;
 
-namespace Achievements.AndroidPlatform
+namespace itsbeta.achievements
 {
     [Activity(Label = "Achievements", 
         Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
@@ -97,10 +96,9 @@ namespace Achievements.AndroidPlatform
                 _selectedCategoriesDictionary = new Dictionary<string, bool>();
                 _selectedSubCategoriesDictionary = new Dictionary<string, bool>();
                 isFinishFromProfile = false;
-                RunOnUiThread(()=> LoginScreenActivity.mFacebook.Logout(LoginScreenActivity.loginContext));
-                LoginScreenActivity.isCommingFromProfile = true;
+                LoginActivity.isCommingFromProfile = true;
                 Finish();
-                StartActivity(typeof(LoginScreenActivity));
+                StartActivity(typeof(LoginActivity));
             }
         }
 

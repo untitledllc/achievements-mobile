@@ -50,6 +50,21 @@ namespace ItsBeta.WebControls
             return text;//ParseJson(text2);
         }
 
+
+        public static string GetMethod2(string getUrl)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(getUrl);
+            request.ContentType = "application/json; charset=utf-8";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2";
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            Stream stream = response.GetResponseStream();
+
+            var sr = new StreamReader(stream, Encoding.UTF8);
+            return sr.ReadToEnd();//ParseJson(text2);
+        }
+
         public static Dictionary<string, string> GetFacebookMethod(string getUrl)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(getUrl);

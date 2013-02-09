@@ -10,8 +10,10 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Webkit;
+using System.IO;
 
-namespace Achievements.AndroidPlatform
+namespace itsbeta.achievements
 {
     [Activity(Label = "Achievements", Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
                 ScreenOrientation = ScreenOrientation.Portrait)]
@@ -25,16 +27,19 @@ namespace Achievements.AndroidPlatform
             SetContentView(Resource.Layout.ProfileActivityLayout);
 
             TextView userName = FindViewById<TextView>(Resource.Id.userName);
-            userName.Text = LoginScreenActivity._user.Fullname;
+            userName.Text = AppInfo._user.Fullname;
 
             TextView userInfo = FindViewById<TextView>(Resource.Id.UserInfo);
-            userInfo.Text = GetUserAge(LoginScreenActivity._user.BirthDate).ToString();
+            userInfo.Text = GetUserAge(AppInfo._user.BirthDate).ToString();
 
             Button logoutButton = FindViewById<Button>(Resource.Id.logoutbutton);
-            logoutButton.Click += delegate 
+            logoutButton.Click += delegate
             {
                 MainActivity.isFinishFromProfile = true;
+                CookieManager.Instance.RemoveAllCookie();
+                File.Delete(@"/data/data/itsbeta.achievements/data.txt");
                 Finish();
+                StartActivity(typeof(LoginActivity));
             };
 
         }

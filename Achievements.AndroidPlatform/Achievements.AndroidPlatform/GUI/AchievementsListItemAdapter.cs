@@ -8,7 +8,7 @@ using Android.Views.Animations;
 using Android.Graphics;
 using System.IO;
 
-namespace Achievements.AndroidPlatform.GUI
+namespace itsbeta.achievements.GUI
 {
     public class AchievementsListItemAdapter : ArrayAdapter<AchievementsListData>
     {
@@ -48,7 +48,7 @@ namespace Achievements.AndroidPlatform.GUI
 
             achivePicture.DrawingCacheEnabled = true;
 
-            achivePicture.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/Achievements.AndroidPlatform/cache/achPics/" + "achive" +
+            achivePicture.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/itsbeta.achievements/cache/achPics/" + "achive" +
                 item.AchieveApiName +
                 ".PNG"
                 ));

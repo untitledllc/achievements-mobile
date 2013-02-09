@@ -12,6 +12,7 @@ using Android.Widget;
 using Android.Content.PM;
 using itsbeta.achievements.gui;
 using System.IO;
+using Android.Views.Animations;
 
 namespace itsbeta.achievements
 {
@@ -21,13 +22,18 @@ namespace itsbeta.achievements
     {
         ListView _categoriesListView;
         ImageButton _navigationBarImageButton;
+        Animation buttonClickAnimation;
         bool _isBarCategoriesListOpen = false;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
             SetContentView(Resource.Layout.SecondScreenActivityLayout);
             _navigationBarImageButton = FindViewById<ImageButton>(Resource.Id.NavBar_ImageButton);
+            ImageButton profileImageButton = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButton);
+
+            profileImageButton.Click += delegate { buttonClickAnimation.Start();  StartActivity(typeof(ProfileActivity)); };
 
             CreateCategoriesViewObject();
             CreateAchievementsViewObject();
@@ -136,5 +142,8 @@ namespace itsbeta.achievements
             achievementsListView.Adapter = adapter;
         }
         #endregion
+
+
+
     }
 }

@@ -51,9 +51,7 @@ namespace itsbeta.achievements
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             endlogin.TextChanged += delegate //здесь инициализировать все необходимое перед запуском...
             {
-                AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
-
-
+                
                 Finish();
                 StartActivity(typeof(FirstBadgeActivity));
             };

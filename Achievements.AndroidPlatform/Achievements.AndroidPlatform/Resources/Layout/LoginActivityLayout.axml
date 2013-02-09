@@ -21,7 +21,7 @@
         p1:layout_centerVertical="true"
         p1:layout_below="@+id/login"
         p1:layout_marginTop="50dp" />
-    <Achievements.AndroidPlatform.LoginButton
+    <ImageButton
         p1:id="@+id/login"
         p1:src="@drawable/singInFacebook"
         p1:layout_width="300dp"
