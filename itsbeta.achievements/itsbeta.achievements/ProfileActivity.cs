@@ -57,25 +57,31 @@ namespace itsbeta.achievements
             bonusesCount.Text = AppInfo._bonusesCount.ToString();
             subCategoriesCount.Text = AppInfo._subcategCount.ToString();
 
-
-            IList<CategoriesListData> categoriesList = new List<CategoriesListData>();
+            LinearLayout profilescrLinearLayout = FindViewById<LinearLayout>(Resource.Id.profilescr_linearLayout);
 
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
             {
-                categoriesList.Add(new CategoriesListData()
+                LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+                View view = layoutInflater.Inflate(Resource.Layout.ProfileScreenParentRow, null);
+                TextView categoryName = (TextView)view.FindViewById(Resource.Id.profilescr_CategNameTextView);
+                categoryName.Text = i+1 + ". " + AppInfo._achievesInfo.CategoryArray[i].DisplayName;
+                
+                profilescrLinearLayout.AddView(view);
+
+                for (int j = 0; j < AppInfo._achievesInfo.CategoryArray[i].Projects.Length; j++)    
                 {
-                    CategoryNameText = String.Format("{0}",
-                        AppInfo._achievesInfo.CategoryArray[i].DisplayName),
-                });
+                    LayoutInflater layoutInflater2 = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+                    View view2 = layoutInflater2.Inflate(Resource.Layout.ProfileScreenChildRow, null);
+                    TextView projectName = (TextView)view2.FindViewById(Resource.Id.profilescr_ProjectNameTextView);
+                    projectName.Text = AppInfo._achievesInfo.CategoryArray[i].Projects[j].DisplayName + "-" + AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Length + " badges";
+
+                    profilescrLinearLayout.AddView(view2);
+                }
+
+                        //AppInfo._achievesInfo.CategoryArray[i].DisplayName),
             }
 
-            ListView categoriesListView = FindViewById<ListView>(Resource.Id.profilescr_categListView);
-
-            ProfileScrCategoriesListItemAdapter categoriesAdapter = new ProfileScrCategoriesListItemAdapter(this, Resource.Layout.ProfileScreenParentRow,
-                categoriesList);
-
-            categoriesListView.Adapter = categoriesAdapter;
-            categoriesListView.DividerHeight = 0;
+            
 
         }
 
