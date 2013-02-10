@@ -59,6 +59,8 @@
     <Compile Include="Gui\CategoriesListItemAdapter.cs" />
     <Compile Include="Gui\ListData.cs" />
     <Compile Include="Gui\SubCategoriesListItemAdapter.cs" />
+    <Compile Include="Gui\ProfileScrCategoriesListItemAdapter.cs" />
+    <Compile Include="Gui\ProfileScrProjectsListItemAdapter.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="LoginWebActivity.cs" />
     <Compile Include="ProfileActivity.cs" />
@@ -88,6 +90,8 @@
     <AndroidResource Include="Resources\Drawable\profilescr_subcategback.png" />
     <AndroidResource Include="Resources\Drawable\profilescr_titleback.png" />
     <AndroidResource Include="Resources\Drawable\back.png" />
+    <AndroidResource Include="Resources\Layout\ProfileScreenParentRow.xml" />
+    <AndroidResource Include="Resources\Layout\ProfileScreenChildRow.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

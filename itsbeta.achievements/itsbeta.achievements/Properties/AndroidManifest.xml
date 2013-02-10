@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="internalOnly" android:versionCode="2" android:versionName="2.0" package="istbeta.achievements">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="internalOnly" android:versionCode="2" android:versionName="2.0" package="itsbeta.achievements">
   <uses-sdk android:targetSdkVersion="8" />
   <application android:label="itsbeta">
   </application>

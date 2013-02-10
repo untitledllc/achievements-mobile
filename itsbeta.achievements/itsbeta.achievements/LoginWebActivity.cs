@@ -38,6 +38,7 @@ namespace itsbeta.achievements
             //loginWebView.Settings.JavaScriptEnabled = true;
 
             loginWebView.SetWebViewClient(new ItsbetaLoginWebViewClient(this));
+            loginWebView.SetWebChromeClient(new ItsbetaLoginWebViewChromeClient());
 
             loginWebView.LoadUrl(String.Format(
                     "https://www.facebook.com/dialog/oauth?response_type=token&display=popup&client_id={0}&redirect_uri={1}&scope={2}",
@@ -51,7 +52,6 @@ namespace itsbeta.achievements
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             endlogin.TextChanged += delegate //здесь инициализировать все необходимое перед запуском...
             {
-                
                 Finish();
                 StartActivity(typeof(FirstBadgeActivity));
             };
@@ -70,6 +70,8 @@ namespace itsbeta.achievements
             {
                 if (url.StartsWith(AppInfo._loginRedirectUri))
                 {
+                    
+                    //mDialog.Show();
                     Regex access_tokenRegex = new Regex("access_token=(.*)&");
                     var v = access_tokenRegex.Match(url);
                     AppInfo._fbAccessToken = v.Groups[1].ToString();
@@ -90,26 +92,39 @@ namespace itsbeta.achievements
 
                     AppInfo._user.ItsBetaUserId = itsbetaService.GetItsBetaUserID(AppInfo._user.FacebookUserID);
 
+
                     endlogin.Text = "change";
                 }
                 view.LoadUrl(url);
                 return true;
             }
 
-            
             public override void OnPageStarted(WebView view, string url, Android.Graphics.Bitmap favicon)
             {
-                loadPreviousState = true;
                 base.OnPageStarted(view, url, favicon);
+
+                if (url.StartsWith(AppInfo._loginRedirectUri))
+                {
+                    mDialog.SetMessage("Authorization...");
+                }
+                else
+                {
+                    mDialog.SetMessage("Loading...");
+                }
+                mDialog.Show();
             }
 
-            public override void OnPageFinished(WebView view, string url)
+        }
+
+        class ItsbetaLoginWebViewChromeClient : WebChromeClient
+        {
+            public override void OnProgressChanged(WebView view, int newProgress)
             {
-                if (loadPreviousState == true)
+                base.OnProgressChanged(view, newProgress);
+                if (newProgress == 100) 
                 {
                     mDialog.Hide();
                 }
-                base.OnPageFinished(view, url);
             }
         }
     }

@@ -41,7 +41,7 @@ namespace itsbeta.achievements.gui
             ImageView checkImageView = (ImageView)view.FindViewById(Resource.Id.CheckImageView);
             Button checkButton = (Button)view.FindViewById(Resource.Id.check_button);
             categoryNameTextView.Text = item.CategoryNameText;
-            categoryNameTextView.SetTextColor(Android.Graphics.Color.DarkCyan);
+            categoryNameTextView.SetTextColor(new Android.Graphics.Color(105, 216, 248));
 
             isChecked = _selectedDictionary[AppInfo._achievesInfo.CategoryArray[position].DisplayName];
 
@@ -57,8 +57,8 @@ namespace itsbeta.achievements.gui
                     if (isChecked)
                     {
                         checkImageView.Visibility = ViewStates.Visible;
-                        //#5DDEF0
-                        categoryNameTextView.SetTextColor(Android.Graphics.Color.DarkCyan);
+                        //#69D8F8
+                        categoryNameTextView.SetTextColor(new Android.Graphics.Color(105,216,248));
                     }
                     else
                     {
@@ -74,7 +74,7 @@ namespace itsbeta.achievements.gui
                     if (isChecked)
                     {
                         checkImageView.Visibility = ViewStates.Visible;
-                        categoryNameTextView.SetTextColor(Android.Graphics.Color.DarkCyan);
+                        categoryNameTextView.SetTextColor(new Android.Graphics.Color(105, 216, 248));
                     }
                     else
                     {
@@ -83,7 +83,7 @@ namespace itsbeta.achievements.gui
                     }
                 }
 
-                //MainActivity.RefreshEventListTextView.Text = "changed";
+                SecondScreenActivity.RefreshEventListTextView.Text = "changed";
             };
 
             tada = false;

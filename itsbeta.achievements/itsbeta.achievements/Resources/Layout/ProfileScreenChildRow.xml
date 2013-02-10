@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="40dp"
+    p1:layout_width="fill_parent"
+    p1:layout_height="40dp"
+    p1:id="@+id/relativeLayout1">
+    <TextView
+        p1:text="SubCategotyName"
+        p1:textAppearance="?android:attr/textAppearanceLarge"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/profilescr_ProjectNameTextView"
+        p1:gravity="center_horizontal"
+        p1:layout_marginLeft="20dp"
+        p1:textColor="#ff474747"
+        p1:textSize="12dp"
+        p1:layout_marginTop="10dp" />
+    <ImageView
+        p1:layout_width="fill_parent"
+        p1:layout_height="7dp"
+        p1:layout_below="@id/profilescr_ProjectNameTextView"
+        p1:id="@+id/imageView1"
+        p1:layout_marginLeft="20dp"
+        p1:layout_marginRight="20dp"
+        p1:background="#ffe6e6e6"
+        p1:layout_marginTop="5dp" />
+</RelativeLayout>

@@ -23,20 +23,32 @@ namespace itsbeta.achievements
         ListView _categoriesListView;
         ImageButton _navigationBarImageButton;
         Animation buttonClickAnimation;
+        public static TextView RefreshEventListTextView;
         bool _isBarCategoriesListOpen = false;
+        public static SecondScreenActivity _context;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
+            _context = this;
             SetContentView(Resource.Layout.SecondScreenActivityLayout);
             _navigationBarImageButton = FindViewById<ImageButton>(Resource.Id.NavBar_ImageButton);
-            ImageButton profileImageButton = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButton);
 
-            profileImageButton.Click += delegate { buttonClickAnimation.Start();  StartActivity(typeof(ProfileActivity)); };
+            RefreshEventListTextView = new TextView(this);
+            ImageButton profileImageButton = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButton);
+            ImageButton profileImageButtonFake = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButtonFake);
+            ImageButton addCodeImageButton = FindViewById<ImageButton>(Resource.Id.NavBar_addcodeImageButton);
+            ImageButton addCodeImageButtonFake = FindViewById<ImageButton>(Resource.Id.NavBar_addcodeImageButtonFake);
+            TextView badgesCount = FindViewById<TextView>(Resource.Id.NavBar_AchievesCountTextView);
+
+            badgesCount.Text = AppInfo._badgesCount.ToString();
+            profileImageButtonFake.Click += delegate { profileImageButton.StartAnimation(buttonClickAnimation); StartActivity(typeof(ProfileActivity)); };
+            addCodeImageButtonFake.Click += delegate { addCodeImageButton.StartAnimation(buttonClickAnimation); };
 
             CreateCategoriesViewObject();
             CreateAchievementsViewObject();
+            RefreshEventListTextView.TextChanged += delegate { CreateAchievementsViewObject(); };
         }
 
         #region
@@ -94,7 +106,6 @@ namespace itsbeta.achievements
         #endregion
 
         #region
-        public static int achievesCount = 0;
         private void CreateAchievementsViewObject()
         {
             List<AchievementsListData> achievementsList = new List<AchievementsListData>();
@@ -126,8 +137,6 @@ namespace itsbeta.achievements
                                 BonusStatus = String.Format("{0}",
                                 AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].BonusStatus)
                             });
-
-                            achievesCount++;
                         }
 
                     }

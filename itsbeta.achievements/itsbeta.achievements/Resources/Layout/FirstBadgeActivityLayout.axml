@@ -43,14 +43,6 @@
     <ImageButton
         p1:layout_width="20dp"
         p1:layout_height="20dp"
-        p1:layout_toRightOf="@id/NavBar_LeftWinImageView"
-        p1:id="@+id/NavBar_secondScreenImageButton"
-        p1:background="@drawable/NavBar_secondScreenButton"
-        p1:layout_marginTop="15dp"
-        p1:layout_marginLeft="5dp" />
-    <ImageButton
-        p1:layout_width="20dp"
-        p1:layout_height="20dp"
         p1:id="@+id/NavBar_ProfileScreenImageButton"
         p1:layout_alignParentRight="true"
         p1:background="@drawable/NavBar_ProfileButton"
@@ -154,7 +146,7 @@
             p1:layout_alignTop="@id/FirstBadge_GreenBonusImageView"
             p1:layout_alignLeft="@id/FirstBadge_GreenBonusImageView"
             p1:layout_marginLeft="10dp"
-            p1:layout_marginTop="5dp" />
+            p1:layout_marginTop="3dp" />
         <TextView
             p1:text="Бесплатный кофе в нашем офисе ;)"
             p1:textAppearance="?android:attr/textAppearanceMedium"

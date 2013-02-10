@@ -113,7 +113,7 @@
         p1:minWidth="25px"
         p1:minHeight="25px"
         p1:layout_width="fill_parent"
-        p1:layout_height="fill_parent"
+        p1:layout_height="wrap_content"
         p1:layout_below="@id/profilescr_allBadgesImageView"
         p1:id="@+id/profilescr_categListView"
         p1:layout_marginTop="10dp"

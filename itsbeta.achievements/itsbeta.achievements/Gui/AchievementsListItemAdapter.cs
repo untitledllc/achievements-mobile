@@ -41,7 +41,7 @@ namespace itsbeta.achievements.gui
 
 
             TextView achiveReceivedDate = (TextView)view.FindViewById(Resource.Id.AchiveReceiveDateTextView);
-            achiveReceivedDate.Text = item.AchieveReceivedTime;
+            achiveReceivedDate.Text = "Got at " + LocalDateTime(item.AchieveReceivedTime).Date.ToString().Remove(10);
 
             ImageView achivePicture = (ImageView)view.FindViewById(Resource.Id.AchiveImageView);
 
@@ -68,11 +68,13 @@ namespace itsbeta.achievements.gui
 
             achivePicture.DrawingCacheEnabled = true;
 
-            //achivePicture.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/Achievements.AndroidPlatform/cache/achPics/" + "achive" +
-            //    item.AchieveApiName +
-            //    ".PNG"
-            //    ));
+            Bitmap bitmap = BitmapFactory.DecodeFile(@"/data/data/itsbeta.achievements/cache/pictures/" + "achive" +
+                item.AchieveApiName +
+                ".PNG"
+                );
 
+            achivePicture.SetImageBitmap(bitmap);
+            bitmap.Dispose();
 
             Animation listviewAnimation = new ScaleAnimation((float)1.0, (float)1.0, (float)0, (float)1.0);//new TranslateAnimation(0, 0, MainActivity._display.Height, 0);
             Animation animation = new TranslateAnimation(AppInfo._display.Width, 0, 200, 0);
@@ -95,6 +97,18 @@ namespace itsbeta.achievements.gui
             //view.Click += delegate { MainActivity.AchieveListSelectedEventTextView.Text = item.AchieveApiName; };
 
             return view;
+        }
+
+        DateTime LocalDateTime(string strDateTime)
+        {
+            DateTime univDateTime;
+            DateTime localDateTime;
+
+            univDateTime = DateTime.Parse(strDateTime);
+
+            localDateTime = univDateTime.ToLocalTime();
+
+            return localDateTime;
         }
 
     }

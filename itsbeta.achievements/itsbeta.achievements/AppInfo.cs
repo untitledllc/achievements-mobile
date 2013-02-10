@@ -24,5 +24,9 @@ namespace itsbeta.achievements
         public static Dictionary<string, bool> _selectedSubCategoriesDictionary = new Dictionary<string, bool>();
 
         public static Display _display;
+
+        public static int _badgesCount;
+        public static int _bonusesCount;
+        public static int _subcategCount;
     }
 }
