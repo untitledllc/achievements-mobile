@@ -39,5 +39,6 @@ namespace ItsBeta.Core
 	        }
             return true;
         }
+
     }
 }

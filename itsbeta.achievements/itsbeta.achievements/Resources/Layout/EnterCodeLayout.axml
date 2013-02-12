@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="250dp"
+    p1:layout_height="180dp"
+    p1:id="@+id/FristBadgeMainRelativeLayout">
+    <ImageView
+        p1:layout_width="250dp"
+        p1:layout_height="180dp"
+        p1:id="@+id/BadgeSheetImageView"
+        p1:background="#ffb0b0b0" />
+    <Button
+        p1:text="Отмена"
+        p1:layout_width="125dp"
+        p1:layout_height="40dp"
+        p1:id="@+id/addcode_cancelButton"
+        p1:layout_alignLeft="@id/BadgeSheetImageView"
+        p1:layout_alignBottom="@id/BadgeSheetImageView"
+        p1:background="#ffffffff"
+        p1:textColor="#ff4e4e4e"
+        p1:textSize="12dp" />
+    <TextView
+        p1:text="Введите код"
+        p1:textAppearance="?android:attr/textAppearanceLarge"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/textView1"
+        p1:layout_alignTop="@id/BadgeSheetImageView"
+        p1:layout_alignLeft="@id/BadgeSheetImageView"
+        p1:layout_marginLeft="15dp"
+        p1:layout_marginTop="15dp"
+        p1:textColor="#ff4a4a4a"
+        p1:textSize="20dp" />
+    <Button
+        p1:text="Готово"
+        p1:layout_width="wrap_content"
+        p1:layout_height="40dp"
+        p1:layout_toRightOf="@id/addcode_cancelButton"
+        p1:id="@+id/addcode_readyButton"
+        p1:layout_alignBottom="@id/BadgeSheetImageView"
+        p1:layout_alignRight="@id/BadgeSheetImageView"
+        p1:background="#fff6f6f6"
+        p1:textSize="12dp"
+        p1:textColor="#ff717171" />
+    <ImageView
+        p1:layout_width="wrap_content"
+        p1:layout_height="5dp"
+        p1:layout_below="@id/textView1"
+        p1:id="@+id/imageView1"
+        p1:layout_alignLeft="@id/BadgeSheetImageView"
+        p1:layout_alignRight="@id/BadgeSheetImageView"
+        p1:layout_marginTop="35dp"
+        p1:layout_marginLeft="15dp"
+        p1:layout_marginRight="15dp"
+        p1:background="#0400a4e2" />
+    <AutoCompleteTextView
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/addcode_autoCompleteTextView"
+        p1:layout_alignBottom="@id/imageView1"
+        p1:layout_alignLeft="@id/imageView1"
+        p1:layout_alignRight="@id/imageView1"
+        p1:singleLine="true"
+        p1:background="#14ffffff" />
+    <TextView
+        p1:text="Код-это подтверждение выполнения задачи, за которую дается бейдж."
+        p1:textAppearance="?android:attr/textAppearanceSmall"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/textView2"
+        p1:layout_below="@+id/addcode_autoCompleteTextView"
+        p1:layout_alignLeft="@+id/addcode_autoCompleteTextView"
+        p1:layout_alignRight="@+id/addcode_autoCompleteTextView"
+        p1:layout_marginTop="10dp"
+        p1:textColor="#ff6c6c6c"
+        p1:textSize="10dp"
+        p1:layout_marginLeft="5dp"
+        p1:layout_marginRight="5dp" />
+</RelativeLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="wrap_content"
+    p1:layout_height="wrap_content"
+    p1:id="@+id/FristBadgeMainRelativeLayout">
+    <RelativeLayout
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/FirstBadgeFrontRelativeLayout">
+        <ImageView
+            p1:layout_width="250dp"
+            p1:layout_height="180dp"
+            p1:id="@+id/BadgeSheetImageView"
+            p1:layout_centerHorizontal="true"
+            p1:background="#ffb0b0b0" />
+        <Button
+            p1:text="Отмена"
+            p1:layout_width="wrap_content"
+            p1:layout_height="40dp"
+            p1:id="@+id/addbadge_cancelButton"
+            p1:layout_alignLeft="@id/BadgeSheetImageView"
+            p1:layout_alignBottom="@id/BadgeSheetImageView"
+            p1:layout_alignRight="@id/BadgeSheetImageView"
+            p1:background="#ffffffff"
+            p1:textColor="#ff4e4e4e"
+            p1:textSize="12dp" />
+        <Button
+            p1:text="    Использовать QR-ридер"
+            p1:layout_height="35dp"
+            p1:id="@+id/addbadge_readQRButton"
+            p1:layout_alignTop="@id/BadgeSheetImageView"
+            p1:layout_alignLeft="@id/BadgeSheetImageView"
+            p1:layout_alignRight="@id/BadgeSheetImageView"
+            p1:textSize="11dp"
+            p1:gravity="center_vertical"
+            p1:background="#ffaedae3"
+            p1:layout_marginTop="55dp"
+            p1:layout_width="wrap_content"
+            p1:layout_marginLeft="15dp"
+            p1:layout_marginRight="15dp" />
+        <Button
+            p1:text="    Ввести код"
+            p1:layout_width="wrap_content"
+            p1:layout_height="35dp"
+            p1:layout_below="@id/addbadge_readQRButton"
+            p1:id="@+id/addbadge_addcodeButton"
+            p1:background="#ff6faf7e"
+            p1:textSize="11dp"
+            p1:layout_alignLeft="@id/BadgeSheetImageView"
+            p1:layout_alignRight="@id/BadgeSheetImageView"
+            p1:layout_marginTop="5dp"
+            p1:layout_marginRight="15dp"
+            p1:layout_marginLeft="15dp"
+            p1:gravity="center_vertical" />
+        <TextView
+            p1:text="Добавить бейдж?"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/textView1"
+            p1:layout_alignTop="@id/BadgeSheetImageView"
+            p1:layout_alignLeft="@id/BadgeSheetImageView"
+            p1:layout_marginLeft="15dp"
+            p1:layout_marginTop="15dp"
+            p1:textColor="#ff4a4a4a"
+            p1:textSize="20dp" />
+    </RelativeLayout>
+</RelativeLayout>

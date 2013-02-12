@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="internalOnly" android:versionCode="2" android:versionName="2.0" package="itsbeta.achievements">
-  <uses-sdk android:targetSdkVersion="8" />
+  <uses-sdk android:targetSdkVersion="10" />
   <application android:label="itsbeta">
   </application>
+  <uses-feature android:name="android.hardware.camera" />
+  <uses-feature android:name="android.hardware.camera.autofocus" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_OWNER_DATA" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

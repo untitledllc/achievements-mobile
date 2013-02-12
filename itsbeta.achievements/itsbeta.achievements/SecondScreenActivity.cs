@@ -42,9 +42,49 @@ namespace itsbeta.achievements
             ImageButton addCodeImageButtonFake = FindViewById<ImageButton>(Resource.Id.NavBar_addcodeImageButtonFake);
             TextView badgesCount = FindViewById<TextView>(Resource.Id.NavBar_AchievesCountTextView);
 
+
+            LayoutInflater addBadgeMenulayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            RelativeLayout addBadgeRelativeLayout = new RelativeLayout(this);
+            View addBadgeView = addBadgeMenulayoutInflater.Inflate(Resource.Layout.AddBadgeMenuLayoutLayout, null);
+            Button addBadgeCancelButton = (Button)addBadgeView.FindViewById(Resource.Id.addbadge_cancelButton);
+            Button readQRCodeButton = (Button)addBadgeView.FindViewById(Resource.Id.addbadge_readQRButton);
+            Button addCodeButton = (Button)addBadgeView.FindViewById(Resource.Id.addbadge_addcodeButton);
+            addBadgeRelativeLayout.AddView(addBadgeView);
+            
+            LayoutInflater addCodeMenulayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            RelativeLayout addCodeRelativeLayout = new RelativeLayout(this);
+            View addCodeView = addCodeMenulayoutInflater.Inflate(Resource.Layout.EnterCodeLayout, null);
+            Button addCodeCancelButton = (Button)addCodeView.FindViewById(Resource.Id.addcode_cancelButton);
+            Button addCodeReadyButton = (Button)addCodeView.FindViewById(Resource.Id.addcode_readyButton);
+            AutoCompleteTextView codeCompleteTextView = (AutoCompleteTextView)addCodeView.FindViewById(Resource.Id.addcode_autoCompleteTextView);
+            //codeCompleteTextView.SetDropDownBackgroundDrawable();
+            addCodeRelativeLayout.AddView(addCodeView);
+            
+            Dialog addBadgeDialog = new Dialog(this, Resource.Style.FullHeightDialog);
+            addBadgeDialog.SetTitle("");
+            addBadgeDialog.SetContentView(addBadgeRelativeLayout);
+
+            Dialog addCodeDialog = new Dialog(this, Resource.Style.FullHeightDialog);
+            addCodeDialog.SetTitle("");
+            addCodeDialog.SetContentView(addCodeRelativeLayout);
+            
+
             badgesCount.Text = AppInfo._badgesCount.ToString();
             profileImageButtonFake.Click += delegate { profileImageButton.StartAnimation(buttonClickAnimation); StartActivity(typeof(ProfileActivity)); };
-            addCodeImageButtonFake.Click += delegate { addCodeImageButton.StartAnimation(buttonClickAnimation); };
+            addCodeImageButtonFake.Click += delegate { addCodeImageButton.StartAnimation(buttonClickAnimation); addBadgeDialog.Show(); addBadgeRelativeLayout.StartAnimation(AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn)); };
+
+            addBadgeCancelButton.Click += delegate { addBadgeCancelButton.StartAnimation(buttonClickAnimation); addBadgeDialog.Dismiss(); };
+            addCodeButton.Click += delegate { addCodeButton.StartAnimation(buttonClickAnimation); addBadgeDialog.Dismiss(); addCodeDialog.Show(); addCodeRelativeLayout.StartAnimation(AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn));};
+            addCodeCancelButton.Click += delegate { addCodeCancelButton.StartAnimation(buttonClickAnimation); addCodeDialog.Dismiss(); };
+            readQRCodeButton.Click += delegate { readQRCodeButton.StartAnimation(buttonClickAnimation); addBadgeDialog.Dismiss();  StartActivity(typeof(QRReaderActivity)); };
+
+
+            addCodeReadyButton.Click += delegate
+            {
+                addCodeReadyButton.StartAnimation(buttonClickAnimation);
+
+            };
+
 
             CreateCategoriesViewObject();
             CreateAchievementsViewObject();

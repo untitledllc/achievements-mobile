@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="fill_parent"
+    p1:layout_height="fill_parent"
+    p1:id="@+id/relativeLayout1"
+    p1:background="#ffe0dcc4">
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="fill_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/linearLayout1"
+        p1:layout_alignParentBottom="true">
+        <Button
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/qrcodereaderscr_cancelButton"
+            p1:layout_width="fill_parent"
+            p1:layout_height="50dp"
+            p1:layout_weight="1"
+            p1:textColor="#ff686868"
+            p1:textSize="12dp"
+            p1:background="#ffcac8a9"
+            p1:text="Отмена" />
+        <Button
+            p1:src="@android:drawable/ic_menu_gallery"
+            p1:id="@+id/qrcodereader_readyButton"
+            p1:layout_width="fill_parent"
+            p1:layout_height="50dp"
+            p1:layout_weight="1"
+            p1:textColor="#ff686868"
+            p1:textSize="12dp"
+            p1:background="#ffdfd7b7"
+            p1:text="Готово" />
+    </LinearLayout>
+    <TextView
+        p1:text="Поднесите к QR-коду"
+        p1:textAppearance="?android:attr/textAppearanceLarge"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/textView"
+        p1:textSize="20dp"
+        p1:textColor="#ff525252"
+        p1:layout_centerHorizontal="true"
+        p1:layout_marginTop="30dp" />
+    <SurfaceView
+        p1:layout_width="200dp"
+        p1:layout_height="200dp"
+        p1:layout_below="@id/textView"
+        p1:id="@+id/qrreader_camerasurfaceView"
+        p1:layout_centerHorizontal="true"
+        p1:layout_marginTop="10dp" />
+</RelativeLayout>

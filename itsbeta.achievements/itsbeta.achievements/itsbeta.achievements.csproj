@@ -15,7 +15,7 @@
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <TargetFrameworkVersion>v2.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
     <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
@@ -44,7 +44,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
+    <Reference Include="Mono.Android.Support.v4" />
     <Reference Include="mscorlib" />
+    <Reference Include="OpenTK-1.0" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Json" />
@@ -64,6 +66,7 @@
     <Compile Include="LoginActivity.cs" />
     <Compile Include="LoginWebActivity.cs" />
     <Compile Include="ProfileActivity.cs" />
+    <Compile Include="QRReaderActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecondScreenActivity.cs" />
@@ -92,6 +95,9 @@
     <AndroidResource Include="Resources\Drawable\back.png" />
     <AndroidResource Include="Resources\Layout\ProfileScreenParentRow.xml" />
     <AndroidResource Include="Resources\Layout\ProfileScreenChildRow.xml" />
+    <AndroidResource Include="Resources\Layout\AddBadgeMenuLayoutLayout.axml" />
+    <AndroidResource Include="Resources\Layout\EnterCodeLayout.axml" />
+    <AndroidResource Include="Resources\Layout\QRReaderActivityLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
@@ -146,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\Values\styles.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
