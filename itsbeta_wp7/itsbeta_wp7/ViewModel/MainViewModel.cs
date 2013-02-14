@@ -4,9 +4,19 @@ using Newtonsoft.Json.Linq;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Telerik.Windows.Data;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace itsbeta_wp7.ViewModel
 {
+    public static class Extensions
+    {
+        public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> col)
+        {
+            return new ObservableCollection<T>(col);
+        }
+    }
+
     /// <summary>
     /// This class contains properties that the main View can data bind to.
     /// <para>
@@ -79,6 +89,23 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        //private ObservableCollection<BadgeItem> _categoryBadges = new ObservableCollection<BadgeItem>();
+        public ObservableCollection<BadgeItem> CategoryBadges
+        {
+            get
+            {
+                var items = (from item in Badges
+                             where item.Category_api_name == CurrentCategory.Api_name
+                             select item);
+                return items.ToObservableCollection();
+            }
+            private set
+            {
+                //_categoryBadges = value;
+                //RaisePropertyChanged("CategoryBadges");
+            }
+        }
+
         private BadgeItem _currentBadge = new BadgeItem();
         public BadgeItem CurrentBadge
         {
@@ -90,6 +117,35 @@ namespace itsbeta_wp7.ViewModel
             get
             {
                 return _currentBadge;
+            }
+        }
+
+        private ProjectItem _currentProject = new ProjectItem();
+        public ProjectItem CurrentProject 
+        {
+            set
+            {
+                _currentProject = value;
+                RaisePropertyChanged("CurrentProject");
+            }
+            get
+            {
+                return _currentProject;
+            }
+        }
+
+        private CategoryItem _currentCategory = new CategoryItem();
+        public CategoryItem CurrentCategory
+        {
+            set
+            {
+                _currentCategory = value;
+                RaisePropertyChanged("CurrentCategory");
+                RaisePropertyChanged("CategoryBadges");
+            }
+            get
+            {
+                return _currentCategory;
             }
         }
 
@@ -118,11 +174,13 @@ namespace itsbeta_wp7.ViewModel
                                 foreach (var projectJson in categoryJson["projects"])
                                 {
                                     ProjectItem project = JsonConvert.DeserializeObject<ProjectItem>(projectJson.ToString());
+                                    project.Category_api_name = category.Api_name;
                                     Projects.Add(project);
                                     foreach (var badgeJson in projectJson["achievements"])
                                     {
                                         BadgeItem badge = JsonConvert.DeserializeObject<BadgeItem>(badgeJson.ToString());
                                         badge.Project_api_name = project.Display_name;
+                                        badge.Category_api_name = category.Api_name;
                                         Badges.Add(badge);
                                     }
                                 }

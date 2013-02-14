@@ -49,3 +49,6 @@ C:\Users\m0rg0_000\Documents\GitHub\itsbeta_wp7\itsbeta_wp7\itsbeta_wp7\Bin\Debu
 C:\Users\m0rg0_000\Documents\GitHub\itsbeta_wp7\itsbeta_wp7\itsbeta_wp7\Bin\Debug\icons\appbar.feature.camera.rest.png
 C:\Users\m0rg0_000\Documents\GitHub\itsbeta_wp7\itsbeta_wp7\itsbeta_wp7\obj\Debug\QRread.g.i.cs
 C:\Users\m0rg0_000\Documents\GitHub\itsbeta_wp7\itsbeta_wp7\itsbeta_wp7\Bin\Debug\Silverlight_ZXing_Core.dll
+C:\Users\m0rg0_000\Documents\GitHub\itsbeta_wp7\itsbeta_wp7\itsbeta_wp7\Bin\Debug\Microsoft.Phone.Controls.dll
+C:\Users\m0rg0_000\Documents\GitHub\itsbeta_wp7\itsbeta_wp7\itsbeta_wp7\Bin\Debug\Microsoft.Phone.Controls.xml
+C:\Users\m0rg0_000\Documents\GitHub\itsbeta_wp7\itsbeta_wp7\itsbeta_wp7\obj\Debug\PanoramaPage.g.i.cs

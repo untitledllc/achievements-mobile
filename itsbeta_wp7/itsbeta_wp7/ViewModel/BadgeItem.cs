@@ -45,6 +45,20 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        private string _category_api_name = "";
+        public string Category_api_name
+        {
+            get
+            {
+                return _category_api_name;
+            }
+            set
+            {
+                _category_api_name = value;
+                RaisePropertyChanged("Category_api_name");
+            }
+        }
+
         private string _display_name = "";
         public string Display_name
         {

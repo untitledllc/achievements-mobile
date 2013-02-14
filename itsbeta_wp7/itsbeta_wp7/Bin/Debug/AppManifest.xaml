@@ -4,6 +4,7 @@
     <AssemblyPart x:Name="Facebook" Source="Facebook.dll" />
     <AssemblyPart x:Name="GalaSoft.MvvmLight.Extras.WP71" Source="GalaSoft.MvvmLight.Extras.WP71.dll" />
     <AssemblyPart x:Name="GalaSoft.MvvmLight.WP71" Source="GalaSoft.MvvmLight.WP71.dll" />
+    <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
     <AssemblyPart x:Name="Newtonsoft.Json" Source="Newtonsoft.Json.dll" />
     <AssemblyPart x:Name="RestSharp.WindowsPhone" Source="RestSharp.WindowsPhone.dll" />
     <AssemblyPart x:Name="Silverlight_ZXing_Core" Source="Silverlight_ZXing_Core.dll" />

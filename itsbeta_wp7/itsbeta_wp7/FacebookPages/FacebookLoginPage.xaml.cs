@@ -100,8 +100,9 @@ namespace facebook_windows_phone_sample.Pages
                     ViewModelLocator.UserStatic.FacebookId = id;
                     ViewModelLocator.UserStatic.FacebookToken = accessToken;
                     ViewModelLocator.UserStatic.GetPlayerId();
+                    ViewModelLocator.UserStatic.GetFBUserInfo();
 
-                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/PanoramaPage.xaml", UriKind.Relative));
                 });
             };
 

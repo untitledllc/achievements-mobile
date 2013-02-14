@@ -2,6 +2,10 @@
 using System;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using Facebook;
+using System.Windows;
+using System.Windows.Threading;
+using System.Collections.Generic;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -50,12 +54,79 @@ namespace itsbeta_wp7.ViewModel
                     {
                         JObject o_player = JObject.Parse(response_player.Content.ToString());
                         PlayerId = o_player["player_id"].ToString();
+                        RaisePropertyChanged("UserProfilePicture");
                         ViewModelLocator.MainStatic.LoadAchievements();
                     }
                     catch { };
                 });
             }
             catch { };
+        }
+
+        public void GetFBUserInfo()
+        {
+            var fb = new FacebookClient(FacebookToken);
+
+            fb.GetCompleted += (o, e) =>
+            {
+                if (e.Error != null)
+                {
+                    Deployment.Current.Dispatcher.BeginInvoke(() => MessageBox.Show(e.Error.Message));
+                    return;
+                }
+
+                var result = (IDictionary<string, object>)e.GetResultData();
+
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    ViewModelLocator.UserStatic.Name = (string)result["name"];
+                    ViewModelLocator.UserStatic.First_name = (string)result["first_name"];
+                    ViewModelLocator.UserStatic.Last_name = (string)result["last_name"];
+                });
+            };
+            fb.GetAsync("me");
+        }
+
+        private string _first_name = "";
+        public string First_name
+        {
+            get
+            {
+                return _first_name;
+            }
+            set
+            {
+                _first_name = value;
+                RaisePropertyChanged("First_name");
+            }
+        }
+
+        private string _last_name = "";
+        public string Last_name
+        {
+            get
+            {
+                return _last_name;
+            }
+            set
+            {
+                _last_name = value;
+                RaisePropertyChanged("Last_name");
+            }
+        }
+
+        private string _name = "";
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                RaisePropertyChanged("Name");
+            }
         }
 
         private string _playerId = "";
@@ -97,6 +168,19 @@ namespace itsbeta_wp7.ViewModel
             {
                 _facebookToken = value;
                 RaisePropertyChanged("FacebookToken");
+            }
+        }
+
+        public string UserProfilePicture
+        {
+            get
+            {
+                // available picture types: square (50x50), small (50xvariable height), large (about 200x variable height) (all size in pixels)
+                // for more info visit http://developers.facebook.com/docs/reference/api
+                return string.Format("https://graph.facebook.com/{0}/picture?type={1}&access_token={2}", FacebookId, "square", FacebookToken);
+            }
+            private set
+            {
             }
         }
 

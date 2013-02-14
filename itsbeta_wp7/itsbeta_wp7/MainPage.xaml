@@ -44,7 +44,7 @@
 			           Text="itsbeta"
 			           Style="{StaticResource PhoneTextNormalStyle}" />
 			<TextBlock x:Name="PageTitle"
-			           Text="MainPage"
+			           Text="{Binding Path=CurrentCategory.Display_name}"
 			           Margin="-3,-8,0,0"
 			           Style="{StaticResource PhoneTextTitle1Style}" />
 		</StackPanel>
@@ -55,7 +55,7 @@
             <!--GroupDescriptorsSource="{Binding Path=GroupedBadgesList}"-->
             <telerikData:RadJumpList x:Name="AllBadges"                                      
                                      GroupHeaderItemTap="AllBadges_GroupHeaderItemTap"
-                                     ItemsSource="{Binding Path=Badges}"
+                                     ItemsSource="{Binding Path=CategoryBadges}"
                                      DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllBadges_ItemTap">
                 <telerikData:RadJumpList.ItemTemplate>
                         <DataTemplate>
