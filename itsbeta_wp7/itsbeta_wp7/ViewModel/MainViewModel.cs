@@ -39,14 +39,6 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
-        public string PageName
-        {
-            get
-            {
-                return "My page:";
-            }
-        }
-
         private ObservableCollection<CategoryItem> _categories = new ObservableCollection<CategoryItem>();
         public ObservableCollection<CategoryItem> Categories
         {
@@ -75,48 +67,60 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
-        private ObservableCollection<BadgeItem> _badges = new ObservableCollection<BadgeItem>();
-        public ObservableCollection<BadgeItem> Badges
+        private ObservableCollection<AchievesItem> _achieves = new ObservableCollection<AchievesItem>();
+        public ObservableCollection<AchievesItem> Achieves
         {
             get
             {
-                return _badges;
+                return _achieves;
             }
             set
             {
-                _badges = value;
-                RaisePropertyChanged("Badges");
+                _achieves = value;
+                RaisePropertyChanged("Achieves");
             }
         }
 
         //private ObservableCollection<BadgeItem> _categoryBadges = new ObservableCollection<BadgeItem>();
-        public ObservableCollection<BadgeItem> CategoryBadges
+        public ObservableCollection<AchievesItem> CategoryAchieves
         {
             get
             {
-                var items = (from item in Badges
+                var items = (from item in Achieves
                              where item.Category_api_name == CurrentCategory.Api_name
                              select item);
                 return items.ToObservableCollection();
             }
             private set
             {
-                //_categoryBadges = value;
-                //RaisePropertyChanged("CategoryBadges");
             }
         }
 
-        private BadgeItem _currentBadge = new BadgeItem();
-        public BadgeItem CurrentBadge
+        public ObservableCollection<AchievesItem> LastAchieves
+        {
+            get
+            {
+                var items = (from item in Achieves
+                             group item by item.Display_name into grp
+                             select grp.OrderBy(a => a.Create_time).Last()).ToObservableCollection();
+                return items;
+            }
+            private set
+            {
+            }
+        }
+
+        private AchievesItem _currentAchieve = new AchievesItem();
+        public AchievesItem CurrentAchieve
         {
             set
             {
-                _currentBadge = value;
-                RaisePropertyChanged("CurrentBadge");
+                _currentAchieve = value;
+                RaisePropertyChanged("CurrentAchieve");
             }
             get
             {
-                return _currentBadge;
+                return _currentAchieve;
             }
         }
 
@@ -141,7 +145,7 @@ namespace itsbeta_wp7.ViewModel
             {
                 _currentCategory = value;
                 RaisePropertyChanged("CurrentCategory");
-                RaisePropertyChanged("CategoryBadges");
+                RaisePropertyChanged("CategoryAchieves");
             }
             get
             {
@@ -149,12 +153,18 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        ///badges.json
+
         public void LoadAchievements()
         {
             try
             {
                 try
                 {
+                    Categories = new ObservableCollection<CategoryItem>();
+                    Projects = new ObservableCollection<ProjectItem>();
+                    Achieves = new ObservableCollection<AchievesItem>();
+
                     var client = new RestClient("http://www.itsbeta.com");
                     var request = new RestRequest("s/info/achievements.json", Method.GET);
                     request.Parameters.Clear();
@@ -170,24 +180,37 @@ namespace itsbeta_wp7.ViewModel
                             {
                                 CategoryItem category = new CategoryItem();
                                 category = JsonConvert.DeserializeObject<CategoryItem>(categoryJson.ToString());
-                                Categories.Add(category);
+                                int count = 0;
                                 foreach (var projectJson in categoryJson["projects"])
                                 {
                                     ProjectItem project = JsonConvert.DeserializeObject<ProjectItem>(projectJson.ToString());
                                     project.Category_api_name = category.Api_name;
-                                    Projects.Add(project);
+                                    category.Total_badges = category.Total_badges + project.Total_badges;
+                                    int pcount = 0;
                                     foreach (var badgeJson in projectJson["achievements"])
                                     {
-                                        BadgeItem badge = JsonConvert.DeserializeObject<BadgeItem>(badgeJson.ToString());
+
+                                        
+                                        AchievesItem badge = JsonConvert.DeserializeObject<AchievesItem>(badgeJson.ToString());
                                         badge.Project_api_name = project.Display_name;
                                         badge.Category_api_name = category.Api_name;
-                                        Badges.Add(badge);
-                                    }
+                                        if (Achieves.FirstOrDefault(c => c.Display_name == badge.Display_name) == null)
+                                        {
+                                            pcount++;
+                                        };                                        
+                                        Achieves.Add(badge);
+                                    }                                    
+                                    count += pcount;
+                                    project.Activated_badges_count = pcount;
+                                    Projects.Add(project);
                                 }
+                                category.Activated_badges_count = count;
+                                Categories.Add(category);
                             };
                             RaisePropertyChanged("Categories");
                             RaisePropertyChanged("Projects");
-                            RaisePropertyChanged("Badges");                            
+                            RaisePropertyChanged("Achieves");
+                            RaisePropertyChanged("LastAchieves");
                         }
                         catch { };
                     });

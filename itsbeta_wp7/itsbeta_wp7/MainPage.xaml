@@ -55,7 +55,7 @@
             <!--GroupDescriptorsSource="{Binding Path=GroupedBadgesList}"-->
             <telerikData:RadJumpList x:Name="AllBadges"                                      
                                      GroupHeaderItemTap="AllBadges_GroupHeaderItemTap"
-                                     ItemsSource="{Binding Path=CategoryBadges}"
+                                     ItemsSource="{Binding Path=CategoryAchieves}"
                                      DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllBadges_ItemTap">
                 <telerikData:RadJumpList.ItemTemplate>
                         <DataTemplate>

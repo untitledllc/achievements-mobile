@@ -31,7 +31,7 @@
                        Text="itsbeta"
                        Style="{StaticResource PhoneTextNormalStyle}" />
             <TextBlock x:Name="PageTitle"
-                       Text="{Binding Path=CurrentBadge.Display_name}"
+                       Text="{Binding Path=CurrentAchieve.Display_name}"
                        Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
@@ -42,10 +42,10 @@
               Margin="12,0,12,0">
             <ScrollViewer>
             <StackPanel>
-                
-                <Image Source="{Binding Path=CurrentBadge.Pic}"/>
-                <TextBlock Text="{Binding Path=CurrentBadge.Display_name}" TextWrapping="Wrap" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
-                <TextBlock Text="{Binding Path=CurrentBadge.Desc}" TextWrapping="Wrap" DataContext="{Binding Main, Source={StaticResource Locator}}"/>                
+
+                    <Image Source="{Binding Path=CurrentAchieve.Pic}"/>
+                    <TextBlock Text="{Binding Path=CurrentAchieve.Display_name}" TextWrapping="Wrap" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                    <TextBlock Text="{Binding Path=CurrentAchieve.Desc}" TextWrapping="Wrap" DataContext="{Binding Main, Source={StaticResource Locator}}"/>                
             </StackPanel>
             </ScrollViewer>
         </Grid>

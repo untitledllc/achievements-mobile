@@ -42,6 +42,12 @@
                                     <!--<Image Grid.Column="0" Source="{Binding Pic}"/>-->
                                     <StackPanel Grid.Column="0" Margin="10,0,0,0">
                                         <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap" Style="{StaticResource PhoneTextTitle2Style}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Activated_badges_count}"/>
+                                            <TextBlock Text="/"/>
+                                            <TextBlock Text="{Binding Total_badges}"/>
+                                            <TextBlock Text=" бейджей открыто"/>
+                                        </StackPanel>
                                         <!--<TextBlock Text="{Binding Desc}" TextWrapping="Wrap"/>-->
                                     </StackPanel>
                                 </Grid>
@@ -69,7 +75,27 @@
             </controls:PanoramaItem>
             
             <controls:PanoramaItem Header="Последнее">
-                <Grid/>
+                <Grid>
+                    <telerikData:RadJumpList x:Name="LastAchieves"                                     
+                                     ItemsSource="{Binding Path=LastAchieves}"
+                                     DataContext="{Binding Main, Source={StaticResource Locator}}">
+                        <telerikData:RadJumpList.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="10,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="{Binding Pic}"/>
+                                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                        <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding Desc}" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </telerikData:RadJumpList.ItemTemplate>
+                    </telerikData:RadJumpList>
+                </Grid>
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>

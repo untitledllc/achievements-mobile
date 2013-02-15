@@ -1,7 +1,25 @@
 ﻿using GalaSoft.MvvmLight;
+using System;
 
 namespace itsbeta_wp7.ViewModel
 {
+
+    public class AchievesItem: BadgeAllItem {
+        private DateTime _create_time = DateTime.Now;
+        public DateTime Create_time
+        {
+            get
+            {
+                return _create_time;
+            }
+            set
+            {
+                _create_time = value;
+                RaisePropertyChanged("Create_time");
+            }
+        }     
+    }
+
     /// <summary>
     /// This class contains properties that a View can data bind to.
     /// <para>
@@ -14,12 +32,12 @@ namespace itsbeta_wp7.ViewModel
     /// See http://www.galasoft.ch/mvvm/getstarted
     /// </para>
     /// </summary>
-    public class BadgeItem : ViewModelBase
+    public class BadgeAllItem : ViewModelBase
     {
         /// <summary>
         /// Initializes a new instance of the BadgeItem class.
         /// </summary>
-        public BadgeItem()
+        public BadgeAllItem()
         {
             ////if (IsInDesignMode)
             ////{

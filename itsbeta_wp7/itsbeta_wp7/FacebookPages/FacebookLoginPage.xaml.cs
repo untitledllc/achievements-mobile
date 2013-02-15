@@ -37,6 +37,15 @@ namespace facebook_windows_phone_sample.Pages
 
         private void webBrowser1_Loaded(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (ViewModelLocator.UserStatic.FacebookId != "")
+                {
+                    NavigationService.GoBack();
+                };
+            }
+            catch { };
+
             var loginUrl = GetFacebookLoginUrl(AppId, ExtendedPermissions);
             webBrowser1.Navigate(loginUrl);
         }

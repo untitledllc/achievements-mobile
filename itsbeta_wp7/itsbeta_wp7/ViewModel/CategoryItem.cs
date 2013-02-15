@@ -31,6 +31,34 @@ namespace itsbeta_wp7.ViewModel
             ////}
         }
 
+        private int _total_badges = 0;
+        public int Total_badges
+        {
+            get
+            {
+                return _total_badges;
+            }
+            set
+            {
+                _total_badges = value;
+                RaisePropertyChanged("Total_badge");
+            }
+        }
+
+        private int _activated_badges_count = 0;
+        public int Activated_badges_count
+        {
+            get
+            {
+                return _activated_badges_count;
+            }
+            set
+            {
+                _activated_badges_count = value;
+                RaisePropertyChanged("Activated_badges_count");
+            }
+        }
+
         private string _api_name = "";
         public string Api_name
         {

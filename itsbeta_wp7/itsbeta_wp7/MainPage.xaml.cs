@@ -14,7 +14,7 @@ namespace itsbeta_wp7
             this.AllBadges.GroupDescriptors.Add(GroupedBadgesList);
         }
 
-        public GenericGroupDescriptor<BadgeItem, string> GroupedBadgesList = new GenericGroupDescriptor<BadgeItem, string>(item => item.Project_api_name);
+        public GenericGroupDescriptor<AchievesItem, string> GroupedBadgesList = new GenericGroupDescriptor<AchievesItem, string>(item => item.Project_api_name);
 
         private void AllBadges_GroupHeaderItemTap(object sender, Telerik.Windows.Controls.GroupHeaderItemTapEventArgs e)
         {
@@ -25,7 +25,7 @@ namespace itsbeta_wp7
         {
             try
             {
-                ViewModelLocator.MainStatic.CurrentBadge = (BadgeItem)this.AllBadges.SelectedItem;
+                ViewModelLocator.MainStatic.CurrentAchieve = (AchievesItem)this.AllBadges.SelectedItem;
                 NavigationService.Navigate(new Uri("/BadgePage.xaml", UriKind.Relative));
             }
             catch { };
