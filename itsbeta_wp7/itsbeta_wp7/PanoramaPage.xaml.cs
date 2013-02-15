@@ -39,5 +39,15 @@ namespace itsbeta_wp7
         {
 
         }
+
+        private void LastAchieves_ItemTap(object sender, Telerik.Windows.Controls.ListBoxItemTapEventArgs e)
+        {
+            try
+            {
+                ViewModelLocator.MainStatic.CurrentAchieve = (AchievesItem)this.LastAchieves.SelectedItem;
+                NavigationService.Navigate(new Uri("/BadgePage.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
     }
 }

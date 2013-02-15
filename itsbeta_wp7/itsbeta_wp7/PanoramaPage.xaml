@@ -78,7 +78,7 @@
                 <Grid>
                     <telerikData:RadJumpList x:Name="LastAchieves"                                     
                                      ItemsSource="{Binding Path=LastAchieves}"
-                                     DataContext="{Binding Main, Source={StaticResource Locator}}">
+                                     DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="LastAchieves_ItemTap">
                         <telerikData:RadJumpList.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="10,10,0,0">
