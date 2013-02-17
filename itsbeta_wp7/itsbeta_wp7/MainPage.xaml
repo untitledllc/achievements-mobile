@@ -28,7 +28,11 @@
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
-	<!--LayoutRoot contains the root grid where all other page content is placed-->
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="загрузка..." />
+    </shell:SystemTray.ProgressIndicator>
+
+    <!--LayoutRoot contains the root grid where all other page content is placed-->
 	<Grid x:Name="LayoutRoot"
 	      Background="Transparent">
 		<Grid.RowDefinitions>

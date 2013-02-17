@@ -138,6 +138,20 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        private bool _loading = false;
+        public bool Loading
+        {
+            set
+            {
+                _loading = value;
+                RaisePropertyChanged("Loading");
+            }
+            get
+            {
+                return _loading;
+            }
+        }
+
         private CategoryItem _currentCategory = new CategoryItem();
         public CategoryItem CurrentCategory
         {
@@ -161,6 +175,7 @@ namespace itsbeta_wp7.ViewModel
             {
                 try
                 {
+                    Loading = true;
                     Categories = new ObservableCollection<CategoryItem>();
                     Projects = new ObservableCollection<ProjectItem>();
                     Achieves = new ObservableCollection<AchievesItem>();
@@ -207,6 +222,7 @@ namespace itsbeta_wp7.ViewModel
                                 category.Activated_badges_count = count;
                                 Categories.Add(category);
                             };
+                            Loading = false;
                             RaisePropertyChanged("Categories");
                             RaisePropertyChanged("Projects");
                             RaisePropertyChanged("Achieves");
