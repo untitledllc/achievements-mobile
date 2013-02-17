@@ -81,13 +81,26 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
-        //private ObservableCollection<BadgeItem> _categoryBadges = new ObservableCollection<BadgeItem>();
         public ObservableCollection<AchievesItem> CategoryAchieves
         {
             get
             {
                 var items = (from item in Achieves
                              where item.Category_api_name == CurrentCategory.Api_name
+                             select item);
+                return items.ToObservableCollection();
+            }
+            private set
+            {
+            }
+        }
+
+        public ObservableCollection<AchievesItem> BonusAchieves
+        {
+            get
+            {
+                var items = (from item in Achieves
+                             where ((item.Bonus != "") && (item.Bonus != null))
                              select item);
                 return items.ToObservableCollection();
             }
@@ -159,7 +172,7 @@ namespace itsbeta_wp7.ViewModel
             {
                 _currentCategory = value;
                 RaisePropertyChanged("CurrentCategory");
-                RaisePropertyChanged("CategoryAchieves");
+                RaisePropertyChanged("CategoryAchieves");                
             }
             get
             {
@@ -223,6 +236,7 @@ namespace itsbeta_wp7.ViewModel
                                 Categories.Add(category);
                             };
                             Loading = false;
+                            RaisePropertyChanged("BonusAchieves");
                             RaisePropertyChanged("Categories");
                             RaisePropertyChanged("Projects");
                             RaisePropertyChanged("Achieves");

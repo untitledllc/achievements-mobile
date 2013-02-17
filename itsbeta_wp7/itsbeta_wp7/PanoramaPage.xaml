@@ -81,10 +81,38 @@
                             <ColumnDefinition Width="200"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="{Binding UserProfilePicture}" DataContext="{Binding User, Source={StaticResource Locator}}"></Image>                    
-                        <StackPanel Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Image Grid.Row="0" Grid.Column="0" Source="{Binding UserProfilePicture}" DataContext="{Binding User, Source={StaticResource Locator}}"></Image>
+                        <StackPanel Grid.Row="0" Grid.Column="1">
                             <TextBlock Text="{Binding First_name}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
                             <TextBlock Text="{Binding Last_name}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                            <TextBlock Text="{Binding Birthday}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                            <TextBlock Text="{Binding Location}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">                      
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="All badges "/>
+                                <TextBlock Text="{Binding Achieves.Count}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Projects "/>
+                                <TextBlock Text="{Binding Projects.Count}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Categories "/>
+                                <TextBlock Text="{Binding Categories.Count}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Bonuses "/>
+                                <TextBlock Text="{Binding BonusAchieves.Count}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                            </StackPanel>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -99,7 +127,7 @@
                             <DataTemplate>
                                 <Grid Margin="10,10,0,0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="110" />
+                                        <ColumnDefinition Width="50" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Image Grid.Column="0" Source="{Binding Pic}"/>

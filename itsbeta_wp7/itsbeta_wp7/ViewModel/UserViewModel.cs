@@ -156,9 +156,71 @@ namespace itsbeta_wp7.ViewModel
                     ViewModelLocator.UserStatic.Name = (string)result["name"];
                     ViewModelLocator.UserStatic.First_name = (string)result["first_name"];
                     ViewModelLocator.UserStatic.Last_name = (string)result["last_name"];
+                    ViewModelLocator.UserStatic.Birthday = (string)result["birthday"];
+                    var item = JObject.Parse(result["location"].ToString());
+                    ViewModelLocator.UserStatic.Location = item["name"].ToString();// item["name"].ToString();
                 });
             };
             fb.GetAsync("me");
+        }
+
+        private string _location = "";
+        public string Location
+        {
+            get
+            {
+                return _location;
+            }
+            set
+            {
+                _location = value;
+                RaisePropertyChanged("Location");
+            }
+        }
+
+        private string _birthday;
+        public string Birthday
+        {
+            get
+            {
+                return _birthday;
+            }
+            set
+            {
+                _birthday = value;
+                try
+                {
+                    if (_birthday != "")
+                    {
+                        DateBirthday = DateTime.Parse(_birthday.ToString());
+                    }
+                    else
+                    {
+                        DateBirthday = DateTime.Today;
+                        _birthday = DateBirthday.ToShortDateString();
+                    };
+
+                }
+                catch { };
+                RaisePropertyChanged("Birthday");
+                RaisePropertyChanged("DateBirthday");
+            }
+        }
+
+        private DateTime _dateBirthday = DateTime.Today;
+        public DateTime DateBirthday
+        {
+            get
+            {
+                return _dateBirthday;
+            }
+            set
+            {
+                _dateBirthday = value;
+                _birthday = DateBirthday.ToShortDateString();
+                RaisePropertyChanged("Birthday");
+                RaisePropertyChanged("DateBirthday");
+            }
         }
 
         private string _first_name = "";
