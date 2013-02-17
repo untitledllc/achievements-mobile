@@ -51,7 +51,7 @@ namespace itsbeta.achievements
             TextView subCategoriesCount = FindViewById<TextView>(Resource.Id.profilescr_subcategCountTextView);
 
             userFullname.Text = AppInfo._user.Fullname;
-            userData.Text = GetUserAge(AppInfo._user.BirthDate);
+            userData.Text = GetUserAge(AppInfo._user.BirthDate) + ", " + AppInfo._user.City;
 
             badgesCount.Text = AppInfo._badgesCount.ToString();
             bonusesCount.Text = AppInfo._bonusesCount.ToString();
@@ -64,7 +64,7 @@ namespace itsbeta.achievements
                 LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
                 View view = layoutInflater.Inflate(Resource.Layout.ProfileScreenParentRow, null);
                 TextView categoryName = (TextView)view.FindViewById(Resource.Id.profilescr_CategNameTextView);
-                categoryName.Text = i+1 + ". " + AppInfo._achievesInfo.CategoryArray[i].DisplayName;
+                categoryName.Text = i+1 + ". " + AppInfo._achievesInfo.CategoryArray[i].DisplayName +":";
                 
                 profilescrLinearLayout.AddView(view);
 
@@ -73,6 +73,19 @@ namespace itsbeta.achievements
                     LayoutInflater layoutInflater2 = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
                     View view2 = layoutInflater2.Inflate(Resource.Layout.ProfileScreenChildRow, null);
                     TextView projectName = (TextView)view2.FindViewById(Resource.Id.profilescr_ProjectNameTextView);
+                    ImageView statBarActive = (ImageView)view2.FindViewById(Resource.Id.profilescr_statbarImageViewwActive);
+                    ImageView statBarPassive = (ImageView)view2.FindViewById(Resource.Id.profilescr_statbarImageViewNorm);
+                    LinearLayout statbarlinearlayout = (LinearLayout)view2.FindViewById(Resource.Id.statbarlinearLayout);
+
+
+                    for (int k = 0; k < AppInfo._achievesInfo.CategoryArray[i].Projects[j].TotalBadges - AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Length; k++)
+                    {
+                        TableRow fakebut = new TableRow(this);
+                        //fakebut.LayoutParameters.Width = AppInfo._display.Width;
+                        fakebut.LayoutParameters = new LinearLayout.LayoutParams(Android.Widget.LinearLayout.LayoutParams.FillParent, Android.Widget.LinearLayout.LayoutParams.FillParent, 1f);
+                        statbarlinearlayout.AddView(fakebut);
+                    }
+
                     projectName.Text = AppInfo._achievesInfo.CategoryArray[i].Projects[j].DisplayName + "-" + AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Length + " badges";
 
                     profilescrLinearLayout.AddView(view2);

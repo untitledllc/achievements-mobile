@@ -26,6 +26,7 @@ namespace itsbeta.achievements
         public static TextView RefreshEventListTextView;
         bool _isBarCategoriesListOpen = false;
         public static SecondScreenActivity _context;
+        LinearLayout _linearLayoutInactive;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -34,6 +35,9 @@ namespace itsbeta.achievements
             _context = this;
             SetContentView(Resource.Layout.SecondScreenActivityLayout);
             _navigationBarImageButton = FindViewById<ImageButton>(Resource.Id.NavBar_ImageButton);
+
+            _linearLayoutInactive = FindViewById<LinearLayout>(Resource.Id.secondscr_linearLayoutInactive);
+            _linearLayoutInactive.Visibility = ViewStates.Gone;
 
             RefreshEventListTextView = new TextView(this);
             ImageButton profileImageButton = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButton);
@@ -87,6 +91,7 @@ namespace itsbeta.achievements
 
 
             CreateCategoriesViewObject();
+            CreateSubCategoriesViewObject();
             CreateAchievementsViewObject();
             RefreshEventListTextView.TextChanged += delegate { CreateAchievementsViewObject(); };
         }
@@ -115,7 +120,6 @@ namespace itsbeta.achievements
             }
 
             _categoriesListView = new ListView(this);
-
             CategoriesListItemAdapter categoriesAdapter = new CategoriesListItemAdapter(this, Resource.Layout.SecondScreenDropDownListRow,
                 _categoriesList, AppInfo._selectedCategoriesDictionary);
 
@@ -123,7 +127,8 @@ namespace itsbeta.achievements
             _categoriesListView.DividerHeight = 0;
 
             LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-            _categoriesListView.SetWillNotCacheDrawing(true);
+            //_categoriesListView.SetWillNotCacheDrawing(true);
+
             _categoriesPopupWindow = new PopupWindow(_categoriesListView,
                 LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
 
@@ -131,19 +136,150 @@ namespace itsbeta.achievements
             {
                 if (!_isBarCategoriesListOpen)
                 {
+                    _linearLayoutInactive.Visibility = ViewStates.Visible;
                     _categoriesPopupWindow.ShowAsDropDown(FindViewById<ImageButton>(Resource.Id.NavBar_ImageButton), 0, 0);
                     _isBarCategoriesListOpen = true;
                     return;
                 }
                 if (_isBarCategoriesListOpen)
                 {
+                    _linearLayoutInactive.Visibility = ViewStates.Gone;
                     _categoriesPopupWindow.Dismiss();
+                    CreateSubCategoriesViewObject();
                     //categoriesLinearLayout.StartAnimation(categoriesChosedAnimation);
                     _isBarCategoriesListOpen = false;
                 }
             };
         }
         #endregion
+
+
+        private void CreateSubCategoriesViewObject()
+        {
+            LinearLayout secondscr_RowLinearLayout = FindViewById<LinearLayout>(Resource.Id.secondscr_categoriesbar_linearLayout);
+            int trueDicValCount = AppInfo._selectedCategoriesDictionary.Where(e => e.Value == true).Count();
+            bool isViewOpen = false;
+
+            secondscr_RowLinearLayout.RemoveAllViews();
+
+            foreach (var item in AppInfo._selectedCategoriesDictionary)
+            {
+                if (item.Value == true)
+                {
+                    LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+                    View view = layoutInflater.Inflate(Resource.Layout.SecondScreenCategoryRow, null);
+                    view.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.FillParent, 1f);
+
+                    TextView categoryName = (TextView)view.FindViewById(Resource.Id.secondscr_CategNameRowTextView);
+                    categoryName.Text = item.Key;
+
+                    secondscr_RowLinearLayout.AddView(view);
+
+                    view.Click += delegate 
+                    {
+                        view.StartAnimation(buttonClickAnimation);
+                    };
+                }
+            }
+
+            ////_navigationBarImageButton.Click += delegate
+            ////{
+
+            ////    _navigationBarImageButton.StartAnimation(buttonClickAnimation);
+            ////    categoriesLinearLayout.RemoveAllViewsInLayout();
+            ////    categoriesLinearLayout.RemoveAllViews();
+
+            ////    checkedCategoriesCount = _selectedCategoriesDictionary.Count(e => e.Value == true);
+
+            ////    foreach (var item in _selectedCategoriesDictionary)
+            ////    {
+            ////        if (item.Value == true)
+            ////        {
+            ////            var categoryButton = new Button(this);
+            ////            categoryButton.Text = item.Key;
+
+            ////            categoriesLinearLayout.AddView(categoryButton);
+
+            ////            categoryButton.SetBackgroundColor(global::Android.Graphics.Color.Argb(2, 0, 0, 0));
+            ////            categoryButton.Click += delegate { categoryButton.StartAnimation(buttonClickAnimation); };
+            ////            categoryButton.SetTextColor(global::Android.Graphics.Color.Gray);
+            ////            categoryButton.Gravity = GravityFlags.Left;
+            ////            categoryButton.LayoutParameters.Width = _display.Width / checkedCategoriesCount;
+            ////            categoryButton.SetSingleLine(true);
+
+            ////            //middle
+
+
+            ////            ListView _subCategoriesListView = new ListView(this);
+            ////            _subCategoriesListView.DividerHeight = 0;
+
+            ////            PopupWindow subCategoriesPopupWindow = new PopupWindow(_subCategoriesListView,
+            ////                        LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
+
+            ////            List<string> subCategoriesArrayAdapterList = new List<string>();
+
+            ////            List<SubCategoriesListData> subCategoriesList = new List<SubCategoriesListData>();
+            ////            for (int i = 0; i < _achievesInfo.CategoriesCount; i++)
+            ////            {
+            ////                if (item.Key == _achievesInfo.ParentCategoryArray()[i].DisplayName)
+            ////                {
+            ////                    for (int j = 0; j < _achievesInfo.ParentCategoryArray()[i].Projects.Count(); j++)
+            ////                    {
+            ////                        subCategoriesList.Add(new SubCategoriesListData()
+            ////                        {
+            ////                            SubCategoryNameText = String.Format("{0}", _achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName),
+            ////                            IsSubCategoryActive = true
+            ////                        });
+
+            ////                        subCategoriesArrayAdapterList.Add(_achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName);
+
+            ////                        if (!_selectedSubCategoriesDictionary.ContainsKey(_achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName))
+            ////                        {
+            ////                            _selectedSubCategoriesDictionary.Add(_achievesInfo.ParentCategoryArray()[i].Projects[j].DisplayName,
+            ////                                subCategoriesList[j].IsSubCategoryActive);
+            ////                        }
+            ////                    }
+
+            ////                    var subCategoriesAdapter = new SubCategoriesListItemAdapter(this, Resource.Layout.MainLayoutCategoryDropDownListRow,
+            ////                        subCategoriesList, _selectedSubCategoriesDictionary, subCategoriesArrayAdapterList);
+
+            ////                    _subCategoriesListView.Adapter = subCategoriesAdapter;
+
+            ////                    LayoutInflater sublayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            ////                    _subCategoriesListView.SetWillNotCacheDrawing(true);
+
+
+            ////                }
+
+            ////                categoryButton.Click += delegate
+            ////                {
+            ////                    if (!_isBarSubCategoriesListOpen)
+            ////                    {
+            ////                        subCategoriesPopupWindow.Dismiss();
+            ////                        _categoriesPopupWindow.Dismiss();
+            ////                        subCategoriesPopupWindow.ShowAsDropDown(FindViewById<LinearLayout>(Resource.Id.SelectedCategoriesLinearLayout), 0, 0);
+            ////                        _isBarSubCategoriesListOpen = true;
+
+            ////                        return;
+            ////                    }
+
+            ////                    if (_isBarSubCategoriesListOpen)
+            ////                    {
+            ////                        _categoriesPopupWindow.Dismiss();
+            ////                        subCategoriesPopupWindow.Dismiss();
+            ////                        _isBarSubCategoriesListOpen = false;
+
+            ////                    }
+            ////                };
+            ////            }
+            ////        }
+            ////    }
+
+            ////};
+
+        }
+
+
 
         #region
         private void CreateAchievementsViewObject()
@@ -192,6 +328,13 @@ namespace itsbeta.achievements
         }
         #endregion
 
+
+
+    }
+
+    internal class CategoryRowObjects
+    {
+        public bool IsActive { get; set; }
 
 
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
     p1:minWidth="25px"
-    p1:minHeight="30dp"
+    p1:minHeight="35dp"
     p1:layout_width="fill_parent"
     p1:layout_height="35dp"
     p1:id="@+id/profilescr_parentrelativeLayout">
@@ -13,22 +13,8 @@
         p1:id="@+id/profilescr_CategNameTextView"
         p1:gravity="center_horizontal"
         p1:layout_marginLeft="20dp"
-        p1:textColor="#ff474747"
+        p1:textColor="#ff646464"
         p1:textSize="13dp"
         p1:textStyle="bold"
         p1:layout_marginTop="5dp" />
-    <ListView
-        p1:minWidth="25px"
-        p1:minHeight="50px"
-        p1:layout_width="fill_parent"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/profilescr_projectsListView"
-        p1:layout_below="@id/profilescr_CategNameTextView"
-        p1:layout_marginTop="5dp"
-        p1:dividerHeight="0dp"
-        p1:choiceMode="none"
-        p1:headerDividersEnabled="false"
-        p1:footerDividersEnabled="false"
-        p1:fastScrollEnabled="false"
-        p1:smoothScrollbar="false" />
 </RelativeLayout>

@@ -75,14 +75,27 @@ namespace itsbeta.achievements
                     Regex access_tokenRegex = new Regex("access_token=(.*)&");
                     var v = access_tokenRegex.Match(url);
                     AppInfo._fbAccessToken = v.Groups[1].ToString();
-                    
-                    var jSonResponse = WebControls.GetMethod2("https://graph.facebook.com/me?fields=id,name,birthday&access_token=" + AppInfo._fbAccessToken);
+
+                    var jSonResponse = WebControls.GetMethod2("https://graph.facebook.com/me?fields=id,name,birthday,locale,location&access_token=" + AppInfo._fbAccessToken);
                     var jSonUserFb = JsonArray.Parse(jSonResponse);
 
+                    if (jSonUserFb["id"] != null)
+                    {
                     AppInfo._user.FacebookUserID = jSonUserFb["id"];
-                    AppInfo._user.Fullname = jSonUserFb["name"];
-                    AppInfo._user.BirthDate = jSonUserFb["birthday"];
-
+                    }
+                    if (jSonUserFb["name"] != null)
+                    {
+                        AppInfo._user.Fullname = jSonUserFb["name"];
+                    }
+                    if (jSonUserFb["birthday"] != null)
+                    {
+                        AppInfo._user.BirthDate = jSonUserFb["birthday"];
+                    }
+                    if (jSonUserFb["location"]["name"] != null)
+                    {
+                        AppInfo._user.City = jSonUserFb["location"]["name"];
+                    }
+                    
                     ServiceItsBeta itsbetaService = new ServiceItsBeta();
 
                     isPlayerExist = itsbetaService.GetPlayerExistBool(AppInfo._user.FacebookUserID);

@@ -9,7 +9,7 @@
         p1:layout_width="250dp"
         p1:layout_height="180dp"
         p1:id="@+id/BadgeSheetImageView"
-        p1:background="#ffb0b0b0" />
+        p1:background="@drawable/Paper_background_middleMiddle" />
     <Button
         p1:text="Отмена"
         p1:layout_width="125dp"
@@ -17,7 +17,7 @@
         p1:id="@+id/addcode_cancelButton"
         p1:layout_alignLeft="@id/BadgeSheetImageView"
         p1:layout_alignBottom="@id/BadgeSheetImageView"
-        p1:background="#ffffffff"
+        p1:background="@drawable/Paper_background_middleMiddle"
         p1:textColor="#ff4e4e4e"
         p1:textSize="12dp" />
     <TextView
@@ -40,7 +40,7 @@
         p1:id="@+id/addcode_readyButton"
         p1:layout_alignBottom="@id/BadgeSheetImageView"
         p1:layout_alignRight="@id/BadgeSheetImageView"
-        p1:background="#fff6f6f6"
+        p1:background="@drawable/Paper_background_middleMiddle"
         p1:textSize="12dp"
         p1:textColor="#ff717171" />
     <ImageView
@@ -53,7 +53,7 @@
         p1:layout_marginTop="35dp"
         p1:layout_marginLeft="15dp"
         p1:layout_marginRight="15dp"
-        p1:background="#0400a4e2" />
+        p1:background="@drawable/line" />
     <AutoCompleteTextView
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
@@ -62,7 +62,7 @@
         p1:layout_alignLeft="@id/imageView1"
         p1:layout_alignRight="@id/imageView1"
         p1:singleLine="true"
-        p1:background="#14ffffff" />
+        p1:background="@android:color/transparent" />
     <TextView
         p1:text="Код-это подтверждение выполнения задачи, за которую дается бейдж."
         p1:textAppearance="?android:attr/textAppearanceSmall"
@@ -77,4 +77,21 @@
         p1:textSize="10dp"
         p1:layout_marginLeft="5dp"
         p1:layout_marginRight="5dp" />
+    <ImageView
+        p1:layout_width="2dp"
+        p1:layout_toLeftOf="@id/addcode_readyButton"
+        p1:id="@+id/imageView2"
+        p1:layout_alignTop="@id/addcode_readyButton"
+        p1:layout_alignBottom="@id/addcode_readyButton"
+        p1:layout_height="fill_parent"
+        p1:layout_marginLeft="1dp"
+        p1:background="@drawable/Btn_divider_v" />
+    <ImageView
+        p1:layout_width="wrap_content"
+        p1:layout_height="2dp"
+        p1:layout_above="@id/addcode_readyButton"
+        p1:id="@+id/imageView3"
+        p1:background="@drawable/TableAndButtons_divider_h"
+        p1:layout_alignRight="@+id/BadgeSheetImageView"
+        p1:layout_alignLeft="@+id/BadgeSheetImageView" />
 </RelativeLayout>

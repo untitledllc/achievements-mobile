@@ -8,9 +8,9 @@
     p1:background="#ffffffff">
     <ImageView
         p1:layout_width="fill_parent"
-        p1:layout_height="1dp"
+        p1:layout_height="2dp"
         p1:id="@+id/imageView1"
-        p1:background="#ffe8e8e8"
+        p1:background="@drawable/TableAndButtons_divider_h"
         p1:layout_alignParentBottom="true" />
     <ImageView
         p1:layout_width="85dp"
@@ -18,8 +18,7 @@
         p1:id="@+id/AchiveImageView"
         p1:layout_marginLeft="20dp"
         p1:layout_marginTop="20dp"
-        p1:drawingCacheQuality="low"
-        p1:src="@drawable/FirstBadge" />
+        p1:drawingCacheQuality="low" />
     <TextView
         p1:text="Got at 16.11.2012"
         p1:textAppearance="?android:attr/textAppearanceSmall"
@@ -64,20 +63,91 @@
             p1:layout_below="@+id/AchiveNameTextView"
             p1:layout_marginTop="10dp" />
         <ImageView
-            p1:src="@drawable/listbonus_bonus"
-            p1:layout_width="60dp"
+            p1:layout_width="55dp"
             p1:layout_height="25dp"
-            p1:id="@+id/BonusImageView"
+            p1:id="@+id/BonusImageView_right"
             p1:layout_alignParentRight="true"
             p1:layout_marginTop="17dp"
             p1:scaleType="fitStart"
-            p1:adjustViewBounds="false" />
+            p1:adjustViewBounds="false"
+            p1:background="@drawable/Table_lable_green_middle" />
         <ImageView
-            p1:src="@drawable/listbonus_discount"
             p1:layout_width="30dp"
             p1:layout_height="25dp"
-            p1:id="@+id/Bonus_DiscountImageView"
+            p1:id="@+id/Bonus_DiscountImageView_right"
             p1:layout_alignParentRight="true"
-            p1:layout_marginTop="17dp" />
+            p1:layout_marginTop="17dp"
+            p1:background="@drawable/Table_lable_blue_middle" />
+        <ImageView
+            p1:layout_width="4dp"
+            p1:layout_height="wrap_content"
+            p1:layout_toLeftOf="@id/BonusImageView_right"
+            p1:id="@+id/BonusImageView_left"
+            p1:layout_alignTop="@id/BonusImageView_right"
+            p1:layout_alignBottom="@id/BonusImageView_right"
+            p1:background="@drawable/Table_lable_green_left" />
+        <TextView
+            p1:text="Bonus"
+            p1:textAppearance="?android:attr/textAppearanceSmall"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/BonusTextView"
+            p1:layout_toRightOf="@+id/BonusImageView_left"
+            p1:layout_alignTop="@+id/BonusImageView_left"
+            p1:layout_alignBottom="@+id/BonusImageView_left"
+            p1:gravity="center"
+            p1:textColor="#ffffffff"
+            p1:layout_alignRight="@+id/BonusImageView_right"
+            p1:textStyle="bold" />
+        <ImageView
+            p1:layout_width="3dp"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/Bonus_DiscountImageView_left"
+            p1:layout_alignTop="@id/Bonus_DiscountImageView_right"
+            p1:layout_alignBottom="@id/Bonus_DiscountImageView_right"
+            p1:layout_toLeftOf="@id/Bonus_DiscountImageView_right"
+            p1:background="@drawable/Table_lable_blue_left" />
+        <TextView
+            p1:text="%"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_toRightOf="@id/Bonus_DiscountImageView_left"
+            p1:id="@+id/Bonus_DiscountTextView"
+            p1:gravity="center"
+            p1:layout_alignTop="@id/Bonus_DiscountImageView_left"
+            p1:layout_alignBottom="@id/Bonus_DiscountImageView_left"
+            p1:layout_alignRight="@id/Bonus_DiscountImageView_right"
+            p1:textStyle="bold"
+            p1:textColor="#ffffffff"
+            p1:textSize="15dp" />
+        <ImageView
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/Bonus_GiftImageView_right"
+            p1:layout_alignTop="@id/BonusImageView_right"
+            p1:layout_alignParentRight="true"
+            p1:layout_alignBottom="@id/BonusImageView_right"
+            p1:background="@drawable/Table_lable_violet_middle"
+            p1:layout_alignLeft="@id/BonusImageView_right" />
+        <ImageView
+            p1:layout_width="4dp"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/Bonus_GiftImageView_left"
+            p1:layout_alignTop="@id/BonusImageView_left"
+            p1:layout_alignBottom="@id/BonusImageView_left"
+            p1:layout_toLeftOf="@id/BonusImageView_right"
+            p1:background="@drawable/Table_lable_violet_left" />
+        <TextView
+            p1:text="Gift"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:layout_toRightOf="@id/BonusImageView_left"
+            p1:id="@+id/Bonus_GiftTextView"
+            p1:textStyle="bold"
+            p1:textColor="#ffffffff"
+            p1:layout_alignTop="@id/BonusImageView_left"
+            p1:layout_alignRight="@id/BonusImageView_right"
+            p1:layout_alignBottom="@id/BonusImageView_left"
+            p1:gravity="center" />
     </RelativeLayout>
 </RelativeLayout>

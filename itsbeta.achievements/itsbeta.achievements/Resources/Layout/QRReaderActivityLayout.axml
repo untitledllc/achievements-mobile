@@ -5,7 +5,7 @@
     p1:layout_width="fill_parent"
     p1:layout_height="fill_parent"
     p1:id="@+id/relativeLayout1"
-    p1:background="#ffe0dcc4">
+    p1:background="@drawable/Paper_background_middleMiddle">
     <LinearLayout
         p1:orientation="horizontal"
         p1:minWidth="25px"
@@ -22,8 +22,13 @@
             p1:layout_weight="1"
             p1:textColor="#ff686868"
             p1:textSize="12dp"
-            p1:background="#ffcac8a9"
+            p1:background="@drawable/Paper_background_middleMiddle"
             p1:text="Отмена" />
+        <ImageView
+            p1:layout_width="2dp"
+            p1:layout_height="fill_parent"
+            p1:id="@+id/imageView2"
+            p1:background="@drawable/Btn_divider_v" />
         <Button
             p1:src="@android:drawable/ic_menu_gallery"
             p1:id="@+id/qrcodereader_readyButton"
@@ -32,7 +37,7 @@
             p1:layout_weight="1"
             p1:textColor="#ff686868"
             p1:textSize="12dp"
-            p1:background="#ffdfd7b7"
+            p1:background="@drawable/Paper_background_middleMiddle"
             p1:text="Готово" />
     </LinearLayout>
     <TextView
@@ -52,4 +57,10 @@
         p1:id="@+id/qrreader_camerasurfaceView"
         p1:layout_centerHorizontal="true"
         p1:layout_marginTop="10dp" />
+    <ImageView
+        p1:layout_width="fill_parent"
+        p1:layout_height="2dp"
+        p1:layout_above="@id/linearLayout1"
+        p1:id="@+id/imageView1"
+        p1:background="@drawable/TableAndButtons_divider_h" />
 </RelativeLayout>

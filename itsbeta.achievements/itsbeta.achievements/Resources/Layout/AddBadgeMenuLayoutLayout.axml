@@ -16,7 +16,7 @@
             p1:layout_height="180dp"
             p1:id="@+id/BadgeSheetImageView"
             p1:layout_centerHorizontal="true"
-            p1:background="#ffb0b0b0" />
+            p1:background="@drawable/Paper_background_middleMiddle" />
         <Button
             p1:text="Отмена"
             p1:layout_width="wrap_content"
@@ -25,7 +25,7 @@
             p1:layout_alignLeft="@id/BadgeSheetImageView"
             p1:layout_alignBottom="@id/BadgeSheetImageView"
             p1:layout_alignRight="@id/BadgeSheetImageView"
-            p1:background="#ffffffff"
+            p1:background="@drawable/Paper_background_middleMiddle"
             p1:textColor="#ff4e4e4e"
             p1:textSize="12dp" />
         <Button
@@ -37,25 +37,27 @@
             p1:layout_alignRight="@id/BadgeSheetImageView"
             p1:textSize="11dp"
             p1:gravity="center_vertical"
-            p1:background="#ffaedae3"
+            p1:background="@drawable/BlueBtn_norm"
             p1:layout_marginTop="55dp"
             p1:layout_width="wrap_content"
             p1:layout_marginLeft="15dp"
-            p1:layout_marginRight="15dp" />
+            p1:layout_marginRight="15dp"
+            p1:textColor="#fff6f6f6" />
         <Button
             p1:text="    Ввести код"
             p1:layout_width="wrap_content"
             p1:layout_height="35dp"
             p1:layout_below="@id/addbadge_readQRButton"
             p1:id="@+id/addbadge_addcodeButton"
-            p1:background="#ff6faf7e"
+            p1:background="@drawable/GreenBtn_norm"
             p1:textSize="11dp"
             p1:layout_alignLeft="@id/BadgeSheetImageView"
             p1:layout_alignRight="@id/BadgeSheetImageView"
             p1:layout_marginTop="5dp"
             p1:layout_marginRight="15dp"
             p1:layout_marginLeft="15dp"
-            p1:gravity="center_vertical" />
+            p1:gravity="center_vertical"
+            p1:textColor="#fff6f6f6" />
         <TextView
             p1:text="Добавить бейдж?"
             p1:textAppearance="?android:attr/textAppearanceLarge"
@@ -67,6 +69,15 @@
             p1:layout_marginLeft="15dp"
             p1:layout_marginTop="15dp"
             p1:textColor="#ff4a4a4a"
-            p1:textSize="20dp" />
+            p1:textSize="20dp"
+            p1:textStyle="normal" />
+        <ImageView
+            p1:layout_width="wrap_content"
+            p1:layout_height="2dp"
+            p1:layout_above="@id/addbadge_cancelButton"
+            p1:id="@+id/imageView1"
+            p1:layout_alignRight="@id/addbadge_cancelButton"
+            p1:layout_alignLeft="@id/addbadge_cancelButton"
+            p1:background="@drawable/TableAndButtons_divider_h" />
     </RelativeLayout>
 </RelativeLayout>

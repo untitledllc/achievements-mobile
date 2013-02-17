@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
     p1:minWidth="25px"
-    p1:minHeight="50dp"
-    p1:layout_width="wrap_content"
-    p1:layout_height="50dp"
+    p1:minHeight="40dp"
+    p1:layout_width="fill_parent"
+    p1:layout_height="40dp"
     p1:id="@+id/relativeLayout1"
-    p1:background="#fffcfcfc">
+    p1:background="@drawable/Categories_popup_background">
     <TextView
         p1:text="CategotyName"
         p1:textAppearance="?android:attr/textAppearanceLarge"
@@ -13,17 +13,17 @@
         p1:layout_height="wrap_content"
         p1:id="@+id/CategNameTextView"
         p1:gravity="center_horizontal"
-        p1:layout_marginLeft="40dp"
+        p1:layout_marginLeft="45dp"
         p1:layout_centerVertical="true"
         p1:textColor="#ff474747"
-        p1:textSize="15dp" />
+        p1:textSize="12dp" />
     <ImageView
-        p1:src="@drawable/Categories_panel_check"
-        p1:layout_width="25dp"
+        p1:src="@drawable/Categories_popup_check"
+        p1:layout_width="30dp"
         p1:layout_height="25dp"
         p1:id="@+id/CheckImageView"
-        p1:layout_centerVertical="true"
-        p1:layout_marginLeft="7dp" />
+        p1:layout_marginLeft="7dp"
+        p1:layout_marginTop="7.5dp" />
     <ImageView
         p1:layout_width="fill_parent"
         p1:layout_height="1dp"
@@ -32,10 +32,12 @@
         p1:background="#fff4f4f4" />
     <Button
         p1:layout_width="fill_parent"
-        p1:layout_height="50dp"
+        p1:layout_height="40dp"
         p1:id="@+id/check_button"
         p1:visibility="visible"
-        p1:background="#04ffffff"
-        p1:minWidth="0dp"
-        p1:minHeight="50dp" />
+        p1:background="@android:color/transparent"
+        p1:layout_alignParentLeft="true"
+        p1:layout_alignParentTop="true"
+        p1:layout_alignParentRight="true"
+        p1:layout_alignParentBottom="true" />
 </RelativeLayout>

@@ -61,8 +61,8 @@
     <Compile Include="Gui\CategoriesListItemAdapter.cs" />
     <Compile Include="Gui\ListData.cs" />
     <Compile Include="Gui\SubCategoriesListItemAdapter.cs" />
-    <Compile Include="Gui\ProfileScrCategoriesListItemAdapter.cs" />
-    <Compile Include="Gui\ProfileScrProjectsListItemAdapter.cs" />
+    <Compile Include="Gui\[delete]ProfileScrCategoriesListItemAdapter.cs" />
+    <Compile Include="Gui\[delete]ProfileScrProjectsListItemAdapter.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="LoginWebActivity.cs" />
     <Compile Include="ProfileActivity.cs" />
@@ -77,72 +77,91 @@
     <AndroidResource Include="Resources\Layout\FirstBadgeActivityLayout.axml" />
     <AndroidResource Include="Resources\Layout\LoginActivityLayout.axml" />
     <AndroidResource Include="Resources\Layout\LoginWebLayout.axml" />
-    <AndroidResource Include="Resources\Drawable\listbonus_bonus.png" />
-    <AndroidResource Include="Resources\Drawable\listbonus_discount.png" />
     <AndroidResource Include="Resources\Layout\SecondScreenListRow.xml" />
-    <AndroidResource Include="Resources\Layout\FirstScreenActivityLayout.axml" />
     <AndroidResource Include="Resources\Layout\SecondScreenActivityLayout.axml" />
-    <AndroidResource Include="Resources\Drawable\NavBar_addcode.png" />
     <AndroidResource Include="Resources\Layout\SecondScreenDropDownListRow.xml" />
-    <AndroidResource Include="Resources\Drawable\Categories_panel_check.png" />
     <AndroidResource Include="Resources\Layout\ProfileScreenActivityLayout.axml" />
-    <AndroidResource Include="Resources\Drawable\profilescr_allbadgesback.png" />
-    <AndroidResource Include="Resources\Drawable\profilescr_bonusesback.png" />
-    <AndroidResource Include="Resources\Drawable\profilescr_exitbut.png" />
-    <AndroidResource Include="Resources\Drawable\profilescr_facebook.png" />
-    <AndroidResource Include="Resources\Drawable\profilescr_subcategback.png" />
-    <AndroidResource Include="Resources\Drawable\profilescr_titleback.png" />
-    <AndroidResource Include="Resources\Drawable\back.png" />
     <AndroidResource Include="Resources\Layout\ProfileScreenParentRow.xml" />
     <AndroidResource Include="Resources\Layout\ProfileScreenChildRow.xml" />
     <AndroidResource Include="Resources\Layout\AddBadgeMenuLayoutLayout.axml" />
     <AndroidResource Include="Resources\Layout\EnterCodeLayout.axml" />
     <AndroidResource Include="Resources\Layout\QRReaderActivityLayout.axml" />
+    <AndroidResource Include="Resources\Drawable\BlueBtn_norm.png" />
+    <AndroidResource Include="Resources\Drawable\BlueBtn_press.png" />
+    <AndroidResource Include="Resources\Drawable\Btn_divider_v.png" />
+    <AndroidResource Include="Resources\Drawable\Categories_btn_arrow.png" />
+    <AndroidResource Include="Resources\Drawable\Categories_btn_divider.png" />
+    <AndroidResource Include="Resources\Drawable\Categories_btn_norm.png" />
+    <AndroidResource Include="Resources\Drawable\Categories_btn_press.png" />
+    <AndroidResource Include="Resources\Drawable\Categories_popup_background.png" />
+    <AndroidResource Include="Resources\Drawable\Categories_popup_bottom.png" />
+    <AndroidResource Include="Resources\Drawable\Categories_popup_check.png" />
+    <AndroidResource Include="Resources\Drawable\DarkBlueBtn_norm.png" />
+    <AndroidResource Include="Resources\Drawable\DarkBlueBtn_press.png" />
+    <AndroidResource Include="Resources\Drawable\FB_icon.png" />
+    <AndroidResource Include="Resources\Drawable\FB_logo.png" />
+    <AndroidResource Include="Resources\Drawable\GreenBtn_norm.png" />
+    <AndroidResource Include="Resources\Drawable\GreenBtn_press.png" />
+    <AndroidResource Include="Resources\Drawable\Login_BigBadge.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_icon_exit_norm.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_icon_exit_press.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_icon_plus_norm.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_icon_plus_press.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_icon_profile_norm.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_icon_profile_press.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_screen_icon.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_screen_left.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_screen_middle.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_screen_right.png" />
+    <AndroidResource Include="Resources\Drawable\Navigation_bar.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_bottomLeft.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_bottomLeft_press.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_bottomMiddle.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_bottomMiddle_press.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_bottomRight.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_bottomRight_press.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_middleLeft.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_middleLeft_press.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_middleMiddle.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_middleMiddle_press.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_middleRight.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_middleRight_press.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_topLeft.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_topMiddle.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_background_topRight.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_BadgeShape.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_Divider_blue.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_Divider_green.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_Divider_violet.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_icon_close_norm.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_icon_close_press.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_shadow.png" />
+    <AndroidResource Include="Resources\Drawable\Profile_StatisticPreview_blue.png" />
+    <AndroidResource Include="Resources\Drawable\Profile_StatisticPreview_green.png" />
+    <AndroidResource Include="Resources\Drawable\Profile_StatisticPreview_violet.png" />
+    <AndroidResource Include="Resources\Drawable\Profile_StatusBar_active.png" />
+    <AndroidResource Include="Resources\Drawable\Profile_StatusBar_norm.png" />
+    <AndroidResource Include="Resources\Drawable\Table_lable_blue_left.png" />
+    <AndroidResource Include="Resources\Drawable\Table_lable_blue_middle.png" />
+    <AndroidResource Include="Resources\Drawable\Table_lable_blue_right.png" />
+    <AndroidResource Include="Resources\Drawable\Table_lable_green_left.png" />
+    <AndroidResource Include="Resources\Drawable\Table_lable_green_middle.png" />
+    <AndroidResource Include="Resources\Drawable\Table_lable_green_right.png" />
+    <AndroidResource Include="Resources\Drawable\Table_lable_violet_left.png" />
+    <AndroidResource Include="Resources\Drawable\Table_lable_violet_middle.png" />
+    <AndroidResource Include="Resources\Drawable\Table_lable_violet_right.png" />
+    <AndroidResource Include="Resources\Drawable\TableAndButtons_divider_h.png" />
+    <AndroidResource Include="Resources\Drawable\Login_background2.png" />
+    <AndroidResource Include="Resources\Drawable\Login_background.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_leftWindow.png" />
+    <AndroidResource Include="Resources\Drawable\profilescr_titleback.png" />
+    <AndroidResource Include="Resources\Drawable\back.png" />
+    <AndroidResource Include="Resources\Drawable\line.png" />
+    <AndroidResource Include="Resources\Layout\InactiveBackgroundLayout.axml" />
+    <AndroidResource Include="Resources\Layout\SecondScreenCategoryRow.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\BadgeSheet_CloseButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\CategoriesBar_corner.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\FirstBadge.PNG" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Login_background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Login_background2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Login_facebookbutton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Login_logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\NavBar_background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\NavBar_firstScreenButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\NavBar_globeb.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\NavBar_leftWindow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\NavBar_ProfileButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\NavBar_secondScreenButton.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\itsbeta\itsbeta\itsbeta.csproj">
@@ -151,7 +170,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Values\styles.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
@@ -162,4 +180,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
 </Project>

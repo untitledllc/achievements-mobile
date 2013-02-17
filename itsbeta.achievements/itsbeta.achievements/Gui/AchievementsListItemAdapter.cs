@@ -45,25 +45,76 @@ namespace itsbeta.achievements.gui
 
             ImageView achivePicture = (ImageView)view.FindViewById(Resource.Id.AchiveImageView);
 
-            ImageView bonusPicture = (ImageView)view.FindViewById(Resource.Id.BonusImageView);
-            ImageView discountPicture = (ImageView)view.FindViewById(Resource.Id.Bonus_DiscountImageView);
+            ImageView bonusPictureleft = (ImageView)view.FindViewById(Resource.Id.BonusImageView_left);
+            ImageView bonusPictureright = (ImageView)view.FindViewById(Resource.Id.BonusImageView_right);
+            TextView bonusTextView= (TextView)view.FindViewById(Resource.Id.BonusTextView);
+
+            ImageView discountPictureleft = (ImageView)view.FindViewById(Resource.Id.Bonus_DiscountImageView_left);
+            ImageView discountPictureright = (ImageView)view.FindViewById(Resource.Id.Bonus_DiscountImageView_right);
+            TextView discountTextView = (TextView)view.FindViewById(Resource.Id.Bonus_DiscountTextView);
+
+            ImageView giftPictureleft = (ImageView)view.FindViewById(Resource.Id.Bonus_GiftImageView_left);
+            ImageView giftPictureRight= (ImageView)view.FindViewById(Resource.Id.Bonus_GiftImageView_right);
+            TextView giftTextView = (TextView)view.FindViewById(Resource.Id.Bonus_GiftTextView);
 
             if (item.BonusStatus == "")
             {
-                bonusPicture.Visibility = ViewStates.Invisible;
-                discountPicture.Visibility = ViewStates.Invisible;
+                bonusPictureleft.Visibility = ViewStates.Invisible;
+                bonusPictureright.Visibility = ViewStates.Invisible;
+                bonusTextView.Visibility = ViewStates.Invisible;
+
+                discountPictureleft.Visibility = ViewStates.Invisible;
+                discountTextView.Visibility = ViewStates.Invisible;
+                discountPictureright.Visibility = ViewStates.Invisible;
+
+                giftPictureleft.Visibility = ViewStates.Invisible;
+                giftPictureRight.Visibility = ViewStates.Invisible;
+                giftTextView.Visibility = ViewStates.Invisible;
             }
 
             if (item.BonusStatus == "discount")
             {
-                bonusPicture.Visibility = ViewStates.Invisible;
-                discountPicture.Visibility = ViewStates.Visible;
+                bonusPictureleft.Visibility = ViewStates.Invisible;
+                bonusPictureright.Visibility = ViewStates.Invisible;
+                bonusTextView.Visibility = ViewStates.Invisible;
+
+                discountPictureleft.Visibility = ViewStates.Visible;
+                discountTextView.Visibility = ViewStates.Visible;
+                discountPictureright.Visibility = ViewStates.Visible;
+
+                giftPictureleft.Visibility = ViewStates.Invisible;
+                giftPictureRight.Visibility = ViewStates.Invisible;
+                giftTextView.Visibility = ViewStates.Invisible;
             }
 
             if (item.BonusStatus == "bonus")
             {
-                bonusPicture.Visibility = ViewStates.Visible;
-                discountPicture.Visibility = ViewStates.Invisible;
+                bonusPictureleft.Visibility = ViewStates.Visible;
+                bonusPictureright.Visibility = ViewStates.Visible;
+                bonusTextView.Visibility = ViewStates.Visible;
+
+                discountPictureleft.Visibility = ViewStates.Invisible;
+                discountTextView.Visibility = ViewStates.Invisible;
+                discountPictureright.Visibility = ViewStates.Invisible;
+
+                giftPictureleft.Visibility = ViewStates.Invisible;
+                giftPictureRight.Visibility = ViewStates.Invisible;
+                giftTextView.Visibility = ViewStates.Invisible;
+            }
+
+            if (item.BonusStatus == "present")
+            {
+                bonusPictureleft.Visibility = ViewStates.Invisible;
+                bonusPictureright.Visibility = ViewStates.Invisible;
+                bonusTextView.Visibility = ViewStates.Invisible;
+
+                discountPictureleft.Visibility = ViewStates.Invisible;
+                discountTextView.Visibility = ViewStates.Invisible;
+                discountPictureright.Visibility = ViewStates.Invisible;
+
+                giftPictureleft.Visibility = ViewStates.Visible;
+                giftPictureRight.Visibility = ViewStates.Visible;
+                giftTextView.Visibility = ViewStates.Visible;
             }
 
             achivePicture.DrawingCacheEnabled = true;

@@ -66,7 +66,8 @@ namespace ItsBeta.Core
                     {
                         ApiName = jSonAchieves.jToken[i]["projects"][j]["api_name"].Value<string>(),
                         DisplayName = jSonAchieves.jToken[i]["projects"][j]["display_name"].Value<string>(),
-                        Achievements = achArray
+                        Achievements = achArray,
+                        TotalBadges = int.Parse(jSonAchieves.jToken[i]["projects"][j]["total_badges"].Value<string>())
                     };
                 }
 
@@ -92,6 +93,7 @@ namespace ItsBeta.Core
             {
                 public string ApiName { get; set; }
                 public string DisplayName { get; set; }
+                public int TotalBadges { get; set; }
 
                 public Achieve[] Achievements { get; set; }
 

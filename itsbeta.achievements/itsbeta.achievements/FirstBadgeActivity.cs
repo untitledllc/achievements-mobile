@@ -40,6 +40,7 @@ namespace itsbeta.achievements
                 config.Add(AppInfo._user.BirthDate);
                 config.Add(AppInfo._user.FacebookUserID);
                 config.Add(AppInfo._user.ItsBetaUserId);
+                config.Add(AppInfo._user.City);
 
                 File.WriteAllLines(@"/data/data/itsbeta.achievements/data.txt", config.ToArray(), Encoding.UTF8);
             }
@@ -58,7 +59,7 @@ namespace itsbeta.achievements
 
             loadComplete.TextChanged += delegate
             {
-                if (!LoginWebActivity.isPlayerExist)
+                if (LoginWebActivity.isPlayerExist)
                 {
                     RunOnUiThread(() => RunOnUiRistBadgeWin());
                 }
@@ -84,8 +85,15 @@ namespace itsbeta.achievements
                 userName.Text = AppInfo._user.Fullname;
             }
 
+            ImageView badgeImageView = FindViewById<ImageView>(Resource.Id.paper_BadgeImageView);
             ImageButton badgeReadyButton = FindViewById<ImageButton>(Resource.Id.BadgeSheet_CloseImageButton);
             ImageButton badgeReadyButtonFake = FindViewById<ImageButton>(Resource.Id.BadgeSheet_CloseImageButtonFake);
+
+            Bitmap bitmap = BitmapFactory.DecodeFile(@"/data/data/itsbeta.achievements/cache/pictures/" + "achive" +
+                "egMGNg79ys.PNG"
+                );
+
+            badgeImageView.SetImageBitmap(bitmap);
 
             badgeReadyButton.Click += delegate
             {

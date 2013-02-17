@@ -6,12 +6,40 @@
     p1:layout_height="fill_parent"
     p1:id="@+id/FristBadgeMainRelativeLayout"
     p1:background="@drawable/back">
+    <ImageButton
+        p1:layout_width="fill_parent"
+        p1:layout_height="50dp"
+        p1:id="@+id/NavBar_ImageButton"
+        p1:scaleType="fitXY"
+        p1:background="@drawable/Navigation_bar"
+        p1:clickable="false"
+        p1:longClickable="false" />
+    <ImageButton
+        p1:layout_width="30dp"
+        p1:layout_height="30dp"
+        p1:id="@+id/profilescr_NavBar_LogoutImageButton"
+        p1:layout_alignParentRight="true"
+        p1:background="@drawable/NavBar_icon_exit_norm"
+        p1:layout_marginRight="10dp"
+        p1:layout_marginTop="7.5dp" />
+    <TextView
+        p1:text="PROFILE"
+        p1:textAppearance="?android:attr/textAppearanceLarge"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/profilescr_profiletextView"
+        p1:textColor="#ff4a4a4a"
+        p1:textStyle="bold"
+        p1:layout_marginTop="12dp"
+        p1:layout_marginLeft="20dp"
+        p1:textSize="20dp" />
     <ScrollView
         p1:minWidth="25px"
         p1:minHeight="25px"
         p1:layout_width="fill_parent"
         p1:layout_height="fill_parent"
-        p1:id="@+id/scrollView1">
+        p1:id="@+id/scrollView1"
+        p1:layout_marginTop="50dp">
         <LinearLayout
             p1:orientation="vertical"
             p1:minWidth="25px"
@@ -25,33 +53,6 @@
                 p1:layout_width="fill_parent"
                 p1:layout_height="fill_parent"
                 p1:id="@+id/relativeLayout1">
-                <ImageButton
-                    p1:layout_width="fill_parent"
-                    p1:layout_height="50dp"
-                    p1:id="@+id/NavBar_ImageButton"
-                    p1:scaleType="fitXY"
-                    p1:background="@drawable/NavBar_background"
-                    p1:clickable="false"
-                    p1:longClickable="false" />
-                <ImageButton
-                    p1:layout_width="20dp"
-                    p1:layout_height="25dp"
-                    p1:id="@+id/profilescr_NavBar_LogoutImageButton"
-                    p1:layout_alignParentRight="true"
-                    p1:background="@drawable/profilescr_exitbut"
-                    p1:layout_marginRight="10dp"
-                    p1:layout_marginTop="10dp" />
-                <TextView
-                    p1:text="PROFILE"
-                    p1:textAppearance="?android:attr/textAppearanceLarge"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="wrap_content"
-                    p1:id="@+id/profilescr_profiletextView"
-                    p1:textColor="#ff4a4a4a"
-                    p1:textStyle="bold"
-                    p1:layout_marginTop="12dp"
-                    p1:layout_marginLeft="20dp"
-                    p1:textSize="20dp" />
                 <ImageView
                     p1:layout_width="fill_parent"
                     p1:layout_height="60dp"
@@ -63,7 +64,7 @@
                     p1:layout_marginLeft="20dp"
                     p1:layout_marginRight="20dp" />
                 <ImageView
-                    p1:src="@drawable/profilescr_facebook"
+                    p1:src="@drawable/FB_icon"
                     p1:layout_width="40dp"
                     p1:layout_height="53dp"
                     p1:id="@+id/imageView2"
@@ -83,7 +84,7 @@
                     p1:textColor="#ff7f7f7f"
                     p1:layout_marginTop="10dp"
                     p1:layout_marginLeft="20dp"
-                    p1:textSize="18dp" />
+                    p1:textSize="15dp" />
                 <TextView
                     p1:text="Small Text"
                     p1:textAppearance="?android:attr/textAppearanceSmall"
@@ -99,12 +100,12 @@
                     p1:layout_height="wrap_content"
                     p1:layout_below="@id/imageView1"
                     p1:id="@+id/profilescr_statTextView"
-                    p1:textColor="#ff3b3b3b"
+                    p1:textColor="#ff666666"
                     p1:textSize="20dp"
                     p1:layout_alignLeft="@id/imageView1"
                     p1:layout_marginTop="20dp" />
                 <ImageView
-                    p1:src="@drawable/profilescr_bonusesback"
+                    p1:src="@drawable/Profile_StatisticPreview_green"
                     p1:layout_width="80dp"
                     p1:layout_height="60dp"
                     p1:layout_below="@id/profilescr_statTextView"
@@ -112,7 +113,7 @@
                     p1:layout_marginTop="10dp"
                     p1:layout_centerHorizontal="true" />
                 <ImageView
-                    p1:src="@drawable/profilescr_allbadgesback"
+                    p1:src="@drawable/Profile_StatisticPreview_blue"
                     p1:layout_width="80dp"
                     p1:layout_height="60dp"
                     p1:id="@+id/profilescr_allBadgesImageView"
@@ -120,7 +121,7 @@
                     p1:layout_below="@id/profilescr_statTextView"
                     p1:layout_marginTop="10dp" />
                 <ImageView
-                    p1:src="@drawable/profilescr_subcategback"
+                    p1:src="@drawable/Profile_StatisticPreview_violet"
                     p1:layout_width="80dp"
                     p1:layout_height="60dp"
                     p1:layout_below="@id/profilescr_statTextView"
@@ -192,7 +193,8 @@
                     p1:layout_below="@id/textView3"
                     p1:id="@+id/profilescr_subcategCountTextView"
                     p1:layout_alignLeft="@id/textView3"
-                    p1:layout_marginLeft="5dp" />
+                    p1:layout_marginLeft="5dp"
+                    p1:layout_marginBottom="1dp" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

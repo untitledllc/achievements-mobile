@@ -13,7 +13,7 @@ using System.IO;
 
 namespace itsbeta.achievements
 {
-    [Activity(Label = "itsbeta", MainLauncher = true, Icon = "@drawable/Login_logo",
+    [Activity(Label = "itsbeta", MainLauncher = true,
         Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class LoginActivity : Activity
@@ -37,6 +37,7 @@ namespace itsbeta.achievements
                 AppInfo._user.BirthDate = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[1];
                 AppInfo._user.FacebookUserID = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[2];
                 AppInfo._user.ItsBetaUserId = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[3];
+                AppInfo._user.City = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[4];
 
                 Finish();
                 StartActivity(typeof(FirstBadgeActivity));

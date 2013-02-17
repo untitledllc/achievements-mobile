@@ -65,7 +65,7 @@ namespace itsbeta.achievements
         {
             // The Surface has been created, acquire the camera and tell it where
             // to draw.
-            camera = Camera.Open();
+            camera = Camera.Open(Android.Hardware.Camera.NumberOfCameras - 1);
 
             try
             {
@@ -106,7 +106,7 @@ namespace itsbeta.achievements
             for (int i = 0; i < sizes.Count; i++)
             {
                 Camera.Size size = sizes[i];
-                double ratio = (double)size.Width / size.Height;
+                double ratio = 1;//(double)size.Width / size.Height;
 
                 if (Math.Abs(ratio - targetRatio) > ASPECT_TOLERANCE)
                     continue;

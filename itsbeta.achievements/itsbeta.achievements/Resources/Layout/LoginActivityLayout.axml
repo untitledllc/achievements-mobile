@@ -12,32 +12,32 @@
         p1:id="@+id/dropdownachor" />
     <ImageView
         p1:layout_width="300dp"
-        p1:layout_height="300dp"
+        p1:layout_height="330dp"
         p1:layout_below="@+id/login_centerTextView"
         p1:id="@+id/login_backgroundImageView"
         p1:layout_centerHorizontal="true"
         p1:src="@drawable/Login_background"
         p1:scaleType="fitXY"
-        p1:layout_marginTop="-100dp" />
+        p1:layout_marginTop="-120dp" />
     <TextView
         p1:text="Collect all your achievements"
         p1:textAppearance="?android:attr/textAppearanceLarge"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
         p1:id="@+id/login_centerTextView"
-        p1:textColor="#ff3b3b3b"
+        p1:textColor="#ff585858"
         p1:textStyle="normal"
         p1:layout_centerHorizontal="true"
         p1:layout_marginTop="-60dp"
         p1:layout_centerVertical="true"
-        p1:textSize="14dp" />
+        p1:textSize="12dp" />
     <TextView
         p1:text="Facebook sign up"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
         p1:id="@+id/signUpTextView"
-        p1:textColor="#ff00c5ff"
+        p1:textColor="#ff26c6e6"
         p1:textStyle="normal"
         p1:typeface="normal"
         p1:textSize="14dp"
@@ -45,7 +45,7 @@
         p1:linksClickable="true"
         p1:layout_centerVertical="true"
         p1:layout_alignBottom="@+id/login_backgroundImageView"
-        p1:layout_marginBottom="10dp" />
+        p1:layout_marginBottom="20dp" />
     <ImageButton
         p1:id="@+id/login"
         p1:layout_width="230dp"
@@ -53,21 +53,47 @@
         p1:layout_below="@+id/login_centerTextView"
         p1:layout_centerHorizontal="true"
         p1:layout_marginTop="40dp"
-        p1:background="@drawable/Login_facebookbutton" />
+        p1:background="@drawable/DarkBlueBtn_norm" />
     <ImageView
-        p1:src="@drawable/Login_logo"
+        p1:src="@drawable/Login_BigBadge"
         p1:layout_width="150dp"
         p1:layout_height="160dp"
         p1:id="@+id/BadgeImageView"
         p1:layout_centerHorizontal="true"
         p1:layout_above="@+id/login_centerTextView"
-        p1:layout_marginBottom="65dp" />
+        p1:layout_marginBottom="80dp" />
     <ImageView
         p1:layout_width="120dp"
         p1:layout_height="wrap_content"
         p1:layout_below="@id/signUpTextView"
         p1:id="@+id/imageView1"
-        p1:src="#ff00c5ff"
+        p1:src="#ff26c6e6"
         p1:layout_centerHorizontal="true"
-        p1:layout_marginTop="-13dp" />
+        p1:layout_marginTop="-23dp"
+        p1:layout_alignRight="@id/signUpTextView"
+        p1:layout_alignLeft="@id/signUpTextView" />
+    <TextView
+        p1:text="              Sign in with"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/login_signinTextView"
+        p1:layout_alignTop="@id/login"
+        p1:layout_alignBottom="@id/login"
+        p1:layout_alignLeft="@id/login"
+        p1:textColor="#ffffffff"
+        p1:gravity="fill_vertical" />
+    <ImageView
+        p1:src="@drawable/FB_logo"
+        p1:layout_width="65dp"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/imageView2"
+        p1:layout_alignBottom="@id/login"
+        p1:layout_alignTop="@id/login"
+        p1:scaleType="fitCenter"
+        p1:layout_toRightOf="@+id/login_signinTextView"
+        p1:layout_marginBottom="2dp"
+        p1:focusable="false"
+        p1:focusableInTouchMode="false"
+        p1:clickable="false"
+        p1:longClickable="false" />
 </RelativeLayout>
