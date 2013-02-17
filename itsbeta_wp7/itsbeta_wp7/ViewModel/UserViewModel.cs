@@ -70,7 +70,7 @@ namespace itsbeta_wp7.ViewModel
             catch { };
         }
 
-        MessagePrompt messagePrompt = new MessagePrompt();
+        public MessagePrompt messagePrompt;
         private void GetItsbetaAchieve()
         {
             var bw = new BackgroundWorker();
@@ -96,7 +96,7 @@ namespace itsbeta_wp7.ViewModel
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {
 
-                                MessagePrompt messagePrompt = new MessagePrompt();
+                                messagePrompt = new MessagePrompt();
                                 try
                                 {
                                     messagePrompt.Body = new BadgeControl();
@@ -133,7 +133,7 @@ namespace itsbeta_wp7.ViewModel
         private void moreButton_Click(object sender, RoutedEventArgs e)
         {
             WebBrowserTask webTask = new WebBrowserTask();
-            webTask.Uri = new Uri("http://www.itsbeta.com/s/healthcare/donor/achieves/fb?locale=ru&name=donorfriend&fb_action_ids=" + FacebookId);
+            webTask.Uri = new Uri("http://www.itsbeta.com/s/other/itsbeta/achieves/fb?locale=ru&name=itsbeta&fb_action_ids=" + FacebookId);
             webTask.Show();
         }
 

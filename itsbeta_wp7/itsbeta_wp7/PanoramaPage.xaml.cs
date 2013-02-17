@@ -67,5 +67,10 @@ namespace itsbeta_wp7
             }
             catch { };
         }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            ViewModelLocator.MainStatic.LoadAchievements();
+        }
     }
 }
