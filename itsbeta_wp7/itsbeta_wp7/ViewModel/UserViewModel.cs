@@ -6,6 +6,11 @@ using Facebook;
 using System.Windows;
 using System.Windows.Threading;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Controls;
+using Coding4Fun.Toolkit.Controls;
+using Microsoft.Phone.Tasks;
+using itsbeta_wp7.Controls;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -55,12 +60,81 @@ namespace itsbeta_wp7.ViewModel
                         JObject o_player = JObject.Parse(response_player.Content.ToString());
                         PlayerId = o_player["player_id"].ToString();
                         RaisePropertyChanged("UserProfilePicture");
+
                         ViewModelLocator.MainStatic.LoadAchievements();
+                        ViewModelLocator.UserStatic.GetItsbetaAchieve();
                     }
                     catch { };
                 });
             }
             catch { };
+        }
+
+        MessagePrompt messagePrompt = new MessagePrompt();
+        private void GetItsbetaAchieve()
+        {
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
+            {
+                var client = new RestClient("http://www.itsbeta.com");
+                var request = new RestRequest("s/other/itsbeta/achieves/posttofbonce.json", Method.POST);
+                request.Parameters.Clear();
+                request.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
+                request.AddParameter("user_id", FacebookId);
+                request.AddParameter("user_token", FacebookToken);
+                request.AddParameter("badge_name", "itsbeta");
+                //for test
+                //request.AddParameter("unique", "f");
+
+                client.ExecuteAsync(request, response =>
+                {
+                    try
+                    {
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        if (o["id"].ToString() != "")
+                        {
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            {
+
+                                MessagePrompt messagePrompt = new MessagePrompt();
+                                try
+                                {
+                                    messagePrompt.Body = new BadgeControl();
+
+                                    Button closeButton = new Button() { Content = "Закрыть" };
+                                    Button moreButton = new Button() { Content = "Подробнее" };
+
+                                    closeButton.Click += new RoutedEventHandler(closeButton_Click);
+                                    moreButton.Click += new RoutedEventHandler(moreButton_Click);
+
+                                    messagePrompt.ActionPopUpButtons.Clear();
+                                    messagePrompt.ActionPopUpButtons.Add(closeButton);
+                                    messagePrompt.ActionPopUpButtons.Add(moreButton);
+                                }
+                                catch
+                                {
+                                };
+
+                                messagePrompt.Show();
+                            });
+                        };
+                    }
+                    catch { };
+                });
+            };
+            bw.RunWorkerAsync();
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            messagePrompt.Hide();
+        }
+
+        private void moreButton_Click(object sender, RoutedEventArgs e)
+        {
+            WebBrowserTask webTask = new WebBrowserTask();
+            webTask.Uri = new Uri("http://www.itsbeta.com/s/healthcare/donor/achieves/fb?locale=ru&name=donorfriend&fb_action_ids=" + FacebookId);
+            webTask.Show();
         }
 
         public void GetFBUserInfo()
