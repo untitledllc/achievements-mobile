@@ -23,7 +23,7 @@
 				<shell:ApplicationBarMenuItem Text="Оценить приложение"/>
 				<shell:ApplicationBarMenuItem Text="О программе"/>
 			</shell:ApplicationBar.MenuItems>
-			<shell:ApplicationBarIconButton x:Name="ActivateBadge" IconUri="/icons/appbar.add.rest.png" Text="код"/>
+			<shell:ApplicationBarIconButton x:Name="ActivateBadge" IconUri="/icons/appbar.add.rest.png" Text="код" Click="ActivateBadge_Click" />
 			<shell:ApplicationBarIconButton x:Name="QRButton" IconUri="/icons/appbar.feature.camera.rest.png" Text="QR" Click="QRButton_Click" />
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>

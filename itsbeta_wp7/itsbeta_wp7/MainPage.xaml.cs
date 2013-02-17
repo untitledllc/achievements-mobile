@@ -39,5 +39,14 @@ namespace itsbeta_wp7
             }
             catch { };
         }
+
+        private void ActivateBadge_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/ActivatePage.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
     }
 }
