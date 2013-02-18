@@ -17,7 +17,7 @@
                             DataContext="{Binding ViewModelName, Source={StaticResource Locator}}">
 
     <Grid x:Name="LayoutRoot"
-          Background="Transparent">
+          Background="#FFF1EFE3">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -27,22 +27,19 @@
         <StackPanel x:Name="TitlePanel"
                     Grid.Row="0"
                     Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle"
-                       Text="itsbeta"
-                       Style="{StaticResource PhoneTextNormalStyle}" />
-            <TextBlock x:Name="PageTitle"
-                       Text="Login"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
+            <Image Source="images/logo1.png" Stretch="None" Margin="-10,-15,0,0"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="12,0,12,0">
-            <StackPanel>
-                <Button Content="Вход" Click="Button_Click" />
-                <HyperlinkButton Name="FacebookSingup" Content="Facebook signup" NavigateUri="http://facebook.com" />
+            <StackPanel Width="420" Height="550" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White">
+            	<Grid Height="550">
+            		<TextBlock Text="Collect all your achivements" Foreground="#FF878785" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0" FontSize="26.667"/>
+                <Button Content="Войти через facebook" Click="Button_Click" Style="{StaticResource FacebookLoginButtonStyle}" Height="80" VerticalAlignment="Center" />
+                <HyperlinkButton Name="FacebookSingup" Content="Facebook signup" NavigateUri="http://facebook.com" Foreground="#FFA7CEE0" VerticalAlignment="Bottom" BorderThickness="0" Margin="0,0,0,20" />
+				</Grid>
             </StackPanel>
         </Grid>
     </Grid>

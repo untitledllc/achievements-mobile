@@ -1,4 +1,5 @@
 ﻿using Microsoft.Phone.Controls;
+using itsbeta_wp7.ViewModel;
 
 namespace itsbeta_wp7
 {
@@ -17,7 +18,12 @@ namespace itsbeta_wp7
 
         private void OkButton_Click(object sender, System.EventArgs e)
         {
-        	// TODO: Add event handler implementation here.
+            try
+            {
+                ViewModelLocator.UserStatic.ActivateAchieve(this.ActivationCode.Text);
+                NavigationService.GoBack();
+            }
+            catch { };
         }
     }
 }

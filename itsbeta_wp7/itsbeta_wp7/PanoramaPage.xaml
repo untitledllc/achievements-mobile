@@ -18,14 +18,14 @@
     DataContext="{Binding Main, Source={StaticResource Locator}}">
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar>
+        <shell:ApplicationBar Mode="Minimized">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="Оценить приложение"/>
                 <shell:ApplicationBarMenuItem Text="О программе"/>
             </shell:ApplicationBar.MenuItems>
-            <shell:ApplicationBarIconButton x:Name="RefreshButton" IconUri="/icons/appbar.refresh.rest.png" Text="обновить" Click="RefreshButton_Click" />
+            <!--<shell:ApplicationBarIconButton x:Name="RefreshButton" IconUri="/icons/appbar.refresh.rest.png" Text="обновить" Click="RefreshButton_Click" />
             <shell:ApplicationBarIconButton x:Name="ActivateBadge" IconUri="/icons/appbar.add.rest.png" Text="код" Click="ActivateBadge_Click" />
-            <shell:ApplicationBarIconButton x:Name="QRButton" IconUri="/icons/appbar.feature.camera.rest.png" Text="QR" Click="QRButton_Click" />
+            <shell:ApplicationBarIconButton x:Name="QRButton" IconUri="/icons/appbar.feature.camera.rest.png" Text="QR" Click="QRButton_Click" />-->
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
@@ -73,7 +73,16 @@
                 </Grid>
             </controls:PanoramaItem>
 
-            <!--Второй элемент Panorama-->
+
+            <controls:PanoramaItem Header="активация">
+                <StackPanel>
+                    <Button Content="Использовать QR-ридер" Name="QrReaderButton" Click="QrReaderButton_Click" Style="{StaticResource QRButtonStyle}" Height="120" />
+                    <Button Content="Ввести код" Name="ActivateCOdeButton" Click="ActivateCOdeButton_Click" Style="{StaticResource ActivateButtonStyle}" Height="120" />
+                    <TextBlock TextWrapping="Wrap" Text="Введите код или считайте QR-код"/>
+                </StackPanel>
+            </controls:PanoramaItem>
+
+
             <controls:PanoramaItem Header="Профиль">
                 <StackPanel>
                     <Grid>

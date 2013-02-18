@@ -72,5 +72,23 @@ namespace itsbeta_wp7
         {
             ViewModelLocator.MainStatic.LoadAchievements();
         }
+
+        private void QrReaderButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/QRRead.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
+
+        private void ActivateCOdeButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/ActivatePage.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
     }
 }

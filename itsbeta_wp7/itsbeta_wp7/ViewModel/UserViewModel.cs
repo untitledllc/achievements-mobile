@@ -70,6 +70,59 @@ namespace itsbeta_wp7.ViewModel
             catch { };
         }
 
+        /*www.itsbeta.com/s/activate.json?activation_code=.....&user_id=....&user_token=......*/
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="activation_code"></param>
+        public void ActivateAchieve(string activation_code)
+        {
+            ViewModelLocator.MainStatic.Loading = true;
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
+            {
+                var client = new RestClient("http://www.itsbeta.com");
+                var request = new RestRequest("s/activate.json", Method.GET);
+                request.Parameters.Clear();
+                request.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
+                request.AddParameter("user_id", FacebookId);
+                request.AddParameter("user_token", FacebookToken);
+                request.AddParameter("activation_code", activation_code);
+
+                client.ExecuteAsync(request, response =>
+                {
+                    try
+                    {
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        if (o["id"].ToString() != "")
+                        {
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            {
+                                MessageBox.Show("Достижение активировано!");
+                                ViewModelLocator.MainStatic.Loading = false;
+                            });
+                        }
+                        else
+                        {
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            {
+                                MessageBox.Show("Не удалось активировать достижение!");
+                                ViewModelLocator.MainStatic.Loading = false;
+                            });
+                        };
+                    }
+                    catch {
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            MessageBox.Show("Не удалось активировать достижение!");
+                            ViewModelLocator.MainStatic.Loading = false;
+                        });
+                    };
+                });
+            };
+            bw.RunWorkerAsync();
+        }
+
         public MessagePrompt messagePrompt;
         private void GetItsbetaAchieve()
         {
