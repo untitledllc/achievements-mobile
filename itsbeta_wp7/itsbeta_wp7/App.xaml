@@ -168,6 +168,9 @@
         		</Setter.Value>
         	</Setter>
         </Style>
+        <DataTemplate x:Key="NoDataListTemlate">
+        	<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Нет данных"/>
+        </DataTemplate>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

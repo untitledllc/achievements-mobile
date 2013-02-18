@@ -16,6 +16,8 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
     DataContext="{Binding Main, Source={StaticResource Locator}}">
+	<phone:PhoneApplicationPage.Resources>
+	</phone:PhoneApplicationPage.Resources>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Minimized">
@@ -47,7 +49,7 @@
             <controls:PanoramaItem Header="Категории">
                 <Grid>
                     <telerikData:RadJumpList x:Name="AllCategories" ItemsSource="{Binding Path=Categories}"
-                                     DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllCategories_ItemTap" GroupHeaderItemTap="AllCategories_GroupHeaderItemTap">
+                                     DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllCategories_ItemTap" GroupHeaderItemTap="AllCategories_GroupHeaderItemTap" EmptyContentTemplate="{StaticResource NoDataListTemlate}">
                         <telerikData:RadJumpList.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="10,10,0,0">
@@ -60,9 +62,9 @@
                                         <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap" Style="{StaticResource PhoneTextTitle2Style}" />
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Activated_badges_count}"/>
-                                            <TextBlock Text="/"/>
-                                            <TextBlock Text="{Binding Total_badges}"/>
-                                            <TextBlock Text=" бейджей открыто"/>
+                                            <!--<TextBlock Text="/"/>
+                                            <TextBlock Text="{Binding Total_badges}"/>-->
+                                            <TextBlock Text=" открыто"/>
                                         </StackPanel>
                                         <!--<TextBlock Text="{Binding Desc}" TextWrapping="Wrap"/>-->
                                     </StackPanel>
