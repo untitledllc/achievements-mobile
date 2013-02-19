@@ -231,6 +231,7 @@
     <Content Include="icons\appbar.feature.camera.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Background_panorama_light.png" />
     <Resource Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Resource Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Resource Include="images\Achive-itsbeta.png" />
@@ -238,6 +239,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="images\Achivments_WP7_slicing_panoramaBackground.png" />
+    <Resource Include="images\Background.png" />
+    <Resource Include="images\Background_panorama_light.png" />
     <Content Include="images\logo.png" />
     <Resource Include="images\logo1.png" />
     <Resource Include="images\Logo_panorama.png" />
