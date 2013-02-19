@@ -90,5 +90,10 @@ namespace itsbeta_wp7
             }
             catch { };
         }
+
+        private void RadImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Выход");
+        }
     }
 }

@@ -55,7 +55,7 @@
             </controls:Panorama.Title>
 
             <!--Первый элемент Panorama-->
-            <controls:PanoramaItem Margin="-10,34,0,0" Foreground="{x:Null}">
+            <controls:PanoramaItem Margin="-10,19,0,0" Foreground="{x:Null}">
             	<controls:PanoramaItem.Background>
             		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
             			<GradientStop Color="#68FFFFFF" Offset="1"/>
@@ -101,7 +101,7 @@
             </controls:PanoramaItem>
 
 
-            <controls:PanoramaItem Width="445" Margin="-10,33,0,0">
+            <controls:PanoramaItem Width="445" Margin="-10,18,0,0">
             	<controls:PanoramaItem.Background>
             		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
             			<GradientStop Color="#68FFFFFF" Offset="1"/>
@@ -124,7 +124,7 @@
             </controls:PanoramaItem>
 
 
-            <controls:PanoramaItem Width="445" Margin="-12,33,0,0">
+            <controls:PanoramaItem Width="445" Margin="-12,18,0,0">
             	 <controls:PanoramaItem.Background>
             		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
             			<GradientStop Color="#68FFFFFF" Offset="1"/>
@@ -138,31 +138,86 @@
 						HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>
-                <StackPanel Margin="10,0,10,0">
+                <StackPanel Margin="10,-15,10,0">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <Grid Grid.Row="0" Height="212" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid Grid.Row="0" Height="252" Grid.Column="0" Grid.ColumnSpan="2">
                             <Grid.Background>
-                                <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_profile.png" Stretch="None" />
+                                <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_profile.png" Stretch="None" AlignmentY="Top" />
                             </Grid.Background>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="160"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Image Height="130" Width="130" Margin="20,0,0,0" Source="{Binding UserProfilePicture}" DataContext="{Binding User, Source={StaticResource Locator}}" Stretch="Fill" VerticalAlignment="Center"></Image>
-                            <StackPanel Margin="10,50,0,25" Grid.Row="0" Grid.Column="1">
+                            <Image Grid.Row="0" Height="130" Width="130" Margin="20,0,0,0" Source="{Binding UserProfilePicture}" DataContext="{Binding User, Source={StaticResource Locator}}" Stretch="Fill" VerticalAlignment="Center"></Image>
+                            <StackPanel Grid.Row="0" Margin="10,50,0,25" Grid.Column="1">
                                 <TextBlock Text="{Binding First_name}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
                                 <TextBlock Text="{Binding Last_name}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
                                 <TextBlock Text="{Binding Birthday}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
                                 <TextBlock Text="{Binding Location}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
                             </StackPanel>
-                        </Grid>                     
-                        
+
+                            <telerikPrimitives:RadImageButton 
+                                Margin="0,-6,20,0"
+                                Grid.Column="1" Grid.Row="1"                                
+                                ButtonShape="Image" 
+                                RestStateImageSource="/itsbeta_wp7;component/images/Profile_logout_btn_norm.png" 
+                                HorizontalAlignment="Right" 
+                                PressedStateImageSource="/itsbeta_wp7;component/images/Profile_logout_btn_press.png" Click="RadImageButton_Click" />
+                        </Grid>
+
+                        <StackPanel Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
+                            <StackPanel Orientation="Horizontal">
+                            <Grid Margin="10,0,0,10" Width="200" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_blue.png" Stretch="None" />
+                                </Grid.Background>
+                                <StackPanel Margin="15">
+                                    <TextBlock Text="All Badges:" Foreground="White"/>
+                                    <TextBlock 
+                                        FontWeight="Bold"
+                                        Text="{Binding Achieves.Count}" Foreground="White" 
+                                               DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Margin="10,0,0,10" Width="200" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_green.png" Stretch="None" />
+                                </Grid.Background>
+                                <StackPanel Margin="15">
+                                    <TextBlock Text="Bonuses:" Foreground="White"/>
+                                    <TextBlock 
+                                        FontWeight="Bold"
+                                        Text="{Binding BonusAchieves.Count}" Foreground="White" 
+                                               DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                                </StackPanel>
+                            </Grid>
+                            </StackPanel>
+
+                            <Grid Margin="10,-10,0,10" Width="200" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_violet.png" Stretch="None" />
+                                </Grid.Background>
+                                <StackPanel Margin="15">
+                                    <TextBlock Text="Subcategories:" Foreground="White"/>
+                                    <TextBlock 
+                                        FontWeight="Bold"
+                                        Text="{Binding Categories.Count}" Foreground="White" 
+                                               DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                                </StackPanel>
+                            </Grid>
+
+                        </StackPanel>
                         <!--<StackPanel Margin="0,10,0,0" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">                      
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="All badges " Style="{StaticResource OtherTextblockStyle}"/>
@@ -188,7 +243,7 @@
                 </StackPanel>
             </controls:PanoramaItem>
 
-            <controls:PanoramaItem Width="445" Margin="-12,33,0,0">
+            <controls:PanoramaItem Width="445" Margin="-12,18,0,0">
             	 <controls:PanoramaItem.Background>
             		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
             			<GradientStop Color="#68FFFFFF" Offset="1"/>
