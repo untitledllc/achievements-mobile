@@ -50,7 +50,7 @@
                 <controls:PanoramaItem.Header>
                     <Border Width="600" Background="#FFC0DDDC" 
 					Margin="-22,0,0,0">
-                        <TextBlock Text="Категории" Margin="15,0,0,0"/>
+                        <TextBlock Text="Категории" Foreground="White"  Margin="15,0,0,0"/>
                     </Border>
                 </controls:PanoramaItem.Header>
                 <Grid>
@@ -65,19 +65,20 @@
                                     </Grid.ColumnDefinitions>
                                     <!--<Image Grid.Column="0" Source="{Binding Pic}"/>-->
                                     <StackPanel Grid.Column="0" Margin="10,0,0,0">
-                                        <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap" Style="{StaticResource PhoneTextTitle2Style}" />
+                                        <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap" Style="{StaticResource CategoryTextblockStyle}" />
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Activated_badges_count}"/>
+                                            <TextBlock Text="{Binding Activated_badges_count}" Style="{StaticResource BadgesTextblockStyle}"/>
                                             <!--<TextBlock Text="/"/>
                                             <TextBlock Text="{Binding Total_badges}"/>-->
-                                            <TextBlock Text=" открыто"/>
+                                            <TextBlock Text=" открыто" Style="{StaticResource BadgesTextblockStyle}"/>
                                         </StackPanel>
                                         <!--<TextBlock Text="{Binding Desc}" TextWrapping="Wrap"/>-->
                                     </StackPanel>
                                 </Grid>
-                            </DataTemplate>
-                        </telerikData:RadJumpList.ItemTemplate>
+                            </DataTemplate>							
+                        </telerikData:RadJumpList.ItemTemplate>						
                     </telerikData:RadJumpList>
+					<!--<TextBlock Text="123" FontFamily="Segoe WP"/>-->
                 </Grid>
             </controls:PanoramaItem>
 
@@ -93,7 +94,7 @@
                 <StackPanel>
                     <Button Content="Использовать QR-ридер" Name="QrReaderButton" Click="QrReaderButton_Click" Style="{StaticResource QRButtonStyle}" Height="120" />
                     <Button Content="Ввести код" Name="ActivateCOdeButton" Click="ActivateCOdeButton_Click" Style="{StaticResource ActivateButtonStyle}" Height="120" />
-                    <TextBlock TextWrapping="Wrap" Text="Введите код или считайте QR-код"/>
+                    <TextBlock TextWrapping="Wrap" Text="Введите код или считайте QR-код" Style="{StaticResource BadgesTextblockStyle}"/>
                 </StackPanel>
             </controls:PanoramaItem>
 
@@ -108,7 +109,7 @@
                 <StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -118,30 +119,30 @@
                         
                         <Image Grid.Row="0" Grid.Column="0" Source="{Binding UserProfilePicture}" DataContext="{Binding User, Source={StaticResource Locator}}"></Image>
                         <StackPanel Grid.Row="0" Grid.Column="1">
-                            <TextBlock Text="{Binding First_name}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
-                            <TextBlock Text="{Binding Last_name}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
-                            <TextBlock Text="{Binding Birthday}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
-                            <TextBlock Text="{Binding Location}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                            <TextBlock Text="{Binding First_name}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                            <TextBlock Text="{Binding Last_name}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                            <TextBlock Text="{Binding Birthday}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                            <TextBlock Text="{Binding Location}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">                      
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="All badges "/>
-                                <TextBlock Text="{Binding Achieves.Count}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                                <TextBlock Text="All badges " Style="{StaticResource OtherTextblockStyle}"/>
+                                <TextBlock Text="{Binding Achieves.Count}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Projects "/>
-                                <TextBlock Text="{Binding Projects.Count}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                                <TextBlock Text="Projects " Style="{StaticResource OtherTextblockStyle}"/>
+                                <TextBlock Text="{Binding Projects.Count}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Categories "/>
-                                <TextBlock Text="{Binding Categories.Count}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                                <TextBlock Text="Categories " Style="{StaticResource OtherTextblockStyle}"/>
+                                <TextBlock Text="{Binding Categories.Count}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Bonuses "/>
-                                <TextBlock Text="{Binding BonusAchieves.Count}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                                <TextBlock Text="Bonuses " Style="{StaticResource OtherTextblockStyle}"/>
+                                <TextBlock Text="{Binding BonusAchieves.Count}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -168,8 +169,8 @@
                                     </Grid.ColumnDefinitions>
                                     <Image Grid.Column="0" Source="{Binding Pic}"/>
                                     <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                                        <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap"/>
-                                        <TextBlock Text="{Binding Desc}" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding Display_name}" Style="{StaticResource BadgesTextblockStyle}" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding Desc}" Style="{StaticResource BadgesTextblockStyle}" TextWrapping="Wrap"/>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
