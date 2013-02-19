@@ -15,7 +15,9 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
-    DataContext="{Binding Main, Source={StaticResource Locator}}">
+    shell:SystemTray.BackgroundColor="White"
+    shell:SystemTray.ForegroundColor="Black"
+    DataContext="{Binding Main, Source={StaticResource Locator}}" Background="White">
     
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Minimized">
@@ -40,7 +42,7 @@
                 <ImageBrush ImageSource="images/Achivments_WP7_slicing_panoramaBackground.png"/>
             </controls:Panorama.Background>
             <controls:Panorama.Title>
-            	<Grid Margin="-10,76,0,0" Width="2000">
+            	<Grid Margin="-10,82,0,0" Width="2000" Height="142">
             		<Grid.Background>
             			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFD2D2D2" Offset="1"/>
@@ -52,23 +54,23 @@
             </controls:Panorama.Title>
 
             <!--Первый элемент Panorama-->
-            <controls:PanoramaItem Margin="0,33,0,0" Foreground="{x:Null}">
+            <controls:PanoramaItem Margin="-10,34,0,0" Foreground="{x:Null}">
             	<controls:PanoramaItem.Background>
             		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
             			<GradientStop Color="#68FFFFFF" Offset="1"/>
             			<GradientStop Color="#080F0F0F"/>
-            			<GradientStop Color="Transparent" Offset="0.511"/>
+            			<GradientStop Color="Transparent" Offset="0.5"/>
             		</LinearGradientBrush>
             	</controls:PanoramaItem.Background>
             	<!--<controls:PanoramaItem.Background>
             		<ImageBrush AlignmentX="Right" ImageSource="images/Background_panorama_light.png" Stretch="None"/>
             	</controls:PanoramaItem.Background>-->
                 <controls:PanoramaItem.Header>
-                    <Border Width="600" Background="#FFc0ddd8" Margin="-22,0,0,0">
-                        <TextBlock Text="Категории" Foreground="White"  Margin="15,0,0,0"/>
+                    <Border Width="600" Background="#FFc0ddd8" Margin="-12,0,0,0">
+                        <TextBlock Text="Категории" Foreground="White" Height="95" Margin="15,0,0,0"/>
                     </Border>
                 </controls:PanoramaItem.Header>
-                <Grid>
+                <Grid Margin="10,0,10,0">
                     <telerikData:RadJumpList x:Name="AllCategories" ItemsSource="{Binding Path=Categories}"
                                      DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllCategories_ItemTap" GroupHeaderItemTap="AllCategories_GroupHeaderItemTap" EmptyContentTemplate="{StaticResource NoDataListTemlate}">
                         <telerikData:RadJumpList.ItemTemplate>
@@ -98,15 +100,22 @@
             </controls:PanoramaItem>
 
 
-            <controls:PanoramaItem Width="460" Margin="0,33,0,0">
+            <controls:PanoramaItem Width="445" Margin="-10,33,0,0">
+            	<controls:PanoramaItem.Background>
+            		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
+            			<GradientStop Color="#68FFFFFF" Offset="1"/>
+            			<GradientStop Color="#080F0F0F"/>
+            			<GradientStop Color="Transparent" Offset="0.5"/>
+            		</LinearGradientBrush>
+            	</controls:PanoramaItem.Background>
             	<controls:PanoramaItem.Header>
-                    <Border Width="600" Margin="-22,0,0,0" Background="#FFb0aea7" VerticalAlignment="Top">
+                    <Border Width="600" Margin="-12,0,0,0" Background="#FFb0aea7" VerticalAlignment="Top">
                         <TextBlock Text="Активация" 
                                    Margin="20,0,0,0"
                                    HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>
-                <StackPanel>
+                <StackPanel Margin="10,0,10,0">
                     <Button Content="Использовать QR-ридер" Name="QrReaderButton" Click="QrReaderButton_Click" Style="{StaticResource QRButtonStyle}" Height="120" />
                     <Button Content="Ввести код" Name="ActivateCOdeButton" Click="ActivateCOdeButton_Click" Style="{StaticResource ActivateButtonStyle}" Height="120" />
                     <TextBlock TextWrapping="Wrap" Text="Введите код или считайте QR-код" Style="{StaticResource BadgesTextblockStyle}"/>
@@ -114,14 +123,21 @@
             </controls:PanoramaItem>
 
 
-            <controls:PanoramaItem Width="460" Margin="0,33,0,0">
+            <controls:PanoramaItem Width="445" Margin="-12,33,0,0">
+            	 <controls:PanoramaItem.Background>
+            		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
+            			<GradientStop Color="#68FFFFFF" Offset="1"/>
+            			<GradientStop Color="#080F0F0F"/>
+            			<GradientStop Color="Transparent" Offset="0.5"/>
+            		</LinearGradientBrush>
+            	</controls:PanoramaItem.Background>
             	<controls:PanoramaItem.Header>
-                    <Border Width="460" Margin="-22,0,0,0" Background="#FFa8cd8b" VerticalAlignment="Top">
+                    <Border Width="460" Margin="-12,0,0,0" Background="#FFa8cd8b" VerticalAlignment="Top">
                         <TextBlock Text="Профиль" Margin="15,0,0,0"
 						HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>
-                <StackPanel>
+                <StackPanel Margin="10,0,10,0">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"/>
@@ -164,14 +180,21 @@
                 </StackPanel>
             </controls:PanoramaItem>
 
-            <controls:PanoramaItem Width="460" Margin="0,33,0,0">
+            <controls:PanoramaItem Width="445" Margin="-12,33,0,0">
+            	 <controls:PanoramaItem.Background>
+            		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
+            			<GradientStop Color="#68FFFFFF" Offset="1"/>
+            			<GradientStop Color="#080F0F0F"/>
+            			<GradientStop Color="Transparent" Offset="0.5"/>
+            		</LinearGradientBrush>
+            	</controls:PanoramaItem.Background>
             	<controls:PanoramaItem.Header>
-                    <Border Width="600" Margin="-22,0,0,0" Background="#FFb095b6" VerticalAlignment="Top">
+                    <Border Width="600" Margin="-12,0,0,0" Background="#FFb095b6" VerticalAlignment="Top">
                         <TextBlock Text="Последнее"
 						Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>
-                <Grid>
+                <Grid Margin="10,0,10,0">
                     <telerikData:RadJumpList x:Name="LastAchieves"                                     
                                      ItemsSource="{Binding Path=LastAchieves}"
                                      DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="LastAchieves_ItemTap">
