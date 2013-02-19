@@ -246,6 +246,7 @@
     <Content Include="images\logo.png" />
     <Resource Include="images\logo1.png" />
     <Resource Include="images\Logo_panorama.png" />
+    <Resource Include="images\Paper_profile.png" />
     <Content Include="Libs\Silverlight_ZXing_Core.dll" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
