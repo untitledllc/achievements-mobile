@@ -212,6 +212,7 @@
     <None Include="Properties\WMAppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Achivments_WP7_slicing_panoramaBackground.png" />
     <Content Include="ApplicationIcon.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -232,13 +233,14 @@
     </Content>
     <Resource Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Resource Include="Toolkit.Content\ApplicationBar.Check.png" />
-    <Resource Include="images\bg.png" />
     <Resource Include="images\Achive-itsbeta.png" />
     <Content Include="icons\appbar.refresh.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\Achivments_WP7_slicing_panoramaBackground.png" />
     <Content Include="images\logo.png" />
     <Resource Include="images\logo1.png" />
+    <Resource Include="images\Logo_panorama.png" />
     <Content Include="Libs\Silverlight_ZXing_Core.dll" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

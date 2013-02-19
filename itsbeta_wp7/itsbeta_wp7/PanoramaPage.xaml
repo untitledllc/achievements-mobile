@@ -36,17 +36,23 @@
     </shell:SystemTray.ProgressIndicator>
 
     <!--LayoutRoot содержит корневую сетку, где размещается все содержимое страницы-->
-    <Grid x:Name="LayoutRoot">
-        <controls:Panorama>
+    <Grid x:Name="LayoutRoot" Background="White">
+        <controls:Panorama Margin="0">
             <!--<controls:Panorama.Background>
-                <ImageBrush ImageSource="images/bg.png" Stretch="None" />
+                <ImageBrush ImageSource="images/Achivments_WP7_slicing_panoramaBackground.png" Stretch="None" />
             </controls:Panorama.Background>-->
             <controls:Panorama.Title>
-                <Image Margin="-10,75,0,0" Source="/itsbeta_wp7;component/images/logo1.png"/>
+                <Image Margin="-10,76,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" />
             </controls:Panorama.Title>
 
             <!--Первый элемент Panorama-->
-            <controls:PanoramaItem Header="Категории">
+            <controls:PanoramaItem>
+                <controls:PanoramaItem.Header>
+                    <Border Width="600" Background="#FFC0DDDC" 
+					Margin="-22,0,0,0">
+                        <TextBlock Text="Категории" Margin="15,0,0,0"/>
+                    </Border>
+                </controls:PanoramaItem.Header>
                 <Grid>
                     <telerikData:RadJumpList x:Name="AllCategories" ItemsSource="{Binding Path=Categories}"
                                      DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllCategories_ItemTap" GroupHeaderItemTap="AllCategories_GroupHeaderItemTap" EmptyContentTemplate="{StaticResource NoDataListTemlate}">
@@ -76,7 +82,14 @@
             </controls:PanoramaItem>
 
 
-            <controls:PanoramaItem Header="активация">
+            <controls:PanoramaItem Width="460" Orientation="Horizontal">
+            	<controls:PanoramaItem.Header>
+                    <Border Width="600" Margin="-22,0,0,0" Background="#FFAFAEA4" VerticalAlignment="Top">
+                        <TextBlock Text="Активация" 
+                                   Margin="20,0,0,0"
+                                   HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    </Border>
+                </controls:PanoramaItem.Header>
                 <StackPanel>
                     <Button Content="Использовать QR-ридер" Name="QrReaderButton" Click="QrReaderButton_Click" Style="{StaticResource QRButtonStyle}" Height="120" />
                     <Button Content="Ввести код" Name="ActivateCOdeButton" Click="ActivateCOdeButton_Click" Style="{StaticResource ActivateButtonStyle}" Height="120" />
@@ -85,7 +98,13 @@
             </controls:PanoramaItem>
 
 
-            <controls:PanoramaItem Header="Профиль">
+            <controls:PanoramaItem Width="460" Orientation="Horizontal">
+            	<controls:PanoramaItem.Header>
+                    <Border Width="460" Margin="-22,0,0,0" Background="#FFAACF8C" VerticalAlignment="Top">
+                        <TextBlock Text="Профиль" Margin="15,0,0,0"
+						HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    </Border>
+                </controls:PanoramaItem.Header>
                 <StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -128,8 +147,14 @@
                     </Grid>
                 </StackPanel>
             </controls:PanoramaItem>
-            
-            <controls:PanoramaItem Header="Последнее">
+
+            <controls:PanoramaItem Width="460" Orientation="Horizontal">
+            	<controls:PanoramaItem.Header>
+                    <Border Width="600" Margin="-22,0,0,0" Background="#FFB196B7" VerticalAlignment="Top">
+                        <TextBlock Text="Последнее"
+						Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    </Border>
+                </controls:PanoramaItem.Header>
                 <Grid>
                     <telerikData:RadJumpList x:Name="LastAchieves"                                     
                                      ItemsSource="{Binding Path=LastAchieves}"
