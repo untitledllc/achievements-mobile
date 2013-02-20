@@ -122,7 +122,7 @@
         p1:layout_height="wrap_content"
         p1:layout_below="@id/badgewin_badgeTextView"
         p1:id="@+id/badgewin_categ_projectTextView"
-        p1:layout_alignLeft="@+id/badgewin_badgeImageView"
+        p1:layout_alignLeft="@id/badgewin_badgeTextView"
         p1:layout_marginTop="10dp"
         p1:textColor="#ff606060"
         p1:textSize="12dp" />

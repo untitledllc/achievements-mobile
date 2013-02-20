@@ -19,7 +19,8 @@ namespace itsbeta.achievements.gui
         {
             Items = items;
         }
-
+        AchievementsListData _item;
+        bool tada = false;
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             View view = convertView;
@@ -145,10 +146,13 @@ namespace itsbeta.achievements.gui
             //view.StartAnimation(animation);
             //view.StartAnimation(animrotate);
 
-            view.Click += delegate { SecondScreenActivity.AchieveListSelectedEventTextView.Text = item.AchieveApiName; };
+            //view.Click += delegate { 
+            //    SecondScreenActivity.AchieveListSelectedEventTextView.Text = item.AchieveApiName;
+            //};
 
             return view;
         }
+
 
         DateTime LocalDateTime(string strDateTime)
         {

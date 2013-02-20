@@ -281,9 +281,10 @@ namespace itsbeta.achievements
         #endregion
 
         #region
+        List<AchievementsListData> _achievementsList;
         private void CreateAchievementsViewObject()
         {
-            List<AchievementsListData> achievementsList = new List<AchievementsListData>();
+            _achievementsList = new List<AchievementsListData>();
             
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
             {
@@ -298,7 +299,7 @@ namespace itsbeta.achievements
                             &&
                             AppInfo._selectedSubCategoriesDictionary[AppInfo._achievesInfo.CategoryArray[i].Projects[j].DisplayName] == true)
                             {
-                                achievementsList.Add(new AchievementsListData()
+                                _achievementsList.Add(new AchievementsListData()
                                 {
                                     AchieveApiName = String.Format("{0}",
                                     AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName),
@@ -324,18 +325,19 @@ namespace itsbeta.achievements
 
             achievementsListView.DividerHeight = 0;
 
-            var adapter = new AchievementsListItemAdapter(this, Resource.Layout.SecondScreenListRow, achievementsList);
+            var adapter = new AchievementsListItemAdapter(this, Resource.Layout.SecondScreenListRow, _achievementsList);
             achievementsListView.Adapter = adapter;
 
+            achievementsListView.Focusable = false;
 
+            achievementsListView.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs>(achievementsListView_ItemClick);
 
-            AchieveListSelectedEventTextView.TextChanged += new EventHandler<Android.Text.TextChangedEventArgs>(AchieveListSelectedEventTextView_TextChanged);
 
         }
 
-
-        ItsBeta.Core.Achieves.ParentCategory.ParentProject.Achieve achive;
-        void AchieveListSelectedEventTextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        
+        ItsBeta.Core.Achieves.ParentCategory.ParentProject.Achieve achieve;
+        void achievementsListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             int iID = 0;
             int jID = 0;
@@ -347,9 +349,9 @@ namespace itsbeta.achievements
                 {
                     for (int k = 0; k < AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Count(); k++)
                     {
-                        if (AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName == e.Text.ToString())
+                        if (AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName == _achievementsList[(int)e.Id].AchieveApiName)
                         {
-                            achive = AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k];
+                            achieve = AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k];
                             iID = i;
                             jID = j;
                         }
@@ -359,24 +361,64 @@ namespace itsbeta.achievements
 
 
             LayoutInflater inflater = (LayoutInflater)this.GetSystemService(LayoutInflaterService);
-            ViewGroup relativeAgedSummary = new RelativeLayout(this);
 
+            ViewGroup relativeAgedSummary = new RelativeLayout(this);
             View layout = inflater.Inflate(Resource.Layout.BadgeWindowActivityLayout, relativeAgedSummary);
 
-            TextView badgeName = (TextView)layout.FindViewById(Resource.Id.badgewin_badgeTextView);
-            badgeName.Text = achive.DisplayName;
-
             ImageView badgeImage = (ImageView)layout.FindViewById(Resource.Id.badgewin_BadgeImageView);
-            badgeImage.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/itsbeta.achievements/cache/pictures/" + "achive" +
-                achive.ApiName +
-                ".PNG"
-                ));
+            ImageView bonusLineImage = (ImageView)layout.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
+            ImageButton badgeReadyButton = (ImageButton)layout.FindViewById(Resource.Id.badgewin_CloseImageButton);
 
+            TextView badgeName = (TextView)layout.FindViewById(Resource.Id.badgewin_badgeTextView);
             TextView categoryNameProjectName = (TextView)layout.FindViewById(Resource.Id.badgewin_categ_projectTextView);
-            categoryNameProjectName.Text = AppInfo._achievesInfo.CategoryArray[iID].DisplayName + ", " + AppInfo._achievesInfo.CategoryArray[iID].Projects[jID].DisplayName;
-
             TextView badgeHowWonderDescr = (TextView)layout.FindViewById(Resource.Id.badgewin_wonderdescrTextView);
-            badgeHowWonderDescr.Text = achive.Description;
+            TextView bonusName = (TextView)layout.FindViewById(Resource.Id.badgewin_greenbonusTextView);
+            TextView bonusDescr = (TextView)layout.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+
+            badgeName.Text = achieve.DisplayName;
+            badgeImage.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/itsbeta.achievements/cache/pictures/" + "achive" +achieve.ApiName + ".PNG"));
+            categoryNameProjectName.Text = AppInfo._achievesInfo.CategoryArray[iID].DisplayName + ", " + AppInfo._achievesInfo.CategoryArray[iID].Projects[jID].DisplayName;
+            badgeHowWonderDescr.Text = achieve.Description;
+
+
+            if (achieve.BonusStatus == "")
+            {
+                bonusLineImage.Visibility = ViewStates.Invisible;
+                bonusDescr.Visibility = ViewStates.Invisible;
+                bonusName.Visibility = ViewStates.Invisible;
+            }
+            if (achieve.BonusStatus == "discount")
+            {
+                bonusLineImage.Visibility = ViewStates.Visible;
+                bonusDescr.Visibility = ViewStates.Visible;
+                bonusName.Text = "Скидка";
+                bonusDescr.Text = "";
+                bonusLineImage.SetBackgroundResource(Resource.Drawable.Paper_Divider_blue);
+            }
+            if (achieve.BonusStatus == "present")
+            {
+                bonusLineImage.Visibility = ViewStates.Visible;
+                bonusDescr.Visibility = ViewStates.Visible;
+                bonusName.Text = "Подарок";
+                bonusDescr.Text = "";
+                bonusLineImage.SetBackgroundResource(Resource.Drawable.Paper_Divider_violet);
+            }
+            if (achieve.BonusStatus == "bonus")
+            {
+                bonusLineImage.Visibility = ViewStates.Visible;
+                bonusDescr.Visibility = ViewStates.Visible;
+                bonusName.Text = "Бонус";
+                bonusDescr.Text = "";
+                bonusLineImage.SetBackgroundResource(Resource.Drawable.Paper_Divider_green);
+            }
+
+
+
+
+
+
+
+
 
 
             var badgePopupWindow = new PopupWindow(layout,
@@ -384,7 +426,8 @@ namespace itsbeta.achievements
 
             badgePopupWindow.ShowAsDropDown(FindViewById<TextView>(Resource.Id.secaondscr_faketextView), 0, 0);
 
-            ImageButton badgeReadyButton = (ImageButton)layout.FindViewById(Resource.Id.badgewin_CloseImageButton);
+
+            
 
             badgeReadyButton.Click += delegate
             {

@@ -100,7 +100,7 @@
         p1:clickable="true"
         p1:layout_below="@+id/secondscr_categoriesbar_linearLayout" />
     <TextView
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
+        p1:layout_width="0dp"
+        p1:layout_height="0dp"
         p1:id="@+id/secaondscr_faketextView" />
 </RelativeLayout>
