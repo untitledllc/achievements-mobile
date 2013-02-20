@@ -27,7 +27,7 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
-            <ImageBrush ImageSource="images/Achivments_WP7_slicing_panoramaBackground.png" AlignmentY="Bottom" AlignmentX="Left" />
+            <ImageBrush ImageSource="images/Background.png" AlignmentY="Bottom" AlignmentX="Left" />
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

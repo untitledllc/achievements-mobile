@@ -252,6 +252,8 @@
     <Resource Include="images\Profile_statisticPaper_violet.png" />
     <Resource Include="images\Profile_logout_btn_norm.png" />
     <Resource Include="images\Profile_logout_btn_press.png" />
+    <Resource Include="images\Paper_labels_norm.png" />
+    <Resource Include="images\Paper_project_norm.png" />
     <Content Include="Libs\Silverlight_ZXing_Core.dll" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

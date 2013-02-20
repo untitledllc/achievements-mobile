@@ -55,7 +55,7 @@
             </controls:Panorama.Title>
 
             <!--Первый элемент Panorama-->
-            <controls:PanoramaItem Margin="-10,19,0,0" Width="470" Orientation="Horizontal">
+            <controls:PanoramaItem Margin="-10,18,0,0" Width="470" Orientation="Horizontal">
             	<controls:PanoramaItem.Background>
             		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
             			<GradientStop Color="#68FFFFFF" Offset="1"/>
@@ -68,10 +68,10 @@
             	</controls:PanoramaItem.Background>-->
                 <controls:PanoramaItem.Header>
                     <Border Width="600" Background="#FFc0ddd8" Margin="-12,0,0,0">
-                        <TextBlock Text="Категории" Foreground="White" Height="95" Margin="15,0,0,0"/>
+                        <TextBlock Text="категории" Margin="15,-15,0,0" Foreground="White"/>
                     </Border>
                 </controls:PanoramaItem.Header>
-                <Grid Margin="10,0,10,0">
+                <Grid Margin="10,-10,10,0">
                     <telerikData:RadJumpList x:Name="AllCategories" ItemsSource="{Binding Path=Categories}"
                                      DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllCategories_ItemTap" GroupHeaderItemTap="AllCategories_GroupHeaderItemTap" EmptyContentTemplate="{StaticResource NoDataListTemlate}">
                         <telerikData:RadJumpList.ItemTemplate>
@@ -111,8 +111,8 @@
             	</controls:PanoramaItem.Background>
             	<controls:PanoramaItem.Header>
                     <Border Width="600" Margin="-12,0,0,0" Background="#FFb0aea7" VerticalAlignment="Top">
-                        <TextBlock Text="Активация" 
-                                   Margin="20,0,0,0"
+                        <TextBlock Text="активация" 
+                                   Margin="20,-15,0,0"
                                    HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>
@@ -134,11 +134,11 @@
             	</controls:PanoramaItem.Background>
             	<controls:PanoramaItem.Header>
                     <Border Width="460" Margin="-12,0,0,0" Background="#FFa8cd8b" VerticalAlignment="Top">
-                        <TextBlock Text="Профиль" Margin="15,0,0,0"
+                        <TextBlock Text="профиль" Margin="15,-15,0,0"
 						HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>
-                <StackPanel Margin="10,-15,10,0">
+                <StackPanel Margin="10,-10,10,0">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -253,11 +253,11 @@
             	</controls:PanoramaItem.Background>
             	<controls:PanoramaItem.Header>
                     <Border Width="600" Margin="-12,0,0,0" Background="#FFb095b6" VerticalAlignment="Top">
-                        <TextBlock Text="Последнее"
-						Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBlock Text="последнее"
+						Margin="15,-15,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>
-                <Grid Margin="10,0,10,0">
+                <Grid Margin="10,-10,10,0">
                     <telerikData:RadJumpList x:Name="LastAchieves"                                     
                                      ItemsSource="{Binding Path=LastAchieves}"
                                      DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="LastAchieves_ItemTap">
@@ -265,13 +265,15 @@
                             <DataTemplate>
                                 <Grid Margin="10,10,0,0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="130" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
+									<Grid.Background>
+                						<ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_labels_norm.png" AlignmentX="Right" Stretch="None" />
+           	 						</Grid.Background>
                                     <Image Grid.Column="0" Source="{Binding Pic}"/>
-                                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                                        <TextBlock Text="{Binding Display_name}" Style="{StaticResource BadgesTextblockStyle}" TextWrapping="Wrap"/>
-                                        <TextBlock Text="{Binding Desc}" Style="{StaticResource BadgesTextblockStyle}" TextWrapping="Wrap"/>
+                                    <StackPanel Height="66" Grid.Column="1" Margin="14,48,0,0" UseLayoutRounding="True" VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding Display_name}" Style="{StaticResource BadgesTextblockStyle}"/>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>

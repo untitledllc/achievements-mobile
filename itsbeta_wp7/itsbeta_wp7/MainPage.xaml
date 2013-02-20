@@ -19,7 +19,36 @@
                             shell:SystemTray.Opacity="0"
                             shell:SystemTray.BackgroundColor="White"
                             shell:SystemTray.ForegroundColor="Black"
-                            DataContext="{Binding Main, Source={StaticResource Locator}}">
+                            DataContext="{Binding Main, Source={StaticResource Locator}}" Background="White">
+	<phone:PhoneApplicationPage.Resources>
+		<DataTemplate x:Key="DataTemplate1">
+			<Border HorizontalAlignment="Stretch">
+				<Border.Background>
+					<ImageBrush Stretch="None" AlignmentY="Top" ImageSource="/itsbeta_wp7;component/images/Paper_project_norm.png" />
+				</Border.Background>
+				<TextBlock Text="{Binding}" 
+					HorizontalAlignment="Left" 
+					VerticalAlignment="Bottom" 
+					Margin="50,9,6,6"
+					Style="{StaticResource CategoryTextblockStyle}"/>
+			</Border>
+		</DataTemplate>
+		<DataTemplate x:Key="GroupPickerTemplate">
+			<Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="6">
+				<Border.Background>
+					<SolidColorBrush Color="White"/>
+				</Border.Background>
+				<TextBlock 
+					Foreground="Black"
+					FontSize="{StaticResource PhoneFontSizeExtraLarge}" 
+					Text="{Binding}" 
+					Margin="4" 
+					Style="{StaticResource CategoryTextblockStyle}"
+					VerticalAlignment="Stretch" 
+					HorizontalAlignment="Left"/>
+			</Border>
+		</DataTemplate>
+	</phone:PhoneApplicationPage.Resources>
 	
 
     
@@ -40,8 +69,8 @@
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
 	<Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <ImageBrush ImageSource="images/Achivments_WP7_slicing_panoramaBackground.png" AlignmentY="Bottom" AlignmentX="Left" />
+		<Grid.Background>
+            <ImageBrush ImageSource="images/Background.png" AlignmentY="Top" AlignmentX="Left" />
         </Grid.Background>
         <Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
@@ -76,7 +105,7 @@
                 x:Name="AllBadges"                                      
                                      GroupHeaderItemTap="AllBadges_GroupHeaderItemTap"
                                      ItemsSource="{Binding Path=CategoryAchieves}"
-                                     DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllBadges_ItemTap">
+                                     DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllBadges_ItemTap" GroupHeaderTemplate="{StaticResource DataTemplate1}" GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}">
                 <telerikData:RadJumpList.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="10,10,0,0">
