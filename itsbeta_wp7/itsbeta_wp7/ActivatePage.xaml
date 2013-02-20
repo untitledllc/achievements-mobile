@@ -16,7 +16,7 @@
                             shell:SystemTray.IsVisible="True"
                             DataContext="{Binding ViewModelName, Source={StaticResource Locator}}">
 	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar>
+        <shell:ApplicationBar  BackgroundColor="#FF535353" ForegroundColor="White">
 			<shell:ApplicationBarIconButton x:Name="OkButton" IconUri="/icons/appbar.check.rest.png" Text="button" Click="OkButton_Click"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
@@ -25,8 +25,10 @@
         <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="загрузка..." />
     </shell:SystemTray.ProgressIndicator>
 
-    <Grid x:Name="LayoutRoot"
-          Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="images/Achivments_WP7_slicing_panoramaBackground.png" AlignmentY="Bottom" AlignmentX="Left" />
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -34,15 +36,21 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel"
-                    Grid.Row="0"
-                    Margin="12,17,0,28">
+		            Grid.Row="0" Height="148"
+		            Margin="0,0,0,0">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2D2D2" Offset="1"/>
+                    <GradientStop Color="White" Offset="0.90"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
             <TextBlock x:Name="ApplicationTitle"
-                       Text="itsbeta"
-                       Style="{StaticResource PhoneTextNormalStyle}" />
+			           Text="ITSBETA" Margin="10,0,0,0"
+			           Style="{StaticResource OtherTextblockStyle}" />
             <TextBlock x:Name="PageTitle"
-                       Text="Activate badge"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
+			           Text="Activate badge"
+			           Margin="10,20,0,0"
+			           Style="{StaticResource ProjectTextblockStyle}" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -50,9 +58,9 @@
               Grid.Row="1"
               Margin="12,0,12,0">
         	   <StackPanel>
-        	   	<TextBlock Text="Введите код"/>
-        	   	<TextBox Text="" Name="ActivationCode"/>  
-				<TextBlock Text="описание"/>	   
+        	   	<TextBlock Text="Введите код" Style="{StaticResource OtherTextblockStyle}" />
+        	   	<TextBox Text="" Name="ActivationCode"/>
+                <TextBlock Text="описание" Style="{StaticResource OtherTextblockStyle}" />	   
 			   </StackPanel>
 		</Grid>
     </Grid>

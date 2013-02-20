@@ -14,11 +14,17 @@
                             Orientation="Portrait"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
-                            d:DesignHeight="696"
-                            shell:SystemTray.IsVisible="True"
+                            d:DesignHeight="728"
+                            shell:SystemTray.IsVisible="{Binding Loading}"
+                            shell:SystemTray.Opacity="0"
+                            shell:SystemTray.BackgroundColor="White"
+                            shell:SystemTray.ForegroundColor="Black"
                             DataContext="{Binding Main, Source={StaticResource Locator}}">
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar>
+	
+
+    
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar  BackgroundColor="#FF535353" ForegroundColor="White">
 			<shell:ApplicationBar.MenuItems>
 				<shell:ApplicationBarMenuItem Text="Оценить приложение"/>
 				<shell:ApplicationBarMenuItem Text="О программе"/>
@@ -33,31 +39,41 @@
     </shell:SystemTray.ProgressIndicator>
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
-	<Grid x:Name="LayoutRoot"
-	      Background="Transparent">
-		<Grid.RowDefinitions>
+	<Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="images/Achivments_WP7_slicing_panoramaBackground.png" AlignmentY="Bottom" AlignmentX="Left" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
 		<!--TitlePanel contains the name of the application and page title-->
 		<StackPanel x:Name="TitlePanel"
-		            Grid.Row="0"
-		            Margin="24,24,0,12">
-			<TextBlock x:Name="ApplicationTitle"
-			           Text="itsbeta"
-			           Style="{StaticResource PhoneTextNormalStyle}" />
+		            Grid.Row="0" Height="148"
+		            Margin="0,0,0,0">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2D2D2" Offset="1"/>
+                    <GradientStop Color="White" Offset="0.90"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <TextBlock x:Name="ApplicationTitle"
+			           Text="ITSBETA" Margin="10,0,0,0"
+			           Style="{StaticResource OtherTextblockStyle}" />
 			<TextBlock x:Name="PageTitle"
 			           Text="{Binding Path=CurrentCategory.Display_name}"
-			           Margin="-3,-8,0,0"
-			           Style="{StaticResource PhoneTextTitle1Style}" />
+			           Margin="10,20,0,0"
+			           Style="{StaticResource ProjectTextblockStyle}" />
 		</StackPanel>
 
 		<!--ContentPanel - place additional content here-->
 		<Grid x:Name="ContentGrid"
 		      Grid.Row="1">
             <!--GroupDescriptorsSource="{Binding Path=GroupedBadgesList}"-->
-            <telerikData:RadJumpList x:Name="AllBadges"                                      
+            <telerikData:RadJumpList 
+                EmptyContentTemplate="{StaticResource NoDataListTemlate}"
+                x:Name="AllBadges"                                      
                                      GroupHeaderItemTap="AllBadges_GroupHeaderItemTap"
                                      ItemsSource="{Binding Path=CategoryAchieves}"
                                      DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllBadges_ItemTap">
@@ -70,8 +86,8 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.Column="0" Source="{Binding Pic}"/>
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
-                                    <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap"/>
-                                    <TextBlock Text="{Binding Desc}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap" Style="{StaticResource CategoryTextblockStyle}" />
+                                    <TextBlock Text="{Binding Desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>

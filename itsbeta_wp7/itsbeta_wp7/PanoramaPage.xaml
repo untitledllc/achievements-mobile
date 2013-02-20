@@ -21,7 +21,7 @@
     DataContext="{Binding Main, Source={StaticResource Locator}}" Background="White">
     
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar Mode="Minimized">
+        <shell:ApplicationBar Mode="Minimized" BackgroundColor="#FF535353" ForegroundColor="White">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="Оценить приложение"/>
                 <shell:ApplicationBarMenuItem Text="О программе"/>

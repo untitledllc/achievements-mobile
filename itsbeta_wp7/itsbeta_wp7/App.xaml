@@ -167,11 +167,7 @@
         			</ControlTemplate>
         		</Setter.Value>
         	</Setter>
-        </Style>
-		
-        <DataTemplate x:Key="NoDataListTemlate">
-        	<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Нет данных" Style="{StaticResource CategoryTextblockStyle}"/>
-        </DataTemplate>
+        </Style>		
 		
         <Style x:Key="CategoryTextblockStyle" TargetType="TextBlock">
         	<Setter Property="Foreground" Value="#FF92918A"/>
@@ -190,6 +186,17 @@
         	<Setter Property="FontFamily" Value="Segoe WP"/>
         	<Setter Property="FontSize" Value="21"/>
         </Style>
+
+        <Style x:Key="ProjectTextblockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF4c4c4b"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
+            <Setter Property="FontSize" Value="38"/>
+        </Style>
+
+        <DataTemplate x:Key="NoDataListTemlate">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Нет данных" Style="{StaticResource CategoryTextblockStyle}"/>
+        </DataTemplate>
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

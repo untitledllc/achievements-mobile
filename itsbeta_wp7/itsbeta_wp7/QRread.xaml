@@ -19,22 +19,37 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <!--<Grid.Background>
-            <ImageBrush ImageSource="images/back_02.png"/>
-        </Grid.Background>-->
+        <Grid.Background>
+            <ImageBrush ImageSource="images/Achivments_WP7_slicing_panoramaBackground.png" AlignmentY="Bottom" AlignmentX="Left" />
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="20,60,0,20">
-            <TextBlock x:Name="ApplicationTitle" Text="Чтение QR" Style="{StaticResource PhoneTextNormalStyle}"/>
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel"
+		            Grid.Row="0" Height="158"
+		            Margin="0,0,0,0">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2D2D2" Offset="1"/>
+                    <GradientStop Color="White" Offset="0.90"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <TextBlock x:Name="ApplicationTitle"
+			           Text="ITSBETA" Margin="10,0,0,0"
+			           Style="{StaticResource OtherTextblockStyle}" />
+            <TextBlock x:Name="PageTitle"
+			           Text="QR code activate"
+			           Margin="10,20,0,0"
+			           Style="{StaticResource ProjectTextblockStyle}" />
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
             <Rectangle x:Name="_previewRect" 
                Margin="0" 
-               Height="700" 
+               Height="630" 
                Width="500" Grid.Row="0" Grid.Column="0"
                HorizontalAlignment="Center" 
                VerticalAlignment="Center">
