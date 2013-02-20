@@ -93,7 +93,12 @@ namespace itsbeta_wp7
 
         private void RadImageButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Выход");
+            try
+            {
+                NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+            }
+            catch { };
+            //MessageBox.Show("Выход");
         }
     }
 }

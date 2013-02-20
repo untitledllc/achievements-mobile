@@ -43,6 +43,14 @@ namespace itsbeta_wp7.ViewModel
             ////}
         }
 
+        public override void Cleanup()
+        {
+            FacebookId = "";
+            FacebookToken = "";
+            // Clean up if needed
+            base.Cleanup();
+        }
+
         public void GetPlayerId() {
             try
             {

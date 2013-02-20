@@ -265,11 +265,10 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
-        ////public override void Cleanup()
-        ////{
-        ////    // Clean up if needed
-
-        ////    base.Cleanup();
-        ////}
+        public override void Cleanup()
+        {
+            // Clean up if needed
+            base.Cleanup();
+        }
     }
 }

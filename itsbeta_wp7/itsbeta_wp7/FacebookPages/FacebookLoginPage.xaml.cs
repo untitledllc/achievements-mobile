@@ -41,13 +41,18 @@ namespace facebook_windows_phone_sample.Pages
             {
                 if (ViewModelLocator.UserStatic.FacebookId != "")
                 {
-                    NavigationService.GoBack();
+                    webBrowser1.Navigate(new Uri("https://www.facebook.com/logout.php?access_token=" + ViewModelLocator.UserStatic.FacebookToken + "&confirm=1&next=http://itsbeta.com/ru/"));
+                    //NavigationService.GoBack();
+                }
+                else
+                {
+                    var loginUrl = GetFacebookLoginUrl(AppId, ExtendedPermissions);
+                    webBrowser1.Navigate(loginUrl);
                 };
             }
             catch { };
 
-            var loginUrl = GetFacebookLoginUrl(AppId, ExtendedPermissions);
-            webBrowser1.Navigate(loginUrl);
+
         }
 
         private Uri GetFacebookLoginUrl(string appId, string extendedPermissions)
@@ -71,21 +76,35 @@ namespace facebook_windows_phone_sample.Pages
         private void webBrowser1_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             FacebookOAuthResult oauthResult;
-            if (!_fb.TryParseOAuthCallbackUrl(e.Uri, out oauthResult))
+            if (e.Uri.AbsolutePath == "/ru/")
             {
-                return;
-            }
-
-            if (oauthResult.IsSuccess)
-            {
-                var accessToken = oauthResult.AccessToken;
-                LoginSucceded(accessToken);
+                try
+                {
+                    ViewModelLocator.UserStatic.Cleanup();
+                    ViewModelLocator.MainStatic.Cleanup();
+                    //MessageBox.Show("Выход осуществлен.");
+                    NavigationService.Navigate(new Uri("/LoginPage.xaml", UriKind.Relative));
+                }
+                catch { };                
             }
             else
             {
-                // user cancelled
-                MessageBox.Show(oauthResult.ErrorDescription);
-            }
+                if (!_fb.TryParseOAuthCallbackUrl(e.Uri, out oauthResult))
+                {
+                    return;
+                }
+
+                if (oauthResult.IsSuccess)
+                {
+                    var accessToken = oauthResult.AccessToken;
+                    LoginSucceded(accessToken);
+                }
+                else
+                {
+                    // user cancelled
+                    MessageBox.Show(oauthResult.ErrorDescription);
+                }
+            };
         }
 
         private void LoginSucceded(string accessToken)
