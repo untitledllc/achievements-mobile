@@ -144,8 +144,8 @@ namespace itsbeta.achievements.gui
             view.StartAnimation(asa);
             //view.StartAnimation(animation);
             //view.StartAnimation(animrotate);
-            
-            //view.Click += delegate { MainActivity.AchieveListSelectedEventTextView.Text = item.AchieveApiName; };
+
+            view.Click += delegate { SecondScreenActivity.AchieveListSelectedEventTextView.Text = item.AchieveApiName; };
 
             return view;
         }

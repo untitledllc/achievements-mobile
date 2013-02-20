@@ -22,24 +22,24 @@
         p1:background="@drawable/NavBar_leftWindow"
         p1:layout_alignBaseline="@id/NavBar_ImageButton" />
     <ImageView
-        p1:layout_width="25dp"
-        p1:layout_height="30dp"
+        p1:layout_width="28dp"
+        p1:layout_height="45dp"
         p1:id="@+id/NavBar_GlobedImageView"
         p1:layout_alignBottom="@id/secondscr_NavBar_LeftWinImageView"
         p1:layout_alignLeft="@id/secondscr_NavBar_LeftWinImageView"
-        p1:layout_alignTop="@id/secondscr_NavBar_LeftWinImageView"
-        p1:src="@drawable/NavBar_screen_icon" />
+        p1:src="@drawable/NavBar_screen_icon"
+        p1:layout_marginLeft="3dp" />
     <TextView
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
         p1:layout_toRightOf="@id/NavBar_GlobedImageView"
         p1:id="@+id/NavBar_AchievesCountTextView"
-        p1:textColor="#ff55d9ff"
+        p1:textColor="#ff45c2e6"
         p1:textStyle="bold"
-        p1:layout_alignTop="@id/secondscr_NavBar_LeftWinImageView"
-        p1:layout_marginTop="7.5dp"
-        p1:layout_marginLeft="20dp" />
+        p1:layout_marginTop="12dp"
+        p1:layout_marginLeft="15dp"
+        p1:textSize="23dp" />
     <ImageButton
         p1:layout_width="25dp"
         p1:layout_height="25dp"
@@ -98,5 +98,9 @@
         p1:id="@+id/secondscr_linearLayoutInactive"
         p1:background="#47000000"
         p1:clickable="true"
-        p1:layout_below="@+id/NavBar_ImageButton" />
+        p1:layout_below="@+id/secondscr_categoriesbar_linearLayout" />
+    <TextView
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/secaondscr_faketextView" />
 </RelativeLayout>

@@ -79,21 +79,37 @@ namespace itsbeta.achievements
                     var jSonResponse = WebControls.GetMethod2("https://graph.facebook.com/me?fields=id,name,birthday,locale,location&access_token=" + AppInfo._fbAccessToken);
                     var jSonUserFb = JsonArray.Parse(jSonResponse);
 
-                    if (jSonUserFb["id"] != null)
+                    try
                     {
-                    AppInfo._user.FacebookUserID = jSonUserFb["id"];
+                        AppInfo._user.FacebookUserID = jSonUserFb["id"];
                     }
-                    if (jSonUserFb["name"] != null)
+                    catch
+                    {
+ 
+                    }
+                    try
                     {
                         AppInfo._user.Fullname = jSonUserFb["name"];
                     }
-                    if (jSonUserFb["birthday"] != null)
+                    catch
+                    {
+ 
+                    }
+                    try
                     {
                         AppInfo._user.BirthDate = jSonUserFb["birthday"];
                     }
-                    if (jSonUserFb["location"]["name"] != null)
+                    catch
+                    {
+                        AppInfo._user.BirthDate = "null";
+                    }
+                    try
                     {
                         AppInfo._user.City = jSonUserFb["location"]["name"];
+                    }
+                    catch
+                    {
+                        AppInfo._user.City = "Unknown";
                     }
                     
                     ServiceItsBeta itsbetaService = new ServiceItsBeta();

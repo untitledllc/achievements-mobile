@@ -59,7 +59,7 @@ namespace itsbeta.achievements
 
             loadComplete.TextChanged += delegate
             {
-                if (LoginWebActivity.isPlayerExist)
+                if (!LoginWebActivity.isPlayerExist)
                 {
                     RunOnUiThread(() => RunOnUiRistBadgeWin());
                 }

@@ -159,6 +159,7 @@
     <AndroidResource Include="Resources\Drawable\line.png" />
     <AndroidResource Include="Resources\Layout\InactiveBackgroundLayout.axml" />
     <AndroidResource Include="Resources\Layout\SecondScreenCategoryRow.xml" />
+    <AndroidResource Include="Resources\Layout\BadgeWindowActivityLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
