@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using System.Windows.Navigation;
 using com.google.zxing;
 using com.google.zxing.common;
+using itsbeta_wp7.ViewModel;
 
 namespace itsbeta_wp7
 {
@@ -64,7 +65,7 @@ namespace itsbeta_wp7
             InitializeComponent();
 
             _matches = new ObservableCollection<string>();
-            _matchesList.ItemsSource = _matches;
+            //_matchesList.ItemsSource = _matches;
 
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(250);
@@ -141,8 +142,15 @@ namespace itsbeta_wp7
             //_photoCamera.Dispose();
             try
             {
-                MessageBox.Show("Добавлен QR код c текстом: \n" + text);
-                //App.ViewModel.Qr.QRcode = text;
+                //MessageBox.Show("Добавлен QR код c текстом: \n" + text);
+                
+                try
+                {
+                    Uri qrUrl = new Uri(text);
+                    string code = qrUrl.Query.Replace("?activation_code=","");
+                    ViewModelLocator.UserStatic.ActivateAchieve(code);
+                }
+                catch { };
                 try
                 {
                     this.NavigationService.GoBack();

@@ -77,6 +77,20 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        private string _category_name = "";
+        public string Category_name
+        {
+            get
+            {
+                return _category_name;
+            }
+            set
+            {
+                _category_name = value;
+                RaisePropertyChanged("Category_name");
+            }
+        }
+
         private string _display_name = "";
         public string Display_name
         {
@@ -144,6 +158,20 @@ namespace itsbeta_wp7.ViewModel
             {
                 _project_api_name = value;
                 RaisePropertyChanged("Project_api_name");
+            }
+        }
+
+        private string _project_name = "";
+        public string Project_name
+        {
+            get
+            {
+                return _project_name;
+            }
+            set
+            {
+                _project_name = value;
+                RaisePropertyChanged("Project_name");
             }
         }
 

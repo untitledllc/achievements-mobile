@@ -108,6 +108,7 @@ namespace itsbeta_wp7.ViewModel
                             {
                                 MessageBox.Show("Достижение активировано!");
                                 ViewModelLocator.MainStatic.Loading = false;
+                                ViewModelLocator.MainStatic.LoadAchievements();
                             });
                         }
                         else

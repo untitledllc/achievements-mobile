@@ -220,8 +220,10 @@ namespace itsbeta_wp7.ViewModel
 
                                         
                                         AchievesItem badge = JsonConvert.DeserializeObject<AchievesItem>(badgeJson.ToString());
-                                        badge.Project_api_name = project.Display_name;
+                                        badge.Project_api_name = project.Api_name;
+                                        badge.Project_name = project.Display_name;
                                         badge.Category_api_name = category.Api_name;
+                                        badge.Category_name = category.Display_name;
                                         if (Achieves.FirstOrDefault(c => c.Display_name == badge.Display_name) == null)
                                         {
                                             pcount++;

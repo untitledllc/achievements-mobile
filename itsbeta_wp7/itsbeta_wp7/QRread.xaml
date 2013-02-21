@@ -63,12 +63,12 @@
                 </Rectangle.Fill>
             </Rectangle>
 
-            <TextBlock Text="QR read" 
+            <!--<TextBlock Text="QR read" 
                 TextWrapping="Wrap" FontSize="22"
                 Margin="15"                
                 VerticalAlignment="Bottom" />
 
-            <ListBox Margin="10" x:Name="_matchesList" FontSize="30" FontWeight="ExtraBold" />
+            <ListBox Margin="10" x:Name="_matchesList" FontSize="30" FontWeight="ExtraBold" />-->
         </Grid>
     </Grid>
  
