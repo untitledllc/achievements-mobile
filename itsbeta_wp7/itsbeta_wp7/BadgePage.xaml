@@ -10,7 +10,9 @@
                             d:DesignHeight="768"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
-                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+                            xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                            Foreground="Black"
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="True"
@@ -49,8 +51,8 @@
               Grid.Row="1"
               Margin="12,0,12,0">
             <ScrollViewer>
-
-            <Grid Margin="0,20,0,0" Height="Auto" VerticalAlignment="Top">
+                <StackPanel>
+                    <Grid Margin="0,20,0,0" Height="Auto" VerticalAlignment="Top">
                     <Image Grid.Row="0" Grid.Column="0" 
                            Width="150" Height="150"
                            Canvas.ZIndex="2"
@@ -77,6 +79,37 @@
                         </StackPanel>
                     </Border>
                 </Grid>
+                
+                <telerikData:RadJumpList 
+                EmptyContentTemplate="{StaticResource NoDataListTemlate}"
+                x:Name="AllBonuses"      
+                    Margin="0,0,10,0"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                    ItemsSource="{Binding Path=CurrentAchieve.Bonuses}"
+                    DataContext="{Binding Main, Source={StaticResource Locator}}">
+                    <telerikData:RadJumpList.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="10,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                    <Border Background="#FFC9E5F0">
+                                        <TextBlock Margin="10" Text="{Binding Bonus_name}" TextWrapping="Wrap" Foreground="White" />
+                                    </Border>
+                                    <Border Grid.Row="1" Margin="0" 
+                                        BorderBrush="Gray"
+                                        BorderThickness="1"
+                                        Background="White">                                    
+                                        <TextBlock Margin="10"  Text="{Binding Bonus_desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />
+                                    </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </telerikData:RadJumpList.ItemTemplate>
+                </telerikData:RadJumpList>
+                </StackPanel>
+
             </ScrollViewer>
         </Grid>
     </Grid>

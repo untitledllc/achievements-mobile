@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
+using System.Collections.ObjectModel;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -18,6 +19,67 @@ namespace itsbeta_wp7.ViewModel
                 RaisePropertyChanged("Create_time");
             }
         }     
+    }
+
+    public class BonusItem : ViewModelBase
+    {
+        /// <summary>
+        /// Initializes a new instance of the BadgeItem class.
+        /// </summary>
+        public BonusItem()
+        {
+        }
+
+        /// <summary>
+        /// ("discount" | "bonus" | "present")
+        /// </summary>
+        private string _bonus_type = "";
+        public string Bonus_type
+        {
+            get
+            {
+                return _bonus_type;
+            }
+            set
+            {
+                _bonus_type = value;
+                RaisePropertyChanged("Bonus_type");
+                RaisePropertyChanged("Bonus_name");
+            }
+        }
+
+        public string Bonus_name
+        {
+            get
+            {
+                string out_name = "";
+                switch (Bonus_type)
+                {
+                    case "discount": out_name = "Скидка";  break;
+                    case "bonus": out_name = "Бонус"; break;
+                    case "present": out_name = "Подарок"; break;
+                }
+                return out_name;
+            }
+            private set
+            {
+            }
+        }
+
+        private string _bonus_desc = "";
+        public string Bonus_desc
+        {
+            get
+            {
+                return _bonus_desc;
+            }
+            set
+            {
+                _bonus_desc = value;
+                RaisePropertyChanged("Bonus_desc");
+            }
+        }
+
     }
 
     /// <summary>
@@ -60,6 +122,20 @@ namespace itsbeta_wp7.ViewModel
             {
                 _api_name = value;
                 RaisePropertyChanged("Api_name");
+            }
+        }
+
+        private ObservableCollection<BonusItem> _bonuses = new ObservableCollection<BonusItem>();
+        public ObservableCollection<BonusItem> Bonuses
+        {
+            get
+            {
+                return _bonuses;
+            }
+            set
+            {
+                _bonuses = value;
+                RaisePropertyChanged("Bonuses");
             }
         }
 
