@@ -255,17 +255,17 @@ namespace itsbeta.achievements
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060058
-			public const int AchiveDescriptionTextView = 2131099736;
+			// aapt resource value: 0x7f060057
+			public const int AchiveDescriptionTextView = 2131099735;
+			
+			// aapt resource value: 0x7f060053
+			public const int AchiveImageView = 2131099731;
+			
+			// aapt resource value: 0x7f060056
+			public const int AchiveNameTextView = 2131099734;
 			
 			// aapt resource value: 0x7f060054
-			public const int AchiveImageView = 2131099732;
-			
-			// aapt resource value: 0x7f060057
-			public const int AchiveNameTextView = 2131099735;
-			
-			// aapt resource value: 0x7f060055
-			public const int AchiveReceiveDateTextView = 2131099733;
+			public const int AchiveReceiveDateTextView = 2131099732;
 			
 			// aapt resource value: 0x7f06002b
 			public const int BadgeImageView = 2131099691;
@@ -279,38 +279,38 @@ namespace itsbeta.achievements
 			// aapt resource value: 0x7f060021
 			public const int BadgeSheet_CloseImageButtonFake = 2131099681;
 			
-			// aapt resource value: 0x7f06005b
-			public const int BonusImageView_left = 2131099739;
+			// aapt resource value: 0x7f06005a
+			public const int BonusImageView_left = 2131099738;
 			
-			// aapt resource value: 0x7f060059
-			public const int BonusImageView_right = 2131099737;
+			// aapt resource value: 0x7f060058
+			public const int BonusImageView_right = 2131099736;
+			
+			// aapt resource value: 0x7f06005b
+			public const int BonusTextView = 2131099739;
 			
 			// aapt resource value: 0x7f06005c
-			public const int BonusTextView = 2131099740;
+			public const int Bonus_DiscountImageView_left = 2131099740;
+			
+			// aapt resource value: 0x7f060059
+			public const int Bonus_DiscountImageView_right = 2131099737;
 			
 			// aapt resource value: 0x7f06005d
-			public const int Bonus_DiscountImageView_left = 2131099741;
-			
-			// aapt resource value: 0x7f06005a
-			public const int Bonus_DiscountImageView_right = 2131099738;
-			
-			// aapt resource value: 0x7f06005e
-			public const int Bonus_DiscountTextView = 2131099742;
-			
-			// aapt resource value: 0x7f060060
-			public const int Bonus_GiftImageView_left = 2131099744;
+			public const int Bonus_DiscountTextView = 2131099741;
 			
 			// aapt resource value: 0x7f06005f
-			public const int Bonus_GiftImageView_right = 2131099743;
+			public const int Bonus_GiftImageView_left = 2131099743;
 			
-			// aapt resource value: 0x7f060061
-			public const int Bonus_GiftTextView = 2131099745;
+			// aapt resource value: 0x7f06005e
+			public const int Bonus_GiftImageView_right = 2131099742;
+			
+			// aapt resource value: 0x7f060060
+			public const int Bonus_GiftTextView = 2131099744;
+			
+			// aapt resource value: 0x7f060050
+			public const int CategNameTextView = 2131099728;
 			
 			// aapt resource value: 0x7f060051
-			public const int CategNameTextView = 2131099729;
-			
-			// aapt resource value: 0x7f060052
-			public const int CheckImageView = 2131099730;
+			public const int CheckImageView = 2131099729;
 			
 			// aapt resource value: 0x7f060001
 			public const int FirstBadgeFrontRelativeLayout = 2131099649;
@@ -333,11 +333,11 @@ namespace itsbeta.achievements
 			// aapt resource value: 0x7f060019
 			public const int NavBar_ImageButton = 2131099673;
 			
-			// aapt resource value: 0x7f060049
-			public const int NavBar_addcodeImageButton = 2131099721;
+			// aapt resource value: 0x7f060048
+			public const int NavBar_addcodeImageButton = 2131099720;
 			
-			// aapt resource value: 0x7f06004b
-			public const int NavBar_addcodeImageButtonFake = 2131099723;
+			// aapt resource value: 0x7f06004a
+			public const int NavBar_addcodeImageButtonFake = 2131099722;
 			
 			// aapt resource value: 0x7f060005
 			public const int addbadge_addcodeButton = 2131099653;
@@ -390,8 +390,8 @@ namespace itsbeta.achievements
 			// aapt resource value: 0x7f060008
 			public const int center = 2131099656;
 			
-			// aapt resource value: 0x7f060053
-			public const int check_button = 2131099731;
+			// aapt resource value: 0x7f060052
+			public const int check_button = 2131099730;
 			
 			// aapt resource value: 0x7f060026
 			public const int dropdownachor = 2131099686;
@@ -486,23 +486,23 @@ namespace itsbeta.achievements
 			// aapt resource value: 0x7f060043
 			public const int qrcodereaderscr_cancelButton = 2131099715;
 			
-			// aapt resource value: 0x7f060046
-			public const int qrreader_camerasurfaceView = 2131099718;
+			// aapt resource value: 0x7f060045
+			public const int qrreader_codetextView = 2131099717;
 			
 			// aapt resource value: 0x7f060025
 			public const int relativeLayout1 = 2131099685;
 			
-			// aapt resource value: 0x7f060056
-			public const int relativeLayout2 = 2131099734;
+			// aapt resource value: 0x7f060055
+			public const int relativeLayout2 = 2131099733;
 			
 			// aapt resource value: 0x7f060030
 			public const int scrollView1 = 2131099696;
 			
-			// aapt resource value: 0x7f06004d
-			public const int secaondscr_faketextView = 2131099725;
+			// aapt resource value: 0x7f06004c
+			public const int secaondscr_faketextView = 2131099724;
 			
-			// aapt resource value: 0x7f06004f
-			public const int secondscr_CategNameRowTextView = 2131099727;
+			// aapt resource value: 0x7f06004e
+			public const int secondscr_CategNameRowTextView = 2131099726;
 			
 			// aapt resource value: 0x7f06001a
 			public const int secondscr_NavBar_LeftWinImageView = 2131099674;
@@ -510,32 +510,29 @@ namespace itsbeta.achievements
 			// aapt resource value: 0x7f06001d
 			public const int secondscr_NavBar_ProfileScreenImageButton = 2131099677;
 			
-			// aapt resource value: 0x7f06004a
-			public const int secondscr_NavBar_ProfileScreenImageButtonFake = 2131099722;
+			// aapt resource value: 0x7f060049
+			public const int secondscr_NavBar_ProfileScreenImageButtonFake = 2131099721;
+			
+			// aapt resource value: 0x7f060046
+			public const int secondscr_categoriesbar_linearLayout = 2131099718;
+			
+			// aapt resource value: 0x7f06004f
+			public const int secondscr_categoryrowDividerImageView = 2131099727;
+			
+			// aapt resource value: 0x7f06004d
+			public const int secondscr_categrowrelativeLayout = 2131099725;
+			
+			// aapt resource value: 0x7f06004b
+			public const int secondscr_linearLayoutInactive = 2131099723;
 			
 			// aapt resource value: 0x7f060047
-			public const int secondscr_categoriesbar_linearLayout = 2131099719;
-			
-			// aapt resource value: 0x7f060050
-			public const int secondscr_categoryrowDividerImageView = 2131099728;
-			
-			// aapt resource value: 0x7f06004e
-			public const int secondscr_categrowrelativeLayout = 2131099726;
-			
-			// aapt resource value: 0x7f06004c
-			public const int secondscr_linearLayoutInactive = 2131099724;
-			
-			// aapt resource value: 0x7f060048
-			public const int secondscr_listView = 2131099720;
+			public const int secondscr_listView = 2131099719;
 			
 			// aapt resource value: 0x7f060029
 			public const int signUpTextView = 2131099689;
 			
 			// aapt resource value: 0x7f06003e
 			public const int statbarlinearLayout = 2131099710;
-			
-			// aapt resource value: 0x7f060045
-			public const int textView = 2131099717;
 			
 			// aapt resource value: 0x7f060006
 			public const int textView1 = 2131099654;

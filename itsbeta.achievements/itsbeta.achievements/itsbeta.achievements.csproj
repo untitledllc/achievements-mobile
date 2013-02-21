@@ -169,6 +169,14 @@
       <Project>{F0E325C3-8C23-4FC5-ACCE-402E4F37671C}</Project>
       <Name>itsbeta</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\libs\QR Reader\ZXing.Net.Mobile\ZXing.Net.Mobile.MonoForAndroid.csproj">
+      <Project>{D72228AC-C356-4E1A-B56F-91C9A25F7286}</Project>
+      <Name>ZXing.Net.Mobile.MonoForAndroid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libs\QR Reader\ZXing.Net\zxing.monoandroid.csproj">
+      <Project>{8971B59D-78F1-49BA-808D-CBADB37F571F}</Project>
+      <Name>zxing.monoandroid</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\styles.xml" />

@@ -29,7 +29,7 @@ namespace itsbeta.achievements
         public static SecondScreenActivity _context;
         LinearLayout _linearLayoutInactive;
         public static TextView AchieveListSelectedEventTextView;
-
+        
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -97,6 +97,13 @@ namespace itsbeta.achievements
             CreateSubCategoriesViewObject();
             CreateAchievementsViewObject();
             RefreshEventListTextView.TextChanged += delegate { CreateAchievementsViewObject(); };
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+
         }
 
         #region
@@ -310,9 +317,9 @@ namespace itsbeta.achievements
                                     AchievePicUrl = String.Format("{0}",
                                     AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].PicUrl),
                                     AchieveReceivedTime = String.Format("{0}",
-                                    AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].CreateTime),
-                                    BonusStatus = String.Format("{0}",
-                                    AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].BonusStatus)
+                                    AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].CreateTime)//,
+                                    //BonusStatus = String.Format("{0}",
+                                    //AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].BonusStatus)
                                 });
                             }
                         }
@@ -379,45 +386,40 @@ namespace itsbeta.achievements
             badgeImage.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/itsbeta.achievements/cache/pictures/" + "achive" +achieve.ApiName + ".PNG"));
             categoryNameProjectName.Text = AppInfo._achievesInfo.CategoryArray[iID].DisplayName + ", " + AppInfo._achievesInfo.CategoryArray[iID].Projects[jID].DisplayName;
             badgeHowWonderDescr.Text = achieve.Description;
+            bonusLineImage.Visibility = ViewStates.Invisible;
+            bonusDescr.Visibility = ViewStates.Invisible;
+            bonusName.Visibility = ViewStates.Invisible;
 
-
-            if (achieve.BonusStatus == "")
-            {
-                bonusLineImage.Visibility = ViewStates.Invisible;
-                bonusDescr.Visibility = ViewStates.Invisible;
-                bonusName.Visibility = ViewStates.Invisible;
-            }
-            if (achieve.BonusStatus == "discount")
-            {
-                bonusLineImage.Visibility = ViewStates.Visible;
-                bonusDescr.Visibility = ViewStates.Visible;
-                bonusName.Text = "Скидка";
-                bonusDescr.Text = "";
-                bonusLineImage.SetBackgroundResource(Resource.Drawable.Paper_Divider_blue);
-            }
-            if (achieve.BonusStatus == "present")
-            {
-                bonusLineImage.Visibility = ViewStates.Visible;
-                bonusDescr.Visibility = ViewStates.Visible;
-                bonusName.Text = "Подарок";
-                bonusDescr.Text = "";
-                bonusLineImage.SetBackgroundResource(Resource.Drawable.Paper_Divider_violet);
-            }
-            if (achieve.BonusStatus == "bonus")
-            {
-                bonusLineImage.Visibility = ViewStates.Visible;
-                bonusDescr.Visibility = ViewStates.Visible;
-                bonusName.Text = "Бонус";
-                bonusDescr.Text = "";
-                bonusLineImage.SetBackgroundResource(Resource.Drawable.Paper_Divider_green);
-            }
-
-
-
-
-
-
-
+            //if (achieve.BonusStatus == "")
+            //{
+            //    bonusLineImage.Visibility = ViewStates.Invisible;
+            //    bonusDescr.Visibility = ViewStates.Invisible;
+            //    bonusName.Visibility = ViewStates.Invisible;
+            //}
+            //if (achieve.BonusStatus == "discount")
+            //{
+            //    bonusLineImage.Visibility = ViewStates.Visible;
+            //    bonusDescr.Visibility = ViewStates.Visible;
+            //    bonusName.Text = "Скидка";
+            //    bonusDescr.Text = "";
+            //    bonusLineImage.SetBackgroundResource(Resource.Drawable.Paper_Divider_blue);
+            //}
+            //if (achieve.BonusStatus == "present")
+            //{
+            //    bonusLineImage.Visibility = ViewStates.Visible;
+            //    bonusDescr.Visibility = ViewStates.Visible;
+            //    bonusName.Text = "Подарок";
+            //    bonusDescr.Text = "";
+            //    bonusLineImage.SetBackgroundResource(Resource.Drawable.Paper_Divider_violet);
+            //}
+            //if (achieve.BonusStatus == "bonus")
+            //{
+            //    bonusLineImage.Visibility = ViewStates.Visible;
+            //    bonusDescr.Visibility = ViewStates.Visible;
+            //    bonusName.Text = "Бонус";
+            //    bonusDescr.Text = "";
+            //    bonusLineImage.SetBackgroundResource(Resource.Drawable.Paper_Divider_green);
+            //}
 
 
 

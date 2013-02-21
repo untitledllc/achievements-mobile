@@ -6,3 +6,5 @@
 /libs/itsbeta/itsbeta/obj
 /libs/Mono.Facebook/bin
 /libs/Mono.Facebook/obj
+/libs/QR Reader/ZXing.Net/obj
+/libs/QR Reader/ZXing.Net.Mobile/obj

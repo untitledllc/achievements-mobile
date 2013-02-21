@@ -12,37 +12,87 @@ using Android.Widget;
 using Android.Content.PM;
 using Android.Hardware;
 using Android.Views.Animations;
+using ZXing.Mobile;
 
 namespace itsbeta.achievements
 {
     [Activity(Theme = "@android:style/Theme.NoTitleBar.Fullscreen",
-                ScreenOrientation = ScreenOrientation.Portrait)]
+               ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden)]
     public class QRReaderActivity : Activity , ISurfaceHolderCallback
     {
         Camera camera;
-        ISurfaceHolder surfaceHolder;
+        //ISurfaceHolder surfaceHolder;
         Animation buttonClickAnimation;
+        MobileBarcodeScanner scanner;
+        static TextView FoundActionTextView;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
-            SetContentView(Resource.Layout.QRReaderActivityLayout);
+            FoundActionTextView = new TextView(this);
+            //SetContentView(Resource.Layout.QRReaderActivityLayout);
             buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
 
-            SurfaceView surfaceView = FindViewById<SurfaceView>(Resource.Id.qrreader_camerasurfaceView);
-            Button readyImageButton = FindViewById<Button>(Resource.Id.qrcodereader_readyButton);
-            Button cancelImageButton = FindViewById<Button>(Resource.Id.qrcodereaderscr_cancelButton);
+            //SurfaceView surfaceView = FindViewById<SurfaceView>(Resource.Id.qrreader_camerasurfaceView);
+            //surfaceView.Visibility = ViewStates.Gone;
+            
+            //surfaceHolder = surfaceView.Holder;
+            //surfaceHolder.AddCallback(this);
+            //surfaceHolder.SetType(SurfaceType.PushBuffers);
 
-            surfaceHolder = surfaceView.Holder;
-            surfaceHolder.AddCallback(this);
-            surfaceHolder.SetType(SurfaceType.PushBuffers);
-
+            var zxingOverlay = LayoutInflater.FromContext(this).Inflate(Resource.Layout.QRReaderActivityLayout, null);
+            Button readyImageButton = zxingOverlay.FindViewById<Button>(Resource.Id.qrcodereader_readyButton);
+            Button cancelImageButton = zxingOverlay.FindViewById<Button>(Resource.Id.qrcodereaderscr_cancelButton);
             readyImageButton.Click += delegate { readyImageButton.StartAnimation(buttonClickAnimation); }; //здесь запустить процесс распознавания;
-            cancelImageButton.Click += delegate { cancelImageButton.StartAnimation(buttonClickAnimation); Finish(); };
+            cancelImageButton.Click += delegate { cancelImageButton.StartAnimation(buttonClickAnimation); scanner.Cancel();  Finish(); };
+
+            scanner = new MobileBarcodeScanner(this);
+            scanner.UseCustomOverlay = false;
+            //scanner.CustomOverlay = zxingOverlay;
+
+            //Start scanning!
+            scanner.Scan().ContinueWith((t) =>
+            {
+                if (t.Status == System.Threading.Tasks.TaskStatus.RanToCompletion)
+                    HandleScanResult(t.Result);
+            });
+
+
+            FoundActionTextView.TextChanged += delegate
+            {
+                int i = 0;
+                scanner.Cancel();
+                Finish();
+            };
+        }
+
+        public override void OnBackPressed()
+        {
+            base.OnBackPressed();
+            scanner.Cancel();
         }
 
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            scanner.Cancel();
+        }
+
+        void HandleScanResult(ZXing.Result result)
+        {
+            string msg = "";
+
+            if (result != null && !string.IsNullOrEmpty(result.Text))
+            {
+                FoundActionTextView.Text = result.Text;
+                msg = "Barcode Found";// + result.Text;
+            }
+            else
+                msg = "Scanning Canceled!";
+
+            this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
+        }
 
         public void SurfaceChanged(ISurfaceHolder holder, Android.Graphics.Format format, int width, int height)
         {

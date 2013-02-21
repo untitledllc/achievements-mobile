@@ -58,8 +58,8 @@ namespace itsbeta.achievements.gui
             ImageView giftPictureRight= (ImageView)view.FindViewById(Resource.Id.Bonus_GiftImageView_right);
             TextView giftTextView = (TextView)view.FindViewById(Resource.Id.Bonus_GiftTextView);
 
-            if (item.BonusStatus == "")
-            {
+            //if (item.BonusStatus == "")
+            //{
                 bonusPictureleft.Visibility = ViewStates.Invisible;
                 bonusPictureright.Visibility = ViewStates.Invisible;
                 bonusTextView.Visibility = ViewStates.Invisible;
@@ -71,52 +71,52 @@ namespace itsbeta.achievements.gui
                 giftPictureleft.Visibility = ViewStates.Invisible;
                 giftPictureRight.Visibility = ViewStates.Invisible;
                 giftTextView.Visibility = ViewStates.Invisible;
-            }
+            //}
 
-            if (item.BonusStatus == "discount")
-            {
-                bonusPictureleft.Visibility = ViewStates.Invisible;
-                bonusPictureright.Visibility = ViewStates.Invisible;
-                bonusTextView.Visibility = ViewStates.Invisible;
+            //if (item.BonusStatus == "discount")
+            //{
+            //    bonusPictureleft.Visibility = ViewStates.Invisible;
+            //    bonusPictureright.Visibility = ViewStates.Invisible;
+            //    bonusTextView.Visibility = ViewStates.Invisible;
 
-                discountPictureleft.Visibility = ViewStates.Visible;
-                discountTextView.Visibility = ViewStates.Visible;
-                discountPictureright.Visibility = ViewStates.Visible;
+            //    discountPictureleft.Visibility = ViewStates.Visible;
+            //    discountTextView.Visibility = ViewStates.Visible;
+            //    discountPictureright.Visibility = ViewStates.Visible;
 
-                giftPictureleft.Visibility = ViewStates.Invisible;
-                giftPictureRight.Visibility = ViewStates.Invisible;
-                giftTextView.Visibility = ViewStates.Invisible;
-            }
+            //    giftPictureleft.Visibility = ViewStates.Invisible;
+            //    giftPictureRight.Visibility = ViewStates.Invisible;
+            //    giftTextView.Visibility = ViewStates.Invisible;
+            //}
 
-            if (item.BonusStatus == "bonus")
-            {
-                bonusPictureleft.Visibility = ViewStates.Visible;
-                bonusPictureright.Visibility = ViewStates.Visible;
-                bonusTextView.Visibility = ViewStates.Visible;
+            //if (item.BonusStatus == "bonus")
+            //{
+            //    bonusPictureleft.Visibility = ViewStates.Visible;
+            //    bonusPictureright.Visibility = ViewStates.Visible;
+            //    bonusTextView.Visibility = ViewStates.Visible;
 
-                discountPictureleft.Visibility = ViewStates.Invisible;
-                discountTextView.Visibility = ViewStates.Invisible;
-                discountPictureright.Visibility = ViewStates.Invisible;
+            //    discountPictureleft.Visibility = ViewStates.Invisible;
+            //    discountTextView.Visibility = ViewStates.Invisible;
+            //    discountPictureright.Visibility = ViewStates.Invisible;
 
-                giftPictureleft.Visibility = ViewStates.Invisible;
-                giftPictureRight.Visibility = ViewStates.Invisible;
-                giftTextView.Visibility = ViewStates.Invisible;
-            }
+            //    giftPictureleft.Visibility = ViewStates.Invisible;
+            //    giftPictureRight.Visibility = ViewStates.Invisible;
+            //    giftTextView.Visibility = ViewStates.Invisible;
+            //}
 
-            if (item.BonusStatus == "present")
-            {
-                bonusPictureleft.Visibility = ViewStates.Invisible;
-                bonusPictureright.Visibility = ViewStates.Invisible;
-                bonusTextView.Visibility = ViewStates.Invisible;
+            //if (item.BonusStatus == "present")
+            //{
+            //    bonusPictureleft.Visibility = ViewStates.Invisible;
+            //    bonusPictureright.Visibility = ViewStates.Invisible;
+            //    bonusTextView.Visibility = ViewStates.Invisible;
 
-                discountPictureleft.Visibility = ViewStates.Invisible;
-                discountTextView.Visibility = ViewStates.Invisible;
-                discountPictureright.Visibility = ViewStates.Invisible;
+            //    discountPictureleft.Visibility = ViewStates.Invisible;
+            //    discountTextView.Visibility = ViewStates.Invisible;
+            //    discountPictureright.Visibility = ViewStates.Invisible;
 
-                giftPictureleft.Visibility = ViewStates.Visible;
-                giftPictureRight.Visibility = ViewStates.Visible;
-                giftTextView.Visibility = ViewStates.Visible;
-            }
+            //    giftPictureleft.Visibility = ViewStates.Visible;
+            //    giftPictureRight.Visibility = ViewStates.Visible;
+            //    giftTextView.Visibility = ViewStates.Visible;
+            //}
 
             achivePicture.DrawingCacheEnabled = true;
 

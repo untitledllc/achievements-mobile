@@ -50,6 +50,18 @@ namespace ItsBeta.Core
 
                     for (int k = 0; k < achievesCount; k++) 
                     {
+                        int bonusesCount = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["bonuses"].Count();
+                        var bonusesArray = new ParentCategory.ParentProject.Achieve.Bonus[bonusesCount];
+
+                        for (int b = 0; b < bonusesCount; b++)
+                        {
+                            bonusesArray[b] = new ParentCategory.ParentProject.Achieve.Bonus()
+                            {
+                                Type = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["bonuses"][b]["bonus_type"].Value<string>(),
+                                Description = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["bonuses"][b]["bonus_desc"].Value<string>()
+                            };
+                        }
+
                         achArray[k] = new ParentCategory.ParentProject.Achieve()
                         {
                             ApiName = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["api_name"].Value<string>(),
@@ -58,7 +70,8 @@ namespace ItsBeta.Core
                             PicUrl = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["pic"].Value<string>(),
                             FbId = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["fb_id"].Value<string>(),
                             CreateTime = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["create_time"].Value<string>(),
-                            BonusStatus = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["bonus"].Value<string>()
+                            Bonuses = bonusesArray
+                            //BonusStatus = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["bonuses"].Value<string>()
                         };
                     }
 
@@ -105,7 +118,21 @@ namespace ItsBeta.Core
                     public string PicUrl { get; set; }
                     public string FbId { get; set; }
                     public string CreateTime { get; set; }
-                    public string BonusStatus { get; set; }   
+                    public Bonus[] Bonuses { get; set; }
+
+                    public class Bonus
+                    {
+                        public string Type { get; set; }
+                        public string Description { get; set; } 
+
+                        //enum Type
+                        //{
+                        //    None,
+                        //    Discount,
+                        //    Present,
+                        //    Bonus
+                        //}
+                    }
                 }
             }
         }

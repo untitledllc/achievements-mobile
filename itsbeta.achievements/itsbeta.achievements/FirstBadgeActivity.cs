@@ -107,7 +107,6 @@ namespace itsbeta.achievements
         {
             AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
             RunOnUiThread(()=> mDialog.SetMessage("Loading Badge's pictures..."));
-
             Directory.CreateDirectory(@"/data/data/itsbeta.achievements/cache/pictures/");
 
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
@@ -119,10 +118,7 @@ namespace itsbeta.achievements
                     {
                         AppInfo._badgesCount ++;
 
-                        if (AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].BonusStatus == "bonus")
-                        {
-                            AppInfo._bonusesCount++;
-                        }
+                        AppInfo._bonusesCount += AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Bonuses.Count();
 
                         FileStream fs = new FileStream(@"/data/data/itsbeta.achievements/cache/pictures/" +
                             AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName + ".PNG", FileMode.OpenOrCreate,

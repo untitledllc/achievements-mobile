@@ -15,6 +15,7 @@ using Android.Webkit;
 using System.Text.RegularExpressions;
 using ItsBeta.WebControls;
 using ItsBeta.Core;
+using System.Threading;
 
 namespace itsbeta.achievements
 {
@@ -39,9 +40,13 @@ namespace itsbeta.achievements
 
             loginWebView.SetWebViewClient(new ItsbetaLoginWebViewClient(this));
             loginWebView.SetWebChromeClient(new ItsbetaLoginWebViewChromeClient());
-
+            // "https://www.facebook.com/dialog/oauth?response_type=token&display=popup&client_id={0}&redirect_uri={1}&scope={2}",
             loginWebView.LoadUrl(String.Format(
-                    "https://www.facebook.com/dialog/oauth?response_type=token&display=popup&client_id={0}&redirect_uri={1}&scope={2}",
+                "https://m.facebook.com/dialog/oauth/?response_type=token&" +
+                                                    "client_id={0}"+
+                                                    "&redirect_uri={1}" +
+                                                    "&scope={2}",
+                    //"https://www.facebook.com/dialog/oauth/?response_type=token&display=popup&client_id={0}&redirect_uri={1}&scope={2}",
                     AppInfo._fbAppId, AppInfo._loginRedirectUri, AppInfo._fbScope));
 
             mDialog = new ProgressDialog(this);
@@ -57,7 +62,7 @@ namespace itsbeta.achievements
             };
         }
 
-        class ItsbetaLoginWebViewClient : WebViewClient
+        public class ItsbetaLoginWebViewClient : WebViewClient
         {
             LoginWebActivity _parent;
             public ItsbetaLoginWebViewClient(LoginWebActivity parent)
@@ -65,7 +70,7 @@ namespace itsbeta.achievements
                 _parent = parent;
             }
 
-            bool loadPreviousState = false;
+            public static bool loadPreviousState = false;
             public override bool ShouldOverrideUrlLoading(WebView view, string url)
             {
                 if (url.StartsWith(AppInfo._loginRedirectUri))
@@ -76,53 +81,10 @@ namespace itsbeta.achievements
                     var v = access_tokenRegex.Match(url);
                     AppInfo._fbAccessToken = v.Groups[1].ToString();
 
-                    var jSonResponse = WebControls.GetMethod2("https://graph.facebook.com/me?fields=id,name,birthday,locale,location&access_token=" + AppInfo._fbAccessToken);
-                    var jSonUserFb = JsonArray.Parse(jSonResponse);
-
-                    try
-                    {
-                        AppInfo._user.FacebookUserID = jSonUserFb["id"];
-                    }
-                    catch
-                    {
- 
-                    }
-                    try
-                    {
-                        AppInfo._user.Fullname = jSonUserFb["name"];
-                    }
-                    catch
-                    {
- 
-                    }
-                    try
-                    {
-                        AppInfo._user.BirthDate = jSonUserFb["birthday"];
-                    }
-                    catch
-                    {
-                        AppInfo._user.BirthDate = "null";
-                    }
-                    try
-                    {
-                        AppInfo._user.City = jSonUserFb["location"]["name"];
-                    }
-                    catch
-                    {
-                        AppInfo._user.City = "Unknown";
-                    }
-                    
-                    ServiceItsBeta itsbetaService = new ServiceItsBeta();
-
-                    isPlayerExist = itsbetaService.GetPlayerExistBool(AppInfo._user.FacebookUserID);
-
-                    itsbetaService.PostToFbOnce("059db4f010c5f40bf4a73a28222dd3e3", "other", "itsbeta", "itsbeta",
-                                AppInfo._user.FacebookUserID, AppInfo._fbAccessToken);
-
-                    AppInfo._user.ItsBetaUserId = itsbetaService.GetItsBetaUserID(AppInfo._user.FacebookUserID);
-
-
-                    endlogin.Text = "change";
+                    ThreadStart threadStart = new ThreadStart(AsyncAuth);
+                    Thread loadThread = new Thread(threadStart);
+                    loadThread.Start();
+                    loadPreviousState = true;
                 }
                 view.LoadUrl(url);
                 return true;
@@ -143,6 +105,56 @@ namespace itsbeta.achievements
                 mDialog.Show();
             }
 
+
+            public void  AsyncAuth()
+            {
+                var jSonResponse = WebControls.GetMethod2("https://graph.facebook.com/me?fields=id,name,birthday,locale,location&access_token=" + AppInfo._fbAccessToken);
+                var jSonUserFb = JsonArray.Parse(jSonResponse);
+
+                try
+                {
+                    AppInfo._user.FacebookUserID = jSonUserFb["id"];
+                }
+                catch
+                {
+
+                }
+                try
+                {
+                    AppInfo._user.Fullname = jSonUserFb["name"];
+                }
+                catch
+                {
+
+                }
+                try
+                {
+                    AppInfo._user.BirthDate = jSonUserFb["birthday"];
+                }
+                catch
+                {
+                    AppInfo._user.BirthDate = "null";
+                }
+                try
+                {
+                    AppInfo._user.City = jSonUserFb["location"]["name"];
+                }
+                catch
+                {
+                    AppInfo._user.City = "Unknown";
+                }
+
+                ServiceItsBeta itsbetaService = new ServiceItsBeta();
+
+                isPlayerExist = itsbetaService.GetPlayerExistBool(AppInfo._user.FacebookUserID);
+
+                itsbetaService.PostToFbOnce("059db4f010c5f40bf4a73a28222dd3e3", "other", "itsbeta", "itsbeta",
+                            AppInfo._user.FacebookUserID, AppInfo._fbAccessToken);
+
+                AppInfo._user.ItsBetaUserId = itsbetaService.GetItsBetaUserID(AppInfo._user.FacebookUserID);
+
+                endlogin.Text = "change";
+            }
         }
 
         class ItsbetaLoginWebViewChromeClient : WebChromeClient
@@ -152,7 +164,14 @@ namespace itsbeta.achievements
                 base.OnProgressChanged(view, newProgress);
                 if (newProgress == 100) 
                 {
-                    mDialog.Hide();
+                    if (ItsbetaLoginWebViewClient.loadPreviousState)
+                    {
+
+                    }
+                    else
+                    {
+                        mDialog.Hide();
+                    }
                 }
             }
         }
