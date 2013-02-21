@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using itsbeta_wp7.ViewModel;
 using Telerik.Windows.Data;
+using Coding4Fun.Toolkit.Controls;
 
 namespace itsbeta_wp7
 {
@@ -95,10 +96,26 @@ namespace itsbeta_wp7
         {
             try
             {
+                var messagePrompt = new MessagePrompt
+                {
+                    Title = "Выход",
+                    Message = "Вы хотите выйти?",
+                    IsCancelVisible = true
+                };
+                messagePrompt.ActionPopUpButtons.FirstOrDefault().Click += new RoutedEventHandler(customButton_Click);
+                messagePrompt.Show();                
+            }
+            catch { };
+        }
+
+        void customButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
                 NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
             }
             catch { };
-            //MessageBox.Show("Выход");
         }
+
     }
 }

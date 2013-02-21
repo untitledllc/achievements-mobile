@@ -106,7 +106,7 @@ namespace itsbeta_wp7.ViewModel
                         {
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {
-                                MessageBox.Show("Достижение активировано!");
+                                ViewModelLocator.UserStatic.AchievedEarnedMessage("", "Достижение активировано!");
                                 ViewModelLocator.MainStatic.Loading = false;
                                 ViewModelLocator.MainStatic.LoadAchievements();
                             });
@@ -115,7 +115,7 @@ namespace itsbeta_wp7.ViewModel
                         {
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {
-                                MessageBox.Show("Не удалось активировать достижение!");
+                                ViewModelLocator.UserStatic.AchievedEarnedMessage("", "Не удалось активировать достижение!");
                                 ViewModelLocator.MainStatic.Loading = false;
                             });
                         };
@@ -123,7 +123,7 @@ namespace itsbeta_wp7.ViewModel
                     catch {
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            MessageBox.Show("Не удалось активировать достижение!");
+                            ViewModelLocator.UserStatic.AchievedEarnedMessage("", "Не удалось активировать достижение!");
                             ViewModelLocator.MainStatic.Loading = false;
                         });
                     };
@@ -131,6 +131,20 @@ namespace itsbeta_wp7.ViewModel
             };
             bw.RunWorkerAsync();
         }
+
+
+        private void AchievedEarnedMessage(string title, string message) {
+            ToastPrompt toast = new ToastPrompt();
+            toast.Title = title;
+            toast.Message = message;
+            //toast.ImageSource = new BitmapImage(new Uri("ApplicationIcon.png", UriKind.RelativeOrAbsolute));     
+            toast.Completed += toast_Completed;
+            toast.Show();
+        }
+        void toast_Completed(object sender, PopUpEventArgs<string, PopUpResult> e)
+        {
+        }
+
 
         public MessagePrompt messagePrompt;
         private void GetItsbetaAchieve()
