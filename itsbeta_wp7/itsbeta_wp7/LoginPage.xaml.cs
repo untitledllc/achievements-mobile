@@ -1,5 +1,6 @@
 ﻿using Microsoft.Phone.Controls;
 using System;
+using itsbeta_wp7.ViewModel;
 
 namespace itsbeta_wp7
 {
@@ -25,6 +26,25 @@ namespace itsbeta_wp7
             catch
             {
             };
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    if (NavigationService.CanGoBack)
+                    {
+                        while (NavigationService.RemoveBackEntry() != null)
+                        {
+                            NavigationService.RemoveBackEntry();
+                        };
+                    };
+                }
+                catch { };
+            }
+            catch { };
         }
     }
 }

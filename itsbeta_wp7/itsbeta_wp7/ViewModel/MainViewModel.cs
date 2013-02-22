@@ -114,6 +114,7 @@ namespace itsbeta_wp7.ViewModel
             get
             {
                 var items = (from item in Achieves
+                             where ((item.Fb_id != "") && (item.Fb_id != null))
                              group item by item.Display_name into grp
                              select grp.OrderBy(a => a.Create_time).Last()).OrderByDescending(a => a.Create_time).ToObservableCollection();
                 return items;
@@ -182,7 +183,7 @@ namespace itsbeta_wp7.ViewModel
 
         ///badges.json
 
-        public void LoadAchievements()
+        public void LoadAchievements(string activation_code="")
         {
             try
             {
@@ -243,6 +244,10 @@ namespace itsbeta_wp7.ViewModel
                             RaisePropertyChanged("Projects");
                             RaisePropertyChanged("Achieves");
                             RaisePropertyChanged("LastAchieves");
+                            if (activation_code!="")
+                            {
+                            ViewModelLocator.UserStatic.AchievedEarnedMessage("Достижение активировано!", "", activation_code);
+                            };
                         }
                         catch { };
                     });

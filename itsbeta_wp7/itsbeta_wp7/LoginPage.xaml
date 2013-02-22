@@ -14,7 +14,7 @@
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
                             shell:SystemTray.IsVisible="False"
-                            DataContext="{Binding ViewModelName, Source={StaticResource Locator}}">
+                            DataContext="{Binding ViewModelName, Source={StaticResource Locator}}" Loaded="PhoneApplicationPage_Loaded">
 
     <Grid x:Name="LayoutRoot"
           Background="#FFF1EFE3">

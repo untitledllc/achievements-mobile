@@ -39,16 +39,23 @@ namespace facebook_windows_phone_sample.Pages
         {
             try
             {
-                if (ViewModelLocator.UserStatic.FacebookId != "")
+                /*if (ViewModelLocator.UserStatic.LogOut == false)
                 {
-                    webBrowser1.Navigate(new Uri("https://www.facebook.com/logout.php?access_token=" + ViewModelLocator.UserStatic.FacebookToken + "&confirm=1&next=http://itsbeta.com/ru/"));
-                    //NavigationService.GoBack();
+                    NavigationService.GoBack();
                 }
                 else
-                {
-                    var loginUrl = GetFacebookLoginUrl(AppId, ExtendedPermissions);
-                    webBrowser1.Navigate(loginUrl);
-                };
+                {*/
+                    if (ViewModelLocator.UserStatic.FacebookId != "")
+                    {
+                        webBrowser1.Navigate(new Uri("https://www.facebook.com/logout.php?access_token=" + ViewModelLocator.UserStatic.FacebookToken + "&confirm=1&next=http://itsbeta.com/ru/"));
+                        //NavigationService.GoBack();
+                    }
+                    else
+                    {
+                        var loginUrl = GetFacebookLoginUrl(AppId, ExtendedPermissions);
+                        webBrowser1.Navigate(loginUrl);
+                    };
+                //};
             }
             catch { };
 

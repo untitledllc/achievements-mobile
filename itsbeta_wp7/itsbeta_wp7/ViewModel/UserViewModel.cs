@@ -11,6 +11,11 @@ using System.Windows.Controls;
 using Coding4Fun.Toolkit.Controls;
 using Microsoft.Phone.Tasks;
 using itsbeta_wp7.Controls;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
+using System.Windows.Media.Imaging;
+using System.Linq;
+using System.IO;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -69,8 +74,21 @@ namespace itsbeta_wp7.ViewModel
                         PlayerId = o_player["player_id"].ToString();
                         RaisePropertyChanged("UserProfilePicture");
 
+                        ViewModelLocator.UserStatic.LogOut = false;
                         ViewModelLocator.MainStatic.LoadAchievements();
                         ViewModelLocator.UserStatic.GetItsbetaAchieve();
+
+                        try
+                        {
+                            if ((Application.Current.RootVisual as PhoneApplicationFrame).CanGoBack)
+                            {
+                                while ((Application.Current.RootVisual as PhoneApplicationFrame).RemoveBackEntry() != null)
+                                {
+                                    (Application.Current.RootVisual as PhoneApplicationFrame).RemoveBackEntry();
+                                }
+                            };
+                        }
+                        catch { };
                     }
                     catch { };
                 });
@@ -105,17 +123,16 @@ namespace itsbeta_wp7.ViewModel
                         if (o["id"].ToString() != "")
                         {
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
-                            {
-                                ViewModelLocator.UserStatic.AchievedEarnedMessage("", "Достижение активировано!");
+                            {                                
                                 ViewModelLocator.MainStatic.Loading = false;
-                                ViewModelLocator.MainStatic.LoadAchievements();
+                                ViewModelLocator.MainStatic.LoadAchievements(activation_code);
                             });
                         }
                         else
                         {
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {
-                                ViewModelLocator.UserStatic.AchievedEarnedMessage("", "Не удалось активировать достижение!");
+                                ViewModelLocator.UserStatic.AchievedEarnedMessage("Не удалось активировать достижение!");
                                 ViewModelLocator.MainStatic.Loading = false;
                             });
                         };
@@ -123,7 +140,7 @@ namespace itsbeta_wp7.ViewModel
                     catch {
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            ViewModelLocator.UserStatic.AchievedEarnedMessage("", "Не удалось активировать достижение!");
+                            ViewModelLocator.UserStatic.AchievedEarnedMessage("Не удалось активировать достижение!");
                             ViewModelLocator.MainStatic.Loading = false;
                         });
                     };
@@ -133,18 +150,56 @@ namespace itsbeta_wp7.ViewModel
         }
 
 
-        private void AchievedEarnedMessage(string title, string message) {
-            ToastPrompt toast = new ToastPrompt();
-            toast.Title = title;
-            toast.Message = message;
-            //toast.ImageSource = new BitmapImage(new Uri("ApplicationIcon.png", UriKind.RelativeOrAbsolute));     
-            toast.Completed += toast_Completed;
-            toast.Show();
+        public void AchievedEarnedMessage(string message, string title = "", string api_name="")
+        {
+            if (api_name == "")
+            {
+                ToastPrompt toast = new ToastPrompt();
+                toast.Title = title;
+                toast.Message = message;
+                /*BitmapImage img = new BitmapImage(new Uri("http://www.itsbeta.com/media/W1siZiIsIjUxMDdkMTQ4N2UzMDlkMDAwMjAwMDAwMSJdXQ", UriKind.RelativeOrAbsolute));
+                img.CreateOptions = BitmapCreateOptions.None;
+                img.ImageOpened += (s, e) =>
+                {
+                    WriteableBitmap wBitmap = new WriteableBitmap((BitmapImage)s);
+                    MemoryStream ms = new MemoryStream();
+                    wBitmap.SaveJpeg(ms, 50, 50, 0, 100);
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.SetSource(ms);
+                    toast.ImageSource = bmp;
+
+                    toast.Completed += toast_Completed;
+                    toast.Show();
+                };*/
+                toast.Show();
+            }
+            else
+            {
+                AchievesItem achieve = new AchievesItem();
+                achieve = ViewModelLocator.MainStatic.Achieves.FirstOrDefault(c => c.Api_name == api_name);
+                ToastPrompt toast = new ToastPrompt();
+                toast.Title = "";
+                toast.Message = achieve.Display_name;
+
+                BitmapImage img = new BitmapImage(new Uri(achieve.Pic, UriKind.RelativeOrAbsolute));
+                img.CreateOptions = BitmapCreateOptions.None;
+                img.ImageOpened += (s, e) =>
+                {
+                    WriteableBitmap wBitmap = new WriteableBitmap((BitmapImage)s);
+                    MemoryStream ms = new MemoryStream();
+                    wBitmap.SaveJpeg(ms, 50, 50, 0, 100);
+                    BitmapImage bmp = new BitmapImage();
+                    bmp.SetSource(ms);
+                    toast.ImageSource = bmp;
+
+                    toast.Completed += toast_Completed;
+                    toast.Show();
+                };
+            };
         }
         void toast_Completed(object sender, PopUpEventArgs<string, PopUpResult> e)
         {
         }
-
 
         public MessagePrompt messagePrompt;
         private void GetItsbetaAchieve()
@@ -251,6 +306,20 @@ namespace itsbeta_wp7.ViewModel
             {
                 _location = value;
                 RaisePropertyChanged("Location");
+            }
+        }
+
+        private bool _logOut = true;
+        public bool LogOut
+        {
+            get
+            {
+                return _logOut;
+            }
+            set
+            {
+                _logOut = value;
+                RaisePropertyChanged("LogOut");
             }
         }
 
