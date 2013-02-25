@@ -44,7 +44,6 @@ C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\de-DE\Telerik.Windows.Controls.Primitives.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\fr-FR\Telerik.Windows.Controls.Primitives.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\it-IT\Telerik.Windows.Controls.Primitives.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\itsbeta_wp7.csprojResolveAssemblyReference.cache
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\App.g.i.cs
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\AboutPage.g.i.cs
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\ActivatePage.g.i.cs

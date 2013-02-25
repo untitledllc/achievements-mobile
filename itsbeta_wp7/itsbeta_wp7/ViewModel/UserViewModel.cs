@@ -75,8 +75,9 @@ namespace itsbeta_wp7.ViewModel
                         RaisePropertyChanged("UserProfilePicture");
 
                         ViewModelLocator.UserStatic.LogOut = false;
+
                         ViewModelLocator.MainStatic.LoadAchievements();
-                        ViewModelLocator.UserStatic.GetItsbetaAchieve();
+                        //ViewModelLocator.UserStatic.GetItsbetaAchieve();
 
                         try
                         {
@@ -157,20 +158,6 @@ namespace itsbeta_wp7.ViewModel
                 ToastPrompt toast = new ToastPrompt();
                 toast.Title = title;
                 toast.Message = message;
-                /*BitmapImage img = new BitmapImage(new Uri("http://www.itsbeta.com/media/W1siZiIsIjUxMDdkMTQ4N2UzMDlkMDAwMjAwMDAwMSJdXQ", UriKind.RelativeOrAbsolute));
-                img.CreateOptions = BitmapCreateOptions.None;
-                img.ImageOpened += (s, e) =>
-                {
-                    WriteableBitmap wBitmap = new WriteableBitmap((BitmapImage)s);
-                    MemoryStream ms = new MemoryStream();
-                    wBitmap.SaveJpeg(ms, 50, 50, 0, 100);
-                    BitmapImage bmp = new BitmapImage();
-                    bmp.SetSource(ms);
-                    toast.ImageSource = bmp;
-
-                    toast.Completed += toast_Completed;
-                    toast.Show();
-                };*/
                 toast.Show();
             }
             else
@@ -202,7 +189,8 @@ namespace itsbeta_wp7.ViewModel
         }
 
         public MessagePrompt messagePrompt;
-        private void GetItsbetaAchieve()
+        public string messageprompt_fb_id = "";
+        public void GetItsbetaAchieve()
         {
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
@@ -223,13 +211,14 @@ namespace itsbeta_wp7.ViewModel
                     {
                         JObject o = JObject.Parse(response.Content.ToString());
                         if (o["id"].ToString() != "")
-                        {
+                        {                            
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {
-
+                                ViewModelLocator.UserStatic.GetPlayerId();
                                 messagePrompt = new MessagePrompt();
                                 try
                                 {
+                                    messageprompt_fb_id = o["fb_id"].ToString();
                                     messagePrompt.Body = new BadgeControl();
 
                                     Button closeButton = new Button() { Content = "Закрыть" };
@@ -248,9 +237,21 @@ namespace itsbeta_wp7.ViewModel
 
                                 messagePrompt.Show();
                             });
+                        }
+                        else
+                        {
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            {
+                                ViewModelLocator.UserStatic.GetPlayerId();
+                            });
                         };
                     }
-                    catch { };
+                    catch {
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            ViewModelLocator.UserStatic.GetPlayerId();
+                        });
+                    };
                 });
             };
             bw.RunWorkerAsync();
@@ -264,7 +265,7 @@ namespace itsbeta_wp7.ViewModel
         private void moreButton_Click(object sender, RoutedEventArgs e)
         {
             WebBrowserTask webTask = new WebBrowserTask();
-            webTask.Uri = new Uri("http://www.itsbeta.com/s/other/itsbeta/achieves/fb?locale=ru&name=itsbeta&fb_action_ids=" + FacebookId);
+            webTask.Uri = new Uri("http://www.itsbeta.com/s/other/itsbeta/achieves/fb?locale=ru&name=itsbeta&fb_action_ids=" + messageprompt_fb_id);
             webTask.Show();
         }
 
