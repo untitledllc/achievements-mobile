@@ -13,6 +13,26 @@ namespace itsbeta.achievements.gui
         public string AchieveDescriptionText;
         public string AchievePicUrl;
         public string AchieveReceivedTime;
+        public DateTime AchieveReceivedDateTime
+        {
+            get
+            {
+                return LocalDateTime(AchieveReceivedTime);
+            }
+            private set { }
+        }
+
+        private DateTime LocalDateTime(string strDateTime)
+        {
+            DateTime univDateTime;
+            DateTime localDateTime;
+
+            univDateTime = DateTime.Parse(strDateTime);
+
+            localDateTime = univDateTime.ToLocalTime();
+
+            return localDateTime;
+        }
         public string BonusStatus;
         public ItsBeta.Core.Achieves.ParentCategory.ParentProject.Achieve.Bonus[] Bonuses { get; set; } 
 

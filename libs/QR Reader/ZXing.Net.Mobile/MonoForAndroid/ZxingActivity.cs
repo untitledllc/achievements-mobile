@@ -213,7 +213,7 @@ namespace ZXing.Mobile
 					camera = Android.Hardware.Camera.Open(0);
 				}
 #else
-				camera = Android.Hardware.Camera.Open();
+                camera = Android.Hardware.Camera.Open();
 #endif
 				if (camera == null)
 					Android.Util.Log.Debug("ZXing.Net.Mobile", "Camera is null :(");
@@ -330,7 +330,6 @@ namespace ZXing.Mobile
 			}
 		}
 
-
 		public void OnAutoFocus (bool success, Android.Hardware.Camera camera)
 		{
 			Android.Util.Log.Debug("ZXing.Mobile", "AutoFocused");
@@ -406,7 +405,6 @@ namespace ZXing.Mobile
 			}
 		}
 
-
 		public void ShutdownCamera ()
 		{
 			tokenSource.Cancel();
@@ -418,7 +416,6 @@ namespace ZXing.Mobile
 				camera = null;
 			}
 		}
-
 
 		private void drawResultPoints(Android.Graphics.Bitmap barcode, ZXing.Result rawResult) 
 		{
@@ -538,8 +535,5 @@ namespace ZXing.Mobile
 
 			return new Size(s.Width, s.Height);
 		}
-
-
-
 	}
 }

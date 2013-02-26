@@ -4,7 +4,8 @@
     p1:minHeight="25px"
     p1:layout_width="fill_parent"
     p1:layout_height="fill_parent"
-    p1:id="@+id/receivebadge_RelativeLayout">
+    p1:id="@+id/receivebadge_RelativeLayout"
+    p1:background="#47000000">
     <ImageView
         p1:layout_width="300dp"
         p1:layout_height="400dp"

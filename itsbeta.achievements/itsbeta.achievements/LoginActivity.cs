@@ -31,7 +31,6 @@ namespace itsbeta.achievements
 
             if (File.Exists(@"/data/data/itsbeta.achievements/data.txt"))
             {
-
                 LoginWebActivity.isPlayerExist = true;
                 AppInfo._user.Fullname = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[0];
                 AppInfo._user.BirthDate = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[1];
@@ -43,12 +42,9 @@ namespace itsbeta.achievements
                 StartActivity(typeof(FirstBadgeActivity));
             }
 
-
-
             buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
             SetContentView(Resource.Layout.LoginActivityLayout);
 
-            RunOnUiThread(() => Toast.MakeText(this, "test", ToastLength.Long));
             ImageButton loginButton = FindViewById<ImageButton>(Resource.Id.login);
 
             loginButton.Click += delegate

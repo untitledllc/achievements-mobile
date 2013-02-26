@@ -23,7 +23,7 @@
         p1:layout_marginRight="10dp"
         p1:layout_marginTop="7.5dp" />
     <TextView
-        p1:text="PROFILE"
+        p1:text="ПРОФИЛЬ"
         p1:textAppearance="?android:attr/textAppearanceLarge"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                     p1:id="@+id/profilescr_userAgelocTextView"
                     p1:layout_alignLeft="@id/profilescr_usernameTextView" />
                 <TextView
-                    p1:text="Statistic:"
+                    p1:text="Статистика:"
                     p1:textAppearance="?android:attr/textAppearanceLarge"
                     p1:layout_width="wrap_content"
                     p1:layout_height="wrap_content"
@@ -130,7 +130,7 @@
                     p1:layout_marginRight="20dp"
                     p1:layout_alignParentRight="true" />
                 <TextView
-                    p1:text="All Badges:"
+                    p1:text="Бейджей:"
                     p1:textAppearance="?android:attr/textAppearanceSmall"
                     p1:layout_width="wrap_content"
                     p1:layout_height="wrap_content"
@@ -140,9 +140,10 @@
                     p1:textSize="10dp"
                     p1:layout_alignLeft="@id/profilescr_allBadgesImageView"
                     p1:layout_marginLeft="5dp"
-                    p1:layout_marginTop="15dp" />
+                    p1:layout_marginTop="15dp"
+                    p1:layout_alignRight="@id/profilescr_allBadgesImageView" />
                 <TextView
-                    p1:text="Bonuses:"
+                    p1:text="Бонусов:"
                     p1:textAppearance="?android:attr/textAppearanceSmall"
                     p1:layout_width="wrap_content"
                     p1:layout_height="wrap_content"
@@ -154,7 +155,7 @@
                     p1:textSize="10dp"
                     p1:textColor="#ffeeeeee" />
                 <TextView
-                    p1:text="Subcategories:"
+                    p1:text="Подкатегорий:"
                     p1:textAppearance="?android:attr/textAppearanceSmall"
                     p1:layout_width="wrap_content"
                     p1:layout_height="wrap_content"

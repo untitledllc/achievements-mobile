@@ -25,6 +25,7 @@ namespace itsbeta.achievements
     {
         static ProgressDialog mDialog;
         public static bool isPlayerExist;
+        public static bool isRelogin = true;
 
         static TextView endlogin;
 
@@ -50,7 +51,7 @@ namespace itsbeta.achievements
                     AppInfo._fbAppId, AppInfo._loginRedirectUri, AppInfo._fbScope));
 
             mDialog = new ProgressDialog(this);
-            mDialog.SetMessage("Loading...");
+            mDialog.SetMessage("Загрузка...");
             mDialog.SetCancelable(false);
             mDialog.Show();
 
@@ -75,7 +76,7 @@ namespace itsbeta.achievements
             {
                 if (url.StartsWith(AppInfo._loginRedirectUri))
                 {
-                    
+                    isRelogin = false;
                     //mDialog.Show();
                     Regex access_tokenRegex = new Regex("access_token=(.*)&");
                     var v = access_tokenRegex.Match(url);
@@ -96,11 +97,11 @@ namespace itsbeta.achievements
 
                 if (url.StartsWith(AppInfo._loginRedirectUri))
                 {
-                    mDialog.SetMessage("Authorization...");
+                    mDialog.SetMessage("Авторизация пользователя...");
                 }
                 else
                 {
-                    mDialog.SetMessage("Loading...");
+                    mDialog.SetMessage("Загрузка...");
                 }
                 mDialog.Show();
             }
@@ -162,7 +163,7 @@ namespace itsbeta.achievements
             public override void OnProgressChanged(WebView view, int newProgress)
             {
                 base.OnProgressChanged(view, newProgress);
-                if (newProgress == 100) 
+                if (newProgress == 100)
                 {
                     if (ItsbetaLoginWebViewClient.loadPreviousState)
                     {

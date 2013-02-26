@@ -20,7 +20,7 @@
         p1:scaleType="fitXY"
         p1:layout_marginTop="-120dp" />
     <TextView
-        p1:text="Collect all your achievements"
+        p1:text="Соберите все Ваши достижения"
         p1:textAppearance="?android:attr/textAppearanceLarge"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         p1:layout_centerVertical="true"
         p1:textSize="12dp" />
     <TextView
-        p1:text="Facebook sign up"
+        p1:text="Зарегистрироваться в Facebook"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
@@ -73,7 +73,7 @@
         p1:layout_alignRight="@id/signUpTextView"
         p1:layout_alignLeft="@id/signUpTextView" />
     <TextView
-        p1:text="              Sign in with"
+        p1:text="            Войти через"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
         p1:id="@+id/login_signinTextView"

@@ -26,6 +26,8 @@ namespace itsbeta.achievements
         public static TextView loadComplete;
         Animation buttonClickAnimation;
         static ProgressDialog mDialog;
+        AlertDialog.Builder _activateMessageBadgeDialogBuilder;
+        AlertDialog _activateMessageBadgeDialog;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -48,7 +50,7 @@ namespace itsbeta.achievements
 
             SetContentView(Resource.Layout.SecondScreenActivityLayout);
             mDialog = new ProgressDialog(this);
-            mDialog.SetMessage("Loading User Data...");
+            mDialog.SetMessage("Загрузка пользовательских данных...");
             mDialog.SetCancelable(false);
             mDialog.Show();
 
@@ -106,8 +108,18 @@ namespace itsbeta.achievements
 
         void treadStartVoid()
         {
-            AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
-            RunOnUiThread(()=> mDialog.SetMessage("Loading Badge's pictures..."));
+            try
+            {
+                AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
+            }
+            catch
+            {
+                string msg = "Не удалось подключиться. Проверьте интернет подключение";
+                RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Long).Show());
+                RunOnUiThread(()=> Finish());
+                return;
+            }
+            RunOnUiThread(()=> mDialog.SetMessage("Загрузка контента..."));
             Directory.CreateDirectory(@"/data/data/itsbeta.achievements/cache/pictures/");
 
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)

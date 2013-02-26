@@ -119,7 +119,7 @@ namespace ItsBeta.Core
                     public string FbId { get; set; }
                     public string CreateTime { get; set; }
                     public Bonus[] Bonuses { get; set; }
-
+                    
                     public class Bonus
                     {
                         public string Type { get; set; }

@@ -6,12 +6,11 @@
     p1:layout_height="fill_parent"
     p1:id="@+id/relativeLayout1">
     <ImageView
-        p1:layout_width="200dp"
-        p1:layout_height="200dp"
-        p1:layout_below="@id/qrreader_codetextView"
+        p1:layout_width="220dp"
+        p1:layout_height="220dp"
         p1:id="@+id/imageView3"
         p1:layout_centerHorizontal="true"
-        p1:layout_centerVertical="false" />
+        p1:layout_centerVertical="true" />
     <ImageView
         p1:layout_width="fill_parent"
         p1:layout_height="fill_parent"

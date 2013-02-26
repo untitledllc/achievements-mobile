@@ -288,6 +288,5 @@ namespace ItsBeta.Json
                 jToken = JToken.Parse(_jsonResponse);
             }
         }
-
     }
 }

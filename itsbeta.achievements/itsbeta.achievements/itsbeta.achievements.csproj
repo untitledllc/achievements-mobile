@@ -66,7 +66,7 @@
     <Compile Include="LoginActivity.cs" />
     <Compile Include="LoginWebActivity.cs" />
     <Compile Include="ProfileActivity.cs" />
-    <Compile Include="QRReaderActivity.cs" />
+    <Compile Include="[delete]QRReaderActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecondScreenActivity.cs" />
@@ -85,7 +85,6 @@
     <AndroidResource Include="Resources\Layout\ProfileScreenChildRow.xml" />
     <AndroidResource Include="Resources\Layout\AddBadgeMenuLayoutLayout.axml" />
     <AndroidResource Include="Resources\Layout\EnterCodeLayout.axml" />
-    <AndroidResource Include="Resources\Layout\QRReaderActivityLayout.axml" />
     <AndroidResource Include="Resources\Drawable\BlueBtn_norm.png" />
     <AndroidResource Include="Resources\Drawable\BlueBtn_press.png" />
     <AndroidResource Include="Resources\Drawable\Btn_divider_v.png" />
@@ -161,6 +160,9 @@
     <AndroidResource Include="Resources\Layout\SecondScreenCategoryRow.xml" />
     <AndroidResource Include="Resources\Layout\BadgeWindowActivityLayout.axml" />
     <AndroidResource Include="Resources\Layout\ReceiveBadgeLayount.axml" />
+    <AndroidResource Include="Resources\Layout\QRReaderLayout.axml" />
+    <AndroidResource Include="Resources\Layout\SecondScreenListRowLL.xml" />
+    <AndroidResource Include="Resources\Layout\BonusOnListRowLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

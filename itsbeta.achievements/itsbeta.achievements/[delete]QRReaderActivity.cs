@@ -40,36 +40,37 @@ namespace itsbeta.achievements
             //surfaceHolder.AddCallback(this);
             //surfaceHolder.SetType(SurfaceType.PushBuffers);
 
-            var zxingOverlay = LayoutInflater.FromContext(this).Inflate(Resource.Layout.QRReaderActivityLayout, null);
-            Button readyImageButton = zxingOverlay.FindViewById<Button>(Resource.Id.qrcodereader_readyButton);
-            Button cancelImageButton = zxingOverlay.FindViewById<Button>(Resource.Id.qrcodereaderscr_cancelButton);
-            readyImageButton.Click += delegate { readyImageButton.StartAnimation(buttonClickAnimation); }; //здесь запустить процесс распознавания;
-            cancelImageButton.Click += delegate { cancelImageButton.StartAnimation(buttonClickAnimation); scanner.Cancel();  Finish(); };
+            ////var zxingOverlay = LayoutInflater.FromContext(this).Inflate(Resource.Layout.QRReaderActivityLayout, null);
+            ////Button readyImageButton = zxingOverlay.FindViewById<Button>(Resource.Id.qrcodereader_readyButton);
+            ////Button cancelImageButton = zxingOverlay.FindViewById<Button>(Resource.Id.qrcodereaderscr_cancelButton);
+            ////readyImageButton.Click += delegate { readyImageButton.StartAnimation(buttonClickAnimation); }; //здесь запустить процесс распознавания;
+            ////cancelImageButton.Click += delegate { cancelImageButton.StartAnimation(buttonClickAnimation); scanner.Cancel();  Finish(); };
 
-            scanner = new MobileBarcodeScanner(this);
-            scanner.UseCustomOverlay = false;
-            //scanner.CustomOverlay = zxingOverlay;
+            ////scanner = new MobileBarcodeScanner(this);
+            ////scanner.UseCustomOverlay = false;
+            //////scanner.CustomOverlay = zxingOverlay;
 
-            //Start scanning!
-            scanner.Scan().ContinueWith((t) =>
-            {
-                if (t.Status == System.Threading.Tasks.TaskStatus.RanToCompletion)
-                    HandleScanResult(t.Result);
-            });
+            //////Start scanning!
+            ////scanner.Scan().ContinueWith((t) =>
+            ////{
+            ////    if (t.Status == System.Threading.Tasks.TaskStatus.RanToCompletion)
+            ////        HandleScanResult(t.Result);
+            ////});
 
 
-            FoundActionTextView.TextChanged += delegate
-            {
-                int i = 0;
-                scanner.Cancel();
-                Finish();
-            };
+            ////FoundActionTextView.TextChanged += delegate
+            ////{
+            ////    int i = 0;
+            ////    scanner.Cancel();
+            ////    Finish();
+            ////};
         }
 
         public override void OnBackPressed()
         {
             base.OnBackPressed();
             scanner.Cancel();
+            Finish();
         }
 
 

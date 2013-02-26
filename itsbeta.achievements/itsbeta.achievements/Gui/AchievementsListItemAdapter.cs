@@ -13,14 +13,15 @@ namespace itsbeta.achievements.gui
     public class AchievementsListItemAdapter : ArrayAdapter<AchievementsListData>
     {
         private IList<AchievementsListData> Items;
-        
+        Context _context;
+
         public AchievementsListItemAdapter(Context context, int textViewResourceId, IList<AchievementsListData> items)
             : base(context, textViewResourceId, items)
         {
             Items = items;
+            _context = context;
         }
-        AchievementsListData _item;
-        bool tada = false;
+        
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             View view = convertView;
@@ -40,57 +41,104 @@ namespace itsbeta.achievements.gui
             TextView achiveDescriptionTextView = (TextView)view.FindViewById(Resource.Id.AchiveDescriptionTextView);
             achiveDescriptionTextView.Text = item.AchieveDescriptionText;
 
-
             TextView achiveReceivedDate = (TextView)view.FindViewById(Resource.Id.AchiveReceiveDateTextView);
-            achiveReceivedDate.Text = "Получен " + LocalDateTime(item.AchieveReceivedTime).Date.ToString().Remove(10);
+            achiveReceivedDate.Text = LocalDateTime(item.AchieveReceivedTime).Date.ToString().Remove(10);
 
             ImageView achivePicture = (ImageView)view.FindViewById(Resource.Id.AchiveImageView);
 
-            ImageView bonusPictureleft = (ImageView)view.FindViewById(Resource.Id.BonusImageView_left);
-            ImageView bonusPictureright = (ImageView)view.FindViewById(Resource.Id.BonusImageView_right);
-            TextView bonusTextView= (TextView)view.FindViewById(Resource.Id.BonusTextView);
 
-            ImageView discountPictureleft = (ImageView)view.FindViewById(Resource.Id.Bonus_DiscountImageView_left);
-            ImageView discountPictureright = (ImageView)view.FindViewById(Resource.Id.Bonus_DiscountImageView_right);
-            TextView discountTextView = (TextView)view.FindViewById(Resource.Id.Bonus_DiscountTextView);
-
-            ImageView giftPictureleft = (ImageView)view.FindViewById(Resource.Id.Bonus_GiftImageView_left);
-            ImageView giftPictureRight= (ImageView)view.FindViewById(Resource.Id.Bonus_GiftImageView_right);
-            TextView giftTextView = (TextView)view.FindViewById(Resource.Id.Bonus_GiftTextView);
-
-            bonusPictureleft.Visibility = ViewStates.Invisible;
-            bonusPictureright.Visibility = ViewStates.Invisible;
-            bonusTextView.Visibility = ViewStates.Invisible;
-
-            discountPictureleft.Visibility = ViewStates.Invisible;
-            discountTextView.Visibility = ViewStates.Invisible;
-            discountPictureright.Visibility = ViewStates.Invisible;
-
-            giftPictureleft.Visibility = ViewStates.Invisible;
-            giftPictureRight.Visibility = ViewStates.Invisible;
-            giftTextView.Visibility = ViewStates.Invisible;
-
+            LinearLayout bonusesColumnLL = (LinearLayout)view.FindViewById(Resource.Id.bonusesColumn_linearLayout);
+            bonusesColumnLL.RemoveAllViews();
 
             foreach (var bonus in item.Bonuses) 
             {
+                LayoutInflater layoutInflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
+                View bonusView = layoutInflater.Inflate(Resource.Layout.SecondScreenListRowLL, null);
+
+                ImageView bonusPictureleft = (ImageView)bonusView.FindViewById(Resource.Id.BonusImageView_left);
+                ImageView bonusPictureright = (ImageView)bonusView.FindViewById(Resource.Id.BonusImageView_right);
+                ImageView bonusPicturecenter = (ImageView)bonusView.FindViewById(Resource.Id.BonusCenterImageView);
+
+                ImageView discountPictureleft = (ImageView)bonusView.FindViewById(Resource.Id.Bonus_DiscountImageView_left);
+                ImageView discountPictureright = (ImageView)bonusView.FindViewById(Resource.Id.Bonus_DiscountImageView_right);
+                TextView  discountTextView = (TextView)bonusView.FindViewById(Resource.Id.Bonus_DiscountTextView);
+
+                ImageView giftPictureleft = (ImageView)bonusView.FindViewById(Resource.Id.Bonus_GiftImageView_left);
+                ImageView giftPictureRight = (ImageView)bonusView.FindViewById(Resource.Id.Bonus_GiftImageView_right);
+                ImageView giftPicturecenter = (ImageView)bonusView.FindViewById(Resource.Id.Bonus_GiftCenterImageView);
+
+                bonusPictureleft.Visibility = ViewStates.Invisible;
+                bonusPictureright.Visibility = ViewStates.Invisible;
+                bonusPicturecenter.Visibility = ViewStates.Invisible;
+
+                discountPictureleft.Visibility = ViewStates.Invisible;
+                discountTextView.Visibility = ViewStates.Invisible;
+                discountPictureright.Visibility = ViewStates.Invisible;
+
+                giftPictureleft.Visibility = ViewStates.Invisible;
+                giftPictureRight.Visibility = ViewStates.Invisible;
+                giftPicturecenter.Visibility = ViewStates.Invisible;
+
                 if (bonus.Type == "discount")
                 {
+                    bonusPictureleft.Visibility = ViewStates.Invisible;
+                    bonusPictureright.Visibility = ViewStates.Invisible;
+                    bonusPicturecenter.Visibility = ViewStates.Invisible;
+
                     discountPictureleft.Visibility = ViewStates.Visible;
                     discountTextView.Visibility = ViewStates.Visible;
                     discountPictureright.Visibility = ViewStates.Visible;
+
+                    giftPictureleft.Visibility = ViewStates.Invisible;
+                    giftPictureRight.Visibility = ViewStates.Invisible;
+                    giftPicturecenter.Visibility = ViewStates.Invisible;
+
+                    bonusesColumnLL.AddView(bonusView);
                 }
                 if (bonus.Type == "bonus")
                 {
                     bonusPictureleft.Visibility = ViewStates.Visible;
                     bonusPictureright.Visibility = ViewStates.Visible;
-                    bonusTextView.Visibility = ViewStates.Visible;  
+                    bonusPicturecenter.Visibility = ViewStates.Visible;
+
+                    discountPictureleft.Visibility = ViewStates.Invisible;
+                    discountTextView.Visibility = ViewStates.Invisible;
+                    discountPictureright.Visibility = ViewStates.Invisible;
+
+                    giftPictureleft.Visibility = ViewStates.Invisible;
+                    giftPictureRight.Visibility = ViewStates.Invisible;
+                    giftPicturecenter.Visibility = ViewStates.Invisible;
+
+                    bonusesColumnLL.AddView(bonusView);
                 }
                 if (bonus.Type == "present")    
                 {
-                    giftPictureleft.Visibility = ViewStates.Invisible;
-                    giftPictureRight.Visibility = ViewStates.Invisible;
-                    giftTextView.Visibility = ViewStates.Invisible;
+                    bonusPictureleft.Visibility = ViewStates.Invisible;
+                    bonusPictureright.Visibility = ViewStates.Invisible;
+                    bonusPicturecenter.Visibility = ViewStates.Invisible;
+
+                    discountPictureleft.Visibility = ViewStates.Invisible;
+                    discountTextView.Visibility = ViewStates.Invisible;
+                    discountPictureright.Visibility = ViewStates.Invisible;
+
+                    giftPictureleft.Visibility = ViewStates.Visible;
+                    giftPictureRight.Visibility = ViewStates.Visible;
+                    giftPicturecenter.Visibility = ViewStates.Visible;
+
+                    bonusesColumnLL.AddView(bonusView);
                 }
+
+                bonusPictureleft.Dispose();
+                bonusPictureright.Dispose(); 
+                bonusPicturecenter.Dispose();
+            
+                discountPictureleft.Dispose();
+                discountPictureright.Dispose();
+                discountTextView.Dispose();
+            
+                giftPictureleft.Dispose();
+                giftPictureRight.Dispose();
+                giftPicturecenter.Dispose();
             }
 
             achivePicture.DrawingCacheEnabled = true;
@@ -102,6 +150,7 @@ namespace itsbeta.achievements.gui
 
             achivePicture.SetImageBitmap(bitmap);
             bitmap.Dispose();
+            
 
             Animation listviewAnimation = new ScaleAnimation((float)1.0, (float)1.0, (float)0, (float)1.0);//new TranslateAnimation(0, 0, MainActivity._display.Height, 0);
             Animation animation = new TranslateAnimation(AppInfo._display.Width, 0, 200, 0);
@@ -118,16 +167,9 @@ namespace itsbeta.achievements.gui
             asa.AddAnimation(animation);
 
             view.StartAnimation(asa);
-            //view.StartAnimation(animation);
-            //view.StartAnimation(animrotate);
-
-            //view.Click += delegate { 
-            //    SecondScreenActivity.AchieveListSelectedEventTextView.Text = item.AchieveApiName;
-            //};
 
             return view;
         }
-
 
         DateTime LocalDateTime(string strDateTime)
         {
@@ -140,7 +182,6 @@ namespace itsbeta.achievements.gui
 
             return localDateTime;
         }
-
     }
 
 }

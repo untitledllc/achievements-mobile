@@ -39,6 +39,7 @@ namespace itsbeta.achievements
                 CookieManager.Instance.RemoveAllCookie();
                 SecondScreenActivity._context.Finish();
                 File.Delete(@"/data/data/itsbeta.achievements/data.txt");
+                itsbeta.achievements.LoginWebActivity.ItsbetaLoginWebViewClient.loadPreviousState = false;
                 Finish();
                 StartActivity(typeof(LoginActivity));
             };
@@ -86,16 +87,13 @@ namespace itsbeta.achievements
                         statbarlinearlayout.AddView(fakebut);
                     }
 
-                    projectName.Text = AppInfo._achievesInfo.CategoryArray[i].Projects[j].DisplayName + "-" + AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Length + " badges";
+                    projectName.Text = AppInfo._achievesInfo.CategoryArray[i].Projects[j].DisplayName + "-" + AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Length + " בויהזוי";
 
                     profilescrLinearLayout.AddView(view2);
                 }
 
                         //AppInfo._achievesInfo.CategoryArray[i].DisplayName),
             }
-
-            
-
         }
 
         string GetUserAge(string date)

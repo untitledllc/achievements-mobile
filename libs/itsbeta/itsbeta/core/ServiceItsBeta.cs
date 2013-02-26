@@ -61,5 +61,6 @@ namespace ItsBeta.Core
                 return "error=" + jSonActivate.jToken["description"].Value<string>();
             }
         }
+
     }
 }

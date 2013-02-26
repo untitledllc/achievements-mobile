@@ -83,7 +83,7 @@ namespace itsbeta.achievements.gui
                     }
                 }
 
-                SecondScreenActivity.RefreshEventListTextView.Text = "changed";
+                SecondScreenActivity._refreshEventListTextView.Text = "changed";
             };
 
             tada = false;

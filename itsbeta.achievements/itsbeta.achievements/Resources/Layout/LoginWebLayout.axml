@@ -24,8 +24,8 @@
         p1:layout_alignLeft="@id/login_backgroundImageView"
         p1:layout_alignRight="@id/login_backgroundImageView"
         p1:layout_alignBottom="@id/login_backgroundImageView"
-        p1:layout_marginBottom="20dp"
         p1:layout_marginLeft="10dp"
         p1:layout_marginTop="10dp"
-        p1:layout_marginRight="10dp" />
+        p1:layout_marginRight="10dp"
+        p1:layout_marginBottom="25dp" />
 </RelativeLayout>
