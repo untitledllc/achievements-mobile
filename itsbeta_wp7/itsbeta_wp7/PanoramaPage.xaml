@@ -19,7 +19,7 @@
     shell:SystemTray.BackgroundColor="White"
     shell:SystemTray.ForegroundColor="Black"
     DataContext="{Binding Main, Source={StaticResource Locator}}" Background="White">
-    
+
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Minimized" BackgroundColor="#FF535353" ForegroundColor="White">
             <shell:ApplicationBar.MenuItems>
@@ -212,7 +212,7 @@
                                     <TextBlock Text="Subcategories:" Foreground="White"/>
                                     <TextBlock 
                                         FontWeight="Bold"
-                                        Text="{Binding Categories.Count}" Foreground="White" 
+                                        Text="{Binding Projects.Count}" Foreground="White" 
                                                DataContext="{Binding Main, Source={StaticResource Locator}}"/>
                                 </StackPanel>
                             </Grid>

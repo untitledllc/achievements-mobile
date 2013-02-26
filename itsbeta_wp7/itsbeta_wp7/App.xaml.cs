@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using itsbeta_wp7.ViewModel;
+using Telerik.Windows.Controls;
 
 namespace itsbeta_wp7
 {
@@ -121,14 +122,23 @@ namespace itsbeta_wp7
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new PhoneApplicationFrame();
+
+            RadPhoneApplicationFrame frame = new RadPhoneApplicationFrame();
+            RootFrame = frame;
+            RootFrame.Navigated += CompleteInitializePhoneApplication;
+            // Handle navigation failures
+            RootFrame.NavigationFailed += RootFrame_NavigationFailed;
+            // Ensure we don't initialize again
+            phoneApplicationInitialized = true;
+
+            /*RootFrame = new PhoneApplicationFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
 
             // Ensure we don't initialize again
-            phoneApplicationInitialized = true;
+            phoneApplicationInitialized = true;*/
         }
 
         // Do not add any additional code to this method
