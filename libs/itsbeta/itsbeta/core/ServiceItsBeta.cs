@@ -12,6 +12,7 @@ namespace ItsBeta.Core
     {
         JSonProcessor.JSonPostToFbOnce jSonPostToFbOnce;
         JSonProcessor.JSonPlayerId jSonPlayerId;
+        JSonProcessor.JSonActivate jSonActivate;
 
         public ServiceItsBeta()
         {
@@ -40,5 +41,25 @@ namespace ItsBeta.Core
             return true;
         }
 
+
+        /// <summary>
+        /// Return itsbeta's BadgeId
+        /// </summary>
+        /// <param name="activation_code"></param>
+        /// <param name="fb_access_token"></param>
+        /// <param name="fb_user_id"></param>
+        /// <returns></returns>
+        public string ActivateBadge(string activation_code, string fb_access_token, string fb_user_id)
+        {
+            jSonActivate = new JSonProcessor.JSonActivate(activation_code, fb_access_token, fb_user_id);
+            if (jSonActivate.jToken["fb_id"] != null)   
+            {
+                return "badgefbId=" + jSonActivate.jToken["fb_id"].Value<string>();
+            }
+            else
+            {
+                return "error=" + jSonActivate.jToken["description"].Value<string>();
+            }
+        }
     }
 }

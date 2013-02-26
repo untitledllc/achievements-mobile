@@ -9,8 +9,10 @@ namespace itsbeta.achievements
     public static class AppInfo
     {
         public static User _user = new User();
-
+        //
         public static string _access_token = "059db4f010c5f40bf4a73a28222dd3e3";
+        public static string _appaccess_token = "264918200296425GqrQacsFajyFWH-wIsx4EC2BvJQ";
+
 
         public static string _fbAppId = "264918200296425";
         public static string _fbScope = "publish_stream,publish_actions,user_birthday,user_location";

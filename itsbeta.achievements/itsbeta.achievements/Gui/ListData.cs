@@ -14,6 +14,7 @@ namespace itsbeta.achievements.gui
         public string AchievePicUrl;
         public string AchieveReceivedTime;
         public string BonusStatus;
+        public ItsBeta.Core.Achieves.ParentCategory.ParentProject.Achieve.Bonus[] Bonuses { get; set; } 
 
         public Button PostFacebookButton;
         public Button PostTwitterButton;

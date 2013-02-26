@@ -4,15 +4,14 @@
     p1:minHeight="25px"
     p1:layout_width="fill_parent"
     p1:layout_height="fill_parent"
-    p1:id="@+id/FristBadgeMainRelativeLayout"
-    p1:background="#47000000">
+    p1:id="@+id/receivebadge_RelativeLayout">
     <ImageView
         p1:layout_width="300dp"
         p1:layout_height="400dp"
         p1:id="@+id/BadgeSheetImageView"
         p1:background="@drawable/Login_background"
-        p1:layout_centerHorizontal="true"
         p1:layout_marginTop="100dp"
+        p1:layout_centerHorizontal="true"
         p1:layout_marginBottom="10dp" />
     <TextView
         p1:textAppearance="?android:attr/textAppearanceSmall"
@@ -24,14 +23,14 @@
     <ImageView
         p1:layout_width="160dp"
         p1:layout_height="160dp"
-        p1:id="@+id/badgewin_BadgeImageView"
+        p1:id="@+id/receivebadge_BadgeImageView"
         p1:layout_alignLeft="@id/BadgeSheetImageView"
         p1:layout_marginLeft="-10dp"
         p1:layout_alignTop="@id/BadgeSheetImageView"
         p1:layout_marginTop="-100dp" />
     <ImageView
         p1:layout_height="30dp"
-        p1:id="@+id/badgewin_GreenBonusImageView"
+        p1:id="@+id/receivebadge_GreenBonusImageView"
         p1:layout_alignLeft="@+id/BadgeSheetImageView"
         p1:layout_alignTop="@+id/BadgeSheetImageView"
         p1:layout_marginTop="230dp"
@@ -42,7 +41,7 @@
         p1:layout_marginRight="1dp" />
     <ImageView
         p1:layout_height="30dp"
-        p1:id="@+id/badgewin_VioletBonusImageView"
+        p1:id="@+id/receivebadge_VioletBonusImageView"
         p1:layout_alignLeft="@+id/BadgeSheetImageView"
         p1:layout_alignTop="@+id/BadgeSheetImageView"
         p1:layout_marginTop="200dp"
@@ -53,7 +52,7 @@
         p1:layout_marginRight="1dp" />
     <ImageView
         p1:layout_height="30dp"
-        p1:id="@+id/badgewin_BlueBonusImageView"
+        p1:id="@+id/receivebadge_BlueBonusImageView"
         p1:layout_alignLeft="@+id/BadgeSheetImageView"
         p1:layout_alignTop="@+id/BadgeSheetImageView"
         p1:layout_marginTop="170dp"
@@ -63,11 +62,11 @@
         p1:layout_marginRight="1dp"
         p1:background="@drawable/Paper_Divider_blue" />
     <TextView
-        p1:text="Name of Achievement"
+        p1:text="Istbeta user"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
-        p1:id="@+id/badgewin_badgeTextView"
+        p1:id="@+id/receivebadge_ProfileNameTextView"
         p1:layout_alignTop="@+id/BadgeSheetImageView"
         p1:layout_alignLeft="@+id/BadgeSheetImageView"
         p1:layout_marginTop="70dp"
@@ -75,35 +74,32 @@
         p1:textSize="20dp"
         p1:textColor="#ff606060" />
     <TextView
-        p1:text="Wonder how this Badge was earder?"
+        p1:text="Вы получили новый значек"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
-        p1:layout_below="@id/badgewin_badgeTextView"
-        p1:id="@+id/badgewin_howwonderTextView"
+        p1:layout_below="@id/receivebadge_ProfileNameTextView"
+        p1:id="@+id/textView1"
         p1:textColor="#ff666666"
         p1:textStyle="bold"
-        p1:textSize="12dp"
-        p1:layout_alignLeft="@id/badgewin_badgeTextView"
-        p1:layout_marginTop="50dp" />
+        p1:textSize="14dp"
+        p1:layout_alignLeft="@id/receivebadge_ProfileNameTextView" />
     <TextView
-        p1:text="descr"
+        p1:text="Соберите все Ваши достижения здесь"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
-        p1:layout_below="@id/badgewin_howwonderTextView"
-        p1:id="@+id/badgewin_wonderdescrTextView"
+        p1:layout_below="@id/textView1"
+        p1:id="@+id/receivebadge_desctextView"
         p1:textColor="#ff6f6f6f"
         p1:textSize="12dp"
-        p1:layout_alignLeft="@id/badgewin_howwonderTextView"
-        p1:layout_alignRight="@+id/BadgeSheetImageView"
-        p1:layout_marginRight="30dp" />
+        p1:layout_alignLeft="@id/textView1" />
     <ImageButton
         p1:layout_width="20dp"
         p1:layout_height="20dp"
         p1:layout_alignTop="@id/BadgeSheetImageView"
         p1:layout_alignRight="@id/BadgeSheetImageView"
-        p1:id="@+id/badgewin_CloseImageButtonFake"
+        p1:id="@+id/receivebadge_CloseImageButtonFake"
         p1:scaleType="fitXY"
         p1:background="@drawable/Paper_icon_close_norm"
         p1:layout_margin="3dp" />
@@ -112,7 +108,7 @@
         p1:layout_height="40dp"
         p1:layout_alignTop="@id/BadgeSheetImageView"
         p1:layout_alignRight="@id/BadgeSheetImageView"
-        p1:id="@+id/badgewin_CloseImageButton"
+        p1:id="@+id/receivebadge_CloseImageButton"
         p1:scaleType="fitCenter"
         p1:background="#02ffffff" />
     <TextView
@@ -120,54 +116,43 @@
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
-        p1:id="@+id/badgewin_greenbonusTextView"
-        p1:layout_alignTop="@id/badgewin_GreenBonusImageView"
-        p1:layout_alignLeft="@id/badgewin_GreenBonusImageView"
-        p1:layout_marginLeft="15dp"
-        p1:layout_alignBottom="@id/badgewin_GreenBonusImageView"
+        p1:id="@+id/receivebadge_bonustextView"
+        p1:layout_alignTop="@id/receivebadge_GreenBonusImageView"
+        p1:layout_alignLeft="@id/receivebadge_GreenBonusImageView"
+        p1:layout_marginLeft="10dp"
+        p1:layout_alignBottom="@id/receivebadge_GreenBonusImageView"
         p1:gravity="center" />
     <TextView
         p1:text="Скидка"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
-        p1:id="@+id/badgewin_discounttextView"
-        p1:layout_alignTop="@id/badgewin_BlueBonusImageView"
-        p1:layout_alignLeft="@id/badgewin_BlueBonusImageView"
+        p1:id="@+id/receivebadge_discounttextView"
+        p1:layout_alignTop="@id/receivebadge_BlueBonusImageView"
+        p1:layout_alignLeft="@id/receivebadge_BlueBonusImageView"
         p1:layout_marginLeft="10dp"
-        p1:layout_alignBottom="@id/badgewin_BlueBonusImageView"
+        p1:layout_alignBottom="@id/receivebadge_BlueBonusImageView"
         p1:gravity="center" />
     <TextView
         p1:text="Подарок"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
-        p1:id="@+id/badgewin_presenttextView"
-        p1:layout_alignTop="@id/badgewin_VioletBonusImageView"
-        p1:layout_alignLeft="@id/badgewin_VioletBonusImageView"
+        p1:id="@+id/receivebadge_presenttextView"
+        p1:layout_alignTop="@id/receivebadge_VioletBonusImageView"
+        p1:layout_alignLeft="@id/receivebadge_VioletBonusImageView"
         p1:layout_marginLeft="10dp"
-        p1:layout_alignBottom="@id/badgewin_VioletBonusImageView"
+        p1:layout_alignBottom="@id/receivebadge_VioletBonusImageView"
         p1:gravity="center" />
     <TextView
-        p1:text="Bonus descr"
+        p1:text="Бесплатный кофе в нашем офисе ; )"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
-        p1:layout_below="@id/badgewin_GreenBonusImageView"
-        p1:id="@+id/badgewin_bonusdescrTextView"
+        p1:layout_below="@id/receivebadge_GreenBonusImageView"
+        p1:id="@+id/receivebadge_bonusdesctextView"
         p1:textColor="#ff646464"
         p1:textSize="12dp"
-        p1:layout_alignLeft="@id/badgewin_howwonderTextView"
+        p1:layout_alignLeft="@id/textView1"
         p1:layout_marginTop="10dp" />
-    <TextView
-        p1:text="Category, Project"
-        p1:textAppearance="?android:attr/textAppearanceSmall"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/badgewin_badgeTextView"
-        p1:id="@+id/badgewin_categ_projectTextView"
-        p1:layout_alignLeft="@id/badgewin_badgeTextView"
-        p1:layout_marginTop="10dp"
-        p1:textColor="#ff606060"
-        p1:textSize="12dp" />
 </RelativeLayout>

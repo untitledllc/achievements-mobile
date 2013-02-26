@@ -42,7 +42,7 @@
         p1:layout_alignRight="@id/BadgeSheetImageView"
         p1:background="@drawable/Paper_background_middleMiddle"
         p1:textSize="12dp"
-        p1:textColor="#ff717171" />
+        p1:textColor="#ff4e4e4e" />
     <ImageView
         p1:layout_width="wrap_content"
         p1:layout_height="5dp"

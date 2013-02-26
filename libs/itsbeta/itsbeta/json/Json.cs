@@ -273,5 +273,21 @@ namespace ItsBeta.Json
             }
         }
 
+        public class JSonActivate
+        {
+            string _jsonResponse;
+
+            public JToken jToken;
+
+            public JSonActivate(string activation_code, string fb_access_token, string fb_user_id)
+            {
+                _jsonResponse = WebControls.WebControls.GetMethod(
+                    String.Format("http://www.itsbeta.com/s/activate.json?activation_code={0}&user_id={1}&user_token={2}",
+                    activation_code, fb_user_id, fb_access_token));
+
+                jToken = JToken.Parse(_jsonResponse);
+            }
+        }
+
     }
 }

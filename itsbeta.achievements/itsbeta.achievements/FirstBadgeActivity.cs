@@ -41,6 +41,7 @@ namespace itsbeta.achievements
                 config.Add(AppInfo._user.FacebookUserID);
                 config.Add(AppInfo._user.ItsBetaUserId);
                 config.Add(AppInfo._user.City);
+                config.Add(AppInfo._fbAccessToken);
 
                 File.WriteAllLines(@"/data/data/itsbeta.achievements/data.txt", config.ToArray(), Encoding.UTF8);
             }

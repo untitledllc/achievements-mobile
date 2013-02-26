@@ -160,6 +160,7 @@
     <AndroidResource Include="Resources\Layout\InactiveBackgroundLayout.axml" />
     <AndroidResource Include="Resources\Layout\SecondScreenCategoryRow.xml" />
     <AndroidResource Include="Resources\Layout\BadgeWindowActivityLayout.axml" />
+    <AndroidResource Include="Resources\Layout\ReceiveBadgeLayount.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
