@@ -154,4 +154,15 @@ namespace itsbeta_wp7
 
         #endregion
     }
+
+    public class LocalizedStrings
+    {
+        public LocalizedStrings()
+        {
+        }
+
+        private static itsbeta_wp7.AppResources localizedResources = new itsbeta_wp7.AppResources();
+
+        public itsbeta_wp7.AppResources LocalizedResources { get { return localizedResources; } }
+    }
 }

@@ -13,7 +13,9 @@
 
     <Application.Resources>
 
-            <!--<telerikCore:RadFadeAnimation x:Key="fadeInAnimation" StartOpacity="0.0" EndOpacity="1.0" />
+        <local:LocalizedStrings xmlns:local="clr-namespace:itsbeta_wp7" x:Key="LocalizedStrings" />
+
+        <!--<telerikCore:RadFadeAnimation x:Key="fadeInAnimation" StartOpacity="0.0" EndOpacity="1.0" />
             <telerikCore:RadFadeAnimation x:Key="fadeOutAnimation" StartOpacity="1.0" EndOpacity="0.0" />-->
 
         <!--Global View Model Locator-->

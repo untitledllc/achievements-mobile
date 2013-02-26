@@ -36,24 +36,12 @@
               Margin="12,0,12,0">
             <StackPanel Width="420" Height="550" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White">
             	<Grid Height="550">
-            		<TextBlock Text="Collect all your achivements" Foreground="#FF878785" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0" FontSize="26.667"/>
-                <Button Content="Войти через facebook" Click="Button_Click" Style="{StaticResource FacebookLoginButtonStyle}" Height="80" VerticalAlignment="Center" />
-                <HyperlinkButton Name="FacebookSingup" Content="Facebook signup" NavigateUri="http://facebook.com" Foreground="#FFA7CEE0" VerticalAlignment="Bottom" BorderThickness="0" Margin="0,0,0,20" />
+                    <TextBlock Text="{Binding Path=LocalizedResources.collect_all_your_achieves, Source={StaticResource LocalizedStrings}}" Foreground="#FF878785" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0" FontSize="26.667"/>
+                    <Button Content="{Binding Path=LocalizedResources.enter_using_facebook, Source={StaticResource LocalizedStrings}}" Click="Button_Click" Style="{StaticResource FacebookLoginButtonStyle}" Height="80" VerticalAlignment="Center" />
+                    <HyperlinkButton Name="FacebookSingup" Content="{Binding Path=LocalizedResources.facebook_singup, Source={StaticResource LocalizedStrings}}" NavigateUri="http://facebook.com" Foreground="#FFA7CEE0" VerticalAlignment="Bottom" BorderThickness="0" Margin="0,0,0,20" />
 				</Grid>
             </StackPanel>
         </Grid>
     </Grid>
-
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>

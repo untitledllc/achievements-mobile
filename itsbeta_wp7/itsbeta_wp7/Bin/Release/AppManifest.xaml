@@ -17,5 +17,7 @@
     <AssemblyPart x:Name="Telerik.Windows.Controls.Primitives" Source="Telerik.Windows.Controls.Primitives.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Core" Source="Telerik.Windows.Core.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Data" Source="Telerik.Windows.Data.dll" />
+    <AssemblyPart Source="ru-RU/itsbeta_wp7.resources.dll" />
+    <AssemblyPart Source="zh-CN/itsbeta_wp7.resources.dll" />
   </Deployment.Parts>
 </Deployment>

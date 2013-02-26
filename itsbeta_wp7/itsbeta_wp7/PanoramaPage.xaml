@@ -23,8 +23,10 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Minimized" BackgroundColor="#FF535353" ForegroundColor="White">
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Оценить приложение"/>
-                <shell:ApplicationBarMenuItem Text="О программе"/>
+                <shell:ApplicationBarMenuItem Text="rate app"/>
+                <!-- {Binding Path=LocalizedResources.rate_app, Source={StaticResource LocalizedStrings}} -->
+                <shell:ApplicationBarMenuItem Text="about application"/>
+                <!--{Binding Path=LocalizedResources.about_program, Source={StaticResource LocalizedStrings}}-->
             </shell:ApplicationBar.MenuItems>
             <!--<shell:ApplicationBarIconButton x:Name="RefreshButton" IconUri="/icons/appbar.refresh.rest.png" Text="обновить" Click="RefreshButton_Click" />
             <shell:ApplicationBarIconButton x:Name="ActivateBadge" IconUri="/icons/appbar.add.rest.png" Text="код" Click="ActivateBadge_Click" />
@@ -68,7 +70,7 @@
             	</controls:PanoramaItem.Background>-->
                 <controls:PanoramaItem.Header>
                     <Border Width="600" Background="#FFc0ddd8" Margin="-12,0,0,0">
-                        <TextBlock Text="категории" Margin="15,-15,0,0" Foreground="White"/>
+                        <TextBlock Text="{Binding Path=LocalizedResources.categories, Source={StaticResource LocalizedStrings}}" Margin="15,-15,0,0" Foreground="White"/>
                     </Border>
                 </controls:PanoramaItem.Header>
                 <Grid Margin="10,-10,10,0">
@@ -88,7 +90,8 @@
                                             <TextBlock Text="{Binding Activated_badges_count}" Style="{StaticResource BadgesTextblockStyle}"/>
                                             <!--<TextBlock Text="/"/>
                                             <TextBlock Text="{Binding Total_badges}"/>-->
-                                            <TextBlock Text=" открыто" Style="{StaticResource BadgesTextblockStyle}"/>
+                                            <TextBlock Text="{Binding Path=LocalizedResources.badges_opened_label, Source={StaticResource LocalizedStrings}}"
+                                                       Style="{StaticResource BadgesTextblockStyle}"/>
                                         </StackPanel>
                                         <!--<TextBlock Text="{Binding Desc}" TextWrapping="Wrap"/>-->
                                     </StackPanel>
@@ -111,15 +114,15 @@
             	</controls:PanoramaItem.Background>
             	<controls:PanoramaItem.Header>
                     <Border Width="600" Margin="-12,0,0,0" Background="#FFb0aea7" VerticalAlignment="Top">
-                        <TextBlock Text="активация" 
+                        <TextBlock Text="{Binding Path=LocalizedResources.activation, Source={StaticResource LocalizedStrings}}" 
                                    Margin="20,-15,0,0"
                                    HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>
                 <StackPanel Margin="10,0,10,0">
-                    <Button Content="Использовать QR-ридер" Name="QrReaderButton" Click="QrReaderButton_Click" Style="{StaticResource QRButtonStyle}" Height="120" />
-                    <Button Content="Ввести код" Name="ActivateCOdeButton" Click="ActivateCOdeButton_Click" Style="{StaticResource ActivateButtonStyle}" Height="120" />
-                    <TextBlock TextWrapping="Wrap" Text="Введите код или считайте QR-код" Style="{StaticResource BadgesTextblockStyle}"/>
+                    <Button Content="{Binding Path=LocalizedResources.categories, Source={StaticResource LocalizedStrings}}" Name="QrReaderButton" Click="QrReaderButton_Click" Style="{StaticResource QRButtonStyle}" Height="120" />
+                    <Button Content="{Binding Path=LocalizedResources.use_qr_reader, Source={StaticResource LocalizedStrings}}" Name="ActivateCOdeButton" Click="ActivateCOdeButton_Click" Style="{StaticResource ActivateButtonStyle}" Height="120" />
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Path=LocalizedResources.use_code_or_qr_description, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BadgesTextblockStyle}"/>
                 </StackPanel>
             </controls:PanoramaItem>
 
@@ -134,7 +137,7 @@
             	</controls:PanoramaItem.Background>
             	<controls:PanoramaItem.Header>
                     <Border Width="460" Margin="-12,0,0,0" Background="#FFa8cd8b" VerticalAlignment="Top">
-                        <TextBlock Text="профиль" Margin="15,-15,0,0"
+                        <TextBlock Text="{Binding Path=LocalizedResources.profile, Source={StaticResource LocalizedStrings}}" Margin="15,-15,0,0"
 						HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>
@@ -182,7 +185,7 @@
                                     <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_blue.png" Stretch="None" />
                                 </Grid.Background>
                                 <StackPanel Margin="15">
-                                    <TextBlock Text="All Badges:" Foreground="White"/>
+                                        <TextBlock Text="{Binding Path=LocalizedResources.all_badges, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
                                     <TextBlock 
                                         FontWeight="Bold"
                                         Text="{Binding Achieves.Count}" Foreground="White" 
@@ -195,7 +198,7 @@
                                     <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_green.png" Stretch="None" />
                                 </Grid.Background>
                                 <StackPanel Margin="15">
-                                    <TextBlock Text="Bonuses:" Foreground="White"/>
+                                        <TextBlock Text="{Binding Path=LocalizedResources.bonuses, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
                                     <TextBlock 
                                         FontWeight="Bold"
                                         Text="{Binding BonusAchieves.Count}" Foreground="White" 
@@ -209,7 +212,7 @@
                                     <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_violet.png" Stretch="None" />
                                 </Grid.Background>
                                 <StackPanel Margin="15">
-                                    <TextBlock Text="Subcategories:" Foreground="White"/>
+                                    <TextBlock Text="{Binding Path=LocalizedResources.subcategories, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
                                     <TextBlock 
                                         FontWeight="Bold"
                                         Text="{Binding Projects.Count}" Foreground="White" 
@@ -253,7 +256,7 @@
             	</controls:PanoramaItem.Background>
             	<controls:PanoramaItem.Header>
                     <Border Width="600" Margin="-12,0,0,0" Background="#FFb095b6" VerticalAlignment="Top">
-                        <TextBlock Text="последнее"
+                        <TextBlock Text="{Binding Path=LocalizedResources.last, Source={StaticResource LocalizedStrings}}"
 						Margin="15,-15,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>
