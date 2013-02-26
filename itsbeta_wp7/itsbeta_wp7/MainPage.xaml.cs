@@ -12,9 +12,12 @@ namespace itsbeta_wp7
         {
             InitializeComponent();
             this.AllBadges.GroupDescriptors.Add(GroupedBadgesList);
+            //Sort.SortMode 
+            this.AllBadges.SortDescriptors.Add(Sort);
         }
 
-        public GenericGroupDescriptor<AchievesItem, string> GroupedBadgesList = new GenericGroupDescriptor<AchievesItem, string>(item => item.Project_api_name);
+        public GenericGroupDescriptor<AchievesItem, string> GroupedBadgesList = new GenericGroupDescriptor<AchievesItem, string>(item => item.Project_name);
+        public GenericSortDescriptor<AchievesItem, TimeSpan> Sort = new GenericSortDescriptor<AchievesItem, TimeSpan>(item => DateTime.Now - item.Create_time);
 
         private void AllBadges_GroupHeaderItemTap(object sender, Telerik.Windows.Controls.GroupHeaderItemTapEventArgs e)
         {

@@ -17,8 +17,20 @@ namespace itsbeta_wp7.ViewModel
             {
                 _create_time = value;
                 RaisePropertyChanged("Create_time");
+                RaisePropertyChanged("Short_Create_time");
             }
-        }     
+        }
+
+        public string Short_Create_time
+        {
+            get
+            {
+                return _create_time.ToShortDateString();
+            }
+            private set
+            {
+            }
+        }  
     }
 
     public class BonusItem : ViewModelBase

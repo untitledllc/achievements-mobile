@@ -148,9 +148,6 @@
     <Compile Include="ViewModel\CategoriesViewModel.cs" />
     <Compile Include="ViewModel\CategoryItem.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ProfilePage.xaml.cs">
-      <DependentUpon>ProfilePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\ProjectItem.cs" />
     <Compile Include="ViewModel\ProjectsViewModel.cs" />
     <Compile Include="ViewModel\QRViewModel.cs" />
@@ -196,10 +193,6 @@
     </Page>
     <Page Include="PanoramaPage.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ProfilePage.xaml">
-      <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QRread.xaml">

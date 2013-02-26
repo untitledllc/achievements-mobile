@@ -39,7 +39,7 @@
             </StackPanel.Background>
             <TextBlock x:Name="ApplicationTitle"
 			           Text="ITSBETA" Margin="10,0,0,0"
-			           Style="{StaticResource OtherTextblockStyle}" />
+			           Style="{StaticResource ApplicationTitleTextblockStyle}" />
 			<TextBlock x:Name="PageTitle"
 			           Text="{Binding Path=CurrentAchieve.Display_name}"
 			           Margin="10,20,0,0"

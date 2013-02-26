@@ -84,6 +84,18 @@ namespace itsbeta_wp7.ViewModel
             {
                 _display_name = value;
                 RaisePropertyChanged("Display_name");
+                RaisePropertyChanged("Display_name_upper");
+            }
+        }
+
+        public string Display_name_upper
+        {
+            get
+            {
+                return _display_name.ToUpper();
+            }
+            set
+            {
             }
         }
 

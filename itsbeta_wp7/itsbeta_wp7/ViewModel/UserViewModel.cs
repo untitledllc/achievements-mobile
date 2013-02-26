@@ -75,9 +75,7 @@ namespace itsbeta_wp7.ViewModel
                         RaisePropertyChanged("UserProfilePicture");
 
                         ViewModelLocator.UserStatic.LogOut = false;
-
                         ViewModelLocator.MainStatic.LoadAchievements();
-                        //ViewModelLocator.UserStatic.GetItsbetaAchieve();
 
                         try
                         {

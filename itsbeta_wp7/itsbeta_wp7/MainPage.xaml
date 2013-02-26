@@ -89,9 +89,9 @@
             </StackPanel.Background>
             <TextBlock x:Name="ApplicationTitle"
 			           Text="ITSBETA" Margin="10,0,0,0"
-			           Style="{StaticResource OtherTextblockStyle}" />
+			           Style="{StaticResource ApplicationTitleTextblockStyle}" />
 			<TextBlock x:Name="PageTitle"
-			           Text="{Binding Path=CurrentCategory.Display_name}"
+			           Text="{Binding Path=CurrentCategory.Display_name_upper}"
 			           Margin="10,20,0,0"
 			           Style="{StaticResource ProjectTextblockStyle}" />
 		</StackPanel>
@@ -102,7 +102,7 @@
             <!--GroupDescriptorsSource="{Binding Path=GroupedBadgesList}"-->
             <telerikData:RadJumpList 
                 EmptyContentTemplate="{StaticResource NoDataListTemlate}"
-                x:Name="AllBadges"                                      
+                x:Name="AllBadges"                                          
                                      GroupHeaderItemTap="AllBadges_GroupHeaderItemTap"
                                      ItemsSource="{Binding Path=CategoryAchieves}"
                                      DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllBadges_ItemTap" GroupHeaderTemplate="{StaticResource DataTemplate1}" GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}">
@@ -116,8 +116,9 @@
                                 <Image Grid.Column="0" Source="{Binding Pic}"/>
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                                     <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap" Style="{StaticResource CategoryTextblockStyle}" />
-                                    <TextBlock Text="{Binding Desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />
-                                </StackPanel>
+                                    <!--<TextBlock Text="{Binding Desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />-->
+                                <TextBlock Text="{Binding Short_Create_time}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />
+                            </StackPanel>
                             </Grid>
                         </DataTemplate>
                 </telerikData:RadJumpList.ItemTemplate>

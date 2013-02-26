@@ -6,6 +6,8 @@ using Newtonsoft.Json;
 using Telerik.Windows.Data;
 using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -187,6 +189,9 @@ namespace itsbeta_wp7.ViewModel
         {
             try
             {
+                var bw = new BackgroundWorker();
+                //bw.DoWork += delegate
+                //{
                 try
                 {
                     Loading = true;
@@ -217,9 +222,7 @@ namespace itsbeta_wp7.ViewModel
                                     category.Total_badges = category.Total_badges + project.Total_badges;
                                     int pcount = 0;
                                     foreach (var badgeJson in projectJson["achievements"])
-                                    {
-
-                                        
+                                    {                                        
                                         AchievesItem badge = JsonConvert.DeserializeObject<AchievesItem>(badgeJson.ToString());
                                         badge.Project_api_name = project.Api_name;
                                         badge.Project_name = project.Display_name;
@@ -228,31 +231,43 @@ namespace itsbeta_wp7.ViewModel
                                         if (Achieves.FirstOrDefault(c => c.Display_name == badge.Display_name) == null)
                                         {
                                             pcount++;
-                                        };                                        
-                                        Achieves.Add(badge);
+                                        };
+                                        //Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                        //{
+                                            Achieves.Add(badge);
+                                        //});
                                     }                                    
                                     count += pcount;
                                     project.Activated_badges_count = pcount;
-                                    Projects.Add(project);
+                                    //Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                    //{
+                                        Projects.Add(project);
+                                    //});
                                 }
                                 category.Activated_badges_count = count;
-                                Categories.Add(category);
+                                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                {
+                                    Categories.Add(category);
+                                });
                             };
-                            Loading = false;
-                            RaisePropertyChanged("BonusAchieves");
-                            RaisePropertyChanged("Categories");
-                            RaisePropertyChanged("Projects");
-                            RaisePropertyChanged("Achieves");
-                            RaisePropertyChanged("LastAchieves");
-                            if (activation_code!="")
-                            {
-                            ViewModelLocator.UserStatic.AchievedEarnedMessage("Достижение активировано!", "", activation_code);
-                            };
+
+                                    Loading = false;
+                                    RaisePropertyChanged("BonusAchieves");
+                                    RaisePropertyChanged("Categories");
+                                    RaisePropertyChanged("Projects");
+                                    RaisePropertyChanged("Achieves");
+                                    RaisePropertyChanged("LastAchieves");
+                                    if (activation_code != "")
+                                    {
+                                        ViewModelLocator.UserStatic.AchievedEarnedMessage("Достижение активировано!", "", activation_code);
+                                    };
                         }
                         catch { };
                     });
                 }
                 catch { };
+                //};
+                //bw.RunWorkerAsync(); 
             }
             catch { };
         }
