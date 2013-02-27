@@ -168,4 +168,13 @@
   <data name="use_qr_reader" xml:space="preserve">
     <value>Использовать QR-ридер</value>
   </data>
+  <data name="years" xml:space="preserve">
+    <value>лет</value>
+  </data>
+  <data name="years1" xml:space="preserve">
+    <value>год</value>
+  </data>
+  <data name="years234" xml:space="preserve">
+    <value>года</value>
+  </data>
 </root>

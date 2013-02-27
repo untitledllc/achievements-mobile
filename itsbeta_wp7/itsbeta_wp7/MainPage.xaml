@@ -110,10 +110,18 @@
                         <DataTemplate>
                             <Grid Margin="10,10,0,0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="110" />
+                                    <ColumnDefinition Width="109" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Source="{Binding Pic}"/>
+                            <Border Margin="0" Canvas.ZIndex="2" Grid.Column="0" Width="108" Height="108" CornerRadius="108" BorderThickness="1" BorderBrush="#800C0C0C">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#4A010101" Offset="1" />
+                                        <GradientStop Color="#4AFEFEFE" Offset="0" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                            <Image Grid.Column="0" Width="108" Height="108" Source="{Binding Pic}"/>
                                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                                     <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap" Style="{StaticResource CategoryTextblockStyle}" />
                                     <!--<TextBlock Text="{Binding Desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />-->

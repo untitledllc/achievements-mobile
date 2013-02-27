@@ -202,7 +202,7 @@ namespace itsbeta_wp7.ViewModel
                     var client = new RestClient("http://www.itsbeta.com");
                     var request = new RestRequest("s/info/achievements.json", Method.GET);
                     request.Parameters.Clear();
-                    request.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
+                    request.AddParameter("access_token", App.ACCESS_TOKEN);
                     request.AddParameter("player_id", ViewModelLocator.UserStatic.PlayerId);
 
                     client.ExecuteAsync(request, response =>

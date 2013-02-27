@@ -16,6 +16,7 @@ using Microsoft.Phone.Controls;
 using System.Windows.Media.Imaging;
 using System.Linq;
 using System.IO;
+using System.Globalization;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -62,7 +63,7 @@ namespace itsbeta_wp7.ViewModel
                 var client_player = new RestClient("http://www.itsbeta.com");
                 var request_player = new RestRequest("s/info/playerid.json", Method.GET);
                 request_player.Parameters.Clear();
-                request_player.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
+                request_player.AddParameter("access_token", App.ACCESS_TOKEN);
                 request_player.AddParameter("type", "fb_user_id");
                 request_player.AddParameter("id", FacebookId);
 
@@ -109,7 +110,7 @@ namespace itsbeta_wp7.ViewModel
                 var client = new RestClient("http://www.itsbeta.com");
                 var request = new RestRequest("s/activate.json", Method.GET);
                 request.Parameters.Clear();
-                request.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
+                request.AddParameter("access_token", App.ACCESS_TOKEN);
                 request.AddParameter("user_id", FacebookId);
                 request.AddParameter("user_token", FacebookToken);
                 request.AddParameter("activation_code", activation_code);
@@ -196,7 +197,7 @@ namespace itsbeta_wp7.ViewModel
                 var client = new RestClient("http://www.itsbeta.com");
                 var request = new RestRequest("s/other/itsbeta/achieves/posttofbonce.json", Method.POST);
                 request.Parameters.Clear();
-                request.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
+                request.AddParameter("access_token", App.ACCESS_TOKEN);
                 request.AddParameter("user_id", FacebookId);
                 request.AddParameter("user_token", FacebookToken);
                 request.AddParameter("badge_name", "itsbeta");
@@ -336,18 +337,48 @@ namespace itsbeta_wp7.ViewModel
                 {
                     if (_birthday != "")
                     {
-                        DateBirthday = DateTime.Parse(_birthday.ToString());
+                        CultureInfo provider = CultureInfo.InvariantCulture;
+                        string format = "MM/dd/yyyy";
+                        DateBirthday = DateTime.ParseExact(_birthday.ToString(), format, provider);
                     }
                     else
                     {
                         DateBirthday = DateTime.Today;
                         _birthday = DateBirthday.ToShortDateString();
                     };
-
                 }
                 catch { };
                 RaisePropertyChanged("Birthday");
-                RaisePropertyChanged("DateBirthday");
+                RaisePropertyChanged("DateBirthday");                
+            }
+        }
+
+        public string Age
+        {
+            get
+            {
+                string outstr="";
+                DateTime today = DateTime.Today;
+                int age = today.Year - DateBirthday.Year;
+                if (DateBirthday > today.AddYears(-age)) age--;
+
+                outstr+=age.ToString()+" ";
+                switch (age%10) {
+                    case 1:
+                        outstr += AppResources.years1;
+                        break;
+                    case 2:
+                    case 3:
+                    case 4:
+                        outstr += AppResources.years234;
+                        break;
+                    default: outstr += AppResources.years; break;
+                };
+
+                return outstr;
+            }
+            private set
+            {
             }
         }
 
@@ -364,6 +395,7 @@ namespace itsbeta_wp7.ViewModel
                 _birthday = DateBirthday.ToShortDateString();
                 RaisePropertyChanged("Birthday");
                 RaisePropertyChanged("DateBirthday");
+                RaisePropertyChanged("Age");
             }
         }
 

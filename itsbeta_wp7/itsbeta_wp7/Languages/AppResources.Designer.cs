@@ -212,5 +212,32 @@ namespace itsbeta_wp7 {
                 return ResourceManager.GetString("use_qr_reader", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to years.
+        /// </summary>
+        public static string years {
+            get {
+                return ResourceManager.GetString("years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to years.
+        /// </summary>
+        public static string years1 {
+            get {
+                return ResourceManager.GetString("years1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to years.
+        /// </summary>
+        public static string years234 {
+            get {
+                return ResourceManager.GetString("years234", resourceCulture);
+            }
+        }
     }
 }

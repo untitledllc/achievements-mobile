@@ -39,8 +39,20 @@
     </shell:SystemTray.ProgressIndicator>
 
     <!--LayoutRoot содержит корневую сетку, где размещается все содержимое страницы-->
-    <Grid x:Name="LayoutRoot" Background="White">
-        <controls:Panorama Margin="0">
+    <Grid x:Name="LayoutRoot" Background="White" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Grid Grid.Column="0" Margin="0,14,0,0" 
+              Canvas.ZIndex="3"
+              Grid.Row="0" Height="142" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2D2D2" Offset="1"/>
+                    <GradientStop Color="White" Offset="0.95"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Image Height="142" Margin="0,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        </Grid>
+
+        <controls:Panorama Margin="0" Canvas.ZIndex="1">
             <controls:Panorama.Background>
                 <ImageBrush ImageSource="images/Achivments_WP7_slicing_panoramaBackground.png"/>
             </controls:Panorama.Background>
@@ -52,7 +64,7 @@
                             <GradientStop Color="White" Offset="0.95"/>
             			</LinearGradientBrush>
             		</Grid.Background>
-                    <Image Height="142" Margin="0,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <!--<Image Height="142" Margin="0,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />-->
 				</Grid>
             </controls:Panorama.Title>
 
@@ -157,20 +169,22 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="170"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Image Grid.Row="0" Height="130" Width="130" Margin="20,0,0,0" Source="{Binding UserProfilePicture}" DataContext="{Binding User, Source={StaticResource Locator}}" Stretch="Fill" VerticalAlignment="Center"></Image>
-                            <StackPanel Grid.Row="0" Margin="10,50,0,25" Grid.Column="1">
-                                <TextBlock Text="{Binding First_name}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
-                                <TextBlock Text="{Binding Last_name}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
-                                <TextBlock Text="{Binding Birthday}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
-                                <TextBlock Text="{Binding Location}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                            <Image Grid.Row="0" Height="130"
+                                   Width="135" Margin="36,12,0,0" Source="{Binding UserProfilePicture}" DataContext="{Binding User, Source={StaticResource Locator}}" 
+                                   Stretch="Fill" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                            <StackPanel Grid.Row="0" Margin="15,27,30,25" Grid.Column="1">
+                                <TextBlock Text="{Binding First_name}" Style="{StaticResource ProfileTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                                <TextBlock Text="{Binding Last_name}" Margin="0,-2,0,0" Style="{StaticResource ProfileTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                                <TextBlock Text="{Binding Age}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                                <TextBlock Margin="0,-1,0,0"  Text="{Binding Location}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
                             </StackPanel>
 
                             <telerikPrimitives:RadImageButton 
-                                Margin="0,-6,20,0"
+                                Margin="0,-4,20,0"
                                 Grid.Column="1" Grid.Row="1"                                
                                 ButtonShape="Image" 
                                 RestStateImageSource="/itsbeta_wp7;component/images/Profile_logout_btn_norm.png" 
@@ -184,11 +198,13 @@
                                 <Grid.Background>
                                     <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_blue.png" Stretch="None" />
                                 </Grid.Background>
-                                <StackPanel Margin="15">
-                                        <TextBlock Text="{Binding Path=LocalizedResources.all_badges, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
+                                <StackPanel Margin="10">
+                                        <TextBlock Text="{Binding Path=LocalizedResources.all_badges, Source={StaticResource LocalizedStrings}}" 
+                                                   Style="{StaticResource StatsTextblockStyle}"
+                                                   Foreground="White"/>
                                     <TextBlock 
-                                        FontWeight="Bold"
                                         Text="{Binding Achieves.Count}" Foreground="White" 
+                                               Style="{StaticResource StatsTextblockStyle}"
                                                DataContext="{Binding Main, Source={StaticResource Locator}}"/>
                                 </StackPanel>
                             </Grid>
@@ -197,11 +213,13 @@
                                 <Grid.Background>
                                     <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_green.png" Stretch="None" />
                                 </Grid.Background>
-                                <StackPanel Margin="15">
-                                        <TextBlock Text="{Binding Path=LocalizedResources.bonuses, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
+                                <StackPanel Margin="10">
+                                        <TextBlock 
+                                            Style="{StaticResource StatsTextblockStyle}"
+                                            Text="{Binding Path=LocalizedResources.bonuses, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
                                     <TextBlock 
-                                        FontWeight="Bold"
                                         Text="{Binding BonusAchieves.Count}" Foreground="White" 
+                                        Style="{StaticResource StatsTextblockStyle}"
                                                DataContext="{Binding Main, Source={StaticResource Locator}}"/>
                                 </StackPanel>
                             </Grid>
@@ -211,37 +229,18 @@
                                 <Grid.Background>
                                     <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_violet.png" Stretch="None" />
                                 </Grid.Background>
-                                <StackPanel Margin="15">
-                                    <TextBlock Text="{Binding Path=LocalizedResources.subcategories, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
+                                <StackPanel Margin="10">
                                     <TextBlock 
-                                        FontWeight="Bold"
+                                        Style="{StaticResource StatsTextblockStyle}"
+                                        Text="{Binding Path=LocalizedResources.subcategories, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
+                                    <TextBlock 
+                                        Style="{StaticResource StatsTextblockStyle}"
                                         Text="{Binding Projects.Count}" Foreground="White" 
                                                DataContext="{Binding Main, Source={StaticResource Locator}}"/>
                                 </StackPanel>
                             </Grid>
 
                         </StackPanel>
-                        <!--<StackPanel Margin="0,10,0,0" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">                      
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="All badges " Style="{StaticResource OtherTextblockStyle}"/>
-                                <TextBlock Text="{Binding Achieves.Count}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Projects " Style="{StaticResource OtherTextblockStyle}"/>
-                                <TextBlock Text="{Binding Projects.Count}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Categories " Style="{StaticResource OtherTextblockStyle}"/>
-                                <TextBlock Text="{Binding Categories.Count}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Bonuses " Style="{StaticResource OtherTextblockStyle}"/>
-                                <TextBlock Text="{Binding BonusAchieves.Count}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
-                            </StackPanel>
-                        </StackPanel>-->
                     </Grid>
                 </StackPanel>
             </controls:PanoramaItem>
@@ -264,24 +263,35 @@
                     <telerikData:RadJumpList x:Name="LastAchieves"                                     
                                      ItemsSource="{Binding Path=LastAchieves}"
                                      DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="LastAchieves_ItemTap">
+                    	<telerikData:RadJumpList.Background>
+                    		<ImageBrush Stretch="Fill"/>
+                    	</telerikData:RadJumpList.Background>
                         <telerikData:RadJumpList.ItemTemplate>
                             <DataTemplate>
                                 <Grid Margin="10,10,0,0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="130" />
+                                        <ColumnDefinition Width="109" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 									<Grid.Background>
                 						<ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_labels_norm.png" AlignmentX="Right" Stretch="None" />
            	 						</Grid.Background>
-                                    <Image Grid.Column="0" Source="{Binding Pic}"/>
+                                    <Border Margin="0" Canvas.ZIndex="2" Grid.Column="0" Width="108" Height="108" CornerRadius="108" BorderThickness="1" BorderBrush="#800C0C0C">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#4A010101" Offset="1" />
+                                                <GradientStop Color="#4AFEFEFE" Offset="0" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                    <Image Margin="0" Canvas.ZIndex="1" Grid.Column="0" Width="108" Height="108" Source="{Binding Pic}"/>
                                     <StackPanel Height="66" Grid.Column="1" Margin="14,48,0,0" UseLayoutRounding="True" VerticalAlignment="Top">
                                         <TextBlock Text="{Binding Display_name}" Style="{StaticResource BadgesTextblockStyle}"/>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
                         </telerikData:RadJumpList.ItemTemplate>
-                    </telerikData:RadJumpList>
+                    </telerikData:RadJumpList>					
                 </Grid>
             </controls:PanoramaItem>
         </controls:Panorama>

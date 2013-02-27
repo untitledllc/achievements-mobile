@@ -195,6 +195,18 @@
         	<Setter Property="FontFamily" Value="Segoe WP"/>
         	<Setter Property="FontSize" Value="21"/>
         </Style>
+        
+        <Style x:Key="ProfileTextblockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF4c4c4b"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+
+        <Style x:Key="StatsTextblockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="FontSize" Value="28"/>
+        </Style>
 
         <Style x:Key="ProjectTextblockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FFD2D2D2"/>

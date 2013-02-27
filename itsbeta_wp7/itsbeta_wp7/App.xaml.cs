@@ -22,6 +22,7 @@ namespace itsbeta_wp7
     /// </summary>
     public partial class App : Application
     {
+        public const string ACCESS_TOKEN = "059db4f010c5f40bf4a73a28222dd3e3";
 
         // Easy access to the root frame
         public PhoneApplicationFrame RootFrame
