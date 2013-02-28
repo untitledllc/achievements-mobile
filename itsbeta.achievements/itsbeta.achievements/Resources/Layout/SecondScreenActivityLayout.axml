@@ -56,13 +56,81 @@
         p1:layout_height="40dp"
         p1:layout_below="@id/NavBar_ImageButton"
         p1:id="@+id/secondscr_categoriesbar_linearLayout"
-        p1:background="@drawable/Categories_btn_norm" />
+        p1:background="@drawable/Categories_btn_norm">
+        <RelativeLayout
+            p1:minWidth="25px"
+            p1:minHeight="40dp"
+            p1:layout_width="fill_parent"
+            p1:layout_height="40dp"
+            p1:id="@+id/secondscr_categrowrelativeLayout"
+            p1:layout_weight="1">
+            <TextView
+                p1:text="CategotyName"
+                p1:textAppearance="?android:attr/textAppearanceLarge"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/secondscr_CategNameRowTextView"
+                p1:gravity="center_horizontal"
+                p1:layout_marginLeft="30dp"
+                p1:textColor="#ff646464"
+                p1:textSize="12dp"
+                p1:textStyle="normal"
+                p1:layout_marginTop="5dp"
+                p1:layout_centerHorizontal="false"
+                p1:layout_centerVertical="true"
+                p1:singleLine="true" />
+            <ImageView
+                p1:src="@drawable/Categories_btn_arrow"
+                p1:layout_width="15dp"
+                p1:layout_height="15dp"
+                p1:id="@+id/imageView1"
+                p1:layout_centerVertical="true"
+                p1:layout_marginLeft="10dp" />
+            <ImageView
+                p1:layout_width="4dp"
+                p1:layout_height="fill_parent"
+                p1:id="@+id/secondscr_categoryrowDividerImageView"
+                p1:background="@drawable/Btn_divider_v"
+                p1:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <RelativeLayout
+            p1:minWidth="25px"
+            p1:minHeight="40dp"
+            p1:layout_width="fill_parent"
+            p1:layout_height="40dp"
+            p1:id="@+id/secondscr_projectsrelativeLayout"
+            p1:layout_weight="1">
+            <TextView
+                p1:text="ProjectName"
+                p1:textAppearance="?android:attr/textAppearanceLarge"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/secondscr_projectNameRowTextView"
+                p1:gravity="center_horizontal"
+                p1:layout_marginLeft="30dp"
+                p1:textColor="#ff646464"
+                p1:textSize="12dp"
+                p1:textStyle="normal"
+                p1:layout_marginTop="5dp"
+                p1:layout_centerHorizontal="false"
+                p1:layout_centerVertical="true"
+                p1:singleLine="true" />
+            <ImageView
+                p1:src="@drawable/Categories_btn_arrow"
+                p1:layout_width="15dp"
+                p1:layout_height="15dp"
+                p1:id="@+id/imageView1"
+                p1:layout_centerVertical="true"
+                p1:layout_marginLeft="10dp" />
+        </RelativeLayout>
+    </LinearLayout>
     <ListView
         p1:minWidth="25px"
         p1:minHeight="25px"
         p1:layout_width="fill_parent"
         p1:layout_height="fill_parent"
         p1:layout_below="@id/secondscr_categoriesbar_linearLayout"
+        p1:choiceMode="singleChoice"
         p1:id="@+id/secondscr_listView" />
     <ImageButton
         p1:layout_width="25dp"

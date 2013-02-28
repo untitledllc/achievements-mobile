@@ -72,7 +72,7 @@
                     p1:id="@+id/BadgeSheetImageView"
                     p1:background="@drawable/Login_background"
                     p1:layout_centerHorizontal="true"
-                    p1:layout_alignTop="@+id/badgewin_BadgeImageView"
+                    p1:layout_alignTop="@+id/firstbadgewin_BadgeImageView"
                     p1:layout_marginTop="100dp"
                     p1:layout_alignBottom="@+id/bonuspaperlist_linearLayout"
                     p1:minHeight="300dp"
@@ -120,7 +120,7 @@
                     p1:layout_width="wrap_content"
                     p1:layout_height="wrap_content"
                     p1:layout_below="@id/firstbadgewin_howTextView"
-                    p1:id="@+id/badgewin_wonderdescrTextView"
+                    p1:id="@+id/firstbadgewin_wonderdescrTextView"
                     p1:textColor="#ff6f6f6f"
                     p1:textSize="12dp"
                     p1:layout_alignLeft="@id/firstbadgewin_howTextView"
@@ -131,7 +131,7 @@
                     p1:layout_height="20dp"
                     p1:layout_alignTop="@id/BadgeSheetImageView"
                     p1:layout_alignRight="@id/BadgeSheetImageView"
-                    p1:id="@+id/badgewin_CloseImageButtonFake"
+                    p1:id="@+id/firstbadgewin_CloseImageButtonFake"
                     p1:scaleType="fitXY"
                     p1:background="@drawable/Paper_icon_close_norm"
                     p1:layout_margin="3dp" />
@@ -140,7 +140,7 @@
                     p1:layout_height="40dp"
                     p1:layout_alignTop="@id/BadgeSheetImageView"
                     p1:layout_alignRight="@id/BadgeSheetImageView"
-                    p1:id="@+id/badgewin_CloseImageButton"
+                    p1:id="@+id/firstbadgewin_CloseImageButton"
                     p1:scaleType="fitCenter"
                     p1:background="#02ffffff" />
                 <LinearLayout
@@ -154,7 +154,7 @@
                     p1:layout_marginRight="3dp"
                     p1:layout_marginTop="20dp"
                     p1:layout_centerHorizontal="true"
-                    p1:layout_below="@+id/badgewin_wonderdescrTextView" />
+                    p1:layout_below="@+id/firstbadgewin_wonderdescrTextView" />
             </RelativeLayout>
         </ScrollView>
     </RelativeLayout>

@@ -61,7 +61,6 @@ namespace itsbeta.achievements
             Thread loadThread = new Thread(threadStart);
             loadThread.Start();
 
-
             loadComplete.TextChanged += delegate
             {
                 if (!LoginWebActivity.isAppBadgeEarned)
@@ -84,15 +83,18 @@ namespace itsbeta.achievements
             buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
             SetContentView(Resource.Layout.FirstBadgeActivityLayout);
 
-            TextView userName = FindViewById<TextView>(Resource.Id.FirstBadge_ProfileNameTextView);
+            TextView userName = FindViewById<TextView>(Resource.Id.firstbadgewin_usernameTextView);
+            TextView badgeDescr = FindViewById<TextView>(Resource.Id.firstbadgewin_wonderdescrTextView);
+
             if (AppInfo._user.Fullname != null)
             {
                 userName.Text = AppInfo._user.Fullname;
             }
 
-            ImageView badgeImageView = FindViewById<ImageView>(Resource.Id.paper_BadgeImageView);
-            ImageButton badgeReadyButton = FindViewById<ImageButton>(Resource.Id.BadgeSheet_CloseImageButton);
-            ImageButton badgeReadyButtonFake = FindViewById<ImageButton>(Resource.Id.BadgeSheet_CloseImageButtonFake);
+            ImageView badgeImageView = FindViewById<ImageView>(Resource.Id.firstbadgewin_BadgeImageView);
+
+            ImageButton badgeReadyButton = FindViewById<ImageButton>(Resource.Id.firstbadgewin_CloseImageButton);
+            ImageButton badgeReadyButtonFake = FindViewById<ImageButton>(Resource.Id.firstbadgewin_CloseImageButtonFake);
 
 
             foreach (var category in AppInfo._achievesInfo.CategoryArray)
@@ -113,7 +115,93 @@ namespace itsbeta.achievements
                 _achieve.ApiName+ ".PNG"
                 );
 
+            LinearLayout bonusPaperListLinearLayout = FindViewById<LinearLayout>(Resource.Id.bonuspaperlist_linearLayout);
+            foreach (var bonus in _achieve.Bonuses)
+            {
+                LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+                View bonusView = layoutInflater.Inflate(Resource.Layout.BonusOnListRowLayout, null);
+
+                ImageView bonusLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
+                ImageView discountLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_BlueBonusImageView);
+                ImageView giftLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_VioletBonusImageView);
+
+                ImageView bonusDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_greendescbackgroundImageView);
+                ImageView discountDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_bluedescbackgroundImageView);
+                ImageView giftDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_violetdescbackgroundImageView);
+
+                TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
+                TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+
+                bonusLineImage.Visibility = ViewStates.Invisible;
+                discountLineImage.Visibility = ViewStates.Invisible;
+                giftLineImage.Visibility = ViewStates.Invisible;
+
+                bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
+                discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
+                giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
+
+                bonusDescr.Visibility = ViewStates.Invisible;
+                bonusName.Visibility = ViewStates.Invisible;
+
+                if (bonus.Type == "discount")
+                {
+                    bonusLineImage.Visibility = ViewStates.Invisible;
+                    discountLineImage.Visibility = ViewStates.Visible;
+                    giftLineImage.Visibility = ViewStates.Invisible;
+
+                    bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
+                    discountDescrBackgroundImage.Visibility = ViewStates.Visible;
+                    giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
+
+                    bonusDescr.Visibility = ViewStates.Visible;
+                    bonusName.Visibility = ViewStates.Visible;
+
+                    bonusName.Text = "Скидка";
+                    bonusDescr.Text = bonus.Description;
+
+                    bonusPaperListLinearLayout.AddView(bonusView);
+                }
+                if (bonus.Type == "bonus")
+                {
+                    bonusLineImage.Visibility = ViewStates.Visible;
+                    discountLineImage.Visibility = ViewStates.Invisible;
+                    giftLineImage.Visibility = ViewStates.Invisible;
+
+                    bonusDescrBackgroundImage.Visibility = ViewStates.Visible;
+                    discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
+                    giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
+
+                    bonusDescr.Visibility = ViewStates.Visible;
+                    bonusName.Visibility = ViewStates.Visible;
+
+                    bonusName.Text = "Бонус";
+                    bonusDescr.Text = bonus.Description;
+
+                    bonusPaperListLinearLayout.AddView(bonusView);
+                }
+                if (bonus.Type == "present")
+                {
+                    bonusLineImage.Visibility = ViewStates.Invisible;
+                    discountLineImage.Visibility = ViewStates.Invisible;
+                    giftLineImage.Visibility = ViewStates.Visible;
+
+                    bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
+                    discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
+                    giftDescrBackgroundImage.Visibility = ViewStates.Visible;
+
+                    bonusDescr.Visibility = ViewStates.Visible;
+                    bonusName.Visibility = ViewStates.Visible;
+
+                    bonusName.Text = "Подарок";
+                    bonusDescr.Text = bonus.Description;
+
+                    bonusPaperListLinearLayout.AddView(bonusView);
+                }
+            }
+
+
             badgeImageView.SetImageBitmap(bitmap);
+            badgeDescr.Text = _achieve.Description;
 
             badgeReadyButton.Click += delegate
             {

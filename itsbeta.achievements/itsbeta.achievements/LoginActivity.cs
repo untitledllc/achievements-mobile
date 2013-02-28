@@ -49,6 +49,13 @@ namespace itsbeta.achievements
             SetContentView(Resource.Layout.LoginActivityLayout);
 
             ImageButton loginButton = FindViewById<ImageButton>(Resource.Id.login);
+            TextView signUpTextView = FindViewById<TextView>(Resource.Id.signUpTextView);
+
+            signUpTextView.Click += delegate
+            {
+                Intent browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse("http://www.facebook.com/r.php"));
+                StartActivity(browserIntent);
+            };
 
             loginButton.Click += delegate
             {

@@ -11,17 +11,15 @@ namespace itsbeta.achievements.gui
     public class CategoriesListItemAdapter : ArrayAdapter<CategoriesListData>
     {
         private IList<CategoriesListData> Items;
-        public Dictionary<string, bool> _selectedDictionary;
+        ListView _listView;
 
-        public CategoriesListItemAdapter(Context context, int textViewResourceId, IList<CategoriesListData> items, Dictionary<string,bool> selectedDictionary)
+        public CategoriesListItemAdapter(Context context, int textViewResourceId, IList<CategoriesListData> items, ListView listView)
             : base(context, textViewResourceId, items)
         {
             Items = items;
-            _selectedDictionary = selectedDictionary;
+            _listView = listView;
         }
 
-        bool tada = false;
-        int cyclecount = 0;
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             View view = convertView;
@@ -34,65 +32,23 @@ namespace itsbeta.achievements.gui
 
             //получаем текущий элемент
             CategoriesListData item = Items[position];
-
-            bool isChecked;
-
+            
             TextView categoryNameTextView = (TextView)view.FindViewById(Resource.Id.CategNameTextView);
             ImageView checkImageView = (ImageView)view.FindViewById(Resource.Id.CheckImageView);
-            Button checkButton = (Button)view.FindViewById(Resource.Id.check_button);
             categoryNameTextView.Text = item.CategoryNameText;
+            categoryNameTextView.SetTextColor(Android.Graphics.Color.DarkGray);
 
-            isChecked = _selectedDictionary[AppInfo._achievesInfo.CategoryArray[position].DisplayName];
-            if (isChecked)
+            if (_listView.SelectedItemPosition==position)
             {
                 categoryNameTextView.SetTextColor(new Android.Graphics.Color(105, 216, 248));
+                checkImageView.Visibility = ViewStates.Visible;
             }
 
-            
-
-            
-            checkButton.Click += delegate
+            else
             {
-                if (position == 0)
-                {
-                    tada = true;
-                    isChecked = !isChecked;
-                    _selectedDictionary[AppInfo._achievesInfo.CategoryArray[position].DisplayName] = isChecked;
-
-                    if (isChecked)
-                    {
-                        checkImageView.Visibility = ViewStates.Visible;
-                        //#69D8F8
-                        categoryNameTextView.SetTextColor(new Android.Graphics.Color(105,216,248));
-                    }
-                    else
-                    {
-                        checkImageView.Visibility = ViewStates.Invisible;
-                        categoryNameTextView.SetTextColor(Android.Graphics.Color.DarkGray);
-                    }
-                }
-                else if (tada == false)
-                {
-                    isChecked = !isChecked;
-                    _selectedDictionary[AppInfo._achievesInfo.CategoryArray[position].DisplayName] = isChecked;
-
-                    if (isChecked)
-                    {
-                        checkImageView.Visibility = ViewStates.Visible;
-                        categoryNameTextView.SetTextColor(new Android.Graphics.Color(105, 216, 248));
-                    }
-                    else
-                    {
-                        checkImageView.Visibility = ViewStates.Invisible;
-                        categoryNameTextView.SetTextColor(Android.Graphics.Color.DarkGray);
-                    }
-                }
-
-                SecondScreenActivity._isCateroriesSortMenuChanged = true;
-                //SecondScreenActivity._refreshEventListTextView.Text = "changed";
-            };
-
-            tada = false;
+                categoryNameTextView.SetTextColor(Android.Graphics.Color.DarkGray);
+                checkImageView.Visibility = ViewStates.Invisible;
+            }
             return view;
         }
 
