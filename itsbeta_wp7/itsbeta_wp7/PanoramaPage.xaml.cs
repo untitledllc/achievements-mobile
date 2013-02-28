@@ -13,6 +13,7 @@ using Microsoft.Phone.Controls;
 using itsbeta_wp7.ViewModel;
 using Telerik.Windows.Data;
 using Coding4Fun.Toolkit.Controls;
+using Microsoft.Phone.Tasks;
 
 namespace itsbeta_wp7
 {
@@ -117,6 +118,17 @@ namespace itsbeta_wp7
                 //NavigationService.GoBack();
             }
             catch { };
+        }
+
+        private void rate_app_Click(object sender, EventArgs e)
+        {
+            MarketplaceReviewTask task = new MarketplaceReviewTask();
+            task.Show();
+        }
+
+        private void about_program_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(AppResources.about_program);
         }
 
     }

@@ -73,6 +73,9 @@
       <HintPath>C:\Program Files\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WP71\GalaSoft.MvvmLight.Extras.WP71.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="MSPToolkit">
+      <HintPath>..\packages\MSPToolkit.1.7.26.1\lib\sl4-wp71\MSPToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -104,6 +107,9 @@
     </Reference>
     <Reference Include="Telerik.Windows.Data">
       <HintPath>..\..\..\..\..\..\..\Program Files\Telerik\RadControls for Windows Phone 7 Q3 2012\Binaries\WindowsPhone\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WPExtensions">
+      <HintPath>..\packages\WPExtensions.1.3.7\lib\sl4-wp71\WPExtensions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

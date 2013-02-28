@@ -207,6 +207,34 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        private string _details = "";
+        public string Details
+        {
+            get
+            {
+                return _details;
+            }
+            set
+            {
+                _details = value;
+                RaisePropertyChanged("Details");
+            }
+        }
+        
+        private string _adv = "";
+        public string Adv
+        {
+            get
+            {
+                return _adv;
+            }
+            set
+            {
+                _adv = value;
+                RaisePropertyChanged("Adv");
+            }
+        }
+
         private string _pic = "";
         public string Pic
         {

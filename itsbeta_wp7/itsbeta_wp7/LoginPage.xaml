@@ -33,35 +33,40 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
-              Margin="12,0,12,0">
-            <StackPanel Width="448" Height="550" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Grid Height="550">
+              Margin="12,-25,12,0" UseLayoutRounding="True" VerticalAlignment="Stretch">
+            <StackPanel Width="448" Height="580" 
+                        VerticalAlignment="Top" 
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Center">
+                <Grid Height="580">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Image Grid.Row="0" Width="448" 
+                    <Image Grid.Row="0" Width="448" Canvas.ZIndex="0"
                            Height="52" Source="/itsbeta_wp7;component/images/Paper_top.png" 
                            Margin="0,0,0,0" />
 
-                    <Grid Grid.Row="1" Width="448">
+                    <Grid Grid.Row="1" Width="448" Canvas.ZIndex="1">
                         <Grid.Background>
                             <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_middle.png" />
                         </Grid.Background>
-                        <TextBlock Grid.Row="0" Text="{Binding Path=LocalizedResources.collect_all_your_achieves, Source={StaticResource LocalizedStrings}}" Foreground="#FF878785" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0" FontSize="26.667"/>
+                        <TextBlock Grid.Row="0" Text="{Binding Path=LocalizedResources.collect_all_your_achieves, Source={StaticResource LocalizedStrings}}" Foreground="#FF878785" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,55,0,0" FontSize="24" FontFamily="Segoe WP Light" />
                         <Button Grid.Row="0"
-                                Margin="10,0"
+                                Margin="20,0,20,0"
                                 Content="{Binding Path=LocalizedResources.enter_using_facebook, Source={StaticResource LocalizedStrings}}" 
-                                Click="Button_Click" Style="{StaticResource FacebookLoginButtonStyle}" Height="80" 
+                                Click="Button_Click" Style="{StaticResource FacebookLoginButtonStyle}" Height="84" 
                                 VerticalAlignment="Center" />
-                        <HyperlinkButton Grid.Row="0" Name="FacebookSingup" Content="{Binding Path=LocalizedResources.facebook_singup, Source={StaticResource LocalizedStrings}}" NavigateUri="http://facebook.com" Foreground="#FFA7CEE0" VerticalAlignment="Bottom" BorderThickness="0" Margin="0,0,0,20" />
+                        <HyperlinkButton Grid.Row="0" Name="FacebookSingup" Content="{Binding Path=LocalizedResources.facebook_singup, Source={StaticResource LocalizedStrings}}" 
+                                         NavigateUri="http://facebook.com" Foreground="#FFA7CEE0" VerticalAlignment="Bottom" 
+                                         FontSize="24" BorderThickness="0" Margin="0,0,0,20" />
                     </Grid>
 
-                    <Image Grid.Row="2" Width="448" 
+                    <Image Grid.Row="2" Width="448" Canvas.ZIndex="0"
                            Height="52" Source="/itsbeta_wp7;component/images/Paper_bottom.png" 
-                           Margin="0,0,0,0" />
+                           Margin="0,-35,0,0" />
 				</Grid>
             </StackPanel>
         </Grid>

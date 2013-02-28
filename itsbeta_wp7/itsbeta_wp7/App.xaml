@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
+             xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit"
              xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
              xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
              xmlns:telerikCore="clr-namespace:Telerik.Windows;assembly=Telerik.Windows.Core"
@@ -131,7 +132,7 @@
         	<Setter Property="Foreground" Value="#FFFFFFFF"/>
         	<Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
         	<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
-        	<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
+        	<Setter Property="FontSize" Value="30"/>
         	<Setter Property="Padding" Value="10,3,10,5"/>
         	<Setter Property="Template">
         		<Setter.Value>
@@ -183,8 +184,14 @@
         	<Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
         	<Setter Property="FontSize" Value="38"/>
         </Style>
-		
-		<Style x:Key="BadgesTextblockStyle" TargetType="TextBlock">
+
+        <Style x:Key="BadgeNameTextblockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF92918A"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="FontSize" Value="38"/>
+        </Style>
+
+        <Style x:Key="BadgesTextblockStyle" TargetType="TextBlock">
         	<Setter Property="Foreground" Value="#FF92918a"/>
         	<Setter Property="FontFamily" Value="Segoe WP"/>
         	<Setter Property="FontSize" Value="21"/>
@@ -192,10 +199,30 @@
 		
 		<Style x:Key="OtherTextblockStyle" TargetType="TextBlock">
         	<Setter Property="Foreground" Value="#FF4c4c4b"/>
-        	<Setter Property="FontFamily" Value="Segoe WP"/>
-        	<Setter Property="FontSize" Value="21"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+        	<Setter Property="FontSize" Value="24"/>
         </Style>
-        
+
+        <Style x:Key="OtherTextblockStyleHtml" TargetType="msp:HTMLViewer">
+            <Setter Property="Foreground" Value="#FF4c4c4b"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+
+
+        <Style x:Key="OtherTextblockStyleHtmlTextBox" TargetType="msp:HTMLTextBox">
+            <Setter Property="Foreground" Value="#FF4c4c4b"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+
+        <Style x:Key="BonusHeaderStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
         <Style x:Key="ProfileTextblockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FF4c4c4b"/>
             <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
@@ -204,14 +231,15 @@
 
         <Style x:Key="StatsTextblockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
-            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
         <Style x:Key="ProjectTextblockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#FFD2D2D2"/>
             <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
-            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="FontSize" Value="60"/>
             <Setter Property="FontStretch" Value="Normal"/>
 			<!--<Setter Property="CharacterCasing" Value="Upper"/>-->
         </Style>

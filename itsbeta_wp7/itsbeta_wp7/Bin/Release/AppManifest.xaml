@@ -9,6 +9,7 @@
     <AssemblyPart x:Name="GalaSoft.MvvmLight.Extras.WP71" Source="GalaSoft.MvvmLight.Extras.WP71.dll" />
     <AssemblyPart x:Name="GalaSoft.MvvmLight.WP71" Source="GalaSoft.MvvmLight.WP71.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
+    <AssemblyPart x:Name="MSPToolkit" Source="MSPToolkit.dll" />
     <AssemblyPart x:Name="Newtonsoft.Json" Source="Newtonsoft.Json.dll" />
     <AssemblyPart x:Name="RestSharp.WindowsPhone" Source="RestSharp.WindowsPhone.dll" />
     <AssemblyPart x:Name="Silverlight_ZXing_Core" Source="Silverlight_ZXing_Core.dll" />
@@ -17,6 +18,7 @@
     <AssemblyPart x:Name="Telerik.Windows.Controls.Primitives" Source="Telerik.Windows.Controls.Primitives.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Core" Source="Telerik.Windows.Core.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Data" Source="Telerik.Windows.Data.dll" />
+    <AssemblyPart x:Name="WPExtensions" Source="WPExtensions.dll" />
     <AssemblyPart Source="ru-RU/itsbeta_wp7.resources.dll" />
     <AssemblyPart Source="zh-CN/itsbeta_wp7.resources.dll" />
   </Deployment.Parts>
