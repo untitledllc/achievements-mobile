@@ -25,6 +25,7 @@ namespace itsbeta.achievements
     {
         static ProgressDialog mDialog;
         public static bool isPlayerExist;
+        public static bool isAppBadgeEarned;
         public static bool isRelogin = true;
 
         static TextView endlogin;
@@ -149,10 +150,11 @@ namespace itsbeta.achievements
 
                 isPlayerExist = itsbetaService.GetPlayerExistBool(AppInfo._user.FacebookUserID);
 
-                itsbetaService.PostToFbOnce("059db4f010c5f40bf4a73a28222dd3e3", "other", "itsbeta", "itsbeta",
+                isAppBadgeEarned = itsbetaService.IsPostToFbOnce("059db4f010c5f40bf4a73a28222dd3e3", "other", "itsbeta", "itsbeta",
                             AppInfo._user.FacebookUserID, AppInfo._fbAccessToken);
 
                 AppInfo._user.ItsBetaUserId = itsbetaService.GetItsBetaUserID(AppInfo._user.FacebookUserID);
+                
 
                 endlogin.Text = "change";
             }

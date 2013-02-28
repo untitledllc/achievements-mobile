@@ -80,7 +80,7 @@ namespace itsbeta.achievements.gui
                     }
                 }
 
-                SecondScreenActivity._refreshEventListTextView.Text = "changed";
+                //SecondScreenActivity._refreshEventListTextView.Text = "changed";
             };
 
 

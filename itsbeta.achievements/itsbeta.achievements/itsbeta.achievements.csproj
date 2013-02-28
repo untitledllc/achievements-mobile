@@ -163,6 +163,7 @@
     <AndroidResource Include="Resources\Layout\QRReaderLayout.axml" />
     <AndroidResource Include="Resources\Layout\SecondScreenListRowLL.xml" />
     <AndroidResource Include="Resources\Layout\BonusOnListRowLayout.axml" />
+    <AndroidResource Include="Resources\Layout\FirstBadgeActivityLayout %28another copy%29.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

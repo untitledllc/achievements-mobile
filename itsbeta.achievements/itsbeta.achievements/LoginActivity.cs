@@ -24,19 +24,22 @@ namespace itsbeta.achievements
         {
             base.OnCreate(bundle);
             AppInfo._display = WindowManager.DefaultDisplay;
-
             AppInfo._badgesCount = 0;
             AppInfo._subcategCount = 0;
             AppInfo._bonusesCount = 0;
 
-            if (File.Exists(@"/data/data/itsbeta.achievements/data.txt"))
+            Vibrator vibe = (Vibrator)this.GetSystemService(Context.VibratorService);
+
+            if (File.Exists(@"/data/data/ru.hintsolutions.itsbeta/data.txt"))
             {
                 LoginWebActivity.isPlayerExist = true;
-                AppInfo._user.Fullname = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[0];
-                AppInfo._user.BirthDate = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[1];
-                AppInfo._user.FacebookUserID = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[2];
-                AppInfo._user.ItsBetaUserId = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[3];
-                AppInfo._user.City = File.ReadAllLines(@"/data/data/itsbeta.achievements/data.txt")[4];
+                LoginWebActivity.isAppBadgeEarned = true;
+
+                AppInfo._user.Fullname = File.ReadAllLines(@"/data/data/ru.hintsolutions.itsbeta/data.txt")[0];
+                AppInfo._user.BirthDate = File.ReadAllLines(@"/data/data/ru.hintsolutions.itsbeta/data.txt")[1];
+                AppInfo._user.FacebookUserID = File.ReadAllLines(@"/data/data/ru.hintsolutions.itsbeta/data.txt")[2];
+                AppInfo._user.ItsBetaUserId = File.ReadAllLines(@"/data/data/ru.hintsolutions.itsbeta/data.txt")[3];
+                AppInfo._user.City = File.ReadAllLines(@"/data/data/ru.hintsolutions.itsbeta/data.txt")[4];
 
                 Finish();
                 StartActivity(typeof(FirstBadgeActivity));
@@ -50,6 +53,7 @@ namespace itsbeta.achievements
             loginButton.Click += delegate
             {
                 loginButton.StartAnimation(buttonClickAnimation);
+                vibe.Vibrate(50);
                 Finish();
                 StartActivity(typeof(LoginWebActivity));
             };

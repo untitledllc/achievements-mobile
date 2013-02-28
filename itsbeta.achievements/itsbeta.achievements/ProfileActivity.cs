@@ -33,12 +33,20 @@ namespace itsbeta.achievements
             _context = this;
 
             ImageButton logoutImageButton = FindViewById<ImageButton>(Resource.Id.profilescr_NavBar_LogoutImageButton);
+            Vibrator vibe = (Vibrator)_context.GetSystemService(Context.VibratorService);
 
             logoutImageButton.Click += delegate
             {
-                CookieManager.Instance.RemoveAllCookie();
+                //CookieManager.Instance.RemoveAllCookie();
+                logoutImageButton.StartAnimation(buttonClickAnimation);
+                vibe.Vibrate(150);
+                
+                CookieSyncManager.CreateInstance(this);
+                CookieManager cookieManager = CookieManager.Instance;
+                cookieManager.RemoveAllCookie();
+
                 SecondScreenActivity._context.Finish();
-                File.Delete(@"/data/data/itsbeta.achievements/data.txt");
+                File.Delete(@"/data/data/ru.hintsolutions.itsbeta/data.txt");
                 itsbeta.achievements.LoginWebActivity.ItsbetaLoginWebViewClient.loadPreviousState = false;
                 Finish();
                 StartActivity(typeof(LoginActivity));
@@ -87,12 +95,20 @@ namespace itsbeta.achievements
                         statbarlinearlayout.AddView(fakebut);
                     }
 
-                    projectName.Text = AppInfo._achievesInfo.CategoryArray[i].Projects[j].DisplayName + "-" + AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Length + " בויהזוי";
+                    projectName.Text = AppInfo._achievesInfo.CategoryArray[i].Projects[j].DisplayName + "- " + AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Length;
+
+                    if (projectName.Text.EndsWith(" 1"))
+                    {
+                        projectName.Text += " badge";
+                    }
+                    else
+                    {
+                        projectName.Text += " badges";
+                    }
 
                     profilescrLinearLayout.AddView(view2);
                 }
 
-                        //AppInfo._achievesInfo.CategoryArray[i].DisplayName),
             }
         }
 

@@ -260,6 +260,7 @@ namespace ItsBeta.Json
                     String.Format("http://www.itsbeta.com/s/info/achievements.json?access_token={0}&player_id={1}",
                     access_token, player_id));
 
+                Console.WriteLine(_jsonResponse);
                 jToken = JToken.Parse(_jsonResponse);
             }
 

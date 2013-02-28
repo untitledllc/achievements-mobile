@@ -15,13 +15,15 @@ namespace itsbeta.achievements.gui
         private IList<AchievementsListData> Items;
         Context _context;
 
+        Bitmap[] _bitmaps;
         public AchievementsListItemAdapter(Context context, int textViewResourceId, IList<AchievementsListData> items)
             : base(context, textViewResourceId, items)
         {
             Items = items;
             _context = context;
+            _bitmaps = new Bitmap[items.Count];
         }
-        
+
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             View view = convertView;
@@ -141,19 +143,39 @@ namespace itsbeta.achievements.gui
                 giftPicturecenter.Dispose();
             }
 
-            achivePicture.DrawingCacheEnabled = true;
+            
+            view.DrawingCacheEnabled = true;
 
-            Bitmap bitmap = BitmapFactory.DecodeFile(@"/data/data/itsbeta.achievements/cache/pictures/" + "achive" +
+
+            if (_bitmaps[position] != null)
+            {
+                achivePicture.SetImageBitmap(_bitmaps[position]);
+
+            }
+            else
+            {
+                Bitmap bitmap = BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
                 item.AchieveApiName +
                 ".PNG"
                 );
+                achivePicture.SetImageBitmap(bitmap);
+                _bitmaps[position] = bitmap.Copy(Bitmap.Config.Argb8888, true) ;
+                bitmap.Dispose();
+            }
 
-            achivePicture.SetImageBitmap(bitmap);
-            bitmap.Dispose();
-            
 
             Animation listviewAnimation = new ScaleAnimation((float)1.0, (float)1.0, (float)0, (float)1.0);//new TranslateAnimation(0, 0, MainActivity._display.Height, 0);
-            Animation animation = new TranslateAnimation(AppInfo._display.Width, 0, 200, 0);
+            
+            Animation animation;
+            if (position % 2 == 0)
+            {
+                animation = new TranslateAnimation(AppInfo._display.Width, 0, 200, 0);
+            }
+            else
+	        {
+                animation = new TranslateAnimation(AppInfo._display.Width, 0, -200, 0);
+	        }
+            
             Animation animrotate = new RotateAnimation(45f, 0f);
 
 
@@ -161,15 +183,16 @@ namespace itsbeta.achievements.gui
             animation.Duration = 750;
             animrotate.Duration = 750;
 
-            AnimationSet asa = new AnimationSet(true);
-            asa.AddAnimation(listviewAnimation);
-            asa.AddAnimation(animrotate);
-            asa.AddAnimation(animation);
+            //AnimationSet asa = new AnimationSet(true);
+            //asa.AddAnimation(listviewAnimation);
+            //asa.AddAnimation(animrotate);
+            //asa.AddAnimation(animation);
 
-            view.StartAnimation(asa);
+            //view.StartAnimation(asa);
 
             return view;
         }
+
 
         DateTime LocalDateTime(string strDateTime)
         {

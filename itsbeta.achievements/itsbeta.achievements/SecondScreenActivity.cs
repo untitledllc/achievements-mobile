@@ -28,11 +28,13 @@ namespace itsbeta.achievements
         public static TextView _achieveListSelectedEventTextView;
         public static TextView _foundActionTextView;
         public static SecondScreenActivity _context;
+        public static bool _isCateroriesSortMenuChanged = false;
 
         MobileBarcodeScanner _scanner;
         ServiceItsBeta _serviceItsBeta = new ServiceItsBeta();
 
         bool _isBarCategoriesListOpen = false;
+        bool isViewOpen = false;
 
         ListView _categoriesListView;
         ListView _achievementsListView;
@@ -44,10 +46,12 @@ namespace itsbeta.achievements
         ProgressDialog _activationDialog;
         AlertDialog.Builder _activateMessageBadgeDialogBuilder;
         AlertDialog _activateMessageBadgeDialog;
+        Vibrator _vibe;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            _vibe = (Vibrator)this.GetSystemService(Context.VibratorService);
             _buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
             _context = this;
             _activateMessageBadgeDialogBuilder = new AlertDialog.Builder(this);
@@ -93,13 +97,15 @@ namespace itsbeta.achievements
             addCodeDialog.SetContentView(addCodeRelativeLayout);
             
             badgesCount.Text = AppInfo._badgesCount.ToString();
-            profileImageButtonFake.Click += delegate { profileImageButton.StartAnimation(_buttonClickAnimation); StartActivity(typeof(ProfileActivity)); };
-            addCodeImageButtonFake.Click += delegate { _codeCompleteTextView.Text = ""; addCodeImageButton.StartAnimation(_buttonClickAnimation); addBadgeDialog.Show(); addBadgeRelativeLayout.StartAnimation(AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn)); };
+            profileImageButtonFake.Click += delegate { _vibe.Vibrate(50); profileImageButton.StartAnimation(_buttonClickAnimation); StartActivity(typeof(ProfileActivity)); };
+            addCodeImageButtonFake.Click += delegate { _vibe.Vibrate(50); _codeCompleteTextView.Text = ""; addCodeImageButton.StartAnimation(_buttonClickAnimation); addBadgeDialog.Show(); addBadgeRelativeLayout.StartAnimation(AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn)); };
 
-            addBadgeCancelButton.Click += delegate { addBadgeCancelButton.StartAnimation(_buttonClickAnimation); addBadgeDialog.Dismiss(); };
-            addCodeButton.Click += delegate { addCodeButton.StartAnimation(_buttonClickAnimation); addBadgeDialog.Dismiss(); addCodeDialog.Show(); addCodeRelativeLayout.StartAnimation(AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn));};
-            addCodeCancelButton.Click += delegate { addCodeCancelButton.StartAnimation(_buttonClickAnimation); addCodeDialog.Dismiss(); };
-            readQRCodeButton.Click += delegate { 
+            addBadgeCancelButton.Click += delegate { _vibe.Vibrate(50); addBadgeCancelButton.StartAnimation(_buttonClickAnimation); addBadgeDialog.Dismiss(); };
+            addCodeButton.Click += delegate { _vibe.Vibrate(50); addCodeButton.StartAnimation(_buttonClickAnimation); addBadgeDialog.Dismiss(); addCodeDialog.Show(); addCodeRelativeLayout.StartAnimation(AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn)); };
+            addCodeCancelButton.Click += delegate { _vibe.Vibrate(50); addCodeCancelButton.StartAnimation(_buttonClickAnimation); addCodeDialog.Dismiss(); };
+            readQRCodeButton.Click += delegate
+            {
+                _vibe.Vibrate(50);
                 readQRCodeButton.StartAnimation(_buttonClickAnimation); addBadgeDialog.Dismiss();
                 _scanner = new MobileBarcodeScanner(this);
                 _scanner.UseCustomOverlay = true;
@@ -120,6 +126,7 @@ namespace itsbeta.achievements
 
             addCodeReadyButton.Click += delegate
             {
+                _vibe.Vibrate(50);
                 if (_codeCompleteTextView.Text.Replace(" ", "") != "")
                 {
                     addCodeReadyButton.StartAnimation(_buttonClickAnimation);
@@ -144,6 +151,7 @@ namespace itsbeta.achievements
             CreateCategoriesViewObject();
             CreateSubCategoriesViewObject();
             CreateAchievementsViewObject();
+
             _refreshEventListTextView.TextChanged += delegate { CreateAchievementsViewObject(); };
             _achievementsListView.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs>(achievementsListView_ItemClick);
         }
@@ -186,18 +194,41 @@ namespace itsbeta.achievements
 
             _navigationBarImageButton.Click += delegate
             {
+                _vibe.Vibrate(50);
                 if (!_isBarCategoriesListOpen)
                 {
                     _linearLayoutInactive.Visibility = ViewStates.Visible;
                     _categoriesPopupWindow.ShowAsDropDown(FindViewById<ImageButton>(Resource.Id.NavBar_ImageButton), 0, 0);
                     _isBarCategoriesListOpen = true;
+
+                    if (isViewOpen)
+                    {
+                        foreach (var window in _projectsPopupWindows)
+                        {
+                            if (window.IsShowing)
+                            {
+                                window.Dismiss();
+                                isViewOpen = false;
+                            }
+                        }
+                        foreach (var view in _projectsViews)
+                        {
+                            view.SetBackgroundResource(Resource.Drawable.Categories_btn_norm);
+                            view.Click -= delegate { };
+                        }
+                    }
                     return;
                 }
                 if (_isBarCategoriesListOpen)
                 {
                     _linearLayoutInactive.Visibility = ViewStates.Gone;
                     _categoriesPopupWindow.Dismiss();
-                    CreateSubCategoriesViewObject();
+
+                    if (_isCateroriesSortMenuChanged)
+                    {
+                        CreateSubCategoriesViewObject();
+                        CreateAchievementsViewObject();
+                    }
                     //categoriesLinearLayout.StartAnimation(categoriesChosedAnimation);
                     _isBarCategoriesListOpen = false;
                 }
@@ -208,15 +239,16 @@ namespace itsbeta.achievements
         #region Projects List Region
         PopupWindow[] _projectsPopupWindows;
         IList<string> _projectsPopupWindowId;
+        View[] _projectsViews;
         private void CreateSubCategoriesViewObject()
         {
             AppInfo._selectedSubCategoriesDictionary = new Dictionary<string, bool>();
             _projectsPopupWindowId = new List<string>();
             LinearLayout secondscr_RowLinearLayout = FindViewById<LinearLayout>(Resource.Id.secondscr_categoriesbar_linearLayout);
             int trueDicValCount = AppInfo._selectedCategoriesDictionary.Where(e => e.Value == true).Count();
-            bool isViewOpen = false;
+            isViewOpen = false;
             int prevOpenedId = -1;
-            View[] views = new View[trueDicValCount];
+            _projectsViews = new View[trueDicValCount];
 
 
             if (_projectsPopupWindows != null)
@@ -255,8 +287,8 @@ namespace itsbeta.achievements
                         }
                     }
 
-                    views[id] = view;
-                    secondscr_RowLinearLayout.AddView(views[id]);
+                    _projectsViews[id] = view;
+                    secondscr_RowLinearLayout.AddView(_projectsViews[id]);
 
                     //всё что сверху сами вьюхи. нижу будет все что связано с попапами:
                     ListView subCategoriesListView = new ListView(this);
@@ -284,14 +316,13 @@ namespace itsbeta.achievements
                     subCategoriesListView.Adapter = subCategoriesAdapter;
                     subCategoriesListView.DividerHeight = 0;
 
-                    
-
                     _projectsPopupWindows[id] = new PopupWindow(subCategoriesListView,
                         LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.WrapContent);
 
-                    views[id].Click += delegate 
+                    _projectsViews[id].Click += delegate
                     {
-                        views[id].StartAnimation(_buttonClickAnimation);
+                        _vibe.Vibrate(50);
+                        _projectsViews[id].StartAnimation(_buttonClickAnimation);
 
                         for (int i = 0; i < _projectsPopupWindows.Count(); i++)
                         {
@@ -301,7 +332,7 @@ namespace itsbeta.achievements
                                 {
                                     prevOpenedId = i;
                                     _projectsPopupWindows[id].ShowAsDropDown(FindViewById<LinearLayout>(Resource.Id.secondscr_categoriesbar_linearLayout), 0, 0);
-                                    views[id].SetBackgroundResource(Resource.Drawable.Categories_btn_press);
+                                    _projectsViews[id].SetBackgroundResource(Resource.Drawable.Categories_btn_press);
                                     _linearLayoutInactive.Visibility = ViewStates.Visible;
                                     isViewOpen = true;
                                     return;
@@ -312,20 +343,22 @@ namespace itsbeta.achievements
                         {
                             _projectsPopupWindows[prevOpenedId].Dismiss();
                             _linearLayoutInactive.Visibility = ViewStates.Invisible;
-                            views[prevOpenedId].SetBackgroundResource(Resource.Drawable.Categories_btn_norm);
+                            _projectsViews[prevOpenedId].SetBackgroundResource(Resource.Drawable.Categories_btn_norm);
                             isViewOpen = false;
                             if (id != prevOpenedId)
                             {
                                 _projectsPopupWindows[id].ShowAsDropDown(FindViewById<LinearLayout>(Resource.Id.secondscr_categoriesbar_linearLayout), 0, 0);
-                                views[id].SetBackgroundResource(Resource.Drawable.Categories_btn_press);
+                                _projectsViews[id].SetBackgroundResource(Resource.Drawable.Categories_btn_press);
                                 _linearLayoutInactive.Visibility = ViewStates.Visible;
                                 prevOpenedId = id;
                                 isViewOpen = true;
                             }
+                            SecondScreenActivity._refreshEventListTextView.Text = "changed";
                         }
                     };
                 }
             }
+            SecondScreenActivity._isCateroriesSortMenuChanged = false;
         }
         #endregion
 
@@ -377,17 +410,18 @@ namespace itsbeta.achievements
 
             var adapter = new AchievementsListItemAdapter(this, Resource.Layout.SecondScreenListRow, _achievementsList);
             _achievementsListView.Adapter = adapter;
-
+            _achievementsListView.DrawingCacheEnabled = true;
+            
             _achievementsListView.Focusable = false;
         }
 
-        
         ItsBeta.Core.Achieves.ParentCategory.ParentProject.Achieve achieve;
         void achievementsListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             int iID = 0;
             int jID = 0;
 
+            _vibe.Vibrate(50);
 
             for (int i = 0; i < AppInfo._achievesInfo.CategoryArray.Count(); i++)
             {
@@ -419,7 +453,7 @@ namespace itsbeta.achievements
             ImageButton badgeReadyButton = (ImageButton)layout.FindViewById(Resource.Id.badgewin_CloseImageButton);
             
             badgeName.Text = achieve.DisplayName;
-            badgeImage.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/itsbeta.achievements/cache/pictures/" + "achive" +achieve.ApiName + ".PNG"));
+            badgeImage.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" + achieve.ApiName + ".PNG"));
             categoryNameProjectName.Text = AppInfo._achievesInfo.CategoryArray[iID].DisplayName + ", " + AppInfo._achievesInfo.CategoryArray[iID].Projects[jID].DisplayName;
             badgeHowWonderDescr.Text = achieve.Description;
 
@@ -515,6 +549,7 @@ namespace itsbeta.achievements
 
             badgeReadyButton.Click += delegate
             {
+                _vibe.Vibrate(50);
                 badgeReadyButton.StartAnimation(_buttonClickAnimation);
                 badgePopupWindow.Dismiss();
             };
@@ -549,12 +584,12 @@ namespace itsbeta.achievements
                     }
                 }
 
-                FileStream fs = new FileStream(@"/data/data/itsbeta.achievements/cache/pictures/" +
+                FileStream fs = new FileStream(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" +
                             activatedAchieve.ApiName + ".PNG", FileMode.OpenOrCreate,
                             FileAccess.ReadWrite, FileShare.ReadWrite
                             );
 
-                if (!System.IO.File.Exists(@"/data/data/itsbeta.achievements/cache/pictures/" + "achive" +
+                if (!System.IO.File.Exists(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
                     activatedAchieve.ApiName + ".PNG"))
                 {
                     Bitmap bitmap = GetImageBitmap(activatedAchieve.PicUrl);
@@ -565,12 +600,12 @@ namespace itsbeta.achievements
                     fs.Flush();
                     fs.Close();
 
-                    System.IO.File.Copy(@"/data/data/itsbeta.achievements/cache/pictures/" +
+                    System.IO.File.Copy(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" +
                     activatedAchieve.ApiName + ".PNG",
-                    @"/data/data/itsbeta.achievements/cache/pictures/" + "achive" +
+                    @"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
                     activatedAchieve.ApiName + ".PNG");
 
-                    System.IO.File.Delete(@"/data/data/itsbeta.achievements/cache/pictures/" +
+                    System.IO.File.Delete(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" +
                     activatedAchieve.ApiName + ".PNG");
                 }
                 #endregion
@@ -619,7 +654,7 @@ namespace itsbeta.achievements
             TextView bonusDescr = (TextView)layout.FindViewById(Resource.Id.receivebadge_bonusdesctextView);
             profileName.Text = AppInfo._user.Fullname;
 
-            badgeImage.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/itsbeta.achievements/cache/pictures/" + "achive" + activatedAchieve.ApiName + ".PNG"));
+            badgeImage.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" + activatedAchieve.ApiName + ".PNG"));
 
             bonusLineImage.Visibility = ViewStates.Invisible;
             bonusDescr.Visibility = ViewStates.Invisible;
@@ -657,6 +692,7 @@ namespace itsbeta.achievements
 
             badgeReadyButton.Click += delegate
             {
+                _vibe.Vibrate(50);
                 badgeReadyButton.StartAnimation(_buttonClickAnimation);
                 CreateAchievementsViewObject();
                 badgePopupWindow.Dismiss();

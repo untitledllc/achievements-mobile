@@ -41,9 +41,14 @@ namespace itsbeta.achievements.gui
             ImageView checkImageView = (ImageView)view.FindViewById(Resource.Id.CheckImageView);
             Button checkButton = (Button)view.FindViewById(Resource.Id.check_button);
             categoryNameTextView.Text = item.CategoryNameText;
-            categoryNameTextView.SetTextColor(new Android.Graphics.Color(105, 216, 248));
 
             isChecked = _selectedDictionary[AppInfo._achievesInfo.CategoryArray[position].DisplayName];
+            if (isChecked)
+            {
+                categoryNameTextView.SetTextColor(new Android.Graphics.Color(105, 216, 248));
+            }
+
+            
 
             
             checkButton.Click += delegate
@@ -83,7 +88,8 @@ namespace itsbeta.achievements.gui
                     }
                 }
 
-                SecondScreenActivity._refreshEventListTextView.Text = "changed";
+                SecondScreenActivity._isCateroriesSortMenuChanged = true;
+                //SecondScreenActivity._refreshEventListTextView.Text = "changed";
             };
 
             tada = false;

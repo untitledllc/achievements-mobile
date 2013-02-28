@@ -13,6 +13,7 @@ namespace ItsBeta.Core
         JSonProcessor.JSonPostToFbOnce jSonPostToFbOnce;
         JSonProcessor.JSonPlayerId jSonPlayerId;
         JSonProcessor.JSonActivate jSonActivate;
+        public static string PostOnFBBadgeFbId {get;set;}
 
         public ServiceItsBeta()
         {
@@ -25,9 +26,19 @@ namespace ItsBeta.Core
             return jSonPlayerId.jToken["player_id"].Value<string>();
         }
 
-        public void PostToFbOnce(string access_token, string category, string project, string badge_name, string user_id, string user_token)
+        public bool IsPostToFbOnce(string access_token, string category, string project, string badge_name, string user_id, string user_token)
         {
             jSonPostToFbOnce = new JSonProcessor.JSonPostToFbOnce(access_token, category, project, badge_name, user_id, user_token);
+            if (jSonPostToFbOnce.jToken["id"] == null)
+            {
+               
+                return true;
+            }
+            else
+            {
+                PostOnFBBadgeFbId = jSonPostToFbOnce.jToken["fb_id"].Value<string>();
+                return false;
+            }
         }
 
         public bool GetPlayerExistBool(string facebookUserID)

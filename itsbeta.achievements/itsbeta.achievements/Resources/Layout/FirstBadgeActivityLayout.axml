@@ -51,114 +51,111 @@
     <RelativeLayout
         p1:minWidth="25px"
         p1:minHeight="25px"
-        p1:layout_width="fill_parent"
-        p1:layout_height="fill_parent"
-        p1:id="@+id/FirstBadgeFrontRelativeLayout"
-        p1:background="#47000000">
-        <ImageView
-            p1:layout_width="300dp"
-            p1:layout_height="330dp"
-            p1:id="@+id/BadgeSheetImageView"
-            p1:background="@drawable/Login_background"
-            p1:layout_centerHorizontal="true"
-            p1:layout_marginTop="120dp" />
-        <TextView
-            p1:textAppearance="?android:attr/textAppearanceSmall"
-            p1:layout_width="wrap_content"
-            p1:layout_height="100dp"
-            p1:id="@+id/center"
-            p1:layout_centerVertical="true"
-            p1:layout_centerHorizontal="true" />
-        <ImageView
-            p1:layout_width="160dp"
-            p1:layout_height="160dp"
-            p1:id="@+id/paper_BadgeImageView"
-            p1:layout_alignLeft="@id/BadgeSheetImageView"
-            p1:layout_marginLeft="-10dp"
-            p1:layout_alignTop="@id/BadgeSheetImageView"
-            p1:layout_marginTop="-100dp" />
-        <ImageView
-            p1:layout_height="30dp"
-            p1:id="@+id/FirstBadge_GreenBonusImageView"
-            p1:layout_alignLeft="@+id/BadgeSheetImageView"
-            p1:layout_alignTop="@+id/BadgeSheetImageView"
-            p1:layout_marginTop="150dp"
-            p1:background="@drawable/Paper_Divider_green"
-            p1:layout_width="wrap_content"
-            p1:layout_alignRight="@+id/BadgeSheetImageView"
-            p1:layout_marginLeft="1dp"
-            p1:layout_marginRight="1dp" />
-        <TextView
-            p1:text="Istbeta user"
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="wrap_content"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/FirstBadge_ProfileNameTextView"
-            p1:layout_alignTop="@+id/BadgeSheetImageView"
-            p1:layout_alignLeft="@+id/BadgeSheetImageView"
-            p1:layout_marginTop="70dp"
-            p1:layout_marginLeft="20dp"
-            p1:textSize="20dp"
-            p1:textColor="#ff606060" />
-        <TextView
-            p1:text="Вы получили новый значек"
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="wrap_content"
-            p1:layout_height="wrap_content"
-            p1:layout_below="@id/FirstBadge_ProfileNameTextView"
-            p1:id="@+id/textView1"
-            p1:textColor="#ff666666"
-            p1:textStyle="bold"
-            p1:textSize="14dp"
-            p1:layout_alignLeft="@id/FirstBadge_ProfileNameTextView" />
-        <TextView
-            p1:text="Соберите все ваши достижения здесь."
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="wrap_content"
-            p1:layout_height="wrap_content"
-            p1:layout_below="@id/textView1"
-            p1:id="@+id/textView2"
-            p1:textColor="#ff6f6f6f"
-            p1:textSize="12dp"
-            p1:layout_alignLeft="@id/textView1" />
-        <ImageButton
-            p1:layout_width="20dp"
-            p1:layout_height="20dp"
-            p1:layout_alignTop="@id/BadgeSheetImageView"
-            p1:layout_alignRight="@id/BadgeSheetImageView"
-            p1:id="@+id/BadgeSheet_CloseImageButtonFake"
-            p1:scaleType="fitXY"
-            p1:background="@drawable/Paper_icon_close_norm"
-            p1:layout_margin="3dp" />
-        <ImageButton
-            p1:layout_width="40dp"
-            p1:layout_height="40dp"
-            p1:layout_alignTop="@id/BadgeSheetImageView"
-            p1:layout_alignRight="@id/BadgeSheetImageView"
-            p1:id="@+id/BadgeSheet_CloseImageButton"
-            p1:scaleType="fitCenter"
-            p1:background="#02ffffff" />
-        <TextView
-            p1:text="Бонус"
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="wrap_content"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/textView3"
-            p1:layout_alignTop="@id/FirstBadge_GreenBonusImageView"
-            p1:layout_alignLeft="@id/FirstBadge_GreenBonusImageView"
-            p1:layout_marginLeft="10dp"
-            p1:layout_alignBottom="@id/FirstBadge_GreenBonusImageView"
-            p1:gravity="center" />
-        <TextView
-            p1:text="Бесплатный кофе в нашем офисе ; )"
-            p1:textAppearance="?android:attr/textAppearanceMedium"
-            p1:layout_width="wrap_content"
-            p1:layout_height="wrap_content"
-            p1:layout_below="@id/FirstBadge_GreenBonusImageView"
-            p1:id="@+id/textView5"
-            p1:textColor="#ff646464"
-            p1:textSize="12dp"
-            p1:layout_alignLeft="@id/textView1"
-            p1:layout_marginTop="10dp" />
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:background="#47315d9a">
+        <ScrollView
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="fill_parent"
+            p1:layout_height="fill_parent"
+            p1:id="@+id/scrollView1">
+            <RelativeLayout
+                p1:minWidth="25px"
+                p1:minHeight="25px"
+                p1:layout_width="fill_parent"
+                p1:layout_height="fill_parent"
+                p1:id="@+id/relativeLayout1">
+                <ImageView
+                    p1:layout_width="290dp"
+                    p1:layout_height="400dp"
+                    p1:id="@+id/BadgeSheetImageView"
+                    p1:background="@drawable/Login_background"
+                    p1:layout_centerHorizontal="true"
+                    p1:layout_alignTop="@+id/badgewin_BadgeImageView"
+                    p1:layout_marginTop="100dp"
+                    p1:layout_alignBottom="@+id/bonuspaperlist_linearLayout"
+                    p1:minHeight="300dp"
+                    p1:layout_marginBottom="-10dp" />
+                <TextView
+                    p1:textAppearance="?android:attr/textAppearanceSmall"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="100dp"
+                    p1:id="@+id/center"
+                    p1:layout_centerVertical="true"
+                    p1:layout_centerHorizontal="true" />
+                <ImageView
+                    p1:layout_width="310dp"
+                    p1:layout_height="160dp"
+                    p1:id="@+id/firstbadgewin_BadgeImageView"
+                    p1:layout_centerHorizontal="true"
+                    p1:scaleType="fitStart"
+                    p1:layout_marginTop="20dp" />
+                <TextView
+                    p1:text="user name"
+                    p1:textAppearance="?android:attr/textAppearanceMedium"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="wrap_content"
+                    p1:id="@+id/firstbadgewin_usernameTextView"
+                    p1:layout_marginLeft="30dp"
+                    p1:textSize="20dp"
+                    p1:textColor="#ff606060"
+                    p1:layout_alignLeft="@+id/firstbadgewin_BadgeImageView"
+                    p1:layout_marginTop="190dp" />
+                <TextView
+                    p1:text="Вы получили новый бейдж"
+                    p1:textAppearance="?android:attr/textAppearanceMedium"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="wrap_content"
+                    p1:layout_below="@id/firstbadgewin_usernameTextView"
+                    p1:id="@+id/firstbadgewin_howTextView"
+                    p1:textColor="#ff666666"
+                    p1:textStyle="bold"
+                    p1:textSize="12dp"
+                    p1:layout_alignLeft="@id/firstbadgewin_usernameTextView"
+                    p1:layout_marginTop="20dp" />
+                <TextView
+                    p1:text="descr"
+                    p1:textAppearance="?android:attr/textAppearanceMedium"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="wrap_content"
+                    p1:layout_below="@id/firstbadgewin_howTextView"
+                    p1:id="@+id/badgewin_wonderdescrTextView"
+                    p1:textColor="#ff6f6f6f"
+                    p1:textSize="12dp"
+                    p1:layout_alignLeft="@id/firstbadgewin_howTextView"
+                    p1:layout_alignRight="@+id/firstbadgewin_BadgeImageView"
+                    p1:layout_marginRight="40dp" />
+                <ImageButton
+                    p1:layout_width="20dp"
+                    p1:layout_height="20dp"
+                    p1:layout_alignTop="@id/BadgeSheetImageView"
+                    p1:layout_alignRight="@id/BadgeSheetImageView"
+                    p1:id="@+id/badgewin_CloseImageButtonFake"
+                    p1:scaleType="fitXY"
+                    p1:background="@drawable/Paper_icon_close_norm"
+                    p1:layout_margin="3dp" />
+                <ImageButton
+                    p1:layout_width="40dp"
+                    p1:layout_height="40dp"
+                    p1:layout_alignTop="@id/BadgeSheetImageView"
+                    p1:layout_alignRight="@id/BadgeSheetImageView"
+                    p1:id="@+id/badgewin_CloseImageButton"
+                    p1:scaleType="fitCenter"
+                    p1:background="#02ffffff" />
+                <LinearLayout
+                    p1:orientation="vertical"
+                    p1:minWidth="25px"
+                    p1:minHeight="140dp"
+                    p1:layout_width="290dp"
+                    p1:layout_height="wrap_content"
+                    p1:id="@+id/bonuspaperlist_linearLayout"
+                    p1:layout_marginLeft="3dp"
+                    p1:layout_marginRight="3dp"
+                    p1:layout_marginTop="20dp"
+                    p1:layout_centerHorizontal="true"
+                    p1:layout_below="@+id/badgewin_wonderdescrTextView" />
+            </RelativeLayout>
+        </ScrollView>
     </RelativeLayout>
 </RelativeLayout>

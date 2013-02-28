@@ -10,7 +10,7 @@ namespace ItsBeta.Core
 {
     public class Achieves
     {
-        JSonProcessor.JSonAchieves jSonAchieves;
+        public JSonProcessor.JSonAchieves jSonAchieves;
 
         public Achieves(string access_token, string player_id)
         {
@@ -124,14 +124,6 @@ namespace ItsBeta.Core
                     {
                         public string Type { get; set; }
                         public string Description { get; set; } 
-
-                        //enum Type
-                        //{
-                        //    None,
-                        //    Discount,
-                        //    Present,
-                        //    Bonus
-                        //}
                     }
                 }
             }

@@ -28,13 +28,15 @@ namespace itsbeta.achievements
         static ProgressDialog mDialog;
         AlertDialog.Builder _activateMessageBadgeDialogBuilder;
         AlertDialog _activateMessageBadgeDialog;
+        Vibrator _vibe;
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
+            base.OnCreate(bundle); 
+            _vibe = (Vibrator)this.GetSystemService(Context.VibratorService);
             loadComplete = new TextView(this);
 
-            if (!File.Exists(@"/data/data/itsbeta.achievements/data.txt"))
+            if (!File.Exists(@"/data/data/ru.hintsolutions.itsbeta/data.txt"))
             {
                 List<string> config = new List<string>();
 
@@ -45,7 +47,7 @@ namespace itsbeta.achievements
                 config.Add(AppInfo._user.City);
                 config.Add(AppInfo._fbAccessToken);
 
-                File.WriteAllLines(@"/data/data/itsbeta.achievements/data.txt", config.ToArray(), Encoding.UTF8);
+                File.WriteAllLines(@"/data/data/ru.hintsolutions.itsbeta/data.txt", config.ToArray(), Encoding.UTF8);
             }
 
             SetContentView(Resource.Layout.SecondScreenActivityLayout);
@@ -62,7 +64,7 @@ namespace itsbeta.achievements
 
             loadComplete.TextChanged += delegate
             {
-                if (!LoginWebActivity.isPlayerExist)
+                if (!LoginWebActivity.isAppBadgeEarned)
                 {
                     RunOnUiThread(() => RunOnUiRistBadgeWin());
                 }
@@ -92,14 +94,30 @@ namespace itsbeta.achievements
             ImageButton badgeReadyButton = FindViewById<ImageButton>(Resource.Id.BadgeSheet_CloseImageButton);
             ImageButton badgeReadyButtonFake = FindViewById<ImageButton>(Resource.Id.BadgeSheet_CloseImageButtonFake);
 
-            Bitmap bitmap = BitmapFactory.DecodeFile(@"/data/data/itsbeta.achievements/cache/pictures/" + "achive" +
-                "egMGNg79ys.PNG"
+
+            foreach (var category in AppInfo._achievesInfo.CategoryArray)
+            {
+                foreach (var project in category.Projects)
+                {
+                    foreach (var achieve in project.Achievements)
+                    {
+                        if (achieve.FbId == ServiceItsBeta.PostOnFBBadgeFbId)
+                        {
+                            _achieve = achieve;
+                        }
+                    }
+                }
+            }
+
+            Bitmap bitmap = BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
+                _achieve.ApiName+ ".PNG"
                 );
 
             badgeImageView.SetImageBitmap(bitmap);
 
             badgeReadyButton.Click += delegate
             {
+                _vibe.Vibrate(50);
                 badgeReadyButtonFake.StartAnimation(buttonClickAnimation);
                 Finish();
                 StartActivity(typeof(SecondScreenActivity));
@@ -110,6 +128,8 @@ namespace itsbeta.achievements
         {
             try
             {
+                AppInfo._selectedCategoriesDictionary = new Dictionary<string, bool>();
+                AppInfo._selectedSubCategoriesDictionary = new Dictionary<string, bool>();
                 AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
             }
             catch
@@ -120,7 +140,7 @@ namespace itsbeta.achievements
                 return;
             }
             RunOnUiThread(()=> mDialog.SetMessage("Загрузка контента..."));
-            Directory.CreateDirectory(@"/data/data/itsbeta.achievements/cache/pictures/");
+            Directory.CreateDirectory(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/");
 
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
             {
@@ -133,12 +153,12 @@ namespace itsbeta.achievements
 
                         AppInfo._bonusesCount += AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Bonuses.Count();
 
-                        FileStream fs = new FileStream(@"/data/data/itsbeta.achievements/cache/pictures/" +
+                        FileStream fs = new FileStream(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" +
                             AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName + ".PNG", FileMode.OpenOrCreate,
                             FileAccess.ReadWrite, FileShare.ReadWrite
                             );
 
-                        if (!System.IO.File.Exists(@"/data/data/itsbeta.achievements/cache/pictures/" + "achive" +
+                        if (!System.IO.File.Exists(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
                             AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName + ".PNG"))
                         {
 
@@ -150,12 +170,12 @@ namespace itsbeta.achievements
                             fs.Flush();
                             fs.Close();
 
-                            System.IO.File.Copy(@"/data/data/itsbeta.achievements/cache/pictures/" +
+                            System.IO.File.Copy(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" +
                             AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName + ".PNG",
-                            @"/data/data/itsbeta.achievements/cache/pictures/" + "achive" +
+                            @"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
                             AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName + ".PNG");
 
-                            System.IO.File.Delete(@"/data/data/itsbeta.achievements/cache/pictures/" +
+                            System.IO.File.Delete(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" +
                             AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName + ".PNG");
                         }
                     }
@@ -182,5 +202,7 @@ namespace itsbeta.achievements
 
             return bm;
         }
+
+        public Achieves.ParentCategory.ParentProject.Achieve _achieve { get; set; }
     }
 }
