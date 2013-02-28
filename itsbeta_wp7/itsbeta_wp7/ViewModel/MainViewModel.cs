@@ -8,6 +8,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
+using MSPToolkit.Utilities;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -183,33 +184,31 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
-        ///badges.json
-
-        public void LoadAchievements(string activation_code="")
+        public void LoadFromIsolatedStorage()
         {
             try
             {
-                var bw = new BackgroundWorker();
-                //bw.DoWork += delegate
-                //{
-                try
-                {
-                    Loading = true;
-                    Categories = new ObservableCollection<CategoryItem>();
-                    Projects = new ObservableCollection<ProjectItem>();
-                    Achieves = new ObservableCollection<AchievesItem>();
+                string json = IsolatedStorageHelper.LoadSerializableObject<string>("achieves.xml");
+                Loading = true;
+                ParseAcievesJson(json);
+                Loading = false;
+            }
+            catch { };
+        }
 
-                    var client = new RestClient("http://www.itsbeta.com");
-                    var request = new RestRequest("s/info/achievements.json", Method.GET);
-                    request.Parameters.Clear();
-                    request.AddParameter("access_token", App.ACCESS_TOKEN);
-                    request.AddParameter("player_id", ViewModelLocator.UserStatic.PlayerId);
+        public void SaveToIsolatedStorage(string json="")
+        {
+            IsolatedStorageHelper.SaveSerializableObject<string>(json, "achieves.xml");            
+        }
 
-                    client.ExecuteAsync(request, response =>
-                    {
-                        try
+        public void ParseAcievesJson(string content="") {
+            ObservableCollection<CategoryItem> tempCategories = new ObservableCollection<CategoryItem>();
+            ObservableCollection<ProjectItem> tempProjects = new ObservableCollection<ProjectItem>();
+            ObservableCollection<AchievesItem> tempAchieves = new ObservableCollection<AchievesItem>();
+                     try
                         {
-                            JArray o = JArray.Parse(response.Content.ToString());
+                            JArray o = JArray.Parse(content.ToString());
+                            
                             foreach (var categoryJson in o)
                             {
                                 CategoryItem category = new CategoryItem();
@@ -228,39 +227,67 @@ namespace itsbeta_wp7.ViewModel
                                         badge.Project_name = project.Display_name;
                                         badge.Category_api_name = category.Api_name;
                                         badge.Category_name = category.Display_name;
-                                        if (Achieves.FirstOrDefault(c => c.Display_name == badge.Display_name) == null)
+                                        if (tempAchieves.FirstOrDefault(c => c.Badge_name == badge.Badge_name) == null)
                                         {
                                             pcount++;
                                         };
-                                        //Deployment.Current.Dispatcher.BeginInvoke(() =>
-                                        //{
-                                            Achieves.Add(badge);
-                                        //});
+                                            tempAchieves.Add(badge);
+
                                     }                                    
                                     count += pcount;
                                     project.Activated_badges_count = pcount;
-                                    //Deployment.Current.Dispatcher.BeginInvoke(() =>
-                                    //{
-                                        Projects.Add(project);
-                                    //});
+                                    tempProjects.Add(project);
+
                                 }
                                 category.Activated_badges_count = count;
-                                Deployment.Current.Dispatcher.BeginInvoke(() =>
-                                {
-                                    Categories.Add(category);
-                                });
+                                    tempCategories.Add(category);
                             };
+                                    Categories = tempCategories;
+                                    Projects = tempProjects;
+                                    Achieves = tempAchieves;
 
                                     Loading = false;
                                     RaisePropertyChanged("BonusAchieves");
                                     RaisePropertyChanged("Categories");
                                     RaisePropertyChanged("Projects");
                                     RaisePropertyChanged("Achieves");
-                                    RaisePropertyChanged("LastAchieves");
-                                    if (activation_code != "")
-                                    {
-                                        ViewModelLocator.UserStatic.AchievedEarnedMessage("Достижение активировано!", "", activation_code);
-                                    };
+                                    RaisePropertyChanged("LastAchieves");                                    
+                        }
+                        catch { };
+        }
+
+        ///badges.json
+        public void LoadAchievements(string activation_code="")
+        {
+            LoadFromIsolatedStorage();
+            try
+            {
+                var bw = new BackgroundWorker();
+                //bw.DoWork += delegate
+                //{
+                try
+                {
+                    Loading = true;
+
+                    var client = new RestClient("http://www.itsbeta.com");
+                    var request = new RestRequest("s/info/achievements.json", Method.GET);
+                    request.Parameters.Clear();
+                    request.AddParameter("access_token", App.ACCESS_TOKEN);
+                    request.AddParameter("player_id", ViewModelLocator.UserStatic.PlayerId);
+
+                    client.ExecuteAsync(request, response =>
+                    {
+                        try
+                        {
+                            //JArray o = JArray.Parse(response.Content.ToString());
+                            ParseAcievesJson(response.Content.ToString());
+                            SaveToIsolatedStorage(response.Content.ToString());
+                            Loading = false;
+
+                            if (activation_code != "")
+                            {
+                                ViewModelLocator.UserStatic.AchievedEarnedMessage("Достижение активировано!", "", activation_code);
+                            };
                         }
                         catch { };
                     });

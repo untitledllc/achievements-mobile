@@ -30,7 +30,23 @@ namespace itsbeta_wp7.ViewModel
             private set
             {
             }
-        }  
+        }
+
+        private string _badge_name = "";
+        public string Badge_name
+        {
+            get
+            {
+                return _badge_name;
+            }
+            set
+            {
+                _badge_name = value;
+                RaisePropertyChanged("Badge_name");
+            }
+        } 
+
+        
     }
 
     public class BonusItem : ViewModelBase
