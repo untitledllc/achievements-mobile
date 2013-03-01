@@ -10,82 +10,94 @@ namespace itsbeta.achievements.gui
 {
     public class SubCategoriesListItemAdapter : ArrayAdapter<SubCategoriesListData>
     {
-        private IList<SubCategoriesListData> Items;
-        public Dictionary<string, bool> _selectedDictionary;
-        List<string> _subCategoryListName;
+        private List<SubCategoriesListData> Items;
+        Button _checkButton;
 
         public SubCategoriesListItemAdapter(Context context, int textViewResourceId,
-            IList<SubCategoriesListData> items, Dictionary<string, bool> selectedDictionary, List<string> subCategoryListName)
+            List<SubCategoriesListData> items)
             : base(context, textViewResourceId, items)
         {
             Items = items;
-            _selectedDictionary = selectedDictionary;
-            _subCategoryListName = subCategoryListName;
         }
 
-        bool tada = false;
-        int cyclecount = 0;
+        bool isChecked;
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
+            SubCategoriesListData _item = new SubCategoriesListData();
+            SubCategoriesListData _allitem = new SubCategoriesListData();
+            foreach (var myitem in Items)
+            {
+                if (myitem.SubCategoryNameText == MainScreenActivity._selectedsubCategoryId)
+                {
+                    _item = myitem;
+                }
+            }
+            Items.Remove(_item);
+            Items.Insert(0, _item);
+
+            foreach (var allActiveItem in Items)
+            {
+                if (allActiveItem.SubCategoryNameText == "Все проекты")
+                {
+                    if (Items.IndexOf(allActiveItem) != 0)
+                    {
+                        _allitem = allActiveItem;
+                    }
+                }
+            }
+            if (_allitem.SubCategoryNameText == "Все проекты")
+            {
+                if (Items.IndexOf(_allitem) != 0)
+                {
+                    Items.Remove(_allitem);
+                    Items.Insert(1, _allitem);
+                }
+            }
+            MainScreenActivity._subcategoriesList = Items;
+
             View view = convertView;
             if (view == null)
             {
                 LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-                //выбираем разметку, которую будем наполнять данными.
                 view = inflater.Inflate(Resource.Layout.SecondScreenDropDownListRow, null);
             }
 
-            //получаем текущий элемент
             SubCategoriesListData item = Items[position];
 
-            bool isChecked;
-
-            TextView categoryNameTextView = (TextView)view.FindViewById(Resource.Id.CategNameTextView);
+            TextView subcategoryNameTextView = (TextView)view.FindViewById(Resource.Id.CategNameTextView);
             ImageView checkImageView = (ImageView)view.FindViewById(Resource.Id.CheckImageView);
-            Button checkButton = (Button)view.FindViewById(Resource.Id.check_button);
-            categoryNameTextView.Text = item.SubCategoryNameText;
+            _checkButton = (Button)view.FindViewById(Resource.Id.check_button);
 
-            isChecked = _selectedDictionary[_subCategoryListName[position]];
+            subcategoryNameTextView.Text = item.SubCategoryNameText;
+            subcategoryNameTextView.SetTextColor(Android.Graphics.Color.DarkGray);
+            checkImageView.Visibility = ViewStates.Invisible;
 
-            checkButton.Click += delegate
+            if (item.SubCategoryNameText == MainScreenActivity._selectedsubCategoryId)
             {
-                
-                if (position == 0)
-                {
-                    tada = true;
-                    isChecked = !isChecked;
-                    _selectedDictionary[_subCategoryListName[position]] = isChecked;
+                isChecked = true;
+            }
+            else
+            {
+                isChecked = false;
+            }
 
-                    if (isChecked)
-                    {
-                        checkImageView.Visibility = ViewStates.Visible;
-                    }
-                    else
-                    {
-                        checkImageView.Visibility = ViewStates.Invisible;
-                    }
-                }
-                else if (tada == false)
-                {
-                    isChecked = !isChecked;
-                    _selectedDictionary[_subCategoryListName[position]] = isChecked;
 
-                    if (isChecked)
-                    {
-                        checkImageView.Visibility = ViewStates.Visible;
-                    }
-                    else
-                    {
-                        checkImageView.Visibility = ViewStates.Invisible;
-                    }
-                }
+            if (!isChecked)
+            {
+                subcategoryNameTextView.SetTextColor(Android.Graphics.Color.DarkGray);
+                checkImageView.Visibility = ViewStates.Invisible;
+            }
+            else
+            {
+                subcategoryNameTextView.SetTextColor(new Android.Graphics.Color(105, 216, 248));
+                checkImageView.Visibility = ViewStates.Visible;
+            }
 
-                //SecondScreenActivity._refreshEventListTextView.Text = "changed";
+            _checkButton.Click += delegate
+            {
+                MainScreenActivity._subcategoriesListView_ItemClick(position);
             };
 
-
-
-            tada = false;
             return view;
         }
     }

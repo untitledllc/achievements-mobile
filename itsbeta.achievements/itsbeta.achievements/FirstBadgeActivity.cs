@@ -71,7 +71,7 @@ namespace itsbeta.achievements
                 {
                     RunOnUiThread(()=> mDialog.Hide());
                     Finish();
-                    StartActivity(typeof(SecondScreenActivity));
+                    StartActivity(typeof(MainScreenActivity));
                 }
             };
 
@@ -208,7 +208,7 @@ namespace itsbeta.achievements
                 _vibe.Vibrate(50);
                 badgeReadyButtonFake.StartAnimation(buttonClickAnimation);
                 Finish();
-                StartActivity(typeof(SecondScreenActivity));
+                StartActivity(typeof(MainScreenActivity));
             };
         }
 

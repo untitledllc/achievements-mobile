@@ -44,13 +44,11 @@ namespace itsbeta.achievements.gui
     public class CategoriesListData
     {
         public string CategoryNameText;
-        public bool IsCategoryActive;
     }
 
     public class SubCategoriesListData
     {
         public string SubCategoryNameText;
-        public bool IsSubCategoryActive;
     }
 
 }

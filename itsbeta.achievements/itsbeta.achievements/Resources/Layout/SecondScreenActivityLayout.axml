@@ -132,6 +132,17 @@
         p1:layout_below="@id/secondscr_categoriesbar_linearLayout"
         p1:choiceMode="singleChoice"
         p1:id="@+id/secondscr_listView" />
+    <Button
+        p1:layout_width="fill_parent"
+        p1:layout_height="fill_parent"
+        p1:id="@+id/secondscr_inactiveListButton"
+        p1:background="#7d000000"
+        p1:layout_below="@+id/secondscr_categoriesbar_linearLayout" />
+    <Button
+        p1:layout_width="fill_parent"
+        p1:layout_height="fill_parent"
+        p1:id="@+id/secondscr_inactiveAllButton"
+        p1:background="#7d000000" />
     <ImageButton
         p1:layout_width="25dp"
         p1:layout_height="25dp"
@@ -157,18 +168,28 @@
         p1:layout_alignBottom="@+id/NavBar_ImageButton"
         p1:layout_alignTop="@+id/NavBar_ImageButton"
         p1:background="#02ffffff" />
-    <LinearLayout
-        p1:orientation="vertical"
-        p1:minWidth="25px"
-        p1:minHeight="25px"
-        p1:layout_width="fill_parent"
-        p1:layout_height="fill_parent"
-        p1:id="@+id/secondscr_linearLayoutInactive"
-        p1:background="#47000000"
-        p1:clickable="true"
-        p1:layout_below="@+id/secondscr_categoriesbar_linearLayout" />
     <TextView
         p1:layout_width="0dp"
         p1:layout_height="0dp"
         p1:id="@+id/secaondscr_faketextView" />
+    <ListView
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="fill_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@+id/NavBar_ImageButton"
+        p1:id="@+id/categorieslistView"
+        p1:dividerHeight="0dp"
+        p1:choiceMode="singleChoice"
+        p1:clickable="true" />
+    <ListView
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="fill_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@+id/NavBar_ImageButton"
+        p1:id="@+id/projectslistView"
+        p1:dividerHeight="0dp"
+        p1:choiceMode="singleChoice"
+        p1:clickable="true" />
 </RelativeLayout>

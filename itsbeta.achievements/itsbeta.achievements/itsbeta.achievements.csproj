@@ -61,15 +61,14 @@
     <Compile Include="Gui\CategoriesListItemAdapter.cs" />
     <Compile Include="Gui\ListData.cs" />
     <Compile Include="Gui\SubCategoriesListItemAdapter.cs" />
-    <Compile Include="Gui\[delete]ProfileScrCategoriesListItemAdapter.cs" />
-    <Compile Include="Gui\[delete]ProfileScrProjectsListItemAdapter.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="LoginWebActivity.cs" />
+    <Compile Include="MainScreenActivity_CategoryList.cs" />
     <Compile Include="ProfileActivity.cs" />
-    <Compile Include="[delete]QRReaderActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SecondScreenActivity.cs" />
+    <Compile Include="MainScreenActivity.cs" />
+    <Compile Include="MainScreenActivity_ProjectsList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -163,7 +162,8 @@
     <AndroidResource Include="Resources\Layout\QRReaderLayout.axml" />
     <AndroidResource Include="Resources\Layout\SecondScreenListRowLL.xml" />
     <AndroidResource Include="Resources\Layout\BonusOnListRowLayout.axml" />
-    <AndroidResource Include="Resources\Layout\FirstBadgeActivityLayout %28another copy%29.axml" />
+    <AndroidResource Include="Resources\Layout\InactiveWin.axml" />
+    <AndroidResource Include="Resources\Layout\PopUpListLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

@@ -10,18 +10,36 @@ namespace itsbeta.achievements.gui
 {
     public class CategoriesListItemAdapter : ArrayAdapter<CategoriesListData>
     {
-        private IList<CategoriesListData> Items;
+        private List<CategoriesListData> Items;
         ListView _listView;
+        Button _checkButton;
 
-        public CategoriesListItemAdapter(Context context, int textViewResourceId, IList<CategoriesListData> items, ListView listView)
+        public CategoriesListItemAdapter(Context context, int textViewResourceId, List<CategoriesListData> items)
             : base(context, textViewResourceId, items)
         {
+            
             Items = items;
-            _listView = listView;
+            _listView = new ListView(context);
+            _checkButton = new Button(context);
         }
 
+        bool isChecked = false;
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
+            CategoriesListData _item = new CategoriesListData();
+            foreach (var myitem in Items)
+            {
+                if (myitem.CategoryNameText == MainScreenActivity._selectedCategoryId)
+                {
+                    _item = myitem;
+                }
+            }
+            Items.Remove(_item);
+            Items.Insert(0, _item);
+
+            MainScreenActivity._categoriesList = Items;
+
+
             View view = convertView;
             if (view == null)
             {
@@ -35,24 +53,39 @@ namespace itsbeta.achievements.gui
             
             TextView categoryNameTextView = (TextView)view.FindViewById(Resource.Id.CategNameTextView);
             ImageView checkImageView = (ImageView)view.FindViewById(Resource.Id.CheckImageView);
+            _checkButton = (Button)view.FindViewById(Resource.Id.check_button);
+
             categoryNameTextView.Text = item.CategoryNameText;
             categoryNameTextView.SetTextColor(Android.Graphics.Color.DarkGray);
+            checkImageView.Visibility = ViewStates.Invisible;
 
-            if (_listView.SelectedItemPosition==position)
+            if (item.CategoryNameText == MainScreenActivity._selectedCategoryId)
+            {
+                isChecked = true;
+            }
+            else
+            {
+                isChecked = false;
+            }
+
+
+            if (!isChecked)
+            {
+                categoryNameTextView.SetTextColor(Android.Graphics.Color.DarkGray);
+                checkImageView.Visibility = ViewStates.Invisible;
+            }
+            else
             {
                 categoryNameTextView.SetTextColor(new Android.Graphics.Color(105, 216, 248));
                 checkImageView.Visibility = ViewStates.Visible;
             }
 
-            else
+            _checkButton.Click += delegate 
             {
-                categoryNameTextView.SetTextColor(Android.Graphics.Color.DarkGray);
-                checkImageView.Visibility = ViewStates.Invisible;
-            }
+                MainScreenActivity._categoriesListView_ItemClick(position);
+            };
+
             return view;
         }
-
-
     }
-
 }

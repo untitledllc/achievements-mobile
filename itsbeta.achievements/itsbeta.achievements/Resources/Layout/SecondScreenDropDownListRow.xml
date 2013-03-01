@@ -26,18 +26,18 @@
         p1:layout_marginTop="7.5dp" />
     <ImageView
         p1:layout_width="fill_parent"
-        p1:layout_height="1dp"
+        p1:layout_height="2dp"
         p1:id="@+id/imageView1"
-        p1:layout_alignParentBottom="true"
-        p1:background="#fff4f4f4" />
+        p1:layout_alignParentTop="true"
+        p1:background="@drawable/TableAndButtons_divider_h" />
     <Button
         p1:layout_width="fill_parent"
-        p1:layout_height="40dp"
         p1:id="@+id/check_button"
         p1:visibility="visible"
         p1:background="@android:color/transparent"
         p1:layout_alignParentLeft="true"
         p1:layout_alignParentTop="true"
         p1:layout_alignParentRight="true"
-        p1:layout_alignParentBottom="true" />
+        p1:layout_alignParentBottom="true"
+        p1:layout_height="38dp" />
 </RelativeLayout>

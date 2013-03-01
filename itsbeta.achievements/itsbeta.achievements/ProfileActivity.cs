@@ -45,7 +45,7 @@ namespace itsbeta.achievements
                 CookieManager cookieManager = CookieManager.Instance;
                 cookieManager.RemoveAllCookie();
 
-                SecondScreenActivity._context.Finish();
+                //SecondScreenActivity._context.Finish();
                 File.Delete(@"/data/data/ru.hintsolutions.itsbeta/data.txt");
                 itsbeta.achievements.LoginWebActivity.ItsbetaLoginWebViewClient.loadPreviousState = false;
                 Finish();
