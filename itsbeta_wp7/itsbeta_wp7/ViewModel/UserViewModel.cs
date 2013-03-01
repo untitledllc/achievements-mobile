@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Linq;
 using System.IO;
 using System.Globalization;
+using System.Windows.Media;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -152,36 +153,42 @@ namespace itsbeta_wp7.ViewModel
 
         public void AchievedEarnedMessage(string message, string title = "", string api_name="")
         {
-            if (api_name == "")
+            try
             {
                 ToastPrompt toast = new ToastPrompt();
-                toast.Title = title;
-                toast.Message = message;
-                toast.Show();
-            }
-            else
-            {
-                AchievesItem achieve = new AchievesItem();
-                achieve = ViewModelLocator.MainStatic.Achieves.FirstOrDefault(c => c.Api_name == api_name);
-                ToastPrompt toast = new ToastPrompt();
-                toast.Title = "";
-                toast.Message = achieve.Display_name;
+                toast.Background = new SolidColorBrush(Color.FromArgb(255, 83, 83, 83));
+                toast.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
 
-                BitmapImage img = new BitmapImage(new Uri(achieve.Pic, UriKind.RelativeOrAbsolute));
-                img.CreateOptions = BitmapCreateOptions.None;
-                img.ImageOpened += (s, e) =>
+                if (api_name == "")
                 {
-                    WriteableBitmap wBitmap = new WriteableBitmap((BitmapImage)s);
-                    MemoryStream ms = new MemoryStream();
-                    wBitmap.SaveJpeg(ms, 50, 50, 0, 100);
-                    BitmapImage bmp = new BitmapImage();
-                    bmp.SetSource(ms);
-                    toast.ImageSource = bmp;
-
-                    toast.Completed += toast_Completed;
+                    toast.Title = title;
+                    toast.Message = message;
                     toast.Show();
+                }
+                else
+                {
+                    AchievesItem achieve = new AchievesItem();
+                    achieve = ViewModelLocator.MainStatic.Achieves.FirstOrDefault(c => c.Api_name == api_name);
+                    toast.Title = achieve.Display_name;
+                    toast.Message = achieve.Desc;
+
+                    BitmapImage img = new BitmapImage(new Uri(achieve.Pic, UriKind.RelativeOrAbsolute));
+                    img.CreateOptions = BitmapCreateOptions.None;
+                    img.ImageOpened += (s, e) =>
+                    {
+                        WriteableBitmap wBitmap = new WriteableBitmap((BitmapImage)s);
+                        MemoryStream ms = new MemoryStream();
+                        wBitmap.SaveJpeg(ms, 50, 50, 0, 100);
+                        BitmapImage bmp = new BitmapImage();
+                        bmp.SetSource(ms);
+                        toast.ImageSource = bmp;
+
+                        toast.Completed += toast_Completed;
+                        toast.Show();
+                    };
                 };
-            };
+            }
+            catch { };
         }
         void toast_Completed(object sender, PopUpEventArgs<string, PopUpResult> e)
         {

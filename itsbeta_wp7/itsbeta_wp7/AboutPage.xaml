@@ -20,8 +20,10 @@
         <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="загрузка..." />
     </shell:SystemTray.ProgressIndicator>
 
-    <Grid x:Name="LayoutRoot"
-          Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="images/Background.png" AlignmentY="Bottom" AlignmentX="Left" />
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -29,21 +31,51 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel"
-                    Grid.Row="0"
-                    Margin="12,17,0,28">
+		            Grid.Row="0" Height="163"
+		            Margin="0,0,0,0">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2D2D2" Offset="1"/>
+                    <GradientStop Color="White" Offset="0.90"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
             <TextBlock x:Name="ApplicationTitle"
-                       Text="itsbeta"
-                       Style="{StaticResource PhoneTextNormalStyle}" />
+			           Text="ITSBETA" Margin="20,10,0,0"
+			           Style="{StaticResource ApplicationTitleTextblockStyle}" />
             <TextBlock x:Name="PageTitle"
-                       Text="About page"
-                       Margin="9,-7,0,0"
-                       Style="{StaticResource PhoneTextTitle1Style}" />
+			           Text="{Binding Path=LocalizedResources.activate_badge_title, Source={StaticResource LocalizedStrings}}"
+			           Margin="20,5,0,0"
+			           Style="{StaticResource ProjectTextblockStyle}" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
-              Margin="12,0,12,0"></Grid>
+              Margin="18,0,12,0">
+            <StackPanel Margin="0,20,0,0">
+                <TextBlock Text="{Binding Path=LocalizedResources.about_version, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CategoryTextblockStyle}"
+                           TextWrapping="Wrap"/>
+
+                <TextBlock Margin="0,10,0,0" Text="{Binding Path=LocalizedResources.activate_badge_description, Source={StaticResource LocalizedStrings}}" 
+                           Style="{StaticResource OtherTextblockStyle}"
+                           TextWrapping="Wrap"/>
+
+                <TextBlock Margin="0,10,0,0" Text="{Binding Path=LocalizedResources.about_project, Source={StaticResource LocalizedStrings}}" 
+                           Style="{StaticResource OtherTextblockStyle}"
+                           TextWrapping="Wrap" FontWeight="Bold" />
+                <HyperlinkButton Grid.Row="0" Name="Itsbeta_link" Content="{Binding Path=LocalizedResources.itsbeta_url, Source={StaticResource LocalizedStrings}}" 
+                                         NavigateUri="http://itsbeta.com" Foreground="#FFA7CEE0" TargetName="_blank"
+                                         FontSize="24" BorderThickness="0" Margin="-10,0,0,20" HorizontalAlignment="Left" />
+                
+
+                <Button Content="{Binding Path=LocalizedResources.rate_app, Source={StaticResource LocalizedStrings}}" 
+                        Margin="0,0,0,0"
+                        Name="rate_app" Click="rate_app_Click" />
+                <Button Content="{Binding Path=LocalizedResources.send_email, Source={StaticResource LocalizedStrings}}" 
+                        Margin="0,10,0,0"
+                        Name="send_email" Click="send_email_Click" />
+            </StackPanel>
+        </Grid>
     </Grid>
 
     <!--Sample code showing usage of ApplicationBar-->

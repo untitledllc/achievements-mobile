@@ -117,8 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about_description" xml:space="preserve">
+    <value>Itsbeta - all your achieves in one application.</value>
+  </data>
   <data name="about_program" xml:space="preserve">
     <value>About program</value>
+  </data>
+  <data name="about_project" xml:space="preserve">
+    <value>About project:</value>
+  </data>
+  <data name="about_version" xml:space="preserve">
+    <value>Version 1.0</value>
+  </data>
+  <data name="activate_badge_description" xml:space="preserve">
+    <value>activate badge description</value>
+  </data>
+  <data name="activate_badge_title" xml:space="preserve">
+    <value>ACTIVATE BADGE</value>
   </data>
   <data name="activation" xml:space="preserve">
     <value>activation</value>
@@ -142,10 +157,13 @@
     <value>Enter code</value>
   </data>
   <data name="enter_using_facebook" xml:space="preserve">
-    <value>Login using facebook</value>
+    <value>Login using </value>
   </data>
   <data name="facebook_singup" xml:space="preserve">
     <value>Facebook signup</value>
+  </data>
+  <data name="itsbeta_url" xml:space="preserve">
+    <value>http://itsbeta.com</value>
   </data>
   <data name="last" xml:space="preserve">
     <value>last</value>
@@ -158,6 +176,9 @@
   </data>
   <data name="rate_app" xml:space="preserve">
     <value>Rate application</value>
+  </data>
+  <data name="send_email" xml:space="preserve">
+    <value>Send email</value>
   </data>
   <data name="subcategories" xml:space="preserve">
     <value>Subcategories:</value>

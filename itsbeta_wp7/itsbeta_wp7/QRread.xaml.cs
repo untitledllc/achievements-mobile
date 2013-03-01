@@ -72,8 +72,21 @@ namespace itsbeta_wp7
             _timer.Tick += (o, arg) => ScanPreviewBuffer();
         }
 
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            try
+            {
+                _timer.Stop();
+                _photoCamera.Dispose();
+                
+            }
+            catch { };
+            base.OnNavigatedFrom(e);
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            _timer.Start();
             try
             {
                 //if (App.ViewModel.Qr.CameraFocusSet == false)
@@ -96,7 +109,6 @@ namespace itsbeta_wp7
             catch
             {
             };
-
             base.OnNavigatedTo(e);
         }
 

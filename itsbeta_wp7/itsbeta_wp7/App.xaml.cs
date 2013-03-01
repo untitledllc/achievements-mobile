@@ -14,6 +14,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using itsbeta_wp7.ViewModel;
 using Telerik.Windows.Controls;
+using BugSense;
 
 namespace itsbeta_wp7
 {
@@ -23,6 +24,7 @@ namespace itsbeta_wp7
     public partial class App : Application
     {
         public const string ACCESS_TOKEN = "059db4f010c5f40bf4a73a28222dd3e3";
+        public const string FlurryKey = "8RFPJWYJKBDJXFJ6D9Q5";
 
         // Easy access to the root frame
         public PhoneApplicationFrame RootFrame
@@ -34,8 +36,10 @@ namespace itsbeta_wp7
         // Constructor
         public App()
         {
+            BugSenseHandler.Instance.Init(this, "0656161d");
             // Global handler for uncaught exceptions. 
-            UnhandledException += Application_UnhandledException;
+            //UnhandledException += Application_UnhandledException;
+            BugSenseHandler.Instance.UnhandledException += Application_UnhandledException;
 
             // Standard Silverlight initialization
             InitializeComponent();
@@ -69,12 +73,14 @@ namespace itsbeta_wp7
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            FlurryWP7SDK.Api.StartSession(FlurryKey);
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            FlurryWP7SDK.Api.StartSession(FlurryKey);
         }
 
         // Code to execute when the application is deactivated (sent to background)

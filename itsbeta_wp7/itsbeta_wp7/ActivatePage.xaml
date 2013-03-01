@@ -36,7 +36,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel"
-		            Grid.Row="0" Height="148"
+		            Grid.Row="0" Height="163"
 		            Margin="0,0,0,0">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -45,25 +45,25 @@
                 </LinearGradientBrush>
             </StackPanel.Background>
             <TextBlock x:Name="ApplicationTitle"
-			           Text="ITSBETA" Margin="10,0,0,0"
-			           Style="{StaticResource OtherTextblockStyle}" />
+			           Text="ITSBETA" Margin="20,10,0,0"
+			           Style="{StaticResource ApplicationTitleTextblockStyle}" />
             <TextBlock x:Name="PageTitle"
-			           Text="Activate badge"
-			           Margin="10,20,0,0"
+			           Text="{Binding Path=LocalizedResources.activate_badge_title, Source={StaticResource LocalizedStrings}}"
+			           Margin="20,5,0,0"
 			           Style="{StaticResource ProjectTextblockStyle}" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
-              Margin="12,0,12,0">
-        	   <StackPanel>
-        	   	<TextBlock Text="Введите код" Style="{StaticResource OtherTextblockStyle}" />
+              Margin="18,0,12,0">
+        	   <StackPanel Margin="0,20,0,0">
+                <TextBlock Text="{Binding Path=LocalizedResources.enter_code, Source={StaticResource LocalizedStrings}}" Style="{StaticResource OtherTextblockStyle}" />
         	   	<TextBox Text="" 
                          Foreground="Black"
                          CaretBrush="Black"
                          Name="ActivationCode"/>
-                <TextBlock Text="описание" Style="{StaticResource OtherTextblockStyle}" />	   
+                <TextBlock Text="{Binding Path=LocalizedResources.activate_badge_description, Source={StaticResource LocalizedStrings}}" Style="{StaticResource OtherTextblockStyle}" />	   
 			   </StackPanel>
 		</Grid>
     </Grid>

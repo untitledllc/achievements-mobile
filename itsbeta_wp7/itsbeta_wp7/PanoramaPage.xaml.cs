@@ -122,13 +122,15 @@ namespace itsbeta_wp7
 
         private void rate_app_Click(object sender, EventArgs e)
         {
-            MarketplaceReviewTask task = new MarketplaceReviewTask();
-            task.Show();
         }
 
         private void about_program_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(AppResources.about_program);
+            try
+            {
+                NavigationService.Navigate(new Uri("/AboutPage.xaml", UriKind.Relative));
+            }
+            catch { };
         }
 
     }

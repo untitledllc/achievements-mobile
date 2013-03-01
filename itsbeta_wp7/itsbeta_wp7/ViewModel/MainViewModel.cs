@@ -283,7 +283,7 @@ namespace itsbeta_wp7.ViewModel
                             ParseAcievesJson(response.Content.ToString());
                             SaveToIsolatedStorage(response.Content.ToString());
                             Loading = false;
-
+                            
                             if (activation_code != "")
                             {
                                 ViewModelLocator.UserStatic.AchievedEarnedMessage("Достижение активировано!", "", activation_code);

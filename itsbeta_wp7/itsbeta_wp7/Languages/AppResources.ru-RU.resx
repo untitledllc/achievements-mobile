@@ -117,8 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about_description" xml:space="preserve">
+    <value>itsbeta - все ваши достижения в одном приложении. Открывайте новые категории, собирайте значки, рассказывайте друзьям.</value>
+  </data>
   <data name="about_program" xml:space="preserve">
     <value>О программе</value>
+  </data>
+  <data name="about_project" xml:space="preserve">
+    <value>О проекте:</value>
+  </data>
+  <data name="about_version" xml:space="preserve">
+    <value>Версия 1.0</value>
+  </data>
+  <data name="activate_badge_description" xml:space="preserve">
+    <value>Описание активации достижения</value>
+  </data>
+  <data name="activate_badge_title" xml:space="preserve">
+    <value>АКТИВИРОВАТЬ ДОСТИЖЕНИЕ</value>
   </data>
   <data name="activation" xml:space="preserve">
     <value>активация</value>
@@ -142,10 +157,13 @@
     <value>Ввести код</value>
   </data>
   <data name="enter_using_facebook" xml:space="preserve">
-    <value>Войти через facebook</value>
+    <value>Войти через </value>
   </data>
   <data name="facebook_singup" xml:space="preserve">
     <value>Зарегистрироваться на facebook</value>
+  </data>
+  <data name="itsbeta_url" xml:space="preserve">
+    <value>http://itsbeta.com</value>
   </data>
   <data name="last" xml:space="preserve">
     <value>последнее</value>
@@ -158,6 +176,9 @@
   </data>
   <data name="rate_app" xml:space="preserve">
     <value>Оценить приложение</value>
+  </data>
+  <data name="send_email" xml:space="preserve">
+    <value>отправить письмо</value>
   </data>
   <data name="subcategories" xml:space="preserve">
     <value>Подкатегории:</value>

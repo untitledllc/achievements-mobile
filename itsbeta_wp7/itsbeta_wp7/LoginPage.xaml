@@ -55,12 +55,20 @@
                         </Grid.Background>
                         <TextBlock Grid.Row="0" Text="{Binding Path=LocalizedResources.collect_all_your_achieves, Source={StaticResource LocalizedStrings}}" Foreground="#FF878785" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,55,0,0" FontSize="24" FontFamily="Segoe WP Light" />
                         <Button Grid.Row="0"
-                                Margin="20,0,20,0"
-                                Content="{Binding Path=LocalizedResources.enter_using_facebook, Source={StaticResource LocalizedStrings}}" 
-                                Click="Button_Click" Style="{StaticResource FacebookLoginButtonStyle}" Height="84" 
-                                VerticalAlignment="Center" />
+                                Margin="20,-20,20,0"                                 
+                                Click="Button_Click" 
+                                Style="{StaticResource FacebookLoginButtonStyle}" 
+                                Height="94" 
+                                VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock 
+                                    Foreground="White"
+                                    Text="{Binding Path=LocalizedResources.enter_using_facebook, Source={StaticResource LocalizedStrings}}"/>
+                                <Image Height="40" Source="/itsbeta_wp7;component/images/Facebook_logo.png"/>
+                            </StackPanel>
+                        </Button>
                         <HyperlinkButton Grid.Row="0" Name="FacebookSingup" Content="{Binding Path=LocalizedResources.facebook_singup, Source={StaticResource LocalizedStrings}}" 
-                                         NavigateUri="http://facebook.com" Foreground="#FFA7CEE0" VerticalAlignment="Bottom" 
+                                         NavigateUri="http://facebook.com" Foreground="#FFA7CEE0" VerticalAlignment="Bottom" TargetName="_blank"
                                          FontSize="24" BorderThickness="0" Margin="0,0,0,20" />
                     </Grid>
 

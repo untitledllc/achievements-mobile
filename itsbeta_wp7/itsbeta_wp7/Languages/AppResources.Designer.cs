@@ -61,11 +61,56 @@ namespace itsbeta_wp7 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Itsbeta - all your achieves in one application..
+        /// </summary>
+        public static string about_description {
+            get {
+                return ResourceManager.GetString("about_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About program.
         /// </summary>
         public static string about_program {
             get {
                 return ResourceManager.GetString("about_program", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About project:.
+        /// </summary>
+        public static string about_project {
+            get {
+                return ResourceManager.GetString("about_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version 1.0.
+        /// </summary>
+        public static string about_version {
+            get {
+                return ResourceManager.GetString("about_version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to activate badge description.
+        /// </summary>
+        public static string activate_badge_description {
+            get {
+                return ResourceManager.GetString("activate_badge_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ACTIVATE BADGE.
+        /// </summary>
+        public static string activate_badge_title {
+            get {
+                return ResourceManager.GetString("activate_badge_title", resourceCulture);
             }
         }
         
@@ -133,7 +178,7 @@ namespace itsbeta_wp7 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login using facebook.
+        ///   Looks up a localized string similar to Login using .
         /// </summary>
         public static string enter_using_facebook {
             get {
@@ -147,6 +192,15 @@ namespace itsbeta_wp7 {
         public static string facebook_singup {
             get {
                 return ResourceManager.GetString("facebook_singup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://itsbeta.com.
+        /// </summary>
+        public static string itsbeta_url {
+            get {
+                return ResourceManager.GetString("itsbeta_url", resourceCulture);
             }
         }
         
@@ -183,6 +237,15 @@ namespace itsbeta_wp7 {
         public static string rate_app {
             get {
                 return ResourceManager.GetString("rate_app", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send email.
+        /// </summary>
+        public static string send_email {
+            get {
+                return ResourceManager.GetString("send_email", resourceCulture);
             }
         }
         

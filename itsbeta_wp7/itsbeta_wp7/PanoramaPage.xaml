@@ -28,7 +28,7 @@
     <!--LayoutRoot содержит корневую сетку, где размещается все содержимое страницы-->
     <Grid x:Name="LayoutRoot" Background="White" VerticalAlignment="Top" HorizontalAlignment="Left">
         <WPExtensions:AdvancedApplicationBar Mode="Minimized" Background="#FF535353" Foreground="White"/>
-        <WPExtensions:AdvancedApplicationBarMenuItem Name="rate_app" Text="{Binding Path=LocalizedResources.rate_app, Source={StaticResource LocalizedStrings}}" Click="rate_app_Click" />
+        <!--<WPExtensions:AdvancedApplicationBarMenuItem Name="rate_app" Text="{Binding Path=LocalizedResources.rate_app, Source={StaticResource LocalizedStrings}}" Click="rate_app_Click" />-->
         <WPExtensions:AdvancedApplicationBarMenuItem Name="about_program" Text="{Binding Path=LocalizedResources.about_program, Source={StaticResource LocalizedStrings}}" Click="about_program_Click" />
         <!--<Grid Grid.Column="0" Margin="0,14,0,0" 
               Canvas.ZIndex="3"
@@ -42,7 +42,7 @@
             <Image Height="142" Margin="0,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
         </Grid>-->
 
-        <controls:Panorama Margin="0" Canvas.ZIndex="1">
+        <controls:Panorama Margin="0">
             <controls:Panorama.Background>
                 <ImageBrush ImageSource="images/Achivments_WP7_slicing_panoramaBackground.png"/>
             </controls:Panorama.Background>
@@ -54,7 +54,10 @@
                             <GradientStop Color="White" Offset="0.95"/>
             			</LinearGradientBrush>
             		</Grid.Background>
-                    <Image Height="142" Margin="0,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="142" Margin="13,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <Image Height="142" Margin="13,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    </StackPanel>                    
 				</Grid>
             </controls:Panorama.Title>
 
@@ -122,8 +125,8 @@
                     </Border>
                 </controls:PanoramaItem.Header>
                 <StackPanel Margin="10,0,10,0">
-                    <Button Content="{Binding Path=LocalizedResources.categories, Source={StaticResource LocalizedStrings}}" Name="QrReaderButton" Click="QrReaderButton_Click" Style="{StaticResource QRButtonStyle}" Height="120" />
-                    <Button Content="{Binding Path=LocalizedResources.use_qr_reader, Source={StaticResource LocalizedStrings}}" Name="ActivateCOdeButton" Click="ActivateCOdeButton_Click" 
+                    <Button Content="{Binding Path=LocalizedResources.use_qr_reader, Source={StaticResource LocalizedStrings}}" Name="QrReaderButton" Click="QrReaderButton_Click" Style="{StaticResource QRButtonStyle}" Height="120" />
+                    <Button Content="{Binding Path=LocalizedResources.enter_code, Source={StaticResource LocalizedStrings}}" Name="ActivateCOdeButton" Click="ActivateCOdeButton_Click" 
                             Margin="0,-5,0,0"
                             Style="{StaticResource ActivateButtonStyle}" Height="120" />
                     <TextBlock TextWrapping="Wrap" 
@@ -173,14 +176,14 @@
                             <StackPanel Grid.Row="0" Margin="15,27,30,25" Grid.Column="1" VerticalAlignment="Top">
                                 <TextBlock Text="{Binding First_name}" Margin="0,-3,0,0" Style="{StaticResource ProfileTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
                                 <TextBlock Text="{Binding Last_name}" Margin="0,-9,0,0" Style="{StaticResource ProfileTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
-                                <StackPanel Margin="0,8,0,0">
+                                <StackPanel Margin="0,10,0,0">
                                     <TextBlock Margin="0,0,0,0" Text="{Binding Age}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
-                                    <TextBlock Margin="0,8,0,0"  Text="{Binding Location}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                                    <TextBlock Margin="0,-3,0,0"  Text="{Binding Location}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
                                 </StackPanel>
                             </StackPanel>
 
                             <telerikPrimitives:RadImageButton 
-                                Margin="0,-11,20,0"
+                                Margin="0,-10,20,0"
                                 Grid.Column="1" Grid.Row="1"                                
                                 ButtonShape="Image" 
                                 RestStateImageSource="/itsbeta_wp7;component/images/Profile_logout_btn_norm.png" 
@@ -194,7 +197,7 @@
                                 <Grid.Background>
                                     <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_blue.png" Stretch="None" />
                                 </Grid.Background>
-                                <StackPanel Margin="10">
+                                <StackPanel Margin="14,10,10,10">
                                         <TextBlock Text="{Binding Path=LocalizedResources.all_badges, Source={StaticResource LocalizedStrings}}" 
                                                    Margin="0,14,0,0"
                                                    Foreground="White"/>
@@ -209,7 +212,7 @@
                                 <Grid.Background>
                                     <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_green.png" Stretch="None" />
                                 </Grid.Background>
-                                <StackPanel Margin="10">
+                                    <StackPanel Margin="14,10,10,10">
                                         <TextBlock Margin="0,14,0,0"
                                             Text="{Binding Path=LocalizedResources.bonuses, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
                                     <TextBlock 
@@ -224,7 +227,7 @@
                                 <Grid.Background>
                                     <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_violet.png" Stretch="None" />
                                 </Grid.Background>
-                                <StackPanel Margin="10">
+                                <StackPanel Margin="14,10,10,10">
                                     <TextBlock 
                                         Margin="0,14,0,0"
                                         Text="{Binding Path=LocalizedResources.subcategories, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
@@ -272,15 +275,21 @@
                                         <ColumnDefinition Width="141" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Border Margin="0" Canvas.ZIndex="2" Grid.Column="0" Width="140" Height="140" CornerRadius="140" BorderThickness="1" BorderBrush="#800C0C0C">
+                                    <Border HorizontalAlignment="Center"
+                                            Margin="0,-2,0,0" 
+                                            VerticalAlignment="Center"
+                                            Canvas.ZIndex="2" Grid.Column="0" Width="135" Height="135" CornerRadius="135" BorderThickness="1" BorderBrush="#800C0C0C">
                                         <Border.Background>
                                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                <GradientStop Color="#4A010101" Offset="1" />
+                                                <GradientStop Color="#4A4C4C4C" Offset="0.8" />
                                                 <GradientStop Color="#4AFEFEFE" Offset="0" />
                                             </LinearGradientBrush>
                                         </Border.Background>
                                     </Border>
-                                    <Image Margin="0" Canvas.ZIndex="1" Grid.Column="0" Width="140" Height="140" Source="{Binding Pic}"/>
+                                    <Image Margin="0" Canvas.ZIndex="1" Grid.Column="0" 
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Width="140" Height="140" Source="{Binding Pic}"/>
                                     <StackPanel Height="66" Grid.Column="1" Margin="-70,48,0,0" UseLayoutRounding="True" VerticalAlignment="Top">
                                         <StackPanel.Background>
                                             <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_labels_norm.png" AlignmentX="Left" Stretch="None" />
