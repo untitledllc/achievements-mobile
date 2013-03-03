@@ -168,6 +168,12 @@
   <data name="last" xml:space="preserve">
     <value>最后</value>
   </data>
+  <data name="loading" xml:space="preserve">
+    <value>载入中...</value>
+  </data>
+  <data name="no_data" xml:space="preserve">
+    <value>没有数据</value>
+  </data>
   <data name="profile" xml:space="preserve">
     <value>轮廓</value>
   </data>

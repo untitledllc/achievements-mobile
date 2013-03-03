@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Media;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -73,6 +74,31 @@ namespace itsbeta_wp7.ViewModel
                 _bonus_type = value;
                 RaisePropertyChanged("Bonus_type");
                 RaisePropertyChanged("Bonus_name");
+                RaisePropertyChanged("Bonus_type");
+            }
+        }
+
+        public SolidColorBrush Bonus_color {
+            get
+            {
+                switch (Bonus_type.ToString())
+                {
+                    /*
+                     * скидка: c8e5f0
+                        [02.03.2013 18:04:06] Antonina(art): акция: bde0a9
+                        [02.03.2013 18:04:22] Antonina(art): подарок: cbafdc
+                     * */
+                    case "bonus":
+                        return new SolidColorBrush(new Color() { A = 255, R = 189, G = 224, B = 169 });
+                    case "present":
+                        return new SolidColorBrush(new Color() { A = 255, R = 203, G = 175, B = 220 });
+                    case "discount":
+                        return new SolidColorBrush(new Color() { A = 255, R = 200, G = 229, B = 240 });
+                    default:
+                        return new SolidColorBrush(new Color() { A = 255, R = 189, G = 224, B = 169 });
+                };
+            }
+            private set {
             }
         }
 

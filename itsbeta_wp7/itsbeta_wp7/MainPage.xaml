@@ -22,15 +22,16 @@
                             DataContext="{Binding Main, Source={StaticResource Locator}}" Background="White">
 	<phone:PhoneApplicationPage.Resources>
 		<DataTemplate x:Key="DataTemplate1">
-			<Border HorizontalAlignment="Stretch" Margin="0,0,0,25">
+			<Border HorizontalAlignment="Stretch" Margin="0,25,0,10" Height="104" Width="464">
 				<Border.Background>
 					<ImageBrush Stretch="None" AlignmentY="Top" ImageSource="/itsbeta_wp7;component/images/Paper_project_norm.png" />
 				</Border.Background>
 				<TextBlock Text="{Binding}" 
 					HorizontalAlignment="Left" 
-					VerticalAlignment="Bottom" 
-					Margin="50,9,6,6"
-					Style="{StaticResource CategoryTextblockStyle}"/>
+					VerticalAlignment="Center" 
+                    FontWeight="Bold"
+					Margin="40,5,6,6"
+					Style="{StaticResource CategoryBoldTextblockStyle}"/>
 			</Border>
 		</DataTemplate>
 		<DataTemplate x:Key="GroupPickerTemplate">
@@ -50,19 +51,9 @@
 		</DataTemplate>
 	</phone:PhoneApplicationPage.Resources>	
     
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar  BackgroundColor="#FF535353" ForegroundColor="White">
-			<shell:ApplicationBar.MenuItems>
-				<shell:ApplicationBarMenuItem Text="Оценить приложение"/>
-				<shell:ApplicationBarMenuItem Text="О программе"/>
-			</shell:ApplicationBar.MenuItems>
-			<shell:ApplicationBarIconButton x:Name="ActivateBadge" IconUri="/icons/appbar.add.rest.png" Text="код" Click="ActivateBadge_Click" />
-			<shell:ApplicationBarIconButton x:Name="QRButton" IconUri="/icons/appbar.feature.camera.rest.png" Text="QR" Click="QRButton_Click" />
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>-->
 
     <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="загрузка..." />
+        <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="{Binding Path=LocalizedResources.loading, Source={StaticResource LocalizedStrings}}" />
     </shell:SystemTray.ProgressIndicator>
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
@@ -99,20 +90,23 @@
 		      Grid.Row="1">
             <!--GroupDescriptorsSource="{Binding Path=GroupedBadgesList}"-->
             <telerikData:RadJumpList 
-                Margin="0,0,0,0"
+                Margin="0,0,0,0" Width="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                ScrollViewer.VerticalScrollBarVisibility="Visible"
+                ScrollViewer.ManipulationMode="Control"
                 EmptyContentTemplate="{StaticResource NoDataListTemlate}"
                 x:Name="AllBadges"                                          
                                      GroupHeaderItemTap="AllBadges_GroupHeaderItemTap"
                                      ItemsSource="{Binding Path=CategoryAchieves}"
-                                     DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllBadges_ItemTap" GroupHeaderTemplate="{StaticResource DataTemplate1}" GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}">
+                                     DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllBadges_ItemTap" GroupHeaderTemplate="{StaticResource DataTemplate1}" GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" HorizontalContentAlignment="Stretch">
                 <telerikData:RadJumpList.ItemTemplate>
                         <DataTemplate>
-                            <Grid Margin="15,20,0,0">
+                        <Grid Margin="15,20,0,0" Width="Auto">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="109" />
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="109"/>
+                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                            <Border Margin="0" Canvas.ZIndex="2" Grid.Column="0" Width="108" Height="108" CornerRadius="108" BorderThickness="1" BorderBrush="#800C0C0C">
+                            <Border Margin="0,-1,0,0" Canvas.ZIndex="2" Grid.Column="0" Width="105" Height="105" CornerRadius="108" BorderThickness="1" BorderBrush="#800C0C0C">
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#4A010101" Offset="1" />
@@ -121,10 +115,10 @@
                                 </Border.Background>
                             </Border>
                             <Image Grid.Column="0" Width="108" Height="108" Source="{Binding Pic}" VerticalAlignment="Center" />
-                                <StackPanel Grid.Column="1" Margin="15,-5,0,0" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap" Style="{StaticResource CategoryTextblockStyle}" />
+                                <StackPanel Grid.Column="1" Margin="15,-5,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="Auto">
+                                    <TextBlock Text="{Binding Display_name}" TextWrapping="NoWrap" Style="{StaticResource CategoryTextblockStyle}" />
                                     <!--<TextBlock Text="{Binding Desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />-->
-                                <TextBlock Text="{Binding Short_Create_time}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" Margin="0,4,0,0" />
+                                <TextBlock Text="{Binding Short_Create_time}" TextWrapping="NoWrap" Style="{StaticResource OtherTextblockStyle}" Margin="0,4,0,0" />
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>

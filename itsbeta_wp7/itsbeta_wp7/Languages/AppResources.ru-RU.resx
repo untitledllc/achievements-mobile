@@ -168,6 +168,12 @@
   <data name="last" xml:space="preserve">
     <value>последнее</value>
   </data>
+  <data name="loading" xml:space="preserve">
+    <value>загрузка...</value>
+  </data>
+  <data name="no_data" xml:space="preserve">
+    <value>Нет данных</value>
+  </data>
   <data name="profile" xml:space="preserve">
     <value>профиль</value>
   </data>

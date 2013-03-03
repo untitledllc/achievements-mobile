@@ -142,6 +142,15 @@ namespace itsbeta_wp7 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to bonus.
+        /// </summary>
+        public static string bonus {
+            get {
+                return ResourceManager.GetString("bonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bonuses:.
         /// </summary>
         public static string bonuses {
@@ -210,6 +219,24 @@ namespace itsbeta_wp7 {
         public static string last {
             get {
                 return ResourceManager.GetString("last", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to loading....
+        /// </summary>
+        public static string loading {
+            get {
+                return ResourceManager.GetString("loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No data.
+        /// </summary>
+        public static string no_data {
+            get {
+                return ResourceManager.GetString("no_data", resourceCulture);
             }
         }
         

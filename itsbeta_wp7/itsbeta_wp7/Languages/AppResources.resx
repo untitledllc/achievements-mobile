@@ -144,6 +144,9 @@
   <data name="badges_opened_label" xml:space="preserve">
     <value> opened</value>
   </data>
+  <data name="bonus" xml:space="preserve">
+    <value>bonus</value>
+  </data>
   <data name="bonuses" xml:space="preserve">
     <value>Bonuses:</value>
   </data>
@@ -167,6 +170,12 @@
   </data>
   <data name="last" xml:space="preserve">
     <value>last</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>loading...</value>
+  </data>
+  <data name="no_data" xml:space="preserve">
+    <value>No data</value>
   </data>
   <data name="profile" xml:space="preserve">
     <value>profile</value>

@@ -5,6 +5,7 @@
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:itsbeta_wp7="clr-namespace:itsbeta_wp7"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
                             d:DesignHeight="768"
@@ -16,8 +17,19 @@
                             Foreground="Black"
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
-                            shell:SystemTray.IsVisible="True"
+                            shell:SystemTray.IsVisible="{Binding Loading}"
+                            shell:SystemTray.Opacity="0"
+                            shell:SystemTray.BackgroundColor="White"
+                            shell:SystemTray.ForegroundColor="Black"
                             DataContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <phone:PhoneApplicationPage.Resources>
+        <!--<itsbeta_wp7:BonusColorConverter x:Key="BonusColorConverter"/>-->
+    </phone:PhoneApplicationPage.Resources>
+
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="{Binding Path=LocalizedResources.loading, Source={StaticResource LocalizedStrings}}" />
+    </shell:SystemTray.ProgressIndicator>
 
     <Grid x:Name="LayoutRoot">
     	<Grid.Background>
@@ -91,20 +103,22 @@
                                                    ScrollViewer.VerticalScrollBarVisibility="Disabled"
 					                        Text="{Binding Path=CurrentAchieve.Display_name}" TextWrapping="Wrap" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
                                         <msp:HTMLTextBox Style="{StaticResource OtherTextblockStyleHtmlTextBox}" 
-                                                         Margin="0,25,0,0"
+                                                         Margin="-12,25,0,0"
+                                                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                          Foreground="#FF4c4c4b"
-					                        Html="{Binding Path=CurrentAchieve.Details}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+					                        Html="{Binding Path=CurrentAchieve.Details}" DataContext="{Binding Main, Source={StaticResource Locator}}" HorizontalAlignment="Left" />
                                         <msp:HTMLTextBox 
-                                            Margin="0,25,0,0" TextWrapping="Wrap"
+                                            Margin="-12,25,0,0" TextWrapping="Wrap"
                                             Style="{StaticResource OtherTextblockStyleHtmlTextBox}" Foreground="#FF4c4c4b"
                                                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-					                        Html="{Binding Path=CurrentAchieve.Adv}" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+					                        Html="{Binding Path=CurrentAchieve.Adv}" DataContext="{Binding Main, Source={StaticResource Locator}}" HorizontalAlignment="Left" />
                                     </StackPanel>
                                 </Grid>
                                 <Image Canvas.ZIndex="0" Grid.Row="2" Width="448" 
                            Height="52" Source="/itsbeta_wp7;component/images/Paper_bottom.png" 
-                           Margin="0,-40,0,0" />
+                           Margin="0,-2,0,0" />
                             </Grid>
                     </Border>
                 </Grid>
@@ -128,18 +142,23 @@
 
                                     <Image Grid.Row="0" Width="448" Canvas.ZIndex="0"
                            Height="52" Source="/itsbeta_wp7;component/images/Paper_top.png" 
-                           Margin="0,0,0,0" />
-                                    <Border Background="#FFc8e5f0" Width="436" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Center">
-                                        <TextBlock Margin="10" Text="{Binding Bonus_name}" 
-                                                   Style="{StaticResource BonusHeaderStyle}"
-                                                   TextWrapping="Wrap" Foreground="White" />
-                                    </Border>
-                                    <Grid Grid.Row="1" Width="448" Canvas.ZIndex="1">
+                           Margin="0,0,0,0" />                                    
+                                    <Grid Grid.Row="1" Width="448" Canvas.ZIndex="1" Margin="0,-50,0,0">
                                         <Grid.Background>
                                             <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_middle.png" />
                                         </Grid.Background>
+                                        <StackPanel>
+                                            <Border Background="{Binding Bonus_color}" 
+                                            Margin="6,0,0,7" Canvas.ZIndex="1"
+                                            Grid.Row="0" 
+                                            VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                                                <TextBlock Margin="10" Text="{Binding Bonus_name}" 
+                                                   Style="{StaticResource BonusHeaderStyle}"
+                                                   TextWrapping="Wrap" Foreground="White" />
+                                            </Border>                                        
                                         <StackPanel Margin="20">                                            
-                                            <TextBlock Text="{Binding Bonus_desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />
+                                            <TextBlock Margin="5,0,0,0"  Text="{Binding Bonus_desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />
+                                        </StackPanel>
                                         </StackPanel>
                                     </Grid>
                                     <Image Canvas.ZIndex="0" Grid.Row="2" Width="448" 

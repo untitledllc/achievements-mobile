@@ -22,7 +22,7 @@
     DataContext="{Binding Main, Source={StaticResource Locator}}" Background="White">
 
     <shell:SystemTray.ProgressIndicator>
-        <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="загрузка..." />
+        <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="{Binding Path=LocalizedResources.loading, Source={StaticResource LocalizedStrings}}" />
     </shell:SystemTray.ProgressIndicator>
 
     <!--LayoutRoot содержит корневую сетку, где размещается все содержимое страницы-->
@@ -57,6 +57,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Image Height="142" Margin="13,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
                         <Image Height="142" Margin="13,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <Image Height="142" Margin="13,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />                        
                     </StackPanel>                    
 				</Grid>
             </controls:Panorama.Title>
@@ -290,7 +291,7 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Width="140" Height="140" Source="{Binding Pic}"/>
-                                    <StackPanel Height="66" Grid.Column="1" Margin="-70,48,0,0" UseLayoutRounding="True" VerticalAlignment="Top">
+                                    <StackPanel Height="66" Grid.Column="1" Margin="-70,40,0,0" UseLayoutRounding="True" VerticalAlignment="Top">
                                         <StackPanel.Background>
                                             <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_labels_norm.png" AlignmentX="Left" Stretch="None" />
                                         </StackPanel.Background>
