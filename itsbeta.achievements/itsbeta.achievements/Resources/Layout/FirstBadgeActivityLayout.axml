@@ -53,7 +53,7 @@
         p1:minHeight="25px"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
-        p1:background="#47315d9a">
+        p1:background="#7d000000">
         <ScrollView
             p1:minWidth="25px"
             p1:minHeight="25px"
@@ -147,11 +147,9 @@
                     p1:orientation="vertical"
                     p1:minWidth="25px"
                     p1:minHeight="140dp"
-                    p1:layout_width="290dp"
+                    p1:layout_width="288dp"
                     p1:layout_height="wrap_content"
                     p1:id="@+id/bonuspaperlist_linearLayout"
-                    p1:layout_marginLeft="3dp"
-                    p1:layout_marginRight="3dp"
                     p1:layout_marginTop="20dp"
                     p1:layout_centerHorizontal="true"
                     p1:layout_below="@+id/firstbadgewin_wonderdescrTextView" />

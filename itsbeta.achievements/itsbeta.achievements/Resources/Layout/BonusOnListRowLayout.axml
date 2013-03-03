@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
     p1:minWidth="25px"
-    p1:minHeight="25px"
+    p1:minHeight="90dp"
     p1:layout_width="fill_parent"
-    p1:layout_height="wrap_content"
     p1:id="@+id/RelativeLayout"
-    p1:background="#47000000">
+    p1:layout_height="wrap_content">
     <ImageView
         p1:layout_height="30dp"
         p1:id="@+id/badgewin_GreenBonusImageView"
@@ -43,30 +42,30 @@
         p1:gravity="center" />
     <ImageView
         p1:layout_width="fill_parent"
-        p1:layout_height="fill_parent"
+        p1:layout_height="wrap_content"
         p1:id="@+id/badgewin_greendescbackgroundImageView"
         p1:layout_marginTop="30dp"
-        p1:layout_alignBottom="@+id/badgewin_bonusdescrTextView"
-        p1:layout_marginBottom="-30dp"
-        p1:background="#7fbdffb9" />
+        p1:background="#7fbdffb9"
+        p1:minHeight="70dp"
+        p1:layout_alignBottom="@+id/badgewin_bonusdescrTextView" />
     <ImageView
         p1:layout_width="fill_parent"
-        p1:layout_height="fill_parent"
+        p1:layout_height="wrap_content"
         p1:id="@+id/badgewin_bluedescbackgroundImageView"
         p1:layout_marginTop="30dp"
-        p1:layout_alignBottom="@+id/badgewin_bonusdescrTextView"
-        p1:layout_marginBottom="-30dp"
-        p1:background="#2ab9e7ff" />
+        p1:background="#59c9eeff"
+        p1:minHeight="70dp"
+        p1:layout_alignBottom="@+id/badgewin_bonusdescrTextView" />
     <ImageView
         p1:layout_width="fill_parent"
-        p1:layout_height="fill_parent"
+        p1:layout_height="wrap_content"
         p1:id="@+id/badgewin_violetdescbackgroundImageView"
         p1:layout_marginTop="30dp"
-        p1:layout_alignBottom="@+id/badgewin_bonusdescrTextView"
-        p1:layout_marginBottom="-30dp"
-        p1:background="#7fffb9f5" />
+        p1:background="#7fffb9f5"
+        p1:minHeight="70dp"
+        p1:layout_alignBottom="@+id/badgewin_bonusdescrTextView" />
     <TextView
-        p1:text="Bonus descr"
+        p1:text="Bonus desc"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="fill_parent"
         p1:layout_height="wrap_content"
@@ -76,5 +75,6 @@
         p1:textSize="12dp"
         p1:layout_alignLeft="@+id/badgewin_bonusTextView"
         p1:layout_marginTop="10dp"
-        p1:layout_marginRight="10dp" />
+        p1:layout_marginRight="10dp"
+        p1:minHeight="50dp" />
 </RelativeLayout>

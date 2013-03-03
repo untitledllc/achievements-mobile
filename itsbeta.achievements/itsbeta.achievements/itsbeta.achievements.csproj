@@ -63,6 +63,8 @@
     <Compile Include="Gui\SubCategoriesListItemAdapter.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="LoginWebActivity.cs" />
+    <Compile Include="MainScreenActivity_AchievementsList.cs" />
+    <Compile Include="MainScreenActivity_Activation.cs" />
     <Compile Include="MainScreenActivity_CategoryList.cs" />
     <Compile Include="ProfileActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -155,15 +157,16 @@
     <AndroidResource Include="Resources\Drawable\profilescr_titleback.png" />
     <AndroidResource Include="Resources\Drawable\back.png" />
     <AndroidResource Include="Resources\Drawable\line.png" />
-    <AndroidResource Include="Resources\Layout\InactiveBackgroundLayout.axml" />
     <AndroidResource Include="Resources\Layout\SecondScreenCategoryRow.xml" />
     <AndroidResource Include="Resources\Layout\BadgeWindowActivityLayout.axml" />
     <AndroidResource Include="Resources\Layout\ReceiveBadgeLayount.axml" />
     <AndroidResource Include="Resources\Layout\QRReaderLayout.axml" />
     <AndroidResource Include="Resources\Layout\SecondScreenListRowLL.xml" />
     <AndroidResource Include="Resources\Layout\BonusOnListRowLayout.axml" />
-    <AndroidResource Include="Resources\Layout\InactiveWin.axml" />
     <AndroidResource Include="Resources\Layout\PopUpListLayout.axml" />
+    <AndroidResource Include="Resources\Drawable\icon_bonuses.png" />
+    <AndroidResource Include="Resources\Drawable\icon_discounts.png" />
+    <AndroidResource Include="Resources\Drawable\icon_gifts.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

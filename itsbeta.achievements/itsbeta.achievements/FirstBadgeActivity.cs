@@ -26,8 +26,8 @@ namespace itsbeta.achievements
         public static TextView loadComplete;
         Animation buttonClickAnimation;
         static ProgressDialog mDialog;
-        AlertDialog.Builder _activateMessageBadgeDialogBuilder;
-        AlertDialog _activateMessageBadgeDialog;
+        static AlertDialog.Builder _messageDialogBuilder;
+        static AlertDialog _messageDialog;
         Vibrator _vibe;
 
         protected override void OnCreate(Bundle bundle)
@@ -35,7 +35,7 @@ namespace itsbeta.achievements
             base.OnCreate(bundle); 
             _vibe = (Vibrator)this.GetSystemService(Context.VibratorService);
             loadComplete = new TextView(this);
-
+            _messageDialogBuilder = new AlertDialog.Builder(this);
             if (!File.Exists(@"/data/data/ru.hintsolutions.itsbeta/data.txt"))
             {
                 List<string> config = new List<string>();
@@ -116,86 +116,170 @@ namespace itsbeta.achievements
                 );
 
             LinearLayout bonusPaperListLinearLayout = FindViewById<LinearLayout>(Resource.Id.bonuspaperlist_linearLayout);
-            foreach (var bonus in _achieve.Bonuses)
+            
+                if (_achieve.Bonuses.Count() == 1)
+                {
+                    var bonus = _achieve.Bonuses.First();
+                    {
+                        LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+                        View bonusView = layoutInflater.Inflate(Resource.Layout.BonusOnListRowLayout, null);
+                        bonusView.LayoutParameters = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FillParent, RelativeLayout.LayoutParams.FillParent);
+                        ImageView bonusLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
+                        ImageView discountLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_BlueBonusImageView);
+                        ImageView giftLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_VioletBonusImageView);
+
+                        ImageView bonusDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_greendescbackgroundImageView);
+                        ImageView discountDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_bluedescbackgroundImageView);
+                        ImageView giftDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_violetdescbackgroundImageView);
+
+                        TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
+                        TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+
+                        bonusLineImage.Visibility = ViewStates.Invisible;
+                        discountLineImage.Visibility = ViewStates.Invisible;
+                        giftLineImage.Visibility = ViewStates.Invisible;
+
+                        bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
+                        discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
+                        giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
+
+                        bonusDescr.Visibility = ViewStates.Invisible;
+                        bonusName.Visibility = ViewStates.Invisible;
+
+                        if (bonus.Type == "discount")
+                        {
+                            bonusLineImage.Visibility = ViewStates.Invisible;
+                            discountLineImage.Visibility = ViewStates.Visible;
+                            giftLineImage.Visibility = ViewStates.Invisible;
+
+                            bonusPaperListLinearLayout.SetBackgroundColor(new Color(201, 238, 255, 89));
+
+                            bonusDescr.Visibility = ViewStates.Visible;
+                            bonusName.Visibility = ViewStates.Visible;
+
+                            bonusName.Text = "Скидка";
+                            bonusDescr.Text = bonus.Description;
+
+                            bonusPaperListLinearLayout.AddView(bonusView);
+                        }
+                        if (bonus.Type == "bonus")
+                        {
+                            bonusLineImage.Visibility = ViewStates.Visible;
+                            discountLineImage.Visibility = ViewStates.Invisible;
+                            giftLineImage.Visibility = ViewStates.Invisible;
+
+
+                            bonusPaperListLinearLayout.SetBackgroundColor(new Color(189, 255, 185, 127));
+
+                            bonusDescr.Visibility = ViewStates.Visible;
+                            bonusName.Visibility = ViewStates.Visible;
+
+                            bonusName.Text = "Бонус";
+                            bonusDescr.Text = bonus.Description;
+
+                            bonusPaperListLinearLayout.AddView(bonusView);
+                        }
+                        if (bonus.Type == "present")
+                        {
+                            bonusLineImage.Visibility = ViewStates.Invisible;
+                            discountLineImage.Visibility = ViewStates.Invisible;
+                            giftLineImage.Visibility = ViewStates.Visible;
+
+                            bonusPaperListLinearLayout.SetBackgroundColor(new Color(255, 185, 245, 127));
+
+                            bonusDescr.Visibility = ViewStates.Visible;
+                            bonusName.Visibility = ViewStates.Visible;
+
+                            bonusName.Text = "Подарок";
+                            bonusDescr.Text = bonus.Description;
+
+                            bonusPaperListLinearLayout.AddView(bonusView);
+                        }
+                    }
+                }
+                if (_achieve.Bonuses.Count() > 1)
             {
-                LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-                View bonusView = layoutInflater.Inflate(Resource.Layout.BonusOnListRowLayout, null);
-
-                ImageView bonusLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
-                ImageView discountLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_BlueBonusImageView);
-                ImageView giftLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_VioletBonusImageView);
-
-                ImageView bonusDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_greendescbackgroundImageView);
-                ImageView discountDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_bluedescbackgroundImageView);
-                ImageView giftDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_violetdescbackgroundImageView);
-
-                TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
-                TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
-
-                bonusLineImage.Visibility = ViewStates.Invisible;
-                discountLineImage.Visibility = ViewStates.Invisible;
-                giftLineImage.Visibility = ViewStates.Invisible;
-
-                bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
-
-                bonusDescr.Visibility = ViewStates.Invisible;
-                bonusName.Visibility = ViewStates.Invisible;
-
-                if (bonus.Type == "discount")
+                foreach (var bonus in _achieve.Bonuses)
                 {
+                    LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+                    View bonusView = layoutInflater.Inflate(Resource.Layout.BonusOnListRowLayout, null);
+                    bonusView.LayoutParameters = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FillParent, RelativeLayout.LayoutParams.FillParent);
+                    ImageView bonusLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
+                    ImageView discountLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_BlueBonusImageView);
+                    ImageView giftLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_VioletBonusImageView);
+
+                    ImageView bonusDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_greendescbackgroundImageView);
+                    ImageView discountDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_bluedescbackgroundImageView);
+                    ImageView giftDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_violetdescbackgroundImageView);
+
+                    TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
+                    TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+
                     bonusLineImage.Visibility = ViewStates.Invisible;
-                    discountLineImage.Visibility = ViewStates.Visible;
+                    discountLineImage.Visibility = ViewStates.Invisible;
                     giftLineImage.Visibility = ViewStates.Invisible;
 
                     bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                    discountDescrBackgroundImage.Visibility = ViewStates.Visible;
-                    giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
-
-                    bonusDescr.Visibility = ViewStates.Visible;
-                    bonusName.Visibility = ViewStates.Visible;
-
-                    bonusName.Text = "Скидка";
-                    bonusDescr.Text = bonus.Description;
-
-                    bonusPaperListLinearLayout.AddView(bonusView);
-                }
-                if (bonus.Type == "bonus")
-                {
-                    bonusLineImage.Visibility = ViewStates.Visible;
-                    discountLineImage.Visibility = ViewStates.Invisible;
-                    giftLineImage.Visibility = ViewStates.Invisible;
-
-                    bonusDescrBackgroundImage.Visibility = ViewStates.Visible;
                     discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
                     giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
 
-                    bonusDescr.Visibility = ViewStates.Visible;
-                    bonusName.Visibility = ViewStates.Visible;
+                    bonusDescr.Visibility = ViewStates.Invisible;
+                    bonusName.Visibility = ViewStates.Invisible;
 
-                    bonusName.Text = "Бонус";
-                    bonusDescr.Text = bonus.Description;
+                    if (bonus.Type == "discount")
+                    {
+                        bonusLineImage.Visibility = ViewStates.Invisible;
+                        discountLineImage.Visibility = ViewStates.Visible;
+                        giftLineImage.Visibility = ViewStates.Invisible;
 
-                    bonusPaperListLinearLayout.AddView(bonusView);
-                }
-                if (bonus.Type == "present")
-                {
-                    bonusLineImage.Visibility = ViewStates.Invisible;
-                    discountLineImage.Visibility = ViewStates.Invisible;
-                    giftLineImage.Visibility = ViewStates.Visible;
+                        bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
+                        discountDescrBackgroundImage.Visibility = ViewStates.Visible;
+                        giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
 
-                    bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                    discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                    giftDescrBackgroundImage.Visibility = ViewStates.Visible;
+                        bonusDescr.Visibility = ViewStates.Visible;
+                        bonusName.Visibility = ViewStates.Visible;
 
-                    bonusDescr.Visibility = ViewStates.Visible;
-                    bonusName.Visibility = ViewStates.Visible;
+                        bonusName.Text = "Скидка";
+                        bonusDescr.Text = bonus.Description;
 
-                    bonusName.Text = "Подарок";
-                    bonusDescr.Text = bonus.Description;
+                        bonusPaperListLinearLayout.AddView(bonusView);
+                    }
+                    if (bonus.Type == "bonus")
+                    {
+                        bonusLineImage.Visibility = ViewStates.Visible;
+                        discountLineImage.Visibility = ViewStates.Invisible;
+                        giftLineImage.Visibility = ViewStates.Invisible;
 
-                    bonusPaperListLinearLayout.AddView(bonusView);
+                        bonusDescrBackgroundImage.Visibility = ViewStates.Visible;
+                        discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
+                        giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
+
+                        bonusDescr.Visibility = ViewStates.Visible;
+                        bonusName.Visibility = ViewStates.Visible;
+
+                        bonusName.Text = "Бонус";
+                        bonusDescr.Text = bonus.Description;
+
+                        bonusPaperListLinearLayout.AddView(bonusView);
+                    }
+                    if (bonus.Type == "present")
+                    {
+                        bonusLineImage.Visibility = ViewStates.Invisible;
+                        discountLineImage.Visibility = ViewStates.Invisible;
+                        giftLineImage.Visibility = ViewStates.Visible;
+
+                        bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
+                        discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
+                        giftDescrBackgroundImage.Visibility = ViewStates.Visible;
+
+                        bonusDescr.Visibility = ViewStates.Visible;
+                        bonusName.Visibility = ViewStates.Visible;
+
+                        bonusName.Text = "Подарок";
+                        bonusDescr.Text = bonus.Description;
+
+                        bonusPaperListLinearLayout.AddView(bonusView);
+                    }
                 }
             }
 
@@ -212,6 +296,12 @@ namespace itsbeta.achievements
             };
         }
 
+        void ShowAlertDialog()
+        {
+            _messageDialog = _messageDialogBuilder.Create();
+            _messageDialog.Show();
+        }
+
         void treadStartVoid()
         {
             try
@@ -222,9 +312,12 @@ namespace itsbeta.achievements
             }
             catch
             {
-                string msg = "Не удалось подключиться. Проверьте интернет подключение";
-                RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Long).Show());
-                RunOnUiThread(()=> Finish());
+
+                _messageDialogBuilder.SetTitle("Ошибка");
+                _messageDialogBuilder.SetMessage("Не удалось подключиться. Проверьте состояние интернет подключения.");
+                _messageDialogBuilder.SetPositiveButton("Ок", delegate { RunOnUiThread(() => Finish()); });
+                RunOnUiThread(() => ShowAlertDialog());
+                RunOnUiThread(()=> mDialog.Dismiss());
                 return;
             }
             RunOnUiThread(()=> mDialog.SetMessage("Загрузка контента..."));
@@ -249,8 +342,23 @@ namespace itsbeta.achievements
                         if (!System.IO.File.Exists(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
                             AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName + ".PNG"))
                         {
+                            Bitmap bitmap;
+                            try
+                            {
+                                bitmap = GetImageBitmap(AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].PicUrl);
+                            }
+                            catch
+                            {
 
-                            Bitmap bitmap = GetImageBitmap(AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].PicUrl);
+                                _messageDialogBuilder.SetTitle("Ошибка");
+                                _messageDialogBuilder.SetMessage("Ошибка загрузки контента.");
+                                _messageDialogBuilder.SetPositiveButton("Ок", delegate { RunOnUiThread(() => Finish()); });
+                                RunOnUiThread(() => ShowAlertDialog());
+                                RunOnUiThread(() => mDialog.Dismiss());
+                                return;
+                            }
+
+
 
                             bitmap.Compress(
                             Bitmap.CompressFormat.Png, 10, fs);

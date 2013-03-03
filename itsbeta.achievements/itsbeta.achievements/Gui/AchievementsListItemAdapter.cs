@@ -52,7 +52,7 @@ namespace itsbeta.achievements.gui
             LinearLayout bonusesColumnLL = (LinearLayout)view.FindViewById(Resource.Id.bonusesColumn_linearLayout);
             bonusesColumnLL.RemoveAllViews();
 
-            foreach (var bonus in item.Bonuses) 
+            foreach (var bonus in item.Bonuses)
             {
                 LayoutInflater layoutInflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
                 View bonusView = layoutInflater.Inflate(Resource.Layout.SecondScreenListRowLL, null);
@@ -63,7 +63,7 @@ namespace itsbeta.achievements.gui
 
                 ImageView discountPictureleft = (ImageView)bonusView.FindViewById(Resource.Id.Bonus_DiscountImageView_left);
                 ImageView discountPictureright = (ImageView)bonusView.FindViewById(Resource.Id.Bonus_DiscountImageView_right);
-                TextView  discountTextView = (TextView)bonusView.FindViewById(Resource.Id.Bonus_DiscountTextView);
+                ImageView discountPicturecenter = (ImageView)bonusView.FindViewById(Resource.Id.Bonus_DiscountCenterImageView);
 
                 ImageView giftPictureleft = (ImageView)bonusView.FindViewById(Resource.Id.Bonus_GiftImageView_left);
                 ImageView giftPictureRight = (ImageView)bonusView.FindViewById(Resource.Id.Bonus_GiftImageView_right);
@@ -74,7 +74,7 @@ namespace itsbeta.achievements.gui
                 bonusPicturecenter.Visibility = ViewStates.Invisible;
 
                 discountPictureleft.Visibility = ViewStates.Invisible;
-                discountTextView.Visibility = ViewStates.Invisible;
+                discountPicturecenter.Visibility = ViewStates.Invisible;
                 discountPictureright.Visibility = ViewStates.Invisible;
 
                 giftPictureleft.Visibility = ViewStates.Invisible;
@@ -88,7 +88,7 @@ namespace itsbeta.achievements.gui
                     bonusPicturecenter.Visibility = ViewStates.Invisible;
 
                     discountPictureleft.Visibility = ViewStates.Visible;
-                    discountTextView.Visibility = ViewStates.Visible;
+                    discountPicturecenter.Visibility = ViewStates.Visible;
                     discountPictureright.Visibility = ViewStates.Visible;
 
                     giftPictureleft.Visibility = ViewStates.Invisible;
@@ -104,7 +104,7 @@ namespace itsbeta.achievements.gui
                     bonusPicturecenter.Visibility = ViewStates.Visible;
 
                     discountPictureleft.Visibility = ViewStates.Invisible;
-                    discountTextView.Visibility = ViewStates.Invisible;
+                    discountPicturecenter.Visibility = ViewStates.Invisible;
                     discountPictureright.Visibility = ViewStates.Invisible;
 
                     giftPictureleft.Visibility = ViewStates.Invisible;
@@ -113,14 +113,14 @@ namespace itsbeta.achievements.gui
 
                     bonusesColumnLL.AddView(bonusView);
                 }
-                if (bonus.Type == "present")    
+                if (bonus.Type == "present")
                 {
                     bonusPictureleft.Visibility = ViewStates.Invisible;
                     bonusPictureright.Visibility = ViewStates.Invisible;
                     bonusPicturecenter.Visibility = ViewStates.Invisible;
 
                     discountPictureleft.Visibility = ViewStates.Invisible;
-                    discountTextView.Visibility = ViewStates.Invisible;
+                    discountPicturecenter.Visibility = ViewStates.Invisible;
                     discountPictureright.Visibility = ViewStates.Invisible;
 
                     giftPictureleft.Visibility = ViewStates.Visible;
@@ -131,19 +131,19 @@ namespace itsbeta.achievements.gui
                 }
 
                 bonusPictureleft.Dispose();
-                bonusPictureright.Dispose(); 
+                bonusPictureright.Dispose();
                 bonusPicturecenter.Dispose();
-            
+
                 discountPictureleft.Dispose();
                 discountPictureright.Dispose();
-                discountTextView.Dispose();
-            
+                discountPicturecenter.Dispose();
+
                 giftPictureleft.Dispose();
                 giftPictureRight.Dispose();
                 giftPicturecenter.Dispose();
             }
 
-            
+
             view.DrawingCacheEnabled = true;
 
 
@@ -159,29 +159,22 @@ namespace itsbeta.achievements.gui
                 ".PNG"
                 );
                 achivePicture.SetImageBitmap(bitmap);
-                _bitmaps[position] = bitmap.Copy(Bitmap.Config.Argb8888, true) ;
+                _bitmaps[position] = bitmap.Copy(Bitmap.Config.Argb8888, true);
                 bitmap.Dispose();
             }
 
 
             Animation listviewAnimation = new ScaleAnimation((float)1.0, (float)1.0, (float)0, (float)1.0);//new TranslateAnimation(0, 0, MainActivity._display.Height, 0);
-            
-            Animation animation;
-            if (position % 2 == 0)
-            {
-                animation = new TranslateAnimation(AppInfo._display.Width, 0, 200, 0);
-            }
-            else
-	        {
-                animation = new TranslateAnimation(AppInfo._display.Width, 0, -200, 0);
-	        }
-            
-            Animation animrotate = new RotateAnimation(45f, 0f);
+
+            //Animation animation;
+            //animation = new TranslateAnimation(AppInfo._display.Width, 0, 200, 0);
+
+            //Animation animrotate = new RotateAnimation(45f, 0f);
 
 
-            listviewAnimation.Duration = 750;
-            animation.Duration = 750;
-            animrotate.Duration = 750;
+            //listviewAnimation.Duration = 750;
+            //animation.Duration = 750;
+            //animrotate.Duration = 750;
 
             //AnimationSet asa = new AnimationSet(true);
             //asa.AddAnimation(listviewAnimation);
@@ -206,5 +199,4 @@ namespace itsbeta.achievements.gui
             return localDateTime;
         }
     }
-
 }

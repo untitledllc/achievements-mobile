@@ -27,23 +27,29 @@ namespace itsbeta.achievements
         public static bool isPlayerExist;
         public static bool isAppBadgeEarned;
         public static bool isRelogin = true;
-
-        static TextView endlogin;
+        static WebView _loginWebView;
+        static AlertDialog.Builder _messageDialogBuilder;
+        static AlertDialog _messageDialog;
+        static TextView _endlogin;
+        static TextView _loginError; 
+        static Context _context;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            
+            _context = this;
+            _loginError = new TextView(this);
+
             SetContentView(Resource.Layout.LoginWebLayout);
-            endlogin = new TextView(this);
+            _endlogin = new TextView(this);
+            _messageDialogBuilder = new AlertDialog.Builder(this);
+            _loginWebView = FindViewById<WebView>(Resource.Id.loginWebView);
+            //_loginWebView.Settings.JavaScriptEnabled = true;
 
-            WebView loginWebView = FindViewById<WebView>(Resource.Id.loginWebView);
-            //loginWebView.Settings.JavaScriptEnabled = true;
-
-            loginWebView.SetWebViewClient(new ItsbetaLoginWebViewClient(this));
-            loginWebView.SetWebChromeClient(new ItsbetaLoginWebViewChromeClient());
+            _loginWebView.SetWebViewClient(new ItsbetaLoginWebViewClient(this));
+            _loginWebView.SetWebChromeClient(new ItsbetaLoginWebViewChromeClient());
             // "https://www.facebook.com/dialog/oauth?response_type=token&display=popup&client_id={0}&redirect_uri={1}&scope={2}",
-            loginWebView.LoadUrl(String.Format(
+            _loginWebView.LoadUrl(String.Format(
                 "https://m.facebook.com/dialog/oauth/?response_type=token&" +
                                                     "client_id={0}"+
                                                     "&redirect_uri={1}" +
@@ -57,11 +63,12 @@ namespace itsbeta.achievements
             mDialog.Show();
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            endlogin.TextChanged += delegate //здесь инициализировать все необходимое перед запуском...
+            _endlogin.TextChanged += delegate //здесь инициализировать все необходимое перед запуском...
             {
                 Finish();
                 StartActivity(typeof(FirstBadgeActivity));
             };
+            _loginError.TextChanged += delegate { Finish(); StartActivity(typeof(LoginActivity)); };
         }
 
         public class ItsbetaLoginWebViewClient : WebViewClient
@@ -91,6 +98,23 @@ namespace itsbeta.achievements
                 view.LoadUrl(url);
                 return true;
             }
+            public override void OnReceivedError(WebView view, ClientError errorCode, string description, string failingUrl)
+            {
+               // base.OnReceivedError(view, errorCode, description, failingUrl);
+
+                _messageDialogBuilder.SetTitle("Ошибка");
+                _messageDialogBuilder.SetMessage("Не удалось подключиться. Проверьте состояние интернет подключения.");
+                _messageDialogBuilder.SetPositiveButton("Ок", delegate { LoginWebActivity._loginError.Text = description; });
+                ShowAlertDialog();
+                mDialog.Dismiss();
+            }
+
+            void ShowAlertDialog()
+            {
+                _messageDialog = _messageDialogBuilder.Create();
+                _loginWebView.Visibility = ViewStates.Gone;
+                _messageDialog.Show();
+            }
 
             public override void OnPageStarted(WebView view, string url, Android.Graphics.Bitmap favicon)
             {
@@ -99,6 +123,7 @@ namespace itsbeta.achievements
                 if (url.StartsWith(AppInfo._loginRedirectUri))
                 {
                     mDialog.SetMessage("Авторизация пользователя...");
+                    _loginWebView.Visibility = ViewStates.Gone;
                 }
                 else
                 {
@@ -106,7 +131,6 @@ namespace itsbeta.achievements
                 }
                 mDialog.Show();
             }
-
 
             public void  AsyncAuth()
             {
@@ -156,8 +180,10 @@ namespace itsbeta.achievements
                 AppInfo._user.ItsBetaUserId = itsbetaService.GetItsBetaUserID(AppInfo._user.FacebookUserID);
                 
 
-                endlogin.Text = "change";
+                _endlogin.Text = "change";
             }
+
+
         }
 
         class ItsbetaLoginWebViewChromeClient : WebChromeClient

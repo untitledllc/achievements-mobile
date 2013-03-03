@@ -20,21 +20,22 @@ using ZXing.Mobile;
 
 namespace itsbeta.achievements
 {
-    public partial class MainScreenActivity 
+    public partial class MainScreenActivity
     {
-        public static List<SubCategoriesListData> _subcategoriesList;
-        static ListView _subcategoriesListView;
         SubCategoriesListItemAdapter _subcategoriesListAdapter;
-        static RelativeLayout _subcategoryViewRelativeLayout;
-        static bool _isProjectsListOpen = false;
+
+        public static List<SubCategoriesListData> _subcategoriesList;
         public static string _selectedsubCategoryId;
+
+        static RelativeLayout _subcategoryViewRelativeLayout;
+        static ListView _subcategoriesListView;
+        static bool _isProjectsListOpen = false;
 
         void GetProjectsView()
         {
             _subcategoriesList = new List<SubCategoriesListData>();
-
             _subcategoriesListView = FindViewById<ListView>(Resource.Id.projectslistView);
-            _subcategoriesListView.Visibility = ViewStates.Invisible;
+            _subcategoriesListView.Visibility = ViewStates.Gone;
             _subcategoriesListView.DividerHeight = 0;
             _subcategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = "Все проекты" });
             _subcategoryViewRelativeLayout.FindViewById<TextView>(Resource.Id.secondscr_projectNameRowTextView).Text = _subcategoriesList[0].SubCategoryNameText;
@@ -53,12 +54,18 @@ namespace itsbeta.achievements
 
             _subcategoriesListAdapter = new SubCategoriesListItemAdapter(this, Resource.Layout.SecondScreenDropDownListRow, _subcategoriesList);
             _subcategoriesListView.Adapter = _subcategoriesListAdapter;
+            
 
+        }
+
+        void _refreshAchTextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            GetAchievementsView();
         }
 
         void _subcategoryViewRelativeLayout_Click(object sender, EventArgs e)
         {
-            if (!_isProjectsListOpen)
+            if (!_isProjectsListOpen && !_badgePopupWindow.IsShowing)
             {
                 //_subcategoriesListView.StartAnimation(_buttonClickAnimation);
                 _subcategoriesListView.Visibility = ViewStates.Visible; 
@@ -88,6 +95,7 @@ namespace itsbeta.achievements
             _subcategoryViewRelativeLayout.FindViewById<TextView>(Resource.Id.secondscr_projectNameRowTextView).Text = _subcategoriesList[pos].SubCategoryNameText;
             _selectedsubCategoryId = _subcategoriesList[pos].SubCategoryNameText;
             _subcategoriesListView.InvalidateViews();
+            _refreshAchTextView.Text = "ref";
         }
     }
 }

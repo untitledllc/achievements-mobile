@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="core\Achieves.cs" />
     <Compile Include="core\Categories.cs" />
+    <Compile Include="core\Describe.cs" />
     <Compile Include="core\Objs.cs" />
     <Compile Include="core\ObjTemplates.cs" />
     <Compile Include="core\ObjTypes.cs" />

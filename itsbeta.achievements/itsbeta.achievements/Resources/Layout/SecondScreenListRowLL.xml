@@ -35,19 +35,6 @@
         p1:layout_alignBottom="@id/Bonus_DiscountImageView_right"
         p1:layout_toLeftOf="@id/Bonus_DiscountImageView_right"
         p1:background="@drawable/Table_lable_blue_left" />
-    <TextView
-        p1:text="%"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:layout_toRightOf="@id/Bonus_DiscountImageView_left"
-        p1:id="@+id/Bonus_DiscountTextView"
-        p1:gravity="center"
-        p1:layout_alignTop="@id/Bonus_DiscountImageView_left"
-        p1:layout_alignBottom="@id/Bonus_DiscountImageView_left"
-        p1:layout_alignRight="@id/Bonus_DiscountImageView_right"
-        p1:textStyle="bold"
-        p1:textColor="#ffffffff"
-        p1:textSize="15dp" />
     <ImageView
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
@@ -72,7 +59,9 @@
         p1:layout_alignTop="@id/BonusImageView_right"
         p1:layout_alignRight="@id/BonusImageView_right"
         p1:layout_alignLeft="@id/BonusImageView_right"
-        p1:layout_alignBottom="@id/BonusImageView_right" />
+        p1:layout_alignBottom="@id/BonusImageView_right"
+        p1:src="@drawable/icon_bonuses"
+        p1:scaleType="fitCenter" />
     <ImageView
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
@@ -80,5 +69,17 @@
         p1:layout_alignTop="@+id/Bonus_GiftImageView_right"
         p1:layout_alignRight="@+id/Bonus_GiftImageView_right"
         p1:layout_alignBottom="@+id/Bonus_GiftImageView_right"
-        p1:layout_alignLeft="@+id/Bonus_GiftImageView_right" />
+        p1:layout_alignLeft="@+id/Bonus_GiftImageView_right"
+        p1:src="@drawable/icon_gifts"
+        p1:scaleType="fitCenter" />
+    <ImageView
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/Bonus_DiscountCenterImageView"
+        p1:layout_alignTop="@+id/Bonus_DiscountImageView_right"
+        p1:layout_alignRight="@+id/Bonus_DiscountImageView_right"
+        p1:layout_alignBottom="@+id/Bonus_DiscountImageView_right"
+        p1:layout_alignLeft="@+id/Bonus_DiscountImageView_right"
+        p1:src="@drawable/icon_discounts"
+        p1:scaleType="fitCenter" />
 </RelativeLayout>

@@ -24,6 +24,10 @@ namespace itsbeta.achievements
     {
         Animation buttonClickAnimation;
         public static ProfileActivity _context;
+        AlertDialog.Builder _messageDialogBuilder;
+        AlertDialog _messageDialog;
+
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -31,26 +35,37 @@ namespace itsbeta.achievements
             SetContentView(Resource.Layout.ProfileScreenActivityLayout);
 
             _context = this;
+            _messageDialogBuilder = new AlertDialog.Builder(this);
 
             ImageButton logoutImageButton = FindViewById<ImageButton>(Resource.Id.profilescr_NavBar_LogoutImageButton);
+            Button logoutButtonFake = FindViewById<Button>(Resource.Id.profilescr_logiutbuttonfake);
             Vibrator vibe = (Vibrator)_context.GetSystemService(Context.VibratorService);
 
-            logoutImageButton.Click += delegate
+            logoutButtonFake.Click += delegate
             {
-                //CookieManager.Instance.RemoveAllCookie();
                 logoutImageButton.StartAnimation(buttonClickAnimation);
+                vibe.Vibrate(50);
+                ShowAlertDialog();
+            };
+
+
+            _messageDialogBuilder.SetTitle("Подтвердите");
+            _messageDialogBuilder.SetMessage("Вы действительно хотите выйти из профиля?");
+            _messageDialogBuilder.SetNegativeButton("Отмена", delegate { _messageDialog.Dismiss(); vibe.Vibrate(50); });
+            _messageDialogBuilder.SetPositiveButton("Да", delegate
+            {
                 vibe.Vibrate(150);
-                
                 CookieSyncManager.CreateInstance(this);
                 CookieManager cookieManager = CookieManager.Instance;
                 cookieManager.RemoveAllCookie();
 
-                //SecondScreenActivity._context.Finish();
                 File.Delete(@"/data/data/ru.hintsolutions.itsbeta/data.txt");
                 itsbeta.achievements.LoginWebActivity.ItsbetaLoginWebViewClient.loadPreviousState = false;
+                MainScreenActivity._isLogout = true;
                 Finish();
-                StartActivity(typeof(LoginActivity));
-            };
+            });
+
+
 
             TextView userFullname = FindViewById<TextView>(Resource.Id.profilescr_usernameTextView);
             TextView userData = FindViewById<TextView>(Resource.Id.profilescr_userAgelocTextView);
@@ -112,6 +127,11 @@ namespace itsbeta.achievements
             }
         }
 
+        void ShowAlertDialog()
+        {
+            _messageDialog = _messageDialogBuilder.Create();
+            _messageDialog.Show();
+        }
         string GetUserAge(string date)
         {
             int daynow = DateTime.Now.Day;

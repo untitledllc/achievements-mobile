@@ -20,15 +20,17 @@ using ZXing.Mobile;
 
 namespace itsbeta.achievements
 {
-    public partial class MainScreenActivity 
+    public partial class MainScreenActivity
     {
-        public static List<CategoriesListData> _categoriesList;
-        static ListView _categoriesListView;
         CategoriesListItemAdapter _categoriesListAdapter;
+
+        public static List<CategoriesListData> _categoriesList;
+        public static string _selectedCategoryId;
+
+        static ListView _categoriesListView;
         static RelativeLayout _categoryViewRelativeLayout;
         static bool isCategoriesListOpen = false;
-        public static string _selectedCategoryId;
-        static TextView _refreshProjectsTextView;
+        static TextView _refreshProjectsAndAchTextView;
 
         void GetCategoryView()
         {
@@ -38,7 +40,7 @@ namespace itsbeta.achievements
             _categoriesListView.DividerHeight = 0;
             _categoryViewRelativeLayout.Click += new EventHandler(_categoryViewRelativeLayout_Click);
 
-            _refreshProjectsTextView = new TextView(this);
+            _refreshProjectsAndAchTextView = new TextView(this);
              #region Create List Fields
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
             {
@@ -67,7 +69,7 @@ namespace itsbeta.achievements
 
         void _categoryViewRelativeLayout_Click(object sender, EventArgs e)
         {
-            if (!isCategoriesListOpen)
+            if (!isCategoriesListOpen && !_badgePopupWindow.IsShowing)
             {
                 //_categoriesListView.StartAnimation(_buttonClickAnimation);
                 _inactiveListButton.Visibility = ViewStates.Visible;
@@ -95,12 +97,13 @@ namespace itsbeta.achievements
             _categoryViewRelativeLayout.FindViewById<TextView>(Resource.Id.secondscr_CategNameRowTextView).Text = _categoriesList[pos].CategoryNameText;
             _selectedCategoryId = _categoriesList[pos].CategoryNameText;
             _categoriesListView.InvalidateViews();
-            _refreshProjectsTextView.Text = "ref";
+            _refreshProjectsAndAchTextView.Text = "ref";
         }
 
-        void _refreshProjectsTextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        void _refreshProjectsAndAchTextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
             GetProjectsView();
+            GetAchievementsView();
         }
     }
 }

@@ -7,24 +7,23 @@
     p1:id="@+id/RelativeLayout">
     <ScrollView
         p1:minWidth="25px"
-        p1:minHeight="0px"
+        p1:minHeight="25px"
         p1:layout_width="fill_parent"
         p1:layout_height="fill_parent"
-        p1:id="@+id/badgewin_scrollView"
+        p1:id="@+id/recbadgewin_scrollView"
         p1:layout_centerHorizontal="true"
         p1:layout_centerVertical="true"
-        p1:fillViewport="true"
-        p1:background="#26000000">
+        p1:fillViewport="true">
         <RelativeLayout
             p1:minWidth="25px"
-            p1:minHeight="0px"
+            p1:minHeight="25px"
             p1:layout_width="fill_parent"
             p1:layout_height="fill_parent"
             p1:id="@+id/relativeLayout1">
             <Button
                 p1:layout_width="fill_parent"
                 p1:layout_height="fill_parent"
-                p1:id="@+id/badgewin_inactiveButton"
+                p1:id="@+id/recbadgewin_inactiveButton"
                 p1:background="#7d000000" />
             <ImageView
                 p1:layout_width="290dp"
@@ -32,7 +31,7 @@
                 p1:id="@+id/BadgeSheetImageView"
                 p1:background="@drawable/Login_background"
                 p1:layout_centerHorizontal="true"
-                p1:layout_alignTop="@+id/badgewin_BadgeImageView"
+                p1:layout_alignTop="@+id/recbadgewin_BadgeImageView"
                 p1:layout_marginTop="100dp"
                 p1:layout_alignBottom="@+id/bonuspaperlist_linearLayout"
                 p1:minHeight="300dp"
@@ -49,52 +48,52 @@
             <ImageView
                 p1:layout_width="310dp"
                 p1:layout_height="160dp"
-                p1:id="@+id/badgewin_BadgeImageView"
+                p1:id="@+id/recbadgewin_BadgeImageView"
                 p1:layout_centerHorizontal="true"
                 p1:scaleType="fitStart"
                 p1:layout_marginTop="15dp"
                 p1:clickable="false" />
             <TextView
-                p1:text="Name of Achievement"
+                p1:text="user name"
                 p1:textAppearance="?android:attr/textAppearanceMedium"
                 p1:layout_width="wrap_content"
                 p1:layout_height="wrap_content"
-                p1:id="@+id/badgewin_badgeTextView"
+                p1:id="@+id/recbadgewin_badgeTextView"
                 p1:layout_marginLeft="30dp"
                 p1:textSize="20dp"
                 p1:textColor="#ff606060"
-                p1:layout_alignLeft="@+id/badgewin_BadgeImageView"
+                p1:layout_alignLeft="@+id/recbadgewin_BadgeImageView"
                 p1:layout_marginTop="190dp" />
             <TextView
-                p1:text="Как был получен этот Бейдж:"
+                p1:text="Вы получили новый значек"
                 p1:textAppearance="?android:attr/textAppearanceMedium"
                 p1:layout_width="wrap_content"
                 p1:layout_height="wrap_content"
-                p1:layout_below="@id/badgewin_badgeTextView"
-                p1:id="@+id/badgewin_howwonderTextView"
+                p1:layout_below="@id/recbadgewin_badgeTextView"
+                p1:id="@+id/recbadgewin_howwonderTextView"
                 p1:textColor="#ff666666"
                 p1:textStyle="bold"
                 p1:textSize="12dp"
-                p1:layout_alignLeft="@id/badgewin_badgeTextView"
-                p1:layout_marginTop="50dp" />
+                p1:layout_alignLeft="@id/recbadgewin_badgeTextView"
+                p1:layout_marginTop="20dp" />
             <TextView
                 p1:text="descr"
                 p1:textAppearance="?android:attr/textAppearanceMedium"
                 p1:layout_width="wrap_content"
                 p1:layout_height="wrap_content"
-                p1:layout_below="@id/badgewin_howwonderTextView"
-                p1:id="@+id/badgewin_wonderdescrTextView"
+                p1:layout_below="@id/recbadgewin_howwonderTextView"
+                p1:id="@+id/recbadgewin_wonderdescrTextView"
                 p1:textColor="#ff6f6f6f"
                 p1:textSize="12dp"
-                p1:layout_alignLeft="@id/badgewin_howwonderTextView"
-                p1:layout_alignRight="@+id/badgewin_BadgeImageView"
+                p1:layout_alignLeft="@id/recbadgewin_howwonderTextView"
+                p1:layout_alignRight="@+id/recbadgewin_BadgeImageView"
                 p1:layout_marginRight="40dp" />
             <ImageButton
                 p1:layout_width="20dp"
                 p1:layout_height="20dp"
                 p1:layout_alignTop="@id/BadgeSheetImageView"
                 p1:layout_alignRight="@id/BadgeSheetImageView"
-                p1:id="@+id/badgewin_CloseImageButtonFake"
+                p1:id="@+id/recbadgewin_CloseImageButtonFake"
                 p1:scaleType="fitXY"
                 p1:background="@drawable/Paper_icon_close_norm"
                 p1:layout_margin="3dp" />
@@ -103,22 +102,11 @@
                 p1:layout_height="40dp"
                 p1:layout_alignTop="@id/BadgeSheetImageView"
                 p1:layout_alignRight="@id/BadgeSheetImageView"
-                p1:id="@+id/badgewin_CloseImageButton"
+                p1:id="@+id/recbadgewin_CloseImageButton"
                 p1:scaleType="fitCenter"
                 p1:background="#02ffffff"
                 p1:layout_marginTop="-10dp"
                 p1:layout_marginRight="-10dp" />
-            <TextView
-                p1:text="Category, Project"
-                p1:textAppearance="?android:attr/textAppearanceSmall"
-                p1:layout_width="wrap_content"
-                p1:layout_height="wrap_content"
-                p1:layout_below="@id/badgewin_badgeTextView"
-                p1:id="@+id/badgewin_categ_projectTextView"
-                p1:layout_alignLeft="@id/badgewin_badgeTextView"
-                p1:layout_marginTop="10dp"
-                p1:textColor="#ff606060"
-                p1:textSize="12dp" />
             <LinearLayout
                 p1:orientation="vertical"
                 p1:minWidth="25px"
@@ -128,7 +116,7 @@
                 p1:id="@+id/bonuspaperlist_linearLayout"
                 p1:layout_marginTop="20dp"
                 p1:layout_centerHorizontal="true"
-                p1:layout_below="@+id/badgewin_wonderdescrTextView" />
+                p1:layout_below="@+id/recbadgewin_wonderdescrTextView" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

@@ -289,5 +289,21 @@ namespace ItsBeta.Json
                 jToken = JToken.Parse(_jsonResponse);
             }
         }
+
+        public class JSonDescribe
+        {
+            string _jsonResponse;
+
+            public JToken jToken;
+
+            public JSonDescribe(string access_token, string api_name)
+            {
+                _jsonResponse = WebControls.WebControls.GetMethod(
+                    String.Format("http://www.itsbeta.com/s/describe.json?access_token={0}&api_name={1}",
+                    access_token, api_name));
+
+                jToken = JToken.Parse(_jsonResponse);
+            }
+        }
     }
 }

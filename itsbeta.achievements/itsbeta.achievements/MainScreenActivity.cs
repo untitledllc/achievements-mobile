@@ -28,12 +28,35 @@ namespace itsbeta.achievements
         static Animation _fadeoutClickAnimation;
         static Button _inactiveListButton;
         static Button _inactiveAllButton;
+        static Vibrator _vibe;
+        static TextView _refreshAchTextView;
+        public static Context _context;
+
+        public static bool _isAchListItemClicked = false;
+        public static TextView _foundActionTextView;
+        public static bool _isLogout = false;
+
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            _context = this;
             SetContentView(Resource.Layout.SecondScreenActivityLayout);
+            _foundActionTextView = new TextView(this);
+            _vibe = (Vibrator)this.GetSystemService(Context.VibratorService);
 
+            ImageButton profileImageButton = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButton);
+            ImageButton profileImageButtonFake = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButtonFake);
+            TextView badgesCount = FindViewById<TextView>(Resource.Id.NavBar_AchievesCountTextView);
+
+            badgesCount.Text = AppInfo._badgesCount.ToString();
+            profileImageButtonFake.Click += delegate { _vibe.Vibrate(50); profileImageButton.StartAnimation(_buttonClickAnimation); StartActivity(typeof(ProfileActivity)); };
+
+
+            //.............................................................................
+            _refreshAchTextView = new TextView(this);
+            _badgePopupWindow = new PopupWindow(this);
+            _vibe = (Vibrator)this.GetSystemService(Context.VibratorService);
             _inactiveListButton = FindViewById<Button>(Resource.Id.secondscr_inactiveListButton);
             _inactiveAllButton = FindViewById<Button>(Resource.Id.secondscr_inactiveAllButton);
             _inactiveAllButton.Visibility = ViewStates.Gone;
@@ -46,10 +69,22 @@ namespace itsbeta.achievements
 
             GetCategoryView();
             GetProjectsView();
+            GetAchievementsView();
+            GetActivationDialog();
 
-            _refreshProjectsTextView.TextChanged += new EventHandler<Android.Text.TextChangedEventArgs>(_refreshProjectsTextView_TextChanged);
+            _refreshProjectsAndAchTextView.TextChanged += new EventHandler<Android.Text.TextChangedEventArgs>(_refreshProjectsAndAchTextView_TextChanged);
+            _refreshAchTextView.TextChanged += new EventHandler<Android.Text.TextChangedEventArgs>(_refreshAchTextView_TextChanged);
             _subcategoryViewRelativeLayout.Click += new EventHandler(_subcategoryViewRelativeLayout_Click);
             _inactiveListButton.Click += new EventHandler(_inactiveListButton_Click);
+            _inactiveAllButton.Click += new EventHandler(_inactiveAllButton_Click);
+            _achievementsListView.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs>(achievementsListView_ItemClick);
+
+            
+        }
+
+        void _inactiveAllButton_Click(object sender, EventArgs e)
+        {
+            _inactiveAllButton.Visibility = ViewStates.Gone;
         }
 
         void _inactiveListButton_Click(object sender, EventArgs e)
@@ -61,6 +96,47 @@ namespace itsbeta.achievements
             if (isCategoriesListOpen)
             {
                 _categoryViewRelativeLayout_Click(new object(), new EventArgs());
+            }
+        }
+
+        public override void Finish()
+        {
+            base.Finish();
+        }
+        protected override void OnResume()
+        {
+            base.OnResume();
+            if (_isLogout)
+            {
+                Finish();
+                _isLogout = false;
+                StartActivity(typeof(LoginActivity));
+            }
+        }
+
+        public override void OnBackPressed()
+        {
+            if (_categoriesListView.Visibility == ViewStates.Visible)
+            {
+                _categoriesListView.Visibility = ViewStates.Gone;
+                _inactiveListButton.Visibility = ViewStates.Gone;
+                isCategoriesListOpen = false;
+                return;
+            }
+            if (_subcategoriesListView.Visibility == ViewStates.Visible)
+            {
+                _subcategoriesListView.Visibility = ViewStates.Gone;
+                _inactiveListButton.Visibility = ViewStates.Gone;
+                _isProjectsListOpen = false;
+                return;
+            }
+            if (_badgePopupWindow.IsShowing)
+            {
+                _badgePopupWindow.Dismiss(); return;
+            }
+            else
+            {
+                base.OnBackPressed();
             }
         }
     }
