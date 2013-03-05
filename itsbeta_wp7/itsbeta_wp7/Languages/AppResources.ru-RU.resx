@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="about_description" xml:space="preserve">
-    <value>itsbeta - все ваши достижения в одном приложении. Открывайте новые категории, собирайте значки, рассказывайте друзьям.</value>
+    <value>Itsbeta - все ваши достижения в одном приложении. Открывайте новые категории, собирайте значки, рассказывайте друзьям.</value>
   </data>
   <data name="about_program" xml:space="preserve">
-    <value>О программе</value>
+    <value>О ПРОГРАММЕ</value>
   </data>
   <data name="about_project" xml:space="preserve">
-    <value>О проекте:</value>
+    <value>Подробнее о проекте:</value>
   </data>
   <data name="about_version" xml:space="preserve">
     <value>Версия 1.0</value>
   </data>
   <data name="activate_badge_description" xml:space="preserve">
-    <value>Описание активации достижения</value>
+    <value>Код можно найти на чеках, листовках и т.п. наших партнеров</value>
   </data>
   <data name="activate_badge_title" xml:space="preserve">
     <value>АКТИВИРОВАТЬ ДОСТИЖЕНИЕ</value>
@@ -184,7 +184,7 @@
     <value>Оценить приложение</value>
   </data>
   <data name="send_email" xml:space="preserve">
-    <value>отправить письмо</value>
+    <value>Отправить письмо</value>
   </data>
   <data name="subcategories" xml:space="preserve">
     <value>Подкатегории:</value>

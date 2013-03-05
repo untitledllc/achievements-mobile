@@ -154,6 +154,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Libs\QueryString.cs" />
+    <Compile Include="Libs\TiltEffect.cs" />
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>

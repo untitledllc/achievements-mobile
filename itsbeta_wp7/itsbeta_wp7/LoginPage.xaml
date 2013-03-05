@@ -55,7 +55,7 @@
                         </Grid.Background>
                         <TextBlock Grid.Row="0" Text="{Binding Path=LocalizedResources.collect_all_your_achieves, Source={StaticResource LocalizedStrings}}" Foreground="#FF878785" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,55,0,0" FontSize="24" FontFamily="Segoe WP Light" />
                         <Button Grid.Row="0"
-                                Margin="20,-20,20,0"                                 
+                                Margin="20,-80,20,0"                                 
                                 Click="Button_Click" 
                                 Style="{StaticResource FacebookLoginButtonStyle}" 
                                 Height="94" 

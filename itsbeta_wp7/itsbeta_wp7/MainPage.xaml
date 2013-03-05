@@ -22,7 +22,7 @@
                             DataContext="{Binding Main, Source={StaticResource Locator}}" Background="White">
 	<phone:PhoneApplicationPage.Resources>
 		<DataTemplate x:Key="DataTemplate1">
-			<Border HorizontalAlignment="Stretch" Margin="0,25,0,10" Height="104" Width="464">
+			<Border HorizontalAlignment="Stretch" Margin="0,20,0,10" Height="104" Width="464">
 				<Border.Background>
 					<ImageBrush Stretch="None" AlignmentY="Top" ImageSource="/itsbeta_wp7;component/images/Paper_project_norm.png" />
 				</Border.Background>
@@ -30,8 +30,8 @@
 					HorizontalAlignment="Left" 
 					VerticalAlignment="Center" 
                     FontWeight="Bold"
-					Margin="40,5,6,6"
-					Style="{StaticResource CategoryBoldTextblockStyle}"/>
+					Margin="40,8,6,6"
+					Style="{StaticResource CategoryDarkBoldTextblockStyle}"/>
 			</Border>
 		</DataTemplate>
 		<DataTemplate x:Key="GroupPickerTemplate">
@@ -44,7 +44,7 @@
 					FontSize="{StaticResource PhoneFontSizeExtraLarge}" 
 					Text="{Binding}" 
 					Margin="4" 
-					Style="{StaticResource CategoryTextblockStyle}"
+					Style="{StaticResource CategoryDarkTextblockStyle}"
 					VerticalAlignment="Stretch" 
 					HorizontalAlignment="Left"/>
 			</Border>
@@ -116,7 +116,7 @@
                             </Border>
                             <Image Grid.Column="0" Width="108" Height="108" Source="{Binding Pic}" VerticalAlignment="Center" />
                                 <StackPanel Grid.Column="1" Margin="15,-5,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="Auto">
-                                    <TextBlock Text="{Binding Display_name}" TextWrapping="NoWrap" Style="{StaticResource CategoryTextblockStyle}" />
+                                    <TextBlock Text="{Binding Display_name}" TextWrapping="NoWrap" Style="{StaticResource CategoryDarkTextblockStyle}" />
                                     <!--<TextBlock Text="{Binding Desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />-->
                                 <TextBlock Text="{Binding Short_Create_time}" TextWrapping="NoWrap" Style="{StaticResource OtherTextblockStyle}" Margin="0,4,0,0" />
                                 </StackPanel>

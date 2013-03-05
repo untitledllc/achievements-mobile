@@ -13,6 +13,7 @@
     xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
+    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="{Binding Loading}"
@@ -47,7 +48,7 @@
                 <ImageBrush ImageSource="images/Achivments_WP7_slicing_panoramaBackground.png"/>
             </controls:Panorama.Background>
             <controls:Panorama.Title>
-            	<Grid Margin="-10,90,0,0" Width="2000" Height="142">
+            	<Grid Margin="-10,90,0,0" Width="2000" Height="142" >
             		<Grid.Background>
             			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFD2D2D2" Offset="1"/>
@@ -56,8 +57,8 @@
             		</Grid.Background>
                     <StackPanel Orientation="Horizontal">
                         <Image Height="142" Margin="13,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                        <Image Height="142" Margin="13,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                        <Image Height="142" Margin="13,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />                        
+                        <Image Height="142" Margin="250,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <Image Height="142" Margin="150,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />                        
                     </StackPanel>                    
 				</Grid>
             </controls:Panorama.Title>
@@ -84,13 +85,13 @@
                                      DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllCategories_ItemTap" GroupHeaderItemTap="AllCategories_GroupHeaderItemTap" EmptyContentTemplate="{StaticResource NoDataListTemlate}">
                         <telerikData:RadJumpList.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="10,10,0,0">
+                                <Grid Margin="10,10,0,0" telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
                                     <Grid.ColumnDefinitions>
                                         <!--<ColumnDefinition Width="110" />-->
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <!--<Image Grid.Column="0" Source="{Binding Pic}"/>-->
-                                    <StackPanel Grid.Column="0" Margin="10,0,0,0">
+                                    <StackPanel Grid.Column="0" Margin="10,0,0,0" telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
                                         <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap" Style="{StaticResource CategoryTextblockStyle}" />
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Activated_badges_count}" Style="{StaticResource BadgesTextblockStyle}"/>
@@ -262,7 +263,8 @@
 
 
                     <telerikData:RadJumpList x:Name="LastAchieves"
-                                             EmptyContentTemplate="{StaticResource NoDataListTemlate}"
+                                     
+                                     EmptyContentTemplate="{StaticResource NoDataListTemlate}"
                                      Margin="0,-5,0,0"
                                      ItemsSource="{Binding Path=LastAchieves}"
                                      DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="LastAchieves_ItemTap">
@@ -271,13 +273,13 @@
                     	</telerikData:RadJumpList.Background>
                         <telerikData:RadJumpList.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="10,15,0,0">
+                                <Grid Margin="10,15,0,0" telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="141" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Border HorizontalAlignment="Center"
-                                            Margin="0,-2,0,0" 
+                                            Margin="0,-2,0,0" telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
                                             VerticalAlignment="Center"
                                             Canvas.ZIndex="2" Grid.Column="0" Width="135" Height="135" CornerRadius="135" BorderThickness="1" BorderBrush="#800C0C0C">
                                         <Border.Background>

@@ -8,7 +8,7 @@
                             xmlns:itsbeta_wp7="clr-namespace:itsbeta_wp7"
                             mc:Ignorable="d"
                             d:DesignWidth="480"
-                            d:DesignHeight="768"
+                            d:DesignHeight="800"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
@@ -42,7 +42,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
 		<StackPanel x:Name="TitlePanel"
-		            Grid.Row="0" Height="155"
+		            Grid.Row="0" Height="163"
 		            Margin="0,0,0,0">
             <StackPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -51,11 +51,11 @@
                 </LinearGradientBrush>
             </StackPanel.Background>
             <TextBlock x:Name="ApplicationTitle"
-			           Text="ITSBETA" Margin="20,0,0,0"
+			           Text="ITSBETA" Margin="26,5,0,0"
 			           Style="{StaticResource ApplicationTitleTextblockStyle}" />
 			<TextBlock x:Name="PageTitle"
 			           Text="{Binding Path=CurrentAchieve.Display_name}"
-			           Margin="20,20,0,0"
+			           Margin="26,20,0,0"
 			           Style="{StaticResource ProjectTextblockStyle}" />
 		</StackPanel>
 
@@ -66,7 +66,18 @@
             <ScrollViewer>
                 <StackPanel>
                     <Grid Margin="0,10,0,0" Height="Auto" VerticalAlignment="Top">
-                    <Image Grid.Row="0" Grid.Column="0" 
+                        <Border Grid.Row="0" Grid.Column="0" 
+                                            VerticalAlignment="Top" HorizontalAlignment="Left" 
+                                            Margin="31,11,0,0"
+                                            Canvas.ZIndex="3" Width="147" Height="147" CornerRadius="145" BorderThickness="1" BorderBrush="#800C0C0C">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#4A4C4C4C" Offset="0.8" />
+                                    <GradientStop Color="#4AFEFEFE" Offset="0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <Image Grid.Row="0" Grid.Column="0" 
                            Width="150" Height="150"
                            Canvas.ZIndex="2"
                            Margin="30,10,0,0"
@@ -93,7 +104,7 @@
                                     <Grid.Background>
                                         <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_middle.png" />
                                     </Grid.Background>
-                                    <StackPanel Margin="30,50,20,10">
+                                    <StackPanel Margin="14,50,20,10">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Path=CurrentAchieve.Category_name}" Style="{StaticResource OtherTextblockStyle}"/>
                                             <TextBlock Text=", " Style="{StaticResource OtherTextblockStyle}"/>
@@ -104,6 +115,7 @@
 					                        Text="{Binding Path=CurrentAchieve.Display_name}" TextWrapping="Wrap" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
                                         <msp:HTMLTextBox Style="{StaticResource OtherTextblockStyleHtmlTextBox}" 
                                                          Margin="-12,25,0,0"
+                                                         
                                                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                          Foreground="#FF4c4c4b"
@@ -152,15 +164,16 @@
                                             Margin="6,0,0,7" Canvas.ZIndex="1"
                                             Grid.Row="0" 
                                             VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                                                <TextBlock Margin="10" Text="{Binding Bonus_name}" 
+                                                <TextBlock Margin="8,10,10,10" Text="{Binding Bonus_name}" 
                                                    Style="{StaticResource BonusHeaderStyle}"
                                                    TextWrapping="Wrap" Foreground="White" />
                                             </Border>                                        
-                                        <StackPanel Margin="20">                                            
+                                        <StackPanel Margin="8,10,20,20">                                            
                                             <TextBlock Margin="5,0,0,0"  Text="{Binding Bonus_desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />
                                         </StackPanel>
                                         </StackPanel>
                                     </Grid>
+                                    
                                     <Image Canvas.ZIndex="0" Grid.Row="2" Width="448" 
                            Height="52" Source="/itsbeta_wp7;component/images/Paper_bottom.png" 
                            Margin="0,-40,0,0" />

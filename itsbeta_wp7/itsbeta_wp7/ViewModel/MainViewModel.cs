@@ -9,6 +9,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using MSPToolkit.Utilities;
+using Microsoft.Phone.Shell;
+using System;
+using System.Net;
+using System.IO;
+using System.IO.IsolatedStorage;
+using System.Windows.Media.Imaging;
+//using Microsoft.Xna.Framework.Media;
+using Microsoft.Phone;
+using System.Windows.Resources;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -119,7 +128,7 @@ namespace itsbeta_wp7.ViewModel
                 var items = (from item in Achieves
                              where ((item.Fb_id != "") && (item.Fb_id != null))
                              group item by item.Display_name into grp
-                             select grp.OrderBy(a => a.Create_time).Last()).OrderByDescending(a => a.Create_time).ToObservableCollection();
+                             select grp.OrderBy(a => a.Create_time).Last()).OrderByDescending(a => a.Create_time).Take(3).ToObservableCollection();
                 return items;
             }
             private set
@@ -205,6 +214,7 @@ namespace itsbeta_wp7.ViewModel
             ObservableCollection<CategoryItem> tempCategories = new ObservableCollection<CategoryItem>();
             ObservableCollection<ProjectItem> tempProjects = new ObservableCollection<ProjectItem>();
             ObservableCollection<AchievesItem> tempAchieves = new ObservableCollection<AchievesItem>();
+            int all_count = 0;
                      try
                         {
                             JArray o = JArray.Parse(content.ToString());
@@ -240,20 +250,70 @@ namespace itsbeta_wp7.ViewModel
 
                                 }
                                 category.Activated_badges_count = count;
-                                    tempCategories.Add(category);
+                                all_count += count;
+                               tempCategories.Add(category);
                             };
-                                    Categories = tempCategories;
-                                    Projects = tempProjects;
-                                    Achieves = tempAchieves;
+                            Categories = tempCategories;
+                            Projects = tempProjects;
+                            Achieves = tempAchieves;
 
-                                    Loading = false;
-                                    RaisePropertyChanged("BonusAchieves");
-                                    RaisePropertyChanged("Categories");
-                                    RaisePropertyChanged("Projects");
-                                    RaisePropertyChanged("Achieves");
-                                    RaisePropertyChanged("LastAchieves");                                    
+                            Loading = false;
+                            RaisePropertyChanged("BonusAchieves");
+                            RaisePropertyChanged("Categories");
+                            RaisePropertyChanged("Projects");
+                            RaisePropertyChanged("Achieves");
+                            RaisePropertyChanged("LastAchieves");                                    
                         }
                         catch { };
+            UpdateTile(all_count);
+        }
+
+        private void UpdateTile(int count=0)
+        {
+            try
+            {
+                ShellTile appTile = ShellTile.ActiveTiles.First();
+                if (appTile != null)
+                {
+                    if (count > 0)
+                    {
+                        /*WebClient client = new WebClient();
+                        client.OpenReadCompleted += (s, e) =>
+                        {
+                            PicToIsoStore(e.Result);
+                        };
+                        client.OpenReadAsync(new Uri(LastAchieves.First().Pic, UriKind.Absolute));*/
+
+                        StandardTileData newTile = new StandardTileData
+                        {
+                            //Title = "Itsbeta",
+                            //BackgroundImage = new Uri("tile_image.png", UriKind.Relative),
+                            Count = count,
+                            BackTitle = LastAchieves.First().Display_name,
+                            //BackBackgroundImage = new Uri(LastAchieves.First().Pic),
+                            //BackContent = "Content for back tile."
+                        };
+                        appTile.Update(newTile);
+                    };
+                };
+            }
+            catch { };
+        }
+
+        private void PicToIsoStore(Stream pic)
+        {
+            /*using (var isoStore = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                var bi = new BitmapImage();
+                bi.SetSource(pic);
+                var wb = new WriteableBitmap(bi);
+                using (var isoFileStream = isoStore.CreateFile("somepic.jpg"))
+                {
+                    var width = wb.PixelWidth;
+                    var height = wb.PixelHeight;
+                    Extensions.SaveJpeg(wb, isoFileStream, width, height, 0, 100);
+                }
+            }*/
         }
 
         ///badges.json

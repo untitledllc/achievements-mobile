@@ -43,7 +43,7 @@
 			           Text="ITSBETA" Margin="20,10,0,0"
 			           Style="{StaticResource ApplicationTitleTextblockStyle}" />
             <TextBlock x:Name="PageTitle"
-			           Text="{Binding Path=LocalizedResources.activate_badge_title, Source={StaticResource LocalizedStrings}}"
+			           Text="{Binding Path=LocalizedResources.about_program, Source={StaticResource LocalizedStrings}}"
 			           Margin="20,5,0,0"
 			           Style="{StaticResource ProjectTextblockStyle}" />
         </StackPanel>
@@ -52,29 +52,60 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="18,0,12,0">
-            <StackPanel Margin="0,20,0,0">
-                <TextBlock Text="{Binding Path=LocalizedResources.about_version, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CategoryTextblockStyle}"
+
+            <Grid Height="560">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Width="448" Canvas.ZIndex="0"
+                           Height="52" Source="/itsbeta_wp7;component/images/Paper_top.png" 
+                           Margin="0,0,0,0" />
+
+                <Grid Grid.Row="1" Width="448" Canvas.ZIndex="1">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_middle.png" />
+                    </Grid.Background>
+
+                    <StackPanel Margin="30,-40,30,0">
+                        <TextBlock Text="{Binding Path=LocalizedResources.about_version, Source={StaticResource LocalizedStrings}}" 
+                                   Style="{StaticResource CategoryDarkBoldTextblockStyle}"
+                                   Margin="0,10,0,30"
                            TextWrapping="Wrap"/>
 
-                <TextBlock Margin="0,10,0,0" Text="{Binding Path=LocalizedResources.activate_badge_description, Source={StaticResource LocalizedStrings}}" 
+                        <TextBlock Margin="0,10,0,0" Text="{Binding Path=LocalizedResources.about_description, Source={StaticResource LocalizedStrings}}" 
                            Style="{StaticResource OtherTextblockStyle}"
                            TextWrapping="Wrap"/>
 
-                <TextBlock Margin="0,10,0,0" Text="{Binding Path=LocalizedResources.about_project, Source={StaticResource LocalizedStrings}}" 
-                           Style="{StaticResource OtherTextblockStyle}"
-                           TextWrapping="Wrap" FontWeight="Bold" />
-                <HyperlinkButton Grid.Row="0" Name="Itsbeta_link" Content="{Binding Path=LocalizedResources.itsbeta_url, Source={StaticResource LocalizedStrings}}" 
+                        <TextBlock Margin="0,20,0,0" Text="{Binding Path=LocalizedResources.about_project, Source={StaticResource LocalizedStrings}}" 
+                           Style="{StaticResource OtherDarkTextblockStyle}"
+                           TextWrapping="Wrap"/>
+                        <HyperlinkButton Grid.Row="0" Name="Itsbeta_link" Content="{Binding Path=LocalizedResources.itsbeta_url, Source={StaticResource LocalizedStrings}}" 
                                          NavigateUri="http://itsbeta.com" Foreground="#FFA7CEE0" TargetName="_blank"
                                          FontSize="24" BorderThickness="0" Margin="-10,0,0,20" HorizontalAlignment="Left" />
-                
 
-                <Button Content="{Binding Path=LocalizedResources.rate_app, Source={StaticResource LocalizedStrings}}" 
-                        Margin="0,0,0,0"
+
+                        <Button Content="{Binding Path=LocalizedResources.rate_app, Source={StaticResource LocalizedStrings}}" 
+                        Margin="-10" Height="90"
+                        Style="{StaticResource QRButtonStyle}"
                         Name="rate_app" Click="rate_app_Click" />
-                <Button Content="{Binding Path=LocalizedResources.send_email, Source={StaticResource LocalizedStrings}}" 
-                        Margin="0,10,0,0"
-                        Name="send_email" Click="send_email_Click" />
-            </StackPanel>
+                        <Button Content="{Binding Path=LocalizedResources.send_email, Source={StaticResource LocalizedStrings}}" 
+                                Margin="-10,10,-10,-10"
+                                Height="90"
+                                Style="{StaticResource ActivateButtonStyle}"
+                                Name="send_email" Click="send_email_Click" />
+                    </StackPanel>
+                    
+                </Grid>
+
+                <Image Grid.Row="2" Width="448" Canvas.ZIndex="0"
+                           Height="52" Source="/itsbeta_wp7;component/images/Paper_bottom.png" 
+                           Margin="0,-35,0,0" />
+            </Grid>
+
+
         </Grid>
     </Grid>
 

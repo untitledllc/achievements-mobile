@@ -57,14 +57,42 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="18,0,12,0">
-        	   <StackPanel Margin="0,20,0,0">
-                <TextBlock Text="{Binding Path=LocalizedResources.enter_code, Source={StaticResource LocalizedStrings}}" Style="{StaticResource OtherTextblockStyle}" />
-        	   	<TextBox Text="" 
+
+            <Grid Height="490">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Width="448" Canvas.ZIndex="0"
+                           Height="52" Source="/itsbeta_wp7;component/images/Paper_top.png" 
+                           Margin="0,0,0,0" />
+
+                <Grid Grid.Row="1" Width="448" Canvas.ZIndex="1">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_middle.png" />
+                    </Grid.Background>
+
+                    <StackPanel Margin="30,-30,30,0">
+                        <TextBlock Text="{Binding Path=LocalizedResources.enter_code, Source={StaticResource LocalizedStrings}}" 
+                                   Style="{StaticResource OtherDarkTextblockStyle}" />
+                        <TextBox Text="" 
                          Foreground="Black"
+                                 Margin="-10,20,-10,20"
                          CaretBrush="Black"
                          Name="ActivationCode"/>
-                <TextBlock Text="{Binding Path=LocalizedResources.activate_badge_description, Source={StaticResource LocalizedStrings}}" Style="{StaticResource OtherTextblockStyle}" />	   
-			   </StackPanel>
+                        <TextBlock Text="{Binding Path=LocalizedResources.activate_badge_description, Source={StaticResource LocalizedStrings}}" Style="{StaticResource OtherTextblockStyle}" TextWrapping="Wrap" />
+                    </StackPanel>
+
+                </Grid>
+
+                <Image Grid.Row="2" Width="448" Canvas.ZIndex="0"
+                           Height="52" Source="/itsbeta_wp7;component/images/Paper_bottom.png" 
+                           Margin="0,-35,0,0" />
+            </Grid>
+
+
 		</Grid>
     </Grid>
 

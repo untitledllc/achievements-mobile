@@ -14,6 +14,7 @@ using itsbeta_wp7.ViewModel;
 using Telerik.Windows.Data;
 using Coding4Fun.Toolkit.Controls;
 using Microsoft.Phone.Tasks;
+using Telerik.Windows.Controls;
 
 namespace itsbeta_wp7
 {
@@ -22,6 +23,11 @@ namespace itsbeta_wp7
         public PanoramaPage()
         {
             InitializeComponent();
+            InteractionEffectManager.AllowedTypes.Add(typeof(Grid));
+            InteractionEffectManager.AllowedTypes.Add(typeof(Button));
+            InteractionEffectManager.AllowedTypes.Add(typeof(StackPanel));
+            InteractionEffectManager.AllowedTypes.Add(typeof(Border));
+            InteractionEffectManager.AllowedTypes.Add(typeof(Image));
             //this.AllCategories.GroupDescriptors.Add(GroupedProjectsList);
         }
 
