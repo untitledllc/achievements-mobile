@@ -134,9 +134,10 @@ namespace facebook_windows_phone_sample.Pages
                 Dispatcher.BeginInvoke(() => {
                     ViewModelLocator.UserStatic.FacebookId = id;
                     ViewModelLocator.UserStatic.FacebookToken = accessToken;
+                    ViewModelLocator.UserStatic.GetFBUserInfo();
                     //ViewModelLocator.UserStatic.GetPlayerId();
                     ViewModelLocator.UserStatic.GetItsbetaAchieve();
-                    ViewModelLocator.UserStatic.GetFBUserInfo();
+                    
 
                     NavigationService.Navigate(new Uri("/PanoramaPage.xaml", UriKind.Relative));
                 });

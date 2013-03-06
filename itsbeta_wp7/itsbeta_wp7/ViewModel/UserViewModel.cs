@@ -18,6 +18,7 @@ using System.Linq;
 using System.IO;
 using System.Globalization;
 using System.Windows.Media;
+using MSPToolkit.Utilities;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -47,7 +48,7 @@ namespace itsbeta_wp7.ViewModel
             ////else
             ////{
             ////    // Code runs "for real": Connect to service, etc...
-            ////}
+            ////}            
         }
 
         public override void Cleanup()
@@ -283,23 +284,89 @@ namespace itsbeta_wp7.ViewModel
             {
                 if (e.Error != null)
                 {
-                    Deployment.Current.Dispatcher.BeginInvoke(() => MessageBox.Show(e.Error.Message));
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                    });
                     return;
                 }
 
                 var result = (IDictionary<string, object>)e.GetResultData();
+                Dictionary<string, object> d_result = new Dictionary<string,object>();
+                foreach (var item in result) {
+                    d_result.Add(item.Key, item.Value.ToString());
+                };
+                d_result.Add("fb_id", FacebookId);
+                d_result.Add("fb_token", FacebookToken);
+
+                SaveToIsolatedStorage(d_result);
 
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    ViewModelLocator.UserStatic.Name = (string)result["name"];
-                    ViewModelLocator.UserStatic.First_name = (string)result["first_name"];
-                    ViewModelLocator.UserStatic.Last_name = (string)result["last_name"];
-                    ViewModelLocator.UserStatic.Birthday = (string)result["birthday"];
-                    var item = JObject.Parse(result["location"].ToString());
-                    ViewModelLocator.UserStatic.Location = item["name"].ToString();// item["name"].ToString();
+                    LoadUserData(d_result);
                 });
             };
             fb.GetAsync("me");
+        }
+
+        public void LoadUserData(Dictionary<string, object> result)
+        {
+            try
+            {
+                ViewModelLocator.UserStatic.Name = (string)result["name"];
+            }
+            catch { };
+            try
+            {
+                ViewModelLocator.UserStatic.First_name = (string)result["first_name"];
+            }
+            catch { };
+            try
+            {
+                ViewModelLocator.UserStatic.Last_name = (string)result["last_name"];
+            }
+            catch { };
+            try
+            {
+                ViewModelLocator.UserStatic.Birthday = (string)result["birthday"];
+            }
+            catch { };
+            try
+            {
+                var item = JObject.Parse(result["location"].ToString());
+                ViewModelLocator.UserStatic.Location = item["name"].ToString();// item["name"].ToString();
+            }
+            catch { };
+
+            try
+            {
+                ViewModelLocator.UserStatic.FacebookId = (string)result["fb_id"];
+            }
+            catch { };
+
+            try
+            {
+                ViewModelLocator.UserStatic.FacebookToken = (string)result["fb_token"];
+            }
+            catch { };
+        }
+
+        public void LoadFromIsolatedStorage()
+        {
+            try
+            {
+                Dictionary<string, object> result = IsolatedStorageHelper.LoadSerializableObject<Dictionary<string, object>>("user.xml");
+                LoadUserData(result);
+                this.UserLoaded = true;
+
+                ViewModelLocator.UserStatic.GetItsbetaAchieve();
+                ViewModelLocator.UserStatic.GetFBUserInfo();
+            }
+            catch { };
+        }
+
+        public void SaveToIsolatedStorage(Dictionary<string, object> json)
+        {
+            IsolatedStorageHelper.SaveSerializableObject<Dictionary<string, object>>(json, "user.xml");
         }
 
         private string _location = "";
@@ -329,6 +396,26 @@ namespace itsbeta_wp7.ViewModel
                 RaisePropertyChanged("LogOut");
             }
         }
+
+        private bool _userLoaded = false;
+        public bool UserLoaded
+        {
+            get
+            {
+                return _userLoaded;
+            }
+            set
+            {
+                _userLoaded = value;
+                if (_userLoaded == false)
+                {
+                    Dictionary<string, object> empty = new Dictionary<string,object>();
+                    SaveToIsolatedStorage(empty);
+                };
+                RaisePropertyChanged("UserLoaded");
+            }
+        }
+
 
         private string _birthday;
         public string Birthday

@@ -114,8 +114,7 @@
                                                    ScrollViewer.VerticalScrollBarVisibility="Disabled"
 					                        Text="{Binding Path=CurrentAchieve.Display_name}" TextWrapping="Wrap" DataContext="{Binding Main, Source={StaticResource Locator}}"/>
                                         <msp:HTMLTextBox Style="{StaticResource OtherTextblockStyleHtmlTextBox}" 
-                                                         Margin="-12,25,0,0"
-                                                         
+                                                         Margin="-12,25,0,0"                                                         
                                                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                          Foreground="#FF4c4c4b"
@@ -168,8 +167,12 @@
                                                    Style="{StaticResource BonusHeaderStyle}"
                                                    TextWrapping="Wrap" Foreground="White" />
                                             </Border>                                        
-                                        <StackPanel Margin="8,10,20,20">                                            
-                                            <TextBlock Margin="5,0,0,0"  Text="{Binding Bonus_desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />
+                                        <StackPanel Margin="8,10,20,20">
+                                         <msp:HTMLTextBox Margin="-8,0,0,0" Html="{Binding Bonus_desc}" TextWrapping="Wrap" 
+                                                          Style="{StaticResource OtherTextblockStyleHtmlTextBox}"
+                                                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                          Foreground="#FF4c4c4b"/>
                                         </StackPanel>
                                         </StackPanel>
                                     </Grid>

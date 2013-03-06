@@ -120,6 +120,7 @@ namespace itsbeta_wp7
             try
             {
                 ViewModelLocator.UserStatic.LogOut = false;
+                ViewModelLocator.UserStatic.UserLoaded = false;
                 NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
                 //NavigationService.GoBack();
             }

@@ -98,6 +98,7 @@ namespace itsbeta_wp7.ViewModel
                 if (_user == null)
                 {
                     CreateUser();
+                    _user.LoadFromIsolatedStorage();
                 }
 
                 return _user;
