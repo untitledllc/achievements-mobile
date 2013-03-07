@@ -14,18 +14,13 @@
         p1:layout_centerHorizontal="true"
         p1:layout_centerVertical="true"
         p1:fillViewport="true"
-        p1:background="#26000000">
+        p1:background="#7d000000">
         <RelativeLayout
             p1:minWidth="25px"
             p1:minHeight="0px"
             p1:layout_width="fill_parent"
             p1:layout_height="fill_parent"
             p1:id="@+id/relativeLayout1">
-            <Button
-                p1:layout_width="fill_parent"
-                p1:layout_height="fill_parent"
-                p1:id="@+id/badgewin_inactiveButton"
-                p1:background="#7d000000" />
             <ImageView
                 p1:layout_width="290dp"
                 p1:layout_height="400dp"
@@ -35,8 +30,8 @@
                 p1:layout_alignTop="@+id/badgewin_BadgeImageView"
                 p1:layout_marginTop="100dp"
                 p1:layout_alignBottom="@+id/bonuspaperlist_linearLayout"
-                p1:minHeight="300dp"
-                p1:layout_marginBottom="-10dp"
+                p1:minHeight="100dp"
+                p1:layout_marginBottom="-9dp"
                 p1:clickable="false"
                 p1:minWidth="290dp" />
             <TextView
@@ -64,19 +59,21 @@
                 p1:textSize="20dp"
                 p1:textColor="#ff606060"
                 p1:layout_alignLeft="@+id/badgewin_BadgeImageView"
-                p1:layout_marginTop="190dp" />
+                p1:layout_marginTop="190dp"
+                p1:layout_alignRight="@+id/badgewin_BadgeImageView"
+                p1:layout_marginRight="30dp" />
             <TextView
                 p1:text="Как был получен этот Бейдж:"
                 p1:textAppearance="?android:attr/textAppearanceMedium"
                 p1:layout_width="wrap_content"
                 p1:layout_height="wrap_content"
-                p1:layout_below="@id/badgewin_badgeTextView"
+                p1:layout_below="@+id/badgewin_detailsTextView"
                 p1:id="@+id/badgewin_howwonderTextView"
                 p1:textColor="#ff666666"
                 p1:textStyle="bold"
                 p1:textSize="12dp"
                 p1:layout_alignLeft="@id/badgewin_badgeTextView"
-                p1:layout_marginTop="50dp" />
+                p1:layout_marginTop="3dp" />
             <TextView
                 p1:text="descr"
                 p1:textAppearance="?android:attr/textAppearanceMedium"
@@ -119,10 +116,22 @@
                 p1:layout_marginTop="10dp"
                 p1:textColor="#ff606060"
                 p1:textSize="12dp" />
+            <TextView
+                p1:text="Details"
+                p1:textAppearance="?android:attr/textAppearanceSmall"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:layout_below="@id/badgewin_categ_projectTextView"
+                p1:id="@+id/badgewin_detailsTextView"
+                p1:layout_alignLeft="@id/badgewin_badgeTextView"
+                p1:textColor="#ff606060"
+                p1:textSize="12dp"
+                p1:layout_alignRight="@+id/badgewin_BadgeImageView"
+                p1:layout_marginRight="40dp" />
             <LinearLayout
                 p1:orientation="vertical"
                 p1:minWidth="25px"
-                p1:minHeight="140dp"
+                p1:minHeight="100dp"
                 p1:layout_width="288dp"
                 p1:layout_height="wrap_content"
                 p1:id="@+id/bonuspaperlist_linearLayout"

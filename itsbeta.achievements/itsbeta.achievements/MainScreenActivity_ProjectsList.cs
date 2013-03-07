@@ -27,14 +27,17 @@ namespace itsbeta.achievements
         public static List<SubCategoriesListData> _subcategoriesList;
         public static string _selectedsubCategoryId;
 
-        static RelativeLayout _subcategoryViewRelativeLayout;
-        static ListView _subcategoriesListView;
-        static bool _isProjectsListOpen = false;
+        RelativeLayout _subcategoryViewRelativeLayout;
+        ListView _subcategoriesListView;
+        ImageView _subcategoriesshadowImageView;
+        bool _isProjectsListOpen = false;
 
         void GetProjectsView()
         {
             _subcategoriesList = new List<SubCategoriesListData>();
             _subcategoriesListView = FindViewById<ListView>(Resource.Id.projectslistView);
+            _subcategoriesshadowImageView = FindViewById<ImageView>(Resource.Id.projectsListDownShadowImageView);
+            _subcategoriesshadowImageView.Visibility = ViewStates.Gone;
             _subcategoriesListView.Visibility = ViewStates.Gone;
             _subcategoriesListView.DividerHeight = 0;
             _subcategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = "Все проекты" });
@@ -58,11 +61,6 @@ namespace itsbeta.achievements
 
         }
 
-        void _refreshAchTextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
-        {
-            GetAchievementsView();
-        }
-
         void _subcategoryViewRelativeLayout_Click(object sender, EventArgs e)
         {
             if (!_isProjectsListOpen && !_badgePopupWindow.IsShowing)
@@ -70,32 +68,48 @@ namespace itsbeta.achievements
                 //_subcategoriesListView.StartAnimation(_buttonClickAnimation);
                 _subcategoriesListView.Visibility = ViewStates.Visible; 
                 _inactiveListButton.Visibility = ViewStates.Visible;
+                _subcategoriesshadowImageView.Visibility = ViewStates.Visible;
                 _isProjectsListOpen = true;
             }
             else
             {
+                _subcategoriesshadowImageView.Visibility = ViewStates.Gone;
                 _inactiveListButton.Visibility = ViewStates.Gone;
                 _subcategoriesListView.Visibility = ViewStates.Gone;
                 _isProjectsListOpen = false;
             }
         }
 
-        public static void _subcategoriesListView_ItemClick(int pos)
+
+
+        void _subcategoriesListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            AppInfo._selectedSubCategoriesDictionary.All(x => false);
-            if (AppInfo._selectedSubCategoriesDictionary.ContainsKey(_subcategoriesList[pos].SubCategoryNameText))
+            if (e.Position == 0)
             {
-                AppInfo._selectedSubCategoriesDictionary[_subcategoriesList[pos].SubCategoryNameText] = true;
+                _subcategoriesshadowImageView.Visibility = ViewStates.Gone;
+                _subcategoriesListView.Visibility = ViewStates.Gone;
+                _inactiveListButton.Visibility = ViewStates.Gone;
+                _isProjectsListOpen = false;
             }
+            if (e.Position != 0)
+            {
+                _subcategoriesListView.Visibility = ViewStates.Gone;
+                _inactiveListButton.Visibility = ViewStates.Gone;
+                _subcategoriesshadowImageView.Visibility = ViewStates.Gone;
 
-            _subcategoriesListView.Visibility = ViewStates.Gone;
-            _inactiveListButton.Visibility = ViewStates.Gone;
+                _isProjectsListOpen = false;
+                _subcategoryViewRelativeLayout.FindViewById<TextView>(Resource.Id.secondscr_projectNameRowTextView).Text = _subcategoriesList[e.Position].SubCategoryNameText;
+                _selectedsubCategoryId = _subcategoriesList[e.Position].SubCategoryNameText;
 
-            _isProjectsListOpen = false;
-            _subcategoryViewRelativeLayout.FindViewById<TextView>(Resource.Id.secondscr_projectNameRowTextView).Text = _subcategoriesList[pos].SubCategoryNameText;
-            _selectedsubCategoryId = _subcategoriesList[pos].SubCategoryNameText;
-            _subcategoriesListView.InvalidateViews();
-            _refreshAchTextView.Text = "ref";
+                _subcategoriesListView.InvalidateViews();
+
+                _refreshAchTextView.Text = "ref";
+            }
+        }
+
+        void _refreshAchTextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            GetAchievementsView();
         }
     }
 }

@@ -70,6 +70,8 @@ namespace ItsBeta.Core
                             PicUrl = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["pic"].Value<string>(),
                             FbId = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["fb_id"].Value<string>(),
                             CreateTime = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["create_time"].Value<string>(),
+                            Details = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["details"].Value<string>(),
+                            Advertisments = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["adv"].Value<string>(),
                             Bonuses = bonusesArray
                             //BonusStatus = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["bonuses"].Value<string>()
                         };
@@ -115,6 +117,8 @@ namespace ItsBeta.Core
                     public string ApiName { get; set; }
                     public string DisplayName { get; set; }
                     public string Description { get; set; }
+                    public string Details { get; set; }
+                    public string Advertisments { get; set; }
                     public string PicUrl { get; set; }
                     public string FbId { get; set; }
                     public string CreateTime { get; set; }

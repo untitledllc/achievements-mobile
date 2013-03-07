@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="fill_parent"
+    p1:layout_height="fill_parent"
+    p1:id="@+id/FristBadgeMainRelativeLayout"
+    p1:background="#ffffffff">
+    <ImageButton
+        p1:layout_width="fill_parent"
+        p1:layout_height="50dp"
+        p1:id="@+id/NavBar_ImageButton"
+        p1:scaleType="fitXY"
+        p1:background="@drawable/Navigation_bar" />
+    <ImageView
+        p1:layout_width="100dp"
+        p1:layout_height="38dp"
+        p1:id="@+id/secondscr_NavBar_LeftWinImageView"
+        p1:layout_marginLeft="10dp"
+        p1:layout_marginTop="5dp"
+        p1:layout_marginRight="5dp"
+        p1:background="@drawable/NavBar_leftWindow"
+        p1:layout_alignBaseline="@id/NavBar_ImageButton" />
+    <ImageView
+        p1:layout_width="25dp"
+        p1:layout_height="30dp"
+        p1:id="@+id/NavBar_GlobedImageView"
+        p1:layout_alignBottom="@id/secondscr_NavBar_LeftWinImageView"
+        p1:layout_alignLeft="@id/secondscr_NavBar_LeftWinImageView"
+        p1:layout_alignTop="@id/secondscr_NavBar_LeftWinImageView"
+        p1:src="@drawable/NavBar_screen_icon" />
+    <TextView
+        p1:textAppearance="?android:attr/textAppearanceMedium"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:layout_toRightOf="@id/NavBar_GlobedImageView"
+        p1:id="@+id/NavBar_AchievesCountTextView"
+        p1:textColor="#ff55d9ff"
+        p1:textStyle="bold"
+        p1:layout_alignTop="@id/secondscr_NavBar_LeftWinImageView"
+        p1:layout_marginTop="7.5dp"
+        p1:layout_marginLeft="20dp" />
+    <ImageButton
+        p1:layout_width="25dp"
+        p1:layout_height="25dp"
+        p1:id="@+id/secondscr_NavBar_ProfileScreenImageButton"
+        p1:layout_alignParentRight="true"
+        p1:layout_marginRight="7.5dp"
+        p1:layout_marginTop="12.5dp"
+        p1:background="@drawable/NavBar_icon_profile_norm" />
+    <RelativeLayout
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="fill_parent"
+        p1:layout_height="fill_parent"
+        p1:background="#7d000000"
+        p1:id="@+id/relativeLayout2" />
+</RelativeLayout>

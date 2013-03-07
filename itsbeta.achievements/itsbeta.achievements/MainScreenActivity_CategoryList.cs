@@ -26,21 +26,23 @@ namespace itsbeta.achievements
 
         public static List<CategoriesListData> _categoriesList;
         public static string _selectedCategoryId;
+        public static string _previousSelectedCategoryId;
 
-        static ListView _categoriesListView;
-        static RelativeLayout _categoryViewRelativeLayout;
-        static bool isCategoriesListOpen = false;
-        static TextView _refreshProjectsAndAchTextView;
+        ImageView _categoriesshadowImageView;
+        ListView _categoriesListView;
+        RelativeLayout _categoryViewRelativeLayout;
+        bool isCategoriesListOpen = false;
+        TextView _refreshProjectsAndAchTextView;
 
         void GetCategoryView()
         {
             _categoriesList = new List<CategoriesListData>();
             _categoriesListView = FindViewById<ListView>(Resource.Id.categorieslistView);
+            _categoriesshadowImageView = FindViewById<ImageView>(Resource.Id.categoriesListDownShadowImageView);
             _categoriesListView.Visibility = ViewStates.Gone;
             _categoriesListView.DividerHeight = 0;
-            _categoryViewRelativeLayout.Click += new EventHandler(_categoryViewRelativeLayout_Click);
 
-            _refreshProjectsAndAchTextView = new TextView(this);
+            
              #region Create List Fields
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
             {
@@ -60,13 +62,18 @@ namespace itsbeta.achievements
                         CategoryNameText = AppInfo._achievesInfo.CategoryArray[i].DisplayName
                     });
                 }
+                if (_previousSelectedCategoryId == null)
+                {
+                    _previousSelectedCategoryId = _selectedCategoryId;
+                }
             }
             #endregion
 
             _categoriesListAdapter = new CategoriesListItemAdapter(this, Resource.Layout.SecondScreenDropDownListRow, _categoriesList);
             _categoriesListView.Adapter = _categoriesListAdapter;
+            _categoriesshadowImageView.Visibility = ViewStates.Gone;
         }
-
+        
         void _categoryViewRelativeLayout_Click(object sender, EventArgs e)
         {
             if (!isCategoriesListOpen && !_badgePopupWindow.IsShowing)
@@ -74,6 +81,7 @@ namespace itsbeta.achievements
                 //_categoriesListView.StartAnimation(_buttonClickAnimation);
                 _inactiveListButton.Visibility = ViewStates.Visible;
                 _categoriesListView.Visibility = ViewStates.Visible;
+                _categoriesshadowImageView.Visibility = ViewStates.Visible;
                 isCategoriesListOpen = true;
             }
             else
@@ -81,29 +89,43 @@ namespace itsbeta.achievements
                 //_categoryViewRelativeLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.FillParent) { Weight = 1 };
                 _inactiveListButton.Visibility = ViewStates.Gone;
                 _categoriesListView.Visibility = ViewStates.Gone;
+                _categoriesshadowImageView.Visibility = ViewStates.Gone;
                 isCategoriesListOpen = false;
             }
         }
-        
-        public static void _categoriesListView_ItemClick(int pos)
+
+
+        void _categoriesListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            AppInfo._selectedCategoriesDictionary.All(x => false);
-            AppInfo._selectedCategoriesDictionary[_categoriesList[pos].CategoryNameText] = true;
-            //_categoriesListView.StartAnimation(_fadeoutClickAnimation);
-            _inactiveListButton.Visibility = ViewStates.Gone;
-            _categoriesListView.Visibility = ViewStates.Gone;
-            _categoryViewRelativeLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.FillParent) { Weight = 1 };
-            isCategoriesListOpen = false;
-            _categoryViewRelativeLayout.FindViewById<TextView>(Resource.Id.secondscr_CategNameRowTextView).Text = _categoriesList[pos].CategoryNameText;
-            _selectedCategoryId = _categoriesList[pos].CategoryNameText;
-            _categoriesListView.InvalidateViews();
-            _refreshProjectsAndAchTextView.Text = "ref";
+            if (e.Position == 0)
+            {
+                _inactiveListButton.Visibility = ViewStates.Gone;
+                _categoriesListView.Visibility = ViewStates.Gone;
+                _categoriesshadowImageView.Visibility = ViewStates.Gone;
+                isCategoriesListOpen = false;
+                return;
+            }
+            if (e.Position != 0)
+            {
+                _inactiveListButton.Visibility = ViewStates.Gone;
+                _categoriesListView.Visibility = ViewStates.Gone;
+                _categoriesshadowImageView.Visibility = ViewStates.Gone;
+
+                _categoryViewRelativeLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, LinearLayout.LayoutParams.FillParent) { Weight = 1 };
+                isCategoriesListOpen = false;
+                _categoryViewRelativeLayout.FindViewById<TextView>(Resource.Id.secondscr_CategNameRowTextView).Text = _categoriesList[e.Position].CategoryNameText;
+                _selectedCategoryId = _categoriesList[e.Position].CategoryNameText;
+                _categoriesListView.InvalidateViews();
+                _refreshProjectsAndAchTextView.Text = "ref";
+                _previousSelectedCategoryId = _selectedCategoryId;
+            }
         }
+
 
         void _refreshProjectsAndAchTextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
-            GetProjectsView();
-            GetAchievementsView();
+                GetProjectsView();
+                GetAchievementsView();
         }
     }
 }

@@ -167,6 +167,8 @@
     <AndroidResource Include="Resources\Drawable\icon_bonuses.png" />
     <AndroidResource Include="Resources\Drawable\icon_discounts.png" />
     <AndroidResource Include="Resources\Drawable\icon_gifts.png" />
+    <AndroidResource Include="Resources\Drawable\entercodeactive.png" />
+    <AndroidResource Include="Resources\Layout\FirstBadgeActivityLoadingLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />

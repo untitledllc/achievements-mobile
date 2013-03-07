@@ -63,7 +63,9 @@
                 p1:textSize="20dp"
                 p1:textColor="#ff606060"
                 p1:layout_alignLeft="@+id/recbadgewin_BadgeImageView"
-                p1:layout_marginTop="190dp" />
+                p1:layout_marginTop="190dp"
+                p1:layout_marginRight="30dp"
+                p1:layout_alignRight="@+id/recbadgewin_BadgeImageView" />
             <TextView
                 p1:text="Вы получили новый значек"
                 p1:textAppearance="?android:attr/textAppearanceMedium"

@@ -12,7 +12,7 @@ namespace itsbeta.achievements.gui
     {
         private List<SubCategoriesListData> Items;
         Button _checkButton;
-
+        int refCount =0;
         public SubCategoriesListItemAdapter(Context context, int textViewResourceId,
             List<SubCategoriesListData> items)
             : base(context, textViewResourceId, items)
@@ -67,6 +67,7 @@ namespace itsbeta.achievements.gui
             TextView subcategoryNameTextView = (TextView)view.FindViewById(Resource.Id.CategNameTextView);
             ImageView checkImageView = (ImageView)view.FindViewById(Resource.Id.CheckImageView);
             _checkButton = (Button)view.FindViewById(Resource.Id.check_button);
+            _checkButton.Visibility = ViewStates.Gone;
 
             subcategoryNameTextView.Text = item.SubCategoryNameText;
             subcategoryNameTextView.SetTextColor(Android.Graphics.Color.DarkGray);
@@ -93,11 +94,14 @@ namespace itsbeta.achievements.gui
                 checkImageView.Visibility = ViewStates.Visible;
             }
 
-            _checkButton.Click += delegate
-            {
-                MainScreenActivity._subcategoriesListView_ItemClick(position);
-            };
-
+            //if (refCount == 0)
+            //{
+            //    _checkButton.Click += delegate
+            //    {
+            //        MainScreenActivity._subcategoriesListView_ItemClick(position);
+            //        refCount++;
+            //    };
+            //}
             return view;
         }
     }

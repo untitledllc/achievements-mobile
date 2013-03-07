@@ -45,7 +45,7 @@ namespace itsbeta.achievements
             _messageDialogBuilder = new AlertDialog.Builder(this);
             _loginWebView = FindViewById<WebView>(Resource.Id.loginWebView);
             //_loginWebView.Settings.JavaScriptEnabled = true;
-
+            _loginWebView.SaveEnabled = false;
             _loginWebView.SetWebViewClient(new ItsbetaLoginWebViewClient(this));
             _loginWebView.SetWebChromeClient(new ItsbetaLoginWebViewChromeClient());
             // "https://www.facebook.com/dialog/oauth?response_type=token&display=popup&client_id={0}&redirect_uri={1}&scope={2}",

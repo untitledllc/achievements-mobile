@@ -26,7 +26,7 @@
         p1:layout_marginTop="7.5dp" />
     <ImageView
         p1:layout_width="fill_parent"
-        p1:layout_height="2dp"
+        p1:layout_height="1dp"
         p1:id="@+id/imageView1"
         p1:layout_alignParentTop="true"
         p1:background="@drawable/TableAndButtons_divider_h" />

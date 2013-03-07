@@ -62,7 +62,10 @@
         p1:layout_alignLeft="@id/imageView1"
         p1:layout_alignRight="@id/imageView1"
         p1:singleLine="true"
-        p1:background="@android:color/transparent" />
+        p1:background="@android:color/transparent"
+        p1:layout_marginLeft="2dp"
+        p1:layout_marginRight="2dp"
+        p1:layout_marginBottom="3dp" />
     <TextView
         p1:text="Код-это подтверждение выполнения задачи, за которую дается бейдж."
         p1:textAppearance="?android:attr/textAppearanceSmall"

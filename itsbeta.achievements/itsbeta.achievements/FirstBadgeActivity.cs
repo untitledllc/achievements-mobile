@@ -50,7 +50,7 @@ namespace itsbeta.achievements
                 File.WriteAllLines(@"/data/data/ru.hintsolutions.itsbeta/data.txt", config.ToArray(), Encoding.UTF8);
             }
 
-            SetContentView(Resource.Layout.SecondScreenActivityLayout);
+            SetContentView(Resource.Layout.FirstBadgeActivityLoadingLayout);
             mDialog = new ProgressDialog(this);
             mDialog.SetMessage("Загрузка пользовательских данных...");
             mDialog.SetCancelable(false);
@@ -85,6 +85,7 @@ namespace itsbeta.achievements
 
             TextView userName = FindViewById<TextView>(Resource.Id.firstbadgewin_usernameTextView);
             TextView badgeDescr = FindViewById<TextView>(Resource.Id.firstbadgewin_wonderdescrTextView);
+            
 
             if (AppInfo._user.Fullname != null)
             {
@@ -134,6 +135,7 @@ namespace itsbeta.achievements
 
                         TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
                         TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+                        bonusDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
 
                         bonusLineImage.Visibility = ViewStates.Invisible;
                         discountLineImage.Visibility = ViewStates.Invisible;
@@ -158,7 +160,7 @@ namespace itsbeta.achievements
                             bonusName.Visibility = ViewStates.Visible;
 
                             bonusName.Text = "Скидка";
-                            bonusDescr.Text = bonus.Description;
+                            bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                             bonusPaperListLinearLayout.AddView(bonusView);
                         }
@@ -175,7 +177,7 @@ namespace itsbeta.achievements
                             bonusName.Visibility = ViewStates.Visible;
 
                             bonusName.Text = "Бонус";
-                            bonusDescr.Text = bonus.Description;
+                            bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                             bonusPaperListLinearLayout.AddView(bonusView);
                         }
@@ -191,7 +193,7 @@ namespace itsbeta.achievements
                             bonusName.Visibility = ViewStates.Visible;
 
                             bonusName.Text = "Подарок";
-                            bonusDescr.Text = bonus.Description;
+                            bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                             bonusPaperListLinearLayout.AddView(bonusView);
                         }
@@ -214,6 +216,7 @@ namespace itsbeta.achievements
 
                     TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
                     TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+                    bonusDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
 
                     bonusLineImage.Visibility = ViewStates.Invisible;
                     discountLineImage.Visibility = ViewStates.Invisible;
@@ -240,7 +243,7 @@ namespace itsbeta.achievements
                         bonusName.Visibility = ViewStates.Visible;
 
                         bonusName.Text = "Скидка";
-                        bonusDescr.Text = bonus.Description;
+                        bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                         bonusPaperListLinearLayout.AddView(bonusView);
                     }
@@ -258,7 +261,7 @@ namespace itsbeta.achievements
                         bonusName.Visibility = ViewStates.Visible;
 
                         bonusName.Text = "Бонус";
-                        bonusDescr.Text = bonus.Description;
+                        bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                         bonusPaperListLinearLayout.AddView(bonusView);
                     }
@@ -276,7 +279,7 @@ namespace itsbeta.achievements
                         bonusName.Visibility = ViewStates.Visible;
 
                         bonusName.Text = "Подарок";
-                        bonusDescr.Text = bonus.Description;
+                        bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                         bonusPaperListLinearLayout.AddView(bonusView);
                     }

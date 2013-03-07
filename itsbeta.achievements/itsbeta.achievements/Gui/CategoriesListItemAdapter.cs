@@ -10,6 +10,7 @@ namespace itsbeta.achievements.gui
 {
     public class CategoriesListItemAdapter : ArrayAdapter<CategoriesListData>
     {
+        int refCount = 0;
         private List<CategoriesListData> Items;
         ListView _listView;
         Button _checkButton;
@@ -22,6 +23,8 @@ namespace itsbeta.achievements.gui
             _listView = new ListView(context);
             _checkButton = new Button(context);
         }
+
+
 
         bool isChecked = false;
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -54,6 +57,7 @@ namespace itsbeta.achievements.gui
             TextView categoryNameTextView = (TextView)view.FindViewById(Resource.Id.CategNameTextView);
             ImageView checkImageView = (ImageView)view.FindViewById(Resource.Id.CheckImageView);
             _checkButton = (Button)view.FindViewById(Resource.Id.check_button);
+            _checkButton.Visibility = ViewStates.Gone;
 
             categoryNameTextView.Text = item.CategoryNameText;
             categoryNameTextView.SetTextColor(Android.Graphics.Color.DarkGray);
@@ -63,27 +67,32 @@ namespace itsbeta.achievements.gui
             {
                 isChecked = true;
             }
+
             else
             {
                 isChecked = false;
             }
-
 
             if (!isChecked)
             {
                 categoryNameTextView.SetTextColor(Android.Graphics.Color.DarkGray);
                 checkImageView.Visibility = ViewStates.Invisible;
             }
+
             else
             {
                 categoryNameTextView.SetTextColor(new Android.Graphics.Color(105, 216, 248));
                 checkImageView.Visibility = ViewStates.Visible;
             }
 
-            _checkButton.Click += delegate 
+            if (refCount == 0)
             {
-                MainScreenActivity._categoriesListView_ItemClick(position);
-            };
+                //_checkButton.Click += delegate
+                //{
+                //    MainScreenActivity._categoriesListView_ItemClick(position);
+                //    refCount++;
+                //};
+            }      
 
             return view;
         }

@@ -17,6 +17,7 @@ using Android.Graphics;
 using ItsBeta.Core;
 using System.Threading;
 using ZXing.Mobile;
+using Android.Views.InputMethods;
 
 namespace itsbeta.achievements
 {
@@ -30,7 +31,7 @@ namespace itsbeta.achievements
         AlertDialog.Builder _activateMessageBadgeDialogBuilder;
         AlertDialog _activateMessageBadgeDialog;
         ServiceItsBeta _serviceItsBeta = new ServiceItsBeta();
-
+        ImageView _enterCodeLineImageView;
 
         void GetActivationDialog()
         {
@@ -50,7 +51,21 @@ namespace itsbeta.achievements
             View addCodeView = addCodeMenulayoutInflater.Inflate(Resource.Layout.EnterCodeLayout, null);
             Button addCodeCancelButton = (Button)addCodeView.FindViewById(Resource.Id.addcode_cancelButton);
             Button addCodeReadyButton = (Button)addCodeView.FindViewById(Resource.Id.addcode_readyButton);
+            _enterCodeLineImageView = (ImageView)addCodeView.FindViewById(Resource.Id.imageView1);
             _codeCompleteTextView = (AutoCompleteTextView)addCodeView.FindViewById(Resource.Id.addcode_autoCompleteTextView);
+            
+            _codeCompleteTextView.Click += delegate 
+            {
+                InputMethodManager im = (InputMethodManager)this.GetSystemService(InputMethodService);
+                if (im.IsAcceptingText)
+                {
+                    _enterCodeLineImageView.SetBackgroundResource(Resource.Drawable.entercodeactive);
+                }
+                else
+                {
+                    _enterCodeLineImageView.SetBackgroundResource(Resource.Drawable.line);
+                }
+            };
             //codeCompleteTextView.SetDropDownBackgroundDrawable();
             addCodeRelativeLayout.AddView(addCodeView);
 
@@ -62,7 +77,25 @@ namespace itsbeta.achievements
             addCodeDialog.SetTitle("");
             addCodeDialog.SetContentView(addCodeRelativeLayout);
 
-            addCodeImageButtonFake.Click += delegate { _vibe.Vibrate(50); _codeCompleteTextView.Text = ""; addCodeImageButton.StartAnimation(_buttonClickAnimation); addBadgeDialog.Show(); addBadgeRelativeLayout.StartAnimation(AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn)); };
+            addCodeImageButtonFake.Click += delegate {
+                if (!_badgePopupWindow.IsShowing)
+                {
+                    
+                _categoriesListView.Visibility = ViewStates.Gone;
+                _categoriesshadowImageView.Visibility = ViewStates.Gone;
+                _inactiveListButton.Visibility = ViewStates.Gone;
+                _subcategoriesListView.Visibility = ViewStates.Gone;
+                _subcategoriesshadowImageView.Visibility = ViewStates.Gone;
+                _isProjectsListOpen = false;
+                isCategoriesListOpen = false;
+                _vibe.Vibrate(50); 
+                _codeCompleteTextView.Text = ""; 
+                addCodeImageButton.StartAnimation(_buttonClickAnimation); 
+                addBadgeDialog.Show(); 
+                addBadgeRelativeLayout.StartAnimation(AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn));
+
+                }
+            };
 
 
           
@@ -84,9 +117,10 @@ namespace itsbeta.achievements
                     if (t.Status == System.Threading.Tasks.TaskStatus.RanToCompletion)
                         HandleScanResult(t.Result);
                 });
-
-                _foundActionTextView.TextChanged += new EventHandler<Android.Text.TextChangedEventArgs>(_foundActionTextView_TextChanged);
             };
+
+
+            _foundActionTextView.TextChanged += new EventHandler<Android.Text.TextChangedEventArgs>(_foundActionTextView_TextChanged);
 
             addCodeReadyButton.Click += delegate
             {
@@ -130,7 +164,7 @@ namespace itsbeta.achievements
             }
             else
             {
-                Toast.MakeText(this, "QR Code несоответствует формату", ToastLength.Short).Show();
+                RunOnUiThread(() => Toast.MakeText(this, "QR Code несоответствует формату", ToastLength.Short).Show());
                 qrValid = false;
             }
 
@@ -143,7 +177,6 @@ namespace itsbeta.achievements
                 qrValid = false;
             }
         }
-
 
         public void ShowQRDialog()
         {
@@ -159,11 +192,28 @@ namespace itsbeta.achievements
         public void AsyncActivizationViaQR(string badgeApi_name)
         {
             ItsBeta.Core.Achieves.ParentCategory.ParentProject.Achieve activatedAchieve;
-                string response = _serviceItsBeta.ActivateBadge(badgeApi_name, AppInfo._appaccess_token, AppInfo._user.FacebookUserID);
+            string response = "null";
+            try
+            {
+                response = _serviceItsBeta.ActivateBadge(badgeApi_name, AppInfo._appaccess_token, AppInfo._user.FacebookUserID);
+            }
+            catch 
+            {
+            }
+
                 if (response.StartsWith("badgefbId="))
                 {
                     activatedBadgeFbId = response.Replace("badgefbId=", "");
-                    AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
+                    try
+                    {
+                        AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
+                    }
+                    catch
+                    {
+                        response = "null";
+                        return;
+                    }
+                    
                     activatedAchieve = new Achieves.ParentCategory.ParentProject.Achieve();
 
                     foreach (var category in AppInfo._achievesInfo.CategoryArray)
@@ -227,16 +277,42 @@ namespace itsbeta.achievements
 
                     RunOnUiThread(() => ShowAlertDialog());
                 }
+                if (response == "null")
+                {
+                    RunOnUiThread(() => _activationDialog.Dismiss());
+                    errorDescr = "Неудалось активировать. Проверьте настройки интернет соединения";
+                    _activateMessageBadgeDialogBuilder.SetTitle("Ошибка");
+                    _activateMessageBadgeDialogBuilder.SetMessage(errorDescr);
+                    _activateMessageBadgeDialogBuilder.SetPositiveButton("Ок", delegate { });
+
+                    RunOnUiThread(() => ShowAlertDialog());
+                }
         }
 
         public void AsyncActivizationViaEntering()
         {
             ItsBeta.Core.Achieves.ParentCategory.ParentProject.Achieve activatedAchieve;
-            string response = _serviceItsBeta.ActivateBadge(_codeCompleteTextView.Text, AppInfo._appaccess_token, AppInfo._user.FacebookUserID);
+            string response = "null";
+            try
+            {
+                response = _serviceItsBeta.ActivateBadge(_codeCompleteTextView.Text, AppInfo._appaccess_token, AppInfo._user.FacebookUserID);
+            }
+            catch
+            {
+            }
+
             if (response.StartsWith("badgefbId="))
             {
                 activatedBadgeFbId = response.Replace("badgefbId=", "");
-                AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
+                try
+                {
+                    AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
+                }
+                catch
+                {
+                    response = "null";
+                    return;
+                }
                 activatedAchieve = new Achieves.ParentCategory.ParentProject.Achieve();
                 
                 foreach (var category in AppInfo._achievesInfo.CategoryArray)
@@ -299,13 +375,27 @@ namespace itsbeta.achievements
                 _activateMessageBadgeDialogBuilder.SetPositiveButton("Ок", delegate { });
 
                 RunOnUiThread(() => ShowAlertDialog());
+                return;
+            }
+            if (response == "null")
+            {
+                RunOnUiThread(() => _activationDialog.Dismiss());
+                errorDescr = "Неудалось активировать. Проверьте настройки интернет соединения";
+                _activateMessageBadgeDialogBuilder.SetTitle("Ошибка");
+                _activateMessageBadgeDialogBuilder.SetMessage(errorDescr);
+                _activateMessageBadgeDialogBuilder.SetPositiveButton("Ок", delegate { });
 
+                RunOnUiThread(() => ShowAlertDialog());
             }
         }
 
         void CompleteActivation(ItsBeta.Core.Achieves.ParentCategory.ParentProject.Achieve activatedBadge)
         {
-           // _activationDialog.Dismiss();
+            _activationDialog.Dismiss();
+
+            GetCategoryView();
+            GetProjectsView();
+
             LayoutInflater inflater = (LayoutInflater)this.GetSystemService(LayoutInflaterService);
             ViewGroup relativeAgedSummary = new RelativeLayout(this);
             View layout = inflater.Inflate(Resource.Layout.ReceiveBadgeLayount, relativeAgedSummary);
@@ -317,15 +407,19 @@ namespace itsbeta.achievements
 
             TextView profileName = (TextView)layout.FindViewById(Resource.Id.recbadgewin_badgeTextView);
             TextView badgeDescr = (TextView)layout.FindViewById(Resource.Id.recbadgewin_wonderdescrTextView);
+
             profileName.Text = AppInfo._user.Fullname;
             badgeDescr.Text = activatedBadge.Description;
-            AppInfo._badgesCount ++;
-            badgeImage.SetImageBitmap(BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" + activatedBadge.ApiName + ".PNG"));
+            AppInfo._badgesCount += 1;
+            _badgesCountDisplay.Text = AppInfo._badgesCount.ToString();
+            Bitmap bitmap = BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" + activatedBadge.ApiName + ".PNG");
+            badgeImage.SetImageBitmap(bitmap);
+            bitmap.Dispose();
 
             LinearLayout bonusPaperListLinearLayout = (LinearLayout)layout.FindViewById(Resource.Id.bonuspaperlist_linearLayout);
             //
             bonusPaperListLinearLayout.RemoveAllViews();
-            if (achieve.Bonuses.Count() == 1)
+            if (activatedBadge.Bonuses.Count() == 1)
                 {
                     var bonus = activatedBadge.Bonuses.First();
                     {
@@ -342,6 +436,7 @@ namespace itsbeta.achievements
 
                         TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
                         TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+                        bonusDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
 
                         bonusLineImage.Visibility = ViewStates.Invisible;
                         discountLineImage.Visibility = ViewStates.Invisible;
@@ -366,7 +461,7 @@ namespace itsbeta.achievements
                             bonusName.Visibility = ViewStates.Visible;
 
                             bonusName.Text = "Скидка";
-                            bonusDescr.Text = bonus.Description;
+                            bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                             bonusPaperListLinearLayout.AddView(bonusView);
                         }
@@ -383,7 +478,7 @@ namespace itsbeta.achievements
                             bonusName.Visibility = ViewStates.Visible;
 
                             bonusName.Text = "Бонус";
-                            bonusDescr.Text = bonus.Description;
+                            bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                             bonusPaperListLinearLayout.AddView(bonusView);
                         }
@@ -399,13 +494,13 @@ namespace itsbeta.achievements
                             bonusName.Visibility = ViewStates.Visible;
 
                             bonusName.Text = "Подарок";
-                            bonusDescr.Text = bonus.Description;
+                            bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                             bonusPaperListLinearLayout.AddView(bonusView);
                         }
                     }
                 }
-            if (achieve.Bonuses.Count() > 1)
+            if (activatedBadge.Bonuses.Count() > 1)
             {
                 foreach (var bonus in activatedBadge.Bonuses)
                 {
@@ -422,6 +517,7 @@ namespace itsbeta.achievements
 
                     TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
                     TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+                    bonusDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
 
                     bonusLineImage.Visibility = ViewStates.Invisible;
                     discountLineImage.Visibility = ViewStates.Invisible;
@@ -448,7 +544,7 @@ namespace itsbeta.achievements
                         bonusName.Visibility = ViewStates.Visible;
 
                         bonusName.Text = "Скидка";
-                        bonusDescr.Text = bonus.Description;
+                        bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                         bonusPaperListLinearLayout.AddView(bonusView);
                     }
@@ -466,7 +562,7 @@ namespace itsbeta.achievements
                         bonusName.Visibility = ViewStates.Visible;
 
                         bonusName.Text = "Бонус";
-                        bonusDescr.Text = bonus.Description;
+                        bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                         bonusPaperListLinearLayout.AddView(bonusView);
                     }
@@ -484,7 +580,7 @@ namespace itsbeta.achievements
                         bonusName.Visibility = ViewStates.Visible;
 
                         bonusName.Text = "Подарок";
-                        bonusDescr.Text = bonus.Description;
+                        bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                         bonusPaperListLinearLayout.AddView(bonusView);
                     }

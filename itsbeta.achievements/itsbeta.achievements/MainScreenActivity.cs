@@ -17,6 +17,7 @@ using Android.Graphics;
 using ItsBeta.Core;
 using System.Threading;
 using ZXing.Mobile;
+using Android.Views.InputMethods;
 
 namespace itsbeta.achievements
 {
@@ -35,7 +36,7 @@ namespace itsbeta.achievements
         public static bool _isAchListItemClicked = false;
         public static TextView _foundActionTextView;
         public static bool _isLogout = false;
-
+        TextView _badgesCountDisplay;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -43,14 +44,22 @@ namespace itsbeta.achievements
             _context = this;
             SetContentView(Resource.Layout.SecondScreenActivityLayout);
             _foundActionTextView = new TextView(this);
+            _refreshProjectsAndAchTextView = new TextView(this);
+
             _vibe = (Vibrator)this.GetSystemService(Context.VibratorService);
 
             ImageButton profileImageButton = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButton);
             ImageButton profileImageButtonFake = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButtonFake);
-            TextView badgesCount = FindViewById<TextView>(Resource.Id.NavBar_AchievesCountTextView);
+            _badgesCountDisplay = FindViewById<TextView>(Resource.Id.NavBar_AchievesCountTextView);
 
-            badgesCount.Text = AppInfo._badgesCount.ToString();
-            profileImageButtonFake.Click += delegate { _vibe.Vibrate(50); profileImageButton.StartAnimation(_buttonClickAnimation); StartActivity(typeof(ProfileActivity)); };
+            _badgesCountDisplay.Text = AppInfo._badgesCount.ToString();
+            profileImageButtonFake.Click += delegate
+            {
+                if (!_badgePopupWindow.IsShowing)
+                {
+                    _vibe.Vibrate(50); profileImageButton.StartAnimation(_buttonClickAnimation); StartActivity(typeof(ProfileActivity));
+                }
+            };
 
 
             //.............................................................................
@@ -59,6 +68,8 @@ namespace itsbeta.achievements
             _vibe = (Vibrator)this.GetSystemService(Context.VibratorService);
             _inactiveListButton = FindViewById<Button>(Resource.Id.secondscr_inactiveListButton);
             _inactiveAllButton = FindViewById<Button>(Resource.Id.secondscr_inactiveAllButton);
+
+
             _inactiveAllButton.Visibility = ViewStates.Gone;
             _inactiveListButton.Visibility = ViewStates.Gone;
 
@@ -78,9 +89,12 @@ namespace itsbeta.achievements
             _inactiveListButton.Click += new EventHandler(_inactiveListButton_Click);
             _inactiveAllButton.Click += new EventHandler(_inactiveAllButton_Click);
             _achievementsListView.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs>(achievementsListView_ItemClick);
+            _categoriesListView.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs>(_categoriesListView_ItemClick);
+            _subcategoriesListView.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs>(_subcategoriesListView_ItemClick);
 
-            
+            _categoryViewRelativeLayout.Click += new EventHandler(_categoryViewRelativeLayout_Click);
         }
+
 
         void _inactiveAllButton_Click(object sender, EventArgs e)
         {
@@ -113,12 +127,24 @@ namespace itsbeta.achievements
                 StartActivity(typeof(LoginActivity));
             }
         }
+        protected override void OnPause()
+        {
+            _categoriesListView.Visibility = ViewStates.Gone;
+            _categoriesshadowImageView.Visibility = ViewStates.Gone;
+            _inactiveListButton.Visibility = ViewStates.Gone;
+            _subcategoriesListView.Visibility = ViewStates.Gone;
+            _subcategoriesshadowImageView.Visibility = ViewStates.Gone;
+            _isProjectsListOpen = false;
+            isCategoriesListOpen = false;
+            base.OnPause();
+        }
 
         public override void OnBackPressed()
         {
             if (_categoriesListView.Visibility == ViewStates.Visible)
             {
                 _categoriesListView.Visibility = ViewStates.Gone;
+                _categoriesshadowImageView.Visibility = ViewStates.Gone;
                 _inactiveListButton.Visibility = ViewStates.Gone;
                 isCategoriesListOpen = false;
                 return;
@@ -126,6 +152,7 @@ namespace itsbeta.achievements
             if (_subcategoriesListView.Visibility == ViewStates.Visible)
             {
                 _subcategoriesListView.Visibility = ViewStates.Gone;
+                _subcategoriesshadowImageView.Visibility = ViewStates.Gone;
                 _inactiveListButton.Visibility = ViewStates.Gone;
                 _isProjectsListOpen = false;
                 return;
@@ -138,6 +165,7 @@ namespace itsbeta.achievements
             {
                 base.OnBackPressed();
             }
+            
         }
     }
 }

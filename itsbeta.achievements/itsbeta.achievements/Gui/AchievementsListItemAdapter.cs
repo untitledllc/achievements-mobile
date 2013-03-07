@@ -14,14 +14,14 @@ namespace itsbeta.achievements.gui
     {
         private IList<AchievementsListData> Items;
         Context _context;
-
         Bitmap[] _bitmaps;
-        public AchievementsListItemAdapter(Context context, int textViewResourceId, IList<AchievementsListData> items)
+
+        public AchievementsListItemAdapter(Context context, int textViewResourceId, IList<AchievementsListData> items, Bitmap[] bitmaps)
             : base(context, textViewResourceId, items)
         {
             Items = items;
             _context = context;
-            _bitmaps = new Bitmap[items.Count];
+            _bitmaps = bitmaps;
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -30,11 +30,9 @@ namespace itsbeta.achievements.gui
             if (view == null)
             {
                 LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-                //выбираем разметку, которую будем наполнять данными.
                 view = inflater.Inflate(Resource.Layout.SecondScreenListRow, null);
             }
 
-            //получаем текущий элемент
             AchievementsListData item = Items[position];
 
             TextView achiveNameTextView = (TextView)view.FindViewById(Resource.Id.AchiveNameTextView);
@@ -146,31 +144,16 @@ namespace itsbeta.achievements.gui
 
             view.DrawingCacheEnabled = true;
 
+            achivePicture.SetImageBitmap(_bitmaps[position]);
 
-            if (_bitmaps[position] != null)
-            {
-                achivePicture.SetImageBitmap(_bitmaps[position]);
-
-            }
-            else
-            {
-                Bitmap bitmap = BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
-                item.AchieveApiName +
-                ".PNG"
-                );
-                achivePicture.SetImageBitmap(bitmap);
-                _bitmaps[position] = bitmap.Copy(Bitmap.Config.Argb8888, true);
-                bitmap.Dispose();
-            }
-
-
-            Animation listviewAnimation = new ScaleAnimation((float)1.0, (float)1.0, (float)0, (float)1.0);//new TranslateAnimation(0, 0, MainActivity._display.Height, 0);
+            //if (!MainScreenActivity.isItemClicked)
+            //{
+            //Animation listviewAnimation = new ScaleAnimation((float)1.0, (float)1.0, (float)0, (float)1.0);//new TranslateAnimation(0, 0, MainActivity._display.Height, 0);
 
             //Animation animation;
             //animation = new TranslateAnimation(AppInfo._display.Width, 0, 200, 0);
 
             //Animation animrotate = new RotateAnimation(45f, 0f);
-
 
             //listviewAnimation.Duration = 750;
             //animation.Duration = 750;
@@ -182,6 +165,8 @@ namespace itsbeta.achievements.gui
             //asa.AddAnimation(animation);
 
             //view.StartAnimation(asa);
+            //}
+            
 
             return view;
         }
