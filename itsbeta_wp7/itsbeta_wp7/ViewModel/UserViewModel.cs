@@ -19,6 +19,7 @@ using System.IO;
 using System.Globalization;
 using System.Windows.Media;
 using MSPToolkit.Utilities;
+using Microsoft.Phone.Net.NetworkInformation;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -157,6 +158,7 @@ namespace itsbeta_wp7.ViewModel
             try
             {
                 ToastPrompt toast = new ToastPrompt();
+                toast.MillisecondsUntilHidden = 6000;
                 toast.Background = new SolidColorBrush(Color.FromArgb(255, 83, 83, 83));
                 toast.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
 
@@ -164,12 +166,36 @@ namespace itsbeta_wp7.ViewModel
                 {
                     toast.Title = title;
                     toast.Message = message;
-                    toast.Show();
+
+                    if (title == "Пользователь itsbeta")
+                    {
+                        toast.Completed += toast_Completed;
+                        BitmapImage img = new BitmapImage(new Uri("/images/Achive-itsbeta.png", UriKind.Relative));
+                        img.CreateOptions = BitmapCreateOptions.None;
+                        img.ImageOpened += (s, e) =>
+                        {
+                            WriteableBitmap wBitmap = new WriteableBitmap((BitmapImage)s);
+                            MemoryStream ms = new MemoryStream();
+                            wBitmap.SaveJpeg(ms, 50, 50, 0, 100);
+                            BitmapImage bmp = new BitmapImage();
+                            bmp.SetSource(ms);
+                            toast.ImageSource = bmp;
+
+                            ViewModelLocator.MainStatic.CurrentAchieve = ViewModelLocator.MainStatic.Achieves.FirstOrDefault(c => c.Badge_name == "itsbeta");
+                            toast.Completed += toast_Completed;
+                            toast.Show();
+                        };
+                    }
+                    else
+                    {
+                        toast.Show();
+                    };                    
                 }
                 else
                 {
                     AchievesItem achieve = new AchievesItem();
                     achieve = ViewModelLocator.MainStatic.Achieves.FirstOrDefault(c => c.Api_name == api_name);
+                    ViewModelLocator.MainStatic.CurrentAchieve = achieve;
                     toast.Title = achieve.Display_name;
                     toast.Message = achieve.Desc;
 
@@ -193,12 +219,20 @@ namespace itsbeta_wp7.ViewModel
         }
         void toast_Completed(object sender, PopUpEventArgs<string, PopUpResult> e)
         {
+            if (e.PopUpResult == PopUpResult.Ok)
+            {
+                if ((ViewModelLocator.MainStatic.Achieves.FirstOrDefault(c => c.Badge_name == "itsbeta") != null) || (ViewModelLocator.MainStatic.CurrentAchieve != null))
+                {
+                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/BadgePage.xaml", UriKind.Relative));
+                };
+            };
         }
 
         public MessagePrompt messagePrompt;
         public string messageprompt_fb_id = "";
         public void GetItsbetaAchieve()
         {
+            ViewModelLocator.MainStatic.Loading = true;
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
             {
@@ -225,7 +259,8 @@ namespace itsbeta_wp7.ViewModel
                                 messagePrompt = new MessagePrompt();
                                 try
                                 {
-                                    messageprompt_fb_id = o["fb_id"].ToString();
+                                    AchievedEarnedMessage("Установил приложение itsbeta.", "Пользователь itsbeta");
+                                    /*messageprompt_fb_id = o["fb_id"].ToString();
                                     messagePrompt.Body = new BadgeControl();
 
                                     Button closeButton = new Button() { Content = "Закрыть" };
@@ -236,13 +271,13 @@ namespace itsbeta_wp7.ViewModel
 
                                     messagePrompt.ActionPopUpButtons.Clear();
                                     messagePrompt.ActionPopUpButtons.Add(closeButton);
-                                    messagePrompt.ActionPopUpButtons.Add(moreButton);
+                                    messagePrompt.ActionPopUpButtons.Add(moreButton);*/
                                 }
                                 catch
                                 {
                                 };
 
-                                messagePrompt.Show();
+                                //messagePrompt.Show();
                             });
                         }
                         else
@@ -358,8 +393,16 @@ namespace itsbeta_wp7.ViewModel
                 LoadUserData(result);
                 this.UserLoaded = true;
 
-                ViewModelLocator.UserStatic.GetItsbetaAchieve();
-                ViewModelLocator.UserStatic.GetFBUserInfo();
+                bool hasNetworkConnection = NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
+                if (hasNetworkConnection)
+                {
+                    ViewModelLocator.UserStatic.GetItsbetaAchieve();
+                    ViewModelLocator.UserStatic.GetFBUserInfo();
+                }
+                else
+                {
+                    ViewModelLocator.MainStatic.LoadFromIsolatedStorage();
+                };
             }
             catch { };
         }

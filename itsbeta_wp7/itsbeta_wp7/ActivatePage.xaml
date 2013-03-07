@@ -79,7 +79,7 @@
                                    Style="{StaticResource OtherDarkTextblockStyle}" />
                         <TextBox Text="" 
                          Foreground="Black"
-                                 Margin="-10,20,-10,20"
+                                 Margin="-10,10,-10,20"
                          CaretBrush="Black"
                          Name="ActivationCode"/>
                         <TextBlock Text="{Binding Path=LocalizedResources.activate_badge_description, Source={StaticResource LocalizedStrings}}" Style="{StaticResource OtherTextblockStyle}" TextWrapping="Wrap" />

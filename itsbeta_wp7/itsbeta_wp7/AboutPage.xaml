@@ -69,7 +69,7 @@
                         <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_middle.png" />
                     </Grid.Background>
 
-                    <StackPanel Margin="30,-40,30,0">
+                    <StackPanel Margin="30,-36,30,0">
                         <TextBlock Text="{Binding Path=LocalizedResources.about_version, Source={StaticResource LocalizedStrings}}" 
                                    Style="{StaticResource CategoryDarkBoldTextblockStyle}"
                                    Margin="0,10,0,30"
@@ -88,7 +88,7 @@
 
 
                         <Button Content="{Binding Path=LocalizedResources.rate_app, Source={StaticResource LocalizedStrings}}" 
-                        Margin="-10" Height="90"
+                        Margin="-10,-7,-10,-10" Height="90"
                         Style="{StaticResource QRButtonStyle}"
                         Name="rate_app" Click="rate_app_Click" />
                         <Button Content="{Binding Path=LocalizedResources.send_email, Source={StaticResource LocalizedStrings}}" 

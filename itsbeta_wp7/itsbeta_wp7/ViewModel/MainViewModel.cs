@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 //using Microsoft.Xna.Framework.Media;
 using Microsoft.Phone;
 using System.Windows.Resources;
+using Microsoft.Phone.Net.NetworkInformation;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -136,7 +137,7 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
-        private AchievesItem _currentAchieve = new AchievesItem();
+        private AchievesItem _currentAchieve = null;
         public AchievesItem CurrentAchieve
         {
             set
@@ -320,43 +321,48 @@ namespace itsbeta_wp7.ViewModel
         public void LoadAchievements(string activation_code="")
         {
             LoadFromIsolatedStorage();
-            try
+            bool hasNetworkConnection =
+            NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
+            if (hasNetworkConnection)
             {
-                var bw = new BackgroundWorker();
-                //bw.DoWork += delegate
-                //{
                 try
                 {
-                    Loading = true;
-
-                    var client = new RestClient("http://www.itsbeta.com");
-                    var request = new RestRequest("s/info/achievements.json", Method.GET);
-                    request.Parameters.Clear();
-                    request.AddParameter("access_token", App.ACCESS_TOKEN);
-                    request.AddParameter("player_id", ViewModelLocator.UserStatic.PlayerId);
-
-                    client.ExecuteAsync(request, response =>
+                    var bw = new BackgroundWorker();
+                    //bw.DoWork += delegate
+                    //{
+                    try
                     {
-                        try
+                        Loading = true;
+
+                        var client = new RestClient("http://www.itsbeta.com");
+                        var request = new RestRequest("s/info/achievements.json", Method.GET);
+                        request.Parameters.Clear();
+                        request.AddParameter("access_token", App.ACCESS_TOKEN);
+                        request.AddParameter("player_id", ViewModelLocator.UserStatic.PlayerId);
+
+                        client.ExecuteAsync(request, response =>
                         {
-                            //JArray o = JArray.Parse(response.Content.ToString());
-                            ParseAcievesJson(response.Content.ToString());
-                            SaveToIsolatedStorage(response.Content.ToString());
-                            Loading = false;
-                            
-                            if (activation_code != "")
+                            try
                             {
-                                ViewModelLocator.UserStatic.AchievedEarnedMessage("Достижение активировано!", "", activation_code);
-                            };
-                        }
-                        catch { };
-                    });
+                                //JArray o = JArray.Parse(response.Content.ToString());
+                                ParseAcievesJson(response.Content.ToString());
+                                SaveToIsolatedStorage(response.Content.ToString());
+                                Loading = false;
+
+                                if (activation_code != "")
+                                {
+                                    ViewModelLocator.UserStatic.AchievedEarnedMessage("Достижение активировано!", "", activation_code);
+                                };
+                            }
+                            catch { };
+                        });
+                    }
+                    catch { };
+                    //};
+                    //bw.RunWorkerAsync(); 
                 }
                 catch { };
-                //};
-                //bw.RunWorkerAsync(); 
-            }
-            catch { };
+            };
         }
 
         /// <summary>

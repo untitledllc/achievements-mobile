@@ -89,22 +89,25 @@
 		<Grid x:Name="ContentGrid"
 		      Grid.Row="1">
             <!--GroupDescriptorsSource="{Binding Path=GroupedBadgesList}"-->
+             
             <telerikData:RadJumpList 
                 Margin="0,0,0,0" Width="Auto"
                 ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                ScrollViewer.VerticalScrollBarVisibility="Visible"
-                ScrollViewer.ManipulationMode="Control"
+                ScrollViewer.VerticalScrollBarVisibility="Visible"               
+                ScrollViewer.ManipulationMode="System"
                 EmptyContentTemplate="{StaticResource NoDataListTemlate}"
                 x:Name="AllBadges"                                          
                                      GroupHeaderItemTap="AllBadges_GroupHeaderItemTap"
                                      ItemsSource="{Binding Path=CategoryAchieves}"
-                                     DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllBadges_ItemTap" GroupHeaderTemplate="{StaticResource DataTemplate1}" GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" HorizontalContentAlignment="Stretch">
+                                     DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllBadges_ItemTap" GroupHeaderTemplate="{StaticResource DataTemplate1}" GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" HorizontalContentAlignment="Left" HorizontalAlignment="Left">
                 <telerikData:RadJumpList.ItemTemplate>
                         <DataTemplate>
-                        <Grid Margin="15,20,0,0" Width="Auto">
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible"
+                                      VerticalScrollBarVisibility="Disabled">
+                            <Grid Margin="15,20,0,0" Width="Auto">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="109"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                             <Border Margin="0,-1,0,0" Canvas.ZIndex="2" Grid.Column="0" Width="105" Height="105" CornerRadius="108" BorderThickness="1" BorderBrush="#800C0C0C">
                                 <Border.Background>
@@ -115,15 +118,18 @@
                                 </Border.Background>
                             </Border>
                             <Image Grid.Column="0" Width="108" Height="108" Source="{Binding Pic}" VerticalAlignment="Center" />
-                                <StackPanel Grid.Column="1" Margin="15,-5,0,0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="Auto">
+                            
+                                <StackPanel Grid.Column="1" Margin="15,-5,0,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Width="Auto">
                                     <TextBlock Text="{Binding Display_name}" TextWrapping="NoWrap" Style="{StaticResource CategoryDarkTextblockStyle}" />
                                     <!--<TextBlock Text="{Binding Desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />-->
                                 <TextBlock Text="{Binding Short_Create_time}" TextWrapping="NoWrap" Style="{StaticResource OtherTextblockStyle}" Margin="0,4,0,0" />
                                 </StackPanel>
                             </Grid>
-                        </DataTemplate>
+                        </ScrollViewer>
+                    </DataTemplate>
                 </telerikData:RadJumpList.ItemTemplate>
-            </telerikData:RadJumpList>            
+            </telerikData:RadJumpList>
+
         </Grid>
 	</Grid>
 

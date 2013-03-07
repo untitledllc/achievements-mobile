@@ -21,7 +21,7 @@
                             shell:SystemTray.Opacity="0"
                             shell:SystemTray.BackgroundColor="White"
                             shell:SystemTray.ForegroundColor="Black"
-                            DataContext="{Binding Main, Source={StaticResource Locator}}">
+                            DataContext="{Binding Main, Source={StaticResource Locator}}" MinHeight="700">
 
     <phone:PhoneApplicationPage.Resources>
         <!--<itsbeta_wp7:BonusColorConverter x:Key="BonusColorConverter"/>-->
@@ -31,7 +31,7 @@
         <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="{Binding Path=LocalizedResources.loading, Source={StaticResource LocalizedStrings}}" />
     </shell:SystemTray.ProgressIndicator>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Loaded="LayoutRoot_Loaded">
     	<Grid.Background>
             <ImageBrush ImageSource="images/Background.png" AlignmentY="Top" AlignmentX="Left" />
         </Grid.Background>
@@ -104,7 +104,7 @@
                                     <Grid.Background>
                                         <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_middle.png" />
                                     </Grid.Background>
-                                    <StackPanel Margin="14,50,20,10">
+                                    <StackPanel Margin="25,50,20,10">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Path=CurrentAchieve.Category_name}" Style="{StaticResource OtherTextblockStyle}"/>
                                             <TextBlock Text=", " Style="{StaticResource OtherTextblockStyle}"/>
@@ -167,12 +167,12 @@
                                                    Style="{StaticResource BonusHeaderStyle}"
                                                    TextWrapping="Wrap" Foreground="White" />
                                             </Border>                                        
-                                        <StackPanel Margin="8,10,20,20">
+                                        <StackPanel Margin="19,10,20,20">
                                          <msp:HTMLTextBox Margin="-8,0,0,0" Html="{Binding Bonus_desc}" TextWrapping="Wrap" 
                                                           Style="{StaticResource OtherTextblockStyleHtmlTextBox}"
                                                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                                          Foreground="#FF4c4c4b"/>
+                                                          Foreground="#FF4c4c4b" />
                                         </StackPanel>
                                         </StackPanel>
                                     </Grid>

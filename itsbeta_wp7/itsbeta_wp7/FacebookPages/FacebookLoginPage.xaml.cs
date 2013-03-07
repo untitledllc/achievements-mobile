@@ -136,6 +136,7 @@ namespace facebook_windows_phone_sample.Pages
                     ViewModelLocator.UserStatic.FacebookToken = accessToken;
                     ViewModelLocator.UserStatic.GetFBUserInfo();
                     //ViewModelLocator.UserStatic.GetPlayerId();
+                    ViewModelLocator.MainStatic.Loading = true;
                     ViewModelLocator.UserStatic.GetItsbetaAchieve();
                     
 

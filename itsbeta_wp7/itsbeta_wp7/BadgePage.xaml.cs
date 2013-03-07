@@ -2,9 +2,46 @@
 using System.Windows.Data;
 using System;
 using System.Windows.Media;
+using itsbeta_wp7.ViewModel;
+using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace itsbeta_wp7
 {
+    /// <summary>
+    /// Description for BadgePage.
+    /// </summary>
+    public partial class BadgePage : PhoneApplicationPage
+    {
+        /// <summary>
+        /// Initializes a new instance of the BadgePage class.
+        /// </summary>
+        public BadgePage()
+        {
+            InitializeComponent();
+        }
+
+        private void LayoutRoot_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (ViewModelLocator.MainStatic.CurrentAchieve == null)
+            {
+                if (ViewModelLocator.MainStatic.Achieves.FirstOrDefault(c => c.Badge_name == "itsbeta") != null)
+                {
+                    ViewModelLocator.MainStatic.CurrentAchieve = ViewModelLocator.MainStatic.Achieves.FirstOrDefault(c => c.Badge_name == "itsbeta");
+                }
+                else
+                {
+                    try
+                    {
+                        NavigationService.GoBack();
+                    }
+                    catch { };
+                };
+            };
+        }
+    }
+
+
     public class BonusColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -26,20 +63,6 @@ namespace itsbeta_wp7
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
-        }
-    }
-
-    /// <summary>
-    /// Description for BadgePage.
-    /// </summary>
-    public partial class BadgePage : PhoneApplicationPage
-    {
-        /// <summary>
-        /// Initializes a new instance of the BadgePage class.
-        /// </summary>
-        public BadgePage()
-        {
-            InitializeComponent();
         }
     }
 }

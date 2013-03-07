@@ -251,7 +251,7 @@
     <Resource Include="Background_panorama_light.png" />
     <Resource Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Resource Include="Toolkit.Content\ApplicationBar.Check.png" />
-    <Resource Include="images\Achive-itsbeta.png" />
+    <Content Include="images\Achive-itsbeta.png" />
     <Content Include="icons\appbar.refresh.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

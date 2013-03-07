@@ -85,6 +85,7 @@ namespace itsbeta_wp7.ViewModel
                 if (_main == null)
                 {
                     CreateMain();
+                    _main.LoadFromIsolatedStorage();
                 }
 
                 return _main;
