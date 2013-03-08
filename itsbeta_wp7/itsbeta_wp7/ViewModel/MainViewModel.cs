@@ -19,6 +19,8 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Phone;
 using System.Windows.Resources;
 using Microsoft.Phone.Net.NetworkInformation;
+using ImageTools.IO.Png;
+using ImageTools;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -316,9 +318,12 @@ namespace itsbeta_wp7.ViewModel
                 string filePath = System.IO.Path.Combine(imageFolder, shareJPEG);
                 using (var isoFileStream = isoStore.CreateFile(filePath))
                 {
-                    var width = wb.PixelWidth;
-                    var height = wb.PixelHeight;
-                    wb.SaveJpeg(isoFileStream, width, height, 0, 100);
+                    var width = 150;//wb.PixelWidth;
+                    var height = 150;//wb.PixelHeight;
+                    //wb.SaveJpeg(isoFileStream, width, height, 0, 100);
+                    var encoder = new PngEncoder();
+                    wb = new WriteableBitmap(bi);
+                    encoder.Encode(wb.ToImage(), isoFileStream);
                 }
             }
         }
