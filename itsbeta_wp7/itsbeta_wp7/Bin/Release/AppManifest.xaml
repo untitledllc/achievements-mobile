@@ -17,10 +17,12 @@
     <AssemblyPart x:Name="Silverlight_ZXing_Core" Source="Silverlight_ZXing_Core.dll" />
     <AssemblyPart x:Name="System.Windows.Interactivity" Source="System.Windows.Interactivity.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Controls.Data" Source="Telerik.Windows.Controls.Data.dll" />
+    <AssemblyPart x:Name="Telerik.Windows.Controls.DataVisualization" Source="Telerik.Windows.Controls.DataVisualization.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Controls.Primitives" Source="Telerik.Windows.Controls.Primitives.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Core" Source="Telerik.Windows.Core.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Data" Source="Telerik.Windows.Data.dll" />
     <AssemblyPart x:Name="WPExtensions" Source="WPExtensions.dll" />
+    <AssemblyPart x:Name="Microsoft.Practices.ServiceLocation" Source="Microsoft.Practices.ServiceLocation.dll" />
     <AssemblyPart Source="ru-RU/itsbeta_wp7.resources.dll" />
     <AssemblyPart Source="zh-CN/itsbeta_wp7.resources.dll" />
   </Deployment.Parts>

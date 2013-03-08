@@ -15,7 +15,7 @@ using System.Net;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Windows.Media.Imaging;
-//using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Media;
 using Microsoft.Phone;
 using System.Windows.Resources;
 using Microsoft.Phone.Net.NetworkInformation;
