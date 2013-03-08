@@ -278,23 +278,26 @@ namespace itsbeta_wp7.ViewModel
                 {
                     if (count > 0)
                     {
-                        /*WebClient client = new WebClient();
+                        WebClient client = new WebClient();
                         client.OpenReadCompleted += (s, e) =>
                         {
                             PicToIsoStore(e.Result);
-                        };
-                        client.OpenReadAsync(new Uri(LastAchieves.First().Pic, UriKind.Absolute));*/
 
-                        StandardTileData newTile = new StandardTileData
-                        {
-                            //Title = "Itsbeta",
-                            //BackgroundImage = new Uri("tile_image.png", UriKind.Relative),
-                            Count = count,
-                            BackTitle = LastAchieves.First().Display_name,
-                            //BackBackgroundImage = new Uri(LastAchieves.First().Pic),
-                            //BackContent = "Content for back tile."
+                            string imageFolder = @"\Shared\ShellContent";
+                            string shareJPEG = "backtile.jpg";
+                            string filePath = System.IO.Path.Combine(imageFolder, shareJPEG);  
+                            StandardTileData newTile = new StandardTileData
+                            {
+                                //Title = "Itsbeta",
+                                //BackgroundImage = new Uri("tile_image.png", UriKind.Relative),
+                                Count = count,
+                                BackTitle = LastAchieves.First().Display_name,
+                                BackBackgroundImage = new Uri(@"isostore:" + filePath, UriKind.Absolute)
+                                //BackContent = "Content for back tile."
+                            };
+                            appTile.Update(newTile);
                         };
-                        appTile.Update(newTile);
+                        client.OpenReadAsync(new Uri(LastAchieves.First().Pic, UriKind.Absolute));
                     };
                 };
             }
@@ -303,18 +306,21 @@ namespace itsbeta_wp7.ViewModel
 
         private void PicToIsoStore(Stream pic)
         {
-            /*using (var isoStore = IsolatedStorageFile.GetUserStoreForApplication())
+            using (var isoStore = IsolatedStorageFile.GetUserStoreForApplication())
             {
                 var bi = new BitmapImage();
                 bi.SetSource(pic);
                 var wb = new WriteableBitmap(bi);
-                using (var isoFileStream = isoStore.CreateFile("somepic.jpg"))
+                string imageFolder = @"\Shared\ShellContent";
+                string shareJPEG = "backtile.jpg";
+                string filePath = System.IO.Path.Combine(imageFolder, shareJPEG);
+                using (var isoFileStream = isoStore.CreateFile(filePath))
                 {
                     var width = wb.PixelWidth;
                     var height = wb.PixelHeight;
-                    Extensions.SaveJpeg(wb, isoFileStream, width, height, 0, 100);
+                    wb.SaveJpeg(isoFileStream, width, height, 0, 100);
                 }
-            }*/
+            }
         }
 
         ///badges.json
