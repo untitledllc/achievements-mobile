@@ -20,6 +20,10 @@ using System.Globalization;
 using System.Windows.Media;
 using MSPToolkit.Utilities;
 using Microsoft.Phone.Net.NetworkInformation;
+using ImageTools.IO.Png;
+using ImageTools;
+using ImageTools.Filtering;
+
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -175,10 +179,15 @@ namespace itsbeta_wp7.ViewModel
                         img.ImageOpened += (s, e) =>
                         {
                             WriteableBitmap wBitmap = new WriteableBitmap((BitmapImage)s);
+                 
                             MemoryStream ms = new MemoryStream();
-                            wBitmap.SaveJpeg(ms, 50, 50, 0, 100);
+                            //wBitmap.SaveJpeg(ms, 50, 50, 0, 100);
+                            var encoder = new PngEncoder();
                             BitmapImage bmp = new BitmapImage();
+                            var e1 = new ImageTools.IO.Png.PngDecoder();                            
+                            encoder.Encode(ExtendedImage.Resize(wBitmap.ToImage(), 50, new NearestNeighborResizer()), ms);
                             bmp.SetSource(ms);
+
                             toast.ImageSource = bmp;
 
                             ViewModelLocator.MainStatic.CurrentAchieve = ViewModelLocator.MainStatic.Achieves.FirstOrDefault(c => c.Badge_name == "itsbeta");
@@ -244,7 +253,7 @@ namespace itsbeta_wp7.ViewModel
                 request.AddParameter("user_token", FacebookToken);
                 request.AddParameter("badge_name", "itsbeta");
                 //for test
-                //request.AddParameter("unique", "f");
+                request.AddParameter("unique", "f");
 
                 client.ExecuteAsync(request, response =>
                 {
