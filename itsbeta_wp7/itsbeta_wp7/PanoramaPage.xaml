@@ -122,12 +122,12 @@
             	<controls:PanoramaItem.Header>
                     <Border Width="600" Margin="-12,0,0,0" Background="#FFb0aea7" VerticalAlignment="Top">
                         <TextBlock Text="{Binding Path=LocalizedResources.activation, Source={StaticResource LocalizedStrings}}" 
-                                   Margin="20,-15,0,0"
+                                   Margin="20,-15,0,0" Foreground="White"
                                    HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>
                 <StackPanel Margin="10,0,10,0">
-                    <Button Content="{Binding Path=LocalizedResources.use_qr_reader, Source={StaticResource LocalizedStrings}}" Name="QrReaderButton" Click="QrReaderButton_Click" Style="{StaticResource QRButtonStyle}" Height="120" />
+                    <Button Foreground="White" Content="{Binding Path=LocalizedResources.use_qr_reader, Source={StaticResource LocalizedStrings}}" Name="QrReaderButton" Click="QrReaderButton_Click" Style="{StaticResource QRButtonStyle}" Height="120" />
                     <Button Content="{Binding Path=LocalizedResources.enter_code, Source={StaticResource LocalizedStrings}}" Name="ActivateCOdeButton" Click="ActivateCOdeButton_Click" 
                             Margin="0,-5,0,0"
                             Style="{StaticResource ActivateButtonStyle}" Height="120" />
@@ -149,7 +149,7 @@
             	<controls:PanoramaItem.Header>
                     <Border Width="460" Margin="-12,0,0,0" Background="#FFa8cd8b" VerticalAlignment="Top">
                         <TextBlock Text="{Binding Path=LocalizedResources.profile, Source={StaticResource LocalizedStrings}}" Margin="15,-15,0,0"
-						HorizontalAlignment="Left" VerticalAlignment="Top"/>
+						HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>
                 <StackPanel Margin="10,-10,10,0">
@@ -255,7 +255,7 @@
             	</controls:PanoramaItem.Background>
             	<controls:PanoramaItem.Header>
                     <Border Width="600" Margin="-12,0,0,0" Background="#FFb095b6" VerticalAlignment="Top">
-                        <TextBlock Text="{Binding Path=LocalizedResources.last, Source={StaticResource LocalizedStrings}}"
+                        <TextBlock Foreground="White" Text="{Binding Path=LocalizedResources.last, Source={StaticResource LocalizedStrings}}"
 						Margin="15,-15,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     </Border>
                 </controls:PanoramaItem.Header>

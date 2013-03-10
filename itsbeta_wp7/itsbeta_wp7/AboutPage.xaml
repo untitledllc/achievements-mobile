@@ -87,7 +87,7 @@
                                          FontSize="24" BorderThickness="0" Margin="-10,0,0,20" HorizontalAlignment="Left" />
 
 
-                        <Button Content="{Binding Path=LocalizedResources.rate_app, Source={StaticResource LocalizedStrings}}" 
+                        <Button Foreground="White" Content="{Binding Path=LocalizedResources.rate_app, Source={StaticResource LocalizedStrings}}" 
                         Margin="-10,-7,-10,-10" Height="90"
                         Style="{StaticResource QRButtonStyle}"
                         Name="rate_app" Click="rate_app_Click" />
