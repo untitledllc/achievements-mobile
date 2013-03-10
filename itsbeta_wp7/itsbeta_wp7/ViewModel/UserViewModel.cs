@@ -183,8 +183,7 @@ namespace itsbeta_wp7.ViewModel
                             MemoryStream ms = new MemoryStream();
                             //wBitmap.SaveJpeg(ms, 50, 50, 0, 100);
                             var encoder = new PngEncoder();
-                            BitmapImage bmp = new BitmapImage();
-                            var e1 = new ImageTools.IO.Png.PngDecoder();                            
+                            BitmapImage bmp = new BitmapImage();                      
                             encoder.Encode(ExtendedImage.Resize(wBitmap.ToImage(), 50, new NearestNeighborResizer()), ms);
                             bmp.SetSource(ms);
 
@@ -253,7 +252,7 @@ namespace itsbeta_wp7.ViewModel
                 request.AddParameter("user_token", FacebookToken);
                 request.AddParameter("badge_name", "itsbeta");
                 //for test
-                request.AddParameter("unique", "f");
+                //request.AddParameter("unique", "f");
 
                 client.ExecuteAsync(request, response =>
                 {
@@ -457,13 +456,18 @@ namespace itsbeta_wp7.ViewModel
                 return _userLoaded;
             }
             set
-            {
-                _userLoaded = value;
-                if (_userLoaded == false)
+            {                
+                if (value == false)
                 {
-                    Dictionary<string, object> empty = new Dictionary<string,object>();
+                    Dictionary<string, object> empty = new Dictionary<string, object>();
                     SaveToIsolatedStorage(empty);
+                }
+                else {
+                    if ((_userLoaded==false) && (value==true)) {
+                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    };
                 };
+                _userLoaded = value;
                 RaisePropertyChanged("UserLoaded");
             }
         }

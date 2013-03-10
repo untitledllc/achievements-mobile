@@ -67,7 +67,20 @@ namespace itsbeta_wp7
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
+            //RootFrame.Navigating += new NavigatingCancelEventHandler(RootFrame_Navigating);
         }
+
+        /*private void RootFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+            e.Cancel = true;
+            RootFrame.Dispatcher.BeginInvoke(delegate
+            {
+                if (ViewModelLocator.UserStatic.UserLoaded == true)
+                    RootFrame.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                else
+                    RootFrame.Navigate(new Uri("/LoginPage.xaml", UriKind.Relative));
+            });
+        }*/
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated

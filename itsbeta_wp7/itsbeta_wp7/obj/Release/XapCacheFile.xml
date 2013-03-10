@@ -1,8 +1,8 @@
-﻿<xapCache source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\itsbeta_wp7.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="09.03.2013 0:54:22">
+﻿<xapCache source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\itsbeta_wp7.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="10.03.2013 15:47:59">
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="28.02.2013 17:11:04" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Background.png" archivePath="Background.png" lastWriteTime="06.03.2013 19:33:16" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="06.03.2013 19:02:54" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\itsbeta_wp7.dll" archivePath="itsbeta_wp7.dll" lastWriteTime="09.03.2013 0:54:20" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\itsbeta_wp7.dll" archivePath="itsbeta_wp7.dll" lastWriteTime="10.03.2013 15:47:57" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\packages\BugSense.WP7.0.9.9.1\lib\sl3-wp\BugSense.dll" archivePath="BugSense.dll" lastWriteTime="01.03.2013 13:00:51" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\packages\Coding4Fun.Toolkit.Audio.2.0.1\lib\wp71\Coding4Fun.Toolkit.Audio.dll" archivePath="Coding4Fun.Toolkit.Audio.dll" lastWriteTime="17.02.2013 17:22:24" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\packages\Coding4Fun.Toolkit.Controls.2.0.1\lib\wp71\Coding4Fun.Toolkit.Controls.dll" archivePath="Coding4Fun.Toolkit.Controls.dll" lastWriteTime="17.02.2013 17:22:24" />
@@ -34,8 +34,8 @@
   <file source="C:\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Data.dll" archivePath="Telerik.Windows.Data.dll" lastWriteTime="19.02.2013 10:10:48" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\packages\WPExtensions.1.3.7\lib\sl4-wp71\WPExtensions.dll" archivePath="WPExtensions.dll" lastWriteTime="27.02.2013 14:42:39" />
   <file source="C:\Program Files (x86)\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WP71\Microsoft.Practices.ServiceLocation.dll" archivePath="Microsoft.Practices.ServiceLocation.dll" lastWriteTime="25.10.2012 1:44:22" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\ru-RU\itsbeta_wp7.resources.dll" archivePath="ru-RU\itsbeta_wp7.resources.dll" lastWriteTime="09.03.2013 0:54:20" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\zh-CN\itsbeta_wp7.resources.dll" archivePath="zh-CN\itsbeta_wp7.resources.dll" lastWriteTime="09.03.2013 0:54:20" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\ru-RU\itsbeta_wp7.resources.dll" archivePath="ru-RU\itsbeta_wp7.resources.dll" lastWriteTime="10.03.2013 15:47:57" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\zh-CN\itsbeta_wp7.resources.dll" archivePath="zh-CN\itsbeta_wp7.resources.dll" lastWriteTime="10.03.2013 15:47:57" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\icons\appbar.add.rest.png" archivePath="icons\appbar.add.rest.png" lastWriteTime="29.08.2011 23:47:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\icons\appbar.cancel.rest.png" archivePath="icons\appbar.cancel.rest.png" lastWriteTime="29.08.2011 23:47:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\icons\appbar.check.rest.png" archivePath="icons\appbar.check.rest.png" lastWriteTime="29.08.2011 23:47:42" />
@@ -47,7 +47,7 @@
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Libs\Silverlight_ZXing_Core.dll" archivePath="Libs\Silverlight_ZXing_Core.dll" lastWriteTime="12.02.2013 1:41:56" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\MVVMLight.Nuget.Readme.txt" archivePath="MVVMLight.Nuget.Readme.txt" lastWriteTime="08.03.2013 11:10:15" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="06.03.2013 19:03:26" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="09.03.2013 0:54:21" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="10.03.2013 15:47:58" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\icons\appbar.add.rest.png" archivePath="icons\appbar.add.rest.png" lastWriteTime="29.08.2011 23:47:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\icons\appbar.cancel.rest.png" archivePath="icons\appbar.cancel.rest.png" lastWriteTime="29.08.2011 23:47:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\icons\appbar.check.rest.png" archivePath="icons\appbar.check.rest.png" lastWriteTime="29.08.2011 23:47:42" />

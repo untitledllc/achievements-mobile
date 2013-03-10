@@ -21,6 +21,8 @@ using System.Windows.Resources;
 using Microsoft.Phone.Net.NetworkInformation;
 using ImageTools.IO.Png;
 using ImageTools;
+using ImageTools.Filtering;
+using System.Windows.Media;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -293,7 +295,7 @@ namespace itsbeta_wp7.ViewModel
                                 //Title = "Itsbeta",
                                 //BackgroundImage = new Uri("tile_image.png", UriKind.Relative),
                                 Count = count,
-                                BackTitle = LastAchieves.First().Display_name,
+                                //BackTitle = LastAchieves.First().Display_name,
                                 BackBackgroundImage = new Uri(@"isostore:" + filePath, UriKind.Absolute)
                                 //BackContent = "Content for back tile."
                             };
@@ -318,11 +320,14 @@ namespace itsbeta_wp7.ViewModel
                 string filePath = System.IO.Path.Combine(imageFolder, shareJPEG);
                 using (var isoFileStream = isoStore.CreateFile(filePath))
                 {
-                    var width = 150;//wb.PixelWidth;
-                    var height = 150;//wb.PixelHeight;
+                    var width = 140;//wb.PixelWidth;
+                    var height = 140;//wb.PixelHeight;
                     //wb.SaveJpeg(isoFileStream, width, height, 0, 100);
                     var encoder = new PngEncoder();
                     wb = new WriteableBitmap(bi);
+                    //WriteableBitmap wb2 = new WriteableBitmap(210, 210);
+
+                    //encoder.Encode(ExtendedImage.Resize(wb.ToImage(), 210, new NearestNeighborResizer()), isoFileStream);
                     encoder.Encode(wb.ToImage(), isoFileStream);
                 }
             }
