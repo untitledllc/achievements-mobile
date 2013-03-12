@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using System;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -50,6 +51,12 @@ namespace itsbeta_wp7.ViewModel
         {
             get
             {
+                if (_color == "")
+                {
+                    Random randonGen = new Random();
+                    byte r = (byte)randonGen.Next(0, 255), g = (byte)randonGen.Next(0, 255), b = (byte)randonGen.Next(0, 255);
+                    _color = "#FF" + r.ToString("X2") + g.ToString("X2") + b.ToString("X2");
+                };
                 return _color;
             }
             set
@@ -95,6 +102,20 @@ namespace itsbeta_wp7.ViewModel
             {
                 _total_badges = value;
                 RaisePropertyChanged("Total_badges");
+            }
+        }
+
+        private int _bonuses_count = 0;
+        public int Bonuses_count
+        {
+            get
+            {
+                return _bonuses_count;
+            }
+            set
+            {
+                _bonuses_count = value;
+                RaisePropertyChanged("Bonuses_count");
             }
         }
 

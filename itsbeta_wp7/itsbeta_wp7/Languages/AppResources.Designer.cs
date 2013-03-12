@@ -133,6 +133,15 @@ namespace itsbeta_wp7 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to badges:.
+        /// </summary>
+        public static string badges_count {
+            get {
+                return ResourceManager.GetString("badges_count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  opened.
         /// </summary>
         public static string badges_opened_label {
@@ -156,6 +165,15 @@ namespace itsbeta_wp7 {
         public static string bonuses {
             get {
                 return ResourceManager.GetString("bonuses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to bonuses:.
+        /// </summary>
+        public static string bonuses_count {
+            get {
+                return ResourceManager.GetString("bonuses_count", resourceCulture);
             }
         }
         

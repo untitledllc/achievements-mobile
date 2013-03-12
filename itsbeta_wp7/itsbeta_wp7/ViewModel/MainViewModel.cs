@@ -117,9 +117,26 @@ namespace itsbeta_wp7.ViewModel
             get
             {
                 var items = (from item in Achieves
-                             where ((item.Bonus != "") && (item.Bonus != null))
+                             where (item.Bonuses.Count()>0)
                              select item);
                 return items.ToObservableCollection();
+            }
+            private set
+            {
+            }
+        }
+        public int BonusCount
+        {
+            get
+            {
+                int count = 0;
+                var items = (from item in Achieves
+                             where (item.Bonuses.Count() > 0)
+                             select item);
+                foreach (var item in items) {
+                    count += item.Bonuses.Count();
+                };
+                return count;
             }
             private set
             {
@@ -263,8 +280,8 @@ namespace itsbeta_wp7.ViewModel
                                         {
                                             pcount++;
                                         };
-                                            tempAchieves.Add(badge);
-
+                                        tempAchieves.Add(badge);
+                                        project.Bonuses_count += badge.Bonuses.Count();
                                     }                                    
                                     count += pcount;
                                     project.Activated_badges_count = pcount;
@@ -281,6 +298,7 @@ namespace itsbeta_wp7.ViewModel
 
                             Loading = false;
                             RaisePropertyChanged("BonusAchieves");
+                            RaisePropertyChanged("BonusCount");
                             RaisePropertyChanged("Categories");
                             RaisePropertyChanged("Projects");
                             RaisePropertyChanged("Achieves");

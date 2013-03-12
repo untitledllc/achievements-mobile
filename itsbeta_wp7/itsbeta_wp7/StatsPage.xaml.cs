@@ -47,11 +47,6 @@ namespace itsbeta_wp7
                     testSetter.Value = project.Color.Replace("#","#FF").ToUpper();
                     testStyle.Setters.Add(testSetter);
 
-                    testSetter = new Setter();
-                    testSetter.Property = System.Windows.Shapes.Path.StrokeProperty;
-                    testSetter.Value = "Black";
-                    testStyle.Setters.Add(testSetter);
-
                     (sender as PieSeries).SliceStyles.Add(testStyle);
                 } 
                 else {
@@ -63,11 +58,6 @@ namespace itsbeta_wp7
                     byte r = (byte)randonGen.Next(0, 255), g = (byte)randonGen.Next(0, 255), b = (byte)randonGen.Next(0, 255);
                     string color = "#FF"+r.ToString("X2") + g.ToString("X2") + b.ToString("X2");
                     testSetter.Value = color;
-                    testStyle.Setters.Add(testSetter);
-
-                    testSetter = new Setter();
-                    testSetter.Property = System.Windows.Shapes.Path.StrokeProperty;
-                    testSetter.Value = "Black";
                     testStyle.Setters.Add(testSetter);
 
                     (sender as PieSeries).SliceStyles.Add(testStyle);

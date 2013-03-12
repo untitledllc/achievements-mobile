@@ -141,11 +141,17 @@
   <data name="all_badges" xml:space="preserve">
     <value>所有徽章：</value>
   </data>
+  <data name="badges_count" xml:space="preserve">
+    <value>徽章：</value>
+  </data>
   <data name="badges_opened_label" xml:space="preserve">
     <value> 打开</value>
   </data>
   <data name="bonuses" xml:space="preserve">
     <value>奖励：</value>
+  </data>
+  <data name="bonuses_count" xml:space="preserve">
+    <value>奖金：</value>
   </data>
   <data name="categories" xml:space="preserve">
     <value>类别</value>

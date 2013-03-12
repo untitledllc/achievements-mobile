@@ -141,6 +141,9 @@
   <data name="all_badges" xml:space="preserve">
     <value>All Badges:</value>
   </data>
+  <data name="badges_count" xml:space="preserve">
+    <value>badges:</value>
+  </data>
   <data name="badges_opened_label" xml:space="preserve">
     <value> opened</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="bonuses" xml:space="preserve">
     <value>Bonuses:</value>
+  </data>
+  <data name="bonuses_count" xml:space="preserve">
+    <value>bonuses:</value>
   </data>
   <data name="categories" xml:space="preserve">
     <value>categories</value>

@@ -218,7 +218,7 @@
                                         <TextBlock Margin="0,14,0,0"
                                             Text="{Binding Path=LocalizedResources.bonuses, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
                                     <TextBlock 
-                                        Text="{Binding BonusAchieves.Count}" Foreground="White" 
+                                        Text="{Binding BonusCount}" Foreground="White" 
                                         Style="{StaticResource StatsTextblockStyle}"
                                                DataContext="{Binding Main, Source={StaticResource Locator}}"/>
                                 </StackPanel>
@@ -300,27 +300,6 @@
                                         <TextBlock Margin="90,14,0,0" Text="{Binding Display_name}" Style="{StaticResource BadgesTextblockStyle}" HorizontalAlignment="Left" />
                                     </StackPanel>
                                 </Grid>
-                                <!--<Grid Margin="10,15,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="141" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-									<Grid.Background>
-                						<ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_labels_norm.png" AlignmentX="Right" Stretch="None" />
-           	 						</Grid.Background>
-                                    <Border Margin="0" Canvas.ZIndex="2" Grid.Column="0" Width="140" Height="140" CornerRadius="140" BorderThickness="1" BorderBrush="#800C0C0C">
-                                        <Border.Background>
-                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                <GradientStop Color="#4A010101" Offset="1" />
-                                                <GradientStop Color="#4AFEFEFE" Offset="0" />
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                    </Border>
-                                    <Image Margin="0" Canvas.ZIndex="1" Grid.Column="0" Width="140" Height="140" Source="{Binding Pic}"/>
-                                    <StackPanel Height="66" Grid.Column="1" Margin="10,48,0,0" UseLayoutRounding="True" VerticalAlignment="Top">
-                                        <TextBlock Margin="0,5,0,0" Text="{Binding Display_name}" Style="{StaticResource BadgesTextblockStyle}" HorizontalAlignment="Left" />
-                                    </StackPanel>
-                                </Grid>-->
                             </DataTemplate>
                         </telerikData:RadJumpList.ItemTemplate>
                     </telerikData:RadJumpList>					

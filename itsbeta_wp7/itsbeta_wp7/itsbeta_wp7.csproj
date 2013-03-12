@@ -273,7 +273,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Achivments_WP7_slicing_panoramaBackground.png" />
     <Resource Include="ApplicationIcon.png" />
     <Resource Include="Background.png" />
     <Content Include="icons\appbar.add.rest.png">

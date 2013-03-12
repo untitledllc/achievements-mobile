@@ -196,12 +196,26 @@
       <Setter Property="FontFamily" Value="Segoe WP" />
       <Setter Property="FontSize" Value="21" />
     </Style>
+
+        <Style x:Key="BadgesDarkTextblockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF4c4c4b" />
+            <Setter Property="FontFamily" Value="Segoe WP" />
+            <Setter Property="FontSize" Value="21" />
+        </Style>
+
     <Style x:Key="OtherTextblockStyle" TargetType="TextBlock">
       <Setter Property="Foreground" Value="#FF4c4c4b" />
       <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}" />
       <Setter Property="FontSize" Value="24" />
     </Style>
-    <Style x:Key="OtherDarkTextblockStyle" TargetType="TextBlock">
+
+        <Style x:Key="OtherLightTextblockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF92918a" />
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}" />
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+
+        <Style x:Key="OtherDarkTextblockStyle" TargetType="TextBlock">
       <Setter Property="Foreground" Value="#FF4c4c4b" />
       <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}" />
       <Setter Property="FontSize" Value="24" />

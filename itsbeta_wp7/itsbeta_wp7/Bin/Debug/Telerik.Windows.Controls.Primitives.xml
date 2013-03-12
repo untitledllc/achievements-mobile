@@ -4530,7 +4530,7 @@
             This class defines a type of a MessageBox that contains an input field for a password or for a plain text.
             </summary>
         </member>
-        <member name="M:Telerik.Windows.Controls.RadInputPrompt.Show(System.Object,Telerik.Windows.Controls.MessageBoxButtons,System.Object,Telerik.Windows.Controls.InputMode,System.Windows.Style,System.Object,System.Boolean,System.Boolean,System.Windows.HorizontalAlignment,System.Windows.VerticalAlignment,System.Action{Telerik.Windows.Controls.InputPromptClosedEventArgs})">
+        <member name="M:Telerik.Windows.Controls.RadInputPrompt.Show(System.Object,Telerik.Windows.Controls.MessageBoxButtons,System.Object,Telerik.Windows.Controls.InputMode,System.Windows.Style,System.Object,System.Boolean,System.Boolean,System.Windows.HorizontalAlignment,System.Windows.VerticalAlignment,System.Action{Telerik.Windows.Controls.InputPromptClosedEventArgs},System.Action{System.Windows.Input.KeyEventArgs})">
             <summary>
             Shows RadInputPrompt.
             </summary>
@@ -4545,8 +4545,9 @@
             <param name="horizontalAlignment">The horizontal alignment of the input promt on the device page.</param>
             <param name="verticalAlignment">The vertical alignment of the input promt on the device page.</param>
             <param name="closedHandler">A callback that will be invoked when the input prompt closes.</param>
+            <param name="keyDownHandler">A callback that will be invoked when a key is pressed.</param>
         </member>
-        <member name="M:Telerik.Windows.Controls.RadInputPrompt.Show(System.Collections.Generic.IEnumerable{System.Object},System.Object,System.Object,Telerik.Windows.Controls.InputMode,System.Windows.Style,System.Object,System.Boolean,System.Boolean,System.Windows.HorizontalAlignment,System.Windows.VerticalAlignment,System.Action{Telerik.Windows.Controls.InputPromptClosedEventArgs})">
+        <member name="M:Telerik.Windows.Controls.RadInputPrompt.Show(System.Collections.Generic.IEnumerable{System.Object},System.Object,System.Object,Telerik.Windows.Controls.InputMode,System.Windows.Style,System.Object,System.Boolean,System.Boolean,System.Windows.HorizontalAlignment,System.Windows.VerticalAlignment,System.Action{Telerik.Windows.Controls.InputPromptClosedEventArgs},System.Action{System.Windows.Input.KeyEventArgs})">
             <summary>
             Shows RadInputPrompt.
             </summary>
@@ -4561,8 +4562,9 @@
             <param name="horizontalAlignment">The horizontal alignment of the input promt on the device page.</param>
             <param name="verticalAlignment">The vertical alignment of the input promt on the device page.</param>
             <param name="closedHandler">A callback that will be invoked when the input prompt closes.</param>
+            <param name="keyDownHandler">A callback that will be invoked when a key is pressed.</param>
         </member>
-        <member name="M:Telerik.Windows.Controls.RadInputPrompt.Show(System.Windows.DataTemplate,System.Object,System.Collections.Generic.IEnumerable{System.Object},System.Object,Telerik.Windows.Controls.InputMode,System.Windows.Style,System.Object,System.Boolean,System.Boolean,System.Windows.HorizontalAlignment,System.Windows.VerticalAlignment,System.Action{Telerik.Windows.Controls.InputPromptClosedEventArgs})">
+        <member name="M:Telerik.Windows.Controls.RadInputPrompt.Show(System.Windows.DataTemplate,System.Object,System.Collections.Generic.IEnumerable{System.Object},System.Object,Telerik.Windows.Controls.InputMode,System.Windows.Style,System.Object,System.Boolean,System.Boolean,System.Windows.HorizontalAlignment,System.Windows.VerticalAlignment,System.Action{Telerik.Windows.Controls.InputPromptClosedEventArgs},System.Action{System.Windows.Input.KeyEventArgs})">
             <summary>
             Shows RadInputPrompt.
             </summary>
@@ -4578,8 +4580,9 @@
             <param name="horizontalAlignment">The horizontal alignment of the input promt on the device page.</param>
             <param name="verticalAlignment">The vertical alignment of the input promt on the device page.</param>
             <param name="closedHandler">A callback that will be invoked when the input prompt closes.</param>
+            <param name="keyDownHandler">A callback that will be invoked when a key is pressed.</param>
         </member>
-        <member name="M:Telerik.Windows.Controls.RadInputPrompt.Show(System.Windows.Controls.ControlTemplate,System.Object,System.Collections.Generic.IEnumerable{System.Object},System.Object,Telerik.Windows.Controls.InputMode,System.Windows.Style,System.Object,System.Boolean,System.Boolean,System.Windows.HorizontalAlignment,System.Windows.VerticalAlignment,System.Action{Telerik.Windows.Controls.InputPromptClosedEventArgs})">
+        <member name="M:Telerik.Windows.Controls.RadInputPrompt.Show(System.Windows.Controls.ControlTemplate,System.Object,System.Collections.Generic.IEnumerable{System.Object},System.Object,Telerik.Windows.Controls.InputMode,System.Windows.Style,System.Object,System.Boolean,System.Boolean,System.Windows.HorizontalAlignment,System.Windows.VerticalAlignment,System.Action{Telerik.Windows.Controls.InputPromptClosedEventArgs},System.Action{System.Windows.Input.KeyEventArgs})">
             <summary>
             Shows RadInputPrompt.
             </summary>
@@ -4595,6 +4598,13 @@
             <param name="horizontalAlignment">The horizontal alignment of the input promt on the device page.</param>
             <param name="verticalAlignment">The vertical alignment of the input promt on the device page.</param>
             <param name="closedHandler">A callback that will be invoked when the input prompt closes.</param>
+            <param name="keyDownHandler">A callback that will be invoked when a key is pressed.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadInputPrompt.Close(System.Int32)">
+            <summary>
+            Closes the CurrentInputPrompt as if the specified with selected button index was pressed.
+            </summary>
+            <param name="selectedButtonIndex">Index of the selected button.</param>
         </member>
         <member name="T:Telerik.Windows.Controls.InputPrompt.RadInputPromptControl">
             <summary>
@@ -7609,7 +7619,7 @@
         </member>
         <member name="T:Telerik.Windows.Controls.PhoneTextBox.TextBoxActionButton">
             <summary>
-            Represents an ImageButton which is part of the RadTextBox and has additional states to provide better user experience.
+            Represents an ImageButton which is part of the <see cref="T:Telerik.Windows.Controls.RadTextBox"/> or <see cref="T:Telerik.Windows.Controls.RadPasswordBox"/> and has additional states to provide better user experience.
             </summary>
         </member>
         <member name="M:Telerik.Windows.Controls.PhoneTextBox.TextBoxActionButton.#ctor">
@@ -7621,6 +7631,45 @@
             <summary>
             Builds the visual tree for the <see cref="T:System.Windows.Controls.Button"/> when a new template is applied.
             </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.PhoneTextBox.TextBoxSecondaryButton">
+            <summary>
+            Represents an ImageButton which is part of the <see cref="T:Telerik.Windows.Controls.RadTextBox"/> or <see cref="T:Telerik.Windows.Controls.RadPasswordBox"/> and has a custom default style.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PhoneTextBox.TextBoxSecondaryButton.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.PhoneTextBox.TextBoxSecondaryButton"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.PhoneTextBox.TextToVisibilityConverter">
+            <summary>
+            Represents a converter that may convert value of type Text to Visibility.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PhoneTextBox.TextToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the source data before passing it to the target for display in the UI.
+            </summary>
+            <param name="value">The source data being passed to the target.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the target dependency property.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>
+            The value to be passed to the target dependency property.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PhoneTextBox.TextToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the target data before passing it to the source object.  This method is called only in <see cref="F:System.Windows.Data.BindingMode.TwoWay"/> bindings.
+            </summary>
+            <param name="value">The target data being passed to the source.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the source object.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>
+            The value to be passed to the source object.
+            </returns>
         </member>
         <member name="T:Telerik.Windows.Controls.PhoneTextBox.ValidationState">
             <summary>
@@ -10644,9 +10693,35 @@
             Identifies the PickerButtonStyle dependency property.
             </summary>
         </member>
+        <member name="F:Telerik.Windows.Controls.RadPickerBox.ActionButtonVisibilityProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadPickerBox.ActionButtonVisibility"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadPickerBox.ActionButtonStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadPickerBox.ActionButtonStyle"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadPickerBox.ActionButtonCommandProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadPickerBox.ActionButtonCommand"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadPickerBox.ActionButtonCommandParameterProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadPickerBox.ActionButtonCommandParameter"/> dependency property.
+            </summary>
+        </member>
         <member name="M:Telerik.Windows.Controls.RadPickerBox.#ctor">
             <summary>
             Initializes a new instance of the RadPickerBox class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadPickerBox.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:Telerik.Windows.Controls.RadPickerBox"/> is reclaimed by garbage collection.
             </summary>
         </member>
         <member name="M:Telerik.Windows.Controls.RadPickerBox.OnApplyTemplate">
@@ -10660,16 +10735,47 @@
             </summary>
             <returns>Returns the button, which shows the popup when clicked, from the control template.</returns>
         </member>
+        <member name="M:Telerik.Windows.Controls.RadPickerBox.OnActionButtonTap(System.Windows.Input.GestureEventArgs)">
+            <summary>
+            Raises the <see cref="E:ActionButtonTap"/> event.
+            </summary>
+            <param name="args">The <see cref="T:System.Windows.Input.GestureEventArgs"/> instance containing the event data.</param>
+        </member>
         <member name="M:Telerik.Windows.Controls.RadPickerBox.OnCreateAutomationPeer">
             <summary>
             Creates the automation peer for <see cref="T:Telerik.Windows.Controls.RadPickerBox"/>.
             </summary>
             <returns>An automation peer associated with this instance or <see cref="T:Telerik.Windows.Controls.RadPickerBox"/>.</returns>
         </member>
+        <member name="E:Telerik.Windows.Controls.RadPickerBox.ActionButtonTap">
+            <summary>
+            Occurs when the ActionButton is tapped.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.RadPickerBox.PickerButtonStyle">
             <summary>
             Gets or sets an instance of the <see cref="T:System.Windows.Style"/> class
             that represents the style applied to the button that opens the popup of the picker box.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadPickerBox.ActionButtonVisibility">
+            <summary>
+            Gets or sets the visibility of the action button.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadPickerBox.ActionButtonStyle">
+            <summary>
+            Gets or sets the style of the action button.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadPickerBox.ActionButtonCommand">
+            <summary>
+            Gets or sets the command for the action button.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadPickerBox.ActionButtonCommandParameter">
+            <summary>
+            Gets or sets the command parameter for the action button.
             </summary>
         </member>
         <member name="T:Telerik.Windows.Controls.RadPickerBoxAutomationPeer">

@@ -12,6 +12,10 @@
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
+                            xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+                            xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                            xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
+                            xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
                             xmlns:chart="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Chart"
                             xmlns:chartEngine="clr-namespace:Telerik.Charting;assembly=Telerik.Windows.Controls.Chart"
                             shell:SystemTray.IsVisible="True"
@@ -53,27 +57,11 @@
         <Grid x:Name="ContentPanel"
               Grid.Row="1"
               Margin="18,0,12,0">
-
-            <Grid Height="490">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Image Grid.Row="0" Width="448" Canvas.ZIndex="0"
-                           Height="52" Source="/itsbeta_wp7;component/images/Paper_top.png" 
-                           Margin="0,0,0,0" />
-
-                <Grid Grid.Row="1" Width="448" Canvas.ZIndex="1">
-                    <Grid.Background>
-                        <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_middle.png" />
-                    </Grid.Background>
-
-                    <StackPanel Margin="30,-30,30,0" Loaded="StackPanel_Loaded_1">
-                        <chart:RadPieChart Width="350" Height="350" Name="AchievesChart">                            
+            <ScrollViewer>
+                <StackPanel Margin="10,30,10,0" Loaded="StackPanel_Loaded_1">
+                        <chart:RadPieChart Width="430" Height="430" Name="AchievesChart">                            
                             <!--ItemsSource="{Binding Path=Categories}"-->                            
-                            <chart:PieSeries x:Name="AchievesChartPieces"                                
+                            <chart:PieSeries x:Name="AchievesChartPieces"
                                 DataContext="{Binding Main, Source={StaticResource Locator}}" Loaded="AchievesChartPieces_Loaded">                                
                                 <chart:PieSeries.LabelDefinitions>
                                     <chart:ChartSeriesLabelDefinition Binding="ChartLabel"/>
@@ -83,43 +71,50 @@
                                         <TextBlock Text="{Binding}" Foreground="White"/>
                                     </DataTemplate>
                                 </chart:PieSeries.LabelTemplate>
-                                <!--<chart:PieSeries.SliceStyles>
-                                    <Style TargetType="Path">
-                                        <Setter Property="Fill" Value="Orange"/>
-                                        <Setter Property="Stroke" Value="Black" />
-                                    </Style>
-
-                                    <Style TargetType="Path">
-                                        <Setter Property="Fill" Value="Gray"/>
-                                        <Setter Property="Stroke" Value="Black" />
-                                    </Style>
-
-                                    <Style TargetType="Path">
-                                        <Setter Property="Fill" Value="Cyan"/>
-                                        <Setter Property="Stroke" Value="Black" />
-                                    </Style>
-
-                                    <Style TargetType="Path">
-                                        <Setter Property="Fill" Value="Purple"/>
-                                        <Setter Property="Stroke" Value="Black" />
-                                    </Style>
-
-                                    <Style TargetType="Path">
-                                        <Setter Property="Fill" Value="Green"/>
-                                        <Setter Property="Stroke" Value="Black" />
-                                    </Style>
-                                </chart:PieSeries.SliceStyles>-->
                             </chart:PieSeries>
                         </chart:RadPieChart>
-                    </StackPanel>
+                    
 
-                </Grid>
-
-                <Image Grid.Row="2" Width="448" Canvas.ZIndex="0"
-                           Height="52" Source="/itsbeta_wp7;component/images/Paper_bottom.png" 
-                           Margin="0,-35,0,0" />
-            </Grid>
-
+                <ListBox x:Name="ProjectsLegend"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                     Margin="0,15,0,0"
+                                     ItemsSource="{Binding Path=Projects}"
+                                     DataContext="{Binding Main, Source={StaticResource Locator}}">
+                        <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,0,0,0" telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border HorizontalAlignment="Center"
+                                        Margin="0,-2,0,0" 
+                                        telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
+                                        VerticalAlignment="Center"
+                                        Background="{Binding Color}"
+                                        Canvas.ZIndex="2" Grid.Column="0" Width="30" Height="30" CornerRadius="0" BorderThickness="1">
+                                </Border>                                
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0" UseLayoutRounding="True" HorizontalAlignment="Stretch">
+                                        <TextBlock Margin="0,8,0,0" Text="{Binding Display_name}" Style="{StaticResource BadgesDarkTextblockStyle}" HorizontalAlignment="Left" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="0" Text="{Binding Path=LocalizedResources.badges_count, Source={StaticResource LocalizedStrings}}" 
+                                                       Style="{StaticResource BadgesTextblockStyle}" HorizontalAlignment="Left" />
+                                            <TextBlock Margin="0" Text=" " Style="{StaticResource BadgesTextblockStyle}" HorizontalAlignment="Left" />
+                                            <TextBlock Margin="0" Text="{Binding Activated_badges_count}" Style="{StaticResource BadgesTextblockStyle}" HorizontalAlignment="Left" />
+                                            <TextBlock Margin="0" Text=",  " Style="{StaticResource BadgesTextblockStyle}" HorizontalAlignment="Left" />
+                                            <TextBlock Margin="0" Text="{Binding Path=LocalizedResources.bonuses_count, Source={StaticResource LocalizedStrings}}" 
+                                                       Style="{StaticResource BadgesTextblockStyle}" HorizontalAlignment="Left" />
+                                            <TextBlock Margin="0" Text=" " Style="{StaticResource BadgesTextblockStyle}" HorizontalAlignment="Left" />
+                                            <TextBlock Margin="0" Text="{Binding Bonuses_count}" Style="{StaticResource BadgesTextblockStyle}" HorizontalAlignment="Left" />
+                                        </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </ScrollViewer>
 
         </Grid>
     </Grid>
