@@ -186,6 +186,9 @@
   <data name="send_email" xml:space="preserve">
     <value>发送电子邮件</value>
   </data>
+  <data name="statistics" xml:space="preserve">
+    <value>统计</value>
+  </data>
   <data name="subcategories" xml:space="preserve">
     <value>小类：</value>
   </data>

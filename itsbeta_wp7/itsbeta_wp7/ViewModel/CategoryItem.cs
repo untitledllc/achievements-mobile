@@ -88,6 +88,17 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        public string ChartLabel
+        {
+            private set
+            {
+            }
+            get
+            {
+                return Display_name+"("+Activated_badges_count+")";
+            }
+        }
+
         public string Display_name_upper
         {
             get

@@ -175,7 +175,7 @@
                             <Image Grid.Row="0" Height="130"
                                    Width="135" Margin="36,32,0,0" Source="{Binding UserProfilePicture}" DataContext="{Binding User, Source={StaticResource Locator}}" 
                                    Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Stretch" />
-                            <StackPanel Grid.Row="0" Margin="15,27,30,25" Grid.Column="1" VerticalAlignment="Top">
+                            <StackPanel Height="140" Grid.Row="0" Margin="15,27,30,25" Grid.Column="1" VerticalAlignment="Top">
                                 <TextBlock Text="{Binding First_name}" Margin="0,-3,0,0" Style="{StaticResource ProfileTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
                                 <TextBlock Text="{Binding Last_name}" Margin="0,-9,0,0" Style="{StaticResource ProfileTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
                                 <StackPanel Margin="0,10,0,0">
@@ -195,7 +195,7 @@
 
                         <StackPanel Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
                             <StackPanel Orientation="Horizontal">
-                            <Grid Margin="10,0,0,10" Width="200" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Grid Margin="10,0,0,10" Width="200" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left" Tap="Grid_Tap_1">
                                 <Grid.Background>
                                     <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_blue.png" Stretch="None" />
                                 </Grid.Background>
@@ -210,7 +210,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <Grid Margin="10,0,0,10" Width="200" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Grid Margin="10,0,0,10" Width="200" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left" Name="Bonuses" Tap="Bonuses_Tap">
                                 <Grid.Background>
                                     <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_green.png" Stretch="None" />
                                 </Grid.Background>
@@ -225,7 +225,7 @@
                             </Grid>
                             </StackPanel>
 
-                            <Grid Margin="10,-10,0,10" Width="200" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <Grid Name="Subcategories" Margin="10,-10,0,10" Width="200" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left" Tap="Subcategories_Tap">
                                 <Grid.Background>
                                     <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_violet.png" Stretch="None" />
                                 </Grid.Background>

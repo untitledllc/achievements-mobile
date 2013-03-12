@@ -126,6 +126,23 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+
+        public ObservableCollection<int> AchievesChartData
+        {
+            get
+            {
+                ObservableCollection<int> chartData = new ObservableCollection<int>();
+                foreach (var item in Categories)
+                {
+                    chartData.Add(item.Total_badges);
+                };
+                return chartData;
+            }
+            private set
+            {
+            }
+        }
+
         public ObservableCollection<AchievesItem> LastAchieves
         {
             get

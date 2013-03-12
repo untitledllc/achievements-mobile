@@ -128,6 +128,9 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
+    <Reference Include="Telerik.Windows.Controls.Chart">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Controls.Chart.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Windows.Controls.Data">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Controls.Data.dll</HintPath>
     </Reference>
@@ -199,6 +202,9 @@
     <Compile Include="QRread.xaml.cs">
       <DependentUpon>QRread.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatsPage.xaml.cs">
+      <DependentUpon>StatsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BadgeItem.cs" />
     <Compile Include="ViewModel\BadgesViewModel.cs" />
     <Compile Include="ViewModel\CategoriesViewModel.cs" />
@@ -253,6 +259,9 @@
     </Page>
     <Page Include="QRread.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StatsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

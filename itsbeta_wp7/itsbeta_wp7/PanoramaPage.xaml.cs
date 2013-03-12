@@ -140,5 +140,34 @@ namespace itsbeta_wp7
             catch { };
         }
 
+        private void Grid_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/StatsPage.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
+
+        private void Subcategories_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/StatsPage.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
+
+        private void Bonuses_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/StatsPage.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
+
+
+
     }
 }

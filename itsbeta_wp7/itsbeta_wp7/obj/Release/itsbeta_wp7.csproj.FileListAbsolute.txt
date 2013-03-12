@@ -109,3 +109,7 @@ C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\ImageTools.Utils.pdb
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\ImageTools.Utils.xml
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\PhoneCodeContractsAssemblies.pdb
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\StatsPage.g.cs
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\Telerik.Windows.Controls.Chart.dll
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\Telerik.Windows.Controls.Chart.pdb
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\Telerik.Windows.Controls.Chart.xml

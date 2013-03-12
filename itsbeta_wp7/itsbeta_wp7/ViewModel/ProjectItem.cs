@@ -45,6 +45,31 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        private string _color = "";
+        public string Color
+        {
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                _color = value;
+                RaisePropertyChanged("Color");
+            }
+        }
+
+        public string ChartLabel
+        {
+            private set
+            {
+            }
+            get
+            {
+                return Display_name + "(" + Activated_badges_count + ")";
+            }
+        }
+
         private string _category_api_name = "";
         public string Category_api_name
         {

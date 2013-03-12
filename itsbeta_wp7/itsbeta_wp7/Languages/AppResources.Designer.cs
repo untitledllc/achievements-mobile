@@ -277,6 +277,15 @@ namespace itsbeta_wp7 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string statistics {
+            get {
+                return ResourceManager.GetString("statistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subcategories:.
         /// </summary>
         public static string subcategories {

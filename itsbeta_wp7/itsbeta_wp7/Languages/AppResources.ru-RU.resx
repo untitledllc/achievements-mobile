@@ -186,6 +186,9 @@
   <data name="send_email" xml:space="preserve">
     <value>Отправить письмо</value>
   </data>
+  <data name="statistics" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
   <data name="subcategories" xml:space="preserve">
     <value>Подкатегории:</value>
   </data>

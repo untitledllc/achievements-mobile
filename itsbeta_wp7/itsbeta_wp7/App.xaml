@@ -2,9 +2,8 @@
 <Application x:Class="itsbeta_wp7.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit" xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data" xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives" xmlns:telerikCore="clr-namespace:Telerik.Windows;assembly=Telerik.Windows.Core" xmlns:vm="clr-namespace:itsbeta_wp7.ViewModel">
   <Application.Resources>
     <local:LocalizedStrings xmlns:local="clr-namespace:itsbeta_wp7" x:Key="LocalizedStrings" />
-    <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
-
-      <!--<ResourceDictionary>
+        <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+        <!--<ResourceDictionary>
         <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
         <ResourceDictionary.MergedDictionaries></ResourceDictionary.MergedDictionaries>
       </ResourceDictionary>-->
