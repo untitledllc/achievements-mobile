@@ -329,7 +329,7 @@ namespace itsbeta_wp7.ViewModel
                             {
                                 //Title = "Itsbeta",
                                 //BackgroundImage = new Uri("tile_image.png", UriKind.Relative),
-                                Count = count,
+                                //Count = count,
                                 //BackTitle = LastAchieves.First().Display_name,
                                 BackBackgroundImage = new Uri(@"isostore:" + filePath, UriKind.Absolute)
                                 //BackContent = "Content for back tile."
