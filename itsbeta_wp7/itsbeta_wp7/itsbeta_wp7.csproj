@@ -173,9 +173,9 @@
       <DependentUpon>FacebookLoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Languages\AppResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Languages\AppResources.ru-RU.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -316,6 +316,11 @@
     <Resource Include="images\Paper_labels_press.png" />
     <Resource Include="images\Paper_middle.png" />
     <Resource Include="images\Paper_top.png" />
+    <EmbeddedResource Include="Languages\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>itsbeta_wp7</CustomToolNamespace>
+    </EmbeddedResource>
     <Content Include="Libs\FlurryWP7SDK.dll" />
     <Content Include="Libs\Silverlight_ZXing_Core.dll" />
     <Content Include="MVVMLight.Nuget.Readme.txt" />
@@ -327,11 +332,6 @@
     <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Languages\AppResources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>itsbeta_wp7</CustomToolNamespace>
-    </EmbeddedResource>
     <EmbeddedResource Include="Languages\AppResources.ru-RU.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.ru-RU.Designer.cs</LastGenOutput>
