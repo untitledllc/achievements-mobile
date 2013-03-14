@@ -23,7 +23,7 @@ namespace itsbeta.achievements
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class LoginWebActivity : Activity
     {
-        static ProgressDialog mDialog;
+        //static ProgressDialog mDialog;
         public static bool isPlayerExist;
         public static bool isAppBadgeEarned;
         public static bool isRelogin = true;
@@ -33,6 +33,10 @@ namespace itsbeta.achievements
         static TextView _endlogin;
         static TextView _loginError; 
         static Context _context;
+
+
+        static ProgressDialog _progressDialog;
+        static TextView _progressDialogMessage;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -57,10 +61,23 @@ namespace itsbeta.achievements
                     //"https://www.facebook.com/dialog/oauth/?response_type=token&display=popup&client_id={0}&redirect_uri={1}&scope={2}",
                     AppInfo._fbAppId, AppInfo._loginRedirectUri, AppInfo._fbScope));
 
-            mDialog = new ProgressDialog(this);
-            mDialog.SetMessage("Загрузка...");
-            mDialog.SetCancelable(false);
-            mDialog.Show();
+
+            RelativeLayout progressDialogRelativeLayout = new RelativeLayout(this);
+            LayoutInflater progressDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            View progressDialogView = progressDialoglayoutInflater.Inflate(Resource.Layout.ProgressDialogLayout, null);
+            _progressDialogMessage = (TextView)progressDialogView.FindViewById(Resource.Id.progressDialogMessageTextView);
+            progressDialogRelativeLayout.AddView(progressDialogView);
+            _progressDialog = new ProgressDialog(this, Resource.Style.FullHeightDialog);
+            _progressDialog.Show();
+            _progressDialog.SetContentView(progressDialogRelativeLayout);
+            _progressDialog.Dismiss();
+
+            _progressDialogMessage.Text = "Активация достижения...";
+            _progressDialog.Show();
+            //mDialog = new ProgressDialog(this);
+            //mDialog.SetMessage("Загрузка...");
+            //mDialog.SetCancelable(false);
+            //mDialog.Show();
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             _endlogin.TextChanged += delegate //здесь инициализировать все необходимое перед запуском...
@@ -106,7 +123,7 @@ namespace itsbeta.achievements
                 _messageDialogBuilder.SetMessage("Не удалось подключиться. Проверьте состояние интернет подключения.");
                 _messageDialogBuilder.SetPositiveButton("Ок", delegate { LoginWebActivity._loginError.Text = description; });
                 ShowAlertDialog();
-                mDialog.Dismiss();
+                _progressDialog.Dismiss();
             }
 
             void ShowAlertDialog()
@@ -122,14 +139,14 @@ namespace itsbeta.achievements
 
                 if (url.StartsWith(AppInfo._loginRedirectUri))
                 {
-                    mDialog.SetMessage("Авторизация пользователя...");
+                    _progressDialogMessage.Text = "Авторизация пользователя...";
                     _loginWebView.Visibility = ViewStates.Gone;
                 }
                 else
                 {
-                    mDialog.SetMessage("Загрузка...");
+                    _progressDialogMessage.Text = "Загрузка...";
                 }
-                mDialog.Show();
+                _progressDialog.Show();
             }
 
             public void  AsyncAuth()
@@ -199,7 +216,7 @@ namespace itsbeta.achievements
                     }
                     else
                     {
-                        mDialog.Hide();
+                        _progressDialog.Hide();
                     }
                 }
             }

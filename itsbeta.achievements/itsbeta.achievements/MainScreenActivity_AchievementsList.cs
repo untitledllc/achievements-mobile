@@ -70,7 +70,8 @@ namespace itsbeta.achievements
                                 AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].PicUrl),
                                 AchieveReceivedTime = String.Format("{0}",
                                 AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].CreateTime),
-                                Bonuses = AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Bonuses
+                                Bonuses = AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Bonuses,
+                                HexColor = AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Color
                             });
                         }
                         if (AppInfo._achievesInfo.CategoryArray[i].DisplayName == _selectedCategoryId && _selectedsubCategoryId== "Все проекты")
@@ -87,7 +88,8 @@ namespace itsbeta.achievements
                                 AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].PicUrl),
                                 AchieveReceivedTime = String.Format("{0}",
                                 AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].CreateTime),
-                                Bonuses = AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Bonuses
+                                Bonuses = AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Bonuses,
+                                HexColor = AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Color
                             });
                         }
                     }
@@ -157,6 +159,8 @@ namespace itsbeta.achievements
                 ViewGroup relativeAgedSummary = new RelativeLayout(this);
                 View layout = inflater.Inflate(Resource.Layout.BadgeWindowActivityLayout, relativeAgedSummary);
                 ImageView badgeImage = (ImageView)layout.FindViewById(Resource.Id.badgewin_BadgeImageView);
+                ImageView badgeImageShape = (ImageView)layout.FindViewById(Resource.Id.badgewin_BadgeImageViewShadow);
+
                 ImageView badgeSheet = (ImageView)layout.FindViewById(Resource.Id.BadgeSheetImageView);
                 TextView badgeName = (TextView)layout.FindViewById(Resource.Id.badgewin_badgeTextView);
 
@@ -169,12 +173,17 @@ namespace itsbeta.achievements
 
                 //Button badgeInactiveBackgroundButton = (Button)layout.FindViewById(Resource.Id.badgewin_inactiveButton);
                 //badgeInactiveBackgroundButton.Click += new EventHandler(badgeInactiveBackgroundButton_Click);
+                
                 badgeName.Text = achieve.DisplayName;
                 Bitmap bitmap = BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" + achieve.ApiName + ".PNG");
+
                 badgeImage.SetImageBitmap(bitmap);
+                //badgeImage.SetScaleType(ImageView.ScaleType.FitStart);
+                //badgeImageShape.SetImageResource(Resource.Drawable.Paper_BadgeShape);
+
                 bitmap.Dispose();
                 categoryNameProjectName.Text = AppInfo._achievesInfo.CategoryArray[iID].DisplayName + ", " + AppInfo._achievesInfo.CategoryArray[iID].Projects[jID].DisplayName;
-                
+
                 badgeDetails.SetText(Android.Text.Html.FromHtml(achieve.Details), TextView.BufferType.Normal);
                 badgeHowWonderDescr.SetText(Android.Text.Html.FromHtml(achieve.Description), TextView.BufferType.Spannable);
                 badgeHowWonderDescr.Append(" ");

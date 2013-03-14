@@ -16,8 +16,29 @@
         p1:layout_height="fill_parent"
         p1:layout_toRightOf="@id/imageView3"
         p1:id="@+id/imageView4"
-        p1:background="#59b2b2b2"
+        p1:background="#591d1d1d"
         p1:layout_below="@+id/imageView5" />
+    <ImageView
+        p1:layout_width="fill_parent"
+        p1:layout_height="fill_parent"
+        p1:layout_above="@id/imageView3"
+        p1:id="@+id/imageView5"
+        p1:background="#5b1d1d1d" />
+    <ImageView
+        p1:layout_width="fill_parent"
+        p1:layout_height="fill_parent"
+        p1:layout_toLeftOf="@id/imageView3"
+        p1:id="@+id/imageView6"
+        p1:layout_below="@+id/imageView5"
+        p1:background="#591d1d1d" />
+    <ImageView
+        p1:layout_width="fill_parent"
+        p1:layout_height="fill_parent"
+        p1:id="@+id/imageView7"
+        p1:layout_below="@id/imageView3"
+        p1:layout_toRightOf="@id/imageView6"
+        p1:layout_toLeftOf="@id/imageView4"
+        p1:background="#591d1d1d" />
     <TextView
         p1:text="Поднесите к QR-коду"
         p1:textAppearance="?android:attr/textAppearanceLarge"
@@ -30,25 +51,4 @@
         p1:layout_marginTop="40dp"
         p1:gravity="center"
         p1:layout_marginBottom="20dp" />
-    <ImageView
-        p1:layout_width="fill_parent"
-        p1:layout_height="fill_parent"
-        p1:layout_above="@id/imageView3"
-        p1:id="@+id/imageView5"
-        p1:background="#59b2b2b2" />
-    <ImageView
-        p1:layout_width="fill_parent"
-        p1:layout_height="fill_parent"
-        p1:layout_toLeftOf="@id/imageView3"
-        p1:id="@+id/imageView6"
-        p1:layout_below="@+id/imageView5"
-        p1:background="#59b2b2b2" />
-    <ImageView
-        p1:layout_width="fill_parent"
-        p1:layout_height="fill_parent"
-        p1:id="@+id/imageView7"
-        p1:layout_below="@id/imageView3"
-        p1:layout_toRightOf="@id/imageView6"
-        p1:layout_toLeftOf="@id/imageView4"
-        p1:background="#59b2b2b2" />
 </RelativeLayout>

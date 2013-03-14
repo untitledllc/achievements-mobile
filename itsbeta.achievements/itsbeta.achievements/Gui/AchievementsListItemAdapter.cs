@@ -37,6 +37,13 @@ namespace itsbeta.achievements.gui
 
             TextView achiveNameTextView = (TextView)view.FindViewById(Resource.Id.AchiveNameTextView);
             achiveNameTextView.Text = item.AchieveNameText;
+            try
+            {
+                achiveNameTextView.SetTextColor(Color.ParseColor(item.HexColor));
+            }
+            catch 
+            {
+            }
 
             TextView achiveDescriptionTextView = (TextView)view.FindViewById(Resource.Id.AchiveDescriptionTextView);
             achiveDescriptionTextView.Text = item.AchieveDescriptionText;

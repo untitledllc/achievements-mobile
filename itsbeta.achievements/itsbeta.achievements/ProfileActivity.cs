@@ -15,6 +15,7 @@ using Android.Webkit;
 using System.IO;
 using System.Collections;
 using itsbeta.achievements.gui;
+using Android.Graphics;
 
 namespace itsbeta.achievements
 {
@@ -24,9 +25,6 @@ namespace itsbeta.achievements
     {
         Animation buttonClickAnimation;
         public static ProfileActivity _context;
-        AlertDialog.Builder _messageDialogBuilder;
-        AlertDialog _messageDialog;
-
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -34,8 +32,21 @@ namespace itsbeta.achievements
             buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
             SetContentView(Resource.Layout.ProfileScreenActivityLayout);
 
+            RelativeLayout exitDialogRelativeLayout = new RelativeLayout(this);
+            LayoutInflater exitDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            View exitDialogView = exitDialoglayoutInflater.Inflate(Resource.Layout.exitDialogLayout, null);
+            Button exitDialogCancelButton = (Button)exitDialogView.FindViewById(Resource.Id.cancelButton);
+            Button exitDialogReadyButton = (Button)exitDialogView.FindViewById(Resource.Id.readyButton);
+
+            exitDialogRelativeLayout.AddView(exitDialogView);
+            Dialog exitDialog = new Dialog(this, Resource.Style.FullHeightDialog);
+            exitDialog.SetTitle("");
+            exitDialog.SetContentView(exitDialogRelativeLayout);
+
+
             _context = this;
-            _messageDialogBuilder = new AlertDialog.Builder(this);
+
+            Typeface font = Typeface.CreateFromAsset(this.Assets, "Roboto-Light.ttf");  
 
             ImageButton logoutImageButton = FindViewById<ImageButton>(Resource.Id.profilescr_NavBar_LogoutImageButton);
             Button logoutButtonFake = FindViewById<Button>(Resource.Id.profilescr_logiutbuttonfake);
@@ -45,14 +56,13 @@ namespace itsbeta.achievements
             {
                 logoutImageButton.StartAnimation(buttonClickAnimation);
                 vibe.Vibrate(50);
-                ShowAlertDialog();
+                exitDialog.Show();
             };
 
 
-            _messageDialogBuilder.SetTitle("Подтвердите");
-            _messageDialogBuilder.SetMessage("Вы действительно хотите выйти из профиля?");
-            _messageDialogBuilder.SetNegativeButton("Отмена", delegate { _messageDialog.Dismiss(); vibe.Vibrate(50); });
-            _messageDialogBuilder.SetPositiveButton("Да", delegate
+            exitDialogCancelButton.Click += delegate { exitDialog.Dismiss(); vibe.Vibrate(50); };
+            
+            exitDialogReadyButton.Click += delegate
             {
                 vibe.Vibrate(150);
                 CookieSyncManager.CreateInstance(this);
@@ -63,16 +73,20 @@ namespace itsbeta.achievements
                 itsbeta.achievements.LoginWebActivity.ItsbetaLoginWebViewClient.loadPreviousState = false;
                 MainScreenActivity._isLogout = true;
                 Finish();
-            });
+            };
 
 
 
             TextView userFullname = FindViewById<TextView>(Resource.Id.profilescr_usernameTextView);
             TextView userData = FindViewById<TextView>(Resource.Id.profilescr_userAgelocTextView);
+            TextView statText = FindViewById<TextView>(Resource.Id.profilescr_statTextView);
 
             TextView badgesCount = FindViewById<TextView>(Resource.Id.profilescr_allbadgescountTextView);
             TextView bonusesCount = FindViewById<TextView>(Resource.Id.profilescr_bonusCountTextView);
             TextView subCategoriesCount = FindViewById<TextView>(Resource.Id.profilescr_subcategCountTextView);
+
+            statText.SetTypeface(font, TypefaceStyle.Normal);
+            userFullname.SetTypeface(font,TypefaceStyle.Normal);
 
             userFullname.Text = AppInfo._user.Fullname;
             userData.Text = GetUserAge(AppInfo._user.BirthDate) + ", " + AppInfo._user.City;
@@ -127,11 +141,6 @@ namespace itsbeta.achievements
             }
         }
 
-        void ShowAlertDialog()
-        {
-            _messageDialog = _messageDialogBuilder.Create();
-            _messageDialog.Show();
-        }
         string GetUserAge(string date)
         {
             int daynow = DateTime.Now.Day;

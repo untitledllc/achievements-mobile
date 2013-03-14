@@ -15,7 +15,7 @@
         p1:gravity="center_horizontal"
         p1:layout_marginLeft="45dp"
         p1:layout_centerVertical="true"
-        p1:textColor="#ff474747"
+        p1:textColor="#646464"
         p1:textSize="12dp" />
     <ImageView
         p1:src="@drawable/Categories_popup_check"

@@ -38,6 +38,7 @@ namespace itsbeta.achievements
         public static bool _isLogout = false;
         TextView _badgesCountDisplay;
 
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -51,6 +52,7 @@ namespace itsbeta.achievements
             ImageButton profileImageButton = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButton);
             ImageButton profileImageButtonFake = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButtonFake);
             _badgesCountDisplay = FindViewById<TextView>(Resource.Id.NavBar_AchievesCountTextView);
+
 
             _badgesCountDisplay.Text = AppInfo._badgesCount.ToString();
             profileImageButtonFake.Click += delegate

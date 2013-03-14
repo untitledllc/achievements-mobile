@@ -26,18 +26,24 @@
                 p1:id="@+id/recbadgewin_inactiveButton"
                 p1:background="#7d000000" />
             <ImageView
-                p1:layout_width="290dp"
+                p1:layout_width="400dp"
                 p1:layout_height="400dp"
+                p1:adjustViewBounds="true"
                 p1:id="@+id/BadgeSheetImageView"
                 p1:background="@drawable/Login_background"
                 p1:layout_centerHorizontal="true"
                 p1:layout_alignTop="@+id/recbadgewin_BadgeImageView"
                 p1:layout_marginTop="100dp"
                 p1:layout_alignBottom="@+id/bonuspaperlist_linearLayout"
-                p1:minHeight="300dp"
+                p1:maxWidth="350dp"
                 p1:clickable="false"
                 p1:minWidth="290dp"
-                p1:layout_marginBottom="-8dp" />
+                p1:layout_marginBottom="-10dp"
+                p1:cropToPadding="true"
+                p1:minHeight="0dp"
+                p1:maxHeight="0dp"
+                p1:layout_marginLeft="20dp"
+                p1:layout_marginRight="20dp" />
             <TextView
                 p1:textAppearance="?android:attr/textAppearanceSmall"
                 p1:layout_width="wrap_content"
@@ -47,49 +53,68 @@
                 p1:layout_centerHorizontal="true" />
             <ImageView
                 p1:layout_width="310dp"
-                p1:layout_height="160dp"
+                p1:layout_height="155dp"
                 p1:id="@+id/recbadgewin_BadgeImageView"
                 p1:layout_centerHorizontal="true"
                 p1:scaleType="fitStart"
                 p1:layout_marginTop="15dp"
-                p1:clickable="false" />
+                p1:clickable="false"
+                p1:layout_alignLeft="@+id/BadgeSheetImageView"
+                p1:layout_alignRight="@+id/BadgeSheetImageView"
+                p1:layout_marginLeft="-20dp"
+                p1:layout_marginRight="-20dp" />
+            <ImageView
+                p1:layout_width="310dp"
+                p1:layout_height="155dp"
+                p1:id="@+id/recbadgewin_BadgeImageViewShadow"
+                p1:layout_centerHorizontal="true"
+                p1:scaleType="fitStart"
+                p1:layout_marginTop="15dp"
+                p1:clickable="false"
+                p1:layout_alignLeft="@+id/BadgeSheetImageView"
+                p1:layout_alignRight="@+id/BadgeSheetImageView"
+                p1:layout_marginLeft="-20dp"
+                p1:layout_marginRight="-20dp" />
             <TextView
                 p1:text="user name"
                 p1:textAppearance="?android:attr/textAppearanceMedium"
                 p1:layout_width="wrap_content"
                 p1:layout_height="wrap_content"
                 p1:id="@+id/recbadgewin_badgeTextView"
-                p1:layout_marginLeft="30dp"
+                p1:layout_marginLeft="50dp"
                 p1:textSize="20dp"
                 p1:textColor="#ff606060"
                 p1:layout_alignLeft="@+id/recbadgewin_BadgeImageView"
                 p1:layout_marginTop="190dp"
-                p1:layout_marginRight="30dp"
+                p1:layout_marginRight="50dp"
                 p1:layout_alignRight="@+id/recbadgewin_BadgeImageView" />
             <TextView
                 p1:text="Вы получили новый значек"
                 p1:textAppearance="?android:attr/textAppearanceMedium"
                 p1:layout_width="wrap_content"
                 p1:layout_height="wrap_content"
-                p1:layout_below="@id/recbadgewin_badgeTextView"
                 p1:id="@+id/recbadgewin_howwonderTextView"
                 p1:textColor="#ff666666"
                 p1:textStyle="bold"
                 p1:textSize="12dp"
                 p1:layout_alignLeft="@id/recbadgewin_badgeTextView"
-                p1:layout_marginTop="20dp" />
+                p1:layout_marginTop="20dp"
+                p1:layout_above="@+id/recbadgewin_wonderdescrTextView"
+                p1:layout_marginBottom="-30dp" />
             <TextView
                 p1:text="descr"
                 p1:textAppearance="?android:attr/textAppearanceMedium"
                 p1:layout_width="wrap_content"
                 p1:layout_height="wrap_content"
-                p1:layout_below="@id/recbadgewin_howwonderTextView"
+                p1:layout_below="@+id/recbadgewin_badgeTextView"
                 p1:id="@+id/recbadgewin_wonderdescrTextView"
                 p1:textColor="#ff6f6f6f"
                 p1:textSize="12dp"
                 p1:layout_alignLeft="@id/recbadgewin_howwonderTextView"
                 p1:layout_alignRight="@+id/recbadgewin_BadgeImageView"
-                p1:layout_marginRight="40dp" />
+                p1:layout_marginRight="50dp"
+                p1:textColorLink="#ff26c6e6"
+                p1:layout_marginTop="30dp" />
             <ImageButton
                 p1:layout_width="20dp"
                 p1:layout_height="20dp"
@@ -118,7 +143,9 @@
                 p1:id="@+id/bonuspaperlist_linearLayout"
                 p1:layout_marginTop="20dp"
                 p1:layout_centerHorizontal="true"
-                p1:layout_below="@+id/recbadgewin_wonderdescrTextView" />
+                p1:layout_below="@+id/recbadgewin_wonderdescrTextView"
+                p1:layout_alignLeft="@+id/BadgeSheetImageView"
+                p1:layout_alignRight="@+id/BadgeSheetImageView" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

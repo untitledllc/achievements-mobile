@@ -47,6 +47,7 @@ namespace ItsBeta.Core
                 {
                     int achievesCount = jSonAchieves.jToken[i]["projects"][j]["achievements"].Count();
                     var achArray = new ParentCategory.ParentProject.Achieve[achievesCount];
+                    
 
                     for (int k = 0; k < achievesCount; k++) 
                     {
@@ -62,6 +63,31 @@ namespace ItsBeta.Core
                             };
                         }
 
+                        List<ParentCategory.ParentProject.Achieve.Bonus> bonusesList = new List<ParentCategory.ParentProject.Achieve.Bonus>();
+                        for (int b = 0; b < bonusesArray.Length; b++)
+                        {
+                            if (bonusesArray[b].Type == "discount")
+                            {
+                                bonusesList.Add(bonusesArray[b]);
+                            }
+                        }
+                        for (int b = 0; b < bonusesArray.Length; b++)
+                        {
+                            if (bonusesArray[b].Type == "bonus")
+                            {
+                                bonusesList.Add(bonusesArray[b]);
+                            }
+                        }
+                        for (int b = 0; b < bonusesArray.Length; b++)
+                        {
+                            if (bonusesArray[b].Type == "present")
+                            {
+                                bonusesList.Add(bonusesArray[b]);
+                            }
+                        }
+                        bonusesArray = bonusesList.ToArray();
+                        
+
                         achArray[k] = new ParentCategory.ParentProject.Achieve()
                         {
                             ApiName = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["api_name"].Value<string>(),
@@ -72,6 +98,7 @@ namespace ItsBeta.Core
                             CreateTime = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["create_time"].Value<string>(),
                             Details = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["details"].Value<string>(),
                             Advertisments = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["adv"].Value<string>(),
+                            Color = jSonAchieves.jToken[i]["projects"][j]["color"].Value<string>(),
                             Bonuses = bonusesArray
                             //BonusStatus = jSonAchieves.jToken[i]["projects"][j]["achievements"][k]["bonuses"].Value<string>()
                         };
@@ -97,6 +124,8 @@ namespace ItsBeta.Core
             return array;
         }
 
+        
+
         public class ParentCategory
         {
             public string ApiName { get; set; }
@@ -111,6 +140,7 @@ namespace ItsBeta.Core
                 public int TotalBadges { get; set; }
 
                 public Achieve[] Achievements { get; set; }
+                
 
                 public class Achieve
                 {
@@ -123,7 +153,8 @@ namespace ItsBeta.Core
                     public string FbId { get; set; }
                     public string CreateTime { get; set; }
                     public Bonus[] Bonuses { get; set; }
-                    
+                    public string Color { get; set; }
+
                     public class Bonus
                     {
                         public string Type { get; set; }
@@ -132,7 +163,6 @@ namespace ItsBeta.Core
                 }
             }
         }
-
 
     }
 }

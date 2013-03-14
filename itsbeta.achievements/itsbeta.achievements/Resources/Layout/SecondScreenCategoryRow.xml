@@ -12,7 +12,7 @@
         p1:layout_height="wrap_content"
         p1:id="@+id/secondscr_CategNameRowTextView"
         p1:gravity="center_horizontal"
-        p1:layout_marginLeft="30dp"
+        p1:layout_marginLeft="35dp"
         p1:textColor="#ff646464"
         p1:textSize="12dp"
         p1:textStyle="normal"

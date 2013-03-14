@@ -73,6 +73,7 @@
     <Compile Include="MainScreenActivity_ProjectsList.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\Roboto-Light.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\Layout\FirstBadgeActivityLayout.axml" />
@@ -86,7 +87,6 @@
     <AndroidResource Include="Resources\Layout\ProfileScreenChildRow.xml" />
     <AndroidResource Include="Resources\Layout\AddBadgeMenuLayoutLayout.axml" />
     <AndroidResource Include="Resources\Layout\EnterCodeLayout.axml" />
-    <AndroidResource Include="Resources\Drawable\BlueBtn_norm.png" />
     <AndroidResource Include="Resources\Drawable\BlueBtn_press.png" />
     <AndroidResource Include="Resources\Drawable\Btn_divider_v.png" />
     <AndroidResource Include="Resources\Drawable\Categories_btn_arrow.png" />
@@ -100,9 +100,7 @@
     <AndroidResource Include="Resources\Drawable\DarkBlueBtn_press.png" />
     <AndroidResource Include="Resources\Drawable\FB_icon.png" />
     <AndroidResource Include="Resources\Drawable\FB_logo.png" />
-    <AndroidResource Include="Resources\Drawable\GreenBtn_norm.png" />
     <AndroidResource Include="Resources\Drawable\GreenBtn_press.png" />
-    <AndroidResource Include="Resources\Drawable\Login_BigBadge.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_icon_exit_norm.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_icon_exit_press.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_icon_plus_norm.png" />
@@ -129,14 +127,12 @@
     <AndroidResource Include="Resources\Drawable\Paper_background_topLeft.png" />
     <AndroidResource Include="Resources\Drawable\Paper_background_topMiddle.png" />
     <AndroidResource Include="Resources\Drawable\Paper_background_topRight.png" />
-    <AndroidResource Include="Resources\Drawable\Paper_BadgeShape.png" />
     <AndroidResource Include="Resources\Drawable\Paper_Divider_blue.png" />
     <AndroidResource Include="Resources\Drawable\Paper_Divider_green.png" />
     <AndroidResource Include="Resources\Drawable\Paper_Divider_violet.png" />
     <AndroidResource Include="Resources\Drawable\Paper_icon_close_norm.png" />
     <AndroidResource Include="Resources\Drawable\Paper_icon_close_press.png" />
     <AndroidResource Include="Resources\Drawable\Paper_shadow.png" />
-    <AndroidResource Include="Resources\Drawable\Profile_StatisticPreview_blue.png" />
     <AndroidResource Include="Resources\Drawable\Profile_StatisticPreview_green.png" />
     <AndroidResource Include="Resources\Drawable\Profile_StatisticPreview_violet.png" />
     <AndroidResource Include="Resources\Drawable\Profile_StatusBar_active.png" />
@@ -152,7 +148,6 @@
     <AndroidResource Include="Resources\Drawable\Table_lable_violet_right.png" />
     <AndroidResource Include="Resources\Drawable\TableAndButtons_divider_h.png" />
     <AndroidResource Include="Resources\Drawable\Login_background2.png" />
-    <AndroidResource Include="Resources\Drawable\Login_background.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_leftWindow.png" />
     <AndroidResource Include="Resources\Drawable\profilescr_titleback.png" />
     <AndroidResource Include="Resources\Drawable\back.png" />
@@ -169,6 +164,18 @@
     <AndroidResource Include="Resources\Drawable\icon_gifts.png" />
     <AndroidResource Include="Resources\Drawable\entercodeactive.png" />
     <AndroidResource Include="Resources\Layout\FirstBadgeActivityLoadingLayout.axml" />
+    <AndroidResource Include="Resources\Drawable\line_blue.png" />
+    <AndroidResource Include="Resources\Drawable\BlueBtn_norm.png" />
+    <AndroidResource Include="Resources\Drawable\GreenBtn_norm.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_BadgeShape.png" />
+    <AndroidResource Include="Resources\Drawable\Login_background.png" />
+    <AndroidResource Include="Resources\Drawable\Profile_StatisticPreview_blue.png" />
+    <AndroidResource Include="Resources\Layout\exitDialogLayout.axml" />
+    <AndroidResource Include="Resources\Layout\wrongCodeDialogLayout.axml" />
+    <AndroidResource Include="Resources\Layout\ProgressDialogLayout.axml" />
+    <AndroidResource Include="Resources\Drawable\Preloader_panel_left.png" />
+    <AndroidResource Include="Resources\Drawable\Preloader_panel_middle.png" />
+    <AndroidResource Include="Resources\Drawable\Preloader_panel_right.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\Strings.xml" />
@@ -201,5 +208,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\Drawable\trans.png" />
+    <AndroidResource Include="Resources\Drawable\Login_BigBadge.png" />
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Android.Widget;
+using Android.Graphics;
 
 namespace itsbeta.achievements.gui
 {
@@ -21,6 +22,16 @@ namespace itsbeta.achievements.gui
             }
             private set { }
         }
+        public string HexColor;
+        public Color AchieveProjectColor
+        {
+            get
+            {
+                return Color.ParseColor(HexColor);
+            }
+            private set { }
+        }
+
 
         private DateTime LocalDateTime(string strDateTime)
         {

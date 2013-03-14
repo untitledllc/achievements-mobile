@@ -27,20 +27,57 @@ namespace itsbeta.achievements
         MobileBarcodeScanner _scanner;
 
         AutoCompleteTextView _codeCompleteTextView;
-        ProgressDialog _activationDialog;
+        ProgressDialog _progressDialog;
         AlertDialog.Builder _activateMessageBadgeDialogBuilder;
         AlertDialog _activateMessageBadgeDialog;
         ServiceItsBeta _serviceItsBeta = new ServiceItsBeta();
         ImageView _enterCodeLineImageView;
+        Dialog _wrongCodeDialog;
+        TextView _wrongCodeDialogTitle;
+        TextView _wrongCodeDialogMessage;
+        TextView _progressDialogMessage;
 
         void GetActivationDialog()
         {
+            //WrongCodeDialog
+            RelativeLayout wrongCodeDialogRelativeLayout = new RelativeLayout(this);
+            LayoutInflater wrongCodeDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            View wrongCodeDialogView = wrongCodeDialoglayoutInflater.Inflate(Resource.Layout.wrongCodeDialogLayout, null);
+            Button wrongCodeDialogReadyButton = (Button)wrongCodeDialogView.FindViewById(Resource.Id.readyButton);
+            _wrongCodeDialogTitle = (TextView)wrongCodeDialogView.FindViewById(Resource.Id.textView1);
+            _wrongCodeDialogMessage = (TextView)wrongCodeDialogView.FindViewById(Resource.Id.textView2);
+            
+
+            wrongCodeDialogRelativeLayout.AddView(wrongCodeDialogView);
+            _wrongCodeDialog = new Dialog(this, Resource.Style.FullHeightDialog);
+            _wrongCodeDialog.SetTitle("");
+            _wrongCodeDialog.SetContentView(wrongCodeDialogRelativeLayout);
+
+            wrongCodeDialogReadyButton.Click += delegate { _wrongCodeDialog.Dismiss(); };
+            //
+
+            //ProgressDialog
+            RelativeLayout progressDialogRelativeLayout = new RelativeLayout(this);
+            LayoutInflater progressDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            View progressDialogView = progressDialoglayoutInflater.Inflate(Resource.Layout.ProgressDialogLayout, null);
+            _progressDialogMessage = (TextView)progressDialogView.FindViewById(Resource.Id.progressDialogMessageTextView);
+            progressDialogRelativeLayout.AddView(progressDialogView);
+            _progressDialog = new ProgressDialog(this, Resource.Style.FullHeightDialog);
+            _progressDialog.Show();
+            _progressDialog.SetContentView(progressDialogRelativeLayout);
+            _progressDialog.Dismiss();
+            //
+
+
+
             ImageButton addCodeImageButtonFake = FindViewById<ImageButton>(Resource.Id.NavBar_addcodeImageButtonFake);
             ImageButton addCodeImageButton = FindViewById<ImageButton>(Resource.Id.NavBar_addcodeImageButton);
             _activateMessageBadgeDialogBuilder = new AlertDialog.Builder(this);
             LayoutInflater addBadgeMenulayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
             RelativeLayout addBadgeRelativeLayout = new RelativeLayout(this);
             View addBadgeView = addBadgeMenulayoutInflater.Inflate(Resource.Layout.AddBadgeMenuLayoutLayout, null);
+
+
             Button addBadgeCancelButton = (Button)addBadgeView.FindViewById(Resource.Id.addbadge_cancelButton);
             Button readQRCodeButton = (Button)addBadgeView.FindViewById(Resource.Id.addbadge_readQRButton);
             Button addCodeButton = (Button)addBadgeView.FindViewById(Resource.Id.addbadge_addcodeButton);
@@ -130,10 +167,11 @@ namespace itsbeta.achievements
                     addCodeReadyButton.StartAnimation(_buttonClickAnimation);
                     addCodeDialog.Dismiss();
 
-                    _activationDialog = new ProgressDialog(this);
-                    _activationDialog.SetMessage("Активация достижения...");
-                    _activationDialog.SetCancelable(false);
-                    _activationDialog.Show();
+                    
+                   // _progressDialog.SetMessage("Активация достижения...");
+                    _progressDialogMessage.Text = "Активация достижения..."; 
+                    _progressDialog.SetCancelable(false);
+                    _progressDialog.Show();
 
                     ThreadStart threadStart = new ThreadStart(AsyncActivizationViaEntering);
                     Thread loadThread = new Thread(threadStart);
@@ -180,10 +218,11 @@ namespace itsbeta.achievements
 
         public void ShowQRDialog()
         {
-            _activationDialog = new ProgressDialog(this);
-            _activationDialog.SetMessage("Активация достижения...");
-            _activationDialog.SetCancelable(false);
-            _activationDialog.Show();
+           // _progressDialog = new ProgressDialog(this);
+            //_progressDialog.SetMessage("Активация достижения...");
+            _progressDialogMessage.Text = "Активация достижения..."; 
+            _progressDialog.SetCancelable(false);
+            _progressDialog.Show();
         }
 
         string activatedBadgeFbId = "null";
@@ -259,7 +298,7 @@ namespace itsbeta.achievements
                 if (response.StartsWith("error="))
                 {
                     errorDescr = response.Replace("error=", "");
-                    RunOnUiThread(() => _activationDialog.Dismiss());
+                    RunOnUiThread(() => _progressDialog.Dismiss());
                     //RunOnUiThread(() =>CreateAchievementsViewObject());
 
                     if (errorDescr == "obj not found")
@@ -271,21 +310,19 @@ namespace itsbeta.achievements
                         errorDescr = "Код уже активирован";
                     }
 
-                    _activateMessageBadgeDialogBuilder.SetTitle("Информация");
-                    _activateMessageBadgeDialogBuilder.SetMessage(errorDescr);
-                    _activateMessageBadgeDialogBuilder.SetPositiveButton("Ок", delegate { });
+                    _wrongCodeDialogTitle.Text = "Информация";
+                    _wrongCodeDialogMessage.Text = errorDescr;
 
-                    RunOnUiThread(() => ShowAlertDialog());
+                    RunOnUiThread(() => _wrongCodeDialog.Show());
                 }
                 if (response == "null")
                 {
-                    RunOnUiThread(() => _activationDialog.Dismiss());
+                    RunOnUiThread(() => _progressDialog.Dismiss());
                     errorDescr = "Неудалось активировать. Проверьте настройки интернет соединения";
-                    _activateMessageBadgeDialogBuilder.SetTitle("Ошибка");
-                    _activateMessageBadgeDialogBuilder.SetMessage(errorDescr);
-                    _activateMessageBadgeDialogBuilder.SetPositiveButton("Ок", delegate { });
+                    _wrongCodeDialogTitle.Text = "Ошибка";
+                    _wrongCodeDialogMessage.Text = errorDescr;
 
-                    RunOnUiThread(() => ShowAlertDialog());
+                    RunOnUiThread(() => _wrongCodeDialog.Show());
                 }
         }
 
@@ -358,7 +395,7 @@ namespace itsbeta.achievements
             if (response.StartsWith("error="))
             {
                 errorDescr = response.Replace("error=", "");
-                RunOnUiThread(() => _activationDialog.Dismiss());
+                RunOnUiThread(() => _progressDialog.Dismiss());
                 //RunOnUiThread(() =>CreateAchievementsViewObject());
 
                 if (errorDescr == "obj not found")
@@ -370,28 +407,27 @@ namespace itsbeta.achievements
                     errorDescr = "Код уже активирован";
                 }
 
-                _activateMessageBadgeDialogBuilder.SetTitle("Информация");
-                _activateMessageBadgeDialogBuilder.SetMessage(errorDescr);
-                _activateMessageBadgeDialogBuilder.SetPositiveButton("Ок", delegate { });
+                _wrongCodeDialogTitle.Text = "Информация";
+                _wrongCodeDialogMessage.Text = errorDescr;
 
-                RunOnUiThread(() => ShowAlertDialog());
+                RunOnUiThread(() => _wrongCodeDialog.Show());
                 return;
             }
             if (response == "null")
             {
-                RunOnUiThread(() => _activationDialog.Dismiss());
+                RunOnUiThread(() => _progressDialog.Dismiss());
                 errorDescr = "Неудалось активировать. Проверьте настройки интернет соединения";
-                _activateMessageBadgeDialogBuilder.SetTitle("Ошибка");
-                _activateMessageBadgeDialogBuilder.SetMessage(errorDescr);
-                _activateMessageBadgeDialogBuilder.SetPositiveButton("Ок", delegate { });
 
-                RunOnUiThread(() => ShowAlertDialog());
+                _wrongCodeDialogTitle.Text = "Ошибка";
+                _wrongCodeDialogMessage.Text = errorDescr;
+
+                RunOnUiThread(() => _wrongCodeDialog.Show());
             }
         }
 
         void CompleteActivation(ItsBeta.Core.Achieves.ParentCategory.ParentProject.Achieve activatedBadge)
         {
-            _activationDialog.Dismiss();
+            _progressDialog.Dismiss();
 
             GetCategoryView();
             GetProjectsView();
@@ -639,11 +675,12 @@ namespace itsbeta.achievements
             {
                 found = true;
                 msg = "QR код найден";// + result.Text;
+                this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
             }
-            else
-                msg = "Сканирование отменено";
+            //else
+            //    msg = "Сканирование отменено";
 
-            this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
+            
             if (found)
             {
                 _foundActionTextView.Text = result.Text;

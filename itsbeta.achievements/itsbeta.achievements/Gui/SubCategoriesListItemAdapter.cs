@@ -5,6 +5,7 @@ using Android.Widget;
 using Android.Content;
 using Android.Views;
 using Android.Views.Animations;
+using Android.Graphics;
 
 namespace itsbeta.achievements.gui
 {
@@ -90,7 +91,7 @@ namespace itsbeta.achievements.gui
             }
             else
             {
-                subcategoryNameTextView.SetTextColor(new Android.Graphics.Color(105, 216, 248));
+                subcategoryNameTextView.SetTextColor(Color.ParseColor("#6abada"));
                 checkImageView.Visibility = ViewStates.Visible;
             }
 

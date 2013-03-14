@@ -61,24 +61,23 @@
                 p1:id="@+id/relativeLayout1">
                 <ImageView
                     p1:layout_width="fill_parent"
-                    p1:layout_height="63dp"
+                    p1:layout_height="80dp"
                     p1:layout_below="@id/NavBar_ImageButton"
                     p1:id="@+id/imageView1"
                     p1:layout_centerHorizontal="true"
-                    p1:layout_marginTop="10dp"
+                    p1:layout_marginTop="16dp"
                     p1:background="@drawable/profilescr_titleback"
                     p1:layout_marginLeft="10dp"
                     p1:layout_marginRight="10dp" />
                 <ImageView
                     p1:src="@drawable/FB_icon"
                     p1:layout_width="40dp"
-                    p1:layout_height="50dp"
+                    p1:layout_height="40dp"
                     p1:id="@+id/imageView2"
                     p1:layout_alignLeft="@id/imageView1"
-                    p1:layout_alignTop="@id/imageView1"
-                    p1:layout_alignBottom="@id/imageView1"
                     p1:layout_marginLeft="10dp"
-                    p1:layout_marginBottom="8dp" />
+                    p1:layout_alignTop="@+id/imageView1"
+                    p1:layout_marginTop="16dp" />
                 <TextView
                     p1:text="User Name"
                     p1:textAppearance="?android:attr/textAppearanceLarge"
@@ -88,17 +87,19 @@
                     p1:layout_toRightOf="@id/imageView2"
                     p1:layout_alignTop="@id/imageView2"
                     p1:textColor="#616161"
-                    p1:layout_marginTop="10dp"
                     p1:layout_marginLeft="10dp"
-                    p1:textSize="15dp" />
+                    p1:textSize="20dp"
+                    p1:layout_marginTop="-3dp" />
                 <TextView
                     p1:text="Small Text"
                     p1:textAppearance="?android:attr/textAppearanceSmall"
                     p1:layout_width="wrap_content"
                     p1:layout_height="wrap_content"
-                    p1:layout_below="@id/profilescr_usernameTextView"
                     p1:id="@+id/profilescr_userAgelocTextView"
-                    p1:layout_alignLeft="@id/profilescr_usernameTextView" />
+                    p1:layout_alignLeft="@id/profilescr_usernameTextView"
+                    p1:layout_alignBottom="@id/imageView2"
+                    p1:textSize="13dp"
+                    p1:layout_marginBottom="-2dp" />
                 <TextView
                     p1:text="Статистика:"
                     p1:textAppearance="?android:attr/textAppearanceLarge"
@@ -107,9 +108,9 @@
                     p1:layout_below="@id/imageView1"
                     p1:id="@+id/profilescr_statTextView"
                     p1:textColor="#ff616161"
-                    p1:textSize="16dp"
+                    p1:textSize="20dp"
                     p1:layout_alignLeft="@id/imageView1"
-                    p1:layout_marginTop="20dp"
+                    p1:layout_marginTop="30dp"
                     p1:layout_marginLeft="1dp" />
                 <ImageView
                     p1:src="@drawable/Profile_StatisticPreview_green"
@@ -118,7 +119,8 @@
                     p1:layout_below="@id/profilescr_statTextView"
                     p1:id="@+id/profilescr_bonusImageView"
                     p1:layout_marginTop="10dp"
-                    p1:layout_centerHorizontal="true" />
+                    p1:layout_toRightOf="@+id/profilescr_allBadgesImageView"
+                    p1:layout_marginLeft="1dp" />
                 <ImageView
                     p1:src="@drawable/Profile_StatisticPreview_blue"
                     p1:layout_width="100dp"
@@ -136,8 +138,9 @@
                     p1:layout_below="@id/profilescr_statTextView"
                     p1:id="@+id/profilescr_subcatImageView"
                     p1:layout_marginTop="10dp"
-                    p1:layout_alignRight="@+id/imageView1"
-                    p1:scaleType="fitEnd" />
+                    p1:scaleType="fitEnd"
+                    p1:layout_toRightOf="@+id/profilescr_bonusImageView"
+                    p1:layout_marginLeft="-1dp" />
                 <TextView
                     p1:text="Бейджей:"
                     p1:textAppearance="?android:attr/textAppearanceSmall"
@@ -146,10 +149,10 @@
                     p1:id="@+id/profilescr_allBadgesTextView"
                     p1:layout_alignTop="@id/profilescr_allBadgesImageView"
                     p1:textColor="#ffeeeeee"
-                    p1:textSize="10dp"
+                    p1:textSize="10.5dp"
                     p1:layout_alignLeft="@id/profilescr_allBadgesImageView"
                     p1:layout_marginLeft="13dp"
-                    p1:layout_marginTop="20dp"
+                    p1:layout_marginTop="18dp"
                     p1:layout_alignRight="@id/profilescr_allBadgesImageView" />
                 <TextView
                     p1:text="Бонусов:"
@@ -159,9 +162,9 @@
                     p1:id="@+id/textView2"
                     p1:layout_alignTop="@id/profilescr_bonusImageView"
                     p1:layout_alignLeft="@id/profilescr_bonusImageView"
-                    p1:layout_marginTop="20dp"
+                    p1:layout_marginTop="18dp"
                     p1:layout_marginLeft="13dp"
-                    p1:textSize="10dp"
+                    p1:textSize="10.5dp"
                     p1:textColor="#ffeeeeee" />
                 <TextView
                     p1:text="Подкатегорий:"
@@ -172,9 +175,9 @@
                     p1:layout_alignLeft="@id/profilescr_subcatImageView"
                     p1:layout_alignTop="@id/profilescr_subcatImageView"
                     p1:layout_marginLeft="13dp"
-                    p1:layout_marginTop="20dp"
+                    p1:layout_marginTop="18dp"
                     p1:textColor="#ffeeeeee"
-                    p1:textSize="10dp" />
+                    p1:textSize="10.5dp" />
                 <TextView
                     p1:text="35"
                     p1:textAppearance="?android:attr/textAppearanceLarge"
@@ -185,7 +188,7 @@
                     p1:layout_alignLeft="@id/profilescr_allBadgesTextView"
                     p1:textSize="18dp"
                     p1:textStyle="normal"
-                    p1:layout_marginTop="2dp" />
+                    p1:layout_marginTop="4dp" />
                 <TextView
                     p1:text="10"
                     p1:textAppearance="?android:attr/textAppearanceLarge"
@@ -195,7 +198,7 @@
                     p1:id="@+id/profilescr_bonusCountTextView"
                     p1:layout_alignLeft="@id/textView2"
                     p1:textSize="20dp"
-                    p1:layout_marginTop="2dp" />
+                    p1:layout_marginTop="4dp" />
                 <TextView
                     p1:text="5"
                     p1:textAppearance="?android:attr/textAppearanceLarge"
@@ -204,7 +207,7 @@
                     p1:layout_below="@id/textView3"
                     p1:id="@+id/profilescr_subcategCountTextView"
                     p1:layout_alignLeft="@id/textView3"
-                    p1:layout_marginTop="2dp" />
+                    p1:layout_marginTop="4dp" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

@@ -1,9 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="e:\My Internet Files\My Git\HintSolutions\Achievements Project\itsbeta.achievements\itsbeta.achievements\LoginActivity.cs">
+    <Files>
+      <File FileName="e:\My Internet Files\My Git\HintSolutions\Achievements Project\itsbeta.achievements\itsbeta.achievements\LoginActivity.cs" Line="50" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.itsbeta.achievements MonoForAntroid.PreferredDevice="4in WVGA (Nexus S)" />
+  <MonoDevelop.Ide.ItemProperties.itsbeta.achievements MonoForAntroid.PreferredDevice="10.1in WXGA (Tablet)" AndroidDeviceId-Debug="4df155f51e475f9f" />
 </Properties>

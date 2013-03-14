@@ -18,7 +18,8 @@
         p1:id="@+id/AchiveImageView"
         p1:layout_marginLeft="20dp"
         p1:layout_marginTop="20dp"
-        p1:drawingCacheQuality="low" />
+        p1:drawingCacheQuality="low"
+        p1:src="#ffb4b4b4" />
     <TextView
         p1:text="16.11.2012"
         p1:textAppearance="?android:attr/textAppearanceSmall"
@@ -27,7 +28,7 @@
         p1:layout_below="@+id/AchiveImageView"
         p1:id="@+id/AchiveReceiveDateTextView"
         p1:textColor="#ff00bcd9"
-        p1:layout_marginTop="15dp"
+        p1:layout_marginTop="10dp"
         p1:textSize="13dp"
         p1:gravity="center"
         p1:layout_toLeftOf="@+id/relativeLayout2"
@@ -46,25 +47,25 @@
             p1:layout_width="wrap_content"
             p1:layout_height="wrap_content"
             p1:id="@+id/AchiveNameTextView"
-            p1:textColor="#ffff0000"
+            p1:textColor="#858585"
             p1:layout_marginLeft="20dp"
-            p1:layout_marginTop="20dp"
+            p1:layout_marginTop="15dp"
             p1:textSize="20dp" />
         <TextView
-            p1:text="To get this achievement you should make first blood donation on №153 and №2 clinic stations. Scan QR-code from individual clinic sertificate."
+            p1:text="To get this achie"
             p1:textAppearance="?android:attr/textAppearanceSmall"
             p1:layout_width="fill_parent"
-            p1:layout_height="80dp"
+            p1:layout_height="wrap_content"
             p1:id="@+id/AchiveDescriptionTextView"
             p1:textColor="#ff474747"
             p1:textSize="11dp"
             p1:layout_alignParentBottom="true"
-            p1:layout_marginBottom="13dp"
+            p1:layout_marginBottom="20dp"
             p1:layout_marginLeft="20dp"
             p1:layout_marginRight="5dp"
             p1:gravity="top"
-            p1:layout_below="@+id/AchiveNameTextView"
-            p1:layout_marginTop="10dp" />
+            p1:layout_marginTop="7dp"
+            p1:layout_below="@+id/AchiveNameTextView" />
     </RelativeLayout>
     <LinearLayout
         p1:orientation="vertical"
@@ -74,5 +75,5 @@
         p1:layout_height="fill_parent"
         p1:id="@+id/bonusesColumn_linearLayout"
         p1:layout_alignParentRight="true"
-        p1:layout_marginTop="15dp" />
+        p1:layout_marginTop="20dp" />
 </RelativeLayout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
     p1:minWidth="25px"
-    p1:minHeight="90dp"
+    p1:minHeight="80dp"
     p1:layout_width="fill_parent"
     p1:id="@+id/RelativeLayout"
     p1:layout_height="wrap_content">
@@ -76,5 +76,6 @@
         p1:layout_alignLeft="@+id/badgewin_bonusTextView"
         p1:layout_marginTop="10dp"
         p1:layout_marginRight="10dp"
-        p1:minHeight="50dp" />
+        p1:minHeight="40dp"
+        p1:textColorLink="#ff26c6e6" />
 </RelativeLayout>

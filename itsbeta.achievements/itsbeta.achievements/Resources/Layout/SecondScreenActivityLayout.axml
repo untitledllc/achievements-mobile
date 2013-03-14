@@ -70,7 +70,7 @@
                 p1:layout_height="wrap_content"
                 p1:id="@+id/secondscr_CategNameRowTextView"
                 p1:gravity="center_horizontal"
-                p1:layout_marginLeft="30dp"
+                p1:layout_marginLeft="35dp"
                 p1:textColor="#ff646464"
                 p1:textSize="12dp"
                 p1:textStyle="normal"
@@ -106,7 +106,7 @@
                 p1:layout_height="wrap_content"
                 p1:id="@+id/secondscr_projectNameRowTextView"
                 p1:gravity="center_horizontal"
-                p1:layout_marginLeft="30dp"
+                p1:layout_marginLeft="35dp"
                 p1:textColor="#ff646464"
                 p1:textSize="12dp"
                 p1:textStyle="normal"
@@ -188,7 +188,8 @@
         p1:layout_below="@+id/categorieslistView"
         p1:layout_alignRight="@+id/categorieslistView"
         p1:layout_alignLeft="@+id/categorieslistView"
-        p1:background="@drawable/Categories_popup_bottom" />
+        p1:background="@drawable/Categories_popup_bottom"
+        p1:layout_marginTop="-10dp" />
     <ListView
         p1:minWidth="25px"
         p1:minHeight="25px"
@@ -206,5 +207,6 @@
         p1:layout_below="@+id/projectslistView"
         p1:layout_alignRight="@+id/projectslistView"
         p1:layout_alignLeft="@+id/projectslistView"
-        p1:background="@drawable/Categories_popup_bottom" />
+        p1:background="@drawable/Categories_popup_bottom"
+        p1:layout_marginTop="-10dp" />
 </RelativeLayout>

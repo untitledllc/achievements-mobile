@@ -27,6 +27,7 @@ namespace itsbeta.achievements
             AppInfo._badgesCount = 0;
             AppInfo._subcategCount = 0;
             AppInfo._bonusesCount = 0;
+            
 
             Vibrator vibe = (Vibrator)this.GetSystemService(Context.VibratorService);
 
@@ -45,8 +46,10 @@ namespace itsbeta.achievements
                 StartActivity(typeof(FirstBadgeActivity));
             }
 
-            buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
+            
             SetContentView(Resource.Layout.LoginActivityLayout);
+            buttonClickAnimation = AnimationUtils.LoadAnimation(this, Android.Resource.Animation.FadeIn);
+
 
             ImageButton loginButton = FindViewById<ImageButton>(Resource.Id.login);
             TextView signUpTextView = FindViewById<TextView>(Resource.Id.signUpTextView);

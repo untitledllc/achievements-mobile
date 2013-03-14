@@ -2,17 +2,17 @@
 <RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
     p1:minWidth="25px"
     p1:minHeight="25px"
-    p1:layout_width="250dp"
-    p1:layout_height="180dp"
+    p1:layout_width="270dp"
+    p1:layout_height="210dp"
     p1:id="@+id/FristBadgeMainRelativeLayout">
     <ImageView
-        p1:layout_width="250dp"
-        p1:layout_height="180dp"
+        p1:layout_width="270dp"
+        p1:layout_height="210dp"
         p1:id="@+id/BadgeSheetImageView"
         p1:background="@drawable/Paper_background_middleMiddle" />
     <Button
         p1:text="Отмена"
-        p1:layout_width="125dp"
+        p1:layout_width="140dp"
         p1:layout_height="40dp"
         p1:id="@+id/addcode_cancelButton"
         p1:layout_alignLeft="@id/BadgeSheetImageView"
@@ -29,12 +29,14 @@
         p1:layout_alignTop="@id/BadgeSheetImageView"
         p1:layout_alignLeft="@id/BadgeSheetImageView"
         p1:layout_marginLeft="15dp"
-        p1:layout_marginTop="15dp"
+        p1:layout_marginTop="20dp"
         p1:textColor="#ff4a4a4a"
-        p1:textSize="20dp" />
+        p1:textSize="20dp"
+        p1:typeface="sans"
+        p1:textStyle="normal" />
     <Button
         p1:text="Готово"
-        p1:layout_width="wrap_content"
+        p1:layout_width="140dp"
         p1:layout_height="40dp"
         p1:layout_toRightOf="@id/addcode_cancelButton"
         p1:id="@+id/addcode_readyButton"
@@ -50,10 +52,10 @@
         p1:id="@+id/imageView1"
         p1:layout_alignLeft="@id/BadgeSheetImageView"
         p1:layout_alignRight="@id/BadgeSheetImageView"
-        p1:layout_marginTop="35dp"
+        p1:layout_marginTop="40dp"
         p1:layout_marginLeft="15dp"
         p1:layout_marginRight="15dp"
-        p1:background="@drawable/line" />
+        p1:background="@drawable/line_blue" />
     <AutoCompleteTextView
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
@@ -77,21 +79,20 @@
         p1:layout_alignRight="@+id/addcode_autoCompleteTextView"
         p1:layout_marginTop="10dp"
         p1:textColor="#ff6c6c6c"
-        p1:textSize="10dp"
-        p1:layout_marginLeft="5dp"
-        p1:layout_marginRight="5dp" />
+        p1:textSize="10dp" />
     <ImageView
-        p1:layout_width="2dp"
+        p1:layout_width="4dp"
         p1:layout_toLeftOf="@id/addcode_readyButton"
         p1:id="@+id/imageView2"
         p1:layout_alignTop="@id/addcode_readyButton"
         p1:layout_alignBottom="@id/addcode_readyButton"
         p1:layout_height="fill_parent"
         p1:layout_marginLeft="1dp"
-        p1:background="@drawable/Btn_divider_v" />
+        p1:background="@drawable/Btn_divider_v"
+        p1:layout_marginTop="-2dp" />
     <ImageView
         p1:layout_width="wrap_content"
-        p1:layout_height="2dp"
+        p1:layout_height="4dp"
         p1:layout_above="@id/addcode_readyButton"
         p1:id="@+id/imageView3"
         p1:background="@drawable/TableAndButtons_divider_h"

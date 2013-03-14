@@ -25,10 +25,14 @@ namespace itsbeta.achievements
         public static Achieves.ParentCategory[] _achievesArray;
         public static TextView loadComplete;
         Animation buttonClickAnimation;
-        static ProgressDialog mDialog;
         static AlertDialog.Builder _messageDialogBuilder;
         static AlertDialog _messageDialog;
         Vibrator _vibe;
+
+
+        static ProgressDialog _progressDialog;
+        static TextView _progressDialogMessage;
+
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -51,11 +55,20 @@ namespace itsbeta.achievements
             }
 
             SetContentView(Resource.Layout.FirstBadgeActivityLoadingLayout);
-            mDialog = new ProgressDialog(this);
-            mDialog.SetMessage("Загрузка пользовательских данных...");
-            mDialog.SetCancelable(false);
-            mDialog.Show();
 
+
+            RelativeLayout progressDialogRelativeLayout = new RelativeLayout(this);
+            LayoutInflater progressDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            View progressDialogView = progressDialoglayoutInflater.Inflate(Resource.Layout.ProgressDialogLayout, null);
+            _progressDialogMessage = (TextView)progressDialogView.FindViewById(Resource.Id.progressDialogMessageTextView);
+            progressDialogRelativeLayout.AddView(progressDialogView);
+            _progressDialog = new ProgressDialog(this, Resource.Style.FullHeightDialog);
+            _progressDialog.Show();
+            _progressDialog.SetContentView(progressDialogRelativeLayout);
+            _progressDialog.Dismiss();
+
+            _progressDialogMessage.Text = "Загрузка пользовательских данных...";
+            _progressDialog.Show();
 
             ThreadStart threadStart = new ThreadStart(treadStartVoid);
             Thread loadThread = new Thread(threadStart);
@@ -69,7 +82,7 @@ namespace itsbeta.achievements
                 }
                 else
                 {
-                    RunOnUiThread(()=> mDialog.Hide());
+                    RunOnUiThread(() => _progressDialog.Hide());
                     Finish();
                     StartActivity(typeof(MainScreenActivity));
                 }
@@ -79,7 +92,7 @@ namespace itsbeta.achievements
 
         void RunOnUiRistBadgeWin()
         {
-            mDialog.Hide();
+            _progressDialog.Hide();
             buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
             SetContentView(Resource.Layout.FirstBadgeActivityLayout);
 
@@ -320,10 +333,10 @@ namespace itsbeta.achievements
                 _messageDialogBuilder.SetMessage("Не удалось подключиться. Проверьте состояние интернет подключения.");
                 _messageDialogBuilder.SetPositiveButton("Ок", delegate { RunOnUiThread(() => Finish()); });
                 RunOnUiThread(() => ShowAlertDialog());
-                RunOnUiThread(()=> mDialog.Dismiss());
+                RunOnUiThread(() => _progressDialog.Dismiss());
                 return;
             }
-            RunOnUiThread(()=> mDialog.SetMessage("Загрузка контента..."));
+            RunOnUiThread(() => _progressDialogMessage.Text = "Загрузка контента...");
             Directory.CreateDirectory(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/");
 
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
@@ -357,7 +370,7 @@ namespace itsbeta.achievements
                                 _messageDialogBuilder.SetMessage("Ошибка загрузки контента.");
                                 _messageDialogBuilder.SetPositiveButton("Ок", delegate { RunOnUiThread(() => Finish()); });
                                 RunOnUiThread(() => ShowAlertDialog());
-                                RunOnUiThread(() => mDialog.Dismiss());
+                                RunOnUiThread(() => _progressDialog.Dismiss());
                                 return;
                             }
 
