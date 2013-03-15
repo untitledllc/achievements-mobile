@@ -474,6 +474,9 @@ namespace itsbeta_wp7.ViewModel
 
 
         private string _birthday;
+        /// <summary>
+        /// Деньрождения пользователя в формате MM/dd/yyyy
+        /// </summary>
         public string Birthday
         {
             get

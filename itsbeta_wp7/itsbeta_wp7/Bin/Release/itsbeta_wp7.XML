@@ -1,0 +1,1044 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>itsbeta_wp7</name>
+    </assembly>
+    <members>
+        <member name="T:itsbeta_wp7.AboutPage">
+            <summary>
+            Description for AboutPage.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.AboutPage.#ctor">
+            <summary>
+            Initializes a new instance of the AboutPage class.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.AboutPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.ActivatePage">
+            <summary>
+            Description for ActivatePage.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ActivatePage.#ctor">
+            <summary>
+            Initializes a new instance of the ActivatePage class.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ActivatePage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.BadgePage">
+            <summary>
+            Description for BadgePage.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.BadgePage.#ctor">
+            <summary>
+            Initializes a new instance of the BadgePage class.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.BadgePage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.Controls.BadgeControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:facebook_windows_phone_sample.Pages.FacebookInfoPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:facebook_windows_phone_sample.Pages.FacebookLoginPage.ExtendedPermissions">
+            <summary>
+            Extended permissions is a comma separated list of permissions to ask the user.
+            </summary>
+            <remarks>
+            For extensive list of available extended permissions refer to 
+            https://developers.facebook.com/docs/reference/api/permissions/
+            </remarks>
+        </member>
+        <member name="M:facebook_windows_phone_sample.Pages.FacebookLoginPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.AppResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.about_description">
+            <summary>
+              Looks up a localized string similar to Itsbeta - all your achieves in one application..
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.about_program">
+            <summary>
+              Looks up a localized string similar to About program.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.about_project">
+            <summary>
+              Looks up a localized string similar to About project:.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.about_version">
+            <summary>
+              Looks up a localized string similar to Version 1.0.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.activate_badge_description">
+            <summary>
+              Looks up a localized string similar to activate badge description.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.activate_badge_title">
+            <summary>
+              Looks up a localized string similar to ACTIVATE BADGE.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.activation">
+            <summary>
+              Looks up a localized string similar to activation.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.all_badges">
+            <summary>
+              Looks up a localized string similar to All Badges:.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.badges_count">
+            <summary>
+              Looks up a localized string similar to badges:.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.badges_opened_label">
+            <summary>
+              Looks up a localized string similar to  opened.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.bonus">
+            <summary>
+              Looks up a localized string similar to bonus.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.bonus_title">
+            <summary>
+              Looks up a localized string similar to Bonus.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.bonuses">
+            <summary>
+              Looks up a localized string similar to Bonuses:.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.bonuses_count">
+            <summary>
+              Looks up a localized string similar to bonuses:.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.categories">
+            <summary>
+              Looks up a localized string similar to categories.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.collect_all_your_achieves">
+            <summary>
+              Looks up a localized string similar to Collect all your achievements.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.discount_title">
+            <summary>
+              Looks up a localized string similar to Discount.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.enter_code">
+            <summary>
+              Looks up a localized string similar to Enter code.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.enter_using_facebook">
+            <summary>
+              Looks up a localized string similar to Login using .
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.facebook_singup">
+            <summary>
+              Looks up a localized string similar to Facebook signup.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.itsbeta_url">
+            <summary>
+              Looks up a localized string similar to http://itsbeta.com.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.last">
+            <summary>
+              Looks up a localized string similar to last.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.loading">
+            <summary>
+              Looks up a localized string similar to loading....
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.no_data">
+            <summary>
+              Looks up a localized string similar to No data.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.present_title">
+            <summary>
+              Looks up a localized string similar to Present.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.profile">
+            <summary>
+              Looks up a localized string similar to profile.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.qr_reader">
+            <summary>
+              Looks up a localized string similar to QR-READER.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.rate_app">
+            <summary>
+              Looks up a localized string similar to Rate application.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.send_email">
+            <summary>
+              Looks up a localized string similar to Send email.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.statistics">
+            <summary>
+              Looks up a localized string similar to Statistics.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.subcategories">
+            <summary>
+              Looks up a localized string similar to Subcategories:.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.use_code_or_qr_description">
+            <summary>
+              Looks up a localized string similar to Use code or QR-reader.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.use_qr_reader">
+            <summary>
+              Looks up a localized string similar to Use QR-reader.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.years">
+            <summary>
+              Looks up a localized string similar to years.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.years1">
+            <summary>
+              Looks up a localized string similar to years.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.years234">
+            <summary>
+              Looks up a localized string similar to years.
+            </summary>
+        </member>
+        <member name="T:ControlTiltEffect.TiltEffect">
+            <summary>
+            This code provides attached properties for adding a 'tilt' effect to all controls within a container.
+            </summary>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.MaxAngle">
+            <summary>
+            Maximum amount of tilt, in radians
+            </summary>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.MaxDepression">
+            <summary>
+            Maximum amount of depression, in pixels
+            </summary>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.#ctor">
+            <summary>
+            This is not a constructable class, but it cannot be static because it derives from DependencyObject.
+            </summary>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.#cctor">
+            <summary>
+            Initialize the static properties
+            </summary>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.TiltReturnAnimationDelay">
+            <summary>
+            Delay between releasing an element and the tilt release animation playing
+            </summary>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.TiltReturnAnimationDuration">
+            <summary>
+            Duration of tilt release animation
+            </summary>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.currentTiltElement">
+            <summary>
+            The control that is currently being tilted
+            </summary>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.tiltReturnStoryboard">
+            <summary>
+            The single instance of a storyboard used for all tilts
+            </summary>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.tiltReturnXAnimation">
+            <summary>
+            The single instance of an X rotation used for all tilts
+            </summary>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.tiltReturnYAnimation">
+            <summary>
+            The single instance of a Y rotation used for all tilts
+            </summary>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.tiltReturnZAnimation">
+            <summary>
+            The single instance of a Z depression used for all tilts
+            </summary>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.currentTiltElementCenter">
+            <summary>
+            The center of the tilt element
+            </summary>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.wasPauseAnimation">
+            <summary>
+            Whether the animation just completed was for a 'pause' or not
+            </summary>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.IsTiltEnabledProperty">
+            <summary>
+            Whether the tilt effect is enabled on a container (and all its children)
+            </summary>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.GetIsTiltEnabled(System.Windows.DependencyObject)">
+            <summary>
+            Gets the IsTiltEnabled dependency property from an object
+            </summary>
+            <param name="source">The object to get the property from</param>
+            <returns>The property's value</returns>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.SetIsTiltEnabled(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Sets the IsTiltEnabled dependency property on an object
+            </summary>
+            <param name="source">The object to set the property on</param>
+            <param name="value">The value to set</param>
+        </member>
+        <member name="F:ControlTiltEffect.TiltEffect.SuppressTiltProperty">
+            <summary>
+            Suppresses the tilt effect on a single control that would otherwise be tilted
+            </summary>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.GetSuppressTilt(System.Windows.DependencyObject)">
+            <summary>
+            Gets the SuppressTilt dependency property from an object
+            </summary>
+            <param name="source">The object to get the property from</param>
+            <returns>The property's value</returns>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.SetSuppressTilt(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Sets the SuppressTilt dependency property from an object
+            </summary>
+            <param name="source">The object to get the property from</param>
+            <returns>The property's value</returns>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.OnIsTiltEnabledChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Property change handler for the IsTiltEnabled dependency property
+            </summary>
+            <param name="target">The element that the property is atteched to</param>
+            <param name="args">Event args</param>
+            <remarks>
+            Adds or removes event handlers from the element that has been (un)registered for tilting
+            </remarks>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.TiltEffect_ManipulationStarted(System.Object,System.Windows.Input.ManipulationStartedEventArgs)">
+            <summary>
+            Event handler for ManipulationStarted
+            </summary>
+            <param name="sender">sender of the event - this will be the tilt container (eg, entire page)</param>
+            <param name="e">event args</param>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.TiltEffect_ManipulationDelta(System.Object,System.Windows.Input.ManipulationDeltaEventArgs)">
+            <summary>
+            Event handler for ManipulationDelta
+            </summary>
+            <param name="sender">sender of the event - this will be the tilting object (eg a button)</param>
+            <param name="e">event args</param>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.TiltEffect_ManipulationCompleted(System.Object,System.Windows.Input.ManipulationCompletedEventArgs)">
+            <summary>
+            Event handler for ManipulationCompleted
+            </summary>
+            <param name="sender">sender of the event - this will be the tilting object (eg a button)</param>
+            <param name="e">event args</param>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.TryStartTiltEffect(System.Windows.FrameworkElement,System.Windows.Input.ManipulationStartedEventArgs)">
+            <summary>
+            Checks if the manipulation should cause a tilt, and if so starts the tilt effect
+            </summary>
+            <param name="source">The source of the manipulation (the tilt container, eg entire page)</param>
+            <param name="e">The args from the ManipulationStarted event</param>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.GetCenterToCenterDelta(System.Windows.FrameworkElement,System.Windows.FrameworkElement)">
+            <summary>
+            Computes the delta between the centre of an element and its container
+            </summary>
+            <param name="element">The element to compare</param>
+            <param name="container">The element to compare against</param>
+            <returns>A point that represents the delta between the two centers</returns>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.BeginTiltEffect(System.Windows.FrameworkElement,System.Windows.Point,System.Windows.Point,System.Windows.Point)">
+            <summary>
+            Begins the tilt effect by preparing the control and doing the initial animation
+            </summary>
+            <param name="element">The element to tilt </param>
+            <param name="touchPoint">The touch point, in element coordinates</param>
+            <param name="centerPoint">The center point of the element in element coordinates</param>
+            <param name="centerDelta">The delta between the <paramref name="element"/>'s center and 
+            the container's center</param>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.PrepareControlForTilt(System.Windows.FrameworkElement,System.Windows.Point)">
+            <summary>
+            Prepares a control to be tilted by setting up a plane projection and some event handlers
+            </summary>
+            <param name="element">The control that is to be tilted</param>
+            <param name="centerDelta">Delta between the element's center and the tilt container's</param>
+            <returns>true if successful; false otherwise</returns>
+            <remarks>
+            This method is conservative; it will fail any attempt to tilt a control that already
+            has a projection on it
+            </remarks>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.RevertPrepareControlForTilt(System.Windows.FrameworkElement)">
+            <summary>
+            Removes modifications made by PrepareControlForTilt
+            </summary>
+            <param name="element">THe control to be un-prepared</param>
+            <remarks>
+            This method is basic; it does not do anything to detect if the control being un-prepared
+            was previously prepared
+            </remarks>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.PrepareTiltReturnStoryboard(System.Windows.FrameworkElement)">
+            <summary>
+            Creates the tilt return storyboard (if not already created) and targets it to the projection
+            </summary>
+            <param name="projection">the projection that should be the target of the animation</param>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.ContinueTiltEffect(System.Windows.FrameworkElement,System.Windows.Input.ManipulationDeltaEventArgs)">
+            <summary>
+            Continues a tilt effect that is currently applied to an element, presumably because
+            the user moved their finger
+            </summary>
+            <param name="element">The element being tilted</param>
+            <param name="e">The manipulation event args</param>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.EndTiltEffect(System.Windows.FrameworkElement)">
+            <summary>
+            Ends the tilt effect by playing the animation  
+            </summary>
+            <param name="element">The element being tilted</param>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.TiltReturnStoryboard_Completed(System.Object,System.EventArgs)">
+            <summary>
+            Handler for the storyboard complete event
+            </summary>
+            <param name="sender">sender of the event</param>
+            <param name="e">event args</param>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.ResetTiltEffect(System.Windows.FrameworkElement)">
+            <summary>
+            Resets the tilt effect on the control, making it appear 'normal' again 
+            </summary>
+            <param name="element">The element to reset the tilt on</param>
+            <remarks>
+            This method doesn't turn off the tilt effect or cancel any current
+            manipulation; it just temporarily cancels the effect
+            </remarks>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.StopTiltReturnStoryboardAndCleanup">
+            <summary>
+            Stops the tilt effect and release resources applied to the currently-tilted control
+            </summary>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.PauseTiltEffect">
+            <summary>
+            Pauses the tilt effect so that the control returns to the 'at rest' position, but doesn't
+            stop the tilt effect (handlers are still attached, etc.)
+            </summary>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.ResetTiltReturnStoryboard">
+            <summary>
+            Resets the storyboard to not running
+            </summary>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.ApplyTiltEffect(System.Windows.FrameworkElement,System.Windows.Point,System.Windows.Point)">
+            <summary>
+            Applies the tilt effect to the control
+            </summary>
+            <param name="element">the control to tilt</param>
+            <param name="touchPoint">The touch point, in the container's coordinates</param>
+            <param name="centerPoint">The center point of the container</param>
+        </member>
+        <member name="P:ControlTiltEffect.TiltEffect.UseLogarithmicEase">
+            <summary>
+            Whether to use a slightly more accurate (but slightly slower) tilt animation easing function
+            </summary>
+        </member>
+        <member name="P:ControlTiltEffect.TiltEffect.TiltableItems">
+            <summary>
+            Default list of items that are tiltable
+            </summary>
+        </member>
+        <member name="T:ControlTiltEffect.TiltEffect.LogarithmicEase">
+            <summary>
+            Provides an easing function for the tilt return
+            </summary>
+        </member>
+        <member name="M:ControlTiltEffect.TiltEffect.LogarithmicEase.EaseInCore(System.Double)">
+            <summary>
+            Computes the easing function
+            </summary>
+            <param name="normalizedTime">The time</param>
+            <returns>The eased value</returns>
+        </member>
+        <member name="T:ControlTiltEffect.TreeHelpers">
+            <summary>
+            Couple of simple helpers for walking the visual tree
+            </summary>
+        </member>
+        <member name="M:ControlTiltEffect.TreeHelpers.GetVisualAncestors(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the ancestors of the element, up to the root
+            </summary>
+            <param name="node">The element to start from</param>
+            <returns>An enumerator of the ancestors</returns>
+        </member>
+        <member name="M:ControlTiltEffect.TreeHelpers.GetVisualParent(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the visual parent of the element
+            </summary>
+            <param name="node">The element to check</param>
+            <returns>The visual parent</returns>
+        </member>
+        <member name="T:itsbeta_wp7.LoginPage">
+            <summary>
+            Description for LoginPage.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.LoginPage.#ctor">
+            <summary>
+            Initializes a new instance of the LoginPage class.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.LoginPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.MainPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.PanoramaPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.QRread.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.StatsPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.ViewModel.BadgeAllItem">
+            <summary>
+            This class contains properties that a View can data bind to.
+            <para>
+            Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
+            </para>
+            <para>
+            You can also use Blend to data bind with the tool's support.
+            </para>
+            <para>
+            See http://www.galasoft.ch/mvvm/getstarted
+            </para>
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.BadgeAllItem.#ctor">
+            <summary>
+            Initializes a new instance of the BadgeItem class.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Api_name">
+            <summary>
+            Api_name бонуса
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Bonuses">
+            <summary>
+            Список бонусов
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Category_api_name">
+            <summary>
+            Api_name категории которой принадлежит достижение
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Category_name">
+            <summary>
+            Display_name категории, которой принадлежит достижение
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Display_name">
+            <summary>
+            Отображаемоеназвание достижения
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Desc">
+            <summary>
+            Описание достижения - краткое
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Details">
+            <summary>
+            Полное описание достижения
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Adv">
+            <summary>
+            Реклама в достижении данном
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Pic">
+            <summary>
+            Изображение достижения (ссылка)
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Bonus">
+            <summary>
+            не используется более
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Project_api_name">
+            <summary>
+            Api_name проекта,которому принадлежит достижение
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Project_name">
+            <summary>
+            Display_name проекта, которому принадлежит достижение
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Fb_id">
+            <summary>
+            Идентификатор опубликованного на facebook достижения
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.AchievesItem.Create_time">
+            <summary>
+            Дата и время создание
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.AchievesItem.Short_Create_time">
+            <summary>
+            Дата создания в котротком формате
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.AchievesItem.Badge_name">
+            <summary>
+            Имя бейджа
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.ViewModel.BonusItem">
+            <summary>
+            Бонусы для достижений
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.BonusItem.#ctor">
+            <summary>
+            Initializes a new instance of the BadgeItem class.
+            </summary>
+        </member>
+        <member name="F:itsbeta_wp7.ViewModel.BonusItem._bonus_type">
+            <summary>
+            ("discount" | "bonus" | "present")
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BonusItem.Bonus_type">
+            <summary>
+            Тип бонусв
+            Один из вариантов - ("discount" | "bonus" | "present")
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BonusItem.Bonus_color">
+            <summary>
+            Цвет бонуса
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BonusItem.Bonus_name">
+            <summary>
+            Название бонуса (от типа бонуса)
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.BonusItem.Bonus_desc">
+            <summary>
+            Описание бонуса
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.ViewModel.BadgesViewModel">
+            <summary>
+            This class contains properties that a View can data bind to.
+            <para>
+            Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
+            </para>
+            <para>
+            You can also use Blend to data bind with the tool's support.
+            </para>
+            <para>
+            See http://www.galasoft.ch/mvvm/getstarted
+            </para>
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.BadgesViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the BadgesViewModel class.
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.ViewModel.CategoriesViewModel">
+            <summary>
+            This class contains properties that a View can data bind to.
+            <para>
+            Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
+            </para>
+            <para>
+            You can also use Blend to data bind with the tool's support.
+            </para>
+            <para>
+            See http://www.galasoft.ch/mvvm/getstarted
+            </para>
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.CategoriesViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the CategoriesViewModel class.
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.ViewModel.CategoryItem">
+            <summary>
+            This class contains properties that a View can data bind to.
+            <para>
+            Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
+            </para>
+            <para>
+            You can also use Blend to data bind with the tool's support.
+            </para>
+            <para>
+            See http://www.galasoft.ch/mvvm/getstarted
+            </para>
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.CategoryItem.#ctor">
+            <summary>
+            Initializes a new instance of the CategoryItem class.
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.ViewModel.MainViewModel">
+            <summary>
+            This class contains properties that the main View can data bind to.
+            <para>
+            Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
+            </para>
+            <para>
+            You can also use Blend to data bind with the tool's support.
+            </para>
+            <para>
+            See http://www.galasoft.ch/mvvm/getstarted
+            </para>
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.MainViewModel.LoadFromIsolatedStorage">
+            <summary>
+            Загружаем из isolatedStorage и разбираем ранее сохраненный json
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.MainViewModel.SaveToIsolatedStorage(System.String)">
+            <summary>
+            Сохраняем ответ от itsbeta в isolatedstorage для работы оффлайн и кэширования
+            </summary>
+            <param name="json">json полученный от achievements.json</param>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.MainViewModel.ParseAcievesJson(System.String)">
+            <summary>
+            Разбор ответа скатегориями, проеками, достижениями от itsbeta
+            Описание формата - https://hackpad.com/itsbeta-API-version-1-aVSDkDTPbA1
+            </summary>
+            <param name="content">json полученный от achievements.json</param>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.MainViewModel.UpdateTile(System.Int32)">
+            <summary>
+            Обновляем главный tile приложения
+            </summary>
+            <param name="count"></param>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.MainViewModel.PicToIsoStore(System.IO.Stream)">
+            <summary>
+            Сохраняем изображение в isolatedStorage
+            </summary>
+            <param name="pic"></param>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.MainViewModel.LoadAchievements(System.String)">
+            <summary>
+            Загружаем данные о категориях, проектах, достижениях
+            </summary>
+            <param name="activation_code"></param>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.MainViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the MainViewModel class.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.MainViewModel.BonusCount">
+            <summary>
+            Количество бонусов во всех достижениях пользователя
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.MainViewModel.LastAchieves">
+            <summary>
+            Последние 3 полученные достижения пользователя
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.MainViewModel.CurrentAchieve">
+            <summary>
+            Текущее достижение (отображаемое на странице просмотра достижения)
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.MainViewModel.CurrentProject">
+            <summary>
+            Текущий проект
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.MainViewModel.Loading">
+            <summary>
+            Флаг, означающий загрузку данных
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.MainViewModel.CurrentCategory">
+            <summary>
+            Текущая категория
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.MainViewModel.CurrentLanguage">
+            <summary>
+            Возвращаем строку, с текщуим языком приложения, в формате, необходимом для itsbeta
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.ViewModel.ProjectItem">
+            <summary>
+            This class contains properties that a View can data bind to.
+            <para>
+            Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
+            </para>
+            <para>
+            You can also use Blend to data bind with the tool's support.
+            </para>
+            <para>
+            See http://www.galasoft.ch/mvvm/getstarted
+            </para>
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.ProjectItem.#ctor">
+            <summary>
+            Initializes a new instance of the ProjectItem class.
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.ViewModel.ProjectsViewModel">
+            <summary>
+            This class contains properties that a View can data bind to.
+            <para>
+            Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
+            </para>
+            <para>
+            You can also use Blend to data bind with the tool's support.
+            </para>
+            <para>
+            See http://www.galasoft.ch/mvvm/getstarted
+            </para>
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.ProjectsViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the ProjectsViewModel class.
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.ViewModel.QRViewModel">
+            <summary>
+            This class contains properties that a View can data bind to.
+            <para>
+            Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
+            </para>
+            <para>
+            You can also use Blend to data bind with the tool's support.
+            </para>
+            <para>
+            See http://www.galasoft.ch/mvvm/getstarted
+            </para>
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.QRViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the QRViewModel class.
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.ViewModel.UserViewModel">
+            <summary>
+            This class contains properties that a View can data bind to.
+            <para>
+            Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
+            </para>
+            <para>
+            You can also use Blend to data bind with the tool's support.
+            </para>
+            <para>
+            See http://www.galasoft.ch/mvvm/getstarted
+            </para>
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.UserViewModel.#ctor">
+            <summary>
+            Initializes a new instance of the UserViewModel class.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.UserViewModel.ActivateAchieve(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="activation_code"></param>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.UserViewModel.Birthday">
+            <summary>
+            Деньрождения пользователя в формате MM/dd/yyyy
+            </summary>
+        </member>
+        <member name="T:itsbeta_wp7.ViewModel.ViewModelLocator">
+            <summary>
+            This class contains static references to all the view models in the
+            application and provides an entry point for the bindings.
+            <para>
+            Use the <strong>mvvmlocatorproperty</strong> snippet to add ViewModels
+            to this locator.
+            </para>
+            <para>
+            In Silverlight and WPF, place the ViewModelLocatorTemplate in the App.xaml resources:
+            </para>
+            <code>
+            &lt;Application.Resources&gt;
+                &lt;vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:itsbeta_wp7.ViewModel"
+                                             x:Key="Locator" /&gt;
+            &lt;/Application.Resources&gt;
+            </code>
+            <para>
+            Then use:
+            </para>
+            <code>
+            DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
+            </code>
+            <para>
+            You can also use Blend to do all this with the tool's support.
+            </para>
+            <para>
+            See http://www.galasoft.ch/mvvm/getstarted
+            </para>
+            <para>
+            In <strong>*WPF only*</strong> (and if databinding in Blend is not relevant), you can delete
+            the Main property and bind to the ViewModelNameStatic property instead:
+            </para>
+            <code>
+            xmlns:vm="clr-namespace:itsbeta_wp7.ViewModel"
+            DataContext="{Binding Source={x:Static vm:ViewModelLocatorTemplate.ViewModelNameStatic}}"
+            </code>
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.ViewModelLocator.#ctor">
+            <summary>
+            Initializes a new instance of the ViewModelLocator class.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.ViewModelLocator.ClearMain">
+            <summary>
+            Provides a deterministic way to delete the Main property.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.ViewModelLocator.CreateMain">
+            <summary>
+            Provides a deterministic way to create the Main property.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ViewModel.ViewModelLocator.Cleanup">
+            <summary>
+            Cleans up all the resources.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.ViewModelLocator.MainStatic">
+            <summary>
+            Gets the Main property.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.ViewModel.ViewModelLocator.Main">
+            <summary>
+            Gets the Main property.
+            </summary>
+        </member>
+    </members>
+</doc>

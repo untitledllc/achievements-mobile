@@ -23,6 +23,7 @@ using ImageTools.IO.Png;
 using ImageTools;
 using ImageTools.Filtering;
 using System.Windows.Media;
+using System.Globalization;
 
 namespace itsbeta_wp7.ViewModel
 {
@@ -125,6 +126,10 @@ namespace itsbeta_wp7.ViewModel
             {
             }
         }
+
+        /// <summary>
+        /// Количество бонусов во всех достижениях пользователя
+        /// </summary>
         public int BonusCount
         {
             get
@@ -160,6 +165,9 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        /// <summary>
+        /// Последние 3 полученные достижения пользователя
+        /// </summary>
         public ObservableCollection<AchievesItem> LastAchieves
         {
             get
@@ -176,6 +184,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private AchievesItem _currentAchieve = null;
+        /// <summary>
+        /// Текущее достижение (отображаемое на странице просмотра достижения)
+        /// </summary>
         public AchievesItem CurrentAchieve
         {
             set
@@ -190,6 +201,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private ProjectItem _currentProject = new ProjectItem();
+        /// <summary>
+        /// Текущий проект
+        /// </summary>
         public ProjectItem CurrentProject 
         {
             set
@@ -204,6 +218,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private bool _loading = false;
+        /// <summary>
+        /// Флаг, означающий загрузку данных
+        /// </summary>
         public bool Loading
         {
             set
@@ -218,6 +235,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private CategoryItem _currentCategory = new CategoryItem();
+        /// <summary>
+        /// Текущая категория
+        /// </summary>
         public CategoryItem CurrentCategory
         {
             set
@@ -232,6 +252,9 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        /// <summary>
+        /// Загружаем из isolatedStorage и разбираем ранее сохраненный json
+        /// </summary>
         public void LoadFromIsolatedStorage()
         {
             try
@@ -244,11 +267,20 @@ namespace itsbeta_wp7.ViewModel
             catch { };
         }
 
+        /// <summary>
+        /// Сохраняем ответ от itsbeta в isolatedstorage для работы оффлайн и кэширования
+        /// </summary>
+        /// <param name="json">json полученный от achievements.json</param>
         public void SaveToIsolatedStorage(string json="")
         {
             IsolatedStorageHelper.SaveSerializableObject<string>(json, "achieves.xml");            
         }
 
+        /// <summary>
+        /// Разбор ответа скатегориями, проеками, достижениями от itsbeta
+        /// Описание формата - https://hackpad.com/itsbeta-API-version-1-aVSDkDTPbA1
+        /// </summary>
+        /// <param name="content">json полученный от achievements.json</param>
         public void ParseAcievesJson(string content="") {
             ObservableCollection<CategoryItem> tempCategories = new ObservableCollection<CategoryItem>();
             ObservableCollection<ProjectItem> tempProjects = new ObservableCollection<ProjectItem>();
@@ -308,6 +340,10 @@ namespace itsbeta_wp7.ViewModel
             UpdateTile(all_count);
         }
 
+        /// <summary>
+        /// Обновляем главный tile приложения
+        /// </summary>
+        /// <param name="count"></param>
         private void UpdateTile(int count=0)
         {
             try
@@ -343,6 +379,10 @@ namespace itsbeta_wp7.ViewModel
             catch { };
         }
 
+        /// <summary>
+        /// Сохраняем изображение в isolatedStorage
+        /// </summary>
+        /// <param name="pic"></param>
         private void PicToIsoStore(Stream pic)
         {
             using (var isoStore = IsolatedStorageFile.GetUserStoreForApplication())
@@ -355,20 +395,22 @@ namespace itsbeta_wp7.ViewModel
                 string filePath = System.IO.Path.Combine(imageFolder, shareJPEG);
                 using (var isoFileStream = isoStore.CreateFile(filePath))
                 {
-                    var width = 140;//wb.PixelWidth;
-                    var height = 140;//wb.PixelHeight;
+                    //var width = 140;//wb.PixelWidth;
+                    //var height = 140;//wb.PixelHeight;
                     //wb.SaveJpeg(isoFileStream, width, height, 0, 100);
                     var encoder = new PngEncoder();
                     wb = new WriteableBitmap(bi);
                     //WriteableBitmap wb2 = new WriteableBitmap(210, 210);
-
                     //encoder.Encode(ExtendedImage.Resize(wb.ToImage(), 210, new NearestNeighborResizer()), isoFileStream);
                     encoder.Encode(wb.ToImage(), isoFileStream);
                 }
             }
         }
 
-        ///badges.json
+        /// <summary>
+        /// Загружаем данные о категориях, проектах, достижениях
+        /// </summary>
+        /// <param name="activation_code"></param>
         public void LoadAchievements(string activation_code="")
         {
             LoadFromIsolatedStorage();
@@ -390,6 +432,7 @@ namespace itsbeta_wp7.ViewModel
                         request.Parameters.Clear();
                         request.AddParameter("access_token", App.ACCESS_TOKEN);
                         request.AddParameter("player_id", ViewModelLocator.UserStatic.PlayerId);
+                        request.AddParameter("locale", ViewModelLocator.MainStatic.CurrentLanguage);
 
                         client.ExecuteAsync(request, response =>
                         {
@@ -436,5 +479,20 @@ namespace itsbeta_wp7.ViewModel
             // Clean up if needed
             base.Cleanup();
         }
+
+        /// <summary>
+        /// Возвращаем строку, с текщуим языком приложения, в формате, необходимом для itsbeta
+        /// </summary>
+        public string CurrentLanguage
+        {
+            get
+            {
+                switch (CultureInfo.CurrentCulture.Name)
+                {
+                    case "ru-RU": return "ru";
+                    default: return "en";
+                }
+            }
+            private set { } }
     }
 }

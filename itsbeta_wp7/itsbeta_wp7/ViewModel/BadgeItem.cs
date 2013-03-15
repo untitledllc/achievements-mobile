@@ -8,6 +8,10 @@ namespace itsbeta_wp7.ViewModel
 
     public class AchievesItem: BadgeAllItem {
         private DateTime _create_time = DateTime.Now;
+
+        /// <summary>
+        /// Дата и время создание
+        /// </summary>
         public DateTime Create_time
         {
             get
@@ -22,6 +26,9 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        /// <summary>
+        /// Дата создания в котротком формате
+        /// </summary>
         public string Short_Create_time
         {
             get
@@ -34,6 +41,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _badge_name = "";
+        /// <summary>
+        /// Имя бейджа
+        /// </summary>
         public string Badge_name
         {
             get
@@ -50,6 +60,9 @@ namespace itsbeta_wp7.ViewModel
         
     }
 
+    /// <summary>
+    /// Бонусы для достижений
+    /// </summary>
     public class BonusItem : ViewModelBase
     {
         /// <summary>
@@ -63,6 +76,11 @@ namespace itsbeta_wp7.ViewModel
         /// ("discount" | "bonus" | "present")
         /// </summary>
         private string _bonus_type = "";
+
+        /// <summary>
+        /// Тип бонусв
+        /// Один из вариантов - ("discount" | "bonus" | "present")
+        /// </summary>
         public string Bonus_type
         {
             get
@@ -78,6 +96,9 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        /// <summary>
+        /// Цвет бонуса
+        /// </summary>
         public SolidColorBrush Bonus_color {
             get
             {
@@ -102,6 +123,9 @@ namespace itsbeta_wp7.ViewModel
             }
         }
 
+        /// <summary>
+        /// Название бонуса (от типа бонуса)
+        /// </summary>
         public string Bonus_name
         {
             get
@@ -109,9 +133,9 @@ namespace itsbeta_wp7.ViewModel
                 string out_name = "";
                 switch (Bonus_type)
                 {
-                    case "discount": out_name = "Скидка";  break;
-                    case "bonus": out_name = "Бонус"; break;
-                    case "present": out_name = "Подарок"; break;
+                    case "discount": out_name = AppResources.discount_title;  break;
+                    case "bonus": out_name = AppResources.bonus_title; break;
+                    case "present": out_name = AppResources.present_title; break;
                 }
                 return out_name;
             }
@@ -121,6 +145,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _bonus_desc = "";
+        /// <summary>
+        /// Описание бонуса
+        /// </summary>
         public string Bonus_desc
         {
             get
@@ -166,6 +193,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _api_name = "";
+        /// <summary>
+        /// Api_name бонуса
+        /// </summary>
         public string Api_name
         {
             get
@@ -180,6 +210,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private ObservableCollection<BonusItem> _bonuses = new ObservableCollection<BonusItem>();
+        /// <summary>
+        /// Список бонусов
+        /// </summary>
         public ObservableCollection<BonusItem> Bonuses
         {
             get
@@ -194,6 +227,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _category_api_name = "";
+        /// <summary>
+        /// Api_name категории которой принадлежит достижение
+        /// </summary>
         public string Category_api_name
         {
             get
@@ -208,6 +244,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _category_name = "";
+        /// <summary>
+        /// Display_name категории, которой принадлежит достижение
+        /// </summary>
         public string Category_name
         {
             get
@@ -222,6 +261,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _display_name = "";
+        /// <summary>
+        /// Отображаемоеназвание достижения
+        /// </summary>
         public string Display_name
         {
             get
@@ -236,6 +278,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _desc = "";
+        /// <summary>
+        /// Описание достижения - краткое
+        /// </summary>
         public string Desc
         {
             get
@@ -250,6 +295,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _details = "";
+        /// <summary>
+        /// Полное описание достижения
+        /// </summary>
         public string Details
         {
             get
@@ -264,6 +312,9 @@ namespace itsbeta_wp7.ViewModel
         }
         
         private string _adv = "";
+        /// <summary>
+        /// Реклама в достижении данном
+        /// </summary>
         public string Adv
         {
             get
@@ -278,6 +329,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _pic = "";
+        /// <summary>
+        /// Изображение достижения (ссылка)
+        /// </summary>
         public string Pic
         {
             get
@@ -292,6 +346,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _bonus = "";
+        /// <summary>
+        /// не используется более
+        /// </summary>
         public string Bonus
         {
             get
@@ -306,6 +363,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _project_api_name = "";
+        /// <summary>
+        /// Api_name проекта,которому принадлежит достижение
+        /// </summary>
         public string Project_api_name
         {
             get
@@ -320,6 +380,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _project_name = "";
+        /// <summary>
+        /// Display_name проекта, которому принадлежит достижение
+        /// </summary>
         public string Project_name
         {
             get
@@ -334,6 +397,9 @@ namespace itsbeta_wp7.ViewModel
         }
 
         private string _fb_id = "";
+        /// <summary>
+        /// Идентификатор опубликованного на facebook достижения
+        /// </summary>
         public string Fb_id
         {
             get

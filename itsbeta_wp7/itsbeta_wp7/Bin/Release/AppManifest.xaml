@@ -34,6 +34,5 @@
     <AssemblyPart x:Name="WPExtensions" Source="WPExtensions.dll" />
     <AssemblyPart x:Name="Microsoft.Practices.ServiceLocation" Source="Microsoft.Practices.ServiceLocation.dll" />
     <AssemblyPart Source="ru-RU/itsbeta_wp7.resources.dll" />
-    <AssemblyPart Source="zh-CN/itsbeta_wp7.resources.dll" />
   </Deployment.Parts>
 </Deployment>

@@ -160,6 +160,15 @@ namespace itsbeta_wp7 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bonus.
+        /// </summary>
+        public static string bonus_title {
+            get {
+                return ResourceManager.GetString("bonus_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bonuses:.
         /// </summary>
         public static string bonuses {
@@ -192,6 +201,15 @@ namespace itsbeta_wp7 {
         public static string collect_all_your_achieves {
             get {
                 return ResourceManager.GetString("collect_all_your_achieves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discount.
+        /// </summary>
+        public static string discount_title {
+            get {
+                return ResourceManager.GetString("discount_title", resourceCulture);
             }
         }
         
@@ -255,6 +273,15 @@ namespace itsbeta_wp7 {
         public static string no_data {
             get {
                 return ResourceManager.GetString("no_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Present.
+        /// </summary>
+        public static string present_title {
+            get {
+                return ResourceManager.GetString("present_title", resourceCulture);
             }
         }
         

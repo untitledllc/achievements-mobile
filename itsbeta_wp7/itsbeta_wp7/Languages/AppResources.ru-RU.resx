@@ -153,11 +153,17 @@
   <data name="bonuses_count" xml:space="preserve">
     <value>бонусов:</value>
   </data>
+  <data name="bonus_title" xml:space="preserve">
+    <value>Бонус</value>
+  </data>
   <data name="categories" xml:space="preserve">
     <value>категории</value>
   </data>
   <data name="collect_all_your_achieves" xml:space="preserve">
     <value>Собери все достижения</value>
+  </data>
+  <data name="discount_title" xml:space="preserve">
+    <value>Скидка</value>
   </data>
   <data name="enter_code" xml:space="preserve">
     <value>Ввести код</value>
@@ -179,6 +185,9 @@
   </data>
   <data name="no_data" xml:space="preserve">
     <value>Нет данных</value>
+  </data>
+  <data name="present_title" xml:space="preserve">
+    <value>Подарок</value>
   </data>
   <data name="profile" xml:space="preserve">
     <value>профиль</value>

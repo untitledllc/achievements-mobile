@@ -156,11 +156,17 @@
   <data name="bonuses_count" xml:space="preserve">
     <value>bonuses:</value>
   </data>
+  <data name="bonus_title" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
   <data name="categories" xml:space="preserve">
     <value>categories</value>
   </data>
   <data name="collect_all_your_achieves" xml:space="preserve">
     <value>Collect all your achievements</value>
+  </data>
+  <data name="discount_title" xml:space="preserve">
+    <value>Discount</value>
   </data>
   <data name="enter_code" xml:space="preserve">
     <value>Enter code</value>
@@ -182,6 +188,9 @@
   </data>
   <data name="no_data" xml:space="preserve">
     <value>No data</value>
+  </data>
+  <data name="present_title" xml:space="preserve">
+    <value>Present</value>
   </data>
   <data name="profile" xml:space="preserve">
     <value>profile</value>

@@ -16,7 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
-    <SupportedCultures>ru-RU;en-US;zh-CN;</SupportedCultures>
+    <SupportedCultures>ru-RU;en-US;</SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>itsbeta_wp7.xap</XapFilename>
@@ -47,6 +47,7 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\itsbeta_wp7.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BugSense">
