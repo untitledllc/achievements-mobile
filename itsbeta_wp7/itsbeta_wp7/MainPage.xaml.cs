@@ -51,5 +51,11 @@ namespace itsbeta_wp7
             }
             catch { };
         }
+
+        private void AllBadges_RefreshRequested(object sender, EventArgs e)
+        {
+            ViewModelLocator.MainStatic.LoadAchievements();
+            AllBadges.StopPullToRefreshLoading(true);
+        }
     }
 }

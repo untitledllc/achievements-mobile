@@ -14,6 +14,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using itsbeta_wp7.ViewModel;
 using Telerik.Windows.Controls;
+using Telerik.Windows.Controls.Input;
 using BugSense;
 
 namespace itsbeta_wp7
@@ -46,6 +47,11 @@ namespace itsbeta_wp7
 
             // Phone-specific initialization
             InitializePhoneApplication();
+
+            /*InputLocalizationManager.Instance.StringLoader = new MyStringLoader();
+            InputLocalizationManager.Instance.ResourceManager = myResourceManager;
+            LocalizationManager.GlobalStringLoader = new MyStringLoader();
+            LocalizationManager.GlobalResourceManager = myResourceManager;*/
 
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached)

@@ -225,4 +225,7 @@
   <data name="years234" xml:space="preserve">
     <value>years</value>
   </data>
+  <data name="pulltorefresh_text" xml:space="preserve">
+    <value>Update data</value>
+  </data>
 </root>

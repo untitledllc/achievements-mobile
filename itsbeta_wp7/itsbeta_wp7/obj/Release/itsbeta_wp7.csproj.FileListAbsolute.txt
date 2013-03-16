@@ -113,5 +113,10 @@ C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\Telerik.Windows.Controls.Chart.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\Telerik.Windows.Controls.Chart.pdb
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\Telerik.Windows.Controls.Chart.xml
-C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\itsbeta_wp7.csprojResolveAssemblyReference.cache
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\itsbeta_wp7.XML
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\Telerik.Windows.Controls.Input.dll
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\Telerik.Windows.Controls.Input.pdb
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\Telerik.Windows.Controls.Input.xml
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\de-DE\Telerik.Windows.Controls.Input.resources.dll
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\fr-FR\Telerik.Windows.Controls.Input.resources.dll
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\it-IT\Telerik.Windows.Controls.Input.resources.dll

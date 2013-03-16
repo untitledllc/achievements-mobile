@@ -295,6 +295,15 @@ namespace itsbeta_wp7 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update data.
+        /// </summary>
+        public static string pulltorefresh_text {
+            get {
+                return ResourceManager.GetString("pulltorefresh_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to QR-READER.
         /// </summary>
         public static string qr_reader {

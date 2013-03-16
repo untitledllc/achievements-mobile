@@ -99,7 +99,14 @@
                 x:Name="AllBadges"                                          
                                      GroupHeaderItemTap="AllBadges_GroupHeaderItemTap"
                                      ItemsSource="{Binding Path=CategoryAchieves}"
-                                     DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllBadges_ItemTap" GroupHeaderTemplate="{StaticResource DataTemplate1}" GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" HorizontalContentAlignment="Left" HorizontalAlignment="Left">
+                                     DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                ItemTap="AllBadges_ItemTap" 
+                GroupHeaderTemplate="{StaticResource DataTemplate1}" 
+                GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" 
+                HorizontalContentAlignment="Left" HorizontalAlignment="Left" 
+                IsPullToRefreshEnabled="True" 
+                RefreshRequested="AllBadges_RefreshRequested" 
+                PullToRefreshIndicatorStyle="{StaticResource PullToRefreshIndicatorControlStyle1}">
                 <telerikData:RadJumpList.ItemTemplate>
                         <DataTemplate>
                         <ScrollViewer HorizontalScrollBarVisibility="Visible"

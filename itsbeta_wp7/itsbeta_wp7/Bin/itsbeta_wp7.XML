@@ -229,6 +229,11 @@
               Looks up a localized string similar to profile.
             </summary>
         </member>
+        <member name="P:itsbeta_wp7.AppResources.pulltorefresh_text">
+            <summary>
+              Looks up a localized string similar to Update data.
+            </summary>
+        </member>
         <member name="P:itsbeta_wp7.AppResources.qr_reader">
             <summary>
               Looks up a localized string similar to QR-READER.

@@ -222,4 +222,7 @@
   <data name="years234" xml:space="preserve">
     <value>года</value>
   </data>
+  <data name="pulltorefresh_text" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
 </root>

@@ -175,7 +175,7 @@ namespace itsbeta_wp7.ViewModel
                 var items = (from item in Achieves
                              where ((item.Fb_id != "") && (item.Fb_id != null))
                              group item by item.Display_name into grp
-                             select grp.OrderBy(a => a.Create_time).Last()).OrderByDescending(a => a.Create_time).Take(3).ToObservableCollection();
+                             select grp.OrderBy(a => a.Create_time).Last()).OrderByDescending(a => a.Create_time).ToObservableCollection();
                 return items;
             }
             private set
