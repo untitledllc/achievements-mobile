@@ -42,7 +42,7 @@ function onInitController(window, params)
 		var client = Ti.Network.createHTTPClient();
 		client.clearCookies('https://login.facebook.com');
 		
-		//Ti.API.info(Titanium.Facebook.loggedIn);
+		Ti.API.info(Titanium.Facebook.loggedIn);
 		
  
 		function fQuery() 

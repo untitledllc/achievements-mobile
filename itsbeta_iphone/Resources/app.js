@@ -33,7 +33,14 @@ else if(TiTools.Platform.isIOS == true)
 
 //---------------------------------------------//
 
-Titanium.Facebook.appid = "264918200296425";
-Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
-Ti.Facebook.authorize();
+var window = TiTools.UI.Controls.createWindow(
+	{
+		main : "Controllers/Login.js",
+		navBarHidden : true,
+		exitOnClose : true
+	}
+);
+window.initialize();
+window.open();
+
 //---------------------------------------------//
