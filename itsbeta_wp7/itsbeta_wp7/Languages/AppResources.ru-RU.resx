@@ -225,4 +225,16 @@
   <data name="pulltorefresh_text" xml:space="preserve">
     <value>Обновить</value>
   </data>
+  <data name="ListPullToRefresh" xml:space="preserve">
+    <value>тянуть для обновления</value>
+  </data>
+  <data name="ListPullToRefreshLoading" xml:space="preserve">
+    <value>загрузка</value>
+  </data>
+  <data name="ListPullToRefreshTime" xml:space="preserve">
+    <value>последнее обновление: {0:H:mm}</value>
+  </data>
+  <data name="ListReleaseToRefresh" xml:space="preserve">
+    <value>отпустить для обновления</value>
+  </data>
 </root>

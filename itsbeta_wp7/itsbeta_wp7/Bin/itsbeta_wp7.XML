@@ -209,6 +209,26 @@
               Looks up a localized string similar to last.
             </summary>
         </member>
+        <member name="P:itsbeta_wp7.AppResources.ListPullToRefresh">
+            <summary>
+              Looks up a localized string similar to pull to refresh.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.ListPullToRefreshLoading">
+            <summary>
+              Looks up a localized string similar to loading.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.ListPullToRefreshTime">
+            <summary>
+              Looks up a localized string similar to last refresh time: {0:H:mm}.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.ListReleaseToRefresh">
+            <summary>
+              Looks up a localized string similar to release to refresh.
+            </summary>
+        </member>
         <member name="P:itsbeta_wp7.AppResources.loading">
             <summary>
               Looks up a localized string similar to loading....

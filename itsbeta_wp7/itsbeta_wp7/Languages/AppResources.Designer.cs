@@ -259,6 +259,42 @@ namespace itsbeta_wp7 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to pull to refresh.
+        /// </summary>
+        public static string ListPullToRefresh {
+            get {
+                return ResourceManager.GetString("ListPullToRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to loading.
+        /// </summary>
+        public static string ListPullToRefreshLoading {
+            get {
+                return ResourceManager.GetString("ListPullToRefreshLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to last refresh time: {0:H:mm}.
+        /// </summary>
+        public static string ListPullToRefreshTime {
+            get {
+                return ResourceManager.GetString("ListPullToRefreshTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to release to refresh.
+        /// </summary>
+        public static string ListReleaseToRefresh {
+            get {
+                return ResourceManager.GetString("ListReleaseToRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to loading....
         /// </summary>
         public static string loading {

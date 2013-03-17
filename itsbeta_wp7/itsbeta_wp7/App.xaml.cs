@@ -48,6 +48,10 @@ namespace itsbeta_wp7
             // Phone-specific initialization
             InitializePhoneApplication();
 
+            Telerik.Windows.Controls.InputLocalizationManager.Instance.ResourceManager = AppResources.ResourceManager;
+            PrimitivesLocalizationManager.Instance.ResourceManager = AppResources.ResourceManager;
+            DataVisualizationLocalizationManager.Instance.ResourceManager = AppResources.ResourceManager;
+
             /*InputLocalizationManager.Instance.StringLoader = new MyStringLoader();
             InputLocalizationManager.Instance.ResourceManager = myResourceManager;
             LocalizationManager.GlobalStringLoader = new MyStringLoader();

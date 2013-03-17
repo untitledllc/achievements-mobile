@@ -228,4 +228,16 @@
   <data name="pulltorefresh_text" xml:space="preserve">
     <value>Update data</value>
   </data>
+  <data name="ListPullToRefresh" xml:space="preserve">
+    <value>pull to refresh</value>
+  </data>
+  <data name="ListPullToRefreshLoading" xml:space="preserve">
+    <value>loading</value>
+  </data>
+  <data name="ListPullToRefreshTime" xml:space="preserve">
+    <value>last refresh time: {0:H:mm}</value>
+  </data>
+  <data name="ListReleaseToRefresh" xml:space="preserve">
+    <value>release to refresh</value>
+  </data>
 </root>
