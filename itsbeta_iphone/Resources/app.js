@@ -17,7 +17,7 @@ if(TiTools.Platform.isAndroid == true)
 		break;
 		case TiTools.Platform.SCREEN_MODE_NORMAL:
 		break;
-		case TiTools.Platform.SCREEN_MODE_LARGE:
+		case TiTools.Platform.SCREEN_MODE_LARGE: 
 		break;
 		case TiTools.Platform.SCREEN_MODE_EXTRA_LARGE:
 		break;
@@ -33,14 +33,7 @@ else if(TiTools.Platform.isIOS == true)
 
 //---------------------------------------------//
 
-var window = TiTools.UI.Controls.createWindow(
-	{
-		main : "Controllers/Login.js",
-		navBarHidden : true,
-		exitOnClose : true
-	}
-);
-window.initialize();
-window.open();
-
+Titanium.Facebook.appid = "264918200296425";
+Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
+Ti.Facebook.authorize();
 //---------------------------------------------//

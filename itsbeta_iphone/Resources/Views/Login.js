@@ -28,6 +28,7 @@ module.exports = {
 			}
 		},
 		{
+			outlet: "infacebook",
 			style: {
 				className: "Ti.UI.Button",
 				top: "5%",
