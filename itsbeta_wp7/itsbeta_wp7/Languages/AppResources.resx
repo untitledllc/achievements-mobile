@@ -240,4 +240,7 @@
   <data name="ListReleaseToRefresh" xml:space="preserve">
     <value>release to refresh</value>
   </data>
+  <data name="NoConnection" xml:space="preserve">
+    <value>There is no internet connection. Previously loaded data is shown.</value>
+  </data>
 </root>

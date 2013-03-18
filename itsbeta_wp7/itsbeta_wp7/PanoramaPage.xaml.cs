@@ -15,6 +15,7 @@ using Telerik.Windows.Data;
 using Coding4Fun.Toolkit.Controls;
 using Microsoft.Phone.Tasks;
 using Telerik.Windows.Controls;
+using Microsoft.Phone.Net.NetworkInformation;
 
 namespace itsbeta_wp7
 {
@@ -29,6 +30,13 @@ namespace itsbeta_wp7
             InteractionEffectManager.AllowedTypes.Add(typeof(Border));
             InteractionEffectManager.AllowedTypes.Add(typeof(Image));
             //this.AllCategories.GroupDescriptors.Add(GroupedProjectsList);
+
+            bool hasNetworkConnection =
+NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
+            if (!hasNetworkConnection)
+            {
+                MessageBox.Show(AppResources.NoConnection);
+            };
         }
 
         public GenericGroupDescriptor<ProjectItem, string> GroupedProjectsList = new GenericGroupDescriptor<ProjectItem, string>(item => item.Category_api_name);

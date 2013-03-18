@@ -239,6 +239,11 @@
               Looks up a localized string similar to No data.
             </summary>
         </member>
+        <member name="P:itsbeta_wp7.AppResources.NoConnection">
+            <summary>
+              Looks up a localized string similar to There is no internet connection. Previously loaded data is shown..
+            </summary>
+        </member>
         <member name="P:itsbeta_wp7.AppResources.present_title">
             <summary>
               Looks up a localized string similar to Present.

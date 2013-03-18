@@ -16,6 +16,8 @@ using itsbeta_wp7.ViewModel;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.Input;
 using BugSense;
+using MSPToolkit.Utilities;
+using Microsoft.Phone.Net.NetworkInformation;
 
 namespace itsbeta_wp7
 {
@@ -77,20 +79,48 @@ namespace itsbeta_wp7
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
-            //RootFrame.Navigating += new NavigatingCancelEventHandler(RootFrame_Navigating);
+            RootFrame.Navigating += new NavigatingCancelEventHandler(RootFrame_Navigating);
         }
 
-        /*private void RootFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        private bool firstCheck = true;
+        private void RootFrame_Navigating(object sender, NavigatingCancelEventArgs e)
         {
-            e.Cancel = true;
-            RootFrame.Dispatcher.BeginInvoke(delegate
+            if (firstCheck)
             {
-                if (ViewModelLocator.UserStatic.UserLoaded == true)
-                    RootFrame.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
-                else
-                    RootFrame.Navigate(new Uri("/LoginPage.xaml", UriKind.Relative));
-            });
-        }*/
+                firstCheck = false;
+                e.Cancel = true;
+                string fb_id="";
+                try
+                {
+                    Dictionary<string, object> result = IsolatedStorageHelper.LoadSerializableObject<Dictionary<string, object>>("user.xml");
+                    fb_id = (string)result["fb_id"];
+                }
+                catch { };
+
+                RootFrame.Dispatcher.BeginInvoke(delegate
+                {
+                    if (fb_id != "")
+                    {
+                        bool hasNetworkConnection =
+NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
+                        if (hasNetworkConnection)
+                        {
+                            ViewModelLocator.MainStatic.Loading = true;
+                            ViewModelLocator.UserStatic.GetItsbetaAchieve();
+                        };
+                        RootFrame.Navigate(new Uri("/PanoramaPage.xaml", UriKind.Relative));
+                    }
+                    else
+                    {
+                        RootFrame.Navigate(new Uri("/LoginPage.xaml", UriKind.Relative));
+                    };
+                });
+            }
+            else
+            {
+                firstCheck = false;
+            };
+        }
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated

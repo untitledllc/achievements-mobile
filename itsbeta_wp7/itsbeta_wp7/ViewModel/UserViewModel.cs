@@ -464,7 +464,7 @@ namespace itsbeta_wp7.ViewModel
                 }
                 else {
                     if ((_userLoaded==false) && (value==true)) {
-                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                        ////(Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
                     };
                 };
                 _userLoaded = value;

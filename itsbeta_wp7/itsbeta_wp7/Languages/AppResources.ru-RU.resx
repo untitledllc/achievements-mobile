@@ -237,4 +237,7 @@
   <data name="ListReleaseToRefresh" xml:space="preserve">
     <value>отпустить для обновления</value>
   </data>
+  <data name="NoConnection" xml:space="preserve">
+    <value>Интернет-соединение отсутствует. Проверьте подключение к интернету. Будут показаны ранее загруженные данные.</value>
+  </data>
 </root>

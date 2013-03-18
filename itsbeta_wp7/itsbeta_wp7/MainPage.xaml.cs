@@ -2,6 +2,8 @@
 using Telerik.Windows.Data;
 using itsbeta_wp7.ViewModel;
 using System;
+using Microsoft.Phone.Net.NetworkInformation;
+using System.Windows;
 
 namespace itsbeta_wp7
 {
@@ -56,6 +58,11 @@ namespace itsbeta_wp7
         {
             ViewModelLocator.MainStatic.LoadAchievements();
             AllBadges.StopPullToRefreshLoading(true);
+        }
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

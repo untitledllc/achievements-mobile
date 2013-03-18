@@ -120,6 +120,7 @@
                                                          Foreground="#FF4c4c4b"
 					                        Html="{Binding Path=CurrentAchieve.Details}" DataContext="{Binding Main, Source={StaticResource Locator}}" HorizontalAlignment="Left" />
                                         <msp:HTMLTextBox 
+                                            Name="Adv"
                                             Margin="-12,25,0,0" TextWrapping="Wrap"
                                             Style="{StaticResource OtherTextblockStyleHtmlTextBox}" Foreground="#FF4c4c4b"
                                                          ScrollViewer.VerticalScrollBarVisibility="Disabled"

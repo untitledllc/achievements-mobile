@@ -46,14 +46,14 @@ namespace itsbeta_wp7
             }
             catch { };
 
-            try
+            /*try
             {
                 if (ViewModelLocator.UserStatic.UserLoaded == true)
                 {
                     NavigationService.Navigate(new Uri("/PanoramaPage.xaml", UriKind.Relative));
                 };
             }
-            catch { };
+            catch { };*/
         }
     }
 }

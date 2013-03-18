@@ -5,6 +5,7 @@ using System.Windows.Media;
 using itsbeta_wp7.ViewModel;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using System.Windows.Documents;
 
 namespace itsbeta_wp7
 {
@@ -38,6 +39,8 @@ namespace itsbeta_wp7
                     catch { };
                 };
             };
+
+            this.Adv.Xaml = this.Adv.Xaml.Replace("MouseOverForeground=\"#7FFFFFFF\"", "MouseOverForeground=\"#FF4C4C4B\"");
         }
     }
 
