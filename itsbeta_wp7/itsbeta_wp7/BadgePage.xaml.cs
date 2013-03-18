@@ -40,7 +40,17 @@ namespace itsbeta_wp7
                 };
             };
 
-            this.Adv.Xaml = this.Adv.Xaml.Replace("MouseOverForeground=\"#7FFFFFFF\"", "MouseOverForeground=\"#FF4C4C4B\"");
+            // меняем цвет ссылок по наведению на них
+            try
+            {
+                this.Adv.Xaml = this.Adv.Xaml.Replace("MouseOverForeground=\"#7FFFFFFF\"", "MouseOverForeground=\"#FF4C4C4B\"");
+            }
+            catch { };
+            try
+            {
+                this.Details.Xaml = this.Details.Xaml.Replace("MouseOverForeground=\"#7FFFFFFF\"", "MouseOverForeground=\"#FF4C4C4B\"");
+            }
+            catch { };
         }
     }
 

@@ -55,7 +55,7 @@ namespace itsbeta_wp7.ViewModel
                 {
                     Random randonGen = new Random();
                     byte r = (byte)randonGen.Next(0, 255), g = (byte)randonGen.Next(0, 255), b = (byte)randonGen.Next(0, 255);
-                    _color = "#FF" + r.ToString("X2") + g.ToString("X2") + b.ToString("X2");
+                    _color = "#" + r.ToString("X2") + g.ToString("X2") + b.ToString("X2");
                 };
                 return _color;
             }
