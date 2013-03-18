@@ -4,6 +4,8 @@
 
 var TiTools = undefined;
 var ui = undefined;
+var tempAchivs = [];
+var typePriject = "null";
 //---------------------------------------------//
 // Глобальные переменные для окна
 //---------------------------------------------//
@@ -44,9 +46,16 @@ function onInitController(window, params)
 					massRow.push(row);
 					
 					row.rowTextAchivs.text = window.categories[i].display_name;
-					
+					row.rowAchivs.api_name = window.categories[i].api_name;
+										
 					row.rowAchivs.addEventListener("click",function(event)
 					{
+						Ti.API.info(event);
+						
+						typePriject = event.source.api_name;
+						
+						Ti.API.info(typePriject);
+						
 						ui.typePriject.show();
 						ui.nameProject.show();
 						ui.list.visible = false;
@@ -54,6 +63,8 @@ function onInitController(window, params)
 						{
 							massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
 						}
+						
+						delListAll(window,typePriject);
 					});
 				}
 				ui.list.visible = true;
@@ -69,42 +80,7 @@ function onInitController(window, params)
 	
 	ui.nameProject.addEventListener("click",function(event)
 	{
-		if(ui.list.visible == false)
-		{
-			ui.typePriject.hide();
-			ui.nameProject.hide();
-			
-			ui.rowTextAchivs.text = "NamePriject";
-			
-			var massRow = [];
-			for(var i = 0; i < 10; i++)
-			{
-				var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
-				massRow.push(row);
-				
-				row.rowTextAchivs.text = window.projects[i].display_name;
-				
-				row.rowAchivs.addEventListener("click",function(event)
-				{
-					
-					ui.typePriject.show();
-					ui.nameProject.show();
-					
-					ui.list.visible = false;
-					for(var ii = 0; ii != i; ii++)
-					{
-						massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-					}
-				});
-			}
-			ui.list.visible = true;
-		}
-		else
-		{
-			ui.typePriject.show();
-			ui.nameProject.show();
-			ui.list.visible = false;
-		}
+		createListName(window,typePriject);
 	});
 	
 	ui.add.addEventListener("click",function(event)
@@ -140,34 +116,8 @@ function onInitController(window, params)
 function onWindowOpen(window, event)
 {
 	
+	createListAchivs(window,"null");
 	
-	for(var i = 0; i < window.achievements.length; i++)
-	{
-		var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
-		row.image.image = window.achievements[i].pic;
-		row.name.text = window.achievements[i].display_name;
-		row.desc.text = window.achievements[i].desc;
-		row.viewAchivs.data = {
-			image: window.achievements[i].pic,
-			nameAchivs: window.achievements[i].display_name,
-			textAchivs: window.achievements[i].details
-		}
-		
-		row.viewAchivs.addEventListener("click",function(event)
-		{
-			var win = TiTools.UI.Controls.createWindow(
-				{
-					main : "Controllers/preViewAchivs.js",
-					navBarHidden : true,
-					nameAchivs: event.source.data.nameAchivs,
-					textAchivs: event.source.data.textAchivs,
-					image: event.source.data.image
-				}
-			);
-			win.initialize();
-			win.open();	
-		});
-	}
 	
 	// var win = TiTools.UI.Controls.createWindow(
 		// {
@@ -181,7 +131,191 @@ function onWindowOpen(window, event)
 	// win.open();	
 	
 }
-
+///-----сосдание списка ачивок-----//
+function createListAchivs(window,categiry)
+{
+	for(var i = 0; i < window.achievements.length; i++)
+	{
+		Ti.API.info(window.achievements[i].projects.api_name + "    " + categiry);
+		
+		if(window.achievements[i].projects.api_name == categiry || categiry == "null")
+		{
+			Ti.API.info('+');
+			
+			var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
+			
+			tempAchivs.push(row);
+			
+			row.date.text = window.achievements[i].achievements.create_time;
+			row.image.image = window.achievements[i].achievements.pic;
+			row.name.text = window.achievements[i].achievements.display_name;
+			row.desc.text = window.achievements[i].achievements.desc;
+			
+			row.viewAchivs.data = {
+				image: window.achievements[i].achievements.pic,
+				nameAchivs: window.achievements[i].achievements.display_name,
+				textAchivs: window.achievements[i].achievements.details
+			}
+			
+			row.viewAchivs.addEventListener("click",function(event)
+			{
+				var win = TiTools.UI.Controls.createWindow(
+					{
+						main : "Controllers/preViewAchivs.js",
+						navBarHidden : true,
+						nameAchivs: event.source.data.nameAchivs,
+						textAchivs: event.source.data.textAchivs,
+						image: event.source.data.image
+					}
+				);
+				win.initialize();
+				win.open();	
+			});
+		}
+	}
+}
+function delListAll(window,categiry)
+{
+	Ti.API.info('start_____');
+	for(var i = 0; i < tempAchivs.length; i++)
+	{
+		tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
+		Ti.API.info('del');
+	}
+	tempAchivs = [];
+	
+	createListAchivsAll(window,categiry);
+	
+	
+}
+function createListAchivsAll(window,categiry)
+{
+	for(var i = 0; i < window.achievements.length; i++)
+	{
+		Ti.API.info(window.achievements[i].projects.api_name + "    " + categiry);
+		
+		if(window.achievements[i].categories.api_name == categiry || categiry == "null")
+		{
+			Ti.API.info('+');
+			
+			var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
+			
+			tempAchivs.push(row);
+			
+			row.date.text = window.achievements[i].achievements.create_time;
+			row.image.image = window.achievements[i].achievements.pic;
+			row.name.text = window.achievements[i].achievements.display_name;
+			row.desc.text = window.achievements[i].achievements.desc;
+			
+			row.viewAchivs.data = {
+				image: window.achievements[i].achievements.pic,
+				nameAchivs: window.achievements[i].achievements.display_name,
+				textAchivs: window.achievements[i].achievements.details
+			}
+			
+			row.viewAchivs.addEventListener("click",function(event)
+			{
+				var win = TiTools.UI.Controls.createWindow(
+					{
+						main : "Controllers/preViewAchivs.js",
+						navBarHidden : true,
+						nameAchivs: event.source.data.nameAchivs,
+						textAchivs: event.source.data.textAchivs,
+						image: event.source.data.image
+					}
+				);
+				win.initialize();
+				win.open();	
+			});
+		}
+	}
+}
+function delList(window,categiry)
+{
+	Ti.API.info('start_____');
+	for(var i = 0; i < tempAchivs.length; i++)
+	{
+		tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
+		Ti.API.info('del');
+	}
+	tempAchivs = [];
+	
+	createListAchivs(window,categiry);
+	
+	
+}
+function createListName(window,category)
+{
+	if(ui.list.visible == false)
+		{
+			ui.typePriject.hide();
+			ui.nameProject.hide();
+			
+			ui.rowTextAchivs.text = "NamePriject";
+			
+			var massRow = [];
+			
+			for(var i = 0; i < window.projects.length; i++)
+			{
+				Ti.API.info(window.projects[i]);
+				if(window.projects[i].categories == category || category == "null")
+				{
+					var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
+					massRow.push(row);
+					
+					row.rowTextAchivs.text = window.projects[i].display_name;
+					row.rowAchivs.api_name = window.projects[i].api_name;
+					
+					row.rowAchivs.addEventListener("click",function(event)
+					{
+						
+						ui.typePriject.show();
+						ui.nameProject.show();
+						
+						ui.list.visible = false;
+						for(var ii = 0; ii != massRow.length; ii++)
+						{
+							massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+						}
+						
+						alert(event.source.api_name);
+						
+						delList(window,event.source.api_name);
+						
+					});
+				}
+			}
+			
+			if(massRow.length == 0)
+			{
+				var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
+					massRow.push(row);
+					
+					row.rowTextAchivs.text = "Нет проектов";
+					
+					row.rowAchivs.addEventListener("click",function(event)
+					{
+						
+						ui.typePriject.show();
+						ui.nameProject.show();
+						
+						ui.list.visible = false;
+						for(var ii = 0; ii != i; ii++)
+						{
+							massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+						}
+					});
+			}
+			
+			ui.list.visible = true;
+		}
+		else
+		{
+			ui.typePriject.show();
+			ui.nameProject.show();
+			ui.list.visible = false;
+		}
+}
 function saveIdUser(data)
 {
 	Ti.App.Properties.setString("id_user",JSON.parse(data).player_id);

@@ -43,7 +43,7 @@ module.exports = [
 						}
 					},
 					{
-						outlet: "back",
+						outlet: "done",
 						style : {
 							className: "Ti.UI.Button",
 							right: 0,
