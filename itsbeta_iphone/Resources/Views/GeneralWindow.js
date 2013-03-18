@@ -64,7 +64,7 @@ module.exports = [
 				subviews:
 				[
 					{
-						outlet: "typePriject",
+						outlet: "typeProject",
 						style : {
 							className: "Ti.UI.Label",
 							left: 0,

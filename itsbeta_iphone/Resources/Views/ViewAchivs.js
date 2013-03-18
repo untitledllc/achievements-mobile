@@ -43,7 +43,6 @@ module.exports = {
 				left: 70,
 				height: Ti.UI.SIZE,
 				width: 200,
-				text: "kzjdhfkasdjhf",
 				touchEnabled: false
 			}
 		},
@@ -55,7 +54,6 @@ module.exports = {
 				left: 70,
 				height: 70,
 				width: 240,
-				text: "kzjdhfkasdjhxcdf  sdf sdf sdf sdfg sdfg sfd gsdfgs dfgsfdg sdfgf",
 				touchEnabled: false
 			}
 		}

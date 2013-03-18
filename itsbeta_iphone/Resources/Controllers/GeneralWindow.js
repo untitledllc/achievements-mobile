@@ -5,7 +5,7 @@
 var TiTools = undefined;
 var ui = undefined;
 var tempAchivs = [];
-var typePriject = "null";
+var typeProject = "null";
 //---------------------------------------------//
 // Глобальные переменные для окна
 //---------------------------------------------//
@@ -28,16 +28,16 @@ function onInitController(window, params)
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/GeneralWindow.js", window);
 	ui.counter.text = window.achievements.length;
-	ui.typePriject.addEventListener("click",function(event)
+	ui.typeProject.addEventListener("click",function(event)
 	{
-		ui.typePriject.hide();
+		ui.typeProject.hide();
 		ui.nameProject.hide();
 		
 		if(ui.list != undefined)
 		{
 			if(ui.list.visible == false)
 			{
-				ui.rowTextAchivs.text = "typePriject";
+				ui.rowTextAchivs.text = "typeProject";
 				
 				var massRow = [];
 				for(var i = 0; i < window.categories.length; i++)
@@ -47,16 +47,18 @@ function onInitController(window, params)
 					
 					row.rowTextAchivs.text = window.categories[i].display_name;
 					row.rowAchivs.api_name = window.categories[i].api_name;
+					row.rowAchivs.display_name = window.categories[i].display_name;
 										
 					row.rowAchivs.addEventListener("click",function(event)
 					{
 						Ti.API.info(event);
 						
-						typePriject = event.source.api_name;
+						typeProject = event.source.api_name;
+						ui.typeProject.text = event.source.display_name;
 						
-						Ti.API.info(typePriject);
+						Ti.API.info(typeProject);
 						
-						ui.typePriject.show();
+						ui.typeProject.show();
 						ui.nameProject.show();
 						ui.list.visible = false;
 						for(var ii = 0; ii != i; ii++)
@@ -64,14 +66,14 @@ function onInitController(window, params)
 							massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
 						}
 						
-						delListAll(window,typePriject);
+						delListAll(window,typeProject);
 					});
 				}
 				ui.list.visible = true;
 			}
 			else
 			{
-				ui.typePriject.show();
+				ui.typeProject.show();
 				ui.nameProject.show();
 				ui.list.visible = false;
 			}
@@ -80,7 +82,7 @@ function onInitController(window, params)
 	
 	ui.nameProject.addEventListener("click",function(event)
 	{
-		createListName(window,typePriject);
+		createListName(window,typeProject);
 	});
 	
 	ui.add.addEventListener("click",function(event)
@@ -248,7 +250,7 @@ function createListName(window,category)
 {
 	if(ui.list.visible == false)
 		{
-			ui.typePriject.hide();
+			ui.typeProject.hide();
 			ui.nameProject.hide();
 			
 			ui.rowTextAchivs.text = "NamePriject";
@@ -265,11 +267,12 @@ function createListName(window,category)
 					
 					row.rowTextAchivs.text = window.projects[i].display_name;
 					row.rowAchivs.api_name = window.projects[i].api_name;
+					row.rowAchivs.display_name = window.projects[i].display_name;
 					
 					row.rowAchivs.addEventListener("click",function(event)
 					{
 						
-						ui.typePriject.show();
+						ui.typeProject.show();
 						ui.nameProject.show();
 						
 						ui.list.visible = false;
@@ -278,7 +281,7 @@ function createListName(window,category)
 							massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
 						}
 						
-						alert(event.source.api_name);
+						ui.nameProject.text = event.source.display_name;
 						
 						delList(window,event.source.api_name);
 						
@@ -296,7 +299,7 @@ function createListName(window,category)
 					row.rowAchivs.addEventListener("click",function(event)
 					{
 						
-						ui.typePriject.show();
+						ui.typeProject.show();
 						ui.nameProject.show();
 						
 						ui.list.visible = false;
@@ -311,7 +314,7 @@ function createListName(window,category)
 		}
 		else
 		{
-			ui.typePriject.show();
+			ui.typeProject.show();
 			ui.nameProject.show();
 			ui.list.visible = false;
 		}

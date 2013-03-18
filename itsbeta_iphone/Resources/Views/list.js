@@ -17,7 +17,8 @@ module.exports = {
 				className : "Ti.UI.Label",
 				height: Ti.UI.SIZE,
 				width: Ti.UI.SIZE,
-				text: "text"
+				text: "text",
+				touchEnabled: false
 			}
 		},
 		{
@@ -27,6 +28,7 @@ module.exports = {
 				height: 1,
 				width: Ti.UI.FILL,
 				backgroundColor: "gray",
+				touchEnabled: false
 			}
 		}
 	]

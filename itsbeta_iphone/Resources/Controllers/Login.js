@@ -1,6 +1,6 @@
 /**
  * @author Gom_Dzhabbar
- */
+*/
 
 var TiTools = undefined;
 var info = undefined;
