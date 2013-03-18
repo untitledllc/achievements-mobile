@@ -34,8 +34,6 @@ function onInitController(window, params)
 	
 	ui.infacebook.addEventListener("click", function(event)
 	{
-		
-		
 		Titanium.Facebook.appid = "264918200296425";
 		Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
 		
@@ -84,6 +82,8 @@ function onInitController(window, params)
 		{
 			Ti.Facebook.authorize();
 			Ti.Facebook.addEventListener('login',function(event){
+				ui.actView.show();
+				ui.act.show();
 				Ti.API.info("login");
 				fQuery();
 			});
@@ -320,6 +320,8 @@ function saveAchivs(data)
 		}
 		
 		alert("всего ачивок " + achievements.length);
+		
+		ui.actView.hide();
 		
 		var win = TiTools.UI.Controls.createWindow(
 			{
