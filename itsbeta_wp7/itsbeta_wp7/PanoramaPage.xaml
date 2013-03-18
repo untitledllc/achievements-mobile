@@ -278,7 +278,7 @@
                                         <ColumnDefinition Width="141" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Border HorizontalAlignment="Center"
+                                    <!--<Border HorizontalAlignment="Center"
                                             Margin="0,-2,0,0" telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
                                             VerticalAlignment="Center"
                                             Canvas.ZIndex="2" Grid.Column="0" Width="135" Height="135" CornerRadius="135" BorderThickness="1" BorderBrush="#800C0C0C">
@@ -288,7 +288,7 @@
                                                 <GradientStop Color="#4AFEFEFE" Offset="0" />
                                             </LinearGradientBrush>
                                         </Border.Background>
-                                    </Border>
+                                    </Border>-->
                                     <Image Margin="0" Canvas.ZIndex="1" Grid.Column="0" 
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"

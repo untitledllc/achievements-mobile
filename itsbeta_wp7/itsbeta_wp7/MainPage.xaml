@@ -116,14 +116,14 @@
                                     <ColumnDefinition Width="109"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                            <Border Margin="0,-1,0,0" Canvas.ZIndex="2" Grid.Column="0" Width="105" Height="105" CornerRadius="108" BorderThickness="1" BorderBrush="#800C0C0C">
+                            <!--<Border Margin="0,-1,0,0" Canvas.ZIndex="2" Grid.Column="0" Width="105" Height="105" CornerRadius="108" BorderThickness="1" BorderBrush="#800C0C0C">
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#4A010101" Offset="1" />
                                         <GradientStop Color="#4AFEFEFE" Offset="0" />
                                     </LinearGradientBrush>
                                 </Border.Background>
-                            </Border>
+                            </Border>-->
                             <Image Grid.Column="0" Width="108" Height="108" Source="{Binding Pic}" VerticalAlignment="Center" />
                             
                                 <StackPanel Grid.Column="1" Margin="15,-5,0,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Width="Auto">
