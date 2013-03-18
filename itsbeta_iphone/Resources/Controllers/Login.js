@@ -68,7 +68,7 @@ function onInitController(window, params)
 					params: JSON.stringify({
 						access_token: access_token,
 						type: "fb_user_id",
-						id: "100004228292121"
+						id: fbuid
 					}),
 					url: "/playerid.json"
 				};
