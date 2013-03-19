@@ -276,6 +276,14 @@ namespace itsbeta_wp7.ViewModel
             IsolatedStorageHelper.SaveSerializableObject<string>(json, "achieves.xml");            
         }
 
+        public void ClearSaveToIsolatedStorage()
+        {
+            IsolatedStorageHelper.SaveSerializableObject<string>("", "achieves.xml");
+            Categories = new ObservableCollection<CategoryItem>();
+            Projects = new ObservableCollection<ProjectItem>();
+            Achieves = new ObservableCollection<AchievesItem>();
+        }
+
         /// <summary>
         /// Разбор ответа скатегориями, проеками, достижениями от itsbeta
         /// Описание формата - https://hackpad.com/itsbeta-API-version-1-aVSDkDTPbA1

@@ -194,6 +194,16 @@
               Looks up a localized string similar to Login using .
             </summary>
         </member>
+        <member name="P:itsbeta_wp7.AppResources.Error406activated">
+            <summary>
+              Looks up a localized string similar to Code was already activated!.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.ErrorCantActivate">
+            <summary>
+              Looks up a localized string similar to Can&apos;t activate achieve!.
+            </summary>
+        </member>
         <member name="P:itsbeta_wp7.AppResources.facebook_singup">
             <summary>
               Looks up a localized string similar to Facebook signup.

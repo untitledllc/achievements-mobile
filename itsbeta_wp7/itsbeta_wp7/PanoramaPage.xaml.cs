@@ -129,6 +129,7 @@ NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
             {
                 ViewModelLocator.UserStatic.LogOut = false;
                 ViewModelLocator.UserStatic.UserLoaded = false;
+                ViewModelLocator.MainStatic.ClearSaveToIsolatedStorage();
                 NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
                 //NavigationService.GoBack();
             }
@@ -173,6 +174,13 @@ NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
                 NavigationService.Navigate(new Uri("/StatsPage.xaml", UriKind.Relative));
             }
             catch { };
+        }
+
+        private void PhoneApplicationPage_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            if (ViewModelLocator.UserStatic.NeedActivate==true) {
+                ViewModelLocator.UserStatic.ActivateAchieve(ViewModelLocator.UserStatic.ActivateCode);
+            };
         }
 
 

@@ -243,4 +243,10 @@
   <data name="NoConnection" xml:space="preserve">
     <value>There is no internet connection. Previously loaded data is shown.</value>
   </data>
+  <data name="Error406activated" xml:space="preserve">
+    <value>Code was already activated!</value>
+  </data>
+  <data name="ErrorCantActivate" xml:space="preserve">
+    <value>Can't activate achieve!</value>
+  </data>
 </root>

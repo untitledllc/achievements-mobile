@@ -154,19 +154,20 @@ namespace itsbeta_wp7
             //_photoCamera.Dispose();
             try
             {
-                //MessageBox.Show("Добавлен QR код c текстом: \n" + text);
-                
+                //MessageBox.Show("Добавлен QR код c текстом: \n" + text);                
                 try
                 {
                     Uri qrUrl = new Uri(text);
                     string code = qrUrl.Query.Replace("?activation_code=","");
                     this.Focus();
-                    ViewModelLocator.UserStatic.ActivateAchieve(code);
+                    ViewModelLocator.UserStatic.NeedActivate = true;
+                    ViewModelLocator.UserStatic.ActivateCode = code;
+                    //ViewModelLocator.UserStatic.ActivateAchieve(code);
                 }
                 catch { };
                 try
                 {
-                    //this.NavigationService.GoBack();
+                    this.NavigationService.GoBack();
                 }
                 catch { };
             }

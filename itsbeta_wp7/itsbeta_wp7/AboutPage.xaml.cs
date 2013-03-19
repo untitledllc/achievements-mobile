@@ -32,7 +32,7 @@ namespace itsbeta_wp7
             {
                 EmailComposeTask emailcomposer = new EmailComposeTask();
                 emailcomposer.To = "info@itsbeta.com";
-                emailcomposer.Subject = "Itsbta - Windows Phone application";
+                emailcomposer.Subject = "Itsbeta - Windows Phone application";
                 emailcomposer.Body = "";
                 emailcomposer.Show();
             }

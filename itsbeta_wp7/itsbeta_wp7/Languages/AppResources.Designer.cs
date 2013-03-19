@@ -232,6 +232,24 @@ namespace itsbeta_wp7 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Code was already activated!.
+        /// </summary>
+        public static string Error406activated {
+            get {
+                return ResourceManager.GetString("Error406activated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t activate achieve!.
+        /// </summary>
+        public static string ErrorCantActivate {
+            get {
+                return ResourceManager.GetString("ErrorCantActivate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Facebook signup.
         /// </summary>
         public static string facebook_singup {

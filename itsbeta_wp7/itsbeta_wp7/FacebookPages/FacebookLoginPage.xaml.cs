@@ -87,6 +87,8 @@ namespace facebook_windows_phone_sample.Pages
             {
                 try
                 {
+                    ViewModelLocator.UserStatic.FacebookId = "";
+                    ViewModelLocator.UserStatic.FacebookToken = "";
                     ViewModelLocator.UserStatic.Cleanup();
                     ViewModelLocator.MainStatic.Cleanup();
                     //MessageBox.Show("Выход осуществлен.");

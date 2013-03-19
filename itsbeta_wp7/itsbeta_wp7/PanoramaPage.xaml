@@ -20,7 +20,7 @@
     shell:SystemTray.Opacity="0"
     shell:SystemTray.BackgroundColor="White"
     shell:SystemTray.ForegroundColor="Black"
-    DataContext="{Binding Main, Source={StaticResource Locator}}" Background="White">
+    DataContext="{Binding Main, Source={StaticResource Locator}}" Background="White" Loaded="PhoneApplicationPage_Loaded_1">
 
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="{Binding Path=LocalizedResources.loading, Source={StaticResource LocalizedStrings}}" />
@@ -293,7 +293,7 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
                                            Width="140" Height="140" Source="{Binding Pic}"/>
-                                    <StackPanel Height="66" Grid.Column="1" Margin="-70,40,0,0" UseLayoutRounding="True" VerticalAlignment="Top">
+                                    <StackPanel Width="336" HorizontalAlignment="Left" Height="66" Grid.Column="1" Margin="-70,40,0,0" UseLayoutRounding="True" VerticalAlignment="Top">
                                         <StackPanel.Background>
                                             <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_labels_norm.png" AlignmentX="Left" Stretch="None" />
                                         </StackPanel.Background>

@@ -240,4 +240,10 @@
   <data name="NoConnection" xml:space="preserve">
     <value>Интернет-соединение отсутствует. Проверьте подключение к интернету. Будут показаны ранее загруженные данные.</value>
   </data>
+  <data name="Error406activated" xml:space="preserve">
+    <value>Код уже активирован!</value>
+  </data>
+  <data name="ErrorCantActivate" xml:space="preserve">
+    <value>Не удалось активировать достижение!</value>
+  </data>
 </root>

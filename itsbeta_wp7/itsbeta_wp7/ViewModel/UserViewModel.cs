@@ -97,12 +97,16 @@ namespace itsbeta_wp7.ViewModel
                         }
                         catch { };
                     }
-                    catch { };
+                    catch {
+                        ViewModelLocator.MainStatic.Loading = false;
+                    };
                 });
             }
             catch { };
         }
 
+        public bool NeedActivate = false;
+        public string ActivateCode = "";
         /*www.itsbeta.com/s/activate.json?activation_code=.....&user_id=....&user_token=......*/
         /// <summary>
         /// 
@@ -126,6 +130,8 @@ namespace itsbeta_wp7.ViewModel
                 {
                     try
                     {
+                        ActivateCode = "";
+                        NeedActivate = false;
                         JObject o = JObject.Parse(response.Content.ToString());
                         if (o["id"].ToString() != "")
                         {
@@ -139,17 +145,36 @@ namespace itsbeta_wp7.ViewModel
                         {
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {
-                                ViewModelLocator.UserStatic.AchievedEarnedMessage("Не удалось активировать достижение!");
+                                ViewModelLocator.UserStatic.AchievedEarnedMessage(AppResources.ErrorCantActivate);
                                 ViewModelLocator.MainStatic.Loading = false;
                             });
                         };
                     }
                     catch {
-                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        try {
+                            JObject o = JObject.Parse(response.Content.ToString());
+                            if (o["error"].ToString() == "406")
+                            {
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            ViewModelLocator.UserStatic.AchievedEarnedMessage("Не удалось активировать достижение!");
+                            ViewModelLocator.UserStatic.AchievedEarnedMessage(AppResources.Error406activated);
                             ViewModelLocator.MainStatic.Loading = false;
                         });
+                        } else {
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            ViewModelLocator.UserStatic.AchievedEarnedMessage(AppResources.ErrorCantActivate);
+                            ViewModelLocator.MainStatic.Loading = false;
+                        });
+                        };
+                        } catch{
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            ViewModelLocator.UserStatic.AchievedEarnedMessage(AppResources.ErrorCantActivate);
+                            ViewModelLocator.MainStatic.Loading = false;
+                        });
+                        };
+                        
                     };
                 });
             };
