@@ -92,8 +92,7 @@ namespace itsbeta_wp7
                 string fb_id="";
                 try
                 {
-                    Dictionary<string, object> result = IsolatedStorageHelper.LoadSerializableObject<Dictionary<string, object>>("user.xml");
-                    fb_id = (string)result["fb_id"];
+                    fb_id = IsolatedStorageHelper.LoadSerializableObject<string>("fb_id.xml");                    
                 }
                 catch { };
 
@@ -106,7 +105,7 @@ NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
                         if (hasNetworkConnection)
                         {
                             ViewModelLocator.MainStatic.Loading = true;
-                            ViewModelLocator.UserStatic.GetItsbetaAchieve();
+                            //ViewModelLocator.UserStatic.GetItsbetaAchieve();
                         };
                         RootFrame.Navigate(new Uri("/PanoramaPage.xaml", UriKind.Relative));
                     }

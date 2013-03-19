@@ -341,7 +341,7 @@ namespace itsbeta_wp7.ViewModel
                 d_result.Add("fb_id", FacebookId);
                 d_result.Add("fb_token", FacebookToken);
 
-                SaveToIsolatedStorage(d_result);
+                SaveToIsolatedStorage(d_result, FacebookId);
 
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
@@ -415,9 +415,10 @@ namespace itsbeta_wp7.ViewModel
             catch { };
         }
 
-        public void SaveToIsolatedStorage(Dictionary<string, object> json)
+        public void SaveToIsolatedStorage(Dictionary<string, object> json, string fb_id="")
         {
             IsolatedStorageHelper.SaveSerializableObject<Dictionary<string, object>>(json, "user.xml");
+            IsolatedStorageHelper.SaveSerializableObject<string>(fb_id, "fb_id.xml");
         }
 
         private string _location = "";
@@ -460,7 +461,7 @@ namespace itsbeta_wp7.ViewModel
                 if (value == false)
                 {
                     Dictionary<string, object> empty = new Dictionary<string, object>();
-                    SaveToIsolatedStorage(empty);
+                    SaveToIsolatedStorage(empty, "");
                 }
                 else {
                     if ((_userLoaded==false) && (value==true)) {

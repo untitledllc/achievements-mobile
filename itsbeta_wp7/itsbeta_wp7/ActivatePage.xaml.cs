@@ -20,8 +20,9 @@ namespace itsbeta_wp7
         {
             try
             {
-                ViewModelLocator.UserStatic.ActivateAchieve(this.ActivationCode.Text);
-                NavigationService.GoBack();
+                //NavigationService.GoBack();
+                this.Focus();
+                ViewModelLocator.UserStatic.ActivateAchieve(this.ActivationCode.Text);                
             }
             catch { };
         }

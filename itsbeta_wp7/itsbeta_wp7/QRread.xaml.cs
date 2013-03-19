@@ -160,12 +160,13 @@ namespace itsbeta_wp7
                 {
                     Uri qrUrl = new Uri(text);
                     string code = qrUrl.Query.Replace("?activation_code=","");
+                    this.Focus();
                     ViewModelLocator.UserStatic.ActivateAchieve(code);
                 }
                 catch { };
                 try
                 {
-                    this.NavigationService.GoBack();
+                    //this.NavigationService.GoBack();
                 }
                 catch { };
             }

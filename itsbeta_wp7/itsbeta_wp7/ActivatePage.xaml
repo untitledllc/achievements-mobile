@@ -75,7 +75,7 @@
                     </Grid.Background>
 
                     <StackPanel Margin="30,-30,30,0">
-                        <TextBlock Text="{Binding Path=LocalizedResources.enter_code, Source={StaticResource LocalizedStrings}}" 
+                        <TextBlock Name="enterCode" Text="{Binding Path=LocalizedResources.enter_code, Source={StaticResource LocalizedStrings}}" 
                                    Style="{StaticResource OtherDarkTextblockStyle}" />
                         <TextBox Text="" 
                          Foreground="Black"
