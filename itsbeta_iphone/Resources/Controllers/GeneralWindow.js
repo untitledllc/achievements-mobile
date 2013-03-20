@@ -51,12 +51,8 @@ function onInitController(window, params)
 										
 					row.rowAchivs.addEventListener("click",function(event)
 					{
-						Ti.API.info(event);
-						
 						typeProject = event.source.api_name;
 						ui.typeProject.text = event.source.display_name;
-						
-						Ti.API.info(typeProject);
 						
 						ui.typeProject.show();
 						ui.nameProject.show();
@@ -138,8 +134,6 @@ function createListAchivs(window,categiry)
 {
 	for(var i = 0; i < window.achievements.length; i++)
 	{
-		Ti.API.info(window.achievements[i].projects.api_name + "    " + categiry);
-		
 		if(window.achievements[i].projects.api_name == categiry || categiry == "null")
 		{
 			Ti.API.info('+');
@@ -151,12 +145,16 @@ function createListAchivs(window,categiry)
 			row.date.text = window.achievements[i].achievements.create_time;
 			row.image.image = window.achievements[i].achievements.pic;
 			row.name.text = window.achievements[i].achievements.display_name;
+			row.name.color = window.achievements[i].projects.color,
 			row.desc.text = window.achievements[i].achievements.desc;
 			
 			row.viewAchivs.data = {
 				image: window.achievements[i].achievements.pic,
 				nameAchivs: window.achievements[i].achievements.display_name,
-				textAchivs: window.achievements[i].achievements.details
+				desc: window.achievements[i].achievements.desc,
+				details: window.achievements[i].achievements.details,
+				adv: window.achievements[i].achievements.adv,
+				bonus: window.achievements[i].achievements.bonuses
 			}
 			
 			row.viewAchivs.addEventListener("click",function(event)
@@ -166,8 +164,11 @@ function createListAchivs(window,categiry)
 						main : "Controllers/preViewAchivs.js",
 						navBarHidden : true,
 						nameAchivs: event.source.data.nameAchivs,
-						textAchivs: event.source.data.textAchivs,
-						image: event.source.data.image
+						desc: event.source.data.desc,
+						details: event.source.data.details,
+						adv: event.source.data.adv,
+						image: event.source.data.image,
+						bonus: event.source.data.bonus
 					}
 				);
 				win.initialize();
@@ -194,8 +195,6 @@ function createListAchivsAll(window,categiry)
 {
 	for(var i = 0; i < window.achievements.length; i++)
 	{
-		Ti.API.info(window.achievements[i].projects.api_name + "    " + categiry);
-		
 		if(window.achievements[i].categories.api_name == categiry || categiry == "null")
 		{
 			Ti.API.info('+');
@@ -207,12 +206,16 @@ function createListAchivsAll(window,categiry)
 			row.date.text = window.achievements[i].achievements.create_time;
 			row.image.image = window.achievements[i].achievements.pic;
 			row.name.text = window.achievements[i].achievements.display_name;
+			row.name.color = window.achievements[i].projects.color,
 			row.desc.text = window.achievements[i].achievements.desc;
 			
 			row.viewAchivs.data = {
 				image: window.achievements[i].achievements.pic,
 				nameAchivs: window.achievements[i].achievements.display_name,
-				textAchivs: window.achievements[i].achievements.details
+				desc: window.achievements[i].achievements.desc,
+				details: window.achievements[i].achievements.details,
+				adv: window.achievements[i].achievements.adv,
+				bonus: window.achievements[i].achievements.bonuses
 			}
 			
 			row.viewAchivs.addEventListener("click",function(event)
@@ -222,8 +225,11 @@ function createListAchivsAll(window,categiry)
 						main : "Controllers/preViewAchivs.js",
 						navBarHidden : true,
 						nameAchivs: event.source.data.nameAchivs,
-						textAchivs: event.source.data.textAchivs,
-						image: event.source.data.image
+						desc: event.source.data.desc,
+						details: event.source.data.details,
+						adv: event.source.data.adv,
+						image: event.source.data.image,
+						bonus: event.source.data.bonus
 					}
 				);
 				win.initialize();
@@ -259,7 +265,6 @@ function createListName(window,category)
 			
 			for(var i = 0; i < window.projects.length; i++)
 			{
-				Ti.API.info(window.projects[i]);
 				if(window.projects[i].categories == category || category == "null")
 				{
 					var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
@@ -323,7 +328,6 @@ function saveIdUser(data)
 {
 	Ti.App.Properties.setString("id_user",JSON.parse(data).player_id);
 	Ti.API.info('saveID');
-	Ti.API.info(JSON.parse(data).player_id);
 }
 
 // Обработчик при закрытии окна

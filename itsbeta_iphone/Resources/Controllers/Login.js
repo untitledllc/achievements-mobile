@@ -37,14 +37,13 @@ function onInitController(window, params)
 		Titanium.Facebook.appid = "264918200296425";
 		Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
 		
-		Ti.Facebook.logout();
-		// clear cookies
-		var client = Ti.Network.createHTTPClient();
-		client.clearCookies('https://login.facebook.com');
+		// Ti.Facebook.logout();
+		// // clear cookies
+		// var client = Ti.Network.createHTTPClient();
+		// client.clearCookies('https://login.facebook.com');
 		
 		Ti.API.info(Titanium.Facebook.loggedIn);
 		
- 
 		function fQuery() 
 		{
 			var fbuid = Titanium.Facebook.uid; 
@@ -61,7 +60,6 @@ function onInitController(window, params)
 					country: results[0].current_location.country
 				}
 				
-				Ti.API.info(info);
 				//-------------------
 				
 				var query = {
@@ -82,14 +80,16 @@ function onInitController(window, params)
 		{
 			Ti.Facebook.authorize();
 			Ti.Facebook.addEventListener('login',function(event){
-				ui.actView.show();
-				ui.act.show();
+				
+				actIndicator(true);
+				
 				Ti.API.info("login");
 				fQuery();
 			});
 		}
 		else
 		{
+			actIndicator(true);
 			fQuery();
 		}
 	});
@@ -135,7 +135,6 @@ function saveIdUser(data)
 {
 	Ti.App.Properties.setString("id_user",JSON.parse(data).player_id);
 	Ti.API.info('saveID');
-	Ti.API.info(JSON.parse(data).player_id);
 	id_user = JSON.parse(data).player_id;
 	
 	Ti.API.info('загрузка категорий');
@@ -152,8 +151,6 @@ function saveIdUser(data)
 function saveCategories(data)
 {
 	categories = JSON.parse(data);
-	
-	Ti.API.info(categories);
 	
 	Ti.App.Properties.setString("categories",data);
 	
@@ -195,7 +192,6 @@ function saveProjects(data)
 			if(i + 1==temp.length)
 			{
 				queryItsbeta(query,saveProjects);
-				Ti.API.info(projects.length);
 			}
 		}
 	}
@@ -205,12 +201,6 @@ function saveProjects(data)
 		{
 			projects.push(temp[i]);
 		}
-		
-		alert("всего проектов " + projects.length);
-		
-		Ti.API.info(projects);
-		
-		Ti.API.info('Загрузка ачивок')
 		
 		indexCategories = 0;
 		
@@ -230,7 +220,6 @@ function saveAchivs(data)
 {
 	indexCategories++;
 	var temp = JSON.parse(data);
-	Ti.API.info(indexCategories);
 	Ti.API.info("temp length = " + temp.length)
 	
 	if(indexCategories < projects.length)
@@ -271,7 +260,8 @@ function saveAchivs(data)
 						projects : 
 							{
 								api_name : temp[0].projects[0].api_name,
-								display_name : temp[0].projects[0].display_name
+								display_name : temp[0].projects[0].display_name,
+								color: temp[0].projects[0].color
 							},
 						categories : 
 							{
@@ -284,7 +274,6 @@ function saveAchivs(data)
 				if(i + 1 == temp.length)
 				{
 					queryItsbeta(query,saveAchivs);
-					Ti.API.info(achievements.length);
 				}
 			}
 		}
@@ -319,9 +308,9 @@ function saveAchivs(data)
 			}
 		}
 		
-		alert("всего ачивок " + achievements.length);
+		//alert("всего ачивок " + achievements.length);
 		
-		ui.actView.hide();
+		actIndicator(false);
 		
 		var win = TiTools.UI.Controls.createWindow(
 			{
@@ -337,6 +326,19 @@ function saveAchivs(data)
 		win.open();
 	}
 	
+}
+function actIndicator(param)
+{
+	if(param == true)
+	{
+		ui.actView.show();
+		ui.act.show();
+	}
+	else
+	{
+		ui.actView.hide();
+		ui.act.hide();
+	}
 }
 //---------------------------------------------//
 // Функции лентяйки

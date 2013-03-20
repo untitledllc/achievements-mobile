@@ -5,7 +5,7 @@ module.exports = {
 	outlet: "viewAchivs",
 	style : {
 		className : "Ti.UI.View",
-		height: 200,
+		height: Ti.UI.SIZE,
 		width: Ti.UI.FILL,
 		backgroundColor: "white",
 	},
@@ -32,6 +32,10 @@ module.exports = {
 				height: Ti.UI.SIZE,
 				width: Ti.UI.SIZE,
 				text: "18.02.12",
+				color: "#14CCD2",
+				font : {
+					fontSize : 10
+				},
 				touchEnabled: false
 			}
 		},
@@ -43,6 +47,7 @@ module.exports = {
 				left: 70,
 				height: Ti.UI.SIZE,
 				width: 200,
+				color: "red",
 				touchEnabled: false
 			}
 		},
@@ -50,11 +55,25 @@ module.exports = {
 			outlet: "desc",
 			style : {
 				className : "Ti.UI.Label",
-				top: 10,
+				top: 0,
 				left: 70,
 				height: 70,
 				width: 240,
+				text : " ",
+				color: "gray",
+				font : {
+					fontSize : 13
+				},
 				touchEnabled: false
+			}
+		},
+		{
+			style: {
+				className: "Ti.UI.View",
+				bottom: 0,
+				height: 1,
+				width: Ti.UI.FILL,
+				backgroundColor: "gray"
 			}
 		}
 	]

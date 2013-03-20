@@ -41,6 +41,31 @@ function onInitController(window, params)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
+	Ti.API.info(window.adv);
+	
+	Ti.API.info(window.textAchivs);
+	var webview = Titanium.UI.createWebView({
+		height: Ti.UI.SIZE,
+		width: 220,
+		html: window.details + window.adv,
+		disableBounce: true,
+	});
+	
+	for(var i = 0; i < window.bonus.length; i++)
+	{
+		var row = TiTools.UI.Loader.load("Views/ViewBonus.js", ui.bonus);
+		row.desc.text = window.bonus[i].bonus_desc;
+		row.type.text = window.bonus[i].bonus_type;
+	}
+	
+	ui.textAchivs.add(webview);
+	// webview.addEventListener("beforeload",function(event){
+		// Ti.API.info(webview.url);
+		// for(k in event.source)
+		// {
+		// //	Ti.API.info(event.source[k]);
+		// }
+	// });
 }
 
 // Обработчик при закрытии окна
