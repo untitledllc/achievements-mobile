@@ -99,7 +99,8 @@ function onInitController(window, params)
 			{
 				main : "Controllers/Profile.js",
 				navBarHidden : true,
-				info : window.info
+				info : window.info,
+				achivs: window.achievements
 			}
 		);
 		winAdd.initialize();

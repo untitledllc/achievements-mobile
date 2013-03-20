@@ -6,7 +6,7 @@ module.exports = [
 		style : {
 			className: "Ti.UI.View",
 			top: 0,
-			height: Ti.UI.FILL,
+			height: Ti.UI.SIZE,
 			width: Ti.UI.FILL,
 			layout: "vertical",
 			backgroundColor: "white"
@@ -82,6 +82,54 @@ module.exports = [
 						}
 					},
 				]
+			},
+			{
+				style : {
+					className: "Ti.UI.Label",
+					top: 10,
+					height: 40,
+					width: Ti.UI.SIZE,
+					font : {
+						fontSize : 20
+					},
+					text: "Statistic:"
+				}
+			},
+			{
+				outlet: "all",
+				style : {
+					className: "Ti.UI.Label",
+					height: Ti.UI.SIZE,
+					width: Ti.UI.SIZE,
+					font : {
+						fontSize : 10
+					},
+					text: "All Badges: "
+				}
+			},
+			{
+				outlet: "bonus",
+				style : {
+					className: "Ti.UI.Label",
+					height: Ti.UI.SIZE,
+					width: Ti.UI.SIZE,
+					font : {
+						fontSize : 10
+					},
+					text: "Bonuses: "
+				}
+			},
+			{
+				outlet: "sub",
+				style : {
+					className: "Ti.UI.Label",
+					height: Ti.UI.SIZE,
+					width: Ti.UI.SIZE,
+					font : {
+						fontSize : 10
+					},
+					text: "Subcategiries: "
+				}
 			}
 		]
 	}	

@@ -39,7 +39,32 @@ function onInitController(window, params)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
+	var all = window.achivs.length;
+	var bonus = 0;
+	var sub = 0;
 	
+	for(var i = 0; i < window.achivs.length; i++)
+	{
+		if(window.achivs[i].achievements.bonuses != undefined)
+		{
+			for(var j = 0; j < window.achivs[i].achievements.bonuses.length; j++)
+			{
+				Ti.API.info(window.achivs[i].achievements.bonuses[j].bonus_type);
+				
+				if(window.achivs[i].achievements.bonuses[j].bonus_type == "bonus")
+				{
+					bonus++;
+				}
+				else
+				{
+					sub++;
+				}
+			}
+		}
+	}
+	ui.all.text = ui.all.text + all;
+	ui.bonus.text = ui.bonus.text + bonus;
+	ui.sub.text = ui.sub.text + sub ;
 }
 
 // Обработчик при закрытии окна
