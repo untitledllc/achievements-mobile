@@ -55,9 +55,9 @@ function onInitController(window, params)
 				var results = JSON.parse(x.result);
 				info = {
 					name: results[0].name,
-					birthday: results[0].birthday_date,
-					city: results[0].current_location.city,
-					country: results[0].current_location.country
+					birthday: results[0].birthday_date
+					//city: results[0].current_location.city,
+					//country: results[0].current_location.country
 				}
 				
 				//-------------------
