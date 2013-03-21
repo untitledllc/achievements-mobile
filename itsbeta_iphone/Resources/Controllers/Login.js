@@ -9,17 +9,14 @@ var categories = [];
 var projects = [];
 var indexCategories = 0;
 var id_user = undefined;
+
 var achievements = [];
 var newCategories = [];
 var newProjects = [];
+
+var counter = 0;
 //---------------------------------------------//
 // Глобальные переменные для окна
-//---------------------------------------------//
-
-
-//---------------------------------------------//
-
-
 //---------------------------------------------//
 // Обязательные функции
 //---------------------------------------------//
@@ -140,192 +137,59 @@ function saveIdUser(data)
 	Ti.API.info('загрузка категорий');
 	var query = {
 		params: JSON.stringify({
-			access_token : access_token,
+			player_id : id_user,
+			access_token : access_token
 		}),
-		url : "/categories.json"
+		url : "/achievements.json"
 	};
 	
-	queryItsbeta(query,saveCategories);
-}
-
-function saveCategories(data)
-{
-	categories = JSON.parse(data);
-	
-	Ti.App.Properties.setString("categories",data);
-	
-	
-	Ti.API.info('Загрузка проектов')
-	var query = {
-		params: JSON.stringify({
-			access_token : access_token,
-			category_name : categories[indexCategories].api_name
-		}),
-		url : "/projects.json"
-	};
-	
-	queryItsbeta(query,saveProjects);
-	
-	
-}
-function saveProjects(data)
-{
-	indexCategories++;
-	var temp = JSON.parse(data);
-	
-	if(indexCategories < categories.length)
-	{
-		Ti.API.info('+');
-		
-		var query = {
-			params: JSON.stringify({
-				access_token : access_token,
-				category_name : categories[indexCategories].api_name
-			}),
-			url : "/projects.json"
-		};
-		
-		
-		for(var i = 0; i < temp.length; i++)
-		{
-			projects.push(temp[i]);
-			if(i + 1==temp.length)
-			{
-				queryItsbeta(query,saveProjects);
-			}
-		}
-	}
-	else
-	{
-		for(var i = 0; i < temp.length; i++)
-		{
-			projects.push(temp[i]);
-		}
-		
-		indexCategories = 0;
-		
-		var query = {
-			params: JSON.stringify({
-				access_token : access_token,
-				player_id : id_user,
-				project_id : projects[indexCategories].id
-			}),
-			url : "/achievements.json"
-		};
-		queryItsbeta(query,saveAchivs);
-	}
-	
+	queryItsbeta(query,saveAchivs);
 }
 function saveAchivs(data)
 {
 	indexCategories++;
-	var temp = JSON.parse(data);
-	Ti.API.info("temp length = " + temp.length)
+	achievements = JSON.parse(data);
 	
-	if(indexCategories < projects.length)
+	//---- собираем список категорий и список проектов -----//
+	
+	for(var i = 0; i < achievements.length; i++)
 	{
-		Ti.API.info('+');
-		
-		var query = {
-			params: JSON.stringify({
-				access_token : access_token,
-				player_id : id_user,
-				project_id : projects[indexCategories].id
-			}),
-			url : "/achievements.json"
-		};
-		if(temp.length != 0)
-		{
-			if( temp[0].projects[0].achievements.length != 0)
+		categories.push(
 			{
-				newProjects.push(
-					{
-						api_name : temp[0].projects[0].api_name,
-						display_name : temp[0].projects[0].display_name,
-						categories : temp[0].api_name
-					});
-					
-				newCategories.push({
-						api_name : temp[0].api_name,
-						display_name : temp[0].display_name,
-						total_badge : temp[0].projects[0].total_badge
-					});
-			}
-			
-			for(var i = 0; i < temp[0].projects[0].achievements.length; i++)
-			{
-				achievements.push(
-					{
-						achievements : temp[0].projects[0].achievements[i],
-						projects : 
-							{
-								api_name : temp[0].projects[0].api_name,
-								display_name : temp[0].projects[0].display_name,
-								color: temp[0].projects[0].color
-							},
-						categories : 
-							{
-								api_name : temp[0].api_name,
-								display_name : temp[0].display_name,
-								total_badge : temp[0].projects[0].total_badge
-							}
-					}
-				);
-				if(i + 1 == temp.length)
-				{
-					queryItsbeta(query,saveAchivs);
-				}
-			}
-		}
-		else
-		{
-			queryItsbeta(query,saveAchivs);
-		}
-	}
-	else
-	{
-		if(temp.length != 0)
-		{
-			if( temp[0].projects[0].achievements.length != 0)
-			{
-				newProjects.push(
-					{
-						api_name : temp[0].projects[0].api_name,
-						display_name : temp[0].projects[0].display_name,
-						categories : temp[0].api_name
-					});
-					
-				newCategories.push({
-						api_name : temp[0].api_name,
-						display_name : temp[0].display_name,
-						total_badge : temp[0].projects[0].total_badge
-					});
-			}
-			
-			for(var i = 0; i < temp[0].projects[0].achievements.length; i++)
-			{
-				achievements.push(temp[0]);
-			}
-		}
-		
-		//alert("всего ачивок " + achievements.length);
-		
-		actIndicator(false);
-		
-		var win = TiTools.UI.Controls.createWindow(
-			{
-				main : "Controllers/GeneralWindow.js",
-				navBarHidden : true,
-				info: info,
-				achievements : achievements,
-				projects: newProjects,
-				categories : newCategories
+				api_name: achievements[i].api_name,
+				display_name: achievements[i].display_name
 			}
 		);
-		win.initialize();
-		win.open();
+		
+		for(var j = 0; j < achievements[i].projects.length; j++)
+		{
+			counter += achievements[i].projects[j].achievements.length;
+			
+			projects.push(
+				{
+					api_name: achievements[i].projects[j].api_name,
+					display_name: achievements[i].projects[j].display_name,
+					total_badge: achievements[i].projects[j].total_badge
+				}
+			);
+		}
 	}
 	
+	//------------------------------------------------------//
+	
+	var win = TiTools.UI.Controls.createWindow(
+		{
+			main : "Controllers/GeneralWindow.js",
+			navBarHidden : true,
+			info: info,
+			achievements : achievements,
+			categories : categories,
+			projects : projects,
+			counter : counter
+		}
+	);
+	win.initialize();
+	win.open();
 }
 function actIndicator(param)
 {

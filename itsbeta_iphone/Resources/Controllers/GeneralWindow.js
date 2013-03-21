@@ -6,6 +6,12 @@ var TiTools = undefined;
 var ui = undefined;
 var tempAchivs = [];
 var typeProject = "null";
+var achievements = undefined;
+var projects = undefined;
+var categories = undefined;
+var info = undefined;
+var counter = 0;
+
 //---------------------------------------------//
 // Глобальные переменные для окна
 //---------------------------------------------//
@@ -23,11 +29,19 @@ function onInitController(window, params)
 {
 	TiTools = require("TiTools/TiTools");
 	
-	Ti.API.info(window.info);
+	achievements = window.achievements;
+	categories = window.categories;
+	projects = window.projects;
+	counter = window.counter;
+	info = window.info;
+	
+	Ti.API.info(achievements);
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/GeneralWindow.js", window);
-	ui.counter.text = window.achievements.length;
+	
+	ui.counter.text = counter;
+	
 	ui.typeProject.addEventListener("click",function(event)
 	{
 		ui.typeProject.hide();
@@ -40,14 +54,14 @@ function onInitController(window, params)
 				ui.rowTextAchivs.text = "typeProject";
 				
 				var massRow = [];
-				for(var i = 0; i < window.categories.length; i++)
+				for(var i = 0; i < categories.length; i++)
 				{
 					var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
 					massRow.push(row);
 					
-					row.rowTextAchivs.text = window.categories[i].display_name;
-					row.rowAchivs.api_name = window.categories[i].api_name;
-					row.rowAchivs.display_name = window.categories[i].display_name;
+					row.rowTextAchivs.text = categories[i].display_name;
+					row.rowAchivs.api_name = categories[i].api_name;
+					row.rowAchivs.display_name = categories[i].display_name;
 										
 					row.rowAchivs.addEventListener("click",function(event)
 					{
@@ -62,7 +76,7 @@ function onInitController(window, params)
 							massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
 						}
 						
-						delListAll(window,typeProject);
+						delList(window,typeProject);
 					});
 				}
 				ui.list.visible = true;
@@ -99,8 +113,9 @@ function onInitController(window, params)
 			{
 				main : "Controllers/Profile.js",
 				navBarHidden : true,
-				info : window.info,
-				achivs: window.achievements
+				info : info,
+				achievements: achievements,
+				counter : counter
 			}
 		);
 		winAdd.initialize();
@@ -117,7 +132,6 @@ function onWindowOpen(window, event)
 	
 	createListAchivs(window,"null");
 	
-	
 	// var win = TiTools.UI.Controls.createWindow(
 		// {
 			// main : "Controllers/preViewAchivs.js",
@@ -128,114 +142,58 @@ function onWindowOpen(window, event)
 	// );
 	// win.initialize();
 	// win.open();	
-	
 }
 ///-----сосдание списка ачивок-----//
 function createListAchivs(window,categiry)
 {
-	for(var i = 0; i < window.achievements.length; i++)
+	for(var i = 0; i < achievements.length; i++)
 	{
-		if(window.achievements[i].projects.api_name == categiry || categiry == "null")
+		for(var j = 0; j < achievements[i].projects.length; j++)
 		{
-			Ti.API.info('+');
-			
-			var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
-			
-			tempAchivs.push(row);
-			
-			row.date.text = window.achievements[i].achievements.create_time;
-			row.image.image = window.achievements[i].achievements.pic;
-			row.name.text = window.achievements[i].achievements.display_name;
-			row.name.color = window.achievements[i].projects.color,
-			row.desc.text = window.achievements[i].achievements.desc;
-			
-			row.viewAchivs.data = {
-				image: window.achievements[i].achievements.pic,
-				nameAchivs: window.achievements[i].achievements.display_name,
-				desc: window.achievements[i].achievements.desc,
-				details: window.achievements[i].achievements.details,
-				adv: window.achievements[i].achievements.adv,
-				bonus: window.achievements[i].achievements.bonuses
-			}
-			
-			row.viewAchivs.addEventListener("click",function(event)
+			for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
 			{
-				var win = TiTools.UI.Controls.createWindow(
-					{
-						main : "Controllers/preViewAchivs.js",
-						navBarHidden : true,
-						nameAchivs: event.source.data.nameAchivs,
-						desc: event.source.data.desc,
-						details: event.source.data.details,
-						adv: event.source.data.adv,
-						image: event.source.data.image,
-						bonus: event.source.data.bonus
+				if(achievements[i].projects[j].api_name == categiry || categiry == "null" || achievements[i].api_name == categiry)
+				{
+					Ti.API.info('+');
+					
+					var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
+					
+					tempAchivs.push(row);
+					
+					row.date.text = achievements[i].projects[j].achievements[k].create_time;
+					row.image.image = achievements[i].projects[j].achievements[k].pic;
+					row.name.text = achievements[i].projects[j].achievements[k].display_name;
+					row.name.color = achievements[i].projects[j].achievements[k].color,
+					row.desc.text = achievements[i].projects[j].achievements[k].desc;
+					
+					row.viewAchivs.data = {
+						image: achievements[i].projects[j].achievements[k].pic,
+						nameAchivs: achievements[i].projects[j].achievements[k].display_name,
+						desc: achievements[i].projects[j].achievements[k].desc,
+						details: achievements[i].projects[j].achievements[k].details,
+						adv: achievements[i].projects[j].achievements[k].adv,
+						bonus: achievements[i].projects[j].achievements[k].bonuses
 					}
-				);
-				win.initialize();
-				win.open();	
-			});
-		}
-	}
-}
-function delListAll(window,categiry)
-{
-	Ti.API.info('start_____');
-	for(var i = 0; i < tempAchivs.length; i++)
-	{
-		tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
-		Ti.API.info('del');
-	}
-	tempAchivs = [];
-	
-	createListAchivsAll(window,categiry);
-	
-	
-}
-function createListAchivsAll(window,categiry)
-{
-	for(var i = 0; i < window.achievements.length; i++)
-	{
-		if(window.achievements[i].categories.api_name == categiry || categiry == "null")
-		{
-			Ti.API.info('+');
-			
-			var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
-			
-			tempAchivs.push(row);
-			
-			row.date.text = window.achievements[i].achievements.create_time;
-			row.image.image = window.achievements[i].achievements.pic;
-			row.name.text = window.achievements[i].achievements.display_name;
-			row.name.color = window.achievements[i].projects.color,
-			row.desc.text = window.achievements[i].achievements.desc;
-			
-			row.viewAchivs.data = {
-				image: window.achievements[i].achievements.pic,
-				nameAchivs: window.achievements[i].achievements.display_name,
-				desc: window.achievements[i].achievements.desc,
-				details: window.achievements[i].achievements.details,
-				adv: window.achievements[i].achievements.adv,
-				bonus: window.achievements[i].achievements.bonuses
+					
+					row.viewAchivs.addEventListener("click",function(event)
+					{
+						var win = TiTools.UI.Controls.createWindow(
+							{
+								main : "Controllers/preViewAchivs.js",
+								navBarHidden : true,
+								nameAchivs: event.source.data.nameAchivs,
+								desc: event.source.data.desc,
+								details: event.source.data.details,
+								adv: event.source.data.adv,
+								image: event.source.data.image,
+								bonus: event.source.data.bonus
+							}
+						);
+						win.initialize();
+						win.open();	
+					});
+				}
 			}
-			
-			row.viewAchivs.addEventListener("click",function(event)
-			{
-				var win = TiTools.UI.Controls.createWindow(
-					{
-						main : "Controllers/preViewAchivs.js",
-						navBarHidden : true,
-						nameAchivs: event.source.data.nameAchivs,
-						desc: event.source.data.desc,
-						details: event.source.data.details,
-						adv: event.source.data.adv,
-						image: event.source.data.image,
-						bonus: event.source.data.bonus
-					}
-				);
-				win.initialize();
-				win.open();	
-			});
 		}
 	}
 }
@@ -250,11 +208,11 @@ function delList(window,categiry)
 	tempAchivs = [];
 	
 	createListAchivs(window,categiry);
-	
-	
 }
 function createListName(window,category)
 {
+	Ti.API.info(category);
+	
 	if(ui.list.visible == false)
 		{
 			ui.typeProject.hide();
@@ -264,16 +222,16 @@ function createListName(window,category)
 			
 			var massRow = [];
 			
-			for(var i = 0; i < window.projects.length; i++)
+			for(var i = 0; i < achievements.length; i++)
 			{
-				if(window.projects[i].categories == category || category == "null")
+				if(achievements[i].api_name == category || category == "null")
 				{
 					var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
 					massRow.push(row);
 					
-					row.rowTextAchivs.text = window.projects[i].display_name;
-					row.rowAchivs.api_name = window.projects[i].api_name;
-					row.rowAchivs.display_name = window.projects[i].display_name;
+					row.rowTextAchivs.text = projects[i].display_name;
+					row.rowAchivs.api_name = projects[i].api_name;
+					row.rowAchivs.display_name = projects[i].display_name;
 					
 					row.rowAchivs.addEventListener("click",function(event)
 					{

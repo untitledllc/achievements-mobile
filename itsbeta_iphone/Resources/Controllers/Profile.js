@@ -4,6 +4,9 @@
 
 var TiTools = undefined;
 var ui = undefined;
+var achievements = undefined;
+var projects = undefined;
+var categories = undefined;
 //---------------------------------------------//
 // Глобальные переменные для окна
 //---------------------------------------------//
@@ -20,6 +23,8 @@ var ui = undefined;
 function onInitController(window, params)
 {
 	TiTools = require("TiTools/TiTools");
+	
+	achievements = window.achievements;
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/Profile.js", window);
@@ -39,34 +44,68 @@ function onInitController(window, params)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
-	var all = window.achivs.length;
+	var all = window.counter;
 	var bonus = 0;
 	var sub = 0;
 	
-	for(var i = 0; i < window.achivs.length; i++)
+	for(var i = 0; i < achievements.length; i++)
 	{
-		if(window.achivs[i].achievements.bonuses != undefined)
+		for(var j = 0; j < achievements[i].projects.length; j++)
 		{
-			for(var j = 0; j < window.achivs[i].achievements.bonuses.length; j++)
+			var tempAchivs = [];
+			tempAchivs.push(achievements[i].projects[j].achievements[0].api_name);
+			
+			Ti.API.info(achievements[i].projects[j].api_name);
+			
+			var statView = TiTools.UI.Loader.load("Views/Statistic.js", ui.list);
+			statView.category.text = achievements[i].display_name;
+			
+			for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
 			{
-				Ti.API.info(window.achivs[i].achievements.bonuses[j].bonus_type);
-				
-				if(window.achivs[i].achievements.bonuses[j].bonus_type == "bonus")
+				for(var index = 0; index < tempAchivs.length; index++)
 				{
-					bonus++;
+					if(tempAchivs[index] != achievements[i].projects[j].achievements[k].api_name)
+					{
+						tempAchivs.push(achievements[i].projects[j].achievements[k].api_name);
+					}
 				}
-				else
+				
+				statView.item.add(createLabelStat(achievements[i].projects[j].api_name +" ("+ tempAchivs.length + "/" + achievements[i].projects[j].total_badges + ")"))
+				
+				for(var n = 0; n < achievements[i].projects[j].achievements[k].bonuses.length; n++)
 				{
-					sub++;
+					if(achievements[i].projects[j].achievements[k].bonuses[n].bonus_type == "bonus")
+					{
+						bonus++;
+					}
+					else
+					{
+						sub++;
+					}
 				}
 			}
+			
+			
 		}
 	}
 	ui.all.text = ui.all.text + all;
 	ui.bonus.text = ui.bonus.text + bonus;
 	ui.sub.text = ui.sub.text + sub ;
+	
+	
 }
-
+//------Создание лабелки с отображением имени проекта и статистикой полученый ачивок---//
+function createLabelStat(text)
+{
+	var label = Ti.UI.createLabel({
+		height: Ti.UI.SIZE,
+		width: Ti.UI.SIZE,
+		text: text
+	});
+	
+	return label;
+}
+//-------------------------------------------------------------------------------------//
 // Обработчик при закрытии окна
 function onWindowClose(window, event)
 {

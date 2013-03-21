@@ -6,7 +6,7 @@ module.exports = [
 		style : {
 			className: "Ti.UI.View",
 			top: 0,
-			height: Ti.UI.SIZE,
+			height: Ti.UI.FILL,
 			width: Ti.UI.FILL,
 			layout: "vertical",
 			backgroundColor: "white"
@@ -48,8 +48,8 @@ module.exports = [
 				style : {
 					className: "Ti.UI.View",
 					top: 30,
-					height: 150,
-					width: "90%",
+					height: 100,
+					width: Ti.UI.FILL,
 					layout: "vertical",
 					backgroundColor: "red"
 				},
@@ -129,6 +129,16 @@ module.exports = [
 						fontSize : 10
 					},
 					text: "Subcategiries: "
+				}
+			},
+			{
+				outlet: "list",
+				style : {
+					className: "Ti.UI.ScrollView",
+					height: Ti.UI.FILL,
+					width: Ti.UI.FILL,
+					layout: "vertical",
+					backgroundColor: "gray"
 				}
 			}
 		]
