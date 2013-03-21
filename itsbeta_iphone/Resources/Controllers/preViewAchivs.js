@@ -47,14 +47,10 @@ function onWindowOpen(window, event)
 	var webview = Titanium.UI.createWebView({
 		height: Ti.UI.SIZE,
 		width: 220,
-		html:  TiTools.Global.get("htmlWrapBefore") + window.details + window.adv + TiTools.Global.get("htmlWrapAfter")
-		//disableBounce: true,
+		html:  TiTools.Global.get("htmlWrapBefore") + window.details + window.adv + TiTools.Global.get("htmlWrapAfter"),
+		disableBounce: true
 	});
 	
-	/*webView.addEventListener("touchmove", function(e)
-	{
-	    e.preventDefault();
-	});*/
 	
 	for(var i = 0; i < window.bonus.length; i++)
 	{
