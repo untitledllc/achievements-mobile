@@ -14,7 +14,7 @@ var globalValues = [];
 function set(name, value)
 {
 	var index = globalNames.indexOf(name);
-	if(index > -1)
+	if(index == -1)
 	{
 		if(value != undefined)
 		{
