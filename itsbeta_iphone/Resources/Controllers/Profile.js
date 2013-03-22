@@ -47,21 +47,25 @@ function onWindowOpen(window, event)
 	var all = window.counter;
 	var bonus = 0;
 	var sub = 0;
+	var tempAchivs = [];
 	
 	for(var i = 0; i < achievements.length; i++)
 	{
 		for(var j = 0; j < achievements[i].projects.length; j++)
 		{
-			var tempAchivs = [];
-			tempAchivs.push(achievements[i].projects[j].achievements[0].api_name);
 			
 			Ti.API.info(achievements[i].projects[j].api_name);
 			
 			var statView = TiTools.UI.Loader.load("Views/Statistic.js", ui.list);
 			statView.category.text = achievements[i].display_name;
 			
+			Ti.API.info();
+			
 			for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
 			{
+				tempAchivs = [];
+				tempAchivs.push(achievements[i].projects[j].achievements[0].api_name);
+				
 				for(var index = 0; index < tempAchivs.length; index++)
 				{
 					if(tempAchivs[index] != achievements[i].projects[j].achievements[k].api_name)
@@ -69,8 +73,6 @@ function onWindowOpen(window, event)
 						tempAchivs.push(achievements[i].projects[j].achievements[k].api_name);
 					}
 				}
-				
-				statView.item.add(createLabelStat(achievements[i].projects[j].api_name +" ("+ tempAchivs.length + "/" + achievements[i].projects[j].total_badges + ")"))
 				
 				for(var n = 0; n < achievements[i].projects[j].achievements[k].bonuses.length; n++)
 				{
@@ -85,7 +87,7 @@ function onWindowOpen(window, event)
 				}
 			}
 			
-			
+			statView.item.add(createLabelStat(achievements[i].projects[j].api_name +" ("+ tempAchivs.length + "/" + achievements[i].projects[j].total_badges + ")"))
 		}
 	}
 	ui.all.text = ui.all.text + all;
