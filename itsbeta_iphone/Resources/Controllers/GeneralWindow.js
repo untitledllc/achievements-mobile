@@ -56,12 +56,13 @@ function onInitController(window, params)
 				var massRow = [];
 				for(var i = 0; i < categories.length; i++)
 				{
+					var category = categories[i];
 					var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
 					massRow.push(row);
 					
-					row.rowTextAchivs.text = categories[i].display_name;
-					row.rowAchivs.api_name = categories[i].api_name;
-					row.rowAchivs.display_name = categories[i].display_name;
+					row.rowTextAchivs.text = category.display_name;
+					row.rowAchivs.api_name = category.api_name;
+					row.rowAchivs.display_name = category.display_name;
 										
 					row.rowAchivs.addEventListener("click",function(event)
 					{
@@ -156,8 +157,8 @@ function createListAchivs(window,categiry)
 				{
 					Ti.API.info('+');
 					
-					var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
 					var achievement = achievements[i].projects[j].achievements[k];
+					var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
 					
 					tempAchivs.push(row);
 					
@@ -262,7 +263,6 @@ function createListName(window,category)
 					
 					row.rowAchivs.addEventListener("click",function(event)
 					{
-						
 						ui.typeProject.show();
 						ui.nameProject.show();
 						

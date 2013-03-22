@@ -134,6 +134,9 @@ function saveAchivs(data)
 	win.initialize();
 	win.open();
 }
+
+//---------------------------------------------//
+
 function actIndicator(param)
 {
 	if(param == true)
