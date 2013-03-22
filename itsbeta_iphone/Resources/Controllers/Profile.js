@@ -59,18 +59,19 @@ function onWindowOpen(window, event)
 			var statView = TiTools.UI.Loader.load("Views/Statistic.js", ui.list);
 			statView.category.text = achievements[i].display_name;
 			
-			Ti.API.info();
+			
+			tempAchivs = [];
+			tempAchivs.push(achievements[i].projects[j].achievements[0].badge_name);
 			
 			for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
 			{
-				tempAchivs = [];
-				tempAchivs.push(achievements[i].projects[j].achievements[0].api_name);
 				
 				for(var index = 0; index < tempAchivs.length; index++)
 				{
-					if(tempAchivs[index] != achievements[i].projects[j].achievements[k].api_name)
+					if(tempAchivs[index] != achievements[i].projects[j].achievements[k].badge_name)
 					{
-						tempAchivs.push(achievements[i].projects[j].achievements[k].api_name);
+						tempAchivs.push(achievements[i].projects[j].achievements[k].badge_name);
+						break;
 					}
 				}
 				
