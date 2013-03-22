@@ -97,9 +97,6 @@ function onInitController(window, params)
 	    });
 	});
 	
-	var scannedBarcodes = {},
-		scannedBarcodesCount = 0;
-		
 	Barcode.addEventListener('error', function (e) {
 		Ti.UI.createAlertDialog({
 	        message: e.message,

@@ -157,36 +157,38 @@ function createListAchivs(window,categiry)
 					Ti.API.info('+');
 					
 					var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
+					var achievement = achievements[i].projects[j].achievements[k];
 					
 					tempAchivs.push(row);
 					
-					row.date.text = achievements[i].projects[j].achievements[k].create_time;
-					row.image.image = achievements[i].projects[j].achievements[k].pic;
-					row.name.text = achievements[i].projects[j].achievements[k].display_name;
-					row.name.color = achievements[i].projects[j].achievements[k].color,
-					row.desc.text = achievements[i].projects[j].achievements[k].desc;
+					row.date.text   = achievement.create_time;
+					row.image.image = achievement.pic;
+					row.name.text   = achievement.display_name;
+					row.name.color  = achievement.color;
+					row.desc.text   = achievement.desc;
 					
 					row.viewAchivs.data = {
-						image: achievements[i].projects[j].achievements[k].pic,
-						nameAchivs: achievements[i].projects[j].achievements[k].display_name,
-						desc: achievements[i].projects[j].achievements[k].desc,
-						details: achievements[i].projects[j].achievements[k].details,
-						adv: achievements[i].projects[j].achievements[k].adv,
-						bonus: achievements[i].projects[j].achievements[k].bonuses
+						image: achievement.pic,
+						nameAchivs: achievement.display_name,
+						desc: achievement.desc,
+						details: achievement.details,
+						adv: achievement.adv,
+						bonus: achievement.bonuses
 					}
 					
 					row.viewAchivs.addEventListener("click",function(event)
 					{
+						var sourceData = event.source.data;
 						var win = TiTools.UI.Controls.createWindow(
 							{
 								main : "Controllers/preViewAchivs.js",
 								navBarHidden : true,
-								nameAchivs: event.source.data.nameAchivs,
-								desc: event.source.data.desc,
-								details: event.source.data.details,
-								adv: event.source.data.adv,
-								image: event.source.data.image,
-								bonus: event.source.data.bonus
+								nameAchivs: sourceData.nameAchivs,
+								desc: sourceData.desc,
+								details: sourceData.details,
+								adv: sourceData.adv,
+								image: sourceData.image,
+								bonus: sourceData.bonus
 							}
 						);
 						win.initialize();
