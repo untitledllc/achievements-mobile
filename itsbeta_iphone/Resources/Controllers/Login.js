@@ -9,6 +9,7 @@ var categories = [];
 var projects = [];
 var indexCategories = 0;
 var id_user = undefined;
+var itsbeta;
 
 var achievements = [];
 var newCategories = [];
@@ -25,6 +26,7 @@ var counter = 0;
 function onInitController(window, params)
 {
 	TiTools = require("TiTools/TiTools");
+	itsbeta = require("Utils/Itsbeta");
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/Login.js", window);
@@ -59,16 +61,18 @@ function onInitController(window, params)
 				
 				//-------------------
 				
+				/*
 				var query = {
-					params: JSON.stringify({
-						access_token: access_token,
-						type: "fb_user_id",
-						id: fbuid
-					}),
-					url: "/playerid.json"
-				};
-				
-				queryItsbeta(query,saveIdUser);
+									params: {
+										access_token: access_token,
+										type: "fb_user_id",
+										id: fbuid
+									},
+									url: "playerid.json"
+								};
+								
+								queryItsbeta(query,saveIdUser);*/
+				itsbeta.getAchievementsByUid(fbuid, saveAchivs);
 				
 			});
 		};
@@ -95,6 +99,7 @@ function onInitController(window, params)
  
 //---------------------------------------------//
 
+/*
 function queryItsbeta(params,collback)
 {
 	Ti.API.info('itsbeta');
@@ -136,19 +141,20 @@ function saveIdUser(data)
 	
 	Ti.API.info('загрузка категорий');
 	var query = {
-		params: JSON.stringify({
+		params: {
 			player_id : id_user,
 			access_token : access_token
-		}),
-		url : "/achievements.json"
+		},
+		url : "achievements.json"
 	};
 	
 	queryItsbeta(query,saveAchivs);
 }
+*/
 function saveAchivs(data)
 {
 	indexCategories++;
-	achievements = JSON.parse(data);
+	achievements = JSON.parse(data.responseText);
 	
 	//---- собираем список категорий и список проектов -----//
 	
