@@ -103,12 +103,6 @@ function onInitController(window, params)
 	        title: "ERROR"
         }).show();
 	});
-	Barcode.addEventListener('cancel', function (e) {
-     	Ti.UI.createAlertDialog({
-	        message: "CANCEL",
-	        title: "CANCEL"
-        }).show();
-	});
 	Barcode.addEventListener('success', function (e) {
     	if(e.contentType === Barcode.URL) {
 		    Ti.UI.createAlertDialog({
@@ -118,8 +112,7 @@ function onInitController(window, params)
 		    Barcode.cancel();
     	}
 	});
-	
- }
+}
 //---------------------------------------------//
 // Функции лентяйки
 //---------------------------------------------//
