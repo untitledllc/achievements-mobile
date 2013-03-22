@@ -46,14 +46,14 @@ function getAchievementsByUid(uid, successCallback)
 					},
 					url : "achievements.json"
 				}, 
-				successCallback,
-				function(response)
+				successCallback,   // success
+				function(response) // achievements failure
 				{
 					Ti.API.info("error");
 				}
 			);
 		},
-		function(response) // failure
+		function(response) // playerid failure
 		{
 			Ti.API.info("error");
 		}

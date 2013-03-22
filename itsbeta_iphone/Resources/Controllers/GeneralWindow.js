@@ -237,7 +237,6 @@ function createListName(window,category)
 					
 					row.rowAchivs.addEventListener("click",function(event)
 					{
-						
 						ui.typeProject.show();
 						ui.nameProject.show();
 						
@@ -250,7 +249,6 @@ function createListName(window,category)
 						ui.nameProject.text = event.source.display_name;
 						
 						delList(window,event.source.api_name);
-						
 					});
 				}
 			}

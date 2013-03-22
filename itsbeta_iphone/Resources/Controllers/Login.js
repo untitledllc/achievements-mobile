@@ -63,15 +63,16 @@ function onInitController(window, params)
 				
 				/*
 				var query = {
-									params: {
-										access_token: access_token,
-										type: "fb_user_id",
-										id: fbuid
-									},
-									url: "playerid.json"
-								};
-								
-								queryItsbeta(query,saveIdUser);*/
+					params: {
+						access_token: access_token,
+						type: "fb_user_id",
+						id: fbuid
+					},
+					url: "playerid.json"
+				};
+				
+				queryItsbeta(query,saveIdUser);*/
+				
 				itsbeta.getAchievementsByUid(fbuid, saveAchivs);
 				
 			});
