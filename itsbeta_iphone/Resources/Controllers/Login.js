@@ -47,7 +47,7 @@ function onInitController(window, params)
 			var myQuery = "SELECT name, birthday_date,current_location FROM user WHERE uid = "+fbuid;
 		
 		
-		Titanium.Facebook.request('fql.query', {query: myQuery},  function(x)
+			Titanium.Facebook.request('fql.query', {query: myQuery},  function(x)
 			{
 				var results = JSON.parse(x.result);
 				info = {
