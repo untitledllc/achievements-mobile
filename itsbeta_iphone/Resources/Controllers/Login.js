@@ -95,22 +95,24 @@ function saveAchivs(data)
 	
 	for(var i = 0; i < achievements.length; i++)
 	{
+		var achievement = achievements[i];
 		categories.push(
 			{
-				api_name: achievements[i].api_name,
-				display_name: achievements[i].display_name
+				api_name: achievement.api_name,
+				display_name: achievement.display_name
 			}
 		);
 		
-		for(var j = 0; j < achievements[i].projects.length; j++)
+		for(var j = 0; j < achievement.projects.length; j++)
 		{
-			counter += achievements[i].projects[j].achievements.length;
+			var project = achievement.projects[j];
+			counter += project.achievements.length;
 			
 			projects.push(
 				{
-					api_name: achievements[i].projects[j].api_name,
-					display_name: achievements[i].projects[j].display_name,
-					total_badge: achievements[i].projects[j].total_badge
+					api_name: project.api_name,
+					display_name: project.display_name,
+					total_badge: project.total_badge
 				}
 			);
 		}
