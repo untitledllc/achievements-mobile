@@ -59,22 +59,8 @@ function onInitController(window, params)
 					//country: results[0].current_location.country
 				}
 				
-				//-------------------
-				
-				/*
-				var query = {
-					params: {
-						access_token: access_token,
-						type: "fb_user_id",
-						id: fbuid
-					},
-					url: "playerid.json"
-				};
-				
-				queryItsbeta(query,saveIdUser);*/
-				
+				// get achievements by user id
 				itsbeta.getAchievementsByUid(fbuid, saveAchivs);
-				
 			});
 		};
 		
@@ -100,58 +86,6 @@ function onInitController(window, params)
  
 //---------------------------------------------//
 
-/*
-function queryItsbeta(params,collback)
-{
-	Ti.API.info('itsbeta');
-	TiTools.HTTP.response(
-			{
-				reguest: {
-				method: 'POST',
-					url: 'http://www.itsbeta.com/s/info/' + params.url,
-					header: [
-						{
-							type: 'Content-Type',
-							value: 'application/json; charset=utf-8'
-						}
-					],
-					post: params.params
-				},
-				success: function(success)
-						{
-							Ti.API.info('ok');
-							//Ti.API.info(success.responseText);
-							collback(success.responseText);
-						},
-				failure: function(failure)
-						{
-							
-							Ti.API.info('error');
-							//Ti.API.info(failure.responseText);
-							collback(failure.responseText);
-						}
-			}
-		);
-}
-//-----collback-----
-function saveIdUser(data)
-{
-	Ti.App.Properties.setString("id_user",JSON.parse(data).player_id);
-	Ti.API.info('saveID');
-	id_user = JSON.parse(data).player_id;
-	
-	Ti.API.info('загрузка категорий');
-	var query = {
-		params: {
-			player_id : id_user,
-			access_token : access_token
-		},
-		url : "achievements.json"
-	};
-	
-	queryItsbeta(query,saveAchivs);
-}
-*/
 function saveAchivs(data)
 {
 	indexCategories++;
