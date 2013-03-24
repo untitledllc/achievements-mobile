@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="150dp"
+    p1:layout_width="fill_parent"
+    p1:layout_height="150dp"
+    p1:id="@+id/relativeLayout1"
+    p1:background="#ffffffff">
+    <ImageView
+        p1:layout_width="fill_parent"
+        p1:layout_height="3dp"
+        p1:id="@+id/imageView1"
+        p1:background="@drawable/TableAndButtons_divider_h"
+        p1:layout_alignParentBottom="true" />
+    <ImageView
+        p1:layout_width="85dp"
+        p1:layout_height="85dp"
+        p1:id="@+id/AchiveImageView"
+        p1:layout_marginLeft="20dp"
+        p1:layout_marginTop="20dp"
+        p1:drawingCacheQuality="low"
+        p1:src="#ffb4b4b4" />
+    <TextView
+        p1:text="16.11.2012"
+        p1:textAppearance="?android:attr/textAppearanceSmall"
+        p1:layout_width="fill_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_below="@+id/AchiveImageView"
+        p1:id="@+id/AchiveReceiveDateTextView"
+        p1:textColor="#ff00bcd9"
+        p1:layout_marginTop="10dp"
+        p1:textSize="13dp"
+        p1:gravity="center"
+        p1:layout_toLeftOf="@+id/relativeLayout2"
+        p1:layout_marginRight="-20dp" />
+    <RelativeLayout
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="fill_parent"
+        p1:layout_height="fill_parent"
+        p1:id="@+id/relativeLayout2"
+        p1:layout_toRightOf="@+id/AchiveImageView"
+        p1:layout_toLeftOf="@+id/bonusesColumn_linearLayout">
+        <TextView
+            p1:text="Large Text"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/AchiveNameTextView"
+            p1:textColor="#858585"
+            p1:layout_marginLeft="20dp"
+            p1:layout_marginTop="15dp"
+            p1:textSize="20dp" />
+        <TextView
+            p1:text="To get this achie"
+            p1:textAppearance="?android:attr/textAppearanceSmall"
+            p1:layout_width="fill_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/AchiveDescriptionTextView"
+            p1:textColor="#ff474747"
+            p1:textSize="11dp"
+            p1:layout_alignParentBottom="true"
+            p1:layout_marginBottom="20dp"
+            p1:layout_marginLeft="20dp"
+            p1:layout_marginRight="5dp"
+            p1:gravity="top"
+            p1:layout_marginTop="7dp"
+            p1:layout_below="@+id/AchiveNameTextView" />
+    </RelativeLayout>
+    <LinearLayout
+        p1:orientation="vertical"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="30dp"
+        p1:layout_height="fill_parent"
+        p1:id="@+id/bonusesColumn_linearLayout"
+        p1:layout_alignParentRight="true"
+        p1:layout_marginTop="20dp" />
+</RelativeLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="27dp"
+    p1:layout_width="fill_parent"
+    p1:layout_height="27dp"
+    p1:id="@+id/bonuslist_relativeLayout">
+    <ImageView
+        p1:layout_width="30dp"
+        p1:layout_height="25dp"
+        p1:id="@+id/BonusImageView_right"
+        p1:layout_alignParentRight="true"
+        p1:scaleType="fitStart"
+        p1:adjustViewBounds="false"
+        p1:background="@drawable/Table_lable_green_middle" />
+    <ImageView
+        p1:layout_width="4dp"
+        p1:layout_height="wrap_content"
+        p1:layout_toLeftOf="@id/BonusImageView_right"
+        p1:id="@+id/BonusImageView_left"
+        p1:layout_alignTop="@id/BonusImageView_right"
+        p1:layout_alignBottom="@id/BonusImageView_right"
+        p1:background="@drawable/Table_lable_green_left" />
+    <ImageView
+        p1:layout_width="30dp"
+        p1:layout_height="25dp"
+        p1:id="@+id/Bonus_DiscountImageView_right"
+        p1:layout_alignParentRight="true"
+        p1:background="@drawable/Table_lable_blue_middle" />
+    <ImageView
+        p1:layout_width="3dp"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/Bonus_DiscountImageView_left"
+        p1:layout_alignTop="@id/Bonus_DiscountImageView_right"
+        p1:layout_alignBottom="@id/Bonus_DiscountImageView_right"
+        p1:layout_toLeftOf="@id/Bonus_DiscountImageView_right"
+        p1:background="@drawable/Table_lable_blue_left" />
+    <ImageView
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/Bonus_GiftImageView_right"
+        p1:layout_alignTop="@id/BonusImageView_right"
+        p1:layout_alignParentRight="true"
+        p1:layout_alignBottom="@id/BonusImageView_right"
+        p1:background="@drawable/Table_lable_violet_middle"
+        p1:layout_alignLeft="@id/BonusImageView_right" />
+    <ImageView
+        p1:layout_width="4dp"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/Bonus_GiftImageView_left"
+        p1:layout_alignTop="@id/BonusImageView_left"
+        p1:layout_alignBottom="@id/BonusImageView_left"
+        p1:layout_toLeftOf="@id/BonusImageView_right"
+        p1:background="@drawable/Table_lable_violet_left" />
+    <ImageView
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/BonusCenterImageView"
+        p1:layout_alignTop="@id/BonusImageView_right"
+        p1:layout_alignRight="@id/BonusImageView_right"
+        p1:layout_alignLeft="@id/BonusImageView_right"
+        p1:layout_alignBottom="@id/BonusImageView_right"
+        p1:src="@drawable/icon_bonuses"
+        p1:scaleType="fitCenter" />
+    <ImageView
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/Bonus_GiftCenterImageView"
+        p1:layout_alignTop="@+id/Bonus_GiftImageView_right"
+        p1:layout_alignRight="@+id/Bonus_GiftImageView_right"
+        p1:layout_alignBottom="@+id/Bonus_GiftImageView_right"
+        p1:layout_alignLeft="@+id/Bonus_GiftImageView_right"
+        p1:src="@drawable/icon_gifts"
+        p1:scaleType="fitCenter" />
+    <ImageView
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/Bonus_DiscountCenterImageView"
+        p1:layout_alignTop="@+id/Bonus_DiscountImageView_right"
+        p1:layout_alignRight="@+id/Bonus_DiscountImageView_right"
+        p1:layout_alignBottom="@+id/Bonus_DiscountImageView_right"
+        p1:layout_alignLeft="@+id/Bonus_DiscountImageView_right"
+        p1:src="@drawable/icon_discounts"
+        p1:scaleType="fitCenter" />
+</RelativeLayout>

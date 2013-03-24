@@ -254,12 +254,21 @@ namespace ItsBeta.Json
 
             public JToken jToken;
 
-            public JSonAchieves(string access_token, string player_id)
+            public JSonAchieves(string access_token, string player_id, bool isLocaleRu)
             {
-                _jsonResponse = WebControls.WebControls.GetMethod(
+                if (isLocaleRu == true)
+                {
+                    _jsonResponse = WebControls.WebControls.GetMethod(
+                    String.Format("http://www.itsbeta.com/s/info/achievements.json?access_token={0}&player_id={1}&locale=ru",
+                    access_token, player_id));
+                }
+                else
+                {
+                    _jsonResponse = WebControls.WebControls.GetMethod(
                     String.Format("http://www.itsbeta.com/s/info/achievements.json?access_token={0}&player_id={1}",
                     access_token, player_id));
-
+                }
+                
                 Console.WriteLine(_jsonResponse);
                 jToken = JToken.Parse(_jsonResponse);
             }

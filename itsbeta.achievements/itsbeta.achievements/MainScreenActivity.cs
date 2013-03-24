@@ -43,7 +43,7 @@ namespace itsbeta.achievements
         {
             base.OnCreate(bundle);
             _context = this;
-            SetContentView(Resource.Layout.SecondScreenActivityLayout);
+            SetContentView(Resource.Layout.secondscreenactivitylayout);
             _foundActionTextView = new TextView(this);
             _refreshProjectsAndAchTextView = new TextView(this);
 

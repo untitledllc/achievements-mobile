@@ -36,7 +36,18 @@ namespace itsbeta.achievements
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle); 
+            base.OnCreate(bundle);
+
+            var locale = Java.Util.Locale.Default.DisplayLanguage;
+            if (locale == "русский")
+            {
+                AppInfo.IsLocaleRu = true;
+            }
+            else
+            {
+                AppInfo.IsLocaleRu = false;
+            }
+
             _vibe = (Vibrator)this.GetSystemService(Context.VibratorService);
             loadComplete = new TextView(this);
             _messageDialogBuilder = new AlertDialog.Builder(this);
@@ -54,20 +65,25 @@ namespace itsbeta.achievements
                 File.WriteAllLines(@"/data/data/ru.hintsolutions.itsbeta/data.txt", config.ToArray(), Encoding.UTF8);
             }
 
-            SetContentView(Resource.Layout.FirstBadgeActivityLoadingLayout);
+            SetContentView(Resource.Layout.firstbadgeactivityloadinglayout);
 
 
             RelativeLayout progressDialogRelativeLayout = new RelativeLayout(this);
             LayoutInflater progressDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-            View progressDialogView = progressDialoglayoutInflater.Inflate(Resource.Layout.ProgressDialogLayout, null);
+            View progressDialogView = progressDialoglayoutInflater.Inflate(Resource.Layout.progressdialoglayout, null);
             _progressDialogMessage = (TextView)progressDialogView.FindViewById(Resource.Id.progressDialogMessageTextView);
             progressDialogRelativeLayout.AddView(progressDialogView);
             _progressDialog = new ProgressDialog(this, Resource.Style.FullHeightDialog);
             _progressDialog.Show();
             _progressDialog.SetContentView(progressDialogRelativeLayout);
             _progressDialog.Dismiss();
+            _progressDialog.SetCanceledOnTouchOutside(false);
 
-            _progressDialogMessage.Text = "Загрузка пользовательских данных...";
+            _progressDialogMessage.Text = "Загрузка данных...";
+            if (!AppInfo.IsLocaleRu)
+            {
+                _progressDialogMessage.Text = "Loading Data...";
+            }
             _progressDialog.Show();
 
             ThreadStart threadStart = new ThreadStart(treadStartVoid);
@@ -94,11 +110,15 @@ namespace itsbeta.achievements
         {
             _progressDialog.Hide();
             buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
-            SetContentView(Resource.Layout.FirstBadgeActivityLayout);
+            SetContentView(Resource.Layout.firstbadgeactivitylayout);
 
             TextView userName = FindViewById<TextView>(Resource.Id.firstbadgewin_usernameTextView);
             TextView badgeDescr = FindViewById<TextView>(Resource.Id.firstbadgewin_wonderdescrTextView);
-            
+            TextView howGetContent = FindViewById<TextView>(Resource.Id.firstbadgewin_howTextView);
+            if (!AppInfo.IsLocaleRu)
+            {
+                howGetContent.Text = "You got a new Badge";
+            }
 
             if (AppInfo._user.Fullname != null)
             {
@@ -130,13 +150,18 @@ namespace itsbeta.achievements
                 );
 
             LinearLayout bonusPaperListLinearLayout = FindViewById<LinearLayout>(Resource.Id.bonuspaperlist_linearLayout);
-            
+
+
+            if (_achieve.Bonuses.Count() == 0)
+            {
+                bonusPaperListLinearLayout.Visibility = ViewStates.Gone;
+            }
                 if (_achieve.Bonuses.Count() == 1)
                 {
                     var bonus = _achieve.Bonuses.First();
                     {
                         LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-                        View bonusView = layoutInflater.Inflate(Resource.Layout.BonusOnListRowLayout, null);
+                        View bonusView = layoutInflater.Inflate(Resource.Layout.bonusonlistrowlayout, null);
                         bonusView.LayoutParameters = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FillParent, RelativeLayout.LayoutParams.FillParent);
                         ImageView bonusLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
                         ImageView discountLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_BlueBonusImageView);
@@ -148,6 +173,8 @@ namespace itsbeta.achievements
 
                         TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
                         TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+
+
                         bonusDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
 
                         bonusLineImage.Visibility = ViewStates.Invisible;
@@ -173,6 +200,10 @@ namespace itsbeta.achievements
                             bonusName.Visibility = ViewStates.Visible;
 
                             bonusName.Text = "Скидка";
+                            if (!AppInfo.IsLocaleRu)
+                            {
+                                bonusName.Text = "Discount";
+                            }
                             bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                             bonusPaperListLinearLayout.AddView(bonusView);
@@ -190,6 +221,10 @@ namespace itsbeta.achievements
                             bonusName.Visibility = ViewStates.Visible;
 
                             bonusName.Text = "Бонус";
+                            if (!AppInfo.IsLocaleRu)
+                            {
+                                bonusName.Text = "Bonus";
+                            }
                             bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                             bonusPaperListLinearLayout.AddView(bonusView);
@@ -206,6 +241,10 @@ namespace itsbeta.achievements
                             bonusName.Visibility = ViewStates.Visible;
 
                             bonusName.Text = "Подарок";
+                            if (!AppInfo.IsLocaleRu)
+                            {
+                                bonusName.Text = "Present";
+                            }
                             bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                             bonusPaperListLinearLayout.AddView(bonusView);
@@ -217,7 +256,7 @@ namespace itsbeta.achievements
                 foreach (var bonus in _achieve.Bonuses)
                 {
                     LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-                    View bonusView = layoutInflater.Inflate(Resource.Layout.BonusOnListRowLayout, null);
+                    View bonusView = layoutInflater.Inflate(Resource.Layout.bonusonlistrowlayout, null);
                     bonusView.LayoutParameters = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FillParent, RelativeLayout.LayoutParams.FillParent);
                     ImageView bonusLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
                     ImageView discountLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_BlueBonusImageView);
@@ -256,6 +295,10 @@ namespace itsbeta.achievements
                         bonusName.Visibility = ViewStates.Visible;
 
                         bonusName.Text = "Скидка";
+                        if (!AppInfo.IsLocaleRu)
+                        {
+                            bonusName.Text = "Discount";
+                        }
                         bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                         bonusPaperListLinearLayout.AddView(bonusView);
@@ -274,6 +317,10 @@ namespace itsbeta.achievements
                         bonusName.Visibility = ViewStates.Visible;
 
                         bonusName.Text = "Бонус";
+                        if (!AppInfo.IsLocaleRu)
+                        {
+                            bonusName.Text = "Bonus";
+                        }
                         bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                         bonusPaperListLinearLayout.AddView(bonusView);
@@ -292,6 +339,10 @@ namespace itsbeta.achievements
                         bonusName.Visibility = ViewStates.Visible;
 
                         bonusName.Text = "Подарок";
+                        if (!AppInfo.IsLocaleRu)
+                        {
+                            bonusName.Text = "Present";
+                        }
                         bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                         bonusPaperListLinearLayout.AddView(bonusView);
@@ -324,19 +375,46 @@ namespace itsbeta.achievements
             {
                 AppInfo._selectedCategoriesDictionary = new Dictionary<string, bool>();
                 AppInfo._selectedSubCategoriesDictionary = new Dictionary<string, bool>();
-                AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
+                AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId, AppInfo.IsLocaleRu);
             }
             catch
             {
 
                 _messageDialogBuilder.SetTitle("Ошибка");
                 _messageDialogBuilder.SetMessage("Не удалось подключиться. Проверьте состояние интернет подключения.");
-                _messageDialogBuilder.SetPositiveButton("Ок", delegate { RunOnUiThread(() => Finish()); });
+                if (!AppInfo.IsLocaleRu)
+                {
+                    _messageDialogBuilder.SetTitle("Error");
+                    _messageDialogBuilder.SetMessage("Internet connection missing.");
+                }
+
+
+                if (AppInfo.IsLocaleRu)
+                {
+                    _messageDialogBuilder.SetPositiveButton("Ок", delegate { RunOnUiThread(() => Finish()); });
+                }
+                if (!AppInfo.IsLocaleRu)
+                {
+                    _messageDialogBuilder.SetPositiveButton("Оk", delegate { RunOnUiThread(() => Finish()); });
+                }
+
                 RunOnUiThread(() => ShowAlertDialog());
                 RunOnUiThread(() => _progressDialog.Dismiss());
                 return;
             }
-            RunOnUiThread(() => _progressDialogMessage.Text = "Загрузка контента...");
+            if (AppInfo.IsLocaleRu)
+            {
+                RunOnUiThread(() =>
+                _progressDialogMessage.Text = "Загрузка данных..."
+                );
+            }
+            if (!AppInfo.IsLocaleRu)
+            {
+                RunOnUiThread(() =>
+                _progressDialogMessage.Text = "Loading Data..."
+                );
+            }
+            
             Directory.CreateDirectory(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/");
 
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
@@ -365,10 +443,19 @@ namespace itsbeta.achievements
                             }
                             catch
                             {
+                                if (AppInfo.IsLocaleRu)
+                                {
+                                    _messageDialogBuilder.SetTitle("Ошибка");
+                                    _messageDialogBuilder.SetMessage("Ошибка загрузки контента.");
+                                    _messageDialogBuilder.SetPositiveButton("Ок", delegate { RunOnUiThread(() => Finish()); });
+                                }
+                                if (!AppInfo.IsLocaleRu)
+                                {
+                                    _messageDialogBuilder.SetTitle("Error");
+                                    _messageDialogBuilder.SetMessage("Content load error.");
+                                    _messageDialogBuilder.SetPositiveButton("Оk", delegate { RunOnUiThread(() => Finish()); });
+                                }
 
-                                _messageDialogBuilder.SetTitle("Ошибка");
-                                _messageDialogBuilder.SetMessage("Ошибка загрузки контента.");
-                                _messageDialogBuilder.SetPositiveButton("Ок", delegate { RunOnUiThread(() => Finish()); });
                                 RunOnUiThread(() => ShowAlertDialog());
                                 RunOnUiThread(() => _progressDialog.Dismiss());
                                 return;
@@ -394,7 +481,7 @@ namespace itsbeta.achievements
                 }
             }
 
-            loadComplete.Text = "complete";
+            RunOnUiThread(() => loadComplete.Text = "complete");
         }
 
         private Bitmap GetImageBitmap(String url)

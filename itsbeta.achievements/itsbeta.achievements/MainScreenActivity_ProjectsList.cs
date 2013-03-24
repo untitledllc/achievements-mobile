@@ -40,7 +40,14 @@ namespace itsbeta.achievements
             _subcategoriesshadowImageView.Visibility = ViewStates.Gone;
             _subcategoriesListView.Visibility = ViewStates.Gone;
             _subcategoriesListView.DividerHeight = 0;
-            _subcategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = "Все проекты" });
+            if (!AppInfo.IsLocaleRu)
+            {
+                _subcategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = "All projects" });
+            }
+            else
+            {
+                _subcategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = "Все проекты" });
+            }
             _subcategoryViewRelativeLayout.FindViewById<TextView>(Resource.Id.secondscr_projectNameRowTextView).Text = _subcategoriesList[0].SubCategoryNameText;
             _selectedsubCategoryId = _subcategoriesList[0].SubCategoryNameText;
 
@@ -55,7 +62,7 @@ namespace itsbeta.achievements
                 }
             }
 
-            _subcategoriesListAdapter = new SubCategoriesListItemAdapter(this, Resource.Layout.SecondScreenDropDownListRow, _subcategoriesList);
+            _subcategoriesListAdapter = new SubCategoriesListItemAdapter(this, Resource.Layout.secondscreendropdownlistrow, _subcategoriesList);
             _subcategoriesListView.Adapter = _subcategoriesListAdapter;
             
 

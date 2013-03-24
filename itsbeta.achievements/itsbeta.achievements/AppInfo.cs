@@ -30,5 +30,7 @@ namespace itsbeta.achievements
         public static int _badgesCount;
         public static int _bonusesCount;
         public static int _subcategCount;
+
+        public static bool IsLocaleRu { get; set; }   
     }
 }

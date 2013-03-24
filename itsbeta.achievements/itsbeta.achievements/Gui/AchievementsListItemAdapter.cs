@@ -30,7 +30,7 @@ namespace itsbeta.achievements.gui
             if (view == null)
             {
                 LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-                view = inflater.Inflate(Resource.Layout.SecondScreenListRow, null);
+                view = inflater.Inflate(Resource.Layout.secondscreenlistrow, null);
             }
 
             AchievementsListData item = Items[position];
@@ -60,7 +60,7 @@ namespace itsbeta.achievements.gui
             foreach (var bonus in item.Bonuses)
             {
                 LayoutInflater layoutInflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-                View bonusView = layoutInflater.Inflate(Resource.Layout.SecondScreenListRowLL, null);
+                View bonusView = layoutInflater.Inflate(Resource.Layout.secondscreenlistrowll, null);
 
                 ImageView bonusPictureleft = (ImageView)bonusView.FindViewById(Resource.Id.BonusImageView_left);
                 ImageView bonusPictureright = (ImageView)bonusView.FindViewById(Resource.Id.BonusImageView_right);
@@ -152,7 +152,7 @@ namespace itsbeta.achievements.gui
             view.DrawingCacheEnabled = true;
 
             achivePicture.SetImageBitmap(_bitmaps[position]);
-
+            //_bitmaps[position].Recycle();
             //if (!MainScreenActivity.isItemClicked)
             //{
             //Animation listviewAnimation = new ScaleAnimation((float)1.0, (float)1.0, (float)0, (float)1.0);//new TranslateAnimation(0, 0, MainActivity._display.Height, 0);
@@ -177,7 +177,7 @@ namespace itsbeta.achievements.gui
 
             return view;
         }
-
+        
 
         DateTime LocalDateTime(string strDateTime)
         {

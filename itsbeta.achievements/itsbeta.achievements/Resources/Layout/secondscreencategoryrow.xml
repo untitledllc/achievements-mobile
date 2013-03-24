@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="40dp"
+    p1:layout_width="fill_parent"
+    p1:layout_height="40dp"
+    p1:id="@+id/secondscr_categrowrelativeLayout">
+    <TextView
+        p1:text="CategotyName"
+        p1:textAppearance="?android:attr/textAppearanceLarge"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/secondscr_CategNameRowTextView"
+        p1:gravity="center_horizontal"
+        p1:layout_marginLeft="35dp"
+        p1:textColor="#ff646464"
+        p1:textSize="12dp"
+        p1:textStyle="normal"
+        p1:layout_marginTop="5dp"
+        p1:layout_centerHorizontal="false"
+        p1:layout_centerVertical="true"
+        p1:singleLine="true" />
+    <ImageView
+        p1:src="@drawable/Categories_btn_arrow"
+        p1:layout_width="15dp"
+        p1:layout_height="15dp"
+        p1:id="@+id/imageView1"
+        p1:layout_centerVertical="true"
+        p1:layout_marginLeft="10dp" />
+    <ImageView
+        p1:layout_width="2dp"
+        p1:layout_height="fill_parent"
+        p1:id="@+id/secondscr_categoryrowDividerImageView"
+        p1:background="@drawable/Btn_divider_v"
+        p1:layout_alignParentRight="true" />
+</RelativeLayout>

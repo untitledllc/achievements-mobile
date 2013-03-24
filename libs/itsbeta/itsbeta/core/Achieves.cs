@@ -12,9 +12,9 @@ namespace ItsBeta.Core
     {
         public JSonProcessor.JSonAchieves jSonAchieves;
 
-        public Achieves(string access_token, string player_id)
+        public Achieves(string access_token, string player_id, bool isLocaleRu)
         {
-            jSonAchieves = new JSonProcessor.JSonAchieves(access_token, player_id);
+            jSonAchieves = new JSonProcessor.JSonAchieves(access_token, player_id, isLocaleRu);
         }
 
         public int CategoriesCount

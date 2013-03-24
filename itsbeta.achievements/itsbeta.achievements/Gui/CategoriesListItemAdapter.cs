@@ -49,7 +49,7 @@ namespace itsbeta.achievements.gui
             {
                 LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
                 //выбираем разметку, которую будем наполнять данными.
-                view = inflater.Inflate(Resource.Layout.SecondScreenDropDownListRow, null);
+                view = inflater.Inflate(Resource.Layout.secondscreendropdownlistrow, null);
             }
 
             //получаем текущий элемент

@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="internalOnly" package="itsbeta.achievements" android:versionCode="1" android:versionName="1">
-  <uses-sdk android:targetSdkVersion="8" />
-  <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.READ_OWNER_DATA" />
-  <uses-permission android:name="android.permission.WRITE_OWNER_DATA" />
-  <application android:label="itsbeta" />
-</manifest>

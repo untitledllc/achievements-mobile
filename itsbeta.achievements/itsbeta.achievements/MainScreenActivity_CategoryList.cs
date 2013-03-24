@@ -69,7 +69,7 @@ namespace itsbeta.achievements
             }
             #endregion
 
-            _categoriesListAdapter = new CategoriesListItemAdapter(this, Resource.Layout.SecondScreenDropDownListRow, _categoriesList);
+            _categoriesListAdapter = new CategoriesListItemAdapter(this, Resource.Layout.secondscreendropdownlistrow, _categoriesList);
             _categoriesListView.Adapter = _categoriesListAdapter;
             _categoriesshadowImageView.Visibility = ViewStates.Gone;
         }

@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0A416DBA-EC5C-42C6-9CB0-08AB8BC25ED6}</ProjectGuid>
+    <ProjectGuid>{FEF3D819-0A02-407D-9D6F-5FE6B1872B5F}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -29,7 +29,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkSkip />
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -44,18 +43,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
-    <Reference Include="Mono.Android.Support.v4" />
     <Reference Include="mscorlib" />
-    <Reference Include="OpenTK-1.0" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Json" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppInfo.cs" />
+    <Compile Include="CrasherTestApplication.cs" />
     <Compile Include="FirstBadgeActivity.cs" />
     <Compile Include="Gui\AchievementsListItemAdapter.cs" />
     <Compile Include="Gui\CategoriesListItemAdapter.cs" />
@@ -63,30 +60,55 @@
     <Compile Include="Gui\SubCategoriesListItemAdapter.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="LoginWebActivity.cs" />
+    <Compile Include="MainScreenActivity.cs" />
     <Compile Include="MainScreenActivity_AchievementsList.cs" />
     <Compile Include="MainScreenActivity_Activation.cs" />
     <Compile Include="MainScreenActivity_CategoryList.cs" />
+    <Compile Include="MainScreenActivity_ProjectsList.cs" />
     <Compile Include="ProfileActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MainScreenActivity.cs" />
-    <Compile Include="MainScreenActivity_ProjectsList.cs" />
+    <Compile Include="SplashScreenActivity.cs" />
+    <Compile Include="TestAppCustomDataReportProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Roboto-Light.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\Layout\FirstBadgeActivityLayout.axml" />
-    <AndroidResource Include="Resources\Layout\LoginActivityLayout.axml" />
-    <AndroidResource Include="Resources\Layout\LoginWebLayout.axml" />
-    <AndroidResource Include="Resources\Layout\SecondScreenListRow.xml" />
-    <AndroidResource Include="Resources\Layout\SecondScreenActivityLayout.axml" />
-    <AndroidResource Include="Resources\Layout\SecondScreenDropDownListRow.xml" />
-    <AndroidResource Include="Resources\Layout\ProfileScreenActivityLayout.axml" />
-    <AndroidResource Include="Resources\Layout\ProfileScreenParentRow.xml" />
-    <AndroidResource Include="Resources\Layout\ProfileScreenChildRow.xml" />
-    <AndroidResource Include="Resources\Layout\AddBadgeMenuLayoutLayout.axml" />
-    <AndroidResource Include="Resources\Layout\EnterCodeLayout.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Values\styles.xml" />
+    <AndroidResource Include="Resources\Layout\splashactivitylayout.xml" />
+    <AndroidResource Include="Resources\Drawable\Splash_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\Layout\addbadgemenulayoutlayout.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Layout\badgewindowactivitylayout.xml" />
+    <AndroidResource Include="Resources\Layout\bonusonlistrowlayout.xml" />
+    <AndroidResource Include="Resources\Layout\entercodelayout.xml" />
+    <AndroidResource Include="Resources\Layout\exitdialoglayout.xml" />
+    <AndroidResource Include="Resources\Layout\firstbadgeactivitylayout.xml" />
+    <AndroidResource Include="Resources\Layout\firstbadgeactivityloadinglayout.xml" />
+    <AndroidResource Include="Resources\Layout\loginactivitylayout.xml" />
+    <AndroidResource Include="Resources\Layout\loginweblayout.xml" />
+    <AndroidResource Include="Resources\Layout\popuplistlayout.xml" />
+    <AndroidResource Include="Resources\Layout\profilescreenactivitylayout.xml" />
+    <AndroidResource Include="Resources\Layout\profilescreenchildrow.xml" />
+    <AndroidResource Include="Resources\Layout\profilescreenparentrow.xml" />
+    <AndroidResource Include="Resources\Layout\progressdialoglayout.xml" />
+    <AndroidResource Include="Resources\Layout\qrreaderlayout.xml" />
+    <AndroidResource Include="Resources\Layout\receivebadgelayount.xml" />
+    <AndroidResource Include="Resources\Layout\secondscreenactivitylayout.xml" />
+    <AndroidResource Include="Resources\Layout\secondscreencategoryrow.xml" />
+    <AndroidResource Include="Resources\Layout\secondscreendropdownlistrow.xml" />
+    <AndroidResource Include="Resources\Layout\secondscreenlistrow.xml" />
+    <AndroidResource Include="Resources\Layout\secondscreenlistrowll.xml" />
+    <AndroidResource Include="Resources\Layout\wrongcodedialoglayout.xml" />
+    <AndroidResource Include="Resources\Drawable\back.png" />
+    <AndroidResource Include="Resources\Drawable\BlueBtn_norm.png" />
     <AndroidResource Include="Resources\Drawable\BlueBtn_press.png" />
     <AndroidResource Include="Resources\Drawable\Btn_divider_v.png" />
     <AndroidResource Include="Resources\Drawable\Categories_btn_arrow.png" />
@@ -98,15 +120,24 @@
     <AndroidResource Include="Resources\Drawable\Categories_popup_check.png" />
     <AndroidResource Include="Resources\Drawable\DarkBlueBtn_norm.png" />
     <AndroidResource Include="Resources\Drawable\DarkBlueBtn_press.png" />
+    <AndroidResource Include="Resources\Drawable\entercodeactive.png" />
     <AndroidResource Include="Resources\Drawable\FB_icon.png" />
     <AndroidResource Include="Resources\Drawable\FB_logo.png" />
+    <AndroidResource Include="Resources\Drawable\GreenBtn_norm.png" />
     <AndroidResource Include="Resources\Drawable\GreenBtn_press.png" />
+    <AndroidResource Include="Resources\Drawable\icon_bonuses.png" />
+    <AndroidResource Include="Resources\Drawable\icon_discounts.png" />
+    <AndroidResource Include="Resources\Drawable\icon_gifts.png" />
+    <AndroidResource Include="Resources\Drawable\line.png" />
+    <AndroidResource Include="Resources\Drawable\line_blue.png" />
+    <AndroidResource Include="Resources\Drawable\Login_background2.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_icon_exit_norm.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_icon_exit_press.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_icon_plus_norm.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_icon_plus_press.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_icon_profile_norm.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_icon_profile_press.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_leftWindow.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_screen_icon.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_screen_left.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_screen_middle.png" />
@@ -127,16 +158,22 @@
     <AndroidResource Include="Resources\Drawable\Paper_background_topLeft.png" />
     <AndroidResource Include="Resources\Drawable\Paper_background_topMiddle.png" />
     <AndroidResource Include="Resources\Drawable\Paper_background_topRight.png" />
+    <AndroidResource Include="Resources\Drawable\Paper_BadgeShape.png" />
     <AndroidResource Include="Resources\Drawable\Paper_Divider_blue.png" />
     <AndroidResource Include="Resources\Drawable\Paper_Divider_green.png" />
     <AndroidResource Include="Resources\Drawable\Paper_Divider_violet.png" />
     <AndroidResource Include="Resources\Drawable\Paper_icon_close_norm.png" />
     <AndroidResource Include="Resources\Drawable\Paper_icon_close_press.png" />
     <AndroidResource Include="Resources\Drawable\Paper_shadow.png" />
+    <AndroidResource Include="Resources\Drawable\Preloader_panel_left.png" />
+    <AndroidResource Include="Resources\Drawable\Preloader_panel_middle.png" />
+    <AndroidResource Include="Resources\Drawable\Preloader_panel_right.png" />
+    <AndroidResource Include="Resources\Drawable\Profile_StatisticPreview_blue.png" />
     <AndroidResource Include="Resources\Drawable\Profile_StatisticPreview_green.png" />
     <AndroidResource Include="Resources\Drawable\Profile_StatisticPreview_violet.png" />
     <AndroidResource Include="Resources\Drawable\Profile_StatusBar_active.png" />
     <AndroidResource Include="Resources\Drawable\Profile_StatusBar_norm.png" />
+    <AndroidResource Include="Resources\Drawable\profilescr_titleback.png" />
     <AndroidResource Include="Resources\Drawable\Table_lable_blue_left.png" />
     <AndroidResource Include="Resources\Drawable\Table_lable_blue_middle.png" />
     <AndroidResource Include="Resources\Drawable\Table_lable_blue_right.png" />
@@ -147,43 +184,20 @@
     <AndroidResource Include="Resources\Drawable\Table_lable_violet_middle.png" />
     <AndroidResource Include="Resources\Drawable\Table_lable_violet_right.png" />
     <AndroidResource Include="Resources\Drawable\TableAndButtons_divider_h.png" />
-    <AndroidResource Include="Resources\Drawable\Login_background2.png" />
-    <AndroidResource Include="Resources\Drawable\NavBar_leftWindow.png" />
-    <AndroidResource Include="Resources\Drawable\profilescr_titleback.png" />
-    <AndroidResource Include="Resources\Drawable\back.png" />
-    <AndroidResource Include="Resources\Drawable\line.png" />
-    <AndroidResource Include="Resources\Layout\SecondScreenCategoryRow.xml" />
-    <AndroidResource Include="Resources\Layout\BadgeWindowActivityLayout.axml" />
-    <AndroidResource Include="Resources\Layout\ReceiveBadgeLayount.axml" />
-    <AndroidResource Include="Resources\Layout\QRReaderLayout.axml" />
-    <AndroidResource Include="Resources\Layout\SecondScreenListRowLL.xml" />
-    <AndroidResource Include="Resources\Layout\BonusOnListRowLayout.axml" />
-    <AndroidResource Include="Resources\Layout\PopUpListLayout.axml" />
-    <AndroidResource Include="Resources\Drawable\icon_bonuses.png" />
-    <AndroidResource Include="Resources\Drawable\icon_discounts.png" />
-    <AndroidResource Include="Resources\Drawable\icon_gifts.png" />
-    <AndroidResource Include="Resources\Drawable\entercodeactive.png" />
-    <AndroidResource Include="Resources\Layout\FirstBadgeActivityLoadingLayout.axml" />
-    <AndroidResource Include="Resources\Drawable\line_blue.png" />
-    <AndroidResource Include="Resources\Drawable\BlueBtn_norm.png" />
-    <AndroidResource Include="Resources\Drawable\GreenBtn_norm.png" />
-    <AndroidResource Include="Resources\Drawable\Paper_BadgeShape.png" />
+    <AndroidResource Include="Resources\Drawable\trans.png" />
     <AndroidResource Include="Resources\Drawable\Login_background.png" />
-    <AndroidResource Include="Resources\Drawable\Profile_StatisticPreview_blue.png" />
-    <AndroidResource Include="Resources\Layout\exitDialogLayout.axml" />
-    <AndroidResource Include="Resources\Layout\wrongCodeDialogLayout.axml" />
-    <AndroidResource Include="Resources\Layout\ProgressDialogLayout.axml" />
-    <AndroidResource Include="Resources\Drawable\Preloader_panel_left.png" />
-    <AndroidResource Include="Resources\Drawable\Preloader_panel_middle.png" />
-    <AndroidResource Include="Resources\Drawable\Preloader_panel_right.png" />
+    <AndroidResource Include="Resources\Drawable\Login_BigBadge.png" />
+    <AndroidResource Include="Resources\Drawable\Icon_128.png" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Values\Strings.xml" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\libs\itsbeta\itsbeta\itsbeta.csproj">
       <Project>{F0E325C3-8C23-4FC5-ACCE-402E4F37671C}</Project>
       <Name>itsbeta</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\libs\Mono.Android.Crasher\Mono.Android.Crasher.csproj">
+      <Project>{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}</Project>
+      <Name>Mono.Android.Crasher</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\libs\QR Reader\ZXing.Net.Mobile\ZXing.Net.Mobile.MonoForAndroid.csproj">
       <Project>{D72228AC-C356-4E1A-B56F-91C9A25F7286}</Project>
@@ -194,9 +208,6 @@
       <Name>zxing.monoandroid</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\Values\styles.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
      Other similar extension points exist, see Microsoft.Common.targets.
@@ -205,10 +216,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup />
-  <ItemGroup>
-    <Content Include="Properties\AndroidManifest.xml" />
-    <AndroidResource Include="Resources\Drawable\trans.png" />
-    <AndroidResource Include="Resources\Drawable\Login_BigBadge.png" />
-  </ItemGroup>
 </Project>

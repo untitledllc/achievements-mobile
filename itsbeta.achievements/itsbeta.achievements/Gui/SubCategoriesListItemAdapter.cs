@@ -60,7 +60,7 @@ namespace itsbeta.achievements.gui
             if (view == null)
             {
                 LayoutInflater inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-                view = inflater.Inflate(Resource.Layout.SecondScreenDropDownListRow, null);
+                view = inflater.Inflate(Resource.Layout.secondscreendropdownlistrow, null);
             }
 
             SubCategoriesListData item = Items[position];

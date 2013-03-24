@@ -30,13 +30,20 @@ namespace itsbeta.achievements
         {
             base.OnCreate(bundle);
             buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
-            SetContentView(Resource.Layout.ProfileScreenActivityLayout);
+            SetContentView(Resource.Layout.profilescreenactivitylayout);
+            TextView profileTitle = FindViewById<TextView>(Resource.Id.profilescr_profiletextView);
+
+
+            
 
             RelativeLayout exitDialogRelativeLayout = new RelativeLayout(this);
             LayoutInflater exitDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-            View exitDialogView = exitDialoglayoutInflater.Inflate(Resource.Layout.exitDialogLayout, null);
+            View exitDialogView = exitDialoglayoutInflater.Inflate(Resource.Layout.exitdialoglayout, null);
+
             Button exitDialogCancelButton = (Button)exitDialogView.FindViewById(Resource.Id.cancelButton);
             Button exitDialogReadyButton = (Button)exitDialogView.FindViewById(Resource.Id.readyButton);
+            TextView exitTitleTextView = (TextView)exitDialogView.FindViewById(Resource.Id.textView1);
+            TextView exitDialogDescrTextView = (TextView)exitDialogView.FindViewById(Resource.Id.textView2);
 
             exitDialogRelativeLayout.AddView(exitDialogView);
             Dialog exitDialog = new Dialog(this, Resource.Style.FullHeightDialog);
@@ -80,16 +87,40 @@ namespace itsbeta.achievements
             TextView userFullname = FindViewById<TextView>(Resource.Id.profilescr_usernameTextView);
             TextView userData = FindViewById<TextView>(Resource.Id.profilescr_userAgelocTextView);
             TextView statText = FindViewById<TextView>(Resource.Id.profilescr_statTextView);
+            TextView allBadgesTextView = FindViewById<TextView>(Resource.Id.profilescr_allBadgesTextView);
+            TextView bonusesTextView = FindViewById<TextView>(Resource.Id.textView2);
+            TextView subCategoriesTextView = FindViewById<TextView>(Resource.Id.textView3);
 
+
+            //profilescr_allBadgesTextView
             TextView badgesCount = FindViewById<TextView>(Resource.Id.profilescr_allbadgescountTextView);
             TextView bonusesCount = FindViewById<TextView>(Resource.Id.profilescr_bonusCountTextView);
             TextView subCategoriesCount = FindViewById<TextView>(Resource.Id.profilescr_subcategCountTextView);
 
             statText.SetTypeface(font, TypefaceStyle.Normal);
             userFullname.SetTypeface(font,TypefaceStyle.Normal);
+            allBadgesTextView.SetTypeface(font, TypefaceStyle.Normal);
+            bonusesTextView.SetTypeface(font, TypefaceStyle.Normal);
+            subCategoriesTextView.SetTypeface(font, TypefaceStyle.Normal);
+
 
             userFullname.Text = AppInfo._user.Fullname;
             userData.Text = GetUserAge(AppInfo._user.BirthDate) + ", " + AppInfo._user.City;
+
+
+            if (!AppInfo.IsLocaleRu)
+            {
+                exitDialogCancelButton.Text = "Cancel";
+                exitDialogReadyButton.Text = "Yes";
+                exitTitleTextView.Text = "Confirm";
+                exitDialogDescrTextView.Text = "Do you really want to exit from current profile?";
+
+                profileTitle.Text = "PROFILE";
+                statText.Text = "Statistic";
+                allBadgesTextView.Text = "All Badges:";
+                bonusesTextView.Text = "Bonuses:";
+                subCategoriesTextView.Text = "Subcategories:";
+            }
 
             badgesCount.Text = AppInfo._badgesCount.ToString();
             bonusesCount.Text = AppInfo._bonusesCount.ToString();
@@ -100,17 +131,20 @@ namespace itsbeta.achievements
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
             {
                 LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-                View view = layoutInflater.Inflate(Resource.Layout.ProfileScreenParentRow, null);
+                View view = layoutInflater.Inflate(Resource.Layout.profilescreenparentrow, null);
                 TextView categoryName = (TextView)view.FindViewById(Resource.Id.profilescr_CategNameTextView);
                 categoryName.Text = i+1 + ". " + AppInfo._achievesInfo.CategoryArray[i].DisplayName +":";
-                
+                categoryName.SetTypeface(font, TypefaceStyle.Bold);
+
+
                 profilescrLinearLayout.AddView(view);
 
                 for (int j = 0; j < AppInfo._achievesInfo.CategoryArray[i].Projects.Length; j++)    
                 {
                     LayoutInflater layoutInflater2 = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-                    View view2 = layoutInflater2.Inflate(Resource.Layout.ProfileScreenChildRow, null);
+                    View view2 = layoutInflater2.Inflate(Resource.Layout.profilescreenchildrow, null);
                     TextView projectName = (TextView)view2.FindViewById(Resource.Id.profilescr_ProjectNameTextView);
+                    projectName.SetTypeface(font, TypefaceStyle.Normal);
                     ImageView statBarActive = (ImageView)view2.FindViewById(Resource.Id.profilescr_statbarImageViewwActive);
                     ImageView statBarPassive = (ImageView)view2.FindViewById(Resource.Id.profilescr_statbarImageViewNorm);
                     LinearLayout statbarlinearlayout = (LinearLayout)view2.FindViewById(Resource.Id.statbarlinearLayout);

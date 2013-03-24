@@ -42,7 +42,7 @@ namespace itsbeta.achievements
             //WrongCodeDialog
             RelativeLayout wrongCodeDialogRelativeLayout = new RelativeLayout(this);
             LayoutInflater wrongCodeDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-            View wrongCodeDialogView = wrongCodeDialoglayoutInflater.Inflate(Resource.Layout.wrongCodeDialogLayout, null);
+            View wrongCodeDialogView = wrongCodeDialoglayoutInflater.Inflate(Resource.Layout.wrongcodedialoglayout, null);
             Button wrongCodeDialogReadyButton = (Button)wrongCodeDialogView.FindViewById(Resource.Id.readyButton);
             _wrongCodeDialogTitle = (TextView)wrongCodeDialogView.FindViewById(Resource.Id.textView1);
             _wrongCodeDialogMessage = (TextView)wrongCodeDialogView.FindViewById(Resource.Id.textView2);
@@ -54,18 +54,20 @@ namespace itsbeta.achievements
             _wrongCodeDialog.SetContentView(wrongCodeDialogRelativeLayout);
 
             wrongCodeDialogReadyButton.Click += delegate { _wrongCodeDialog.Dismiss(); };
+
             //
 
             //ProgressDialog
             RelativeLayout progressDialogRelativeLayout = new RelativeLayout(this);
             LayoutInflater progressDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-            View progressDialogView = progressDialoglayoutInflater.Inflate(Resource.Layout.ProgressDialogLayout, null);
+            View progressDialogView = progressDialoglayoutInflater.Inflate(Resource.Layout.progressdialoglayout, null);
             _progressDialogMessage = (TextView)progressDialogView.FindViewById(Resource.Id.progressDialogMessageTextView);
             progressDialogRelativeLayout.AddView(progressDialogView);
             _progressDialog = new ProgressDialog(this, Resource.Style.FullHeightDialog);
             _progressDialog.Show();
             _progressDialog.SetContentView(progressDialogRelativeLayout);
             _progressDialog.Dismiss();
+            _progressDialog.SetCanceledOnTouchOutside(false);
             //
 
 
@@ -75,28 +77,48 @@ namespace itsbeta.achievements
             _activateMessageBadgeDialogBuilder = new AlertDialog.Builder(this);
             LayoutInflater addBadgeMenulayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
             RelativeLayout addBadgeRelativeLayout = new RelativeLayout(this);
-            View addBadgeView = addBadgeMenulayoutInflater.Inflate(Resource.Layout.AddBadgeMenuLayoutLayout, null);
+            View addBadgeView = addBadgeMenulayoutInflater.Inflate(Resource.Layout.addbadgemenulayoutlayout, null);
 
 
             Button addBadgeCancelButton = (Button)addBadgeView.FindViewById(Resource.Id.addbadge_cancelButton);
             Button readQRCodeButton = (Button)addBadgeView.FindViewById(Resource.Id.addbadge_readQRButton);
             Button addCodeButton = (Button)addBadgeView.FindViewById(Resource.Id.addbadge_addcodeButton);
+
+            TextView addBadgeTitleTextView = (TextView)addBadgeView.FindViewById(Resource.Id.textView1);
             addBadgeRelativeLayout.AddView(addBadgeView);
 
             LayoutInflater addCodeMenulayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
             RelativeLayout addCodeRelativeLayout = new RelativeLayout(this);
-            View addCodeView = addCodeMenulayoutInflater.Inflate(Resource.Layout.EnterCodeLayout, null);
+            View addCodeView = addCodeMenulayoutInflater.Inflate(Resource.Layout.entercodelayout, null);
+
             Button addCodeCancelButton = (Button)addCodeView.FindViewById(Resource.Id.addcode_cancelButton);
             Button addCodeReadyButton = (Button)addCodeView.FindViewById(Resource.Id.addcode_readyButton);
             _enterCodeLineImageView = (ImageView)addCodeView.FindViewById(Resource.Id.imageView1);
+
+            TextView addCodeDescrTextView = (TextView)addCodeView.FindViewById(Resource.Id.textView2);
+            TextView addCodeTitleTextView = (TextView)addCodeView.FindViewById(Resource.Id.textView1);
+
             _codeCompleteTextView = (AutoCompleteTextView)addCodeView.FindViewById(Resource.Id.addcode_autoCompleteTextView);
-            
+
+            if (!AppInfo.IsLocaleRu)
+            {
+                addBadgeTitleTextView.Text = "Activate Badge";
+                addCodeButton.Text = "   Via Entering code";
+                readQRCodeButton.Text = "   Via QR-reader";
+                addCodeDescrTextView.Text = "Confirmation a code is a process for which is given a badge.";
+                addCodeTitleTextView.Text = "Enter code";
+                wrongCodeDialogReadyButton.Text = "Ok";
+                addCodeCancelButton.Text = "Cancel";
+                addCodeReadyButton.Text = "Ok";
+            }
+
+
             _codeCompleteTextView.Click += delegate 
             {
                 InputMethodManager im = (InputMethodManager)this.GetSystemService(InputMethodService);
                 if (im.IsAcceptingText)
                 {
-                    _enterCodeLineImageView.SetBackgroundResource(Resource.Drawable.entercodeactive);
+                    _enterCodeLineImageView.SetBackgroundResource(Resource.Drawable.line_blue);
                 }
                 else
                 {
@@ -145,7 +167,12 @@ namespace itsbeta.achievements
                 readQRCodeButton.StartAnimation(_buttonClickAnimation); addBadgeDialog.Dismiss();
                 _scanner = new MobileBarcodeScanner(this);
                 _scanner.UseCustomOverlay = true;
-                var zxingOverlay = LayoutInflater.FromContext(this).Inflate(Resource.Layout.QRReaderLayout, null);
+                var zxingOverlay = LayoutInflater.FromContext(this).Inflate(Resource.Layout.qrreaderlayout, null);
+                TextView qrTitleContent = (TextView)zxingOverlay.FindViewById(Resource.Id.qrreader_codetextView);
+                if (!AppInfo.IsLocaleRu)
+                {
+                    qrTitleContent.Text = "Check QR-Code";
+                }
 
                 _scanner.CustomOverlay = zxingOverlay;
 
@@ -167,9 +194,14 @@ namespace itsbeta.achievements
                     addCodeReadyButton.StartAnimation(_buttonClickAnimation);
                     addCodeDialog.Dismiss();
 
-                    
-                   // _progressDialog.SetMessage("Активация достижения...");
+
+
                     _progressDialogMessage.Text = "Активация достижения..."; 
+                    if (!AppInfo.IsLocaleRu)
+                    {
+                        _progressDialogMessage.Text = "Badge activation..."; 
+                    }
+                    
                     _progressDialog.SetCancelable(false);
                     _progressDialog.Show();
 
@@ -179,7 +211,13 @@ namespace itsbeta.achievements
                 }
                 else
                 {
-                    Toast.MakeText(this, "Введите код активации", ToastLength.Short).Show();
+                    string toastStr = "Введите код активации";
+                    if (!AppInfo.IsLocaleRu)
+                    {
+                        toastStr = "Enter activation code";
+                    }
+
+                    Toast.MakeText(this, toastStr, ToastLength.Short).Show();
                     addCodeReadyButton.StartAnimation(_buttonClickAnimation);
                 }
             };
@@ -202,7 +240,12 @@ namespace itsbeta.achievements
             }
             else
             {
-                RunOnUiThread(() => Toast.MakeText(this, "QR Code несоответствует формату", ToastLength.Short).Show());
+                string qrtoastStr = "QR Code несоответствует формату";
+                if (!AppInfo.IsLocaleRu)
+                {
+                    qrtoastStr = "Wrong QR-Code format mismatch";
+                }
+                RunOnUiThread(() => Toast.MakeText(this, qrtoastStr, ToastLength.Short).Show());
                 qrValid = false;
             }
 
@@ -218,9 +261,11 @@ namespace itsbeta.achievements
 
         public void ShowQRDialog()
         {
-           // _progressDialog = new ProgressDialog(this);
-            //_progressDialog.SetMessage("Активация достижения...");
-            _progressDialogMessage.Text = "Активация достижения..."; 
+            _progressDialogMessage.Text = "Активация достижения...";
+            if (!AppInfo.IsLocaleRu)
+            {
+                _progressDialogMessage.Text = "Badge activation...";
+            }
             _progressDialog.SetCancelable(false);
             _progressDialog.Show();
         }
@@ -245,7 +290,7 @@ namespace itsbeta.achievements
                     activatedBadgeFbId = response.Replace("badgefbId=", "");
                     try
                     {
-                        AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
+                        AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId, AppInfo.IsLocaleRu);
                     }
                     catch
                     {
@@ -304,13 +349,26 @@ namespace itsbeta.achievements
                     if (errorDescr == "obj not found")
                     {
                         errorDescr = "Неверный код активации";
+                        if (!AppInfo.IsLocaleRu)
+                        {
+                            errorDescr = "Wrong activation code";
+                        }
                     }
                     if (errorDescr == "activation code is used")
                     {
                         errorDescr = "Код уже активирован";
+                        if (!AppInfo.IsLocaleRu)
+                        {
+                            errorDescr = "Code is already activated";
+                        }
+
                     }
 
                     _wrongCodeDialogTitle.Text = "Информация";
+                    if (!AppInfo.IsLocaleRu)
+                    {
+                        _wrongCodeDialogTitle.Text = "Information";
+                    }
                     _wrongCodeDialogMessage.Text = errorDescr;
 
                     RunOnUiThread(() => _wrongCodeDialog.Show());
@@ -320,6 +378,11 @@ namespace itsbeta.achievements
                     RunOnUiThread(() => _progressDialog.Dismiss());
                     errorDescr = "Неудалось активировать. Проверьте настройки интернет соединения";
                     _wrongCodeDialogTitle.Text = "Ошибка";
+                    if (!AppInfo.IsLocaleRu)
+                    {
+                        errorDescr = "Activation error. Internet connection is missing";
+                        _wrongCodeDialogTitle.Text = "Error";
+                    }
                     _wrongCodeDialogMessage.Text = errorDescr;
 
                     RunOnUiThread(() => _wrongCodeDialog.Show());
@@ -343,7 +406,7 @@ namespace itsbeta.achievements
                 activatedBadgeFbId = response.Replace("badgefbId=", "");
                 try
                 {
-                    AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId);
+                    AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId, AppInfo.IsLocaleRu);
                 }
                 catch
                 {
@@ -401,13 +464,25 @@ namespace itsbeta.achievements
                 if (errorDescr == "obj not found")
                 {
                     errorDescr = "Неверный код активации";
+                    if (!AppInfo.IsLocaleRu)
+                    {
+                        errorDescr = "Wrong activation code";
+                    }
                 }
                 if (errorDescr == "activation code is used")
                 {
                     errorDescr = "Код уже активирован";
+                    if (!AppInfo.IsLocaleRu)
+                    {
+                        errorDescr = "Code is already activated";
+                    }
                 }
 
                 _wrongCodeDialogTitle.Text = "Информация";
+                if (!AppInfo.IsLocaleRu)
+                {
+                    _wrongCodeDialogTitle.Text = "Information";
+                }
                 _wrongCodeDialogMessage.Text = errorDescr;
 
                 RunOnUiThread(() => _wrongCodeDialog.Show());
@@ -417,8 +492,12 @@ namespace itsbeta.achievements
             {
                 RunOnUiThread(() => _progressDialog.Dismiss());
                 errorDescr = "Неудалось активировать. Проверьте настройки интернет соединения";
-
                 _wrongCodeDialogTitle.Text = "Ошибка";
+                if (!AppInfo.IsLocaleRu)
+                {
+                    errorDescr = "Activation error. Internet connection is missing";
+                    _wrongCodeDialogTitle.Text = "Error";
+                }
                 _wrongCodeDialogMessage.Text = errorDescr;
 
                 RunOnUiThread(() => _wrongCodeDialog.Show());
@@ -434,7 +513,7 @@ namespace itsbeta.achievements
 
             LayoutInflater inflater = (LayoutInflater)this.GetSystemService(LayoutInflaterService);
             ViewGroup relativeAgedSummary = new RelativeLayout(this);
-            View layout = inflater.Inflate(Resource.Layout.ReceiveBadgeLayount, relativeAgedSummary);
+            View layout = inflater.Inflate(Resource.Layout.receivebadgelayount, relativeAgedSummary);
 
             ImageView badgeImage = (ImageView)layout.FindViewById(Resource.Id.recbadgewin_BadgeImageView);
             Button inactiveButton = (Button)layout.FindViewById(Resource.Id.recbadgewin_inactiveButton);
@@ -443,7 +522,15 @@ namespace itsbeta.achievements
 
             TextView profileName = (TextView)layout.FindViewById(Resource.Id.recbadgewin_badgeTextView);
             TextView badgeDescr = (TextView)layout.FindViewById(Resource.Id.recbadgewin_wonderdescrTextView);
+            TextView badgeHowGetted = (TextView)layout.FindViewById(Resource.Id.recbadgewin_howwonderTextView);
+            
+            if (!AppInfo.IsLocaleRu)
+            {
+                badgeHowGetted.Text = "You got a new Badge";
+            }
 
+
+            //recbadgewin_howwonderTextView
             profileName.Text = AppInfo._user.Fullname;
             badgeDescr.Text = activatedBadge.Description;
             AppInfo._badgesCount += 1;
@@ -455,12 +542,17 @@ namespace itsbeta.achievements
             LinearLayout bonusPaperListLinearLayout = (LinearLayout)layout.FindViewById(Resource.Id.bonuspaperlist_linearLayout);
             //
             bonusPaperListLinearLayout.RemoveAllViews();
+
+            if (activatedBadge.Bonuses.Count() == 0)
+            {
+                bonusPaperListLinearLayout.Visibility = ViewStates.Gone;
+            }
             if (activatedBadge.Bonuses.Count() == 1)
                 {
                     var bonus = activatedBadge.Bonuses.First();
                     {
                         LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-                        View bonusView = layoutInflater.Inflate(Resource.Layout.BonusOnListRowLayout, null);
+                        View bonusView = layoutInflater.Inflate(Resource.Layout.bonusonlistrowlayout, null);
                         bonusView.LayoutParameters = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FillParent, RelativeLayout.LayoutParams.FillParent);
                         ImageView bonusLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
                         ImageView discountLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_BlueBonusImageView);
@@ -497,6 +589,10 @@ namespace itsbeta.achievements
                             bonusName.Visibility = ViewStates.Visible;
 
                             bonusName.Text = "Скидка";
+                            if (!AppInfo.IsLocaleRu)
+                            {
+                                bonusName.Text = "Discount";
+                            }
                             bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                             bonusPaperListLinearLayout.AddView(bonusView);
@@ -514,6 +610,10 @@ namespace itsbeta.achievements
                             bonusName.Visibility = ViewStates.Visible;
 
                             bonusName.Text = "Бонус";
+                            if (!AppInfo.IsLocaleRu)
+                            {
+                                bonusName.Text = "Bonus";
+                            }
                             bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                             bonusPaperListLinearLayout.AddView(bonusView);
@@ -530,6 +630,10 @@ namespace itsbeta.achievements
                             bonusName.Visibility = ViewStates.Visible;
 
                             bonusName.Text = "Подарок";
+                            if (!AppInfo.IsLocaleRu)
+                            {
+                                bonusName.Text = "Present";
+                            }
                             bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                             bonusPaperListLinearLayout.AddView(bonusView);
@@ -541,7 +645,7 @@ namespace itsbeta.achievements
                 foreach (var bonus in activatedBadge.Bonuses)
                 {
                     LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-                    View bonusView = layoutInflater.Inflate(Resource.Layout.BonusOnListRowLayout, null);
+                    View bonusView = layoutInflater.Inflate(Resource.Layout.bonusonlistrowlayout, null);
                     bonusView.LayoutParameters = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FillParent, RelativeLayout.LayoutParams.FillParent);
                     ImageView bonusLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
                     ImageView discountLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_BlueBonusImageView);
@@ -580,6 +684,10 @@ namespace itsbeta.achievements
                         bonusName.Visibility = ViewStates.Visible;
 
                         bonusName.Text = "Скидка";
+                        if (!AppInfo.IsLocaleRu)
+                        {
+                            bonusName.Text = "Discount";
+                        }
                         bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                         bonusPaperListLinearLayout.AddView(bonusView);
@@ -598,6 +706,10 @@ namespace itsbeta.achievements
                         bonusName.Visibility = ViewStates.Visible;
 
                         bonusName.Text = "Бонус";
+                        if (!AppInfo.IsLocaleRu)
+                        {
+                            bonusName.Text = "Bonus";
+                        }
                         bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                         bonusPaperListLinearLayout.AddView(bonusView);
@@ -616,6 +728,10 @@ namespace itsbeta.achievements
                         bonusName.Visibility = ViewStates.Visible;
 
                         bonusName.Text = "Подарок";
+                        if (!AppInfo.IsLocaleRu)
+                        {
+                            bonusName.Text = "Present";
+                        }
                         bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
 
                         bonusPaperListLinearLayout.AddView(bonusView);
@@ -675,15 +791,16 @@ namespace itsbeta.achievements
             {
                 found = true;
                 msg = "QR код найден";// + result.Text;
+                if (!AppInfo.IsLocaleRu)
+                {
+                    msg = "QR-code detected";// + result.Text;
+                }
                 this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
             }
-            //else
-            //    msg = "Сканирование отменено";
 
-            
             if (found)
             {
-                _foundActionTextView.Text = result.Text;
+                this.RunOnUiThread(() => _foundActionTextView.Text = result.Text);
             }
         }
         #endregion
