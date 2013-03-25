@@ -192,6 +192,32 @@ function createListAchivs(window,categiry)
 					row.name.color = achievements[i].projects[j].color;
 					row.desc.text = achievement.desc;
 					
+					for( var n = 0; n < achievement.bonuses.length; n++)
+					{
+						var tempColor;
+						
+						if( achievement.bonuses[n].bonus_type == "bonus")
+						{
+							tempColor = "red";
+						}
+						if( achievement.bonuses[n].bonus_type == "present")
+						{
+							tempColor = "green";
+						}
+						if( achievement.bonuses[n].bonus_type == "discount")
+						{
+							tempColor = "gray";
+						}
+						
+						
+						var bonus = preViewBonus({
+							text: achievement.bonuses[n].bonus_type,
+							color: tempColor
+						});
+						
+						row.addBonus.add(bonus);
+					}
+					
 					row.viewAchivs.data = {
 						image: achievement.pic,
 						nameAchivs: achievement.display_name,
@@ -357,7 +383,25 @@ function reSaveAchivs(data)
 	ui.counter.text = counter;
 	createListAchivs(window,"null");
 }
-
+function preViewBonus(params)
+{
+	var bonus = Ti.UI.createView({
+		top: 10,
+		height: 20,
+		width: 20,
+		backgroundColor: params.color,
+	});
+	
+	var label = Ti.UI.createLabel({
+		height: Ti.UI.SIZE,
+		width: Ti.UI.SIZE,
+		text: params.text
+	});
+	
+	bonus.add(label);
+	
+	return bonus;
+}
 // Обработчик при закрытии окна
 function onWindowClose(window, event)
 {

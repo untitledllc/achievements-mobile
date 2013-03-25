@@ -68,6 +68,19 @@ module.exports = {
 			}
 		},
 		{
+			outlet: "addBonus",
+			style : {
+				className : "Ti.UI.View",
+				layout: "vertical",
+				top: 20,
+				right: 0,
+				height: Ti.UI.SIZE,
+				width: 20,
+				backgroundColor: "transparent",
+				touchEnabled: false
+			}
+		},
+		{
 			style: {
 				className: "Ti.UI.View",
 				bottom: 0,
