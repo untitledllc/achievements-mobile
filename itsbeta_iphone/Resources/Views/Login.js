@@ -56,6 +56,7 @@ module.exports = [
 								style: {
 									className: "Ti.UI.Label",
 									color: "#fff",
+									// height: Ti.UI.FILL,
 									text: "Sign in with"
 								}
 							},
@@ -64,6 +65,7 @@ module.exports = [
 									className: "Ti.UI.Label",
 									color: "#fff",
 									left: 5,
+									// height: Ti.UI.FILL,
 									text: "facebook"
 								}
 							}						

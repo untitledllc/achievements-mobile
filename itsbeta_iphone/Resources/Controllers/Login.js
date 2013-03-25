@@ -18,6 +18,11 @@ var newCategories = [];
 var newProjects = [];
 
 var counter = 0;
+
+//---------------------------------------------//
+
+Ti.include("Utils/Helper.js");
+
 //---------------------------------------------//
 // Глобальные переменные для окна
 //---------------------------------------------//
@@ -33,56 +38,56 @@ function onInitController(window, params)
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/Login.js", window);
 	
-	ui.infacebook.addEventListener("click", function(event)
-	{
-		Titanium.Facebook.appid = "264918200296425";
-		Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
-		
-		Ti.API.info(Titanium.Facebook.loggedIn);
-		
-		function fQuery() 
+	decorateButton.call(
+		ui.infacebook, 
+		function(event) // onSingleTap handler
 		{
-			var fbuid = Titanium.Facebook.uid; 
-			accessToken = Titanium.Facebook.accessToken;
-			var myQuery = "SELECT name, birthday_date,current_location FROM user WHERE uid = "+fbuid;
-		
-		
-			Titanium.Facebook.request('fql.query', {query: myQuery},  function(x)
+			Titanium.Facebook.appid = "264918200296425";
+			Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
+			
+			Ti.API.info(Titanium.Facebook.loggedIn);
+			
+			function fQuery() 
 			{
-				var results = JSON.parse(x.result);
-				info = {
-					fbuid : fbuid,
-					accessToken : accessToken,
-					name: results[0].name,
-					birthday: results[0].birthday_date,
-					// city: results[0].current_location.city,
-					// country: results[0].current_location.country
-				}
-				
-				TiTools.Global.set("info",info);
-				
-				// get achievements by user id
-				itsbeta.getAchievementsByUid(fbuid, saveAchivs);
-			});
-		};
-		
-		if(Titanium.Facebook.loggedIn == 0)
-		{
-			Ti.Facebook.authorize();
-			Ti.Facebook.addEventListener('login',function(event){
-				
+				var fbuid = Titanium.Facebook.uid; 
+				accessToken = Titanium.Facebook.accessToken;
+				var myQuery = "SELECT name, birthday_date,current_location FROM user WHERE uid = "+fbuid;
+			
+				Titanium.Facebook.request('fql.query', {query: myQuery},  function(x)
+				{
+					var results = JSON.parse(x.result);
+					info = {
+						fbuid : fbuid,
+						accessToken : accessToken,
+						name: results[0].name,
+						birthday: results[0].birthday_date,
+						// city: results[0].current_location.city,
+						// country: results[0].current_location.country
+					}
+					
+					TiTools.Global.set("info", info);
+					
+					// get achievements by user id
+					itsbeta.getAchievementsByUid(fbuid, saveAchivs);
+				});
+			};
+			
+			if(!Titanium.Facebook.loggedIn)
+			{
+				Ti.Facebook.authorize();
+				Ti.Facebook.addEventListener('login',function(event) 
+				{
+					actIndicator(true);
+					fQuery();
+				});
+			}
+			else
+			{
 				actIndicator(true);
-				
-				Ti.API.info("login");
 				fQuery();
-			});
+			}
 		}
-		else
-		{
-			actIndicator(true);
-			fQuery();
-		}
-	});
+	);
 	
  }
  
