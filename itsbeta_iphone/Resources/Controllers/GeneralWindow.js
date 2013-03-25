@@ -35,7 +35,7 @@ function onInitController(window, params)
 	counter = window.counter;
 	info = window.info;
 	
-	Ti.API.info(achievements);
+	//Ti.API.info(achievements);
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/GeneralWindow.js", window);
@@ -102,6 +102,7 @@ function onInitController(window, params)
 			{
 				main : "Controllers/add.js",
 				navBarHidden : true,
+				achievements : achievements
 			}
 		);
 		winAdd.initialize();
@@ -227,30 +228,35 @@ function createListName(window,category)
 			
 			for(var i = 0; i < achievements.length; i++)
 			{
+				
 				if(achievements[i].api_name == category || category == "null")
 				{
-					var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
-					massRow.push(row);
-					
-					row.rowTextAchivs.text = projects[i].display_name;
-					row.rowAchivs.api_name = projects[i].api_name;
-					row.rowAchivs.display_name = projects[i].display_name;
-					
-					row.rowAchivs.addEventListener("click",function(event)
+					for(var j = 0; j < achievements[i].projects.length; j++)
 					{
-						ui.typeProject.show();
-						ui.nameProject.show();
 						
-						ui.list.visible = false;
-						for(var ii = 0; ii != massRow.length; ii++)
+						var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
+						massRow.push(row);
+						
+						row.rowTextAchivs.text = achievements[i].projects[j].display_name;
+						row.rowAchivs.api_name = achievements[i].projects[j].api_name;
+						row.rowAchivs.display_name = achievements[i].projects[j].display_name;
+						
+						row.rowAchivs.addEventListener("click",function(event)
 						{
-							massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-						}
-						
-						ui.nameProject.text = event.source.display_name;
-						
-						delList(window,event.source.api_name);
-					});
+							ui.typeProject.show();
+							ui.nameProject.show();
+							
+							ui.list.visible = false;
+							for(var ii = 0; ii != massRow.length; ii++)
+							{
+								massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+							}
+							
+							ui.nameProject.text = event.source.display_name;
+							
+							delList(window,event.source.api_name);
+						});
+					}
 				}
 			}
 			

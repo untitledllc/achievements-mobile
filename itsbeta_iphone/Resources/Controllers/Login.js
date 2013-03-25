@@ -9,6 +9,8 @@ var categories = [];
 var projects = [];
 var indexCategories = 0;
 var id_user = undefined;
+var accessTokenFb = undefined;
+
 var itsbeta;
 
 var achievements = [];
@@ -46,6 +48,7 @@ function onInitController(window, params)
 		function fQuery() 
 		{
 			var fbuid = Titanium.Facebook.uid; 
+			accessToken = Titanium.Facebook.accessToken;
 			var myQuery = "SELECT name, birthday_date,current_location FROM user WHERE uid = "+fbuid;
 		
 		
@@ -53,11 +56,15 @@ function onInitController(window, params)
 			{
 				var results = JSON.parse(x.result);
 				info = {
+					fbuid : fbuid,
+					accessToken : accessToken,
 					name: results[0].name,
-					birthday: results[0].birthday_date
-					//city: results[0].current_location.city,
-					//country: results[0].current_location.country
+					birthday: results[0].birthday_date,
+					city: results[0].current_location.city,
+					country: results[0].current_location.country
 				}
+				
+				TiTools.Global.set("info",info);
 				
 				// get achievements by user id
 				itsbeta.getAchievementsByUid(fbuid, saveAchivs);
@@ -96,6 +103,7 @@ function saveAchivs(data)
 	for(var i = 0; i < achievements.length; i++)
 	{
 		var achievement = achievements[i];
+		
 		categories.push(
 			{
 				api_name: achievement.api_name,
@@ -105,8 +113,11 @@ function saveAchivs(data)
 		
 		for(var j = 0; j < achievement.projects.length; j++)
 		{
+			
 			var project = achievement.projects[j];
 			counter += project.achievements.length;
+			
+			Ti.API.info(achievement.display_name + "  --  " + project.display_name);
 			
 			projects.push(
 				{

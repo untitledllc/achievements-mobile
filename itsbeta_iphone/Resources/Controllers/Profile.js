@@ -51,45 +51,51 @@ function onWindowOpen(window, event)
 	
 	for(var i = 0; i < achievements.length; i++)
 	{
-		var achievement = achievements[i];
-		for(var j = 0; j < achievement.projects.length; j++)
+		var statView = TiTools.UI.Loader.load("Views/Statistic.js", ui.list);
+		statView.category.text = achievements[i].display_name;
+			
+		for(var j = 0; j < achievements[i].projects.length; j++)
 		{
-			var project = achievement.projects[j];
 			
-			Ti.API.info(project.api_name);
-			
-			var statView = TiTools.UI.Loader.load("Views/Statistic.js", ui.list);
-			statView.category.text = achievement.display_name;
+			Ti.API.info(achievements[i].projects[j].api_name);
 			
 			tempAchivs = [];
-			tempAchivs.push(project.achievements[0].badge_name);
+			tempAchivs.push(achievements[i].projects[j].achievements[0].badge_name);
 			
-			for(var k = 0; k < project.achievements.length; k++)
+			for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
 			{
-				var projectAchievement = project.achievements[k];
+				
 				for(var index = 0; index < tempAchivs.length; index++)
 				{
-					if(tempAchivs[index] != projectAchievement.badge_name)
+					if(tempAchivs[index] != achievements[i].projects[j].achievements[k].badge_name)
 					{
-						tempAchivs.push(projectAchievement.badge_name);
+						tempAchivs.push(achievements[i].projects[j].achievements[k].badge_name);
 						break;
 					}
 				}
 				
-				for(var n = 0; n < projectAchievement.bonuses.length; n++)
+				for(var n = 0; n < achievements[i].projects[j].achievements[k].bonuses.length; n++)
 				{
-					(projectAchievement.bonuses[n].bonus_type == "bonus") ? bonus++ : sub++;
+					if(achievements[i].projects[j].achievements[k].bonuses[n].bonus_type == "bonus")
+					{
+						bonus++;
+					}
+					else
+					{
+						sub++;
+					}
 				}
 			}
 			
-			statView.item.add(createLabelStat(project.api_name +" ("+ tempAchivs.length + "/" + project.total_badges + ")"))
+			statView.item.add(createLabelStat(achievements[i].projects[j].api_name +" ("+ tempAchivs.length + "/" + achievements[i].projects[j].total_badges + ")"))
 		}
 	}
 	ui.all.text = ui.all.text + all;
 	ui.bonus.text = ui.bonus.text + bonus;
 	ui.sub.text = ui.sub.text + sub ;
+	
+	
 }
-
 //------Создание лабелки с отображением имени проекта и статистикой полученый ачивок---//
 function createLabelStat(text)
 {
@@ -101,7 +107,6 @@ function createLabelStat(text)
 	
 	return label;
 }
-
 //-------------------------------------------------------------------------------------//
 // Обработчик при закрытии окна
 function onWindowClose(window, event)

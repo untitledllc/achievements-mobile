@@ -4,6 +4,7 @@
 
 var TiTools = undefined;
 var ui = undefined;
+var itsbeta = undefined;
 //---------------------------------------------//
 // Глобальные переменные для окна
 //---------------------------------------------//
@@ -20,12 +21,19 @@ var ui = undefined;
 function onInitController(window, params)
 {
 	TiTools = require("TiTools/TiTools");
+	itsbeta = require("Utils/Itsbeta");
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/addCode.js", window);
 	ui.back.addEventListener("click",function(event)
 	{
 		window.close();
+	});
+	
+	ui.done.addEventListener("click",function(event)
+	{
+		Ti.API.info(ui.code.value);
+		itsbeta.postActivCode(ui.code.value);
 	});
  }
 //---------------------------------------------//
