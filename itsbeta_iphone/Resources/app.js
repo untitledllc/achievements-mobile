@@ -45,6 +45,10 @@ window.open();
 
 //---------------------------------------------//
 
+Ti.UI.setBackgroundColor("#fff");
+
+//---------------------------------------------//
+
 TiTools.Global.set("htmlWrapBefore", '<html><head><script type="text/javascript">window.onload=function(){var links=document.querySelectorAll("a"),i=0,len=links.length;while(i<len){links[i++].addEventListener("click", function(evt){evt.preventDefault();this.href && Ti.App.fireEvent("linkClicked",{url:this.href});},false);}};</script></head><body>');
 TiTools.Global.set("htmlWrapAfter", '</body></html>');
 

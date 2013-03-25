@@ -8,7 +8,13 @@ module.exports = [
 			layout: "vertical",
 			height: Ti.UI.FILL,
 			width: Ti.UI.FILL,
-			backgroundColor: "white",
+			top: 0,
+			left: 10,
+			right: 10,
+			bottom: 10,
+			backgroundImage: "images/bg/Panel.png",
+			backgroundLeftCap: 30,
+			backgroundTopCap: 30
 		},
 		subviews:[
 			{
@@ -31,12 +37,39 @@ module.exports = [
 			{
 				outlet: "infacebook",
 				style: {
-					className: "Ti.UI.Button",
+					className: "Ti.UI.View",
 					top: "5%",
 					height: "10%",
 					width: "80%",
-					title: "Sing in facebook",
-				}
+					backgroundImage: "images/buttons/Facebook.Normal.png"
+				},
+				subviews: [
+					{
+						style: {
+							className: "Ti.UI.View",
+							height: Ti.UI.SIZE,
+							width: Ti.UI.SIZE,
+							layout: "horizontal"
+						}, 
+						subviews: [
+							{
+								style: {
+									className: "Ti.UI.Label",
+									color: "#fff",
+									text: "Sign in with"
+								}
+							},
+							{
+								style: {
+									className: "Ti.UI.Label",
+									color: "#fff",
+									left: 5,
+									text: "facebook"
+								}
+							}						
+						]	
+					}
+				]
 			},
 			{
 				style: {

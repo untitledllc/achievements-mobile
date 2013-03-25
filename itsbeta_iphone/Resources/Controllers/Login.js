@@ -55,8 +55,8 @@ function onInitController(window, params)
 					accessToken : accessToken,
 					name: results[0].name,
 					birthday: results[0].birthday_date,
-					city: results[0].current_location.city,
-					country: results[0].current_location.country
+					// city: results[0].current_location.city,
+					// country: results[0].current_location.country
 				}
 				
 				TiTools.Global.set("info",info);
