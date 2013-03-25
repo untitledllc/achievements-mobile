@@ -36,7 +36,7 @@ function onInitController(window, params)
 	counter = window.counter;
 	info = window.info;
 	
-	//Ti.API.info(achievements);
+	Ti.API.info(achievements);
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/GeneralWindow.js", window);
@@ -71,6 +71,7 @@ function onInitController(window, params)
 										
 					row.rowAchivs.addEventListener("click",function(event)
 					{
+						actIndicator(true);
 						
 						typeProject = event.source.api_name;
 						ui.typeProject.text = event.source.display_name;
@@ -137,8 +138,17 @@ function onInitController(window, params)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
+	searchRow();
 	
-	createListAchivs(window,"null");
+	Ti.App.addEventListener("actHide",function(event)
+	{
+		actIndicator(false);
+	});
+	
+	Ti.App.addEventListener("logout",function(event){
+		window.close();
+	});
+	
 	
 	// var win = TiTools.UI.Controls.createWindow(
 		// {
@@ -401,6 +411,37 @@ function preViewBonus(params)
 	bonus.add(label);
 	
 	return bonus;
+}
+function actIndicator(param)
+{
+	if(param == true)
+	{
+		ui.actView.show();
+		ui.act.show();
+	}
+	else
+	{
+		ui.actView.hide();
+		ui.act.hide();
+	}
+}
+function searchRow()
+{
+	for(var i = 0; i < achievements.length; i++)
+	{
+		for(var j = 0; j < achievements[i].projects.length; j++)
+		{
+			for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
+			{
+				if(achievements[i].projects[j].achievements[k].badge_name != "itsbeta")
+				{
+					//createListAchivs(window,"null");
+					//return;
+				}
+			}
+		}
+	}
+	itsbeta.firstStart(info,itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs));
 }
 // Обработчик при закрытии окна
 function onWindowClose(window, event)

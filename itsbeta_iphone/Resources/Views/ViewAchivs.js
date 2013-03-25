@@ -45,7 +45,7 @@ module.exports = {
 				className : "Ti.UI.Label",
 				top: 0,
 				left: 70,
-				height: Ti.UI.SIZE,
+				height: 20,
 				width: 250,
 				color: "red",
 				touchEnabled: false

@@ -59,7 +59,32 @@ function getAchievementsByUid(uid, successCallback)
 		}
 	);
 }
-function postActiv(data)//Активация по коду активации
+function firstStart(info, successCallback)
+{
+	query(
+		{
+			params: {
+				access_token: ITSBETA_ACCESS_TOKEN,
+				category: "other",
+				project: "itsbeta",
+				badge_name: "itsbeta",
+				user_id: info.fbuid,
+				user_token: info.accessToken
+			},
+			url: "/other/itsbeta/achieves/posttofbonce.json"
+		}, 
+		function(response) // success
+		{
+			Ti.API.info(response);
+			successCallback;  // success
+		},
+		function(response) // playerid failure
+		{
+			Ti.API.info("error");
+		}
+	);
+}
+function postActiv(data)//Активация по qr-коду активации
 {
 	var info = TiTools.Global.get("info");
 	
@@ -84,7 +109,7 @@ function postActiv(data)//Активация по коду активации
 			user_id : info.fbuid,
 			user_token : info.accessToken
 		};
-		
+	alert(tempCode);
 	Ti.API.info(params);
 	
 	TiTools.HTTP.response(
@@ -122,6 +147,8 @@ function postActiv(data)//Активация по коду активации
 								message: "Ошибка!",
 								title: "Информация"
 							}).show();
+							
+							Ti.App.fireEvent("actHide");
 						}
 						
 					},
@@ -199,6 +226,8 @@ function postActivCode(tempCode)//Активация по коду актива�
 								message: "Ошибка!",
 								title: "Информация"
 							}).show();
+							
+							Ti.App.fireEvent("actHide");
 						}
 						
 					},
@@ -231,6 +260,7 @@ function postActivCode(tempCode)//Активация по коду актива�
 
 
 module.exports = {
+	firstStart : firstStart,
 	postActivCode : postActivCode,
 	postActiv:postActiv,
 	query: query,

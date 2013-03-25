@@ -38,11 +38,6 @@ function onInitController(window, params)
 		Titanium.Facebook.appid = "264918200296425";
 		Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
 		
-		// Ti.Facebook.logout();
-		// // clear cookies
-		// var client = Ti.Network.createHTTPClient();
-		// client.clearCookies('https://login.facebook.com');
-		
 		Ti.API.info(Titanium.Facebook.loggedIn);
 		
 		function fQuery() 
@@ -144,6 +139,7 @@ function saveAchivs(data)
 	);
 	win.initialize();
 	win.open();
+	actIndicator(false);
 }
 
 //---------------------------------------------//

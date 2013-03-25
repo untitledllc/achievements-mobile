@@ -41,6 +41,16 @@ module.exports = [
 							width: Ti.UI.SIZE,
 							text: "PROFILE"
 						}
+					},
+					{
+						outlet: "logOut",
+						style : {
+							className: "Ti.UI.Button",
+							right: 0,
+							height: 50,
+							width: 50,
+							title: "logout"
+						}
 					}
 				]
 			},

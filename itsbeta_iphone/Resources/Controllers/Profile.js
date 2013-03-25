@@ -36,6 +36,17 @@ function onInitController(window, params)
 		window.close();
 	});
 	
+	ui.logOut.addEventListener("click",function(event)
+	{
+		Ti.Facebook.logout();
+		// clear cookies
+		var client = Ti.Network.createHTTPClient();
+		client.clearCookies('https://login.facebook.com');
+		
+		Ti.App.fireEvent("logout");
+		window.close();
+	});
+	
  }
 //---------------------------------------------//
 // Функции лентяйки
