@@ -107,11 +107,14 @@ function onInitController(window, params)
 	});
 	Barcode.addEventListener('success', function (e) {
     	if(e.contentType === Barcode.URL) {
-		    Ti.UI.createAlertDialog({
-		        message: e.result,
-		        title: "SUCCESS"
-	        }).show();
+		    // Ti.UI.createAlertDialog({
+		        // message: e.result,
+		        // title: "SUCCESS"
+	        // }).show();
+	        
 		    Barcode.cancel();
+		    
+		    actIndicator(true);
 		    
 		    itsbeta.postActiv(e.result);
     	}
@@ -121,10 +124,27 @@ function onInitController(window, params)
 // Функции лентяйки
 //---------------------------------------------//
 
+function actIndicator(param)
+{
+	if(param == true)
+	{
+		ui.actView.show();
+		ui.act.show();
+	}
+	else
+	{
+		ui.actView.hide();
+		ui.act.hide();
+	}
+}
+
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
-	
+	Ti.App.addEventListener("actHide",function(event)
+	{
+		actIndicator(false);
+	});
 }
 
 // Обработчик при закрытии окна

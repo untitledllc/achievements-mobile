@@ -59,89 +59,6 @@ function getAchievementsByUid(uid, successCallback)
 		}
 	);
 }
-function code(achievements)//Получение кода активации
-{
-	var info = TiTools.Global.get("info");
-	
-	var params = JSON.stringify({
-			access_token : ITSBETA_ACCESS_TOKEN,
-			category: achievements[1].api_name,
-			project: achievements[1].projects[0].api_name,
-			badge_name: achievements[1].projects[0].achievements[0].badge_name
-		});
-		
-		Ti.API.info(params);
-		
-		Ti.API.info('http://www.itsbeta.com/s/'+ achievements[1].api_name +'/'+ achievements[1].projects[0].api_name +'/achieves/postachieve.json')
-	
-	TiTools.HTTP.response(
-		{
-			reguest: {
-			method: 'POST',
-				url: 'http://www.itsbeta.com/s/'+ achievements[1].api_name +'/'+ achievements[1].projects[0].api_name +'/achieves/postachieve.json',
-				header: [
-					{
-						type: 'Content-Type',
-						value: 'application/json; charset=utf-8'
-					}
-				],
-				post: params
-			},
-			success: function(success)
-					{
-						Ti.API.info('ok');
-						Ti.API.info(success.responseText);
-					},
-			failure: function(failure)
-					{
-						Ti.API.info('error');
-						Ti.API.info(failure.responseText);
-					}
-		}
-	);
-}
-
-function codePost()//Активация достижения на Facebook
-{
-	var params = JSON.stringify({
-			activation_code : "JfazJR6dkd",
-			access_token : access_token,
-			category: achievements[1].api_name,
-			project: achievements[1].projects[0].api_name,
-			user_id : fbuid,
-			user_token : accessToken
-		});
-		
-		Ti.API.info(params);
-		
-		Ti.API.info('http://www.itsbeta.com/s/'+ achievements[1].api_name +'/'+ achievements[1].projects[0].api_name +'/achieves/posttofb.json')
-	
-	TiTools.HTTP.response(
-		{
-			reguest: {
-			method: 'POST',
-				url: 'http://www.itsbeta.com/s/'+ achievements[1].api_name +'/'+ achievements[1].projects[0].api_name +'/achieves/posttofb.json',
-				header: [
-					{
-						type: 'Content-Type',
-						value: 'application/json; charset=utf-8'
-					}
-				],
-				post: params
-			},
-			success: function(success)
-					{
-						Ti.API.info('ok');
-						Ti.API.info(success.responseText);
-					},
-			failure: function(failure)
-					{
-						Ti.API.info('error');
-						Ti.API.info(failure.responseText);
-					}
-		}
-	);
-}
 function postActiv(data)//Активация по коду активации
 {
 	var info = TiTools.Global.get("info");
@@ -162,8 +79,6 @@ function postActiv(data)//Активация по коду активации
 		}
 	}
 	
-	alert(tempCode);
-	
 	var params = {
 			activation_code : tempCode,
 			user_id : info.fbuid,
@@ -189,11 +104,13 @@ function postActiv(data)//Активация по коду активации
 					{
 						Ti.API.info('ok');
 						Ti.API.info(success.responseText);
+						Ti.App.fireEvent("actHide");
 					},
 			failure: function(failure)
 					{
 						Ti.API.info('error');
 						Ti.API.info(failure.responseText);
+						Ti.App.fireEvent("actHide");
 					}
 		}
 	);
@@ -202,7 +119,6 @@ function postActivCode(tempCode)//Активация по коду актива�
 {
 	var info = TiTools.Global.get("info");
 	
-	alert(tempCode);
 	
 	var params = {
 			activation_code : tempCode,
@@ -229,11 +145,13 @@ function postActivCode(tempCode)//Активация по коду актива�
 					{
 						Ti.API.info('ok');
 						Ti.API.info(success.responseText);
+						Ti.App.fireEvent("actHide");
 					},
 			failure: function(failure)
 					{
 						Ti.API.info('error');
 						Ti.API.info(failure.responseText);
+						Ti.App.fireEvent("actHide");
 					}
 		}
 	);
@@ -243,8 +161,6 @@ function postActivCode(tempCode)//Активация по коду актива�
 module.exports = {
 	postActivCode : postActivCode,
 	postActiv:postActiv,
-	code: code,
-	codePost: codePost,
 	query: query,
 	getAchievementsByUid: getAchievementsByUid
 }

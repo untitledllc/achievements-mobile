@@ -46,7 +46,7 @@ module.exports = {
 				top: 0,
 				left: 70,
 				height: Ti.UI.SIZE,
-				width: 200,
+				width: 250,
 				color: "red",
 				touchEnabled: false
 			}

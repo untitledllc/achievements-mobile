@@ -47,11 +47,13 @@ function onInitController(window, params)
 		ui.typeProject.hide();
 		ui.nameProject.hide();
 		
+		ui.nameProject.text = "Проект";
+		
 		if(ui.list != undefined)
 		{
 			if(ui.list.visible == false)
 			{
-				ui.rowTextAchivs.text = "typeProject";
+				ui.rowTextAchivs.text = "Категории:";
 				
 				var massRow = [];
 				for(var i = 0; i < categories.length; i++)
@@ -66,6 +68,7 @@ function onInitController(window, params)
 										
 					row.rowAchivs.addEventListener("click",function(event)
 					{
+						
 						typeProject = event.source.api_name;
 						ui.typeProject.text = event.source.display_name;
 						
@@ -222,7 +225,7 @@ function createListName(window,category)
 			ui.typeProject.hide();
 			ui.nameProject.hide();
 			
-			ui.rowTextAchivs.text = "NamePriject";
+			ui.rowTextAchivs.text = "Проекты:";
 			
 			var massRow = [];
 			

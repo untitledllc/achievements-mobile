@@ -88,5 +88,27 @@ module.exports = [
 				]
 			}
 		]
+	},
+	{
+		outlet: "actView",
+		style : {
+			className : "Ti.UI.View",
+			height: Ti.UI.FILL,
+			width: Ti.UI.FILL,
+			backgroundColor: "black",
+			opacity: 0.5,
+			visible: false
+		},
+		subviews:
+		[
+			{
+				outlet: "act",
+				style : {
+					className : "Ti.UI.ActivityIndicator",
+					height: 50,
+					width: 50
+				}
+			}
+		]
 	}	
 ]

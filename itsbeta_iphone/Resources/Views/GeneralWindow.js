@@ -70,7 +70,7 @@ module.exports = [
 							left: 0,
 							height: 50,
 							width: Ti.UI.SIZE,
-							text: "type"
+							text: "Категория"
 						}
 					},
 					{
@@ -80,7 +80,7 @@ module.exports = [
 							right: 0,
 							height: 50,
 							width: Ti.UI.SIZE,
-							text: "name"
+							text: "Проект"
 						}
 					},
 				]
