@@ -11,6 +11,7 @@ var projects = undefined;
 var categories = undefined;
 var info = undefined;
 var counter = 0;
+var itsbeta = undefined;
 
 //---------------------------------------------//
 // Глобальные переменные для окна
@@ -39,6 +40,7 @@ function onInitController(window, params)
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/GeneralWindow.js", window);
+	itsbeta = require("Utils/Itsbeta");
 	
 	ui.counter.text = counter;
 	
@@ -48,6 +50,7 @@ function onInitController(window, params)
 		ui.nameProject.hide();
 		
 		ui.nameProject.text = "Проект";
+		ui.typeProject.text = "Категория";
 		
 		if(ui.list != undefined)
 		{
@@ -147,10 +150,27 @@ function onWindowOpen(window, event)
 	// );
 	// win.initialize();
 	// win.open();	
+	
+	Ti.App.addEventListener("reload",function(event){
+		// ---- delete ----
+		for(var i = 0; i < tempAchivs.length; i++)
+		{
+			tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
+			Ti.API.info('del');
+		}
+		tempAchivs = [];
+		//-----------------
+		
+		// get achievements by user id
+		itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
+		
+	});
 }
 ///-----сосдание списка ачивок-----//
 function createListAchivs(window,categiry)
 {
+	ui.nameProject.text = "Проект";
+	
 	for(var i = 0; i < achievements.length; i++)
 	{
 		for(var j = 0; j < achievements[i].projects.length; j++)
@@ -166,11 +186,11 @@ function createListAchivs(window,categiry)
 					
 					tempAchivs.push(row);
 					
-					row.date.text   = achievement.create_time;
+					row.date.text = achievement.create_time;
 					row.image.image = achievement.pic;
-					row.name.text   = achievement.display_name;
-					row.name.color  = achievement.color;
-					row.desc.text   = achievement.desc;
+					row.name.text = achievement.display_name;
+					row.name.color = achievements[i].projects[j].color;
+					row.desc.text = achievement.desc;
 					
 					row.viewAchivs.data = {
 						image: achievement.pic,
@@ -203,6 +223,7 @@ function createListAchivs(window,categiry)
 			}
 		}
 	}
+	Ti.App.fireEvent("actHide");
 }
 function delList(window,categiry)
 {
@@ -296,6 +317,45 @@ function saveIdUser(data)
 {
 	Ti.App.Properties.setString("id_user",JSON.parse(data).player_id);
 	Ti.API.info('saveID');
+}
+function reSaveAchivs(data)
+{
+	achievements = JSON.parse(data.responseText);
+	categories = [];
+	projects = [];
+	
+	//---- собираем список категорий и список проектов -----//
+	counter = 0;
+	for(var i = 0; i < achievements.length; i++)
+	{
+		var achievement = achievements[i];
+		
+		categories.push(
+			{
+				api_name: achievement.api_name,
+				display_name: achievement.display_name
+			}
+		);
+		
+		for(var j = 0; j < achievement.projects.length; j++)
+		{
+			
+			var project = achievement.projects[j];
+			counter += project.achievements.length;
+			
+			Ti.API.info(achievement.display_name + "  --  " + project.display_name);
+			
+			projects.push(
+				{
+					api_name: project.api_name,
+					display_name: project.display_name,
+					total_badge: project.total_badge
+				}
+			);
+		}
+	}
+	ui.counter.text = counter;
+	createListAchivs(window,"null");
 }
 
 // Обработчик при закрытии окна
