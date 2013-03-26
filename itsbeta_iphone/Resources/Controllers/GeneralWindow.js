@@ -242,11 +242,6 @@ function createListAchivs(window,categiry)
 						win.initialize();
 						win.open();	
 					});
-<<<<<<< HEAD
-=======
-					
-					//ui.preAchivs.add(row.viewAchivs);
->>>>>>> origin/Iphone
 				}
 			}
 		}
