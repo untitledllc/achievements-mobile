@@ -69,7 +69,7 @@ function onInitController(window, params)
 					display_name : "Все категории",
 					api_name : "null",
 				};
-				
+				//--- делаем первую ячейку "все категории"
 				createListRow(allRow,massRow);
 				
 				for(var i = 0; i < categories.length; i++)
@@ -224,7 +224,7 @@ function createListAchivs(window,categiry)
 						bonus: achievement.bonuses
 					}
 					
-					row.viewAchivs.addEventListener("click", function(event)
+					row.viewAchivs.addEventListener("singletap",function(event)
 					{
 						var sourceData = event.source.data;
 						var win = TiTools.UI.Controls.createWindow(
@@ -290,7 +290,7 @@ function createListName(window,category)
 						row.rowAchivs.api_name = achievements[i].projects[j].api_name;
 						row.rowAchivs.display_name = achievements[i].projects[j].display_name;
 						
-						row.rowAchivs.addEventListener("click",function(event)
+						row.rowAchivs.addEventListener("singletap",function(event)
 						{
 							ui.typeProject.show();
 							ui.nameProject.show();
@@ -441,7 +441,7 @@ function createListRow(category,massRow)
 	row.rowAchivs.api_name = category.api_name;
 	row.rowAchivs.display_name = category.display_name;
 						
-	row.rowAchivs.addEventListener("click",function(event)
+	row.rowAchivs.addEventListener("singletap",function(event)
 	{
 		actIndicator(true);
 		
