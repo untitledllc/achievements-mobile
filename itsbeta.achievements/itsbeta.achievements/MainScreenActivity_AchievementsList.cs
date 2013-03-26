@@ -75,6 +75,25 @@ namespace itsbeta.achievements
                                 HexColor = AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Color
                             });
                         }
+
+                        if (_selectedCategoryId == "Latest" || _selectedCategoryId == "Последние")
+                        {
+                            _achievementsList.Add(new AchievementsListData()
+                            {
+                                AchieveApiName = String.Format("{0}",
+                                AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName),
+                                AchieveNameText = String.Format("{0}",
+                                AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].DisplayName),
+                                AchieveDescriptionText = String.Format("{0}",
+                                AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Description),
+                                AchievePicUrl = String.Format("{0}",
+                                AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].PicUrl),
+                                AchieveReceivedTime = String.Format("{0}",
+                                AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].CreateTime),
+                                Bonuses = AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Bonuses,
+                                HexColor = AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Color
+                            });
+                        }
                         
                         if (!AppInfo.IsLocaleRu)
                         {

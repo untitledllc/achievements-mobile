@@ -44,6 +44,21 @@ namespace itsbeta.achievements
 
             
              #region Create List Fields
+            if (AppInfo.IsLocaleRu)
+            {
+                _categoriesList.Add(new CategoriesListData()
+                {
+                    CategoryNameText = "Последние"
+                });
+            }
+            else
+            {
+                _categoriesList.Add(new CategoriesListData()
+                {
+                    CategoryNameText = "Latest"
+                });
+            }
+
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
             {
                 if (i == 0)
@@ -52,8 +67,6 @@ namespace itsbeta.achievements
                     {
                         CategoryNameText = AppInfo._achievesInfo.CategoryArray[i].DisplayName
                     });
-                    _selectedCategoryId = _categoriesList[0].CategoryNameText;
-                    _categoryViewRelativeLayout.FindViewById<TextView>(Resource.Id.secondscr_CategNameRowTextView).Text = _categoriesList[0].CategoryNameText;
                 }
                 else
                 {
@@ -67,6 +80,10 @@ namespace itsbeta.achievements
                     _previousSelectedCategoryId = _selectedCategoryId;
                 }
             }
+
+            _selectedCategoryId = _categoriesList[0].CategoryNameText;
+            _categoryViewRelativeLayout.FindViewById<TextView>(Resource.Id.secondscr_CategNameRowTextView).Text = _categoriesList[0].CategoryNameText;
+
             #endregion
 
             _categoriesListAdapter = new CategoriesListItemAdapter(this, Resource.Layout.secondscreendropdownlistrow, _categoriesList);
