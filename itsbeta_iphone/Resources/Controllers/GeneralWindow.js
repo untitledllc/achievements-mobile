@@ -435,13 +435,13 @@ function searchRow()
 			{
 				if(achievements[i].projects[j].achievements[k].badge_name != "itsbeta")
 				{
-					//createListAchivs(window,"null");
-					//return;
+					createListAchivs(window,"null");
+					return;
 				}
 			}
 		}
 	}
-	itsbeta.firstStart(info,itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs));
+	//itsbeta.firstStart(info,itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs));
 }
 // Обработчик при закрытии окна
 function onWindowClose(window, event)
