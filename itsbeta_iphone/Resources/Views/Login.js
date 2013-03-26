@@ -22,8 +22,7 @@ module.exports = [
 			{
 				style : {
 					className: "Ti.UI.View",
-					//layout: "vertical",
-					top: 127,
+					top: 115,
 					left: 10,
 					right: 10,
 					bottom: 10,
@@ -53,8 +52,8 @@ module.exports = [
 								outlet: "infacebook",
 								style: {
 									className: "Ti.UI.View",
-									height: 40,
-									width: 250,
+									height: 46,
+									width: 248,
 									backgroundImage: "images/buttons/Facebook.Normal.png"
 								},
 								subviews: [
