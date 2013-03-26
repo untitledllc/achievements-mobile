@@ -17,9 +17,9 @@ module.exports = [
 				style : {
 					className: "Ti.UI.View",
 					top: 0,
-					height: Ti.UI.SIZE,
-					width: Ti.UI.FILL,
-					backgroundImage: "images/navbar/bg.png"
+					height: 57,
+					zIndex: 10,
+					backgroundImage: "images/navbar/Bg.png"
 				},
 				subviews:
 				[
@@ -60,40 +60,110 @@ module.exports = [
 			{
 				style : {
 					className: "Ti.UI.View",
-					top: 20,
+					top: -20,
 					height: Ti.UI.SIZE,
 					width: Ti.UI.FILL,
+					layout: "horizontal",
+					backgroundImage: "images/navbar/Selects.Bg.png"
 				},
 				subviews:
 				[
 					{
-						outlet: "typeProject",
-						style : {
-							className: "Ti.UI.Label",
-							left: 0,
-							height: 50,
-							width: Ti.UI.SIZE,
-							text: "Категория"
-						}
+						style: {
+							className: "Ti.UI.View",
+							height: Ti.UI.SIZE,
+							width: "49%",
+							bottom: 10
+						},
+						subviews: [
+							{
+								style: {
+									className: "Ti.UI.View",
+									height: Ti.UI.SIZE,
+									width: Ti.UI.SIZE,
+									layout: "horizontal"
+								},
+								subviews: [
+									{
+										outlet: "typeProject",
+										style : {
+											className: "Ti.UI.Label",
+											text: "Категория"
+										}
+									},
+									{
+										style: {
+											className: "Ti.UI.ImageView",
+											image: "images/navbar/Arrow.png",
+											left: 5,
+											width: 13,
+											height: 13
+										}
+									}
+								]
+							}
+						]	
 					},
+					// {
+						// style: {
+							// className: "Ti.UI.View",
+							// backgroundImage: "images/navbar/Selects.Divider.png",
+							// height: Ti.UI.SIZE,
+							// width: 5
+						// }
+					// },
 					{
-						outlet: "nameProject",
-						style : {
-							className: "Ti.UI.Label",
-							right: 0,
-							height: 50,
-							width: Ti.UI.SIZE,
-							text: "Проект"
-						}
-					},
+						style: {
+							className: "Ti.UI.View",
+							height: Ti.UI.SIZE,
+							width: "49%",
+							bottom: 10
+						},
+						subviews: [
+							{
+								style: {
+									className: "Ti.UI.View",
+									height: Ti.UI.SIZE,
+									width: Ti.UI.SIZE,
+									layout: "horizontal"
+								},
+								subviews: [
+									{
+										outlet: "nameProject",
+										style : {
+											className: "Ti.UI.Label",
+											text: "Проект"
+										}
+									},
+									{
+										style: {
+											className: "Ti.UI.ImageView",
+											image: "images/navbar/Arrow.png",
+											left: 5,
+											width: 13,
+											height: 13
+										}
+									}
+								]
+							}
+						]	
+					}
 				]
+			},
+			{
+				style: {
+					className: "Ti.UI.View",
+					backgroundImage: "images/navbar/Selects.Bottom.png",
+					top: 0,
+					height: 8
+				}
 			},
 			{
 				outlet: "preAchivs",
 				style : {
 					className: "Ti.UI.ScrollView",
 					layout: "vertical",
-					top: 20,
+					top: 0,
 					height: Ti.UI.FILL,
 					width: Ti.UI.FILL,
 				}

@@ -189,20 +189,18 @@ function createListAchivs(window,categiry)
 			{
 				if(achievements[i].projects[j].api_name == categiry || categiry == "null" || achievements[i].api_name == categiry)
 				{
-					Ti.API.info('+');
-					
 					var achievement = achievements[i].projects[j].achievements[k];
-					var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
+					var row = TiTools.UI.Loader.load("Views/ViewAchivs.js");
 					
 					tempAchivs.push(row);
 					
-					row.date.text = achievement.create_time;
+					row.date.text = TiTools.DateTime.format(new Date(achievement.create_time), "$dd.$mm.$yyyy");
 					row.image.image = achievement.pic;
 					row.name.text = achievement.display_name;
 					row.name.color = achievements[i].projects[j].color;
 					row.desc.text = achievement.desc;
 					
-					for( var n = 0; n < achievement.bonuses.length; n++)
+					for(var n = 0; n < achievement.bonuses.length; n++)
 					{
 						var tempColor;
 						
@@ -218,7 +216,6 @@ function createListAchivs(window,categiry)
 						{
 							tempColor = "gray";
 						}
-						
 						
 						var bonus = preViewBonus({
 							text: achievement.bonuses[n].bonus_type,
@@ -237,7 +234,7 @@ function createListAchivs(window,categiry)
 						bonus: achievement.bonuses
 					}
 					
-					row.viewAchivs.addEventListener("click",function(event)
+					row.viewAchivs.addEventListener("click", function(event)
 					{
 						var sourceData = event.source.data;
 						var win = TiTools.UI.Controls.createWindow(
@@ -255,6 +252,8 @@ function createListAchivs(window,categiry)
 						win.initialize();
 						win.open();	
 					});
+					
+					ui.preAchivs.add(row.viewAchivs);
 				}
 			}
 		}
