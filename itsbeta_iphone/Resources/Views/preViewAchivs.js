@@ -3,7 +3,6 @@
  */
 module.exports = [
 	{
-		
 		style: {
 			className: "Ti.UI.View",
 			height: Ti.UI.FILL,
@@ -30,7 +29,9 @@ module.exports = [
 					top: 70,
 					height: Ti.UI.SIZE,
 					width: "90%",
-					backgroundColor: "white"
+					backgroundImage: "images/bg/Panel.Popup.png",
+					backgroundLeftCap: 30,
+					backgroundTopCap: 30
 				},
 				subviews:
 				[
@@ -40,9 +41,9 @@ module.exports = [
 							className: "Ti.UI.ImageView",
 							top: 5,
 							right: 5,
-							height: 44,
-							width: 44,
-							image: "images/Paper_icon_close_norm.png"
+							height: 22,
+							width: 22,
+							image: "images/buttons/Close.Normal.png"
 						}
 					},
 					{
@@ -62,6 +63,8 @@ module.exports = [
 							className: "Ti.UI.View",
 							top: 10,
 							left: 15,
+							bottom: 10,
+							backgroundColor: "transparent",
 							height: Ti.UI.SIZE,
 							width: 220,
 						}
