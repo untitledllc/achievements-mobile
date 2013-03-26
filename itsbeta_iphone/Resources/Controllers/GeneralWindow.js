@@ -12,6 +12,8 @@ var categories = undefined;
 var info = undefined;
 var counter = 0;
 var itsbeta = undefined;
+var massRow = [];
+var category = [];
 
 //---------------------------------------------//
 // Глобальные переменные для окна
@@ -57,35 +59,25 @@ function onInitController(window, params)
 			if(ui.list.visible == false)
 			{
 				ui.rowTextAchivs.text = "Категории:";
+				massRow = [];
 				
-				var massRow = [];
+				 category.display_name;
+				category.api_name;
+				category.display_name;
+				
+				var allRow = {
+					display_name : "Все категории",
+					api_name : "null",
+				};
+				
+				createListRow(allRow,massRow);
+				
 				for(var i = 0; i < categories.length; i++)
 				{
-					var category = categories[i];
-					var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
-					massRow.push(row);
-					
-					row.rowTextAchivs.text = category.display_name;
-					row.rowAchivs.api_name = category.api_name;
-					row.rowAchivs.display_name = category.display_name;
-										
-					row.rowAchivs.addEventListener("click",function(event)
-					{
-						actIndicator(true);
-						
-						typeProject = event.source.api_name;
-						ui.typeProject.text = event.source.display_name;
-						
-						ui.typeProject.show();
-						ui.nameProject.show();
-						ui.list.visible = false;
-						for(var ii = 0; ii != i; ii++)
-						{
-							massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-						}
-						
-						delList(window,typeProject);
-					});
+					category = categories[i];
+					//--строю одну ячейку--
+					createListRow(category,massRow,i);
+					//---------------------
 				}
 				ui.list.visible = true;
 			}
@@ -179,8 +171,6 @@ function onWindowOpen(window, event)
 ///-----сосдание списка ачивок-----//
 function createListAchivs(window,categiry)
 {
-	ui.nameProject.text = "Проект";
-	
 	for(var i = 0; i < achievements.length; i++)
 	{
 		for(var j = 0; j < achievements[i].projects.length; j++)
@@ -441,6 +431,33 @@ function searchRow()
 		}
 	}
 	//itsbeta.firstStart(info,itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs));
+}
+function createListRow(category,massRow)
+{
+	var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
+	massRow.push(row);
+	
+	row.rowTextAchivs.text = category.display_name;
+	row.rowAchivs.api_name = category.api_name;
+	row.rowAchivs.display_name = category.display_name;
+						
+	row.rowAchivs.addEventListener("click",function(event)
+	{
+		actIndicator(true);
+		
+		typeProject = event.source.api_name;
+		ui.typeProject.text = event.source.display_name;
+		
+		ui.typeProject.show();
+		ui.nameProject.show();
+		ui.list.visible = false;
+		for(var ii = 0; ii < massRow.length; ii++)
+		{
+			massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+		}
+		
+		delList(window,typeProject);
+	});
 }
 // Обработчик при закрытии окна
 function onWindowClose(window, event)
