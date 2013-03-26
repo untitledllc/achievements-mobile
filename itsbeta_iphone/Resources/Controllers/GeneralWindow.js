@@ -179,8 +179,6 @@ function onWindowOpen(window, event)
 ///-----сосдание списка ачивок-----//
 function createListAchivs(window,categiry)
 {
-	ui.nameProject.text = "Проект";
-	
 	for(var i = 0; i < achievements.length; i++)
 	{
 		for(var j = 0; j < achievements[i].projects.length; j++)
