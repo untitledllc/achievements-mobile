@@ -180,7 +180,7 @@ function createListAchivs(window,categiry)
 				if(achievements[i].projects[j].api_name == categiry || categiry == "null" || achievements[i].api_name == categiry)
 				{
 					var achievement = achievements[i].projects[j].achievements[k];
-					var row = TiTools.UI.Loader.load("Views/ViewAchivs.js");
+					var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
 					
 					tempAchivs.push(row);
 					
@@ -242,8 +242,6 @@ function createListAchivs(window,categiry)
 						win.initialize();
 						win.open();	
 					});
-					
-					ui.preAchivs.add(row.viewAchivs);
 				}
 			}
 		}

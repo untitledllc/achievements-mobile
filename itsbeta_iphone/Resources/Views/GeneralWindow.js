@@ -72,7 +72,7 @@ module.exports = [
 						style: {
 							className: "Ti.UI.View",
 							height: Ti.UI.SIZE,
-							width: "49%",
+							width: "50%",
 							bottom: 10
 						},
 						subviews: [
@@ -116,7 +116,7 @@ module.exports = [
 						style: {
 							className: "Ti.UI.View",
 							height: Ti.UI.SIZE,
-							width: "49%",
+							width: "50%",
 							bottom: 10
 						},
 						subviews: [
@@ -154,7 +154,6 @@ module.exports = [
 				style: {
 					className: "Ti.UI.View",
 					backgroundImage: "images/navbar/Selects.Bottom.png",
-					top: 0,
 					height: 8
 				}
 			},
