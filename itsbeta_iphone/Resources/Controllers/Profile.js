@@ -75,14 +75,21 @@ function onWindowOpen(window, event)
 			
 			for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
 			{
+				var flagPush = true;
 				
 				for(var index = 0; index < tempAchivs.length; index++)
 				{
-					if(tempAchivs[index] != achievements[i].projects[j].achievements[k].badge_name)
+					Ti.API.info(tempAchivs[index] +"  "+ achievements[i].projects[j].achievements[k].badge_name);
+					if(tempAchivs[index] == achievements[i].projects[j].achievements[k].badge_name)
 					{
-						tempAchivs.push(achievements[i].projects[j].achievements[k].badge_name);
-						break;
+						flagPush = false;
 					}
+				}
+				
+				if(flagPush == true)
+				{
+					tempAchivs.push(achievements[i].projects[j].achievements[k].badge_name);
+					Ti.API.info('+')
 				}
 				
 				for(var n = 0; n < achievements[i].projects[j].achievements[k].bonuses.length; n++)
