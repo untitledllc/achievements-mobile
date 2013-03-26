@@ -29,20 +29,38 @@ module.exports = [
 							className: "Ti.UI.View",
 							top: 5,
 							left: 10,
-							height: 22,
 							width: 22,
+							height: 22,
 							backgroundImage: "images/buttons/Profile.Normal.png"
 						}
 					},
 					{
-						outlet: "counter",
-						style : {
-							className: "Ti.UI.Label",
-							left: "45%",
-							height: 50,
-							width: Ti.UI.SIZE,
-							text: "20"
-						}
+						style: {
+							className: "Ti.UI.View",
+							width: 134,
+							height: 46,							
+							backgroundImage: "images/navbar/Scoreboard.png"
+						},
+						subviews: [
+							{
+								style: {
+									className: "Ti.UI.ImageView",
+									width: 28,
+									height: 28,
+									top: 7,		
+									left: 8,
+									image: "images/icons/Goblet.png"
+								}	
+							},
+							{
+								outlet: "counter",
+								style : {
+									className: "Ti.UI.Label",
+									color: "#fff",
+									text: "20"
+								}
+							}
+						]
 					},
 					{
 						outlet: "add",
