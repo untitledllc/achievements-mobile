@@ -109,7 +109,6 @@ function postActiv(data)//Активация по qr-коду активации
 			user_id : info.fbuid,
 			user_token : info.accessToken
 		};
-	alert(tempCode);
 	Ti.API.info(params);
 	
 	TiTools.HTTP.response(
