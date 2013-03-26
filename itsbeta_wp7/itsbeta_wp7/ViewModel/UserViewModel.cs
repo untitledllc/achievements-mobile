@@ -138,7 +138,7 @@ namespace itsbeta_wp7.ViewModel
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {                                
                                 ViewModelLocator.MainStatic.Loading = false;
-                                ViewModelLocator.MainStatic.LoadAchievements(activation_code);
+                                ViewModelLocator.MainStatic.LoadAchievements(o["api_name"].ToString());
                             });
                         }
                         else
