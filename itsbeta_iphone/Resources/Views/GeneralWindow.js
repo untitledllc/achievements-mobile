@@ -19,6 +19,7 @@ module.exports = [
 					top: 0,
 					height: Ti.UI.SIZE,
 					width: Ti.UI.FILL,
+					backgroundImage: "images/navbar/bg.png"
 				},
 				subviews:
 				[
@@ -26,10 +27,11 @@ module.exports = [
 						outlet: "profile",
 						style : {
 							className: "Ti.UI.View",
-							left: 0,
-							height: 50,
-							width: 50,
-							backgroundImage: "images/NavBar_ProfileButton.png"
+							top: 5,
+							left: 10,
+							height: 22,
+							width: 22,
+							backgroundImage: "images/buttons/Profile.Normal.png"
 						}
 					},
 					{
@@ -46,10 +48,11 @@ module.exports = [
 						outlet: "add",
 						style : {
 							className: "Ti.UI.View",
-							right: 0,
-							height: 50,
-							width: 50,
-							backgroundImage: "images/NavBar_addcode.png"
+							top: 5,
+							right: 10,
+							height: 22,
+							width: 22,
+							backgroundImage: "images/buttons/Plus.Normal.png"
 						}
 					}
 				]
