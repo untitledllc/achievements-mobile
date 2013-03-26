@@ -3,85 +3,103 @@
  */
 module.exports = [
 	{
-		style : {
-			className : "Ti.UI.View",
-			layout: "vertical",
+		style: {
+			className: "Ti.UI.View",
 			height: Ti.UI.FILL,
-			width: Ti.UI.FILL,
-			top: 0,
-			left: 10,
-			right: 10,
-			bottom: 10,
-			backgroundImage: "images/bg/Panel.png",
-			backgroundLeftCap: 30,
-			backgroundTopCap: 30
+			width: Ti.UI.FILL
 		},
-		subviews:[
+		subviews: [
 			{
 				style: {
 					className: "Ti.UI.ImageView",
-					height: "50%",
-					width: "50%",
-					image: "images/FirstBadge.PNG"
+					height: 175,
+					width: 175,
+					image: "images/Logo.png",
+					zIndex: 10,
+					top: 30
 				}
 			},
 			{
-				style: {
-					className: "Ti.UI.Label",
-					top: "5%",
-					height: Ti.UI.SIZE,
-					wigth: Ti.UI.SIZE,
-					text: "Collect all your achivements"
-				}
-			},
-			{
-				outlet: "infacebook",
-				style: {
+				style : {
 					className: "Ti.UI.View",
-					top: "5%",
-					height: "10%",
-					width: "80%",
-					backgroundImage: "images/buttons/Facebook.Normal.png"
+					//layout: "vertical",
+					top: 127,
+					left: 10,
+					right: 10,
+					bottom: 10,
+					backgroundImage: "images/bg/Panel.png",
+					backgroundLeftCap: 30,
+					backgroundTopCap: 30
 				},
 				subviews: [
 					{
 						style: {
 							className: "Ti.UI.View",
-							height: Ti.UI.SIZE,
-							width: Ti.UI.SIZE,
-							layout: "horizontal"
-						}, 
+							height: Ti.UI.FILL,
+							top: 100,
+							left: 10,
+							right: 10,
+							bottom: 10
+						},
 						subviews: [
 							{
 								style: {
 									className: "Ti.UI.Label",
-									color: "#fff",
-									// height: Ti.UI.FILL,
-									text: "Sign in with"
+									top: 10,
+									text: "Collect all your achievements"
 								}
+							},
+							{
+								outlet: "infacebook",
+								style: {
+									className: "Ti.UI.View",
+									height: 40,
+									width: 250,
+									backgroundImage: "images/buttons/Facebook.Normal.png"
+								},
+								subviews: [
+									{
+										style: {
+											className: "Ti.UI.View",
+											layout: "horizontal"
+										}, 
+										subviews: [
+											{
+												style: {
+													className: "Ti.UI.Label",
+													color: "#fff",
+													width: "52%",
+													textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
+													text: "Sign in with"
+												}
+											},
+											{
+												style: {
+													className: "Ti.UI.Label",
+													color: "#fff",
+													width: "45%",
+													left: "3%",
+													textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+													text: "facebook"
+												}
+											}						
+										]	
+									}
+								]
 							},
 							{
 								style: {
 									className: "Ti.UI.Label",
-									color: "#fff",
-									left: 5,
-									// height: Ti.UI.FILL,
-									text: "facebook"
+									bottom: 10,
+									height: Ti.UI.SIZE,
+									width: Ti.UI.SIZE,
+									text: "Facebook sing up"
 								}
-							}						
+							}	
 						]	
 					}
 				]
-			},
-			{
-				style: {
-					className: "Ti.UI.Label",
-					top: "10%",
-					height: Ti.UI.SIZE,
-					width: Ti.UI.SIZE,
-					text: "Facebook sing up"
-				}
-			}
+			}	
 		]
 	},
 	{
