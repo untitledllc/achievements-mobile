@@ -56,8 +56,9 @@ module.exports = [
 								outlet: "counter",
 								style : {
 									className: "Ti.UI.Label",
-									color: "#fff",
-									text: "20"
+									color: "#7ed6f9",
+									text: "50",
+									font: {fontSize: 30, fontFamily: "Helvetica", fontWeight: "bold"}
 								}
 							}
 						]
