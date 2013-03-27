@@ -56,9 +56,10 @@ module.exports = [
 						style : {
 							className: "Ti.UI.Button",
 							right: 0,
-							height: 50,
+							height: 30,
 							width: 50,
-							title: "done"
+							title: "done",
+							backgroundImage: "images/titan/n_norm.png"
 						}
 					},
 				]
