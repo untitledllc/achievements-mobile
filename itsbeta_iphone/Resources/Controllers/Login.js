@@ -139,7 +139,8 @@ function saveAchivs(data)
 			achievements : achievements,
 			categories : categories,
 			projects : projects,
-			counter : counter
+			counter : counter,
+			backgroundColor: "white"
 		}
 	);
 	win.initialize();

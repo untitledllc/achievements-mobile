@@ -14,11 +14,16 @@ var counter = 0;
 var itsbeta = undefined;
 var massRow = [];
 var category = [];
-
 //---------------------------------------------//
 // Глобальные переменные для окна
 //---------------------------------------------//
+var animation = Titanium.UI.createAnimation();
+var animationEnd = Titanium.UI.createAnimation();
+animation.top = 107;
+animation.duration = 1000;
 
+animationEnd.top = -248;
+animationEnd.duration = 1000;
 
 //---------------------------------------------//
 
@@ -80,6 +85,7 @@ function onInitController(window, params)
 					//---------------------
 				}
 				ui.list.visible = true;
+				ui.placeListView.animate(animation);
 			}
 			else
 			{
@@ -290,21 +296,33 @@ function createListName(window,category)
 						
 						row.rowAchivs.addEventListener("singletap",function(event)
 						{
-							ui.typeProject.show();
-							ui.nameProject.show();
+							actIndicator(true);
 							
-							ui.list.visible = false;
-							for(var ii = 0; ii != massRow.length; ii++)
-							{
-								massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-							}
+							var animationHandler = function() {
+								animationEnd.removeEventListener('complete',animationHandler);
 							
-							ui.nameProject.text = event.source.display_name;
+								ui.typeProject.show();
+								ui.nameProject.show();
+								
+								ui.list.visible = false;
+								for(var ii = 0; ii != massRow.length; ii++)
+								{
+									massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+								}
+								
+								ui.nameProject.text = event.source.display_name;
+								
+								
+								
+								delList(window,event.source.api_name);
+							};
 							
-							delList(window,event.source.api_name);
+							animationEnd.addEventListener('complete',animationHandler);
+							ui.placeListView.animate(animationEnd);
 						});
 					}
 				}
+				ui.placeListView.animate(animation);
 			}
 			
 			if(massRow.length == 0)
@@ -443,19 +461,31 @@ function createListRow(category,massRow)
 	{
 		actIndicator(true);
 		
-		typeProject = event.source.api_name;
-		ui.typeProject.text = event.source.display_name;
 		
-		ui.typeProject.show();
-		ui.nameProject.show();
-		ui.list.visible = false;
-		for(var ii = 0; ii < massRow.length; ii++)
-		{
-			massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-		}
+		var animationHandler = function() {
+			animationEnd.removeEventListener('complete',animationHandler);
 		
-		delList(window,typeProject);
+			typeProject = event.source.api_name;
+			ui.typeProject.text = event.source.display_name;
+			
+			ui.typeProject.show();
+			ui.nameProject.show();
+			ui.list.visible = false;
+			for(var ii = 0; ii < massRow.length; ii++)
+			{
+				massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+			}
+			
+			ui.placeListView.animate(animationEnd);
+			Ti.API.info('++');
+			delList(window,typeProject);
+		};
+		
+		animationEnd.addEventListener('complete',animationHandler);
+		ui.placeListView.animate(animationEnd);
+		
 	});
+	
 }
 // Обработчик при закрытии окна
 function onWindowClose(window, event)
