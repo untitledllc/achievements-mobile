@@ -33,6 +33,10 @@ else if(TiTools.Platform.isIOS == true)
 
 //---------------------------------------------//
 
+Ti.UI.setBackgroundColor("#fff");
+
+//---------------------------------------------//
+
 var window = TiTools.UI.Controls.createWindow(
 	{
 		main : "Controllers/Login.js",
@@ -42,10 +46,6 @@ var window = TiTools.UI.Controls.createWindow(
 );
 window.initialize();
 window.open();
-
-//---------------------------------------------//
-
-Ti.UI.setBackgroundColor("#fff");
 
 //---------------------------------------------//
 
