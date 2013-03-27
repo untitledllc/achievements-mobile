@@ -17,8 +17,9 @@ module.exports = [
 				style : {
 					className: "Ti.UI.View",
 					top: 0,
-					height: Ti.UI.SIZE,
-					width: Ti.UI.FILL,
+					height: 57,
+					zIndex: 10,
+					backgroundImage: "images/navbar/Bg.png"
 				},
 				subviews:
 				[
@@ -33,14 +34,22 @@ module.exports = [
 						}
 					},
 					{
-						outlet: "counter",
-						style : {
-							className: "Ti.UI.Label",
-							left: "45%",
-							height: 50,
-							width: Ti.UI.SIZE,
-							text: "ADD"
-						}
+						style: {
+							className: "Ti.UI.View",
+							width: 134,
+							height: 46,							
+							backgroundImage: "images/navbar/Scoreboard.png"
+						},
+						subviews: [
+							{
+								style : {
+									className: "Ti.UI.Label",
+									color: "#7ed6f9",
+									text: "ADD",
+									font: {fontSize: 20, fontFamily: "Helvetica", fontWeight: "bold"}
+								}
+							}
+						]
 					},
 					{
 						outlet: "done",
@@ -61,7 +70,9 @@ module.exports = [
 					height: 300,
 					width: "90%",
 					layout: "vertical",
-					backgroundColor: "red"
+					backgroundImage: "images/bg/Panel.png",
+					backgroundLeftCap: 30,
+					backgroundTopCap: 30
 				},
 				subviews:
 				[

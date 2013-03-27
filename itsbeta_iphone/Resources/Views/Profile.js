@@ -58,7 +58,6 @@ module.exports = [
 						},
 						subviews: [
 							{
-								outlet: "counter",
 								style : {
 									className: "Ti.UI.Label",
 									color: "#7ed6f9",
