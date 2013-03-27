@@ -271,6 +271,18 @@ module.exports = [
 			zIndex: 20
 		}
 	},
+		{
+		outlet: "transparentView",
+		style : {
+			className: "Ti.UI.View",
+			top: 0,
+			height: Ti.UI.FILL,
+			width: Ti.UI.FILL,
+			backgroundColor: "transparent",
+			visible: false,
+			zIndex: 30
+		}
+	},
 	{
 		outlet: "actView",
 		style : {

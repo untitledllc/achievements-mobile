@@ -20,10 +20,10 @@ var category = [];
 var animation = Titanium.UI.createAnimation();
 var animationEnd = Titanium.UI.createAnimation();
 animation.top = 107;
-animation.duration = 1000;
+animation.duration = 500;
 
 animationEnd.top = -248;
-animationEnd.duration = 1000;
+animationEnd.duration = 500;
 
 //---------------------------------------------//
 
@@ -43,7 +43,7 @@ function onInitController(window, params)
 	counter = window.counter;
 	info = window.info;
 	
-	Ti.API.info(achievements);
+	//Ti.API.info(achievements);
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/GeneralWindow.js", window);
@@ -53,6 +53,10 @@ function onInitController(window, params)
 	
 	ui.typeProject.addEventListener("click",function(event)
 	{
+		//вызываем прозрачную панель для борьбы с многокликом//
+		ui.transparentView.show();
+		//---------------------------------------------------//
+		
 		//ui.typeProject.hide();
 		//ui.nameProject.hide();
 		
@@ -88,6 +92,7 @@ function onInitController(window, params)
 				}
 				ui.list.visible = true;
 				ui.placeListView.animate(animation);
+				ui.transparentView.hide();
 			}
 			else
 			{
@@ -110,6 +115,8 @@ function onInitController(window, params)
 	
 	ui.nameProject.addEventListener("singletap",function(event)
 	{
+		ui.transparentView.show();
+		ui.placeListViewCancel.show();
 		createListName(window,typeProject);
 	});
 	
@@ -280,9 +287,7 @@ function delList(window,categiry)
 }
 function createListName(window,category)
 {
-	Ti.API.info(category);
-	
-	ui.placeListViewCancel.show();
+	//Ti.API.info(category);
 	
 	if(ui.list.visible == false)
 		{
@@ -291,7 +296,7 @@ function createListName(window,category)
 			
 			//ui.rowTextAchivs.text = "Проекты:";
 			
-			var massRow = [];
+			massRow = [];
 			
 			for(var i = 0; i < achievements.length; i++)
 			{
@@ -314,7 +319,9 @@ function createListName(window,category)
 							
 							var animationHandler = function() {
 								animationEnd.removeEventListener('complete',animationHandler);
-							
+								
+								ui.transparentView.hide();
+								
 								ui.typeProject.show();
 								ui.nameProject.show();
 								
@@ -336,28 +343,30 @@ function createListName(window,category)
 						});
 					}
 				}
-				ui.placeListView.animate(animation);
 			}
 			
-			if(massRow.length == 0)
-			{
-				var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
-					massRow.push(row);
-					
-					row.rowTextAchivs.text = "Нет проектов";
-					
-					row.rowAchivs.addEventListener("click",function(event)
-					{
-						ui.typeProject.show();
-						ui.nameProject.show();
-						
-						ui.list.visible = false;
-						for(var ii = 0; ii != i; ii++)
-						{
-							massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-						}
-					});
-			}
+			ui.transparentView.hide();
+			ui.placeListView.animate(animation);
+			
+			// if(massRow.length == 0)
+			// {
+				// var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
+					// massRow.push(row);
+// 					
+					// row.rowTextAchivs.text = "Нет проектов";
+// 					
+					// row.rowAchivs.addEventListener("click",function(event)
+					// {
+						// ui.typeProject.show();
+						// ui.nameProject.show();
+// 						
+						// ui.list.visible = false;
+						// for(var ii = 0; ii != i; ii++)
+						// {
+							// massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+						// }
+					// });
+			// }
 			
 			ui.list.visible = true;
 		}
@@ -398,7 +407,7 @@ function reSaveAchivs(data)
 			var project = achievement.projects[j];
 			counter += project.achievements.length;
 			
-			Ti.API.info(achievement.display_name + "  --  " + project.display_name);
+			//Ti.API.info(achievement.display_name + "  --  " + project.display_name);
 			
 			projects.push(
 				{
@@ -507,6 +516,8 @@ function undefClick()
 		
 		var animationHandler = function() {
 			animationEnd.removeEventListener('complete',animationHandler);
+			
+			ui.transparentView.hide();
 			
 			ui.list.visible = false;
 			for(var ii = 0; ii < massRow.length; ii++)

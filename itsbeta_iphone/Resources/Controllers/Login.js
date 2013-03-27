@@ -117,7 +117,7 @@ function saveAchivs(data)
 			var project = achievement.projects[j];
 			counter += project.achievements.length;
 			
-			Ti.API.info(achievement.display_name + "  --  " + project.display_name);
+		//	Ti.API.info(achievement.display_name + "  --  " + project.display_name);
 			
 			projects.push(
 				{
