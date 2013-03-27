@@ -210,7 +210,8 @@ module.exports = [
 											className: "Ti.UI.Label",
 											font: {
 												fontSize: 20
-											}
+											},
+											text: " "
 										}
 									}
 								]
