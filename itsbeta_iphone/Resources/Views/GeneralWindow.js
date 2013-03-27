@@ -137,15 +137,16 @@ module.exports = [
 						style: {
 							className: "Ti.UI.View",
 							top: 40,
-							height: Ti.UI.SIZE,
-							width: "50%",
+							height: 20,
+							width: "49%",
 							bottom: 10
 						},
 						subviews: [
 							{
 								style: {
 									className: "Ti.UI.View",
-									height: Ti.UI.SIZE,
+									right: 0,
+									height: Ti.UI.FILL,
 									width: Ti.UI.SIZE,
 									layout: "horizontal"
 								},
@@ -154,7 +155,11 @@ module.exports = [
 										outlet: "nameProject",
 										style : {
 											className: "Ti.UI.Label",
-											text: "Проект"
+											height: 20,
+											right: 0,
+											width: "85%",
+											text: "Проект",
+											textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT
 										}
 									},
 									{
@@ -252,6 +257,19 @@ module.exports = [
 				}
 			}
 		]
+	},
+	{
+		outlet: "placeListViewCancel",
+		style : {
+			className: "Ti.UI.View",
+			layout: "vertical",
+			top: 0,
+			height: 107,
+			width: Ti.UI.FILL,
+			backgroundColor: "transparent",
+			visible: false,
+			zIndex: 20
+		}
 	},
 	{
 		outlet: "actView",

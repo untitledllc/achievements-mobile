@@ -53,17 +53,19 @@ function onInitController(window, params)
 	
 	ui.typeProject.addEventListener("click",function(event)
 	{
-		ui.typeProject.hide();
-		ui.nameProject.hide();
+		//ui.typeProject.hide();
+		//ui.nameProject.hide();
 		
-		ui.nameProject.text = "Проект";
-		ui.typeProject.text = "Категория";
+		//ui.nameProject.text = "Проект";
+		//ui.typeProject.text = "Категория";
+		
+		ui.placeListViewCancel.show();
 		
 		if(ui.list != undefined)
 		{
 			if(ui.list.visible == false)
 			{
-				ui.rowTextAchivs.text = "Категории:";
+				//ui.rowTextAchivs.text = "Категории:";
 				massRow = [];
 				
 				 category.display_name;
@@ -96,12 +98,22 @@ function onInitController(window, params)
 		}
 	});
 	
-	ui.nameProject.addEventListener("click",function(event)
+	ui.placeListView.addEventListener("singletap",function(event)
+	{
+		undefClick();
+	});
+	
+	ui.placeListViewCancel.addEventListener("singletap",function(event)
+	{
+		undefClick();
+	});
+	
+	ui.nameProject.addEventListener("singletap",function(event)
 	{
 		createListName(window,typeProject);
 	});
 	
-	ui.add.addEventListener("click",function(event)
+	ui.add.addEventListener("singletap",function(event)
 	{
 		var winAdd = TiTools.UI.Controls.createWindow(
 			{
@@ -114,7 +126,7 @@ function onInitController(window, params)
 		winAdd.open();
 	});
 	
-	ui.profile.addEventListener("click",function(event)
+	ui.profile.addEventListener("singletap",function(event)
 	{
 		var winAdd = TiTools.UI.Controls.createWindow(
 			{
@@ -270,12 +282,14 @@ function createListName(window,category)
 {
 	Ti.API.info(category);
 	
+	ui.placeListViewCancel.show();
+	
 	if(ui.list.visible == false)
 		{
-			ui.typeProject.hide();
-			ui.nameProject.hide();
+			//ui.typeProject.hide();
+			//ui.nameProject.hide();
 			
-			ui.rowTextAchivs.text = "Проекты:";
+			//ui.rowTextAchivs.text = "Проекты:";
 			
 			var massRow = [];
 			
@@ -486,6 +500,26 @@ function createListRow(category,massRow)
 		
 	});
 	
+}
+function undefClick()
+{
+	ui.placeListViewCancel.hide();
+		
+		var animationHandler = function() {
+			animationEnd.removeEventListener('complete',animationHandler);
+			
+			ui.list.visible = false;
+			for(var ii = 0; ii < massRow.length; ii++)
+			{
+				massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+			}
+			
+			ui.placeListView.animate(animationEnd);
+		};
+		
+		animationEnd.addEventListener('complete',animationHandler);
+		
+		ui.placeListView.animate(animationEnd);
 }
 // Обработчик при закрытии окна
 function onWindowClose(window, event)

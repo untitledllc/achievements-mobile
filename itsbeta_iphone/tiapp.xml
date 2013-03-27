@@ -6,7 +6,7 @@
     <property name="acs-oauth-secret-development" type="string">tsgoX8y0fXpDe8tG7ymKfmhwEvyCbWrF</property>
     <property name="acs-oauth-key-development" type="string">jSgMVCCbzlKs7YVI5AipG5ATJHBxDl4a</property>
     <property name="acs-api-key-development" type="string">dsq2wQNsMHBSkrKFYxBtemUEeWOrHhka</property>
-    <id>ru.hintsolutions.itsbetaIphone</id>
+    <id>ru.hintsolutions.itsbeta</id>
     <name>itsbeta_iphone</name>
     <version>1.0</version>
     <publisher>Rod</publisher>
