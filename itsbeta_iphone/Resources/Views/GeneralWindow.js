@@ -6,10 +6,11 @@ module.exports = [
 		style : {
 			className: "Ti.UI.View",
 			top: 0,
-			height: Ti.UI.FILL,
+			height: Ti.UI.SIZE,
 			width: Ti.UI.FILL,
 			layout: "vertical",
-			backgroundColor: "white"
+			backgroundColor: "white",
+			zIndex: 12
 		},
 		subviews:
 		[
@@ -19,7 +20,7 @@ module.exports = [
 					top: 0,
 					height: 57,
 					zIndex: 10,
-					backgroundImage: "images/navbar/Bg.png"
+					backgroundImage: "images/navbar/bg.png"
 				},
 				subviews:
 				[
@@ -80,7 +81,7 @@ module.exports = [
 				style : {
 					className: "Ti.UI.View",
 					top: -20,
-					height: Ti.UI.SIZE,
+					height: 70,
 					width: Ti.UI.FILL,
 					layout: "horizontal",
 					backgroundImage: "images/navbar/Selects.Bg.png"
@@ -90,6 +91,7 @@ module.exports = [
 					{
 						style: {
 							className: "Ti.UI.View",
+							top: 40,
 							height: Ti.UI.SIZE,
 							width: "50%",
 							bottom: 10
@@ -134,15 +136,17 @@ module.exports = [
 					{
 						style: {
 							className: "Ti.UI.View",
-							height: Ti.UI.SIZE,
-							width: "50%",
+							top: 40,
+							height: 20,
+							width: "49%",
 							bottom: 10
 						},
 						subviews: [
 							{
 								style: {
 									className: "Ti.UI.View",
-									height: Ti.UI.SIZE,
+									right: 0,
+									height: Ti.UI.FILL,
 									width: Ti.UI.SIZE,
 									layout: "horizontal"
 								},
@@ -151,7 +155,11 @@ module.exports = [
 										outlet: "nameProject",
 										style : {
 											className: "Ti.UI.Label",
-											text: "Проект"
+											height: 20,
+											right: 0,
+											width: "85%",
+											text: "Проект",
+											textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT
 										}
 									},
 									{
@@ -175,18 +183,19 @@ module.exports = [
 					backgroundImage: "images/navbar/Selects.Bottom.png",
 					height: 8
 				}
-			},
-			{
-				outlet: "preAchivs",
-				style : {
-					className: "Ti.UI.ScrollView",
-					layout: "vertical",
-					top: 0,
-					height: Ti.UI.FILL,
-					width: Ti.UI.FILL,
-				}
 			}
 		]
+	},
+	{
+		outlet: "preAchivs",
+		style : {
+			className: "Ti.UI.ScrollView",
+			layout: "vertical",
+			top: 107,
+			height: Ti.UI.FILL,
+			width: Ti.UI.FILL,
+			zIndex: 10
+		}
 	},
 	{
 		outlet: "list",
@@ -219,17 +228,48 @@ module.exports = [
 					width: Ti.UI.FILL,
 					backgroundColor: "gray",
 				}
-			},
+			}
+		]
+	},
+	{
+		outlet: "placeListView",
+		style : {
+			className: "Ti.UI.View",
+			layout: "vertical",
+			top: -248,
+			height: 355,
+			width: Ti.UI.FILL,
+			backgroundColor: "transparent",
+			zIndex: 10
+		},
+		subviews:
+		[
 			{
 				outlet: "placeList",
 				style : {
 					className: "Ti.UI.ScrollView",
 					layout: "vertical",
-					height: Ti.UI.SIZE,
+					top: 0,
+					height: 355,
 					width: Ti.UI.FILL,
+					backgroundColor: "transparent",
+					zIndex: 10
 				}
 			}
 		]
+	},
+	{
+		outlet: "placeListViewCancel",
+		style : {
+			className: "Ti.UI.View",
+			layout: "vertical",
+			top: 0,
+			height: 107,
+			width: Ti.UI.FILL,
+			backgroundColor: "transparent",
+			visible: false,
+			zIndex: 20
+		}
 	},
 	{
 		outlet: "actView",
@@ -239,7 +279,8 @@ module.exports = [
 			width: Ti.UI.FILL,
 			backgroundColor: "black",
 			opacity: 0.5,
-			visible: false
+			visible: false,
+			zIndex: 15
 		},
 		subviews:
 		[
