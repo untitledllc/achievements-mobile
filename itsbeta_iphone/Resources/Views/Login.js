@@ -44,8 +44,9 @@ module.exports = [
 							{
 								style: {
 									className: "Ti.UI.Label",
-									top: 10,
-									text: "Collect all your achievements"
+									top: 25,
+									text: "Collect all your achievements",
+									font: {fontSize: 15}
 								}
 							},
 							{
