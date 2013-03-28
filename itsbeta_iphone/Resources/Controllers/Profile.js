@@ -62,25 +62,27 @@ function onWindowOpen(window, event)
 	
 	for(var i = 0; i < achievements.length; i++)
 	{
+		var achievement = achievements[i];
+		var projects = achievement.projects;
+		
 		var statView = TiTools.UI.Loader.load("Views/Statistic.js", ui.list);
-		statView.category.text = achievements[i].display_name;
+		statView.category.text = (i+1) + ". " + achievements[i].display_name + ":";
 			
-		for(var j = 0; j < achievements[i].projects.length; j++)
+		for(var j = 0; j < projects.length; j++)
 		{
-			
-			Ti.API.info(achievements[i].projects[j].api_name);
+			var project = projects[j];
 			
 			tempAchivs = [];
-			tempAchivs.push(achievements[i].projects[j].achievements[0].badge_name);
+			tempAchivs.push(project.achievements[0].badge_name);
 			
-			for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
+			for(var k = 0; k < project.achievements.length; k++)
 			{
+				var projectAchievement = project.achievements[k];
 				var flagPush = true;
 				
 				for(var index = 0; index < tempAchivs.length; index++)
 				{
-					Ti.API.info(tempAchivs[index] +"  "+ achievements[i].projects[j].achievements[k].badge_name);
-					if(tempAchivs[index] == achievements[i].projects[j].achievements[k].badge_name)
+					if(tempAchivs[index] == projectAchievement.badge_name)
 					{
 						flagPush = false;
 					}
@@ -88,13 +90,12 @@ function onWindowOpen(window, event)
 				
 				if(flagPush == true)
 				{
-					tempAchivs.push(achievements[i].projects[j].achievements[k].badge_name);
-					Ti.API.info('+')
+					tempAchivs.push(projectAchievement.badge_name);
 				}
 				
-				for(var n = 0; n < achievements[i].projects[j].achievements[k].bonuses.length; n++)
+				for(var n = 0; n < projectAchievement.bonuses.length; n++)
 				{
-					if(achievements[i].projects[j].achievements[k].bonuses[n].bonus_type == "bonus")
+					if(projectAchievement.bonuses[n].bonus_type == "bonus")
 					{
 						bonus++;
 					}
@@ -105,14 +106,12 @@ function onWindowOpen(window, event)
 				}
 			}
 			
-			statView.item.add(createLabelStat(achievements[i].projects[j].api_name +" ("+ tempAchivs.length + "/" + achievements[i].projects[j].total_badges + ")"))
+			statView.item.add(createLabelStat(project.api_name +" ("+ tempAchivs.length + "/" + project.total_badges + ")"));
 		}
 	}
 	ui.all.text = ui.all.text + all;
 	ui.bonus.text = ui.bonus.text + bonus;
 	ui.sub.text = ui.sub.text + sub ;
-	
-	
 }
 //------Создание лабелки с отображением имени проекта и статистикой полученый ачивок---//
 function createLabelStat(text)
