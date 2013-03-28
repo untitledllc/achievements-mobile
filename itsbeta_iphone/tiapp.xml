@@ -45,6 +45,7 @@
     </mobileweb>
     <modules>
         <module platform="iphone" version="1.8.3">ti.barcode</module>
+        <module platform="iphone" version="1.1.1">com.mirasense.scanditsdk</module>
     </modules>
     <deployment-targets>
         <target device="blackberry">false</target>

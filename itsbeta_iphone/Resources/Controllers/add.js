@@ -51,90 +51,77 @@ function onInitController(window, params)
 	//---------------------------------------------//
 	// QR code scanner
 	//---------------------------------------------//
-	var Barcode = require('ti.barcode');
-	Barcode.allowRotation = true;
-	Barcode.displayedMessage = '';
-	Barcode.useLED = true;
-	
-	// var overlay = Ti.UI.createView({
-	    // backgroundColor: 'red',
-	    // width: "80%",
-		// height: "80%",
-	    // top: 20, right: 20, bottom: 20, left: 20
-	// });
-	
-	var overlay = TiTools.UI.Loader.load("Views/addQr.js");
-	
-	// var toggleLEDButton = Ti.UI.createButton({
-	    // title: Barcode.useLED ? 'LED is On' : 'LED is Off',
-	    // textAlign: 'center',
-	    // color: '#000', backgroundColor: '#fff', style: 0,
-	    // font: { fontWeight: 'bold', fontSize: 16 },
-	    // borderColor: '#000', borderRadius: 10, borderWidth: 1,
-	    // opacity: 0.5,
-	    // width: 220, height: 30,
-	    // bottom: 10
-	// });
-	// toggleLEDButton.addEventListener('click', function () {
-	    // Barcode.useLED = !Barcode.useLED;
-	    // toggleLEDButton.title = Barcode.useLED ? 'LED is On' : 'LED is Off';
-	// });
-	// overlay.add(toggleLEDButton);
-// 	
-	// var cancelButton = Ti.UI.createButton({
-	    // title: 'Cancel', textAlign: 'center',
-	    // color: '#000', backgroundColor: '#fff', style: 0,
-	    // font: { fontWeight: 'bold', fontSize: 16 },
-	    // borderColor: '#000', borderRadius: 10, borderWidth: 1,
-	    // opacity: 0.5,
-	    // width: 220, height: 30,
-	    // top: 20
-	// });
-	overlay.cancel.addEventListener('click', function () {
-	    Barcode.cancel();
-	});
-	//overlay.add(cancelButton);
+
+	// load the Scandit SDK module
+	var scanditsdk = require("com.mirasense.scanditsdk"); 
 	
 	// qr handler
 	decorateButton.call(
 		ui.qr, 
 		function() {
-			// Barcode.capture({
-		        // animate: true,
-		        // overlay: overlay.me,
-		        // showCancel: false,
-		        // showRectangle: false,
-		        // keepOpen: true/*,
-		        // acceptedFormats: [
-		            // Barcode.FORMAT_QR_CODE
-		        // ]*/
-		    // });
-		    var winCode = TiTools.UI.Controls.createWindow({
-				main: "Controllers/addQr.js",
-				navBarHidden: true,
+			// instantiate the Scandit SDK
+			var scanner = scanditsdk.createView({
+		 		width: "100%",
+				height: "100%"
+			}); 
+			
+			// Initialize the barcode scanner,
+			scanner.init("18nHJpekEeKPUvet3JgAORWwUAXBuwUofxN/r9V85Co", 0); 
+			
+			// Set callback functions for when scanning succeeds and for when the
+			// scanning is canceled.
+			scanner.setSuccessCallback(function(e) {
+				// if(e.symbology === "Qr") {
+					scanWin.close();			
+					alert("success (" + e.symbology + "): " + e.barcode);	
+				//}
+			     // actIndicator(true);
+				 // itsbeta.postActiv(e.result);
 			});
-			winCode.initialize();
-			winCode.open({modal: true});
+			scanner.setCancelCallback(function(e) { 
+				alert("canceled");
+			}); 
+			
+			// options
+			scanner.setInfoBannerOffset(-300); 
+			scanner.set1DScanningEnabled(false);
+			scanner.set2DScanningEnabled(false);
+			scanner.setEan13AndUpc12Enabled(false); 
+			scanner.setEan8Enabled(false); 
+			scanner.setUpceEnabled(false);
+			scanner.setCode39Enabled(false);
+			scanner.setCode128Enabled(false); 
+			scanner.setItfEnabled(false); 
+			scanner.setQrEnabled(true); 
+			scanner.setDataMatrixEnabled(false);
+			scanner.setInverseDetectionEnabled(false);
+			
+			// scanner window
+			var scanWin = Titanium.UI.createWindow({
+				navBarHidden: true
+			});
+			scanWin.addEventListener("open", function() {
+				scanner.startScanning(); 
+			});
+			scanWin.addEventListener("close", function() {
+				//scanner.stopScanning();
+			})
+			
+			var navbar = TiTools.UI.Loader.load("Views/addQr.js");
+			
+			// cancel
+			decorateNavbarButton.call(
+				navbar.cancel, 
+				function() {
+					scanWin.close();
+				}
+			);
+			
+			scanWin.add(navbar.me);
+			scanWin.add(scanner);
+			scanWin.open({modal: true}); 
 		}
 	);
-	
-	Barcode.addEventListener('error', function (e) {
-		Ti.UI.createAlertDialog({
-	        message: e.message,
-	        title: "ERROR"
-        }).show();
-	});
-	Barcode.addEventListener('success', function (e) {
-    	if(e.contentType === Barcode.URL) {
-		    // Ti.UI.createAlertDialog({
-		        // message: e.result,
-		        // title: "SUCCESS"
-	        // }).show();
-		    Barcode.cancel();
-		    actIndicator(true);
-		    itsbeta.postActiv(e.result);
-    	}
-	});
 }
 //---------------------------------------------//
 // Функции лентяйки

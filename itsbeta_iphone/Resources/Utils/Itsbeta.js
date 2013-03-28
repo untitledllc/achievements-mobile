@@ -181,7 +181,6 @@ function postActivCode(tempCode)//Активация по коду актива�
 {
 	var info = TiTools.Global.get("info");
 	
-	
 	var params = {
 			activation_code : tempCode,
 			user_id : info.fbuid,
