@@ -193,7 +193,7 @@ function postActivCode(tempCode)//Активация по коду актива�
 	TiTools.HTTP.response(
 		{
 			reguest: {
-			method: 'POST',
+				method: 'POST',
 				url: 'http://www.itsbeta.com/s/activate.json',
 				header: [
 					{
@@ -204,55 +204,55 @@ function postActivCode(tempCode)//Активация по коду актива�
 				post: params
 			},
 			success: function(success)
-					{
-						Ti.API.info('ok');
-						Ti.API.info(success.responseText);
-						
-						var temp = JSON.parse(success.responseText);
-						
-						if(temp.error == undefined)
-						{
-							Ti.UI.createAlertDialog({
-								message: "Выполнено!",
-								title: "Информация"
-							}).show();
-							
-							Ti.App.fireEvent("reload");
-							
-						}else
-						{
-							Ti.UI.createAlertDialog({
-								message: "Ошибка!",
-								title: "Информация"
-							}).show();
-							
-							Ti.App.fireEvent("actHide");
-						}
-						
-					},
+			{
+				Ti.API.info('ok');
+				Ti.API.info(success.responseText);
+				
+				var temp = JSON.parse(success.responseText);
+				
+				if(temp.error == undefined)
+				{
+					Ti.UI.createAlertDialog({
+						message: "Выполнено!",
+						title: "Информация"
+					}).show();
+					
+					Ti.App.fireEvent("reload");
+				}
+				else
+				{
+					Ti.UI.createAlertDialog({
+						message: "Ошибка!",
+						title: "Информация"
+					}).show();
+					
+					Ti.App.fireEvent("actHide");
+				}
+			},
 			failure: function(failure)
-					{
-						Ti.API.info('error');
-						Ti.API.info(failure.responseText);
-						
-						var temp = JSON.parse(success.responseText);
-						
-						if(temp.error == undefined)
-						{
-							Ti.UI.createAlertDialog({
-								message: "Ошибка!",
-								title: "Информация"
-							}).show();
-						}else
-						{
-							Ti.UI.createAlertDialog({
-								message: "Ошибка!",
-								title: "Информация"
-							}).show();
-						}
-						
-						Ti.App.fireEvent("actHide");
-					}
+			{
+				Ti.API.info('error');
+				Ti.API.info(failure.responseText);
+				
+				var temp = JSON.parse(success.responseText);
+				
+				if(temp.error == undefined)
+				{
+					Ti.UI.createAlertDialog({
+						message: "Ошибка!",
+						title: "Информация"
+					}).show();
+				}
+				else
+				{
+					Ti.UI.createAlertDialog({
+						message: "Ошибка!",
+						title: "Информация"
+					}).show();
+				}
+				
+				Ti.App.fireEvent("actHide");
+			}
 		}
 	);
 }
