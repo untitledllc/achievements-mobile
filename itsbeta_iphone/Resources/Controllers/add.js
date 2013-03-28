@@ -51,74 +51,84 @@ function onInitController(window, params)
 	//---------------------------------------------//
 	// QR code scanner
 	//---------------------------------------------//
+	
+	var navbar = TiTools.UI.Loader.load("Views/addQr.js");
+	
+	// cancel
+	decorateNavbarButton.call(
+		navbar.cancel, 
+		function() {
+			scanWin.close();
+		}
+	);
+	
+	// scanner window
+	var scanWin = Titanium.UI.createWindow({
+		backgroundColor: "#fff",	
+		navBarHidden: true
+	});
+	
+	scanWin.addEventListener("open", function() {
+		initScanner.call(scanner);
+		scanner.startScanning(); 
+	});
+	scanWin.addEventListener("close", function() {
+		//scanner.stopScanning();
+		scanner.reset();
+	});
+	scanWin.add(navbar.me);
+	scanWin.add(TiTools.UI.Controls.createLabel({
+		color: "#625f5e",
+		font: {fontSize: 20},
+		text: "Подождите..."
+	}));
 
 	// load the Scandit SDK module
 	var scanditsdk = require("com.mirasense.scanditsdk"); 
+	
+	// instantiate the Scandit SDK
+	var scanner = scanditsdk.createView({
+ 		width: "100%",
+		height: "100%"
+	}); 
+	
+	scanWin.add(scanner);
+	
+	function initScanner()
+	{
+		// Initialize the barcode scanner,
+		this.init("18nHJpekEeKPUvet3JgAORWwUAXBuwUofxN/r9V85Co", 0); 
+		
+		// Set callback functions for when scanning succeeds and for when the
+		// scanning is canceled.
+		this.setSuccessCallback(function(e) {
+			// if(e.symbology === "Qr") {
+				scanWin.close();			
+				alert("success (" + e.symbology + "): " + e.barcode);	
+			//}
+		     // actIndicator(true);
+			 // itsbeta.postActiv(e.result);
+		});
+		
+		// options
+		this.setInfoBannerOffset(-300); 
+		this.set1DScanningEnabled(false);
+		this.set2DScanningEnabled(false);
+		this.setEan13AndUpc12Enabled(false); 
+		this.setEan8Enabled(false); 
+		this.setUpceEnabled(false);
+		this.setCode39Enabled(false);
+		this.setCode128Enabled(false); 
+		this.setItfEnabled(false); 
+		this.setQrEnabled(true); 
+		this.setDataMatrixEnabled(false);
+		this.setInverseDetectionEnabled(false);
+	}
 	
 	// qr handler
 	decorateButton.call(
 		ui.qr, 
 		function() {
-			// instantiate the Scandit SDK
-			var scanner = scanditsdk.createView({
-		 		width: "100%",
-				height: "100%"
-			}); 
-			
-			// Initialize the barcode scanner,
-			scanner.init("18nHJpekEeKPUvet3JgAORWwUAXBuwUofxN/r9V85Co", 0); 
-			
-			// Set callback functions for when scanning succeeds and for when the
-			// scanning is canceled.
-			scanner.setSuccessCallback(function(e) {
-				// if(e.symbology === "Qr") {
-					scanWin.close();			
-					alert("success (" + e.symbology + "): " + e.barcode);	
-				//}
-			     // actIndicator(true);
-				 // itsbeta.postActiv(e.result);
-			});
-			scanner.setCancelCallback(function(e) { 
-				alert("canceled");
-			}); 
-			
-			// options
-			scanner.setInfoBannerOffset(-300); 
-			scanner.set1DScanningEnabled(false);
-			scanner.set2DScanningEnabled(false);
-			scanner.setEan13AndUpc12Enabled(false); 
-			scanner.setEan8Enabled(false); 
-			scanner.setUpceEnabled(false);
-			scanner.setCode39Enabled(false);
-			scanner.setCode128Enabled(false); 
-			scanner.setItfEnabled(false); 
-			scanner.setQrEnabled(true); 
-			scanner.setDataMatrixEnabled(false);
-			scanner.setInverseDetectionEnabled(false);
-			
-			// scanner window
-			var scanWin = Titanium.UI.createWindow({
-				navBarHidden: true
-			});
-			scanWin.addEventListener("open", function() {
-				scanner.startScanning(); 
-			});
-			scanWin.addEventListener("close", function() {
-				//scanner.stopScanning();
-			})
-			
-			var navbar = TiTools.UI.Loader.load("Views/addQr.js");
-			
-			// cancel
-			decorateNavbarButton.call(
-				navbar.cancel, 
-				function() {
-					scanWin.close();
-				}
-			);
-			
-			scanWin.add(navbar.me);
-			scanWin.add(scanner);
 			scanWin.open({modal: true}); 
 		}
 	);
