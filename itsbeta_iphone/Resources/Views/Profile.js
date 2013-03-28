@@ -317,11 +317,10 @@ module.exports = [
 			{
 				outlet: "list",
 				style : {
-					className: "Ti.UI.ScrollView",
+					className: "Ti.UI.View",
 					height: Ti.UI.FILL,
 					width: Ti.UI.FILL,
-					layout: "vertical",
-					backgroundColor: "gray"
+					layout: "vertical"
 				}
 			}
 		]
