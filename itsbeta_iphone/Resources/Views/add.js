@@ -112,18 +112,18 @@ module.exports = [
 							top: 30,
 							height: 60,
 							width: "80%",
-							backgroundColor: "blue"
+							backgroundImage: "images/buttons/Qr.Normal.png"
 						},
 						subviews:
 						[
 							{
-								style : {
+								style: {
 									className: "Ti.UI.Label",
-									height: 20,
-									width: "80%",
+									textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 									font : {
-										fontSize : 15
+										fontSize : 16
 									},
+									color: "#fff",
 									text: "Использовать QR-ридер"
 								}
 							}
@@ -136,18 +136,18 @@ module.exports = [
 							top: 5,
 							height: 60,
 							width: "80%",
-							backgroundColor: "blue"
+							backgroundImage: "images/buttons/Code.Normal.png"
 						},
 						subviews:
 						[
 							{
-								style : {
+								style: {
 									className: "Ti.UI.Label",
-									height: 20,
-									width: "80%",
-									font : {
-										fontSize : 15
+									textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+									font: {
+										fontSize : 16
 									},
+									color: "#fff",
 									text: "Ввести код"
 								}
 							}

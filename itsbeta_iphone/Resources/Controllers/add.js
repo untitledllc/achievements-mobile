@@ -27,6 +27,7 @@ function onInitController(window, params)
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/add.js", window);
 	
+	// back
 	decorateNavbarButton.call(
 		ui.back, 
 		function() {
@@ -34,17 +35,18 @@ function onInitController(window, params)
 		}
 	);
 	
-	ui.code.addEventListener("click",function(event)
-	{
-		var winCode = TiTools.UI.Controls.createWindow(
-			{
-				main : "Controllers/addCode.js",
-				navBarHidden : true,
-			}
-		);
-		winCode.initialize();
-		winCode.open();
-	});
+	// code
+	decorateButton.call(
+		ui.code, 
+		function() {
+			var winCode = TiTools.UI.Controls.createWindow({
+				main: "Controllers/addCode.js",
+				navBarHidden: true,
+			});
+			winCode.initialize();
+			winCode.open({modal: true});
+		}
+	);
 	
 	//---------------------------------------------//
 	// QR code scanner
@@ -89,18 +91,22 @@ function onInitController(window, params)
 	});
 	overlay.add(cancelButton);
 	
-	ui.qr.addEventListener('click', function () {
-	    Barcode.capture({
-	        animate: true,
-	        overlay: overlay,
-	        showCancel: false,
-	        showRectangle: false,
-	        keepOpen: true/*,
-	        acceptedFormats: [
-	            Barcode.FORMAT_QR_CODE
-	        ]*/
-	    });
-	});
+	// qr handler
+	decorateButton.call(
+		ui.qr, 
+		function() {
+			Barcode.capture({
+		        animate: true,
+		        overlay: overlay,
+		        showCancel: false,
+		        showRectangle: false,
+		        keepOpen: true/*,
+		        acceptedFormats: [
+		            Barcode.FORMAT_QR_CODE
+		        ]*/
+		    });
+		}
+	);
 	
 	Barcode.addEventListener('error', function (e) {
 		Ti.UI.createAlertDialog({
@@ -114,11 +120,8 @@ function onInitController(window, params)
 		        // message: e.result,
 		        // title: "SUCCESS"
 	        // }).show();
-	        
 		    Barcode.cancel();
-		    
 		    actIndicator(true);
-		    
 		    itsbeta.postActiv(e.result);
     	}
 	});
