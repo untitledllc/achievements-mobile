@@ -24,7 +24,7 @@ module.exports = [
 				subviews:
 				[
 					{
-						outlet: "back",
+						outlet: "cancel",
 						style : {
 							className: "Ti.UI.View",
 							top: 5,
@@ -37,8 +37,8 @@ module.exports = [
 							{
 								style : {
 									className: "Ti.UI.View",
-									backgroundImage: "images/buttons/Back.Left.Normal.png",
-									width: 14,
+									backgroundImage: "images/buttons/Navbar.Left.Normal.png",
+									width: 6,
 									height: Ti.UI.FILL
 								}
 							},
@@ -53,7 +53,7 @@ module.exports = [
 									{
 										style: {
 											className: "Ti.UI.Label",
-											text: "Back",
+											text: "Cancel",
 											color: "#646464",
 											height: Ti.UI.FILL,
 											bottom: 2,
@@ -93,14 +93,52 @@ module.exports = [
 					{
 						outlet: "done",
 						style : {
-							className: "Ti.UI.Button",
-							right: 0,
+							className: "Ti.UI.View",
+							top: 5,
+							right: 5,
 							height: 30,
-							width: 50,
-							title: "done",
-							backgroundImage: "images/titan/n_norm.png"
-						}
-					},
+							width: Ti.UI.SIZE,
+							layout: "horizontal"
+						},
+						subviews: [
+							{
+								style : {
+									className: "Ti.UI.View",
+									backgroundImage: "images/buttons/Navbar.Left.Normal.png",
+									width: 6,
+									height: Ti.UI.FILL
+								}
+							},
+							{
+								style : {
+									className: "Ti.UI.View",
+									backgroundImage: "images/buttons/Navbar.Middle.Normal.png",
+									width: Ti.UI.SIZE,
+									height: Ti.UI.FILL
+								},
+								subviews: [
+									{
+										style: {
+											className: "Ti.UI.Label",
+											text: "Done",
+											color: "#646464",
+											height: Ti.UI.FILL,
+											bottom: 2,
+											font: {fontSize: 12, fontWeight: "bold"}
+										}
+									}								
+								]
+							},
+							{
+								style : {
+									className: "Ti.UI.View",
+									backgroundImage: "images/buttons/Navbar.Right.Normal.png",
+									width: 6,
+									height: Ti.UI.FILL
+								}
+							}
+						]
+					}
 				]
 			},
 			{

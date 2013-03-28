@@ -25,20 +25,24 @@ function onInitController(window, params)
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/addCode.js", window);
-	ui.back.addEventListener("click",function(event)
-	{
-		window.close();
-	});
 	
-	ui.done.addEventListener("click",function(event)
-	{
-		actIndicator(true);
-		
-		Ti.API.info(ui.code.value);
-		
-		itsbeta.postActivCode(ui.code.value);
-	});
- }
+	// cancel
+	decorateNavbarButton.call(
+		ui.cancel, 
+		function() {
+			window.close();
+		}
+	);
+	
+	// done
+	decorateNavbarButton.call(
+		ui.done, 
+		function() {
+			actIndicator(true);
+			itsbeta.postActivCode(ui.code.value);
+		}
+	);
+}
 //---------------------------------------------//
 // Функции лентяйки
 //---------------------------------------------//

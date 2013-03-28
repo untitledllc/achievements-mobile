@@ -12,6 +12,7 @@ var itsbeta = undefined;
 
 //---------------------------------------------//
 
+Ti.include("Utils/Helper.js")
 
 //---------------------------------------------//
 // Обязательные функции
@@ -26,10 +27,12 @@ function onInitController(window, params)
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/add.js", window);
 	
-	ui.back.addEventListener("click",function(event)
-	{
-		window.close();
-	});
+	decorateNavbarButton.call(
+		ui.back, 
+		function() {
+			window.close();
+		}
+	);
 	
 	ui.code.addEventListener("click",function(event)
 	{

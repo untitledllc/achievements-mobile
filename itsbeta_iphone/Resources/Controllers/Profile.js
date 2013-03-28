@@ -14,6 +14,7 @@ var categories = undefined;
 
 //---------------------------------------------//
 
+Ti.include("Utils/Helper.js");
 
 //---------------------------------------------//
 // Обязательные функции
@@ -31,10 +32,13 @@ function onInitController(window, params)
 	ui.profileName.text = window.info.name;
 	ui.profileInfo.text = window.info.birthday + ", " + window.info.city + ", " + window.info.country;
 	
-	ui.back.addEventListener("click",function(event)
-	{
-		window.close();
-	});
+	// back
+	decorateNavbarButton.call(
+		ui.back, 
+		function() {
+			window.close();
+		}
+	);
 	
 	ui.logOut.addEventListener("click",function(event)
 	{
