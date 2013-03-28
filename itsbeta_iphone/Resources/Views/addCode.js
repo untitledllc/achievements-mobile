@@ -26,12 +26,51 @@ module.exports = [
 					{
 						outlet: "back",
 						style : {
-							className: "Ti.UI.Button",
-							left: 0,
-							height: 50,
-							width: 50,
-							title: "back"
-						}
+							className: "Ti.UI.View",
+							top: 5,
+							left: 5,
+							height: 30,
+							width: Ti.UI.SIZE,
+							layout: "horizontal"
+						},
+						subviews: [
+							{
+								style : {
+									className: "Ti.UI.View",
+									backgroundImage: "images/buttons/Back.Left.Normal.png",
+									width: 14,
+									height: Ti.UI.FILL
+								}
+							},
+							{
+								style : {
+									className: "Ti.UI.View",
+									backgroundImage: "images/buttons/Navbar.Middle.Normal.png",
+									width: Ti.UI.SIZE,
+									height: Ti.UI.FILL
+								},
+								subviews: [
+									{
+										style: {
+											className: "Ti.UI.Label",
+											text: "Back",
+											color: "#646464",
+											height: Ti.UI.FILL,
+											bottom: 2,
+											font: {fontSize: 12, fontWeight: "bold"}
+										}
+									}								
+								]
+							},
+							{
+								style : {
+									className: "Ti.UI.View",
+									backgroundImage: "images/buttons/Navbar.Right.Normal.png",
+									width: 6,
+									height: Ti.UI.FILL
+								}
+							}
+						]
 					},
 					{
 						style: {
