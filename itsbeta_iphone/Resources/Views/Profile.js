@@ -55,7 +55,7 @@ module.exports = [
 											className: "Ti.UI.Label",
 											text: "Back",
 											color: "#646464",
-											font: {fontSize: 12, fontFamily: "Helvetica", fontWeight: "bold"}
+											font: {fontSize: 12, fontWeight: "bold"}
 										}
 									}								
 								]
@@ -83,7 +83,7 @@ module.exports = [
 									className: "Ti.UI.Label",
 									color: "#7ed6f9",
 									text: "PROFILE",
-									font: {fontSize: 20, fontFamily: "Helvetica", fontWeight: "bold"}
+									font: {fontSize: 20, fontWeight: "bold"}
 								}
 							}
 						]
@@ -140,6 +140,7 @@ module.exports = [
 									className: "Ti.UI.Label",
 									top: 0,
 									left: 0,
+									color: "#625f5e",
 									font: { fontSize: 20 }
 								}
 							},
@@ -149,6 +150,7 @@ module.exports = [
 									className: "Ti.UI.Label",
 									top: 5,
 									left: 0,
+									color: "#a9a7a3",
 									font: { fontSize: 10 }
 								}
 							}
@@ -166,6 +168,7 @@ module.exports = [
 					font : {
 						fontSize : 20
 					},
+					color: "#625f5e",
 					text: "Statistic:"
 				}
 			},
@@ -186,16 +189,37 @@ module.exports = [
 						},
 						subviews: [
 							{
-								outlet: "all",
-								style : {
-									className: "Ti.UI.Label",
-									height: Ti.UI.SIZE,
-									width: Ti.UI.SIZE,									
-									font : {
-										fontSize : 10
+								style: {
+									className: "Ti.UI.View",
+									layout: "vertical",
+									left: 5,
+									height: Ti.UI.SIZE
+								},
+								subviews: [
+									{
+										style : {
+											className: "Ti.UI.Label",
+											left: 5,
+											color: "#fff",
+											font : {
+												fontSize : 12
+											},
+											text: "All Badges:"
+										}
 									},
-									text: "All Badges: "
-								}
+									{
+										outlet: "all",
+										style: {
+											className: "Ti.UI.Label",
+											left: 0,
+											color: "#fff",
+											font: {
+												fontSize: 20
+											},
+											text: " "
+										}
+									}
+								]
 							}
 						]
 					},
@@ -219,6 +243,8 @@ module.exports = [
 									{
 										style: {
 											className: "Ti.UI.Label",
+											left: 5,
+											color: "#fff",
 											font: {
 												fontSize: 12
 											},
@@ -229,6 +255,8 @@ module.exports = [
 										outlet: "bonus",
 										style: {
 											className: "Ti.UI.Label",
+											left: 0,
+											color: "#fff",
 											font: {
 												fontSize: 20
 											},
@@ -249,17 +277,38 @@ module.exports = [
 							backgroundImage: "images/profile/Statistic.Subcategories.png"
 						},
 						subviews: [
-							{
-								outlet: "sub",
-								style : {
-									className: "Ti.UI.Label",
-									height: Ti.UI.SIZE,
-									width: Ti.UI.SIZE,
-									font : {
-										fontSize : 10
+							{	
+								style: {
+									className: "Ti.UI.View",
+									layout: "vertical",
+									left: 5,
+									height: Ti.UI.SIZE
+								},
+								subviews: [
+									{
+										style : {
+											className: "Ti.UI.Label",
+											left: 5,
+											color: "#fff",
+											font : {
+												fontSize : 12
+											},
+											text: "Subcategories:"
+										}
 									},
-									text: "Subcategiries: "
-								}
+									{
+										outlet: "sub",
+										style: {
+											className: "Ti.UI.Label",
+											left: 0,
+											color: "#fff",
+											font: {
+												fontSize: 20
+											},
+											text: " "
+										}
+									}
+								]
 							}
 						]
 					}

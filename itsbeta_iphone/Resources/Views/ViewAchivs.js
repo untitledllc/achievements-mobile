@@ -43,7 +43,7 @@ module.exports = {
 								className: "Ti.UI.Label",
 								top: 10,
 								text: "---",
-								color: "#14CCD2",
+								color: "#5dbce2",
 								font: {
 									fontSize: 10
 								},
@@ -81,7 +81,7 @@ module.exports = {
 								left: 10,
 								right: 10,
 								text : "...",
-								color: "gray",
+								color: "#777575",
 								font : {
 									fontSize : 13
 								},
