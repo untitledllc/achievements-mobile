@@ -20,7 +20,7 @@ module.exports = [
 					top: 0,
 					height: 57,
 					zIndex: 10,
-					backgroundImage: "images/navbar/bg.png"
+					backgroundImage: "images/navbar/Bg.png"
 				},
 				subviews:
 				[
