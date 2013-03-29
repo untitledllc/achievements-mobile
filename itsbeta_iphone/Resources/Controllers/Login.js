@@ -54,7 +54,6 @@ function onInitController(window, params)
 			
 				Titanium.Facebook.request('fql.query', {query: myQuery},  function(x)
 				{
-					
 					try
 					{
 						var results = JSON.parse(x.result);
@@ -94,10 +93,16 @@ function onInitController(window, params)
 			if(!Titanium.Facebook.loggedIn)
 			{
 				Ti.Facebook.authorize();
-				Ti.Facebook.addEventListener('login',function(event) 
+				Ti.Facebook.addEventListener('login',function(e) 
 				{
-					actIndicator(true);
-					fQuery();
+					if (e.success) {
+						actIndicator(true);
+						fQuery();
+					} else if (e.error) {
+						alert(e.error);
+					} else if (e.cancelled) {
+						actIndicator(false);
+					}
 				});
 			}
 			else
