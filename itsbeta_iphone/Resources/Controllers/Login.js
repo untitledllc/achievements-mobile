@@ -86,7 +86,11 @@ function onInitController(window, params)
 					}
 					
 					// get achievements by user id
-					itsbeta.getAchievementsByUid(fbuid, saveAchivs);
+					itsbeta.firstStart(info);
+					Ti.App.addEventListener("complite",function(event)
+					{
+						itsbeta.getAchievementsByUid(fbuid, saveAchivs);
+					});
 				});
 			};
 			
