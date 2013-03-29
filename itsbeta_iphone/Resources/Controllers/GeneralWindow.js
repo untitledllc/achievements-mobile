@@ -72,7 +72,7 @@ function onInitController(window, params)
 				//ui.rowTextAchivs.text = "Категории:";
 				massRow = [];
 				
-				 category.display_name;
+				category.display_name;
 				category.api_name;
 				category.display_name;
 				
@@ -301,12 +301,10 @@ function createListName(window,category)
 			
 			for(var i = 0; i < achievements.length; i++)
 			{
-				
 				if(achievements[i].api_name == category || category == "null")
 				{
 					for(var j = 0; j < achievements[i].projects.length; j++)
 					{
-						
 						var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
 						massRow.push(row);
 						
@@ -333,8 +331,6 @@ function createListName(window,category)
 								}
 								
 								ui.nameProject.text = event.source.display_name;
-								
-								
 								
 								delList(window,event.source.api_name);
 							};
