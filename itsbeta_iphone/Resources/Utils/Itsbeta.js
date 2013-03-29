@@ -1,9 +1,13 @@
 var TiTools = require("TiTools/TiTools");
 
+var time = undefined;
+
 var ITSBETA_ACCESS_TOKEN = "8e6b3a7b47c3346cb7e4db42c88519bc";
 
 function query(params, successCallback, failureCallback)
 {
+	timeOut();
+	
 	TiTools.HTTP.response(
 		{
 			reguest: {
@@ -17,8 +21,16 @@ function query(params, successCallback, failureCallback)
 				],
 				post: params.params
 			},
-			success: successCallback,
-			failure: failureCallback
+			success: function(success)
+				{ 
+					clearTimeout(time);
+					successCallback(success);
+				},
+			failure: function(failure)
+				{ 
+					clearTimeout(time);
+					failureCallback(success);
+				}
 		}
 	);
 }
@@ -61,6 +73,8 @@ function getAchievementsByUid(uid, successCallback)
 }
 function firstStart(info, successCallback)
 {
+	//timeOut();
+	
 	query(
 		{
 			params: {
@@ -105,10 +119,12 @@ function postActiv(data)//Активация по qr-коду активации
 	}
 	
 	var params = {
-		activation_code: tempCode,
-		user_id: info.fbuid,
-		user_token: info.accessToken
-	};
+			activation_code : tempCode,
+			user_id : info.fbuid,
+			user_token : info.accessToken
+		};
+	
+	timeOut();
 	
 	TiTools.HTTP.response(
 		{
@@ -124,57 +140,59 @@ function postActiv(data)//Активация по qr-коду активации
 				post: params
 			},
 			success: function(success)
-			{
-				Ti.API.info('ok');
-				Ti.API.info(success.responseText);
-				
-				var temp = JSON.parse(success.responseText);
-				
-				if(temp.error == undefined)
-				{
-					Ti.UI.createAlertDialog({
-						message: "Выполнено!",
-						title: "Информация"
-					}).show();
-					
-					Ti.App.fireEvent("reload");
-					
-				}
-				else
-				{
-					Ti.UI.createAlertDialog({
-						message: "Ошибка!",
-						title: "Информация"
-					}).show();
-					
-					Ti.App.fireEvent("actHide");
-				}
-				
-			},
+					{
+						clearTimeout(time);
+						
+						Ti.API.info('ok');
+						Ti.API.info(success.responseText);
+						
+						var temp = JSON.parse(success.responseText);
+						
+						if(temp.error == undefined)
+						{
+							Ti.UI.createAlertDialog({
+								message: "Выполнено!",
+								title: "Информация"
+							}).show();
+							
+							Ti.App.fireEvent("reload");
+							
+						}else
+						{
+							Ti.UI.createAlertDialog({
+								message: "Ошибка!",
+								title: "Информация"
+							}).show();
+							
+							Ti.App.fireEvent("actHide");
+						}
+						
+					},
 			failure: function(failure)
-			{
-				Ti.API.info('error');
-				Ti.API.info(failure.responseText);
-				
-				var temp = JSON.parse(success.responseText);
-				
-				if(temp.error == undefined)
-				{
-					Ti.UI.createAlertDialog({
-						message: "Ошибка!",
-						title: "Информация"
-					}).show();
-				}
-				else
-				{
-					Ti.UI.createAlertDialog({
-						message: "Ошибка!",
-						title: "Информация"
-					}).show();
-				}
-				
-				Ti.App.fireEvent("actHide");
-			}
+					{
+						clearTimeout(time);
+						
+						Ti.API.info('error');
+						Ti.API.info(failure.responseText);
+						
+						var temp = JSON.parse(success.responseText);
+						
+						if(temp.error == undefined)
+						{
+							Ti.UI.createAlertDialog({
+								message: "Ошибка!",
+								title: "Информация"
+							}).show();
+						}else
+						{
+							Ti.UI.createAlertDialog({
+								message: "Ошибка!",
+								title: "Информация"
+							}).show();
+						}
+						
+						Ti.App.fireEvent("actHide");
+					}
 		}
 	);
 }
@@ -190,6 +208,8 @@ function postActivCode(tempCode)//Активация по коду актива�
 		
 	Ti.API.info(params);
 	
+	timeOut();
+	
 	TiTools.HTTP.response(
 		{
 			reguest: {
@@ -205,6 +225,8 @@ function postActivCode(tempCode)//Активация по коду актива�
 			},
 			success: function(success)
 			{
+				
+				clearTimeout(time);
 				Ti.API.info('ok');
 				Ti.API.info(success.responseText);
 				
@@ -231,6 +253,7 @@ function postActivCode(tempCode)//Активация по коду актива�
 			},
 			failure: function(failure)
 			{
+				clearTimeout(time);
 				Ti.API.info('error');
 				Ti.API.info(failure.responseText);
 				
@@ -256,7 +279,20 @@ function postActivCode(tempCode)//Активация по коду актива�
 		}
 	);
 }
-
+// --- timeout --- //
+function timeOut()
+{
+	Ti.API.info("start_adbort");
+	time = setTimeout(function()
+	{
+		Ti.API.info(time);
+		TiTools.HTTP.abort();
+		alert('Ошибка выполнения запроса!');
+		Ti.API.info('abort');
+		Ti.App.fireEvent("hideActive");
+	}, 30000);
+}
+//-------------------
 
 module.exports = {
 	firstStart: firstStart,

@@ -16,7 +16,6 @@ var itsbeta;
 var achievements = [];
 var newCategories = [];
 var newProjects = [];
-
 var counter = 0;
 
 //---------------------------------------------//
@@ -55,17 +54,37 @@ function onInitController(window, params)
 			
 				Titanium.Facebook.request('fql.query', {query: myQuery},  function(x)
 				{
-					var results = JSON.parse(x.result);
-					info = {
-						fbuid : fbuid,
-						accessToken : accessToken,
-						name: results[0].name,
-						birthday: results[0].birthday_date,
-						// city: results[0].current_location.city,
-						// country: results[0].current_location.country
-					}
 					
-					TiTools.Global.set("info", info);
+					try
+					{
+						var results = JSON.parse(x.result);
+						
+						info = {
+							fbuid : fbuid,
+							accessToken : accessToken,
+							name: results[0].name,
+							birthday: results[0].birthday_date,
+							city: results[0].current_location.city,
+							country: results[0].current_location.country
+
+						};
+						
+						TiTools.Global.set("info", info);
+					}
+					catch(e)
+					{
+						alert("Ошибка загрузки данных из Facebook.");
+						
+						info = {
+							fbuid : fbuid,
+							accessToken : accessToken,
+							name: "",
+							birthday: "",
+							city: "",
+							country: ""
+						};
+						TiTools.Global.set("info", info);
+					}
 					
 					// get achievements by user id
 					itsbeta.getAchievementsByUid(fbuid, saveAchivs);
@@ -89,14 +108,28 @@ function onInitController(window, params)
 		}
 	);
 	
- }
- 
+	// --- слушатель индикатора, что бы закрывать из других окн --- //
+	Ti.App.addEventListener("hideActive",function(event)
+		{
+			actIndicator(false);
+		}
+	);
+}
 //---------------------------------------------//
 
 function saveAchivs(data)
 {
 	indexCategories++;
-	achievements = JSON.parse(data.responseText);
+	try
+	{
+		achievements = JSON.parse(data.responseText);
+	}
+	catch(e)
+	{
+		actIndicator(false);
+		alert("Ошибка загрузки достижений.");
+		return;
+	}
 	
 	//---- собираем список категорий и список проектов -----//
 	
@@ -116,8 +149,6 @@ function saveAchivs(data)
 			
 			var project = achievement.projects[j];
 			counter += project.achievements.length;
-			
-		//	Ti.API.info(achievement.display_name + "  --  " + project.display_name);
 			
 			projects.push(
 				{
