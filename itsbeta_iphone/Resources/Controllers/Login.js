@@ -35,7 +35,7 @@ function onInitController(window, params)
 	TiTools = require("TiTools/TiTools");
 	itsbeta = require("Utils/Itsbeta");
 	
-	// Загрузка контента окна
+    // Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/Login.js", window);
 	
 	decorateButton.call(

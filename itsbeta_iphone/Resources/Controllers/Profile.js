@@ -110,7 +110,7 @@ function onWindowOpen(window, event)
 				}
 			}
 			
-			statView.item.add(createLabelStat(project.api_name +" ("+ tempAchivs.length + "/" + project.total_badges + ")"));
+			statView.item.add(createLabelStat(project.api_name, Math.ceil(100*tempAchivs.length/project.total_badges))) // +" ("+ tempAchivs.length + "/" + project.total_badges + ")"));
 		}
 	}
 	ui.all.text = ui.all.text + all;
@@ -118,15 +118,13 @@ function onWindowOpen(window, event)
 	ui.sub.text = ui.sub.text + sub ;
 }
 //------Создание лабелки с отображением имени проекта и статистикой полученый ачивок---//
-function createLabelStat(text)
+function createLabelStat(title, progress)
 {
-	var label = Ti.UI.createLabel({
-		height: Ti.UI.SIZE,
-		width: Ti.UI.SIZE,
-		text: text
-	});
+	var row = TiTools.UI.Loader.load("Views/profileBadgeRow.js");
+	row.title.text = title;
+	row.progress.value = progress;
 	
-	return label;
+	return row.me;
 }
 //-------------------------------------------------------------------------------------//
 // Обработчик при закрытии окна

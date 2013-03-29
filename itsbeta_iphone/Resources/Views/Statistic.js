@@ -5,7 +5,7 @@ module.exports = [
 	{
 		style: {
 			className: "Ti.UI.View",
-			top: 0,
+			top: 10,
 			left: 10,
 			height: Ti.UI.SIZE,
 			width: Ti.UI.FILL,

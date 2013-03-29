@@ -138,6 +138,7 @@ function onInitController(window, params)
 		var winAdd = TiTools.UI.Controls.createWindow(
 			{
 				main : "Controllers/Profile.js",
+				backgroundColor: "#fff",
 				navBarHidden : true,
 				info : info,
 				achievements: achievements,

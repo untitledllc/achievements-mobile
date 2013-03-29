@@ -4,105 +4,104 @@
 module.exports = [
 	{
 		style : {
-			className: "Ti.UI.ScrollView",
+			className: "Ti.UI.View",
 			top: 0,
-			height: Ti.UI.FILL,
-			width: Ti.UI.FILL,
-			layout: "vertical",
-			backgroundColor: "white"
+			height: 57,
+			zIndex: 10,
+			backgroundImage: "images/navbar/Bg.png",
+			backgroundColor: "transparent"
 		},
 		subviews:
 		[
 			{
+				outlet: "back",
 				style : {
 					className: "Ti.UI.View",
-					top: 0,
-					height: 57,
-					zIndex: 10,
-					backgroundImage: "images/navbar/Bg.png"
+					top: 5,
+					left: 5,
+					height: 30,
+					width: Ti.UI.SIZE,
+					layout: "horizontal"
 				},
-				subviews:
-				[
+				subviews: [
 					{
-						outlet: "back",
 						style : {
 							className: "Ti.UI.View",
-							top: 5,
-							left: 5,
-							height: 30,
+							backgroundImage: "images/buttons/Back.Left.Normal.png",
+							width: 14,
+							height: Ti.UI.FILL
+						}
+					},
+					{
+						style : {
+							className: "Ti.UI.View",
+							backgroundImage: "images/buttons/Navbar.Middle.Normal.png",
 							width: Ti.UI.SIZE,
-							layout: "horizontal"
+							height: Ti.UI.FILL
 						},
 						subviews: [
 							{
-								style : {
-									className: "Ti.UI.View",
-									backgroundImage: "images/buttons/Back.Left.Normal.png",
-									width: 14,
-									height: Ti.UI.FILL
-								}
-							},
-							{
-								style : {
-									className: "Ti.UI.View",
-									backgroundImage: "images/buttons/Navbar.Middle.Normal.png",
-									width: Ti.UI.SIZE,
-									height: Ti.UI.FILL
-								},
-								subviews: [
-									{
-										style: {
-											className: "Ti.UI.Label",
-											text: "Back",
-											color: "#646464",
-											height: Ti.UI.FILL,
-											bottom: 2,
-											font: {fontSize: 12, fontWeight: "bold"}
-										}
-									}								
-								]
-							},
-							{
-								style : {
-									className: "Ti.UI.View",
-									backgroundImage: "images/buttons/Navbar.Right.Normal.png",
-									width: 6,
-									height: Ti.UI.FILL
-								}
-							}
-						]
-					},
-					{
-						style: {
-							className: "Ti.UI.View",
-							width: 134,
-							height: 46,							
-							backgroundImage: "images/navbar/Scoreboard.png"
-						},
-						subviews: [
-							{
-								style : {
+								style: {
 									className: "Ti.UI.Label",
-									color: "#7ed6f9",
-									text: "PROFILE",
-									font: {fontSize: 20, fontWeight: "bold"}
+									text: "Back",
+									color: "#646464",
+									height: Ti.UI.FILL,
+									bottom: 2,
+									font: {fontSize: 12, fontWeight: "bold"}
 								}
-							}
+							}								
 						]
 					},
 					{
-						outlet: "logOut",
 						style : {
-							className: "Ti.UI.Button",
-							top: 5,
-							right: 5,
-							height: 22,
-							width: 22,
-							backgroundImage: "images/buttons/Exit.Normal.png"
+							className: "Ti.UI.View",
+							backgroundImage: "images/buttons/Navbar.Right.Normal.png",
+							width: 6,
+							height: Ti.UI.FILL
 						}
 					}
 				]
 			},
+			{
+				style: {
+					className: "Ti.UI.View",
+					width: 134,
+					height: 46,							
+					backgroundImage: "images/navbar/Scoreboard.png"
+				},
+				subviews: [
+					{
+						style : {
+							className: "Ti.UI.Label",
+							color: "#7ed6f9",
+							text: "PROFILE",
+							font: {fontSize: 20, fontWeight: "bold"}
+						}
+					}
+				]
+			},
+			{
+				outlet: "logOut",
+				style : {
+					className: "Ti.UI.Button",
+					top: 5,
+					right: 5,
+					height: 22,
+					width: 22,
+					backgroundImage: "images/buttons/Exit.Normal.png"
+				}
+			}
+		]
+	},
+	{
+		style : {
+			className: "Ti.UI.ScrollView",
+			top: 60,
+			bottom: 20,
+			height: Ti.UI.SIZE,
+			layout: "vertical"
+		},
+		subviews: [
 			{
 				style : {
 					className: "Ti.UI.View",
@@ -320,11 +319,13 @@ module.exports = [
 				outlet: "list",
 				style : {
 					className: "Ti.UI.View",
-					height: Ti.UI.FILL,
-					width: Ti.UI.FILL,
+					top: 10,
+					left: 5,
+					right: 10,
+					height: Ti.UI.SIZE,
 					layout: "vertical"
 				}
 			}
 		]
-	}	
+	}
 ]
