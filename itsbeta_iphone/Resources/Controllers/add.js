@@ -102,12 +102,9 @@ function onInitController(window, params)
 		// Set callback functions for when scanning succeeds and for when the
 		// scanning is canceled.
 		this.setSuccessCallback(function(e) {
-			// if(e.symbology === "Qr") {
-				scanWin.close();			
-				alert("success (" + e.symbology + "): " + e.barcode);	
-			//}
-		     // actIndicator(true);
-			 // itsbeta.postActiv(e.result);
+			scanWin.close();			
+     		actIndicator(true);
+		 	itsbeta.postActiv(e.barcode);
 		});
 		
 		// options
