@@ -7,12 +7,13 @@ var ITSBETA_ACCESS_TOKEN = "8e6b3a7b47c3346cb7e4db42c88519bc";
 function query(params, successCallback, failureCallback)
 {
 	timeOut();
+	Ti.API.info(params.params);
 	
 	TiTools.HTTP.response(
 		{
 			reguest: {
 				method: 'POST',
-				url: 'http://www.itsbeta.com/s/info/' + params.url,
+				url: params.url,
 				header: [
 					{
 						type: 'Content-Type',
@@ -44,7 +45,7 @@ function getAchievementsByUid(uid, successCallback)
 				type: "fb_user_id",
 				id: uid
 			},
-			url: "playerid.json"
+			url: "http://www.itsbeta.com/s/info/playerid.json"
 		}, 
 		function(response) // success
 		{
@@ -56,7 +57,7 @@ function getAchievementsByUid(uid, successCallback)
 						player_id : playerId,
 						access_token : ITSBETA_ACCESS_TOKEN
 					},
-					url : "achievements.json"
+					url : "http://www.itsbeta.com/s/info/achievements.json"
 				}, 
 				successCallback,   // success
 				function(response) // achievements failure
@@ -71,9 +72,9 @@ function getAchievementsByUid(uid, successCallback)
 		}
 	);
 }
-function firstStart(info, successCallback)
+function firstStart(info)
 {
-	//timeOut();
+	Ti.API.info(info);
 	
 	query(
 		{
@@ -85,12 +86,51 @@ function firstStart(info, successCallback)
 				user_id: info.fbuid,
 				user_token: info.accessToken
 			},
-			url: "/other/itsbeta/achieves/posttofbonce.json"
+			url: "http://www.itsbeta.com/s/other/itsbeta/achieves/posttofbonce.json"
 		}, 
 		function(response) // success
 		{
-			Ti.API.info(response);
-			successCallback;  // success
+			Ti.API.info('ok');
+			Ti.API.info(response.responseText);
+			
+			var temp = JSON.parse(response.responseText);
+			if(temp.error == undefined)
+			{
+				Ti.API.info('Start!!!');
+				
+				if(temp.id != undefined)
+				{
+					/////----------------
+					query(
+						{
+							params: {
+								access_token: ITSBETA_ACCESS_TOKEN,
+								id: temp.id
+							},
+							url: 'http://www.itsbeta.com/s/info/describe.json'
+						}, 
+						function(response) // success
+						{
+							Ti.API.info('ok');
+							Ti.API.info(response.responseText);
+							
+							TiTools.Global.set("startAchivs", JSON.parse(response.responseText));
+							
+							Ti.App.fireEvent("complite");
+						},
+						function(response) // playerid failure
+						{
+							Ti.API.info("error");
+						}
+					);
+					/////-----------------
+				}
+			}
+			else
+			{
+				Ti.API.info('no_START');
+				Ti.App.fireEvent("complite");
+			}
 		},
 		function(response) // playerid failure
 		{

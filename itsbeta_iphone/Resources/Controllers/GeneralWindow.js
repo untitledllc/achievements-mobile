@@ -43,7 +43,7 @@ function onInitController(window, params)
 	counter = window.counter;
 	info = window.info;
 	
-	//Ti.API.info(achievements);
+	Ti.API.info(achievements);
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/GeneralWindow.js", window);
@@ -156,7 +156,6 @@ function onInitController(window, params)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
-	searchRow();
 	
 	Ti.App.addEventListener("actHide",function(event)
 	{
@@ -167,17 +166,26 @@ function onWindowOpen(window, event)
 		window.close();
 	});
 	
-	
-	// var win = TiTools.UI.Controls.createWindow(
-		// {
-			// main : "Controllers/preViewAchivs.js",
-			// navBarHidden : true,
-			// nameAchivs: "Крутая ачивка",
-			// textAchivs: "ярмляоырвапдолыфрвпдафлоырваплыроадлоывф"
-		// }
-	// );
-	// win.initialize();
-	// win.open();	
+	var start = TiTools.Global.get("startAchivs");
+	if(start != undefined)
+	{
+		Ti.API.info('OPEN');
+		Ti.API.info(start);
+		var win = TiTools.UI.Controls.createWindow(
+			{
+				main : "Controllers/preViewAchivs.js",
+				navBarHidden : true,
+				nameAchivs: start.display_name,
+				desc: start.desc,
+				details: start.details,
+				adv: start.adv,
+				image: start.pic,
+				bonus: start.bonuses
+			}
+		);
+		win.initialize();
+		win.open();	
+	}
 	
 	Ti.App.addEventListener("reload",function(event){
 		// ---- delete ----
@@ -193,6 +201,8 @@ function onWindowOpen(window, event)
 		itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
 		
 	});
+	
+	createListAchivs(window,"null");
 }
 ///-----сосдание списка ачивок-----//
 function createListAchivs(window,categiry)
@@ -452,20 +462,20 @@ function actIndicator(param)
 }
 function searchRow()
 {
-	for(var i = 0; i < achievements.length; i++)
-	{
-		for(var j = 0; j < achievements[i].projects.length; j++)
-		{
-			for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
-			{
-				if(achievements[i].projects[j].achievements[k].badge_name != "itsbeta")
-				{
-					createListAchivs(window,"null");
-					return;
-				}
-			}
-		}
-	}
+	// for(var i = 0; i < achievements.length; i++)
+	// {
+		// for(var j = 0; j < achievements[i].projects.length; j++)
+		// {
+			// for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
+			// {
+				// if(achievements[i].projects[j].achievements[k].badge_name != "itsbeta")
+				// {
+					// createListAchivs(window,"null");
+					// return;
+				// }
+			// }
+		// }
+	// }
 	//itsbeta.firstStart(info,itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs));
 }
 function createListRow(category,massRow)
