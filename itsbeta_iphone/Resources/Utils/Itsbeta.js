@@ -258,9 +258,9 @@ function postActivCode(tempCode)//Активация по коду актива�
 
 
 module.exports = {
-	firstStart : firstStart,
-	postActivCode : postActivCode,
-	postActiv:postActiv,
+	firstStart: firstStart,
+	postActivCode: postActivCode,
+	postActiv: postActiv,
 	query: query,
 	getAchievementsByUid: getAchievementsByUid
 }
