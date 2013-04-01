@@ -43,10 +43,7 @@ function onInitController(window, params)
 		ui.infacebook, 
 		function(event) // onSingleTap handler
 		{
-			categories = [];
-			projects = [];
-			achievements = [];
-			counter = 0;
+			
 			
 			Titanium.Facebook.appid = "264918200296425";
 			Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
@@ -79,17 +76,19 @@ function onInitController(window, params)
 						{
 							info.birthday = results[0].birthday_date;
 						}
-						if(results[0].current_location.city != undefined)
+						if(results[0].current_location != undefined)
 						{
-							info.city = results[0].current_location.city;
-						}
-						if(results[0].current_location.country != undefined)
-						{
-							info.country = results[0].current_location.country;
+							if(results[0].current_location.city != undefined)
+							{
+								info.city = results[0].current_location.city;
+							}
+							if(results[0].current_location.country != undefined)
+							{
+								info.country = results[0].current_location.country;
+							}
 						}
 						
 						Ti.API.info(info);
-							
 						TiTools.Global.set("info", info);
 					}
 					catch(e)
@@ -123,6 +122,10 @@ function onInitController(window, params)
 				{
 					if (e.success) {
 						actIndicator(true);
+						categories = [];
+						projects = [];
+						achievements = [];
+						counter = 0;
 						fQuery();
 					} else if (e.error) {
 						alert(e.error);
