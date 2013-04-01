@@ -79,15 +79,6 @@ C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\Telerik.Windows.Data.xml
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\WPExtensions.pdb
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\Microsoft.Practices.ServiceLocation.xml
-C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\de\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\en\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\es\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\fr\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\it\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\ja\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\ko\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\zh-Hans\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\zh-Hant\System.Windows.Interactivity.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\de-DE\Telerik.Windows.Controls.Input.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\fr-FR\Telerik.Windows.Controls.Input.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\it-IT\Telerik.Windows.Controls.Input.resources.dll
@@ -120,3 +111,6 @@ C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\zh-CN\itsbeta_wp7.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\itsbeta_wp7.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\itsbeta_wp7.pdb
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\GalaSoft.MvvmLight.Extras.WP71.pdb
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Release\GalaSoft.MvvmLight.WP71.pdb
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Release\itsbeta_wp7.csprojResolveAssemblyReference.cache
