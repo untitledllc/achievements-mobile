@@ -13,11 +13,14 @@ module.exports = [
 		subviews:
 		[
 			{
+				outlet: "me",
 				style : {
 					className : "Ti.UI.View",
 					height: 50,
+					left: 2,
+					right: 2,
 					width: Ti.UI.SIZE,
-					backgroundColor: "green",
+					backgroundColor: "transparent"
 				},
 				subviews:
 				[

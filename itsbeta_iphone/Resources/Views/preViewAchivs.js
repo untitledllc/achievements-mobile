@@ -26,7 +26,8 @@ module.exports = [
 				style: {
 					className: "Ti.UI.View",
 					layout: "vertical",
-					top: 70,
+					top: 90,
+					bottom: 5,
 					height: Ti.UI.SIZE,
 					width: "90%",
 					backgroundImage: "images/bg/Panel.Popup.png",
@@ -63,7 +64,7 @@ module.exports = [
 							className: "Ti.UI.View",
 							top: 10,
 							left: 15,
-							bottom: 10,
+							bottom: 0,
 							backgroundColor: "transparent",
 							height: Ti.UI.SIZE,
 							width: 220,

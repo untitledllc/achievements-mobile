@@ -56,8 +56,30 @@ function onWindowOpen(window, event)
 	{
 		var row = TiTools.UI.Loader.load("Views/ViewBonus.js", ui.bonus);
 		row.desc.text = window.bonus[i].bonus_desc;
-		row.type.text = window.bonus[i].bonus_type;
+		
+		switch(window.bonus[i].bonus_type)
+		{
+			case "discount": 
+				row.type.text = "Скидка";
+				row.me.backgroundImage = "images/bg/Bonus.Discount.Popup.png";
+				break;
+			case "present": 
+				row.type.text = "Подарок";
+				row.me.backgroundImage = "images/bg/Bonus.Present.Popup.png";
+				break;
+			case "bonus": 
+				row.type.text = "Бонус";
+				row.me.backgroundImage = "images/bg/Bonus.Bonus.Popup.png";
+				break;
+			default: 
+				row.type.text = "-";
+				break;
+		}
 	}
+	
+	ui.bonus.add(TiTools.UI.Controls.createView({
+		height: 15
+	}));
 	
 	ui.textAchivs.add(webview);
 	// webview.addEventListener("beforeload",function(event){
