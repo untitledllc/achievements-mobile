@@ -149,9 +149,9 @@
                     p1:id="@+id/profilescr_allBadgesTextView"
                     p1:layout_alignTop="@id/profilescr_allBadgesImageView"
                     p1:textColor="#ffeeeeee"
-                    p1:textSize="10.5dp"
+                    p1:textSize="12dp"
                     p1:layout_alignLeft="@id/profilescr_allBadgesImageView"
-                    p1:layout_marginLeft="13dp"
+                    p1:layout_marginLeft="10dp"
                     p1:layout_marginTop="18dp"
                     p1:layout_alignRight="@id/profilescr_allBadgesImageView" />
                 <TextView
@@ -163,8 +163,8 @@
                     p1:layout_alignTop="@id/profilescr_bonusImageView"
                     p1:layout_alignLeft="@id/profilescr_bonusImageView"
                     p1:layout_marginTop="18dp"
-                    p1:layout_marginLeft="13dp"
-                    p1:textSize="10.5dp"
+                    p1:layout_marginLeft="10dp"
+                    p1:textSize="12dp"
                     p1:textColor="#ffeeeeee" />
                 <TextView
                     p1:text="Подкатегорий:"
@@ -174,10 +174,10 @@
                     p1:id="@+id/textView3"
                     p1:layout_alignLeft="@id/profilescr_subcatImageView"
                     p1:layout_alignTop="@id/profilescr_subcatImageView"
-                    p1:layout_marginLeft="13dp"
+                    p1:layout_marginLeft="10dp"
                     p1:layout_marginTop="18dp"
                     p1:textColor="#ffeeeeee"
-                    p1:textSize="10.5dp" />
+                    p1:textSize="12dp" />
                 <TextView
                     p1:text="35"
                     p1:textAppearance="?android:attr/textAppearanceLarge"

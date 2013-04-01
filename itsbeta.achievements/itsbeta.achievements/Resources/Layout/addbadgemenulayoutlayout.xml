@@ -27,15 +27,15 @@
             p1:layout_alignRight="@id/BadgeSheetImageView"
             p1:background="@drawable/paper_background_middlemiddle"
             p1:textColor="#ff4e4e4e"
-            p1:textSize="12dp" />
+            p1:textSize="13dp" />
         <Button
-            p1:text="    Использовать QR-ридер"
+            p1:text="    Считать QR-код"
             p1:layout_height="35dp"
             p1:id="@+id/addbadge_readQRButton"
             p1:layout_alignTop="@id/BadgeSheetImageView"
             p1:layout_alignLeft="@id/BadgeSheetImageView"
             p1:layout_alignRight="@id/BadgeSheetImageView"
-            p1:textSize="11dp"
+            p1:textSize="13dp"
             p1:gravity="center_vertical"
             p1:background="@drawable/BlueBtn_norm"
             p1:layout_marginTop="60dp"
@@ -50,7 +50,7 @@
             p1:layout_below="@id/addbadge_readQRButton"
             p1:id="@+id/addbadge_addcodeButton"
             p1:background="@drawable/GreenBtn_norm"
-            p1:textSize="11dp"
+            p1:textSize="13dp"
             p1:layout_alignLeft="@id/BadgeSheetImageView"
             p1:layout_alignRight="@id/BadgeSheetImageView"
             p1:layout_marginTop="5dp"

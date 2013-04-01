@@ -17,13 +17,13 @@ using Android.Graphics;
 using ItsBeta.Core;
 using System.Threading;
 using ZXing.Mobile;
+using MonoAndroid.PullToRefresh;
 
 namespace itsbeta.achievements
 {
     public partial class MainScreenActivity
     {
         List<AchievementsListData> _achievementsList;
-        ListView _achievementsListView;
         PopupWindow _badgePopupWindow;
         Bitmap[] _bitmaps;
         Bitmap[] _achievesBitmaps;
@@ -34,18 +34,18 @@ namespace itsbeta.achievements
             if (_achievesBitmaps != null)
             {
                 
-            foreach (var bitmap in _achievesBitmaps)
-            {
-                if (bitmap!= null)
+                foreach (var bitmap in _achievesBitmaps)
                 {
-                    bitmap.Recycle();
-                    //bitmap.Dispose();
+                    if (bitmap!= null)
+                    {
+                        bitmap.Recycle();
+                        //bitmap.Dispose();
+                    }
                 }
-            }
             }
             if (_achievementsListView!=null)
             {
-                _achievementsListView.Dispose();
+                //_achievementsListView.Dispose();
             }
 
 
@@ -97,7 +97,7 @@ namespace itsbeta.achievements
                         
                         if (!AppInfo.IsLocaleRu)
                         {
-                            if (AppInfo._achievesInfo.CategoryArray[i].DisplayName == _selectedCategoryId && _selectedsubCategoryId== "All projects")
+                            if (AppInfo._achievesInfo.CategoryArray[i].DisplayName == _selectedCategoryId && _selectedsubCategoryId== "All subcategories")
                             {
                                 _achievementsList.Add(new AchievementsListData()
                                 {
@@ -118,7 +118,7 @@ namespace itsbeta.achievements
                         }
                         else
                         {
-                            if (AppInfo._achievesInfo.CategoryArray[i].DisplayName == _selectedCategoryId && _selectedsubCategoryId == "Все проекты")
+                            if (AppInfo._achievesInfo.CategoryArray[i].DisplayName == _selectedCategoryId && _selectedsubCategoryId == "Все подкатегории")
                             {
                                 _achievementsList.Add(new AchievementsListData()
                                 {
@@ -141,8 +141,9 @@ namespace itsbeta.achievements
                 }
             }
 
-            _achievementsListView = FindViewById<ListView>(Resource.Id.secondscr_listView);
-            
+            _achievementsListView.SetOnRefreshListener(new RefreshListener());
+
+
             _achievementsListView.DividerHeight = 0;
 
             _achievementsList = _achievementsList.OrderByDescending(x => x.AchieveReceivedDateTime).ToList();
@@ -470,5 +471,35 @@ namespace itsbeta.achievements
                 _badgePopupWindow.Dismiss();
             }
         }
+
+
+        public class RefreshListener : PullToRefreshListView.OnRefreshListener
+        {
+            public void onRefresh()
+            {
+                ThreadPool.QueueUserWorkItem(delegate
+                {
+                    try
+                    {
+                        AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId, AppInfo.IsLocaleRu);
+                        _context.RunOnUiThread(() => _achievementsListView.onRefreshComplete());
+                        _context.RunOnUiThread(() => _context.GetAchievementsView());
+                    }
+                    catch (Exception)
+                    {
+                        _context.RunOnUiThread(() => _achievementsListView.onRefreshComplete());
+                        string errorMessage = "Error while refreshing";
+                        if (AppInfo.IsLocaleRu)
+                        {
+                            errorMessage = "Ошибка обновления";
+                        }
+                        _context.RunOnUiThread(() => Toast.MakeText(_context, errorMessage, ToastLength.Short).Show());
+                    }
+                });
+                
+            }
+        }
     }
+
+    
 }

@@ -49,7 +49,7 @@ namespace itsbeta.achievements
 
             if (!AppInfo.IsLocaleRu)
             {
-                signUpTextView.Text = "Facebook sign up";
+                signUpTextView.Text = "About project";
                 signInTextView.Text = "               Sign in with";
                 centerTextView.Text = "Collect all your achievements";
             }
@@ -58,7 +58,7 @@ namespace itsbeta.achievements
             //login_centerTextView
             signUpTextView.Click += delegate
             {
-                Intent browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse("http://www.facebook.com/r.php"));
+                Intent browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse("http://itsbeta.com/"));
                 StartActivity(browserIntent);
             };
 

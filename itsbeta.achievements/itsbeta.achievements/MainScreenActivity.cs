@@ -18,6 +18,7 @@ using ItsBeta.Core;
 using System.Threading;
 using ZXing.Mobile;
 using Android.Views.InputMethods;
+using MonoAndroid.PullToRefresh;
 
 namespace itsbeta.achievements
 {
@@ -31,7 +32,9 @@ namespace itsbeta.achievements
         static Button _inactiveAllButton;
         static Vibrator _vibe;
         static TextView _refreshAchTextView;
-        public static Context _context;
+        public static MainScreenActivity _context;
+
+        public static PullToRefreshListView _achievementsListView;
 
         public static bool _isAchListItemClicked = false;
         public static TextView _foundActionTextView;
@@ -44,6 +47,11 @@ namespace itsbeta.achievements
             base.OnCreate(bundle);
             _context = this;
             SetContentView(Resource.Layout.secondscreenactivitylayout);
+
+
+            _achievementsListView = (PullToRefreshListView)FindViewById(Resource.Id.secondscr_listView);
+
+
             _foundActionTextView = new TextView(this);
             _refreshProjectsAndAchTextView = new TextView(this);
 

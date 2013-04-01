@@ -38,7 +38,7 @@ namespace itsbeta.achievements.gui
 
             foreach (var allActiveItem in Items)
             {
-                if (allActiveItem.SubCategoryNameText == "Все проекты")
+                if (allActiveItem.SubCategoryNameText == "Все подкатегории" || allActiveItem.SubCategoryNameText == "All subcategories")
                 {
                     if (Items.IndexOf(allActiveItem) != 0)
                     {
@@ -46,7 +46,7 @@ namespace itsbeta.achievements.gui
                     }
                 }
             }
-            if (_allitem.SubCategoryNameText == "Все проекты")
+            if (_allitem.SubCategoryNameText == "Все подкатегории" || _allitem.SubCategoryNameText == "All subcategories")
             {
                 if (Items.IndexOf(_allitem) != 0)
                 {

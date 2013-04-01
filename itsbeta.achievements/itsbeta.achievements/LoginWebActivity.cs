@@ -54,7 +54,9 @@ namespace itsbeta.achievements
             //_messageDialogBuilder = new AlertDialog.Builder(this);
             _loginWebView = FindViewById<WebView>(Resource.Id.loginWebView);
             _loginWebView.Settings.SavePassword = false;
-            _loginWebView.Settings.JavaScriptEnabled = true;
+
+            //_loginWebView.Settings.JavaScriptEnabled = true;
+
             _loginWebView.Settings.PluginsEnabled = true;
             _loginWebView.Settings.JavaScriptCanOpenWindowsAutomatically = true;
             _loginWebView.SaveEnabled = false;

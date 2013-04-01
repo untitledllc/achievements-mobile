@@ -122,13 +122,10 @@
                 p1:layout_marginLeft="10dp" />
         </RelativeLayout>
     </LinearLayout>
-    <ListView
-        p1:minWidth="25px"
-        p1:minHeight="25px"
+  <monoandroid.pulltorefresh.PullToRefreshListView
         p1:layout_width="fill_parent"
         p1:layout_height="fill_parent"
         p1:layout_below="@id/secondscr_categoriesbar_linearLayout"
-        p1:choiceMode="singleChoice"
         p1:id="@+id/secondscr_listView" />
     <Button
         p1:layout_width="fill_parent"

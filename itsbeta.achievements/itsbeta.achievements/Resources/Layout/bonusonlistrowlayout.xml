@@ -37,7 +37,7 @@
         p1:id="@+id/badgewin_bonusTextView"
         p1:layout_alignTop="@id/badgewin_GreenBonusImageView"
         p1:layout_alignLeft="@id/badgewin_GreenBonusImageView"
-        p1:layout_marginLeft="15dp"
+        p1:layout_marginLeft="20dp"
         p1:layout_alignBottom="@id/badgewin_GreenBonusImageView"
         p1:gravity="center" />
     <ImageView

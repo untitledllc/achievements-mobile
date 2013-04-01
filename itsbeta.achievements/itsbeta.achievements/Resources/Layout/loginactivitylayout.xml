@@ -32,7 +32,7 @@
         p1:layout_height="80dp"
         p1:layout_centerVertical="true" />
     <TextView
-        p1:text="Зарегистрироваться в Facebook"
+        p1:text="О проекте"
         p1:textAppearance="?android:attr/textAppearanceMedium"
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
