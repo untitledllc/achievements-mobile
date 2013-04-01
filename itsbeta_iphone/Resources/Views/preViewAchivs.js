@@ -39,12 +39,12 @@ module.exports = [
 					{
 						outlet: "close",
 						style: {
-							className: "Ti.UI.ImageView",
+							className: "Ti.UI.View",
 							top: 5,
 							right: 5,
 							height: 22,
 							width: 22,
-							image: "images/buttons/Close.Normal.png"
+							backgroundImage: "images/buttons/Close.Normal.png"
 						}
 					},
 					{
