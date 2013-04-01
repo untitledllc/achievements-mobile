@@ -96,10 +96,8 @@ module.exports = {
 						className: "Ti.UI.View",
 						layout: "vertical",
 						top: 20,
-						//right: 0,
+						right: 0,
 						height: Ti.UI.SIZE,
-						width: "10%",
-						backgroundColor: "yellow",
 						touchEnabled: false
 					}
 				}

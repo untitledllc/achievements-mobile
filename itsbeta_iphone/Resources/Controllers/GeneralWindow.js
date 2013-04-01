@@ -243,12 +243,12 @@ function createListAchivs(window,categiry)
 							tempColor = "gray";
 						}
 						
-						var bonus = preViewBonus({
-							text: achievement.bonuses[n].bonus_type,
-							color: tempColor
-						});
+						var bonus = preViewBonus(achievement.bonuses[n].bonus_type);
 						
-						row.addBonus.add(bonus);
+						if(bonus)
+						{
+							row.addBonus.add(bonus);
+						}
 					}
 					
 					row.viewAchivs.data = {
@@ -428,22 +428,43 @@ function reSaveAchivs(data)
 	ui.counter.text = counter;
 	createListAchivs(window,"null");
 }
-function preViewBonus(params)
+function preViewBonus(type)
 {
-	var bonus = Ti.UI.createView({
-		top: 10,
-		height: 20,
-		width: 20,
-		backgroundColor: params.color,
-	});
+	var iconUrl = "", bgUrl = "";
 	
-	var label = Ti.UI.createLabel({
+	switch(type)
+	{
+		case "discount":
+			iconUrl = "images/icons/Percents.png";
+			bgUrl = "images/bg/Bonus.Discount.List.png";
+			break;
+		case "present":
+			iconUrl = "images/icons/Present.png";
+			bgUrl = "images/bg/Bonus.Discount.List.png";
+			break;
+		case "bonus":
+			iconUrl = "images/icons/Clover.png";
+			bgUrl = "images/bg/Bonus.Bonus.List.png";
+			break;
+		default:
+			return null;
+	}
+	
+	var bonus = TiTools.UI.Controls.createView({
+		top: 10,
+		right: 0,
 		height: Ti.UI.SIZE,
 		width: Ti.UI.SIZE,
-		text: params.text
+		backgroundImage: bgUrl
 	});
 	
-	bonus.add(label);
+	var icon = TiTools.UI.Controls.createImageView({
+		image: iconUrl,
+		width: 23,
+		height: 23
+	});
+	
+	bonus.add(icon);
 	
 	return bonus;
 }
