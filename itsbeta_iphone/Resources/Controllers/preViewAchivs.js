@@ -23,10 +23,13 @@ function onInitController(window, params)
 	ui.nameAchivs.text = window.nameAchivs;
 	ui.textAchivs.text = window.textAchivs;
 	
-	ui.close.addEventListener("click",function(event)
-	{
-		window.close();
-	});
+	// close button
+	decorateButton.call(
+		ui.close,
+		function() {
+			window.close();
+		}
+	);
 	
 	/*ui.shadowClose.addEventListener("click",function(event)
 	{

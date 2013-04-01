@@ -77,8 +77,8 @@ function onInitController(window, params)
 				category.display_name;
 				
 				var allRow = {
-					display_name : "Все категории",
-					api_name : "null",
+					display_name: "Все категории",
+					api_name: "null",
 				};
 				//--- делаем первую ячейку "все категории"
 				createListRow(allRow,massRow);
@@ -103,51 +103,53 @@ function onInitController(window, params)
 		}
 	});
 	
-	ui.placeListView.addEventListener("singletap",function(event)
+	ui.placeListView.addEventListener("singletap", function(event)
 	{
 		undefClick();
 	});
 	
-	ui.placeListViewCancel.addEventListener("singletap",function(event)
+	ui.placeListViewCancel.addEventListener("singletap", function(event)
 	{
 		undefClick();
 	});
 	
-	ui.nameProject.addEventListener("singletap",function(event)
+	ui.nameProject.addEventListener("singletap", function(event)
 	{
 		ui.transparentView.show();
 		ui.placeListViewCancel.show();
-		createListName(window,typeProject);
+		createListName(window, typeProject);
 	});
 	
-	ui.add.addEventListener("singletap",function(event)
-	{
-		var winAdd = TiTools.UI.Controls.createWindow(
-			{
-				main : "Controllers/add.js",
-				navBarHidden : true,
-				achievements : achievements
-			}
-		);
-		winAdd.initialize();
-		winAdd.open();
-	});
+	// add code
+	decorateButton.call(
+		ui.add,
+		function() {
+			var winAdd = TiTools.UI.Controls.createWindow({
+				main: "Controllers/add.js",
+				navBarHidden: true,
+				achievements: achievements
+			});
+			winAdd.initialize();
+			winAdd.open();	
+		}
+	);
 	
-	ui.profile.addEventListener("singletap",function(event)
-	{
-		var winAdd = TiTools.UI.Controls.createWindow(
-			{
-				main : "Controllers/Profile.js",
+	// profile
+	decorateButton.call(
+		ui.profile,
+		function() {
+			var winAdd = TiTools.UI.Controls.createWindow({
+				main: "Controllers/Profile.js",
 				backgroundColor: "#fff",
-				navBarHidden : true,
-				info : info,
+				navBarHidden: true,
+				info: info,
 				achievements: achievements,
-				counter : counter
-			}
-		);
-		winAdd.initialize();
-		winAdd.open();
-	});
+				counter: counter
+			});
+			winAdd.initialize();
+			winAdd.open();	
+		}
+	);
 }
 //---------------------------------------------//
 // Функции лентяйки
