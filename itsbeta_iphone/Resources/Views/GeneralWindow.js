@@ -80,10 +80,8 @@ module.exports = [
 			{
 				style : {
 					className: "Ti.UI.View",
-					top: -20,
-					height: 70,
-					width: Ti.UI.FILL,
-					layout: "horizontal",
+					top: -25,
+					height: 54,
 					backgroundImage: "images/navbar/Selects.Bg.png"
 				},
 				subviews:
@@ -91,16 +89,15 @@ module.exports = [
 					{
 						style: {
 							className: "Ti.UI.View",
-							top: 40,
+							top: 30,
+							left: 0,
 							height: Ti.UI.SIZE,
-							width: "50%",
-							bottom: 10
+							width: "50%"
 						},
 						subviews: [
 							{
 								style: {
 									className: "Ti.UI.View",
-									height: Ti.UI.SIZE,
 									width: Ti.UI.SIZE,
 									layout: "horizontal"
 								},
@@ -109,6 +106,8 @@ module.exports = [
 										outlet: "typeProject",
 										style : {
 											className: "Ti.UI.Label",
+											color: "#646464",
+											font: {fontSize: 15},
 											text: "Категория"
 										}
 									},
@@ -125,28 +124,25 @@ module.exports = [
 							}
 						]	
 					},
-					// {
-						// style: {
-							// className: "Ti.UI.View",
-							// backgroundImage: "images/navbar/Selects.Divider.png",
-							// height: Ti.UI.SIZE,
-							// width: 5
-						// }
-					// },
 					{
 						style: {
 							className: "Ti.UI.View",
-							top: 40,
-							height: 20,
-							width: "49%",
-							bottom: 10
+							backgroundImage: "images/navbar/Selects.Divider.png",
+							width: 5
+						}
+					},
+					{
+						style: {
+							className: "Ti.UI.View",
+							top: 30,
+							right: 0,
+							height: Ti.UI.SIZE,
+							width: "50%"
 						},
 						subviews: [
 							{
 								style: {
 									className: "Ti.UI.View",
-									right: 0,
-									height: Ti.UI.FILL,
 									width: Ti.UI.SIZE,
 									layout: "horizontal"
 								},
@@ -155,11 +151,9 @@ module.exports = [
 										outlet: "nameProject",
 										style : {
 											className: "Ti.UI.Label",
-											height: 20,
-											right: 0,
-											width: "85%",
-											text: "Проект",
-											textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT
+											color: "#646464",
+											font: {fontSize: 15},
+											text: "Проект"
 										}
 									},
 									{
@@ -182,7 +176,18 @@ module.exports = [
 					className: "Ti.UI.View",
 					backgroundImage: "images/navbar/Selects.Bottom.png",
 					height: 8
-				}
+				},
+				subviews: [
+				 	{
+						style: {
+							className: "Ti.UI.View",
+							backgroundImage: "images/navbar/Selects.Divider.png",
+							//height: Ti.UI.SIZE,
+							width: 5,
+							bottom: 3
+						}
+					}
+				]
 			}
 		]
 	},
