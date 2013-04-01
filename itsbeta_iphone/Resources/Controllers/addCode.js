@@ -69,6 +69,12 @@ function onWindowOpen(window, event)
 	{
 		actIndicator(false);
 	});
+	
+	Ti.App.addEventListener("CloseAdd",function(event)
+		{
+			window.close();
+		}
+	);
 }
 
 // Обработчик при закрытии окна

@@ -32,7 +32,11 @@ function onInitController(window, params)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
-	
+	Ti.App.addEventListener("CloseAdd",function(event)
+		{
+			window.close();
+		}
+	);
 }
 
 // Обработчик при закрытии окна

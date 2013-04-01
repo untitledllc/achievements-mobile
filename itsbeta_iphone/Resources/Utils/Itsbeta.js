@@ -190,13 +190,14 @@ function postActiv(data)//Активация по qr-коду активации
 						
 						if(temp.error == undefined)
 						{
-							Ti.UI.createAlertDialog({
-								message: "Выполнено!",
-								title: "Информация"
-							}).show();
+							// Ti.UI.createAlertDialog({
+								// message: "Выполнено!",
+								// title: "Информация"
+							// }).show();
 							
-							Ti.App.fireEvent("reload");
+							Ti.App.fireEvent("reload",{data : temp});
 							
+							Ti.App.fireEvent("CloseAdd");
 						}else
 						{
 							Ti.UI.createAlertDialog({

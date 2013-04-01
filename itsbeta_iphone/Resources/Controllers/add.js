@@ -103,8 +103,8 @@ function onInitController(window, params)
 		// scanning is canceled.
 		this.setSuccessCallback(function(e) {
 			scanWin.close();			
-     		actIndicator(true);
-		 	itsbeta.postActiv(e.barcode);
+			actIndicator(true);
+			itsbeta.postActiv(e.barcode);
 		});
 		
 		// options
@@ -155,6 +155,12 @@ function onWindowOpen(window, event)
 	{
 		actIndicator(false);
 	});
+	
+	Ti.App.addEventListener("CloseAdd",function(event)
+		{
+			window.close();
+		}
+	);
 }
 
 // Обработчик при закрытии окна

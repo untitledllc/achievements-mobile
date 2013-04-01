@@ -14,6 +14,9 @@ var counter = 0;
 var itsbeta = undefined;
 var massRow = [];
 var category = [];
+var tempNewAchivs = undefined;
+var selectCategory = "null";
+var selectProject = "null";
 //---------------------------------------------//
 // Глобальные переменные для окна
 //---------------------------------------------//
@@ -60,7 +63,6 @@ function onInitController(window, params)
 		//ui.typeProject.hide();
 		//ui.nameProject.hide();
 		
-		//ui.nameProject.text = "Проект";
 		//ui.typeProject.text = "Категория";
 		
 		ui.placeListViewCancel.show();
@@ -191,6 +193,10 @@ function onWindowOpen(window, event)
 	
 	Ti.App.addEventListener("reload",function(event){
 		// ---- delete ----
+		ui.preAchivs.hide();
+		actIndicator(true);
+		tempNewAchivs = event.data;
+		
 		for(var i = 0; i < tempAchivs.length; i++)
 		{
 			tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
@@ -200,6 +206,7 @@ function onWindowOpen(window, event)
 		//-----------------
 		
 		// get achievements by user id
+		
 		itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
 		
 	});
@@ -209,6 +216,9 @@ function onWindowOpen(window, event)
 ///-----сосдание списка ачивок-----//
 function createListAchivs(window,categiry)
 {
+	ui.preAchivs.hide();
+	actIndicator(true);
+	
 	for(var i = 0; i < achievements.length; i++)
 	{
 		for(var j = 0; j < achievements[i].projects.length; j++)
@@ -220,13 +230,15 @@ function createListAchivs(window,categiry)
 					var achievement = achievements[i].projects[j].achievements[k];
 					var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
 					
-					tempAchivs.push(row);
-					
 					row.date.text = TiTools.DateTime.format(new Date(achievement.create_time), "$dd.$mm.$yyyy");
 					row.image.image = achievement.pic;
 					row.name.text = achievement.display_name;
 					row.name.color = achievements[i].projects[j].color;
 					row.desc.text = achievement.desc;
+					row.category = achievements[i].api_name;
+					row.project = achievements[i].projects[j].api_name;
+					
+					tempAchivs.push(row);
 					
 					for(var n = 0; n < achievement.bonuses.length; n++)
 					{
@@ -283,12 +295,41 @@ function createListAchivs(window,categiry)
 				}
 			}
 		}
+		if(i+1 == achievements.length)
+		{
+			ui.preAchivs.show();
+			actIndicator(false);
+			
+			Ti.App.fireEvent("actHide");
+			
+			if(tempNewAchivs != undefined)
+			{
+				var win = TiTools.UI.Controls.createWindow(
+					{
+						main : "Controllers/preViewAchivs.js",
+						navBarHidden : true,
+						nameAchivs: tempNewAchivs.display_name,
+						desc: tempNewAchivs.desc,
+						details: tempNewAchivs.details,
+						adv: tempNewAchivs.adv,
+						image: tempNewAchivs.pic,
+						bonus: tempNewAchivs.bonuses
+					}
+				);
+				win.initialize();
+				win.open();
+				
+				tempNewAchivs = undefined;
+			}
+		}
 	}
-	Ti.App.fireEvent("actHide");
 }
 function delList(window,categiry)
 {
-	Ti.API.info('start_____');
+	ui.preAchivs.hide();
+	
+	Ti.API.info('start___DEL');
+	
 	for(var i = 0; i < tempAchivs.length; i++)
 	{
 		tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
@@ -326,6 +367,7 @@ function createListName(window,category)
 						
 						row.rowAchivs.addEventListener("singletap",function(event)
 						{
+							selectProject = event.source.api_name;
 							actIndicator(true);
 							
 							var animationHandler = function() {
@@ -337,14 +379,16 @@ function createListName(window,category)
 								ui.nameProject.show();
 								
 								ui.list.visible = false;
-								for(var ii = 0; ii != massRow.length; ii++)
-								{
-									massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-								}
+								// for(var ii = 0; ii != massRow.length; ii++)
+								// {
+									// massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+								// }
 								
 								ui.nameProject.text = event.source.display_name;
 								
-								delList(window,event.source.api_name);
+								//delList(window,event.source.api_name);
+								
+								hideAchivs();
 							};
 							
 							animationEnd.addEventListener('complete',animationHandler);
@@ -512,26 +556,31 @@ function createListRow(category,massRow)
 						
 	row.rowAchivs.addEventListener("singletap",function(event)
 	{
-		actIndicator(true);
+		ui.nameProject.text = "Проект";
+		selectProject = "null";
 		
+		actIndicator(true);
 		
 		var animationHandler = function() {
 			animationEnd.removeEventListener('complete',animationHandler);
 		
+			selectCategory = event.source.api_name;
 			typeProject = event.source.api_name;
 			ui.typeProject.text = event.source.display_name;
 			
 			ui.typeProject.show();
 			ui.nameProject.show();
 			ui.list.visible = false;
-			for(var ii = 0; ii < massRow.length; ii++)
-			{
-				massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-			}
+			// for(var ii = 0; ii < massRow.length; ii++)
+			// {
+				// massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+			// }
 			
 			ui.placeListView.animate(animationEnd);
 			Ti.API.info('++');
-			delList(window,typeProject);
+			//delList(window,typeProject);
+			
+			hideAchivs();
 		};
 		
 		animationEnd.addEventListener('complete',animationHandler);
@@ -561,6 +610,45 @@ function undefClick()
 		animationEnd.addEventListener('complete',animationHandler);
 		
 		ui.placeListView.animate(animationEnd);
+}
+function hideAchivs()
+{
+	ui.preAchivs.hide();
+	
+	Ti.API.info('selectCategory ' + selectCategory);
+	Ti.API.info('selectProject ' + selectProject);
+	var heigthScroll = 0;
+	
+	for(var i = 0; i < tempAchivs.length; i++)
+	{
+		Ti.API.info('tempAchivs[i].category ' + tempAchivs[i].category);
+		Ti.API.info('tempAchivs[i].project ' + tempAchivs[i].project);
+		
+		if(tempAchivs[i].category == selectCategory || selectCategory == "null")
+		{
+			if(tempAchivs[i].project == selectProject || selectProject == "null")
+			{
+				tempAchivs[i].viewAchivs.height = 150;
+				heigthScroll++;
+			}
+			else
+			{
+				tempAchivs[i].viewAchivs.height = 0;
+			}
+		}
+		else
+		{
+			tempAchivs[i].viewAchivs.height = 0;
+		}
+		if(i+1 == tempAchivs.length)
+		{
+			heigthScroll++;
+			ui.preAchivs.updateLayout({contentHeight: Ti.UI.SIZE});
+			Ti.API.info('contentHeight ');
+			ui.preAchivs.show();
+			actIndicator(false);
+		}
+	}
 }
 // Обработчик при закрытии окна
 function onWindowClose(window, event)

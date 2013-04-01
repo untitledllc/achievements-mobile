@@ -5,7 +5,7 @@ module.exports = {
 	outlet: "viewAchivs",
 	style : {
 		className : "Ti.UI.View",
-		height: Ti.UI.SIZE,
+		height: 150,
 		layout: "vertical"
 	},
 	subviews: [
