@@ -18,6 +18,8 @@ var newCategories = [];
 var newProjects = [];
 var counter = 0;
 
+var ui = undefined;
+
 //---------------------------------------------//
 
 Ti.include("Utils/Helper.js");
@@ -41,6 +43,11 @@ function onInitController(window, params)
 		ui.infacebook, 
 		function(event) // onSingleTap handler
 		{
+			categories = [];
+			projects = [];
+			achievements = [];
+			counter = 0;
+			
 			Titanium.Facebook.appid = "264918200296425";
 			Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
 			
