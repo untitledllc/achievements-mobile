@@ -453,7 +453,7 @@ function preViewBonus(type)
 	var bonus = TiTools.UI.Controls.createView({
 		top: 10,
 		right: 0,
-		height: Ti.UI.SIZE,
+		height: 23,
 		width: Ti.UI.SIZE,
 		backgroundImage: bgUrl
 	});
