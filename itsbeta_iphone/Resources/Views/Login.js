@@ -16,13 +16,13 @@ module.exports = [
 					width: 175,
 					image: "images/Logo.png",
 					zIndex: 10,
-					top: 30
+					top: 15
 				}
 			},
 			{
 				style : {
 					className: "Ti.UI.View",
-					top: 115,
+					top: 100,
 					left: 10,
 					right: 10,
 					bottom: 10,
@@ -45,8 +45,9 @@ module.exports = [
 								style: {
 									className: "Ti.UI.Label",
 									top: 25,
+									color: "#646464",
 									text: "Collect all your achievements",
-									font: {fontSize: 15}
+									font: {fontSize: 14}
 								}
 							},
 							{
@@ -80,6 +81,7 @@ module.exports = [
 													width: "45%",
 													left: "3%",
 													textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+													font: {fontWeight: "bold", fontSize: 18},
 													text: "facebook"
 												}
 											}						
@@ -93,6 +95,8 @@ module.exports = [
 									bottom: 10,
 									height: Ti.UI.SIZE,
 									width: Ti.UI.SIZE,
+									color: "#7ed6f9",
+									font: {fontSize: 15, fontStyle: "underline"},
 									text: "Facebook sing up"
 								}
 							}	
