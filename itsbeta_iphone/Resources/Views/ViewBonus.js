@@ -8,7 +8,7 @@ module.exports = [
 			layout: "vertical",
 			height: Ti.UI.SIZE,
 			width: Ti.UI.FILL,
-			backgroundColor: "transpatent",
+			backgroundColor: "transparent",
 		},
 		subviews:
 		[

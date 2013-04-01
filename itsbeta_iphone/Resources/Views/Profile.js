@@ -97,7 +97,7 @@ module.exports = [
 		style : {
 			className: "Ti.UI.ScrollView",
 			top: 60,
-			bottom: 20,
+			bottom: 0,
 			height: Ti.UI.SIZE,
 			layout: "vertical"
 		},
