@@ -486,7 +486,7 @@ function preViewBonus(type)
 			break;
 		case "present":
 			iconUrl = "images/icons/Present.png";
-			bgUrl = "images/bg/Bonus.Discount.List.png";
+			bgUrl = "images/bg/Bonus.Present.List.png";
 			break;
 		case "bonus":
 			iconUrl = "images/icons/Clover.png";
