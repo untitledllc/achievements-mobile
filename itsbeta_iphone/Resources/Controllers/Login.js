@@ -43,8 +43,6 @@ function onInitController(window, params)
 		ui.infacebook, 
 		function(event) // onSingleTap handler
 		{
-			
-			
 			Titanium.Facebook.appid = "264918200296425";
 			Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
 			
@@ -61,34 +59,20 @@ function onInitController(window, params)
 					try
 					{
 						var results = JSON.parse(x.result);
-						
-						Ti.API.info(results);
+						var profile = results[0];
 						
 						info = {
-							fbuid : fbuid,
-							accessToken : accessToken
+							fbuid: fbuid,
+							accessToken: accessToken
 						};
-						if(results[0].name != undefined)
-						{
-							info.name = results[0].name;
-						}
-						if(results[0].birthday_date != undefined)
-						{
-							info.birthday = results[0].birthday_date;
-						}
-						if(results[0].current_location != undefined)
-						{
-							if(results[0].current_location.city != undefined)
-							{
-								info.city = results[0].current_location.city;
-							}
-							if(results[0].current_location.country != undefined)
-							{
-								info.country = results[0].current_location.country;
-							}
+							
+						info.name     = (profile.name) ? profile.name : null;	
+						info.birthday = (profile.birthday_date) ? profile.birthday_date : null;	
+						if(info.current_location) {
+							info.city    = (profile.current_location.city) ? profile.current_location.city : null;	
+							info.country = (profile.current_location.country) ? profile.current_location.country : null;
 						}
 						
-						Ti.API.info(info);
 						TiTools.Global.set("info", info);
 					}
 					catch(e)
@@ -96,8 +80,8 @@ function onInitController(window, params)
 						alert("Ошибка загрузки данных из Facebook.");
 						
 						info = {
-							fbuid : fbuid,
-							accessToken : accessToken,
+							fbuid: fbuid,
+							accessToken: accessToken,
 							name: "",
 							birthday: "",
 							city: "",
@@ -171,26 +155,21 @@ function saveAchivs(data)
 	{
 		var achievement = achievements[i];
 		
-		categories.push(
-			{
-				api_name: achievement.api_name,
-				display_name: achievement.display_name
-			}
-		);
+		categories.push({
+			api_name: achievement.api_name,
+			display_name: achievement.display_name
+		});
 		
 		for(var j = 0; j < achievement.projects.length; j++)
 		{
-			
 			var project = achievement.projects[j];
 			counter += project.achievements.length;
 			
-			projects.push(
-				{
-					api_name: project.api_name,
-					display_name: project.display_name,
-					total_badge: project.total_badge
-				}
-			);
+			projects.push({
+				api_name: project.api_name,
+				display_name: project.display_name,
+				total_badge: project.total_badge
+			});
 		}
 	}
 	

@@ -593,23 +593,23 @@ function undefClick()
 {
 	ui.placeListViewCancel.hide();
 		
-		var animationHandler = function() {
-			animationEnd.removeEventListener('complete',animationHandler);
-			
-			ui.transparentView.hide();
-			
-			ui.list.visible = false;
-			for(var ii = 0; ii < massRow.length; ii++)
-			{
-				massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-			}
-			
-			ui.placeListView.animate(animationEnd);
-		};
+	var animationHandler = function() {
+		animationEnd.removeEventListener('complete',animationHandler);
 		
-		animationEnd.addEventListener('complete',animationHandler);
+		ui.transparentView.hide();
+		
+		ui.list.visible = false;
+		for(var ii = 0; ii < massRow.length; ii++)
+		{
+			massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+		}
 		
 		ui.placeListView.animate(animationEnd);
+	};
+	
+	animationEnd.addEventListener('complete',animationHandler);
+	
+	ui.placeListView.animate(animationEnd);
 }
 function hideAchivs()
 {

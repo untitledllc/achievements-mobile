@@ -32,18 +32,16 @@ function onInitController(window, params)
 	ui.profileName.text = window.info.name;
 	//ui.profileInfo.text = window.info.birthday + ", " + window.info.city + ", " + window.info.country;
 	
+	var info = window.info;
 	var pName = "";
-	if(window.info.birthday != undefined)
-	{
-		pName += window.info.birthday + ","
+	if(info.birthday) {
+		pName += info.birthday + ",";
 	}
-	if(window.info.city != undefined)
-	{
-		pName += window.info.city + ","
+	if(info.city) {
+		pName += info.city + ",";
 	}
-	if(window.info.country != undefined)
-	{
-		pName += window.info.country;
+	if(info.country) {
+		pName += info.country;
 	}
 	
 	ui.profileInfo.text = pName;
@@ -128,15 +126,16 @@ function onWindowOpen(window, event)
 				}
 			}
 			
-			statView.item.add(createLabelStat(project.api_name, Math.ceil(100*tempAchivs.length/project.total_badges))) // +" ("+ tempAchivs.length + "/" + project.total_badges + ")"));
+			statView.item.add(createProfileBadgeRow(project.display_name + " - " + project.total_badges, Math.ceil(100*tempAchivs.length/project.total_badges)));
 		}
 	}
 	ui.all.text = ui.all.text + all;
 	ui.bonus.text = ui.bonus.text + bonus;
 	ui.sub.text = ui.sub.text + sub ;
 }
-//------Создание лабелки с отображением имени проекта и статистикой полученый ачивок---//
-function createLabelStat(title, progress)
+
+// create profile badge row with progress bar
+function createProfileBadgeRow(title, progress)
 {
 	var row = TiTools.UI.Loader.load("Views/profileBadgeRow.js");
 	row.title.text = title;
