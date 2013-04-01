@@ -56,16 +56,19 @@ function onInitController(window, params)
 		}
 	);
 	
-	ui.logOut.addEventListener("click",function(event)
-	{
-		Ti.Facebook.logout();
-		// clear cookies
-		var client = Ti.Network.createHTTPClient();
-		client.clearCookies('https://login.facebook.com');
-		
-		Ti.App.fireEvent("logout");
-		window.close();
-	});
+	// log out
+	decorateButton.call(
+		ui.logOut, 
+		function() {
+			Ti.Facebook.logout();
+			// clear cookies
+			var client = Ti.Network.createHTTPClient();
+			client.clearCookies('https://login.facebook.com');
+			
+			Ti.App.fireEvent("logout");
+			window.close();
+		}
+	);
 	
  }
 //---------------------------------------------//
