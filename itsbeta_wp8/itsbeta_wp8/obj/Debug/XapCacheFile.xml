@@ -1,6 +1,6 @@
-﻿<xapCache source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\itsbeta_wp8_Debug_AnyCPU.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="01.04.2013 14:38:07">
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\obj\Debug\itsbeta_wp7.dll" archivePath="itsbeta_wp7.dll" lastWriteTime="01.04.2013 14:38:03" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\obj\Debug\ru-RU\itsbeta_wp7.resources.dll" archivePath="ru-RU\itsbeta_wp7.resources.dll" lastWriteTime="01.04.2013 14:38:03" />
+﻿<xapCache source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\itsbeta_wp8_Debug_AnyCPU.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="01.04.2013 16:28:29">
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\obj\Debug\itsbeta_wp7.dll" archivePath="itsbeta_wp7.dll" lastWriteTime="01.04.2013 16:28:26" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\obj\Debug\ru-RU\itsbeta_wp7.resources.dll" archivePath="ru-RU\itsbeta_wp7.resources.dll" lastWriteTime="01.04.2013 16:28:26" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\icons\appbar.add.rest.png" archivePath="icons\appbar.add.rest.png" lastWriteTime="29.08.2011 23:47:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\icons\appbar.cancel.rest.png" archivePath="icons\appbar.cancel.rest.png" lastWriteTime="29.08.2011 23:47:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\icons\appbar.check.rest.png" archivePath="icons\appbar.check.rest.png" lastWriteTime="29.08.2011 23:47:42" />
@@ -67,7 +67,7 @@
   <file source="C:\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Controls.Primitives.xml" archivePath="Telerik.Windows.Controls.Primitives.xml" lastWriteTime="19.02.2013 10:10:18" />
   <file source="C:\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Core.xml" archivePath="Telerik.Windows.Core.xml" lastWriteTime="19.02.2013 10:10:08" />
   <file source="C:\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Data.xml" archivePath="Telerik.Windows.Data.xml" lastWriteTime="19.02.2013 10:10:48" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="01.04.2013 14:38:05" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="01.04.2013 16:21:29" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Background.png" archivePath="Background.png" lastWriteTime="12.03.2013 18:17:53" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="12.03.2013 17:59:26" />
 </xapCache>

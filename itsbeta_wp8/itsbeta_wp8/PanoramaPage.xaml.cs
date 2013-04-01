@@ -184,7 +184,7 @@ NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
             };
         }
 
-        private void NFCButton_Click(object sender, RoutedEventArgs e)
+        private async void NFCButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -192,15 +192,21 @@ NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
                 if (device != null)
                 {
                     long Id = device.SubscribeForMessage("NDEF", messageReceived);
-                    MessageBox.Show("Published Message. ID is " + Id.ToString());
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            MessageBox.Show("Published Message. ID is " + Id.ToString());
+                        });
                 }
             }
             catch { };
         }
 
-        private void messageReceived(ProximityDevice sender, ProximityMessage message)
+        private async void messageReceived(ProximityDevice sender, ProximityMessage message)
         {
-            MessageBox.Show("Received from " + sender.DeviceId.ToString() + " " + message.DataAsString.ToString());
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                MessageBox.Show("Received from " + sender.DeviceId.ToString() + " " + message.DataAsString);
+            });
         }
 
     }
