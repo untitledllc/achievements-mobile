@@ -1,0 +1,316 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="itsbeta_wp7.PanoramaPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
+    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="{Binding Loading}"
+    shell:SystemTray.Opacity="0"
+    shell:SystemTray.BackgroundColor="White"
+    shell:SystemTray.ForegroundColor="Black"
+    DataContext="{Binding Main, Source={StaticResource Locator}}" Background="White" Loaded="PhoneApplicationPage_Loaded_1">
+
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="{Binding Path=LocalizedResources.loading, Source={StaticResource LocalizedStrings}}" />
+    </shell:SystemTray.ProgressIndicator>
+
+    <!--LayoutRoot содержит корневую сетку, где размещается все содержимое страницы-->
+    <Grid x:Name="LayoutRoot" Background="White" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <WPExtensions:AdvancedApplicationBar Mode="Minimized" Background="#FF535353" Foreground="White"/>
+        <!--<WPExtensions:AdvancedApplicationBarMenuItem Name="rate_app" Text="{Binding Path=LocalizedResources.rate_app, Source={StaticResource LocalizedStrings}}" Click="rate_app_Click" />-->
+        <WPExtensions:AdvancedApplicationBarMenuItem Name="about_program" Text="{Binding Path=LocalizedResources.about_program, Source={StaticResource LocalizedStrings}}" Click="about_program_Click" />
+        <!--<Grid Grid.Column="0" Margin="0,14,0,0" 
+              Canvas.ZIndex="3"
+              Grid.Row="0" Height="142" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2D2D2" Offset="1"/>
+                    <GradientStop Color="White" Offset="0.95"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Image Height="142" Margin="0,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        </Grid>-->
+
+        <controls:Panorama Margin="0">
+            <controls:Panorama.Background>
+                <ImageBrush ImageSource="images/Achivments_WP7_slicing_panoramaBackground.png"/>
+            </controls:Panorama.Background>
+            <controls:Panorama.Title>
+            	<Grid Margin="-10,90,0,0" Width="2000" Height="142" >
+            		<Grid.Background>
+            			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFD2D2D2" Offset="1"/>
+                            <GradientStop Color="White" Offset="0.95"/>
+            			</LinearGradientBrush>
+            		</Grid.Background>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="142" Margin="13,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <Image Height="142" Margin="250,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <Image Height="142" Margin="150,0,0,0" Source="/itsbeta_wp7;component/images/Logo_panorama.png" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />                        
+                    </StackPanel>                    
+				</Grid>
+            </controls:Panorama.Title>
+
+            <!--Первый элемент Panorama-->
+            <controls:PanoramaItem Margin="-10,20,0,0" Width="473" Orientation="Horizontal">
+            	<controls:PanoramaItem.Background>
+            		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
+            			<GradientStop Color="#68FFFFFF" Offset="1"/>
+            			<GradientStop Color="#080F0F0F"/>
+            			<GradientStop Color="Transparent" Offset="0.5"/>
+            		</LinearGradientBrush>
+            	</controls:PanoramaItem.Background>
+            	<!--<controls:PanoramaItem.Background>
+            		<ImageBrush AlignmentX="Right" ImageSource="images/Background_panorama_light.png" Stretch="None"/>
+            	</controls:PanoramaItem.Background>-->
+                <controls:PanoramaItem.Header>
+                    <Border Width="600" Background="#FFc0ddd8" Margin="-12,0,0,0">
+                        <TextBlock Text="{Binding Path=LocalizedResources.categories, Source={StaticResource LocalizedStrings}}" Margin="15,-15,0,0" Foreground="White"/>
+                    </Border>
+                </controls:PanoramaItem.Header>
+                <Grid Margin="10,-10,10,0">
+                    <telerikData:RadJumpList x:Name="AllCategories" ItemsSource="{Binding Path=Categories}"
+                                     DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="AllCategories_ItemTap" GroupHeaderItemTap="AllCategories_GroupHeaderItemTap" EmptyContentTemplate="{StaticResource NoDataListTemlate}">
+                        <telerikData:RadJumpList.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="10,10,0,0" telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
+                                    <Grid.ColumnDefinitions>
+                                        <!--<ColumnDefinition Width="110" />-->
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Image Grid.Column="0" Source="{Binding Pic}"/>-->
+                                    <StackPanel Grid.Column="0" Margin="10,0,0,0" telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
+                                        <TextBlock Text="{Binding Display_name}" TextWrapping="Wrap" Style="{StaticResource CategoryTextblockStyle}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Activated_badges_count}" Style="{StaticResource BadgesTextblockStyle}"/>
+                                            <!--<TextBlock Text="/"/>
+                                            <TextBlock Text="{Binding Total_badges}"/>-->
+                                            <TextBlock Text="{Binding Path=LocalizedResources.badges_opened_label, Source={StaticResource LocalizedStrings}}"
+                                                       Style="{StaticResource BadgesTextblockStyle}"/>
+                                        </StackPanel>
+                                        <!--<TextBlock Text="{Binding Desc}" TextWrapping="Wrap"/>-->
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>							
+                        </telerikData:RadJumpList.ItemTemplate>						
+                    </telerikData:RadJumpList>
+					<!--<TextBlock Text="123" FontFamily="Segoe WP"/>-->
+                </Grid>
+            </controls:PanoramaItem>
+
+
+            <controls:PanoramaItem Width="473" Orientation="Horizontal" Margin="-10,20,0,0">
+            	<controls:PanoramaItem.Background>
+            		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
+            			<GradientStop Color="#68FFFFFF" Offset="1"/>
+            			<GradientStop Color="#080F0F0F"/>
+            			<GradientStop Color="Transparent" Offset="0.5"/>
+            		</LinearGradientBrush>
+            	</controls:PanoramaItem.Background>
+            	<controls:PanoramaItem.Header>
+                    <Border Width="600" Margin="-12,0,0,0" Background="#FFb0aea7" VerticalAlignment="Top">
+                        <TextBlock Text="{Binding Path=LocalizedResources.activation, Source={StaticResource LocalizedStrings}}" 
+                                   Margin="20,-15,0,0" Foreground="White"
+                                   HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    </Border>
+                </controls:PanoramaItem.Header>
+                <StackPanel Margin="10,0,10,0">
+                    <Button Foreground="White" Content="{Binding Path=LocalizedResources.use_qr_reader, Source={StaticResource LocalizedStrings}}" Name="QrReaderButton" Click="QrReaderButton_Click" Style="{StaticResource QRButtonStyle}" Height="120" />
+                    <Button Content="{Binding Path=LocalizedResources.enter_code, Source={StaticResource LocalizedStrings}}" Name="ActivateCOdeButton" Click="ActivateCOdeButton_Click" 
+                            Margin="0,-5,0,0"
+                            Style="{StaticResource ActivateButtonStyle}" Height="120" />
+                    <Button Content="NFC" Name="NFCButton"
+                            Margin="0,-5,0,0"
+                            Style="{StaticResource ActivateButtonStyle}" Height="120" Click="NFCButton_Click" />
+                    <TextBlock TextWrapping="Wrap" 
+                               Margin="11,40,0,0"
+                               Text="{Binding Path=LocalizedResources.use_code_or_qr_description, Source={StaticResource LocalizedStrings}}" Style="{StaticResource BadgesTextblockStyle}"/>
+                </StackPanel>
+            </controls:PanoramaItem>
+
+
+            <controls:PanoramaItem Width="473" Orientation="Horizontal" Margin="-12,20,0,0">
+            	 <controls:PanoramaItem.Background>
+            		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
+            			<GradientStop Color="#68FFFFFF" Offset="1"/>
+            			<GradientStop Color="#080F0F0F"/>
+            			<GradientStop Color="Transparent" Offset="0.5"/>
+            		</LinearGradientBrush>
+            	</controls:PanoramaItem.Background>
+            	<controls:PanoramaItem.Header>
+                    <Border Width="460" Margin="-12,0,0,0" Background="#FFa8cd8b" VerticalAlignment="Top">
+                        <TextBlock Text="{Binding Path=LocalizedResources.profile, Source={StaticResource LocalizedStrings}}" Margin="15,-15,0,0"
+						HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Top"/>
+                    </Border>
+                </controls:PanoramaItem.Header>
+                <StackPanel Margin="10,-10,10,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Height="252" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_profile.png" Stretch="None" AlignmentY="Top" />
+                            </Grid.Background>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Row="0" Height="130"
+                                   Width="135" Margin="36,32,0,0" Source="{Binding UserProfilePicture}" DataContext="{Binding User, Source={StaticResource Locator}}" 
+                                   Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Stretch" />
+                            <StackPanel Height="140" Grid.Row="0" Margin="15,27,30,25" Grid.Column="1" VerticalAlignment="Top">
+                                <TextBlock Text="{Binding First_name}" Margin="0,-3,0,0" Style="{StaticResource ProfileTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                                <TextBlock Text="{Binding Last_name}" Margin="0,-9,0,0" Style="{StaticResource ProfileTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                                <StackPanel Margin="0,10,0,0">
+                                    <TextBlock Margin="0,0,0,0" Text="{Binding Age}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                                    <TextBlock Margin="0,-3,0,0"  Text="{Binding Location}" Style="{StaticResource OtherTextblockStyle}" DataContext="{Binding User, Source={StaticResource Locator}}"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <telerikPrimitives:RadImageButton 
+                                Margin="0,-10,20,0"
+                                Grid.Column="1" Grid.Row="1"                                
+                                ButtonShape="Image" 
+                                RestStateImageSource="/itsbeta_wp7;component/images/Profile_logout_btn_norm.png" 
+                                HorizontalAlignment="Right" 
+                                PressedStateImageSource="/itsbeta_wp7;component/images/Profile_logout_btn_press.png" Click="RadImageButton_Click" />
+                        </Grid>
+
+                        <StackPanel Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
+                            <StackPanel Orientation="Horizontal">
+                            <Grid Margin="10,0,0,10" Width="200" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left" Tap="Grid_Tap_1">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_blue.png" Stretch="None" />
+                                </Grid.Background>
+                                <StackPanel Margin="14,10,10,10">
+                                        <TextBlock Text="{Binding Path=LocalizedResources.all_badges, Source={StaticResource LocalizedStrings}}" 
+                                                   Margin="0,14,0,0"
+                                                   Foreground="White"/>
+                                    <TextBlock 
+                                        Text="{Binding Achieves.Count}" Foreground="White" 
+                                               Style="{StaticResource StatsTextblockStyle}"
+                                               DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Margin="10,0,0,10" Width="200" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left" Name="Bonuses" Tap="Bonuses_Tap">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_green.png" Stretch="None" />
+                                </Grid.Background>
+                                    <StackPanel Margin="14,10,10,10">
+                                        <TextBlock Margin="0,14,0,0"
+                                            Text="{Binding Path=LocalizedResources.bonuses, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
+                                    <TextBlock 
+                                        Text="{Binding BonusCount}" Foreground="White" 
+                                        Style="{StaticResource StatsTextblockStyle}"
+                                               DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                                </StackPanel>
+                            </Grid>
+                            </StackPanel>
+
+                            <Grid Name="Subcategories" Margin="10,-10,0,10" Width="200" Height="110" VerticalAlignment="Top" HorizontalAlignment="Left" Tap="Subcategories_Tap">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/itsbeta_wp7;component/images/Profile_statisticPaper_violet.png" Stretch="None" />
+                                </Grid.Background>
+                                <StackPanel Margin="14,10,10,10">
+                                    <TextBlock 
+                                        Margin="0,14,0,0"
+                                        Text="{Binding Path=LocalizedResources.subcategories, Source={StaticResource LocalizedStrings}}" Foreground="White"/>
+                                    <TextBlock 
+                                        Style="{StaticResource StatsTextblockStyle}"
+                                        Text="{Binding Projects.Count}" Foreground="White" 
+                                               DataContext="{Binding Main, Source={StaticResource Locator}}"/>
+                                </StackPanel>
+                            </Grid>
+
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Width="473" Orientation="Horizontal" Margin="-12,20,0,0">
+            	 <controls:PanoramaItem.Background>
+            		<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" MappingMode="RelativeToBoundingBox">
+            			<GradientStop Color="#68FFFFFF" Offset="1"/>
+            			<GradientStop Color="#080F0F0F"/>
+            			<GradientStop Color="Transparent" Offset="0.5"/>
+            		</LinearGradientBrush>
+            	</controls:PanoramaItem.Background>
+            	<controls:PanoramaItem.Header>
+                    <Border Width="600" Margin="-12,0,0,0" Background="#FFb095b6" VerticalAlignment="Top">
+                        <TextBlock Foreground="White" Text="{Binding Path=LocalizedResources.last, Source={StaticResource LocalizedStrings}}"
+						Margin="15,-15,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    </Border>
+                </controls:PanoramaItem.Header>
+                <Grid Margin="10,-10,10,0">
+
+
+                    <telerikData:RadJumpList x:Name="LastAchieves"
+                                     
+                                     EmptyContentTemplate="{StaticResource NoDataListTemlate}"
+                                     Margin="0,-5,0,0"
+                                     ItemsSource="{Binding Path=LastAchieves}"
+                                     DataContext="{Binding Main, Source={StaticResource Locator}}" ItemTap="LastAchieves_ItemTap">
+                    	<telerikData:RadJumpList.Background>
+                    		<ImageBrush Stretch="Fill"/>
+                    	</telerikData:RadJumpList.Background>
+                        <telerikData:RadJumpList.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="10,15,0,0" telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="141" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Border HorizontalAlignment="Center"
+                                            Margin="0,-2,0,0" telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
+                                            VerticalAlignment="Center"
+                                            Canvas.ZIndex="2" Grid.Column="0" Width="135" Height="135" CornerRadius="135" BorderThickness="1" BorderBrush="#800C0C0C">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#4A4C4C4C" Offset="0.8" />
+                                                <GradientStop Color="#4AFEFEFE" Offset="0" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>-->
+                                    <Image Margin="0" Canvas.ZIndex="1" Grid.Column="0" 
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Width="140" Height="140" Source="{Binding Pic}"/>
+                                    <StackPanel Width="336" HorizontalAlignment="Left" Height="66" Grid.Column="1" Margin="-70,40,0,0" UseLayoutRounding="True" VerticalAlignment="Top">
+                                        <StackPanel.Background>
+                                            <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_labels_norm.png" AlignmentX="Left" Stretch="None" />
+                                        </StackPanel.Background>
+                                        <TextBlock Margin="90,14,0,0" Text="{Binding Display_name}" Style="{StaticResource BadgesTextblockStyle}" HorizontalAlignment="Left" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </telerikData:RadJumpList.ItemTemplate>
+                    </telerikData:RadJumpList>					
+                </Grid>
+            </controls:PanoramaItem>
+        </controls:Panorama>
+    </Grid>
+
+    <!--Приложения на базе панорамы не должны содержать ApplicationBar-->
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,144 @@
+﻿<phone:PhoneApplicationPage x:Class="itsbeta_wp7.MainPage"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+                            xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait"
+                            Orientation="Portrait"
+                            mc:Ignorable="d"
+                            d:DesignWidth="480"
+                            d:DesignHeight="800"
+                            shell:SystemTray.IsVisible="True"
+                            shell:SystemTray.BackgroundColor="White"
+                            shell:SystemTray.ForegroundColor="Black"
+                            DataContext="{Binding Main, Source={StaticResource Locator}}" Background="White">
+	<phone:PhoneApplicationPage.Resources>
+		<DataTemplate x:Key="DataTemplate1">
+			<Border HorizontalAlignment="Stretch" Margin="0,20,0,10" Height="104" Width="464">
+				<Border.Background>
+					<ImageBrush Stretch="None" AlignmentY="Top" ImageSource="/itsbeta_wp7;component/images/Paper_project_norm.png" />
+				</Border.Background>
+				<TextBlock Text="{Binding}" 
+					HorizontalAlignment="Left" 
+					VerticalAlignment="Center" 
+                    FontWeight="Bold"
+					Margin="40,8,6,6"
+					Style="{StaticResource CategoryDarkBoldTextblockStyle}"/>
+			</Border>
+		</DataTemplate>
+		<DataTemplate x:Key="GroupPickerTemplate">
+			<Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="6">
+				<Border.Background>
+					<SolidColorBrush Color="White"/>
+				</Border.Background>
+				<TextBlock 
+					Foreground="Black"
+					FontSize="{StaticResource PhoneFontSizeExtraLarge}" 
+					Text="{Binding}" 
+					Margin="4" 
+					Style="{StaticResource CategoryDarkTextblockStyle}"
+					VerticalAlignment="Stretch" 
+					HorizontalAlignment="Left"/>
+			</Border>
+		</DataTemplate>
+	</phone:PhoneApplicationPage.Resources>	
+    
+
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="true" IsVisible="{Binding Loading}" Text="{Binding Path=LocalizedResources.loading, Source={StaticResource LocalizedStrings}}" />
+    </shell:SystemTray.ProgressIndicator>
+
+    <!--LayoutRoot contains the root grid where all other page content is placed-->
+	<Grid x:Name="LayoutRoot" Loaded="LayoutRoot_Loaded">
+		<Grid.Background>
+            <ImageBrush ImageSource="images/Background.png" AlignmentY="Top" AlignmentX="Left" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<!--TitlePanel contains the name of the application and page title-->
+		<StackPanel x:Name="TitlePanel"
+		            Grid.Row="0" Height="163"
+		            Margin="0,0,0,0">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD2D2D2" Offset="1"/>
+                    <GradientStop Color="White" Offset="0.90"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <TextBlock x:Name="ApplicationTitle"
+			           Text="ITSBETA" Margin="20,0,0,0"
+			           Style="{StaticResource ApplicationTitleTextblockStyle}" />
+			<TextBlock x:Name="PageTitle"
+			           Text="{Binding Path=CurrentCategory.Display_name_upper}"
+			           Margin="20,15,0,0"
+			           Style="{StaticResource ProjectTextblockStyle}" />
+		</StackPanel>
+
+		<!--ContentPanel - place additional content here-->
+		<Grid x:Name="ContentGrid"
+		      Grid.Row="1">
+            <!--GroupDescriptorsSource="{Binding Path=GroupedBadgesList}"-->
+             
+            <telerikData:RadJumpList 
+                Margin="0,0,0,0" Width="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                ScrollViewer.VerticalScrollBarVisibility="Visible"               
+                ScrollViewer.ManipulationMode="System"
+                EmptyContentTemplate="{StaticResource NoDataListTemlate}"
+                x:Name="AllBadges"                                          
+                                     GroupHeaderItemTap="AllBadges_GroupHeaderItemTap"
+                                     ItemsSource="{Binding Path=CategoryAchieves}"
+                                     DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                ItemTap="AllBadges_ItemTap" 
+                GroupHeaderTemplate="{StaticResource DataTemplate1}" 
+                GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" 
+                HorizontalContentAlignment="Left" HorizontalAlignment="Left" 
+                IsPullToRefreshEnabled="True" 
+                RefreshRequested="AllBadges_RefreshRequested" 
+                PullToRefreshIndicatorStyle="{StaticResource PullToRefreshIndicatorControlStyle1}">
+                <telerikData:RadJumpList.ItemTemplate>
+                        <DataTemplate>
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible"
+                                      VerticalScrollBarVisibility="Disabled">
+                            <Grid Margin="15,20,0,0" Width="Auto">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="109"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                            <!--<Border Margin="0,-1,0,0" Canvas.ZIndex="2" Grid.Column="0" Width="105" Height="105" CornerRadius="108" BorderThickness="1" BorderBrush="#800C0C0C">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#4A010101" Offset="1" />
+                                        <GradientStop Color="#4AFEFEFE" Offset="0" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>-->
+                            <Image Grid.Column="0" Width="108" Height="108" Source="{Binding Pic}" VerticalAlignment="Center" />
+                            
+                                <StackPanel Grid.Column="1" Margin="15,-5,0,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Width="Auto">
+                                    <TextBlock Text="{Binding Display_name}" TextWrapping="NoWrap" Style="{StaticResource CategoryDarkTextblockStyle}" />
+                                    <!--<TextBlock Text="{Binding Desc}" TextWrapping="Wrap" Style="{StaticResource OtherTextblockStyle}" />-->
+                                    <TextBlock Text="{Binding Short_Create_time}" TextWrapping="NoWrap" Style="{StaticResource OtherLightTextblockStyle}" Margin="0,4,0,0" />
+                                </StackPanel>
+                            </Grid>
+                        </ScrollViewer>
+                    </DataTemplate>
+                </telerikData:RadJumpList.ItemTemplate>
+            </telerikData:RadJumpList>
+
+        </Grid>
+	</Grid>
+
+
+
+</phone:PhoneApplicationPage>
