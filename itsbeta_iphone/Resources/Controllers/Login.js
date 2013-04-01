@@ -65,16 +65,31 @@ function onInitController(window, params)
 					{
 						var results = JSON.parse(x.result);
 						
+						Ti.API.info(results);
+						
 						info = {
 							fbuid : fbuid,
-							accessToken : accessToken,
-							name: results[0].name,
-							birthday: results[0].birthday_date,
-							city: results[0].current_location.city,
-							country: results[0].current_location.country
-
+							accessToken : accessToken
 						};
+						if(results[0].name != undefined)
+						{
+							info.name = results[0].name;
+						}
+						if(results[0].birthday_date != undefined)
+						{
+							info.birthday = results[0].birthday_date;
+						}
+						if(results[0].current_location.city != undefined)
+						{
+							info.city = results[0].current_location.city;
+						}
+						if(results[0].current_location.country != undefined)
+						{
+							info.country = results[0].current_location.country;
+						}
 						
+						Ti.API.info(info);
+							
 						TiTools.Global.set("info", info);
 					}
 					catch(e)

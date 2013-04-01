@@ -30,7 +30,23 @@ function onInitController(window, params)
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/Profile.js", window);
 	ui.profileName.text = window.info.name;
-	ui.profileInfo.text = window.info.birthday + ", " + window.info.city + ", " + window.info.country;
+	//ui.profileInfo.text = window.info.birthday + ", " + window.info.city + ", " + window.info.country;
+	
+	var pName = "";
+	if(window.info.birthday != undefined)
+	{
+		pName += window.info.birthday + ","
+	}
+	if(window.info.city != undefined)
+	{
+		pName += window.info.city + ","
+	}
+	if(window.info.country != undefined)
+	{
+		pName += window.info.country;
+	}
+	
+	ui.profileInfo.text = pName;
 	
 	// back
 	decorateNavbarButton.call(
