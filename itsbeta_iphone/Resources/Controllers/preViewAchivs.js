@@ -23,6 +23,8 @@ function onInitController(window, params)
 	ui.nameAchivs.text = window.nameAchivs;
 	ui.textAchivs.text = window.textAchivs;
 	
+	ui.act.show();
+	
 	// close button
 	decorateButton.call(
 		ui.close,
@@ -52,9 +54,10 @@ function onWindowOpen(window, event)
 		disableBounce: true
 	});
 	
-	// webview.addEventListener("swipe", function() {
-		// Ti.API.info("swipe");
-	// });
+	webview.addEventListener("load",function(){
+		ui.shadowClose.show();
+		ui.act.hide();
+	});
 	
 	var bonus = window.bonus
 	for(var i = 0; i < bonus.length; i++)

@@ -18,6 +18,7 @@ module.exports = [
 			height: Ti.UI.FILL,
 			width: Ti.UI.FILL,
 			backgroundColor: "transparent",
+			visible: false
 		},
 		subviews:
 		[
@@ -84,5 +85,13 @@ module.exports = [
 				}
 			}
 		]
+	},
+	{
+		outlet: "act",
+		style : {
+			className : "Ti.UI.ActivityIndicator",
+			height: 50,
+			width: 50
+		}
 	}
 ]
