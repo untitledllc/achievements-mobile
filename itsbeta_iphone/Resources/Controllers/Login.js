@@ -20,6 +20,8 @@ var counter = 0;
 
 var ui = undefined;
 
+var singlTap = false;
+
 //---------------------------------------------//
 
 Ti.include("Utils/Helper.js");
@@ -43,104 +45,114 @@ function onInitController(window, params)
 		ui.infacebook, 
 		function(event) // onSingleTap handler
 		{
-			if(Titanium.Network.online == true)
+			if(singlTap == false)
 			{
-				Titanium.Facebook.appid = "264918200296425";
-				Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
+				singlTap = true;
 				
-				Ti.API.info(Titanium.Facebook.loggedIn);
-				
-				function fQuery() 
+				if(Titanium.Network.online == true)
 				{
-					var fbuid = Titanium.Facebook.uid; 
-					accessToken = Titanium.Facebook.accessToken;
-					var myQuery = "SELECT name, birthday_date,current_location FROM user WHERE uid = "+fbuid;
-				
-					Titanium.Facebook.request('fql.query', {query: myQuery},  function(x)
+					Titanium.Facebook.appid = "264918200296425";
+					Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
+					
+					Ti.API.info(Titanium.Facebook.loggedIn);
+					
+					function fQuery() 
 					{
-						try
+						var fbuid = Titanium.Facebook.uid; 
+						accessToken = Titanium.Facebook.accessToken;
+						var myQuery = "SELECT name, birthday_date,current_location FROM user WHERE uid = "+fbuid;
+					
+						Titanium.Facebook.request('fql.query', {query: myQuery},  function(x)
 						{
-							var results = JSON.parse(x.result);
-							var profile = results[0];
-							
-							info = {
-								fbuid: fbuid,
-								accessToken: accessToken
-							};
+							try
+							{
+								var results = JSON.parse(x.result);
+								var profile = results[0];
 								
-							info.name     = (profile.name) ? profile.name : null;	
-							info.birthday = (profile.birthday_date) ? profile.birthday_date : null;	
-							if(info.current_location) {
-								info.city    = (profile.current_location.city) ? profile.current_location.city : null;	
-								info.country = (profile.current_location.country) ? profile.current_location.country : null;
+								info = {
+									fbuid: fbuid,
+									accessToken: accessToken
+								};
+									
+								info.name     = (profile.name) ? profile.name : null;	
+								info.birthday = (profile.birthday_date) ? profile.birthday_date : null;	
+								if(info.current_location) {
+									info.city    = (profile.current_location.city) ? profile.current_location.city : null;	
+									info.country = (profile.current_location.country) ? profile.current_location.country : null;
+								}
+								
+								TiTools.Global.set("info", info);
+							}
+							catch(e)
+							{
+								alert("Ошибка загрузки данных из Facebook.");
+								
+								info = {
+									fbuid: fbuid,
+									accessToken: accessToken,
+									name: "",
+									birthday: "",
+									city: "",
+									country: ""
+								};
+								TiTools.Global.set("info", info);
 							}
 							
-							TiTools.Global.set("info", info);
-						}
-						catch(e)
-						{
-							alert("Ошибка загрузки данных из Facebook.");
+							// get achievements by user id
+							itsbeta.firstStart(info);
 							
-							info = {
-								fbuid: fbuid,
-								accessToken: accessToken,
-								name: "",
-								birthday: "",
-								city: "",
-								country: ""
-							};
-							TiTools.Global.set("info", info);
-						}
-						
-						// get achievements by user id
-						itsbeta.firstStart(info);
-						
-						
-						var first = function()
-						{
-							Ti.App.removeEventListener("complite",first);
 							
-							Ti.API.info('!!!');
+							var first = function()
+							{
+								Ti.App.removeEventListener("complite",first);
+								
+								Ti.API.info('!!!');
+								
+								itsbeta.getAchievementsByUid(fbuid, saveAchivs);
+							}
+							Ti.App.addEventListener("complite",first);
 							
-							itsbeta.getAchievementsByUid(fbuid, saveAchivs);
-						}
-						Ti.App.addEventListener("complite",first);
-						
-					});
-				};
-				
-				if(!Titanium.Facebook.loggedIn)
-				{
-					Ti.Facebook.authorize();
+						});
+					};
 					
-					var log = function(e) 
+					if(!Titanium.Facebook.loggedIn)
 					{
-						Ti.Facebook.removeEventListener('login',log);
-						if (e.success) {
-							actIndicator(true);
-							fQuery();
-						} else if (e.error) {
-							alert(e.error);
-						} else if (e.cancelled) {
-							actIndicator(false);
+						actIndicator(true);
+						
+						singlTap = false;
+						
+						Ti.Facebook.authorize();
+						
+						var log = function(e) 
+						{
+							Ti.Facebook.removeEventListener('login',log);
+							if (e.success) {
+								fQuery();
+							} else if (e.error) {
+								alert(e.error);
+								actIndicator(false);
+							} else if (e.cancelled) {
+								actIndicator(false);
+							}
 						}
+						
+						Ti.Facebook.addEventListener('login',log);
 					}
-					
-					Ti.Facebook.addEventListener('login',log);
+					else
+					{
+						singlTap = false;
+						actIndicator(true);
+						fQuery();
+					}
 				}
 				else
 				{
-					actIndicator(true);
-					fQuery();
+					Ti.UI.createAlertDialog({
+						title: "Информация!",
+						message: "Отсутствует интернет!"
+					}).show();
+					actIndicator(false);
 				}
-			}
-			else
-			{
-				Ti.UI.createAlertDialog({
-					title: "Информация!",
-					message: "Отсутствует интернет!"
-				}).show();
-				actIndicator(false);
 			}
 		}
 	);
