@@ -151,6 +151,9 @@ module.exports = [
 										outlet: "nameProject",
 										style : {
 											className: "Ti.UI.Label",
+											height: 20,
+											width: 120,
+											textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
 											color: "#646464",
 											font: {fontSize: 15},
 											text: "Проект"
