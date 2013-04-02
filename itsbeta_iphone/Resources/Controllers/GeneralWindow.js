@@ -22,10 +22,10 @@ var selectProject = "null";
 //---------------------------------------------//
 var animation = Titanium.UI.createAnimation();
 var animationEnd = Titanium.UI.createAnimation();
-animation.top = 107;
+animation.top = 90;
 animation.duration = 500;
 
-animationEnd.top = -248;
+animationEnd.top = -260;
 animationEnd.duration = 500;
 
 //---------------------------------------------//
@@ -46,7 +46,7 @@ function onInitController(window, params)
 	counter = window.counter;
 	info = window.info;
 	
-	Ti.API.info(achievements);
+	//Ti.API.info(achievements);
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/GeneralWindow.js", window);

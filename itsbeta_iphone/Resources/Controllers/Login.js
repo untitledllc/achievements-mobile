@@ -92,31 +92,39 @@ function onInitController(window, params)
 					
 					// get achievements by user id
 					itsbeta.firstStart(info);
-					Ti.App.addEventListener("complite",function(event)
+					
+					
+					var first = function()
 					{
+						Ti.App.removeEventListener("complite",first);
+						
+						Ti.API.info('!!!');
+						
 						itsbeta.getAchievementsByUid(fbuid, saveAchivs);
-					});
+					}
+					Ti.App.addEventListener("complite",first);
+					
 				});
 			};
 			
 			if(!Titanium.Facebook.loggedIn)
 			{
 				Ti.Facebook.authorize();
-				Ti.Facebook.addEventListener('login',function(e) 
+				
+				var log = function(e) 
 				{
+					Ti.Facebook.removeEventListener('login',log);
 					if (e.success) {
 						actIndicator(true);
-						categories = [];
-						projects = [];
-						achievements = [];
-						counter = 0;
 						fQuery();
 					} else if (e.error) {
 						alert(e.error);
 					} else if (e.cancelled) {
 						actIndicator(false);
 					}
-				});
+				}
+				
+				Ti.Facebook.addEventListener('login',log);
 			}
 			else
 			{
@@ -137,7 +145,11 @@ function onInitController(window, params)
 
 function saveAchivs(data)
 {
-	indexCategories++;
+	categories = [];
+	projects = [];
+	achievements = [];
+	counter = 0;
+	
 	try
 	{
 		achievements = JSON.parse(data.responseText);
