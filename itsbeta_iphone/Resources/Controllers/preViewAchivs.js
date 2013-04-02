@@ -45,6 +45,7 @@ function onInitController(window, params)
 function onWindowOpen(window, event)
 {
 	var webview = Titanium.UI.createWebView({
+		left: 5,
 		height: Ti.UI.SIZE,
 		width: 220,
 		html:  TiTools.Global.get("htmlWrapBefore") + window.details + window.adv + TiTools.Global.get("htmlWrapAfter"),
