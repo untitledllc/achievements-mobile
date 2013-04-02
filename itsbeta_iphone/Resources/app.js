@@ -49,7 +49,7 @@ window.open();
 
 //---------------------------------------------//
 
-TiTools.Global.set("htmlWrapBefore", '<html><head><style>body{background-color: #dad9cf}</style><script type="text/javascript">window.onload=function(){var links=document.querySelectorAll("a"),i=0,len=links.length;while(i<len){links[i++].addEventListener("click", function(evt){evt.preventDefault();this.href && Ti.App.fireEvent("linkClicked",{url:this.href});},false);}};</script></head><body>');
+TiTools.Global.set("htmlWrapBefore", '<html><head><style>body{background-color: #dad9cf; margin: 0;}</style><script type="text/javascript">window.onload=function(){var links=document.querySelectorAll("a"),i=0,len=links.length;while(i<len){links[i++].addEventListener("click", function(evt){evt.preventDefault();this.href && Ti.App.fireEvent("linkClicked",{url:this.href});},false);}};</script></head><body>');
 TiTools.Global.set("htmlWrapAfter", '</body></html>');
 
 Ti.App.addEventListener("linkClicked", function(param)
