@@ -187,8 +187,6 @@ function saveAchivs(data)
 	
 	//------------------------------------------------------//
 	
-	alert(counter);
-	
 	var win = TiTools.UI.Controls.createWindow(
 		{
 			main : "Controllers/GeneralWindow.js",

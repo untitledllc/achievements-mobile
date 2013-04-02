@@ -25,7 +25,7 @@ var animationEnd = Titanium.UI.createAnimation();
 animation.top = 107;
 animation.duration = 500;
 
-animationEnd.top = -248;
+animationEnd.top = -260;
 animationEnd.duration = 500;
 
 //---------------------------------------------//
