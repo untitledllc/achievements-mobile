@@ -54,6 +54,9 @@ function onWindowOpen(window, event)
 		disableBounce: true
 	});
 	
+	// webview.addEventListener("swipe", function() {
+		// Ti.API.info("swipe");
+	// });
 	
 	for(var i = 0; i < window.bonus.length; i++)
 	{
