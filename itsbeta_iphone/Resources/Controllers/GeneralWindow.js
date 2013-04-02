@@ -17,6 +17,8 @@ var category = [];
 var tempNewAchivs = undefined;
 var selectCategory = "null";
 var selectProject = "null";
+
+var singlTap = false;
 //---------------------------------------------//
 // Глобальные переменные для окна
 //---------------------------------------------//
@@ -276,21 +278,34 @@ function createListAchivs(window,categiry)
 					
 					row.viewAchivs.addEventListener("singletap",function(event)
 					{
-						var sourceData = event.source.data;
-						var win = TiTools.UI.Controls.createWindow(
-							{
-								main : "Controllers/preViewAchivs.js",
-								navBarHidden : true,
-								nameAchivs: sourceData.nameAchivs,
-								desc: sourceData.desc,
-								details: sourceData.details,
-								adv: sourceData.adv,
-								image: sourceData.image,
-								bonus: sourceData.bonus
-							}
-						);
-						win.initialize();
-						win.open();	
+						if(singlTap == false)
+						{
+							singlTap = true;
+							
+							var sourceData = event.source.data;
+							var win = TiTools.UI.Controls.createWindow(
+								{
+									main : "Controllers/preViewAchivs.js",
+									navBarHidden : true,
+									nameAchivs: sourceData.nameAchivs,
+									desc: sourceData.desc,
+									details: sourceData.details,
+									adv: sourceData.adv,
+									image: sourceData.image,
+									bonus: sourceData.bonus
+								}
+							);
+							
+							win.addEventListener("open",function()
+								{
+									singlTap = false;
+									Ti.API.info('Open window')
+								}
+							);
+							
+							win.initialize();
+							win.open();	
+						}
 					});
 				}
 			}
