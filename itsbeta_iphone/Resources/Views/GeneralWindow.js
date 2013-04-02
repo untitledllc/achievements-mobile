@@ -39,7 +39,7 @@ module.exports = [
 						style: {
 							className: "Ti.UI.View",
 							width: 134,
-							height: 46,							
+							height: 46,
 							backgroundImage: "images/navbar/Scoreboard.png"
 						},
 						subviews: [
@@ -288,6 +288,7 @@ module.exports = [
 			width: Ti.UI.FILL,
 			backgroundColor: "transparent",
 			visible: false,
+			touchEnabled: false,
 			zIndex: 30
 		}
 	},

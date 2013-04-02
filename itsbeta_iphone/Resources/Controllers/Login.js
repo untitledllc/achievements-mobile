@@ -41,9 +41,23 @@ function onInitController(window, params)
     // Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/Login.js", window);
 	
+	Titanium.Facebook.appid = "264918200296425";
+	Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
+	
+	if(Titanium.Facebook.loggedIn)
+	{
+		start();
+	}
+	
 	decorateButton.call(
 		ui.infacebook, 
-		function(event) // onSingleTap handler
+		function(event)
+		{
+			start(event);
+		}
+	);
+	
+	function start(event) // onSingleTap handler
 		{
 			if(singlTap == false)
 			{
@@ -51,8 +65,6 @@ function onInitController(window, params)
 				
 				if(Titanium.Network.online == true)
 				{
-					Titanium.Facebook.appid = "264918200296425";
-					Titanium.Facebook.permissions = ['publish_stream', 'read_stream'];
 					
 					Ti.API.info(Titanium.Facebook.loggedIn);
 					
@@ -155,7 +167,6 @@ function onInitController(window, params)
 				}
 			}
 		}
-	);
 	
 	// --- слушатель индикатора, что бы закрывать из других окн --- //
 	Ti.App.addEventListener("hideActive",function(event)

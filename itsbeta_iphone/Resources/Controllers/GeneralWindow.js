@@ -278,6 +278,7 @@ function createListAchivs(window,categiry)
 					
 					row.viewAchivs.addEventListener("singletap",function(event)
 					{
+						Ti.API.info('Click window');
 						if(singlTap == false)
 						{
 							singlTap = true;
@@ -296,10 +297,10 @@ function createListAchivs(window,categiry)
 								}
 							);
 							
-							win.addEventListener("open",function()
+							win.addEventListener("close",function()
 								{
 									singlTap = false;
-									Ti.API.info('Open window')
+									Ti.API.info('close window')
 								}
 							);
 							
