@@ -27,8 +27,8 @@ module.exports = [
 					right: 10,
 					bottom: 10,
 					backgroundImage: "images/bg/Panel.png",
-					backgroundLeftCap: 30,
-					backgroundTopCap: 30
+					backgroundLeftCap: 13,
+					backgroundTopCap: 13
 				},
 				subviews: [
 					{

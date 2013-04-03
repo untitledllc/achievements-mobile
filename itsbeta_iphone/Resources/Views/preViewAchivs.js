@@ -32,8 +32,8 @@ module.exports = [
 					height: Ti.UI.SIZE,
 					width: "90%",
 					backgroundImage: "images/bg/Panel.Popup.png",
-					backgroundLeftCap: 30,
-					backgroundTopCap: 30
+					backgroundLeftCap: 13,
+					backgroundTopCap: 13
 				},
 				subviews:
 				[

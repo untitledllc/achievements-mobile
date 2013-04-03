@@ -111,8 +111,8 @@ module.exports = [
 					height: Ti.UI.SIZE,
 					layout: "horizontal",
 					backgroundImage: "images/bg/Panel.png",
-					backgroundLeftCap: 30,
-					backgroundTopCap: 30
+					backgroundLeftCap: 13,
+					backgroundTopCap: 13
 				},
 				subviews:
 				[

@@ -100,8 +100,8 @@ module.exports = [
 					width: "90%",
 					layout: "vertical",
 					backgroundImage: "images/bg/Panel.png",
-					backgroundLeftCap: 30,
-					backgroundTopCap: 30
+					backgroundLeftCap: 13,
+					backgroundTopCap: 13
 				},
 				subviews:
 				[
