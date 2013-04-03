@@ -671,10 +671,14 @@ function hideAchivs()
 //--reload -- добавляем новую ачивку ---------------------------------------------------//
 function reloadAdd(data)
 {
+	var categoryDetected = false;
+	var projectDetected = false;
+	
 	for(var i = 0;i < categories.length; i++)
 	{
 		if(categories[i].api_name == data.api_name)
 		{
+			categoryDetected = true;
 			break;
 		}
 		if(i+1 == categories.length)
@@ -691,6 +695,7 @@ function reloadAdd(data)
 	{
 		if(projects[j].api_name == data.project.api_name)
 		{
+			projectDetected = true;
 			break;
 		}
 		if(i+1 == projects.length)
@@ -703,6 +708,25 @@ function reloadAdd(data)
 			
 		}
 	}
+	
+	// --- поиск места куда вставить ачивку ----////
+	
+	// for(var i = 0; i < achievements.length; i++)
+	// {
+		// if(achievements[i].api_name)
+		// {
+			// for(var j = 0; j < achievements[i].projects.length; j++)
+			// {
+				// for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
+				// {
+					// if(achievements[i].projects[j].api_name == categiry || categiry == "null" || achievements[i].api_name == categiry)
+					// {
+					// }
+				// }
+			// }
+		// }
+	// }
+	
 	//// ------ создание  ачивки -----////
 	var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
 	
