@@ -145,18 +145,7 @@ namespace itsbeta.achievements
                     View view2 = layoutInflater2.Inflate(Resource.Layout.profilescreenchildrow, null);
                     TextView projectName = (TextView)view2.FindViewById(Resource.Id.profilescr_ProjectNameTextView);
                     projectName.SetTypeface(font, TypefaceStyle.Normal);
-                    ImageView statBarActive = (ImageView)view2.FindViewById(Resource.Id.profilescr_statbarImageViewwActive);
-                    ImageView statBarPassive = (ImageView)view2.FindViewById(Resource.Id.profilescr_statbarImageViewNorm);
-                    LinearLayout statbarlinearlayout = (LinearLayout)view2.FindViewById(Resource.Id.statbarlinearLayout);
 
-
-                    for (int k = 0; k < AppInfo._achievesInfo.CategoryArray[i].Projects[j].TotalBadges - AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Length; k++)
-                    {
-                        TableRow fakebut = new TableRow(this);
-                        //fakebut.LayoutParameters.Width = AppInfo._display.Width;
-                        fakebut.LayoutParameters = new LinearLayout.LayoutParams(Android.Widget.LinearLayout.LayoutParams.FillParent, Android.Widget.LinearLayout.LayoutParams.FillParent, 1f);
-                        statbarlinearlayout.AddView(fakebut);
-                    }
 
                     projectName.Text = AppInfo._achievesInfo.CategoryArray[i].Projects[j].DisplayName + "- " + AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Length;
 
