@@ -195,21 +195,23 @@ function onWindowOpen(window, event)
 	
 	Ti.App.addEventListener("reload",function(event){
 		// ---- delete ----
-		ui.preAchivs.hide();
-		actIndicator(true);
+		//ui.preAchivs.hide();
+		//actIndicator(true);
 		tempNewAchivs = event.data;
 		
-		for(var i = 0; i < tempAchivs.length; i++)
-		{
-			tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
-			Ti.API.info('del');
-		}
-		tempAchivs = [];
+		reloadAdd(tempNewAchivs);
+		
+		// for(var i = 0; i < tempAchivs.length; i++)
+		// {
+			// tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
+			// Ti.API.info('del');
+		// }
+		// tempAchivs = [];
 		//-----------------
 		
 		// get achievements by user id
 		
-		itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
+		//itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
 		
 	});
 	
@@ -666,6 +668,128 @@ function hideAchivs()
 		}
 	}
 }
+//--reload -- добавляем новую ачивку ---------------------------------------------------//
+function reloadAdd(data)
+{
+	for(var i = 0;i < categories.length; i++)
+	{
+		if(categories[i].api_name == data.api_name)
+		{
+			break;
+		}
+		if(i+1 == categories.length)
+		{
+			categories.push({
+				api_name: data.api_name,
+				display_name: data.api_name
+			});
+			
+		}
+	}
+	
+	for(var j = 0;j < projects.length; j++)
+	{
+		if(projects[j].api_name == data.project.api_name)
+		{
+			break;
+		}
+		if(i+1 == projects.length)
+		{
+			projects.push({
+				api_name: data.api_name,
+				display_name: data.api_name,
+				total_badge: 10
+			});
+			
+		}
+	}
+	//// ------ создание  ачивки -----////
+	var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
+	
+	var achievement = data;
+	
+	//row.date.text = TiTools.DateTime.format(new Date(achievement.create_time), "$dd.$mm.$yyyy");
+	
+	row.image.image = achievement.pic;
+	row.name.text = achievement.display_name;
+	row.name.color = achievement.project.color;
+	row.desc.text = achievement.desc;
+	row.category = achievement.api_name;
+	row.project = achievement.project.api_name;
+	
+	tempAchivs.push(row);
+	
+	for(var n = 0; n < achievement.bonuses.length; n++)
+	{
+		var tempColor;
+		
+		if( achievement.bonuses[n].bonus_type == "bonus")
+		{
+			tempColor = "red";
+		}
+		if( achievement.bonuses[n].bonus_type == "present")
+		{
+			tempColor = "green";
+		}
+		if( achievement.bonuses[n].bonus_type == "discount")
+		{
+			tempColor = "gray";
+		}
+		
+		var bonus = preViewBonus(achievement.bonuses[n].bonus_type);
+		
+		if(bonus)
+		{
+			row.addBonus.add(bonus);
+		}
+	}
+	
+	row.viewAchivs.data = {
+		image: achievement.pic,
+		nameAchivs: achievement.display_name,
+		desc: achievement.desc,
+		details: achievement.details,
+		adv: achievement.adv,
+		bonus: achievement.bonuses
+	}
+	
+	row.viewAchivs.addEventListener("singletap",function(event)
+	{
+		Ti.API.info('Click window');
+		if(singlTap == false)
+		{
+			singlTap = true;
+			
+			var sourceData = event.source.data;
+			var win = TiTools.UI.Controls.createWindow(
+				{
+					main : "Controllers/preViewAchivs.js",
+					navBarHidden : true,
+					nameAchivs: sourceData.nameAchivs,
+					desc: sourceData.desc,
+					details: sourceData.details,
+					adv: sourceData.adv,
+					image: sourceData.image,
+					bonus: sourceData.bonus
+				}
+			);
+			
+			win.addEventListener("close",function()
+				{
+					singlTap = false;
+					Ti.API.info('close window')
+				}
+			);
+			
+			win.initialize();
+			win.open();	
+		}
+	});
+	///------------------------------/////
+	
+}
+
+//--------------------------------------------------------------------------------------//
 // Обработчик при закрытии окна
 function onWindowClose(window, event)
 {
