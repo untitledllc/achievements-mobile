@@ -88,17 +88,6 @@ module.exports = [
 										]	
 									}
 								]
-							},
-							{
-								style: {
-									className: "Ti.UI.Label",
-									bottom: 10,
-									height: Ti.UI.SIZE,
-									width: Ti.UI.SIZE,
-									color: "#7ed6f9",
-									font: {fontSize: 15, fontStyle: "underline"},
-									text: "Facebook sing up"
-								}
 							}	
 						]	
 					}

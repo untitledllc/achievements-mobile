@@ -30,8 +30,8 @@ module.exports = [
 							className: "Ti.UI.View",
 							top: 5,
 							left: 10,
-							width: 22,
-							height: 22,
+							width: 24,
+							height: 24,
 							backgroundImage: "images/buttons/Profile.Normal.png"
 						}
 					},
@@ -70,8 +70,8 @@ module.exports = [
 							className: "Ti.UI.View",
 							top: 5,
 							right: 10,
-							height: 22,
-							width: 22,
+							height: 24,
+							width: 24,
 							backgroundImage: "images/buttons/Plus.Normal.png"
 						}
 					}

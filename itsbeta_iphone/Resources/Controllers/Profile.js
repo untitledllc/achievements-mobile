@@ -126,7 +126,7 @@ function onWindowOpen(window, event)
 				}
 			}
 			
-			statView.item.add(createProfileBadgeRow(project.display_name + " - " + project.total_badges, Math.ceil(100*tempAchivs.length/project.total_badges)));
+			statView.item.add(createProfileBadgeRow(project.display_name + " - " + project.total_badges)); //, Math.ceil(100*tempAchivs.length/project.total_badges)));
 		}
 	}
 	ui.all.text = ui.all.text + all;
@@ -134,12 +134,12 @@ function onWindowOpen(window, event)
 	ui.sub.text = ui.sub.text + sub ;
 }
 
-// create profile badge row with progress bar
-function createProfileBadgeRow(title, progress)
+// create profile badge row
+function createProfileBadgeRow(title)
 {
 	var row = TiTools.UI.Loader.load("Views/profileBadgeRow.js");
 	row.title.text = title;
-	row.progress.value = progress;
+	// row.progress.value = progress;
 	
 	return row.me;
 }
