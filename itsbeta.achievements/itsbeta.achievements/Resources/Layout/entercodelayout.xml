@@ -2,24 +2,24 @@
 <RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
     p1:minWidth="25px"
     p1:minHeight="25px"
-    p1:layout_width="270dp"
-    p1:layout_height="210dp"
+    p1:layout_width="290dp"
+    p1:layout_height="220dp"
     p1:id="@+id/FristBadgeMainRelativeLayout">
     <ImageView
-        p1:layout_width="270dp"
-        p1:layout_height="210dp"
+        p1:layout_width="290dp"
+        p1:layout_height="220dp"
         p1:id="@+id/BadgeSheetImageView"
         p1:background="@drawable/Paper_background_middleMiddle" />
     <Button
         p1:text="Отмена"
         p1:layout_width="140dp"
-        p1:layout_height="40dp"
+        p1:layout_height="45dp"
         p1:id="@+id/addcode_cancelButton"
         p1:layout_alignLeft="@id/BadgeSheetImageView"
         p1:layout_alignBottom="@id/BadgeSheetImageView"
         p1:background="@drawable/Paper_background_middleMiddle"
         p1:textColor="#ff4e4e4e"
-        p1:textSize="12dp" />
+        p1:textSize="15dp" />
     <TextView
         p1:text="Введите код"
         p1:textAppearance="?android:attr/textAppearanceLarge"
@@ -37,13 +37,13 @@
     <Button
         p1:text="Готово"
         p1:layout_width="140dp"
-        p1:layout_height="40dp"
+        p1:layout_height="45dp"
         p1:layout_toRightOf="@id/addcode_cancelButton"
         p1:id="@+id/addcode_readyButton"
         p1:layout_alignBottom="@id/BadgeSheetImageView"
         p1:layout_alignRight="@id/BadgeSheetImageView"
         p1:background="@drawable/Paper_background_middleMiddle"
-        p1:textSize="12dp"
+        p1:textSize="15dp"
         p1:textColor="#ff4e4e4e" />
     <ImageView
         p1:layout_width="wrap_content"
@@ -79,7 +79,7 @@
         p1:layout_alignRight="@+id/addcode_autoCompleteTextView"
         p1:layout_marginTop="10dp"
         p1:textColor="#ff6c6c6c"
-        p1:textSize="10dp" />
+        p1:textSize="12dp" />
     <ImageView
         p1:layout_width="4dp"
         p1:layout_toLeftOf="@id/addcode_readyButton"

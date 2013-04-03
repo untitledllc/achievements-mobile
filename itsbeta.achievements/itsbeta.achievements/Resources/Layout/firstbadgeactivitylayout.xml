@@ -73,7 +73,7 @@
                     p1:background="@drawable/Login_background"
                     p1:layout_centerHorizontal="true"
                     p1:layout_alignTop="@+id/firstbadgewin_BadgeImageView"
-                    p1:layout_marginTop="100dp"
+                    p1:layout_marginTop="90dp"
                     p1:layout_alignBottom="@+id/bonuspaperlist_linearLayout"
                     p1:minHeight="300dp"
                     p1:layout_marginBottom="-9dp"
@@ -88,21 +88,21 @@
                     p1:layout_centerHorizontal="true" />
                 <ImageView
                     p1:layout_width="310dp"
-                    p1:layout_height="155dp"
+                    p1:layout_height="140dp"
                     p1:id="@+id/firstbadgewin_BadgeImageView"
                     p1:layout_centerHorizontal="true"
                     p1:scaleType="fitStart"
-                    p1:layout_marginTop="20dp"
+                    p1:layout_marginTop="30dp"
                     p1:layout_alignLeft="@+id/BadgeSheetImageView"
                     p1:layout_alignRight="@+id/BadgeSheetImageView"
                     p1:layout_marginLeft="-20dp"
                     p1:layout_marginRight="-20dp" />
                 <ImageView
                     p1:layout_width="310dp"
-                    p1:layout_height="155dp"
+                    p1:layout_height="140dp"
                     p1:id="@+id/firstbadgewin_BadgeImageViewShadow"
                     p1:layout_centerHorizontal="true"
-                    p1:layout_marginTop="20dp"
+                    p1:layout_marginTop="30dp"
                     p1:scaleType="fitStart"
                     p1:layout_alignRight="@+id/BadgeSheetImageView"
                     p1:layout_alignLeft="@+id/BadgeSheetImageView"
@@ -114,13 +114,13 @@
                     p1:layout_width="wrap_content"
                     p1:layout_height="wrap_content"
                     p1:id="@+id/firstbadgewin_usernameTextView"
-                    p1:layout_marginLeft="50dp"
+                    p1:layout_marginLeft="40dp"
                     p1:textSize="20dp"
                     p1:textColor="#ff606060"
                     p1:layout_alignLeft="@+id/firstbadgewin_BadgeImageView"
                     p1:layout_marginTop="190dp"
                     p1:layout_alignRight="@+id/firstbadgewin_BadgeImageView"
-                    p1:layout_marginRight="50dp" />
+                    p1:layout_marginRight="40dp" />
                 <TextView
                     p1:text="Вы получили новый бейдж"
                     p1:textAppearance="?android:attr/textAppearanceMedium"

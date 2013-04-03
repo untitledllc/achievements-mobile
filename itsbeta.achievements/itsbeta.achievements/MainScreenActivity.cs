@@ -18,7 +18,6 @@ using ItsBeta.Core;
 using System.Threading;
 using ZXing.Mobile;
 using Android.Views.InputMethods;
-using MonoAndroid.PullToRefresh;
 
 namespace itsbeta.achievements
 {
@@ -34,33 +33,79 @@ namespace itsbeta.achievements
         static TextView _refreshAchTextView;
         public static MainScreenActivity _context;
 
-        public static PullToRefreshListView _achievementsListView;
+        public static ListView _achievementsListView;
 
         public static bool _isAchListItemClicked = false;
         public static TextView _foundActionTextView;
         public static bool _isLogout = false;
         TextView _badgesCountDisplay;
 
+        Typeface _font;
+
+        ProgressDialog _progressDialog;
+        AlertDialog.Builder _activateMessageBadgeDialogBuilder;
+        AlertDialog _activateMessageBadgeDialog;
+
+        Dialog _wrongCodeDialog;
+        TextView _wrongCodeDialogTitle;
+        TextView _wrongCodeDialogMessage;
+        TextView _progressDialogMessage;
+        Button _wrongCodeDialogReadyButton;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             _context = this;
             SetContentView(Resource.Layout.secondscreenactivitylayout);
+            _font = Typeface.CreateFromAsset(this.Assets, "Roboto-Light.ttf");  
 
-
-            _achievementsListView = (PullToRefreshListView)FindViewById(Resource.Id.secondscr_listView);
+            _achievementsListView = (ListView)FindViewById(Resource.Id.secondscr_listView);
 
 
             _foundActionTextView = new TextView(this);
             _refreshProjectsAndAchTextView = new TextView(this);
 
             _vibe = (Vibrator)this.GetSystemService(Context.VibratorService);
+            _badgesCountDisplay = FindViewById<TextView>(Resource.Id.NavBar_AchievesCountTextView);
+
+
+            //WrongCodeDialog
+            RelativeLayout wrongCodeDialogRelativeLayout = new RelativeLayout(this);
+            LayoutInflater wrongCodeDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            View wrongCodeDialogView = wrongCodeDialoglayoutInflater.Inflate(Resource.Layout.wrongcodedialoglayout, null);
+            _wrongCodeDialogReadyButton = (Button)wrongCodeDialogView.FindViewById(Resource.Id.readyButton);
+            _wrongCodeDialogTitle = (TextView)wrongCodeDialogView.FindViewById(Resource.Id.textView1);
+            _wrongCodeDialogMessage = (TextView)wrongCodeDialogView.FindViewById(Resource.Id.textView2);
+
+
+            wrongCodeDialogRelativeLayout.AddView(wrongCodeDialogView);
+            _wrongCodeDialog = new Dialog(this, Resource.Style.FullHeightDialog);
+            _wrongCodeDialog.SetTitle("");
+            _wrongCodeDialog.SetContentView(wrongCodeDialogRelativeLayout);
+
+            _wrongCodeDialogReadyButton.Click += delegate { _wrongCodeDialog.Dismiss(); };
+            //
+
+            //ProgressDialog
+            RelativeLayout progressDialogRelativeLayout = new RelativeLayout(this);
+            LayoutInflater progressDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            View progressDialogView = progressDialoglayoutInflater.Inflate(Resource.Layout.progressdialoglayout, null);
+            _progressDialogMessage = (TextView)progressDialogView.FindViewById(Resource.Id.progressDialogMessageTextView);
+            progressDialogRelativeLayout.AddView(progressDialogView);
+            _progressDialog = new ProgressDialog(this, Resource.Style.FullHeightDialog);
+            _progressDialog.Show();
+            _progressDialog.SetContentView(progressDialogRelativeLayout);
+            _progressDialog.Dismiss();
+            _progressDialog.SetCanceledOnTouchOutside(false);
+            //
+            
 
             ImageButton profileImageButton = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButton);
             ImageButton profileImageButtonFake = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_ProfileScreenImageButtonFake);
-            _badgesCountDisplay = FindViewById<TextView>(Resource.Id.NavBar_AchievesCountTextView);
 
+            ImageButton refreshImageButton = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_RefreshImageButton);
+            ImageButton refreshImageButtonFake = FindViewById<ImageButton>(Resource.Id.secondscr_NavBar_RefreshImageButtonFake);
+            
 
             _badgesCountDisplay.Text = AppInfo._badgesCount.ToString();
             profileImageButtonFake.Click += delegate
@@ -70,6 +115,26 @@ namespace itsbeta.achievements
                     _vibe.Vibrate(50); profileImageButton.StartAnimation(_buttonClickAnimation); StartActivity(typeof(ProfileActivity));
                 }
             };
+
+            refreshImageButtonFake.Click += delegate
+            {
+                if (!_badgePopupWindow.IsShowing)
+                {
+                    _vibe.Vibrate(50);
+                    if (AppInfo.IsLocaleRu)
+                    {
+                        _progressDialogMessage.Text = "Обновление...";
+                    } 
+                    else
+                    {
+                        _progressDialogMessage.Text = "Refreshing...";
+                    }
+                    _progressDialog.Show();
+                    refreshImageButton.StartAnimation(_buttonClickAnimation);
+                    OnBadgeListRefresh();
+                }
+            };
+
 
 
             //.............................................................................
@@ -175,7 +240,6 @@ namespace itsbeta.achievements
             {
                 base.OnBackPressed();
             }
-            
         }
     }
 }

@@ -17,7 +17,6 @@ using Android.Graphics;
 using ItsBeta.Core;
 using System.Threading;
 using ZXing.Mobile;
-using MonoAndroid.PullToRefresh;
 
 namespace itsbeta.achievements
 {
@@ -76,7 +75,7 @@ namespace itsbeta.achievements
                             });
                         }
 
-                        if (_selectedCategoryId == "Latest" || _selectedCategoryId == "Последние")
+                        if (_selectedCategoryId == "All categories" || _selectedCategoryId == "Все категории")
                         {
                             _achievementsList.Add(new AchievementsListData()
                             {
@@ -140,10 +139,7 @@ namespace itsbeta.achievements
                     }
                 }
             }
-
-            _achievementsListView.SetOnRefreshListener(new RefreshListener());
-
-
+            
             _achievementsListView.DividerHeight = 0;
 
             _achievementsList = _achievementsList.OrderByDescending(x => x.AchieveReceivedDateTime).ToList();
@@ -151,7 +147,7 @@ namespace itsbeta.achievements
 
 
             BitmapFactory.Options options = new BitmapFactory.Options();
-            options.InSampleSize = 2;
+            options.InSampleSize = 1;
 
             for (int i = 0; i < _achievesBitmaps.Count(); i++)
             {
@@ -243,6 +239,14 @@ namespace itsbeta.achievements
                 badgeHowWonderDescr.Append("\n");
                 badgeHowWonderDescr.Append(Android.Text.Html.FromHtml(achieve.Advertisments));
                 badgeHowWonderDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
+
+                categoryNameProjectName.SetTypeface(_font, TypefaceStyle.Normal);
+                badgeHowWonderDescr.SetTypeface(_font, TypefaceStyle.Normal);
+                badgeHowDescr.SetTypeface(_font, TypefaceStyle.Normal);
+                badgeDetails.SetTypeface(_font, TypefaceStyle.Normal);
+                badgeName.SetTypeface(_font, TypefaceStyle.Normal);
+
+
                 //badgeHowWonderDescr.MovementMethod.
                 
                 LinearLayout bonusPaperListLinearLayout = (LinearLayout)layout.FindViewById(Resource.Id.bonuspaperlist_linearLayout);
@@ -280,6 +284,8 @@ namespace itsbeta.achievements
 
                         bonusDescr.Visibility = ViewStates.Invisible;
                         bonusName.Visibility = ViewStates.Invisible;
+                        bonusName.SetTypeface(_font, TypefaceStyle.Normal);
+                        bonusDescr.SetTypeface(_font, TypefaceStyle.Normal);
 
                         if (bonus.Type == "discount")
                         {
@@ -362,6 +368,8 @@ namespace itsbeta.achievements
 
                         TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
                         TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+                        bonusName.SetTypeface(_font, TypefaceStyle.Normal);
+                        bonusDescr.SetTypeface(_font, TypefaceStyle.Normal);
                         bonusDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
 
                         bonusLineImage.Visibility = ViewStates.Invisible;
@@ -472,32 +480,30 @@ namespace itsbeta.achievements
             }
         }
 
-
-        public class RefreshListener : PullToRefreshListView.OnRefreshListener
+        public void OnBadgeListRefresh()
         {
-            public void onRefresh()
+            ThreadPool.QueueUserWorkItem(delegate
             {
-                ThreadPool.QueueUserWorkItem(delegate
+                try
                 {
-                    try
+                    AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId, AppInfo.IsLocaleRu);
+                    _context.RunOnUiThread(() => 
+                    _progressDialog.Dismiss());
+                    _context.RunOnUiThread(() => _context.GetAchievementsView());
+                }
+                catch (Exception)
+                {
+                    _context.RunOnUiThread(() =>
+                    _progressDialog.Dismiss());
+                    string errorMessage = "Error while refreshing";
+                    if (AppInfo.IsLocaleRu)
                     {
-                        AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId, AppInfo.IsLocaleRu);
-                        _context.RunOnUiThread(() => _achievementsListView.onRefreshComplete());
-                        _context.RunOnUiThread(() => _context.GetAchievementsView());
+                        errorMessage = "Ошибка обновления";
                     }
-                    catch (Exception)
-                    {
-                        _context.RunOnUiThread(() => _achievementsListView.onRefreshComplete());
-                        string errorMessage = "Error while refreshing";
-                        if (AppInfo.IsLocaleRu)
-                        {
-                            errorMessage = "Ошибка обновления";
-                        }
-                        _context.RunOnUiThread(() => Toast.MakeText(_context, errorMessage, ToastLength.Short).Show());
-                    }
-                });
+                    _context.RunOnUiThread(() => Toast.MakeText(_context, errorMessage, ToastLength.Short).Show());
+                }
+            });
                 
-            }
         }
     }
 

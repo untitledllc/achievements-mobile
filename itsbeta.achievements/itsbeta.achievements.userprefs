@@ -7,7 +7,7 @@
           <Node name="itsbeta.achievements" expanded="True">
             <Node name="Resources" expanded="True">
               <Node name="Layout" expanded="True">
-                <Node name="addbadgemenulayoutlayout.xml" selected="True" />
+                <Node name="receivebadgelayount.xml" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -19,5 +19,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.itsbeta.achievements MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" MonoForAntroid.PreferredTheme="Theme.DeviceDefault" AndroidDeviceId-Debug="21907965015" />
+  <MonoDevelop.Ide.ItemProperties.itsbeta.achievements MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" MonoForAntroid.PreferredTheme="Theme.Black.NoTitleBar" AndroidDeviceId-Debug="21907965015" />
 </Properties>

@@ -66,7 +66,6 @@
     <Compile Include="MainScreenActivity_CategoryList.cs" />
     <Compile Include="MainScreenActivity_ProjectsList.cs" />
     <Compile Include="ProfileActivity.cs" />
-    <Compile Include="PullToRefreshListView.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashScreenActivity.cs" />
@@ -76,12 +75,15 @@
     <AndroidAsset Include="Assets\Roboto-Light.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\Layout\pull_to_refresh_header.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Values\styles.xml" />
     <AndroidResource Include="Resources\Layout\splashactivitylayout.xml" />
     <AndroidResource Include="Resources\Drawable\Splash_logo.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_screen_icon.png" />
+    <AndroidResource Include="Resources\Drawable\Login_BigBadge.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_icon_refresh.png" />
+    <AndroidResource Include="Resources\Drawable\NavBar_icon_refresh_norm.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
@@ -142,7 +144,6 @@
     <AndroidResource Include="Resources\Drawable\NavBar_icon_profile_norm.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_icon_profile_press.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_leftWindow.png" />
-    <AndroidResource Include="Resources\Drawable\NavBar_screen_icon.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_screen_left.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_screen_middle.png" />
     <AndroidResource Include="Resources\Drawable\NavBar_screen_right.png" />
@@ -190,14 +191,7 @@
     <AndroidResource Include="Resources\Drawable\TableAndButtons_divider_h.png" />
     <AndroidResource Include="Resources\Drawable\trans.png" />
     <AndroidResource Include="Resources\Drawable\Login_background.png" />
-    <AndroidResource Include="Resources\Drawable\Login_BigBadge.png" />
     <AndroidResource Include="Resources\Drawable\Icon_128.png" />
-    <AndroidResource Include="Resources\Drawable-hdpi\ic_pulltorefresh_arrow.png" />
-    <AndroidResource Include="Resources\Drawable-ldpi\ic_pulltorefresh_arrow.png" />
-    <AndroidResource Include="Resources\Drawable-mdpi\ic_pulltorefresh_arrow.png" />
-    <AndroidResource Include="Resources\Values\Strings.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

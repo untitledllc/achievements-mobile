@@ -22,7 +22,7 @@
         p1:background="@drawable/NavBar_leftWindow" />
     <ImageView
         p1:layout_width="28dp"
-        p1:layout_height="45dp"
+        p1:layout_height="40dp"
         p1:id="@+id/NavBar_GlobedImageView"
         p1:layout_alignBottom="@id/secondscr_NavBar_LeftWinImageView"
         p1:layout_alignLeft="@id/secondscr_NavBar_LeftWinImageView"
@@ -42,9 +42,17 @@
     <ImageButton
         p1:layout_width="25dp"
         p1:layout_height="25dp"
-        p1:id="@+id/secondscr_NavBar_ProfileScreenImageButton"
+        p1:id="@+id/secondscr_NavBar_RefreshImageButton"
         p1:layout_alignParentRight="true"
         p1:layout_marginRight="7.5dp"
+        p1:layout_marginTop="12.5dp"
+        p1:background="@drawable/NavBar_icon_refresh_norm" />
+    <ImageButton
+        p1:layout_width="25dp"
+        p1:layout_height="25dp"
+        p1:id="@+id/secondscr_NavBar_ProfileScreenImageButton"
+        p1:layout_toLeftOf="@id/secondscr_NavBar_RefreshImageButton"
+        p1:layout_marginRight="15dp"
         p1:layout_marginTop="12.5dp"
         p1:background="@drawable/NavBar_icon_profile_norm" />
     <LinearLayout
@@ -69,7 +77,7 @@
                 p1:layout_height="wrap_content"
                 p1:id="@+id/secondscr_CategNameRowTextView"
                 p1:gravity="center_horizontal"
-                p1:layout_marginLeft="35dp"
+                p1:layout_marginLeft="40dp"
                 p1:textColor="#ff646464"
                 p1:textSize="12dp"
                 p1:textStyle="normal"
@@ -83,7 +91,7 @@
                 p1:layout_height="15dp"
                 p1:id="@+id/imageView1"
                 p1:layout_centerVertical="true"
-                p1:layout_marginLeft="10dp" />
+                p1:layout_marginLeft="16dp" />
             <ImageView
                 p1:layout_width="4dp"
                 p1:layout_height="fill_parent"
@@ -105,7 +113,7 @@
                 p1:layout_height="wrap_content"
                 p1:id="@+id/secondscr_projectNameRowTextView"
                 p1:gravity="center_horizontal"
-                p1:layout_marginLeft="35dp"
+                p1:layout_marginLeft="40dp"
                 p1:textColor="#ff646464"
                 p1:textSize="12dp"
                 p1:textStyle="normal"
@@ -119,10 +127,10 @@
                 p1:layout_height="15dp"
                 p1:id="@+id/imageView1"
                 p1:layout_centerVertical="true"
-                p1:layout_marginLeft="10dp" />
+                p1:layout_marginLeft="16dp" />
         </RelativeLayout>
     </LinearLayout>
-  <monoandroid.pulltorefresh.PullToRefreshListView
+    <ListView
         p1:layout_width="fill_parent"
         p1:layout_height="fill_parent"
         p1:layout_below="@id/secondscr_categoriesbar_linearLayout"
@@ -153,8 +161,17 @@
         p1:id="@+id/secondscr_NavBar_ProfileScreenImageButtonFake"
         p1:background="#02ffffff"
         p1:layout_alignTop="@+id/NavBar_ImageButton"
-        p1:layout_alignRight="@+id/NavBar_ImageButton"
-        p1:layout_alignBottom="@+id/NavBar_ImageButton" />
+        p1:layout_alignBottom="@+id/NavBar_ImageButton"
+        p1:layout_alignParentRight="true"
+        p1:layout_marginRight="40dp" />
+    <ImageButton
+        p1:layout_width="40dp"
+        p1:layout_height="50dp"
+        p1:id="@+id/secondscr_NavBar_RefreshImageButtonFake"
+        p1:background="#02ffffff"
+        p1:layout_alignTop="@+id/NavBar_ImageButton"
+        p1:layout_alignBottom="@+id/NavBar_ImageButton"
+        p1:layout_alignParentRight="true" />
     <ImageButton
         p1:layout_width="40dp"
         p1:layout_height="50dp"

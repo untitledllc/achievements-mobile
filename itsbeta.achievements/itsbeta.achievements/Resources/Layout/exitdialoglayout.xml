@@ -3,11 +3,11 @@
     p1:minWidth="25px"
     p1:minHeight="25px"
     p1:layout_width="wrap_content"
-    p1:layout_height="170dp"
+    p1:layout_height="190dp"
     p1:id="@+id/FristBadgeMainRelativeLayout">
     <ImageView
         p1:layout_width="wrap_content"
-        p1:layout_height="170dp"
+        p1:layout_height="190dp"
         p1:id="@+id/BadgeSheetImageView"
         p1:background="@drawable/Paper_background_middleMiddle"
         p1:minWidth="200dp"
@@ -54,7 +54,7 @@
         p1:minWidth="25px"
         p1:minHeight="25px"
         p1:layout_width="fill_parent"
-        p1:layout_height="40dp"
+        p1:layout_height="50dp"
         p1:id="@+id/linearLayout1"
         p1:layout_centerHorizontal="false"
         p1:layout_alignRight="@+id/BadgeSheetImageView"
@@ -64,10 +64,10 @@
             p1:text="Да"
             p1:id="@+id/readyButton"
             p1:background="@drawable/Paper_background_middleMiddle"
-            p1:textSize="12dp"
+            p1:textSize="15dp"
             p1:textColor="#ff4e4e4e"
             p1:layout_width="fill_parent"
-            p1:layout_height="40dp"
+            p1:layout_height="50dp"
             p1:layout_weight="1" />
         <ImageView
             p1:id="@+id/imageView2"
@@ -80,9 +80,9 @@
             p1:id="@+id/cancelButton"
             p1:background="@drawable/Paper_background_middleMiddle"
             p1:textColor="#ff4e4e4e"
-            p1:textSize="12dp"
+            p1:textSize="15dp"
             p1:layout_width="fill_parent"
-            p1:layout_height="40dp"
+            p1:layout_height="50dp"
             p1:layout_weight="1" />
     </LinearLayout>
 </RelativeLayout>

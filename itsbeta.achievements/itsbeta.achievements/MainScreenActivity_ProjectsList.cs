@@ -42,11 +42,25 @@ namespace itsbeta.achievements
             _subcategoriesListView.DividerHeight = 0;
             if (!AppInfo.IsLocaleRu)
             {
-                _subcategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = "All subcategories" });
+                if (_selectedCategoryId == "All categories" || _selectedCategoryId == "Все категории")
+                {
+                    _subcategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = "Recent" });
+                }
+                else
+                {
+                    _subcategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = "All subcategories" });
+                }
             }
             else
             {
-                _subcategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = "Все подкатегории" });
+                if (_selectedCategoryId == "All categories" || _selectedCategoryId == "Все категории")
+                {
+                    _subcategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = "Последние" });
+                }
+                else
+                {
+                    _subcategoriesList.Add(new SubCategoriesListData() { SubCategoryNameText = "Все подкатегории" });
+                }
             }
             _subcategoryViewRelativeLayout.FindViewById<TextView>(Resource.Id.secondscr_projectNameRowTextView).Text = _subcategoriesList[0].SubCategoryNameText;
             _selectedsubCategoryId = _subcategoriesList[0].SubCategoryNameText;

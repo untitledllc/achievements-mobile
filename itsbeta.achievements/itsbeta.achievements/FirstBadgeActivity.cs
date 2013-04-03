@@ -33,10 +33,13 @@ namespace itsbeta.achievements
         static ProgressDialog _progressDialog;
         static TextView _progressDialogMessage;
 
+        Typeface _font;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            _font = Typeface.CreateFromAsset(this.Assets, "Roboto-Light.ttf");  
 
             var locale = Java.Util.Locale.Default.DisplayLanguage;
             if (locale == "русский")
@@ -115,6 +118,12 @@ namespace itsbeta.achievements
             TextView userName = FindViewById<TextView>(Resource.Id.firstbadgewin_usernameTextView);
             TextView badgeDescr = FindViewById<TextView>(Resource.Id.firstbadgewin_wonderdescrTextView);
             TextView howGetContent = FindViewById<TextView>(Resource.Id.firstbadgewin_howTextView);
+
+
+            userName.SetTypeface(_font, TypefaceStyle.Normal);
+            badgeDescr.SetTypeface(_font, TypefaceStyle.Normal);
+            howGetContent.SetTypeface(_font, TypefaceStyle.Normal);
+
             if (!AppInfo.IsLocaleRu)
             {
                 howGetContent.Text = "You got a new Badge";
@@ -173,6 +182,8 @@ namespace itsbeta.achievements
 
                         TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
                         TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+                        bonusName.SetTypeface(_font, TypefaceStyle.Normal);
+                        bonusDescr.SetTypeface(_font, TypefaceStyle.Normal);
 
 
                         bonusDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
@@ -268,6 +279,10 @@ namespace itsbeta.achievements
 
                     TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
                     TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+                    bonusName.SetTypeface(_font, TypefaceStyle.Normal);
+                    bonusDescr.SetTypeface(_font, TypefaceStyle.Normal);
+
+
                     bonusDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
 
                     bonusLineImage.Visibility = ViewStates.Invisible;

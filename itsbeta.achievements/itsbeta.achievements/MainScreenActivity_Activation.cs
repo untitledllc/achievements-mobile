@@ -27,51 +27,12 @@ namespace itsbeta.achievements
         MobileBarcodeScanner _scanner;
 
         AutoCompleteTextView _codeCompleteTextView;
-        ProgressDialog _progressDialog;
-        AlertDialog.Builder _activateMessageBadgeDialogBuilder;
-        AlertDialog _activateMessageBadgeDialog;
         ServiceItsBeta _serviceItsBeta = new ServiceItsBeta();
         ImageView _enterCodeLineImageView;
-        Dialog _wrongCodeDialog;
-        TextView _wrongCodeDialogTitle;
-        TextView _wrongCodeDialogMessage;
-        TextView _progressDialogMessage;
+        
 
         void GetActivationDialog()
         {
-            //WrongCodeDialog
-            RelativeLayout wrongCodeDialogRelativeLayout = new RelativeLayout(this);
-            LayoutInflater wrongCodeDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-            View wrongCodeDialogView = wrongCodeDialoglayoutInflater.Inflate(Resource.Layout.wrongcodedialoglayout, null);
-            Button wrongCodeDialogReadyButton = (Button)wrongCodeDialogView.FindViewById(Resource.Id.readyButton);
-            _wrongCodeDialogTitle = (TextView)wrongCodeDialogView.FindViewById(Resource.Id.textView1);
-            _wrongCodeDialogMessage = (TextView)wrongCodeDialogView.FindViewById(Resource.Id.textView2);
-            
-
-            wrongCodeDialogRelativeLayout.AddView(wrongCodeDialogView);
-            _wrongCodeDialog = new Dialog(this, Resource.Style.FullHeightDialog);
-            _wrongCodeDialog.SetTitle("");
-            _wrongCodeDialog.SetContentView(wrongCodeDialogRelativeLayout);
-
-            wrongCodeDialogReadyButton.Click += delegate { _wrongCodeDialog.Dismiss(); };
-
-            //
-
-            //ProgressDialog
-            RelativeLayout progressDialogRelativeLayout = new RelativeLayout(this);
-            LayoutInflater progressDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-            View progressDialogView = progressDialoglayoutInflater.Inflate(Resource.Layout.progressdialoglayout, null);
-            _progressDialogMessage = (TextView)progressDialogView.FindViewById(Resource.Id.progressDialogMessageTextView);
-            progressDialogRelativeLayout.AddView(progressDialogView);
-            _progressDialog = new ProgressDialog(this, Resource.Style.FullHeightDialog);
-            _progressDialog.Show();
-            _progressDialog.SetContentView(progressDialogRelativeLayout);
-            _progressDialog.Dismiss();
-            _progressDialog.SetCanceledOnTouchOutside(false);
-            //
-
-
-
             ImageButton addCodeImageButtonFake = FindViewById<ImageButton>(Resource.Id.NavBar_addcodeImageButtonFake);
             ImageButton addCodeImageButton = FindViewById<ImageButton>(Resource.Id.NavBar_addcodeImageButton);
             _activateMessageBadgeDialogBuilder = new AlertDialog.Builder(this);
@@ -84,8 +45,15 @@ namespace itsbeta.achievements
             Button readQRCodeButton = (Button)addBadgeView.FindViewById(Resource.Id.addbadge_readQRButton);
             Button addCodeButton = (Button)addBadgeView.FindViewById(Resource.Id.addbadge_addcodeButton);
 
+            readQRCodeButton.SetTypeface(_font, TypefaceStyle.Normal);
+            addCodeButton.SetTypeface(_font, TypefaceStyle.Normal);
+
             TextView addBadgeTitleTextView = (TextView)addBadgeView.FindViewById(Resource.Id.textView1);
+            TextView addBadgeHintTextView = (TextView)addBadgeView.FindViewById(Resource.Id.addbadge_hintTextView);
             addBadgeRelativeLayout.AddView(addBadgeView);
+
+            addBadgeTitleTextView.SetTypeface(_font, TypefaceStyle.Normal);
+            addBadgeHintTextView.SetTypeface(_font, TypefaceStyle.Normal);
 
             LayoutInflater addCodeMenulayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
             RelativeLayout addCodeRelativeLayout = new RelativeLayout(this);
@@ -98,16 +66,22 @@ namespace itsbeta.achievements
             TextView addCodeDescrTextView = (TextView)addCodeView.FindViewById(Resource.Id.textView2);
             TextView addCodeTitleTextView = (TextView)addCodeView.FindViewById(Resource.Id.textView1);
 
+            addCodeDescrTextView.SetTypeface(_font, TypefaceStyle.Normal);
+            addCodeTitleTextView.SetTypeface(_font, TypefaceStyle.Normal);
+
             _codeCompleteTextView = (AutoCompleteTextView)addCodeView.FindViewById(Resource.Id.addcode_autoCompleteTextView);
+            _codeCompleteTextView.SetTypeface(_font, TypefaceStyle.Normal);
+
 
             if (!AppInfo.IsLocaleRu)
             {
                 addBadgeTitleTextView.Text = "Activate Badge";
+                addBadgeHintTextView.Text = "Enter a code or read a QR from a certificate of achivement to get a new badge.";
                 addCodeButton.Text = "   Via Entering code";
                 readQRCodeButton.Text = "   Via QR-reader";
                 addCodeDescrTextView.Text = "Confirmation a code is a process for which is given a badge.";
                 addCodeTitleTextView.Text = "Enter code";
-                wrongCodeDialogReadyButton.Text = "Ok";
+                _wrongCodeDialogReadyButton.Text = "Ok";
                 addCodeCancelButton.Text = "Cancel";
                 addCodeReadyButton.Text = "Ok";
             }
@@ -169,6 +143,8 @@ namespace itsbeta.achievements
                 _scanner.UseCustomOverlay = true;
                 var zxingOverlay = LayoutInflater.FromContext(this).Inflate(Resource.Layout.qrreaderlayout, null);
                 TextView qrTitleContent = (TextView)zxingOverlay.FindViewById(Resource.Id.qrreader_codetextView);
+                qrTitleContent.SetTypeface(_font, TypefaceStyle.Normal);
+
                 if (!AppInfo.IsLocaleRu)
                 {
                     qrTitleContent.Text = "Check QR-Code";
@@ -371,6 +347,7 @@ namespace itsbeta.achievements
                     }
                     _wrongCodeDialogMessage.Text = errorDescr;
 
+
                     RunOnUiThread(() => _wrongCodeDialog.Show());
                 }
                 if (response == "null")
@@ -523,7 +500,11 @@ namespace itsbeta.achievements
             TextView profileName = (TextView)layout.FindViewById(Resource.Id.recbadgewin_badgeTextView);
             TextView badgeDescr = (TextView)layout.FindViewById(Resource.Id.recbadgewin_wonderdescrTextView);
             TextView badgeHowGetted = (TextView)layout.FindViewById(Resource.Id.recbadgewin_howwonderTextView);
-            
+
+            profileName.SetTypeface(_font, TypefaceStyle.Normal);
+            badgeDescr.SetTypeface(_font, TypefaceStyle.Normal);
+            badgeHowGetted.SetTypeface(_font, TypefaceStyle.Normal);
+
             if (!AppInfo.IsLocaleRu)
             {
                 badgeHowGetted.Text = "You got a new Badge";
@@ -564,6 +545,10 @@ namespace itsbeta.achievements
 
                         TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
                         TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+                        bonusName.SetTypeface(_font, TypefaceStyle.Normal);
+                        bonusDescr.SetTypeface(_font, TypefaceStyle.Normal);
+
+
                         bonusDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
 
                         bonusLineImage.Visibility = ViewStates.Invisible;
@@ -657,6 +642,8 @@ namespace itsbeta.achievements
 
                     TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
                     TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+                    bonusName.SetTypeface(_font, TypefaceStyle.Normal);
+                    bonusDescr.SetTypeface(_font, TypefaceStyle.Normal);
                     bonusDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
 
                     bonusLineImage.Visibility = ViewStates.Invisible;

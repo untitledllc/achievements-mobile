@@ -42,20 +42,19 @@ namespace itsbeta.achievements
             _categoriesListView.Visibility = ViewStates.Gone;
             _categoriesListView.DividerHeight = 0;
 
-            
              #region Create List Fields
             if (AppInfo.IsLocaleRu)
             {
                 _categoriesList.Add(new CategoriesListData()
                 {
-                    CategoryNameText = "Последние"
+                    CategoryNameText = "Все категории"
                 });
             }
             else
             {
                 _categoriesList.Add(new CategoriesListData()
                 {
-                    CategoryNameText = "Latest"
+                    CategoryNameText = "All categories"
                 });
             }
 

@@ -25,7 +25,7 @@
                 p1:adjustViewBounds="true"
                 p1:background="@drawable/Login_background"
                 p1:layout_alignTop="@+id/badgewin_BadgeImageView"
-                p1:layout_marginTop="100dp"
+                p1:layout_marginTop="90dp"
                 p1:layout_alignBottom="@+id/bonuspaperlist_linearLayout"
                 p1:layout_marginBottom="-9dp"
                 p1:clickable="false"
@@ -47,10 +47,10 @@
                 p1:layout_centerHorizontal="true" />
             <ImageView
                 p1:layout_width="310dp"
-                p1:layout_height="155dp"
+                p1:layout_height="140dp"
                 p1:id="@+id/badgewin_BadgeImageView"
                 p1:scaleType="fitStart"
-                p1:layout_marginTop="15dp"
+                p1:layout_marginTop="30dp"
                 p1:clickable="false"
                 p1:layout_centerHorizontal="true"
                 p1:layout_alignRight="@+id/BadgeSheetImageView"
@@ -59,10 +59,10 @@
                 p1:layout_marginRight="-20dp" />
             <ImageView
                 p1:layout_width="310dp"
-                p1:layout_height="155dp"
+                p1:layout_height="140dp"
                 p1:id="@+id/badgewin_BadgeImageViewShadow"
                 p1:scaleType="fitStart"
-                p1:layout_marginTop="15dp"
+                p1:layout_marginTop="30dp"
                 p1:clickable="false"
                 p1:layout_centerHorizontal="true"
                 p1:layout_alignLeft="@+id/BadgeSheetImageView"

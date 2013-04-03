@@ -110,7 +110,7 @@
                     p1:textColor="#ff616161"
                     p1:textSize="20dp"
                     p1:layout_alignLeft="@id/imageView1"
-                    p1:layout_marginTop="30dp"
+                    p1:layout_marginTop="25dp"
                     p1:layout_marginLeft="1dp" />
                 <ImageView
                     p1:src="@drawable/Profile_StatisticPreview_green"
@@ -207,7 +207,8 @@
                     p1:layout_below="@id/textView3"
                     p1:id="@+id/profilescr_subcategCountTextView"
                     p1:layout_alignLeft="@id/textView3"
-                    p1:layout_marginTop="4dp" />
+                    p1:layout_marginTop="4dp"
+                    p1:textSize="20dp" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

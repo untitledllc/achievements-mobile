@@ -15,6 +15,7 @@ namespace itsbeta.achievements.gui
         private IList<AchievementsListData> Items;
         Context _context;
         Bitmap[] _bitmaps;
+        Typeface _font;
 
         public AchievementsListItemAdapter(Context context, int textViewResourceId, IList<AchievementsListData> items, Bitmap[] bitmaps)
             : base(context, textViewResourceId, items)
@@ -22,6 +23,7 @@ namespace itsbeta.achievements.gui
             Items = items;
             _context = context;
             _bitmaps = bitmaps;
+            _font = Typeface.CreateFromAsset(context.Assets, "Roboto-Light.ttf");  
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -37,6 +39,7 @@ namespace itsbeta.achievements.gui
 
             TextView achiveNameTextView = (TextView)view.FindViewById(Resource.Id.AchiveNameTextView);
             achiveNameTextView.Text = item.AchieveNameText;
+            achiveNameTextView.SetTypeface(_font, TypefaceStyle.Normal);
             try
             {
                 achiveNameTextView.SetTextColor(Color.ParseColor(item.HexColor));
@@ -47,9 +50,11 @@ namespace itsbeta.achievements.gui
 
             TextView achiveDescriptionTextView = (TextView)view.FindViewById(Resource.Id.AchiveDescriptionTextView);
             achiveDescriptionTextView.Text = item.AchieveDescriptionText;
+            achiveDescriptionTextView.SetTypeface(_font, TypefaceStyle.Normal);
 
             TextView achiveReceivedDate = (TextView)view.FindViewById(Resource.Id.AchiveReceiveDateTextView);
             achiveReceivedDate.Text = LocalDateTime(item.AchieveReceivedTime).Date.ToString().Remove(10);
+            achiveReceivedDate.SetTypeface(_font, TypefaceStyle.Normal);
 
             ImageView achivePicture = (ImageView)view.FindViewById(Resource.Id.AchiveImageView);
 
