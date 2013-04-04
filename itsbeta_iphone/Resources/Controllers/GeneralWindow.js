@@ -31,9 +31,6 @@ animationEnd.top = -260;
 animationEnd.duration = 500;
 
 //---------------------------------------------//
-
-
-//---------------------------------------------//
 // Обязательные функции
 //---------------------------------------------//
 
@@ -62,18 +59,12 @@ function onInitController(window, params)
 		ui.transparentView.show();
 		//---------------------------------------------------//
 		
-		//ui.typeProject.hide();
-		//ui.nameProject.hide();
-		
-		//ui.typeProject.text = "Категория";
-		
 		ui.placeListViewCancel.show();
 		
 		if(ui.list != undefined)
 		{
 			if(ui.list.visible == false)
 			{
-				//ui.rowTextAchivs.text = "Категории:";
 				massRow = [];
 				
 				category.display_name;
@@ -209,7 +200,6 @@ function onWindowOpen(window, event)
 		}
 		tempAchivs = [];
 		//-----------------
-		
 		// get achievements by user id
 		
 		itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
@@ -352,7 +342,6 @@ function delList(window,categiry)
 	for(var i = 0; i < tempAchivs.length; i++)
 	{
 		tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
-		Ti.API.info('del');
 	}
 	tempAchivs = [];
 	
@@ -364,11 +353,6 @@ function createListName(window,category)
 	
 	if(ui.list.visible == false)
 		{
-			//ui.typeProject.hide();
-			//ui.nameProject.hide();
-			
-			//ui.rowTextAchivs.text = "Проекты:";
-			
 			massRow = [];
 			
 			for(var i = 0; i < achievements.length; i++)
@@ -398,14 +382,8 @@ function createListName(window,category)
 								ui.nameProject.show();
 								
 								ui.list.visible = false;
-								// for(var ii = 0; ii != massRow.length; ii++)
-								// {
-									// massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-								// }
 								
 								ui.nameProject.text = event.source.display_name;
-								
-								//delList(window,event.source.api_name);
 								
 								hideAchivs();
 							};
@@ -419,26 +397,6 @@ function createListName(window,category)
 			
 			ui.transparentView.hide();
 			ui.placeListView.animate(animation);
-			
-			// if(massRow.length == 0)
-			// {
-				// var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
-					// massRow.push(row);
-// 					
-					// row.rowTextAchivs.text = "Нет проектов";
-// 					
-					// row.rowAchivs.addEventListener("click",function(event)
-					// {
-						// ui.typeProject.show();
-						// ui.nameProject.show();
-// 						
-						// ui.list.visible = false;
-						// for(var ii = 0; ii != i; ii++)
-						// {
-							// massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-						// }
-					// });
-			// }
 			
 			ui.list.visible = true;
 		}
@@ -478,8 +436,6 @@ function reSaveAchivs(data)
 			
 			var project = achievement.projects[j];
 			counter += project.achievements.length;
-			
-			//Ti.API.info(achievement.display_name + "  --  " + project.display_name);
 			
 			projects.push(
 				{
@@ -634,14 +590,11 @@ function hideAchivs()
 {
 	ui.preAchivs.hide();
 	
-	Ti.API.info('selectCategory ' + selectCategory);
-	Ti.API.info('selectProject ' + selectProject);
+	
 	var heigthScroll = 0;
 	
 	for(var i = 0; i < tempAchivs.length; i++)
 	{
-		Ti.API.info('tempAchivs[i].category ' + tempAchivs[i].category);
-		Ti.API.info('tempAchivs[i].project ' + tempAchivs[i].project);
 		
 		if(tempAchivs[i].category == selectCategory || selectCategory == "null")
 		{
@@ -663,7 +616,7 @@ function hideAchivs()
 		{
 			heigthScroll++;
 			ui.preAchivs.updateLayout({contentHeight: Ti.UI.SIZE});
-			Ti.API.info('contentHeight ');
+			
 			ui.preAchivs.show();
 			actIndicator(false);
 		}
