@@ -195,23 +195,24 @@ function onWindowOpen(window, event)
 	
 	Ti.App.addEventListener("reload",function(event){
 		// ---- delete ----
-		//ui.preAchivs.hide();
-		//actIndicator(true);
+		ui.preAchivs.hide();
+		actIndicator(true);
 		tempNewAchivs = event.data;
 		
-		reloadAdd(tempNewAchivs);
+		// -- не дописана, оптимизаия ----////
+		//reloadAdd(tempNewAchivs);
 		
-		// for(var i = 0; i < tempAchivs.length; i++)
-		// {
-			// tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
-			// Ti.API.info('del');
-		// }
-		// tempAchivs = [];
+		for(var i = 0; i < tempAchivs.length; i++)
+		{
+			tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
+			Ti.API.info('del');
+		}
+		tempAchivs = [];
 		//-----------------
 		
 		// get achievements by user id
 		
-		//itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
+		itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
 		
 	});
 	
