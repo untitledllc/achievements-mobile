@@ -268,24 +268,24 @@ function postActivCode(tempCode)//Активация по коду актива�
 				
 				clearTimeout(time);
 				Ti.API.info('ok');
-				//Ti.API.info(success.responseText);
+				Ti.API.info(success.responseText);
 				
 				var temp = JSON.parse(success.responseText);
 				Ti.API.info(temp);
-				// if(temp.error == undefined)
-				// {
-					// Ti.App.fireEvent("reload",{data : temp});
-					// Ti.App.fireEvent("CloseAdd");
-				// }
-				// else
-				// {
-					// Ti.UI.createAlertDialog({
-						// message: "Ошибка!",
-						// title: "Информация"
-					// }).show();
-// 					
-					// Ti.App.fireEvent("actHide");
-				// }
+				if(temp.error == undefined)
+				{
+					Ti.App.fireEvent("reload",{data : temp});
+					Ti.App.fireEvent("CloseAdd");
+				}
+				else
+				{
+					Ti.UI.createAlertDialog({
+						message: "Ошибка!",
+						title: "Информация"
+					}).show();
+					
+					Ti.App.fireEvent("actHide");
+				}
 			},
 			failure: function(failure)
 			{
