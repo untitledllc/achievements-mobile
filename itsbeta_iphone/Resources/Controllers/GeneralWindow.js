@@ -45,7 +45,7 @@ function onInitController(window, params)
 	counter = window.counter;
 	info = window.info;
 	
-	//Ti.API.info(achievements);
+	Ti.API.info(achievements);
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/GeneralWindow.js", window);
@@ -72,7 +72,7 @@ function onInitController(window, params)
 				category.display_name;
 				
 				var allRow = {
-					display_name: "Все категории",
+					display_name: "Все",
 					api_name: "null",
 				};
 				//--- делаем первую ячейку "все категории"
