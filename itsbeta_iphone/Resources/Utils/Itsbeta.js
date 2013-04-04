@@ -7,7 +7,6 @@ var ITSBETA_ACCESS_TOKEN = "8e6b3a7b47c3346cb7e4db42c88519bc";
 function query(params, successCallback, failureCallback)
 {
 	timeOut();
-	Ti.API.info(params.params);
 	
 	TiTools.HTTP.response(
 		{
