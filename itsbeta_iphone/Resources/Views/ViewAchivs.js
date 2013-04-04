@@ -5,7 +5,7 @@ module.exports = {
 	outlet: "viewAchivs",
 	style : {
 		className : "Ti.UI.View",
-		height: 150,
+		height: Ti.UI.SIZE,
 		layout: "vertical"
 	},
 	subviews: [
@@ -14,7 +14,8 @@ module.exports = {
 				className : "Ti.UI.View",
 				height: Ti.UI.SIZE,
 				layout: "horizontal",
-				touchEnabled: false
+				touchEnabled: false,
+				bottom: -40
 			},
 			subviews: [
 				{
@@ -23,7 +24,8 @@ module.exports = {
 						layout: "vertical",
 						width: "20%",
 						height: Ti.UI.SIZE,
-						touchEnabled: false
+						touchEnabled: false,
+						top: 0
 					},
 					subviews: [
 						{
@@ -59,7 +61,8 @@ module.exports = {
 						layout: "vertical",
 						width: "70%",
 						height: Ti.UI.SIZE,
-						touchEnabled: false
+						touchEnabled: false,
+						top: 5
 					},
 					subviews: [
 						{
@@ -95,7 +98,7 @@ module.exports = {
 					style: {
 						className: "Ti.UI.View",
 						layout: "vertical",
-						top: 20,
+						top: 3,
 						right: 0,
 						height: Ti.UI.SIZE,
 						touchEnabled: false

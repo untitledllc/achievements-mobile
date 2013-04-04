@@ -590,17 +590,15 @@ function hideAchivs()
 {
 	ui.preAchivs.hide();
 	
-	
 	var heigthScroll = 0;
 	
 	for(var i = 0; i < tempAchivs.length; i++)
 	{
-		
 		if(tempAchivs[i].category == selectCategory || selectCategory == "null")
 		{
 			if(tempAchivs[i].project == selectProject || selectProject == "null")
 			{
-				tempAchivs[i].viewAchivs.height = 150;
+				tempAchivs[i].viewAchivs.height = Ti.UI.SIZE;
 				heigthScroll++;
 			}
 			else
