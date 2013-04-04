@@ -159,8 +159,8 @@ module.exports = [
 							className: "Ti.UI.View",
 							top: 30,
 							height: 40,
-							width: "90%",
-							backgroundColor: "white"
+							width: "90%"
+							//backgroundColor: "white"
 						},
 						subviews:
 						[
@@ -168,8 +168,9 @@ module.exports = [
 								outlet: "code",
 								style : {
 									className: "Ti.UI.TextField",
+									borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 									height: 40,
-									width: "80%",
+									width: Ti.UI.FILL
 								}
 							}
 						]

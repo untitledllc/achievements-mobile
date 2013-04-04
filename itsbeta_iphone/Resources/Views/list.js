@@ -7,7 +7,8 @@ module.exports = {
 		className : "Ti.UI.View",
 		height: 50,
 		width: Ti.UI.FILL,
-		backgroundColor: "white",
+		// backgroundColor: "white",
+		backgroundImage: "images/navbar/Selects.Bg.png"
 	},
 	subviews:
 	[
@@ -17,6 +18,7 @@ module.exports = {
 				className : "Ti.UI.Label",
 				height: Ti.UI.SIZE,
 				width: Ti.UI.SIZE,
+				color: "#646464",
 				text: "text",
 				touchEnabled: false
 			}
@@ -27,7 +29,7 @@ module.exports = {
 				bottom: 0,
 				height: 1,
 				width: Ti.UI.FILL,
-				backgroundColor: "gray",
+				backgroundColor: "#bebebe",
 				touchEnabled: false
 			}
 		}
