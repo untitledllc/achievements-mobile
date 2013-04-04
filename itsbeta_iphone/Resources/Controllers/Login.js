@@ -88,10 +88,12 @@ function onInitController(window, params)
 									
 								info.name     = (profile.name) ? profile.name : null;	
 								info.birthday = (profile.birthday_date) ? profile.birthday_date : null;	
-								if(info.current_location) {
+								if(profile.current_location != undefined) {
 									info.city    = (profile.current_location.city) ? profile.current_location.city : null;	
 									info.country = (profile.current_location.country) ? profile.current_location.country : null;
 								}
+								
+								Ti.API.info(info)
 								
 								TiTools.Global.set("info", info);
 							}

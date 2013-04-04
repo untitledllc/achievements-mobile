@@ -108,7 +108,7 @@ module.exports = [
 											className: "Ti.UI.Label",
 											color: "#646464",
 											font: {fontSize: 15},
-											text: "Категория"
+											text: "Категории"
 										}
 									},
 									{
@@ -156,7 +156,7 @@ module.exports = [
 											textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
 											color: "#646464",
 											font: {fontSize: 15},
-											text: "Проект"
+											text: "Подкатегории"
 										}
 									},
 									{
@@ -216,28 +216,7 @@ module.exports = [
 			layout: "vertical",
 			backgroundColor: "transparent",
 			visible: false
-		},
-		subviews:
-		[
-			{
-				outlet: "rowTextAchivs",
-				style : {
-					className : "Ti.UI.Label",
-					left: "35%",
-					height: Ti.UI.SIZE,
-					width: Ti.UI.FILL,
-					text: "text"
-				}
-			},
-			{
-				style : {
-					className : "Ti.UI.View",
-					height: 1,
-					width: Ti.UI.FILL,
-					backgroundColor: "gray",
-				}
-			}
-		]
+		}
 	},
 	{
 		outlet: "placeListView",

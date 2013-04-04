@@ -7,7 +7,6 @@ var ITSBETA_ACCESS_TOKEN = "8e6b3a7b47c3346cb7e4db42c88519bc";
 function query(params, successCallback, failureCallback)
 {
 	timeOut();
-	Ti.API.info(params.params);
 	
 	TiTools.HTTP.response(
 		{
@@ -269,24 +268,24 @@ function postActivCode(tempCode)//Активация по коду актива�
 				
 				clearTimeout(time);
 				Ti.API.info('ok');
-				Ti.API.info(success.responseText);
+				//Ti.API.info(success.responseText);
 				
 				var temp = JSON.parse(success.responseText);
-				
-				if(temp.error == undefined)
-				{
-					Ti.App.fireEvent("reload",{data : temp});
-					Ti.App.fireEvent("CloseAdd");
-				}
-				else
-				{
-					Ti.UI.createAlertDialog({
-						message: "Ошибка!",
-						title: "Информация"
-					}).show();
-					
-					Ti.App.fireEvent("actHide");
-				}
+				Ti.API.info(temp);
+				// if(temp.error == undefined)
+				// {
+					// Ti.App.fireEvent("reload",{data : temp});
+					// Ti.App.fireEvent("CloseAdd");
+				// }
+				// else
+				// {
+					// Ti.UI.createAlertDialog({
+						// message: "Ошибка!",
+						// title: "Информация"
+					// }).show();
+// 					
+					// Ti.App.fireEvent("actHide");
+				// }
 			},
 			failure: function(failure)
 			{

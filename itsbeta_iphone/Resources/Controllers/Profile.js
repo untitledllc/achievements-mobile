@@ -35,10 +35,10 @@ function onInitController(window, params)
 	var info = window.info;
 	var pName = "";
 	if(info.birthday) {
-		pName += info.birthday + ",";
+		pName += info.birthday + ", ";
 	}
 	if(info.city) {
-		pName += info.city + ",";
+		pName += info.city + ", ";
 	}
 	if(info.country) {
 		pName += info.country;

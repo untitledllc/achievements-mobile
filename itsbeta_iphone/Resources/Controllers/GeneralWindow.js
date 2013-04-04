@@ -31,9 +31,6 @@ animationEnd.top = -260;
 animationEnd.duration = 500;
 
 //---------------------------------------------//
-
-
-//---------------------------------------------//
 // Обязательные функции
 //---------------------------------------------//
 
@@ -48,7 +45,7 @@ function onInitController(window, params)
 	counter = window.counter;
 	info = window.info;
 	
-	//Ti.API.info(achievements);
+	Ti.API.info(achievements);
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/GeneralWindow.js", window);
@@ -62,18 +59,12 @@ function onInitController(window, params)
 		ui.transparentView.show();
 		//---------------------------------------------------//
 		
-		//ui.typeProject.hide();
-		//ui.nameProject.hide();
-		
-		//ui.typeProject.text = "Категория";
-		
 		ui.placeListViewCancel.show();
 		
 		if(ui.list != undefined)
 		{
 			if(ui.list.visible == false)
 			{
-				//ui.rowTextAchivs.text = "Категории:";
 				massRow = [];
 				
 				category.display_name;
@@ -81,7 +72,7 @@ function onInitController(window, params)
 				category.display_name;
 				
 				var allRow = {
-					display_name: "Все категории",
+					display_name: "Все",
 					api_name: "null",
 				};
 				//--- делаем первую ячейку "все категории"
@@ -195,23 +186,23 @@ function onWindowOpen(window, event)
 	
 	Ti.App.addEventListener("reload",function(event){
 		// ---- delete ----
-		//ui.preAchivs.hide();
-		//actIndicator(true);
+		ui.preAchivs.hide();
+		actIndicator(true);
 		tempNewAchivs = event.data;
 		
-		reloadAdd(tempNewAchivs);
+		// -- не дописана, оптимизаия ----////
+		//reloadAdd(tempNewAchivs);
 		
-		// for(var i = 0; i < tempAchivs.length; i++)
-		// {
-			// tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
-			// Ti.API.info('del');
-		// }
-		// tempAchivs = [];
+		for(var i = 0; i < tempAchivs.length; i++)
+		{
+			tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
+			Ti.API.info('del');
+		}
+		tempAchivs = [];
 		//-----------------
-		
 		// get achievements by user id
 		
-		//itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
+		itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
 		
 	});
 	
@@ -351,7 +342,6 @@ function delList(window,categiry)
 	for(var i = 0; i < tempAchivs.length; i++)
 	{
 		tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
-		Ti.API.info('del');
 	}
 	tempAchivs = [];
 	
@@ -363,11 +353,6 @@ function createListName(window,category)
 	
 	if(ui.list.visible == false)
 		{
-			//ui.typeProject.hide();
-			//ui.nameProject.hide();
-			
-			//ui.rowTextAchivs.text = "Проекты:";
-			
 			massRow = [];
 			
 			for(var i = 0; i < achievements.length; i++)
@@ -397,14 +382,8 @@ function createListName(window,category)
 								ui.nameProject.show();
 								
 								ui.list.visible = false;
-								// for(var ii = 0; ii != massRow.length; ii++)
-								// {
-									// massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-								// }
 								
 								ui.nameProject.text = event.source.display_name;
-								
-								//delList(window,event.source.api_name);
 								
 								hideAchivs();
 							};
@@ -418,26 +397,6 @@ function createListName(window,category)
 			
 			ui.transparentView.hide();
 			ui.placeListView.animate(animation);
-			
-			// if(massRow.length == 0)
-			// {
-				// var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
-					// massRow.push(row);
-// 					
-					// row.rowTextAchivs.text = "Нет проектов";
-// 					
-					// row.rowAchivs.addEventListener("click",function(event)
-					// {
-						// ui.typeProject.show();
-						// ui.nameProject.show();
-// 						
-						// ui.list.visible = false;
-						// for(var ii = 0; ii != i; ii++)
-						// {
-							// massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-						// }
-					// });
-			// }
 			
 			ui.list.visible = true;
 		}
@@ -477,8 +436,6 @@ function reSaveAchivs(data)
 			
 			var project = achievement.projects[j];
 			counter += project.achievements.length;
-			
-			//Ti.API.info(achievement.display_name + "  --  " + project.display_name);
 			
 			projects.push(
 				{
@@ -574,7 +531,7 @@ function createListRow(category,massRow)
 						
 	row.rowAchivs.addEventListener("singletap",function(event)
 	{
-		ui.nameProject.text = "Проект";
+		ui.nameProject.text = "Подкатегории";
 		selectProject = "null";
 		
 		actIndicator(true);
@@ -633,14 +590,11 @@ function hideAchivs()
 {
 	ui.preAchivs.hide();
 	
-	Ti.API.info('selectCategory ' + selectCategory);
-	Ti.API.info('selectProject ' + selectProject);
+	
 	var heigthScroll = 0;
 	
 	for(var i = 0; i < tempAchivs.length; i++)
 	{
-		Ti.API.info('tempAchivs[i].category ' + tempAchivs[i].category);
-		Ti.API.info('tempAchivs[i].project ' + tempAchivs[i].project);
 		
 		if(tempAchivs[i].category == selectCategory || selectCategory == "null")
 		{
@@ -662,7 +616,7 @@ function hideAchivs()
 		{
 			heigthScroll++;
 			ui.preAchivs.updateLayout({contentHeight: Ti.UI.SIZE});
-			Ti.API.info('contentHeight ');
+			
 			ui.preAchivs.show();
 			actIndicator(false);
 		}
@@ -671,10 +625,14 @@ function hideAchivs()
 //--reload -- добавляем новую ачивку ---------------------------------------------------//
 function reloadAdd(data)
 {
+	var categoryDetected = false;
+	var projectDetected = false;
+	
 	for(var i = 0;i < categories.length; i++)
 	{
 		if(categories[i].api_name == data.api_name)
 		{
+			categoryDetected = true;
 			break;
 		}
 		if(i+1 == categories.length)
@@ -691,6 +649,7 @@ function reloadAdd(data)
 	{
 		if(projects[j].api_name == data.project.api_name)
 		{
+			projectDetected = true;
 			break;
 		}
 		if(i+1 == projects.length)
@@ -703,6 +662,25 @@ function reloadAdd(data)
 			
 		}
 	}
+	
+	// --- поиск места куда вставить ачивку ----////
+	
+	// for(var i = 0; i < achievements.length; i++)
+	// {
+		// if(achievements[i].api_name)
+		// {
+			// for(var j = 0; j < achievements[i].projects.length; j++)
+			// {
+				// for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
+				// {
+					// if(achievements[i].projects[j].api_name == categiry || categiry == "null" || achievements[i].api_name == categiry)
+					// {
+					// }
+				// }
+			// }
+		// }
+	// }
+	
 	//// ------ создание  ачивки -----////
 	var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
 	
