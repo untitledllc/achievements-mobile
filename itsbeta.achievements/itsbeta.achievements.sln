@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "itsbeta.achievements", "itsbeta.achievements\itsbeta.achievements.csproj", "{FEF3D819-0A02-407D-9D6F-5FE6B1872B5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZXing.Net.Mobile.MonoForAndroid", "..\libs\QR Reader\ZXing.Net.Mobile\ZXing.Net.Mobile.MonoForAndroid.csproj", "{D72228AC-C356-4E1A-B56F-91C9A25F7286}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zxing.monoandroid", "..\libs\QR Reader\ZXing.Net\zxing.monoandroid.csproj", "{8971B59D-78F1-49BA-808D-CBADB37F571F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "itsbeta", "..\libs\itsbeta\itsbeta\itsbeta.csproj", "{F0E325C3-8C23-4FC5-ACCE-402E4F37671C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Android.Crasher", "..\libs\Mono.Android.Crasher\Mono.Android.Crasher.csproj", "{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZXing.Net.Mobile.MonoForAndroid", "..\libs\QR Reader\ZXing.Net.Mobile.MonoForAndroid.csproj", "{D72228AC-C356-4E1A-B56F-91C9A25F7286}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{FEF3D819-0A02-407D-9D6F-5FE6B1872B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEF3D819-0A02-407D-9D6F-5FE6B1872B5F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FEF3D819-0A02-407D-9D6F-5FE6B1872B5F}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{D72228AC-C356-4E1A-B56F-91C9A25F7286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D72228AC-C356-4E1A-B56F-91C9A25F7286}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D72228AC-C356-4E1A-B56F-91C9A25F7286}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D72228AC-C356-4E1A-B56F-91C9A25F7286}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8971B59D-78F1-49BA-808D-CBADB37F571F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8971B59D-78F1-49BA-808D-CBADB37F571F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8971B59D-78F1-49BA-808D-CBADB37F571F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D72228AC-C356-4E1A-B56F-91C9A25F7286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D72228AC-C356-4E1A-B56F-91C9A25F7286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D72228AC-C356-4E1A-B56F-91C9A25F7286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D72228AC-C356-4E1A-B56F-91C9A25F7286}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

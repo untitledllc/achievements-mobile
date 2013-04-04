@@ -86,6 +86,7 @@ namespace ZXing.Mobile
 				return torch;
 			}
 		}
+
 	}
 	
 }

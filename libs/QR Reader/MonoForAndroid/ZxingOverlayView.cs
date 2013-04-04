@@ -69,7 +69,7 @@ namespace ZXing.Mobile
 			return framingRect;
 		}
 
-		/*Rect GetFramingRectInPreview()
+		/*Rect GetFramingRectInPreview() 
 		{
 			var fr = GetFramingRect();
 			if (fr == null)

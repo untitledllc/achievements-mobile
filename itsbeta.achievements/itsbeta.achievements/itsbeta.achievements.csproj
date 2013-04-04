@@ -201,7 +201,7 @@
       <Project>{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}</Project>
       <Name>Mono.Android.Crasher</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\libs\QR Reader\ZXing.Net.Mobile\ZXing.Net.Mobile.MonoForAndroid.csproj">
+    <ProjectReference Include="..\..\libs\QR Reader\ZXing.Net.Mobile.MonoForAndroid.csproj">
       <Project>{D72228AC-C356-4E1A-B56F-91C9A25F7286}</Project>
       <Name>ZXing.Net.Mobile.MonoForAndroid</Name>
     </ProjectReference>
