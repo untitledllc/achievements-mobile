@@ -575,7 +575,7 @@ function createListRow(category,massRow)
 						
 	row.rowAchivs.addEventListener("singletap",function(event)
 	{
-		ui.nameProject.text = "Проект";
+		ui.nameProject.text = "Подкатегории";
 		selectProject = "null";
 		
 		actIndicator(true);
