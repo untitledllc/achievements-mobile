@@ -125,43 +125,6 @@ namespace itsbeta.achievements
             badgesCount.Text = AppInfo._badgesCount.ToString();
             bonusesCount.Text = AppInfo._bonusesCount.ToString();
             subCategoriesCount.Text = AppInfo._subcategCount.ToString();
-
-            LinearLayout profilescrLinearLayout = FindViewById<LinearLayout>(Resource.Id.profilescr_linearLayout);
-
-            for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
-            {
-                LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-                View view = layoutInflater.Inflate(Resource.Layout.profilescreenparentrow, null);
-                TextView categoryName = (TextView)view.FindViewById(Resource.Id.profilescr_CategNameTextView);
-                categoryName.Text = i+1 + ". " + AppInfo._achievesInfo.CategoryArray[i].DisplayName +":";
-                categoryName.SetTypeface(font, TypefaceStyle.Bold);
-
-
-                profilescrLinearLayout.AddView(view);
-
-                for (int j = 0; j < AppInfo._achievesInfo.CategoryArray[i].Projects.Length; j++)    
-                {
-                    LayoutInflater layoutInflater2 = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-                    View view2 = layoutInflater2.Inflate(Resource.Layout.profilescreenchildrow, null);
-                    TextView projectName = (TextView)view2.FindViewById(Resource.Id.profilescr_ProjectNameTextView);
-                    projectName.SetTypeface(font, TypefaceStyle.Normal);
-
-
-                    projectName.Text = AppInfo._achievesInfo.CategoryArray[i].Projects[j].DisplayName + "- " + AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Length;
-
-                    if (projectName.Text.EndsWith(" 1"))
-                    {
-                        projectName.Text += " badge";
-                    }
-                    else
-                    {
-                        projectName.Text += " badges";
-                    }
-
-                    profilescrLinearLayout.AddView(view2);
-                }
-
-            }
         }
 
         string GetUserAge(string date)

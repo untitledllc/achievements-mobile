@@ -1,14 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="itsbeta.achievements" expanded="True">
             <Node name="Resources" expanded="True">
-              <Node name="Layout" expanded="True">
-                <Node name="profilescreenchildrow.xml" selected="True" />
-              </Node>
+              <Node name="Layout" expanded="True" />
             </Node>
           </Node>
         </State>

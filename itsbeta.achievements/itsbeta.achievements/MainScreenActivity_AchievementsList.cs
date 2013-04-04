@@ -487,9 +487,58 @@ namespace itsbeta.achievements
                 try
                 {
                     AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId, AppInfo.IsLocaleRu);
-                    _context.RunOnUiThread(() => 
+
+                    AppInfo._subcategCount = 0;
+                    AppInfo._badgesCount = 0;
+                    AppInfo._bonusesCount = 0;
+
+                    for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
+                    {
+                        for (int j = 0; j < AppInfo._achievesInfo.CategoryArray[i].Projects.Count(); j++)
+                        {
+                            AppInfo._subcategCount++;
+                            for (int k = 0; k < AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Count(); k++)
+                            {
+                                AppInfo._badgesCount++;
+
+                                AppInfo._bonusesCount += AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Bonuses.Count();
+
+                                FileStream fs = new FileStream(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" +
+                                    AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName + ".PNG", FileMode.OpenOrCreate,
+                                    FileAccess.ReadWrite, FileShare.ReadWrite
+                                    );
+
+                                if (!System.IO.File.Exists(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
+                                    AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName + ".PNG"))
+                                {
+                                    Bitmap bitmap;
+                                    bitmap = GetImageBitmap(AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].PicUrl);
+                                    
+                                    bitmap.Compress(
+                                    Bitmap.CompressFormat.Png, 10, fs);
+                                    bitmap.Dispose();
+                                    fs.Flush();
+                                    fs.Close();
+
+                                    System.IO.File.Copy(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" +
+                                    AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName + ".PNG",
+                                    @"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
+                                    AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName + ".PNG");
+
+                                    System.IO.File.Delete(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" +
+                                    AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].ApiName + ".PNG");
+                                }
+                            }
+                        }
+                    }
+
+                    RunOnUiThread(() =>
+                    _badgesCountDisplay.Text = AppInfo._badgesCount.ToString()
+                    );
+                    RunOnUiThread(() => 
                     _progressDialog.Dismiss());
-                    _context.RunOnUiThread(() => _context.GetAchievementsView());
+
+                    RunOnUiThread(() => _context.GetAchievementsView());
                 }
                 catch (Exception)
                 {

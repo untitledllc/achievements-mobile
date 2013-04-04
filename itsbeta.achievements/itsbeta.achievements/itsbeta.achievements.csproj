@@ -100,8 +100,6 @@
     <AndroidResource Include="Resources\Layout\loginweblayout.xml" />
     <AndroidResource Include="Resources\Layout\popuplistlayout.xml" />
     <AndroidResource Include="Resources\Layout\profilescreenactivitylayout.xml" />
-    <AndroidResource Include="Resources\Layout\profilescreenchildrow.xml" />
-    <AndroidResource Include="Resources\Layout\profilescreenparentrow.xml" />
     <AndroidResource Include="Resources\Layout\progressdialoglayout.xml" />
     <AndroidResource Include="Resources\Layout\qrreaderlayout.xml" />
     <AndroidResource Include="Resources\Layout\receivebadgelayount.xml" />

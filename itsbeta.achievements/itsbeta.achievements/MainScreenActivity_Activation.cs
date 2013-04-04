@@ -144,6 +144,7 @@ namespace itsbeta.achievements
                 var zxingOverlay = LayoutInflater.FromContext(this).Inflate(Resource.Layout.qrreaderlayout, null);
                 TextView qrTitleContent = (TextView)zxingOverlay.FindViewById(Resource.Id.qrreader_codetextView);
                 qrTitleContent.SetTypeface(_font, TypefaceStyle.Normal);
+                
 
                 if (!AppInfo.IsLocaleRu)
                 {
@@ -200,6 +201,7 @@ namespace itsbeta.achievements
 
         }
 
+
         bool qrValid = false;
 
         void _foundActionTextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
@@ -209,9 +211,9 @@ namespace itsbeta.achievements
             var senderTV = (TextView)sender;
             string activationCode = "null";
 
-            if (senderTV.Text.StartsWith("http://www.itsbeta.com/activate?activation_code="))
+            if (senderTV.Text.Contains("itsbeta.com/activate?activation_code="))
             {
-                activationCode = senderTV.Text.Replace("http://www.itsbeta.com/activate?activation_code=", "");
+                activationCode = senderTV.Text.Split('=')[1];
                 qrValid = true;
             }
             else
