@@ -36,7 +36,6 @@ namespace itsbeta.achievements
         public static ListView _achievementsListView;
 
         public static bool _isAchListItemClicked = false;
-        public static TextView _foundActionTextView;
         public static bool _isLogout = false;
         TextView _badgesCountDisplay;
 
@@ -62,7 +61,6 @@ namespace itsbeta.achievements
             _achievementsListView = (ListView)FindViewById(Resource.Id.secondscr_listView);
 
 
-            _foundActionTextView = new TextView(this);
             _refreshProjectsAndAchTextView = new TextView(this);
 
             _vibe = (Vibrator)this.GetSystemService(Context.VibratorService);

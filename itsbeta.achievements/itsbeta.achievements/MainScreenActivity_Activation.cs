@@ -160,9 +160,6 @@ namespace itsbeta.achievements
                 });
             };
 
-
-            _foundActionTextView.TextChanged += new EventHandler<Android.Text.TextChangedEventArgs>(_foundActionTextView_TextChanged);
-
             addCodeReadyButton.Click += delegate
             {
                 _vibe.Vibrate(50);
@@ -204,16 +201,15 @@ namespace itsbeta.achievements
 
         bool qrValid = false;
 
-        void _foundActionTextView_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        void _qrFoundEventVoid(string stringData)
         {
             _scanner.Cancel();
 
-            var senderTV = (TextView)sender;
             string activationCode = "null";
 
-            if (senderTV.Text.Contains("itsbeta.com/activate?activation_code="))
+            if (stringData.Contains("itsbeta.com/activate?activation_code="))
             {
-                activationCode = senderTV.Text.Split('=')[1];
+                activationCode = stringData.Split('=')[1];
                 qrValid = true;
             }
             else
@@ -789,7 +785,8 @@ namespace itsbeta.achievements
 
             if (found)
             {
-                this.RunOnUiThread(() => _foundActionTextView.Text = result.Text);
+                this.RunOnUiThread(() => Toast.MakeText(this, result.Text, ToastLength.Long).Show());
+                this.RunOnUiThread(() => _qrFoundEventVoid(result.Text));
             }
         }
         #endregion
