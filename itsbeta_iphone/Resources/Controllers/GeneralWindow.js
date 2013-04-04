@@ -638,15 +638,13 @@ function hideAchivs()
 		{
 			tempAchivs[i].viewAchivs.height = 0;
 		}
-		Ti.API.info('1');
 		for(var j = 0; j < lastAchivs.length && j < 10; j++)
 		{
-			Ti.API.info('3')
 			for(var i = 0; i < tempAchivs.length; i++)
 			{
 				if(tempAchivs[i].api_name == lastAchivs[j].api_name)
 				{
-					tempAchivs[i].viewAchivs.height = Ti.UI.SIE;
+					tempAchivs[i].viewAchivs.height = Ti.UI.SIZE;
 					
 				}
 				
@@ -654,7 +652,6 @@ function hideAchivs()
 			
 			if(j+1 == tempAchivs.length || j+1 == 10)
 			{
-				Ti.API.info('2');
 				ui.preAchivs.updateLayout({contentHeight: Ti.UI.SIZE});
 				ui.preAchivs.show();
 				actIndicator(false);
