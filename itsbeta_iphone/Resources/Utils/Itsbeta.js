@@ -326,6 +326,7 @@ function timeOut()
 		alert('Ошибка выполнения запроса!');
 		Ti.API.info('abort');
 		Ti.App.fireEvent("hideActive");
+		Ti.App.fireEvent("actHide");
 	}, 30000);
 }
 //-------------------

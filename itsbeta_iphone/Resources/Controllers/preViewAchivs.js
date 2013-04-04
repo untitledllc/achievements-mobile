@@ -33,10 +33,10 @@ function onInitController(window, params)
 		}
 	);
 	
-	ui.shadowClose.addEventListener("click",function(event)
-	{
-		window.close();
-	});
+	// ui.shadowClose.addEventListener("click",function(event)
+	// {
+		// window.close();
+	// });
 	
  }
 //---------------------------------------------//
