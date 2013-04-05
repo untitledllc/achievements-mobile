@@ -30,7 +30,9 @@ namespace itsbeta.achievements
         static Button _inactiveListButton;
         static Button _inactiveAllButton;
         static Vibrator _vibe;
+
         static TextView _refreshAchTextView;
+
         public static MainScreenActivity _context;
 
         public static ListView _achievementsListView;
@@ -168,7 +170,6 @@ namespace itsbeta.achievements
             _categoryViewRelativeLayout.Click += new EventHandler(_categoryViewRelativeLayout_Click);
         }
 
-
         void _inactiveAllButton_Click(object sender, EventArgs e)
         {
             _inactiveAllButton.Visibility = ViewStates.Gone;
@@ -189,7 +190,13 @@ namespace itsbeta.achievements
         public override void Finish()
         {
             base.Finish();
+
+            if (_vibe != null)  
+            {
+                _vibe.Dispose();
+            }
         }
+
         protected override void OnResume()
         {
             base.OnResume();

@@ -22,13 +22,11 @@ namespace itsbeta.achievements
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class FirstBadgeActivity : Activity
     {
-        public static Achieves.ParentCategory[] _achievesArray;
         public static TextView loadComplete;
         Animation buttonClickAnimation;
-        static AlertDialog.Builder _messageDialogBuilder;
-        static AlertDialog _messageDialog;
+        AlertDialog.Builder _messageDialogBuilder;
+        AlertDialog _messageDialog;
         Vibrator _vibe;
-
 
         static ProgressDialog _progressDialog;
         static TextView _progressDialogMessage;
@@ -108,6 +106,9 @@ namespace itsbeta.achievements
             };
 
         }
+
+
+
 
         void RunOnUiRistBadgeWin()
         {
