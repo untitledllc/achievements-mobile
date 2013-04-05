@@ -416,7 +416,6 @@ function createListAchivs(window,categiry)
 			
 			if(date1 != date2)
 			{
-				
 				if(date1 < date2)
 				{
 					return 1;
@@ -430,7 +429,7 @@ function createListAchivs(window,categiry)
 		}
 	);
 }
-function delList(window,categiry)
+function delList(window, categiry)
 {
 	ui.preAchivs.hide();
 	
@@ -446,7 +445,6 @@ function delList(window,categiry)
 }
 function createListName(window,category)
 {
-	
 	if(ui.list.visible == false)
 		{
 			massRow = [];
@@ -534,7 +532,6 @@ function reSaveAchivs(data)
 		
 		for(var j = 0; j < achievement.projects.length; j++)
 		{
-			
 			var project = achievement.projects[j];
 			counter += project.achievements.length;
 			
@@ -661,9 +658,7 @@ function createListRow(category,massRow)
 		
 		animationEnd.addEventListener('complete',animationHandler);
 		ui.placeListView.animate(animationEnd);
-		
 	});
-	
 }
 function undefClick()
 {
@@ -704,9 +699,7 @@ function hideAchivs()
 				if(tempAchivs[i].api_name == lastAchivs[j].api_name)
 				{
 					tempAchivs[i].viewAchivs.height = Ti.UI.SIZE;
-					
 				}
-				
 			}
 			
 			if(j+1 == tempAchivs.length || j+1 == 10)
@@ -728,8 +721,8 @@ function hideAchivs()
 			{
 				if(tempAchivs[i].project == selectProject || selectProject == "null")
 				{
-				tempAchivs[i].viewAchivs.height = Ti.UI.SIZE;
-				heigthScroll++;
+					tempAchivs[i].viewAchivs.height = Ti.UI.SIZE;
+					heigthScroll++;
 				}
 				else
 				{
@@ -757,7 +750,7 @@ function reloadAdd(data)
 	var categoryDetected = false;
 	var projectDetected = false;
 	
-	for(var i = 0;i < categories.length; i++)
+	for(var i = 0; i < categories.length; i++)
 	{
 		if(categories[i].api_name == data.api_name)
 		{
@@ -770,11 +763,10 @@ function reloadAdd(data)
 				api_name: data.api_name,
 				display_name: data.api_name
 			});
-			
 		}
 	}
 	
-	for(var j = 0;j < projects.length; j++)
+	for(var j = 0; j < projects.length; j++)
 	{
 		if(projects[j].api_name == data.project.api_name)
 		{
