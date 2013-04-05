@@ -51,10 +51,7 @@ function onInitController(window, params)
 	
 	decorateButton.call(
 		ui.infacebook, 
-		function(event)
-		{
-			start(event);
-		}
+		start(event)
 	);
 	
 	function start(event) // onSingleTap handler
@@ -65,9 +62,6 @@ function onInitController(window, params)
 				
 				if(Titanium.Network.online == true)
 				{
-					
-					Ti.API.info(Titanium.Facebook.loggedIn);
-					
 					function fQuery() 
 					{
 						var fbuid = Titanium.Facebook.uid; 
@@ -93,14 +87,10 @@ function onInitController(window, params)
 									info.country = (profile.current_location.country) ? profile.current_location.country : null;
 								}
 								
-								Ti.API.info(info)
-								
 								TiTools.Global.set("info", info);
 							}
 							catch(e)
 							{
-								alert("Ошибка загрузки данных из Facebook.");
-								
 								info = {
 									fbuid: fbuid,
 									accessToken: accessToken,
@@ -115,26 +105,20 @@ function onInitController(window, params)
 							// get achievements by user id
 							itsbeta.firstStart(info);
 							
-							
 							var first = function()
 							{
 								Ti.App.removeEventListener("complite",first);
 								
-								Ti.API.info('!!!');
-								
 								itsbeta.getAchievementsByUid(fbuid, saveAchivs);
 							}
 							Ti.App.addEventListener("complite",first);
-							
 						});
 					};
 					
 					if(!Titanium.Facebook.loggedIn)
 					{
 						actIndicator(true);
-						
 						singlTap = false;
-						
 						Ti.Facebook.authorize();
 						
 						var log = function(e) 
@@ -225,13 +209,13 @@ function saveAchivs(data)
 	
 	var win = TiTools.UI.Controls.createWindow(
 		{
-			main : "Controllers/GeneralWindow.js",
-			navBarHidden : true,
+			main: "Controllers/GeneralWindow.js",
+			navBarHidden: true,
 			info: info,
-			achievements : achievements,
-			categories : categories,
-			projects : projects,
-			counter : counter,
+			achievements: achievements,
+			categories: categories,
+			projects: projects,
+			counter: counter,
 			backgroundColor: "white"
 		}
 	);
@@ -273,7 +257,7 @@ function onWindowClose(window, event)
 //---------------------------------------------//
 
 module.exports = {
-	onInitController : onInitController, // Обязательный параметр
-	onWindowOpen : onWindowOpen,
-	onWindowClose : onWindowClose
+	onInitController: onInitController, // Обязательный параметр
+	onWindowOpen: onWindowOpen,
+	onWindowClose: onWindowClose
 };
