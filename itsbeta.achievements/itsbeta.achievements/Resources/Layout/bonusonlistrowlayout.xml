@@ -45,7 +45,7 @@
         p1:layout_height="wrap_content"
         p1:id="@+id/badgewin_greendescbackgroundImageView"
         p1:layout_marginTop="30dp"
-        p1:background="#33bdffb9"
+        p1:background="#62bdffb9"
         p1:minHeight="70dp"
         p1:layout_alignBottom="@+id/badgewin_bonusdescrTextView" />
     <ImageView
@@ -53,7 +53,7 @@
         p1:layout_height="wrap_content"
         p1:id="@+id/badgewin_bluedescbackgroundImageView"
         p1:layout_marginTop="30dp"
-        p1:background="#2ac9eeff"
+        p1:background="#4bc9eeff"
         p1:minHeight="70dp"
         p1:layout_alignBottom="@+id/badgewin_bonusdescrTextView" />
     <ImageView
@@ -61,7 +61,7 @@
         p1:layout_height="wrap_content"
         p1:id="@+id/badgewin_violetdescbackgroundImageView"
         p1:layout_marginTop="30dp"
-        p1:background="#45ffb9f5"
+        p1:background="#57ffb9f5"
         p1:minHeight="70dp"
         p1:layout_alignBottom="@+id/badgewin_bonusdescrTextView" />
     <TextView

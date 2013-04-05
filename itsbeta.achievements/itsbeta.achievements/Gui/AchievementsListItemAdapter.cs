@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Views.Animations;
 using Android.Graphics;
 using System.IO;
+using Android.Graphics.Drawables;
 
 namespace itsbeta.achievements.gui
 {
@@ -14,15 +15,13 @@ namespace itsbeta.achievements.gui
     {
         private IList<AchievementsListData> Items;
         Context _context;
-        Bitmap[] _bitmaps;
         Typeface _font;
 
-        public AchievementsListItemAdapter(Context context, int textViewResourceId, IList<AchievementsListData> items, Bitmap[] bitmaps)
+        public AchievementsListItemAdapter(Context context, int textViewResourceId, IList<AchievementsListData> items)
             : base(context, textViewResourceId, items)
         {
             Items = items;
             _context = context;
-            _bitmaps = bitmaps;
             _font = Typeface.CreateFromAsset(context.Assets, "Roboto-Light.ttf");  
         }
 
@@ -156,29 +155,12 @@ namespace itsbeta.achievements.gui
 
             view.DrawingCacheEnabled = true;
 
-            achivePicture.SetImageBitmap(_bitmaps[position]);
-            //_bitmaps[position].Recycle();
-            //if (!MainScreenActivity.isItemClicked)
-            //{
-            //Animation listviewAnimation = new ScaleAnimation((float)1.0, (float)1.0, (float)0, (float)1.0);//new TranslateAnimation(0, 0, MainActivity._display.Height, 0);
-
-            //Animation animation;
-            //animation = new TranslateAnimation(AppInfo._display.Width, 0, 200, 0);
-
-            //Animation animrotate = new RotateAnimation(45f, 0f);
-
-            //listviewAnimation.Duration = 750;
-            //animation.Duration = 750;
-            //animrotate.Duration = 750;
-
-            //AnimationSet asa = new AnimationSet(true);
-            //asa.AddAnimation(listviewAnimation);
-            //asa.AddAnimation(animrotate);
-            //asa.AddAnimation(animation);
-
-            //view.StartAnimation(asa);
-            //}
-            
+            using (var d = Drawable.CreateFromPath(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
+                item.AchieveApiName +
+                ".PNG"))
+            {
+                achivePicture.SetImageDrawable(d);
+            }
 
             return view;
         }

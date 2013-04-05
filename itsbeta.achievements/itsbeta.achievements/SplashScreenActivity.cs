@@ -20,7 +20,13 @@ namespace itsbeta.achievements
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreenActivity : Activity
     {
-        Timer timer;
+        private Timer _freezeTimer;
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -47,19 +53,21 @@ namespace itsbeta.achievements
             {
                 SetContentView(Resource.Layout.splashactivitylayout);
 
-                timer = new Timer();
-                timer.Interval = 1500;
-                timer.Start();
-                timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+                _freezeTimer = new Timer();
+                _freezeTimer.Interval = 1500;
+                _freezeTimer.Start();
+                _freezeTimer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
             }            
         }
 
         void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             //timer.Stop();
-            timer.Stop();
+            _freezeTimer.Stop();
             StartActivity(typeof(LoginActivity));
-            Finish();
+            OnDestroy();
         }
+
+
     }
 }

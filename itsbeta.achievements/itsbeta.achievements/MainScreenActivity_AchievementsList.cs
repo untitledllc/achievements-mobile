@@ -17,31 +17,22 @@ using Android.Graphics;
 using ItsBeta.Core;
 using System.Threading;
 using ZXing.Mobile;
+using Android.Graphics.Drawables;
 
 namespace itsbeta.achievements
 {
     public partial class MainScreenActivity
     {
         List<AchievementsListData> _achievementsList;
+        List<string> _achievementsListBadgesImagePath;
+
         PopupWindow _badgePopupWindow;
-        Bitmap[] _bitmaps;
-        Bitmap[] _achievesBitmaps;
 
         void GetAchievementsView()
         {
+            GC.Collect();
             isItemClicked = false;
-            if (_achievesBitmaps != null)
-            {
-                
-                foreach (var bitmap in _achievesBitmaps)
-                {
-                    if (bitmap!= null)
-                    {
-                        bitmap.Recycle();
-                        //bitmap.Dispose();
-                    }
-                }
-            }
+            
             if (_achievementsListView!=null)
             {
                 //_achievementsListView.Dispose();
@@ -49,7 +40,8 @@ namespace itsbeta.achievements
 
 
             _achievementsList = new List<AchievementsListData>();
-            
+            _achievementsListBadgesImagePath = new List<string>();
+
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
             {
                 for (int j = 0; j < AppInfo._achievesInfo.CategoryArray[i].Projects.Count(); j++)
@@ -143,21 +135,8 @@ namespace itsbeta.achievements
             _achievementsListView.DividerHeight = 0;
 
             _achievementsList = _achievementsList.OrderByDescending(x => x.AchieveReceivedDateTime).ToList();
-            _achievesBitmaps = new Bitmap[_achievementsList.Count];
-
-
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.InSampleSize = 1;
-
-            for (int i = 0; i < _achievesBitmaps.Count(); i++)
-            {
-                _achievesBitmaps[i] = BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
-                _achievementsList[i].AchieveApiName +
-                ".PNG"
-                , options);
-            }
-
-            var adapter = new AchievementsListItemAdapter(this, Resource.Layout.secondscreenlistrow, _achievementsList, _achievesBitmaps);
+            
+            var adapter = new AchievementsListItemAdapter(this, Resource.Layout.secondscreenlistrow, _achievementsList);
 
 
             _achievementsListView.DrawingCacheEnabled = true;
@@ -169,9 +148,9 @@ namespace itsbeta.achievements
 
         public static bool isItemClicked = false;
         ItsBeta.Core.Achieves.ParentCategory.ParentProject.Achieve achieve;
-        Bitmap _itemclickAchBitmap;
         void achievementsListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
+            GC.Collect();
             isItemClicked = true;
             if (!_badgePopupWindow.IsShowing && _subcategoriesListView.Visibility == ViewStates.Gone && _categoriesListView.Visibility == ViewStates.Gone)
             {
@@ -226,9 +205,15 @@ namespace itsbeta.achievements
                 //badgeInactiveBackgroundButton.Click += new EventHandler(badgeInactiveBackgroundButton_Click);
                 
                 badgeName.Text = achieve.DisplayName;
-                _itemclickAchBitmap = BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" + achieve.ApiName + ".PNG");
+                //using (var bitmap = BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" + achieve.ApiName + ".PNG"))
+                //{
+                //    badgeImage.SetImageBitmap(bitmap);
+                //}
+                using (var d = Drawable.CreateFromPath(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" + achieve.ApiName + ".PNG"))
+                {
+                    badgeImage.SetImageDrawable(d);
+                }
 
-                badgeImage.SetImageBitmap(_itemclickAchBitmap);
                 //badgeImage.SetScaleType(ImageView.ScaleType.FitStart);
                 //badgeImageShape.SetImageResource(Resource.Drawable.Paper_BadgeShape);
 
@@ -464,8 +449,6 @@ namespace itsbeta.achievements
                     _vibe.Vibrate(50);
                     badgeReadyButtonfake.StartAnimation(_buttonClickAnimation);
                     _badgePopupWindow.Dismiss();
-                    //_itemclickAchBitmap.Recycle();
-                    _itemclickAchBitmap.Dispose();
                 };
                 badgeSheet.Click += delegate{ };
                 badgeImage.Click += delegate { };

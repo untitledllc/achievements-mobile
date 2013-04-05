@@ -22,25 +22,59 @@ namespace itsbeta.achievements
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class FirstBadgeActivity : Activity
     {
-        public static TextView loadComplete;
-        Animation buttonClickAnimation;
-        AlertDialog.Builder _messageDialogBuilder;
-        AlertDialog _messageDialog;
+        #region Base Activity Global Objects
+        //Анимация и вибрация нажатия на кнопки
+        Animation _fadeAnimation;
         Vibrator _vibe;
 
-        static ProgressDialog _progressDialog;
-        static TextView _progressDialogMessage;
+        //Диалоговые окна оповещения
+        AlertDialog.Builder _messageDialogBuilder;
+        AlertDialog _messageDialog;
 
-        Typeface _font;
+        LayoutInflater _baseLayoutInflater;
+
+        //Объекты создания прогрессДиалога
+        ProgressDialog _progressDialog;
+        RelativeLayout _progressDialogRelativeLayout;
+        View _progressDialogView;
+        TextView _progressDialogMessage;
+
+        //Сторонний шрифт
+        Typeface _robotoLightFont;
+
+        //Второстепенный поток
+        ThreadStart _asyncInitThreadStart;
+        Thread _asyncInitThread;
+
+
+        //Объекты листа Бейджа
+        ImageView _badgeSheetBadgeImageView;
+        ImageButton _badgeSheetCloseImageButton;
+        ImageButton _badgeSheetCloseFakeImageButton;
+
+        TextView _badgeSheetUserNameTextView;
+        TextView _badgeSheetDescrTextView;
+        TextView _badgeSheetAnounceTextView;
+
+        LinearLayout _badgeSheetBonusListLinearLayout;
+        View _badgeSheetBonusView;
+        ImageView _badgeSheetBonusLineImageView;      
+        ImageView _badgeSheetDiscountLineImageView;    
+        ImageView _badgeSheetPresentLineImageView;     
+        ImageView _badgeSheetBonusDescrBackgroundImageView;
+        ImageView _badgeSheetDiscountDescrBackgroundImageView;
+        ImageView _badgeSheetPresentDescrBackgroundImageView;
+
+        TextView _badgeSheetBonusNameTextView;
+        TextView _badgeSheetBonusDescrTextView;
+        #endregion
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            _font = Typeface.CreateFromAsset(this.Assets, "Roboto-Light.ttf");  
 
-            var locale = Java.Util.Locale.Default.DisplayLanguage;
-            if (locale == "русский")
+            if (Java.Util.Locale.Default.DisplayLanguage == "русский")
             {
                 AppInfo.IsLocaleRu = true;
             }
@@ -49,9 +83,12 @@ namespace itsbeta.achievements
                 AppInfo.IsLocaleRu = false;
             }
 
+            _robotoLightFont = Typeface.CreateFromAsset(this.Assets, "Roboto-Light.ttf"); 
             _vibe = (Vibrator)this.GetSystemService(Context.VibratorService);
-            loadComplete = new TextView(this);
+
             _messageDialogBuilder = new AlertDialog.Builder(this);
+
+            //Считываем пользовательские данные
             if (!File.Exists(@"/data/data/ru.hintsolutions.itsbeta/data.txt"))
             {
                 List<string> config = new List<string>();
@@ -66,20 +103,21 @@ namespace itsbeta.achievements
                 File.WriteAllLines(@"/data/data/ru.hintsolutions.itsbeta/data.txt", config.ToArray(), Encoding.UTF8);
             }
 
+            //Binding на xmlразметку
             SetContentView(Resource.Layout.firstbadgeactivityloadinglayout);
 
 
-            RelativeLayout progressDialogRelativeLayout = new RelativeLayout(this);
-            LayoutInflater progressDialoglayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-            View progressDialogView = progressDialoglayoutInflater.Inflate(Resource.Layout.progressdialoglayout, null);
-            _progressDialogMessage = (TextView)progressDialogView.FindViewById(Resource.Id.progressDialogMessageTextView);
-            progressDialogRelativeLayout.AddView(progressDialogView);
+            //Инициализируем костомный прогресс диалог
+            _progressDialogRelativeLayout = new RelativeLayout(this);
+            _baseLayoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
+            _progressDialogView = _baseLayoutInflater.Inflate(Resource.Layout.progressdialoglayout, null);
+            _progressDialogMessage = (TextView)_progressDialogView.FindViewById(Resource.Id.progressDialogMessageTextView);
+            _progressDialogRelativeLayout.AddView(_progressDialogView);
             _progressDialog = new ProgressDialog(this, Resource.Style.FullHeightDialog);
             _progressDialog.Show();
-            _progressDialog.SetContentView(progressDialogRelativeLayout);
+            _progressDialog.SetContentView(_progressDialogRelativeLayout);
             _progressDialog.Dismiss();
             _progressDialog.SetCanceledOnTouchOutside(false);
-
             _progressDialogMessage.Text = "Загрузка данных...";
             if (!AppInfo.IsLocaleRu)
             {
@@ -87,315 +125,148 @@ namespace itsbeta.achievements
             }
             _progressDialog.Show();
 
-            ThreadStart threadStart = new ThreadStart(treadStartVoid);
-            Thread loadThread = new Thread(threadStart);
-            loadThread.Start();
 
-            loadComplete.TextChanged += delegate
-            {
-                if (!LoginWebActivity.isAppBadgeEarned)
-                {
-                    RunOnUiThread(() => RunOnUiRistBadgeWin());
-                }
-                else
-                {
-                    RunOnUiThread(() => _progressDialog.Hide());
-                    Finish();
-                    StartActivity(typeof(MainScreenActivity));
-                }
-            };
-
+            //Запуск параллельного потока для выполнения основных действий
+            _asyncInitThreadStart = new ThreadStart(AsyncInitCallback);
+            _asyncInitThread = new Thread(_asyncInitThreadStart);
+            _asyncInitThread.Start();
         }
 
-
-
-
-        void RunOnUiRistBadgeWin()
+        protected override void OnDestroy()
         {
-            _progressDialog.Hide();
-            buttonClickAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
-            SetContentView(Resource.Layout.firstbadgeactivitylayout);
-
-            TextView userName = FindViewById<TextView>(Resource.Id.firstbadgewin_usernameTextView);
-            TextView badgeDescr = FindViewById<TextView>(Resource.Id.firstbadgewin_wonderdescrTextView);
-            TextView howGetContent = FindViewById<TextView>(Resource.Id.firstbadgewin_howTextView);
+            base.OnDestroy();
 
 
-            userName.SetTypeface(_font, TypefaceStyle.Normal);
-            badgeDescr.SetTypeface(_font, TypefaceStyle.Normal);
-            howGetContent.SetTypeface(_font, TypefaceStyle.Normal);
-
-            if (!AppInfo.IsLocaleRu)
+            //Анимация и вибрация нажатия на кнопки
+            if (_fadeAnimation != null)
             {
-                howGetContent.Text = "You got a new Badge";
+                _fadeAnimation.Dispose();
+            }
+            if (_vibe != null)
+            {
+                _vibe.Dispose();
             }
 
-            if (AppInfo._user.Fullname != null)
+            //Диалоговые окна оповещения
+            if (_messageDialogBuilder != null)
             {
-                userName.Text = AppInfo._user.Fullname;
+                _messageDialogBuilder.Dispose();
+            }
+            if (_messageDialog != null)
+            {
+                _messageDialog.Dispose();
+            }
+            if (_baseLayoutInflater != null)
+            {
+                _baseLayoutInflater.Dispose();
             }
 
-            ImageView badgeImageView = FindViewById<ImageView>(Resource.Id.firstbadgewin_BadgeImageView);
-
-            ImageButton badgeReadyButton = FindViewById<ImageButton>(Resource.Id.firstbadgewin_CloseImageButton);
-            ImageButton badgeReadyButtonFake = FindViewById<ImageButton>(Resource.Id.firstbadgewin_CloseImageButtonFake);
-
-
-            foreach (var category in AppInfo._achievesInfo.CategoryArray)
+            //Объекты создания прогрессДиалога
+            if (_progressDialog != null)
             {
-                foreach (var project in category.Projects)
-                {
-                    foreach (var achieve in project.Achievements)
-                    {
-                        if (achieve.FbId == ServiceItsBeta.PostOnFBBadgeFbId)
-                        {
-                            _achieve = achieve;
-                        }
-                    }
-                }
+                _progressDialog.Dispose();
+            }
+            if (_progressDialogRelativeLayout != null)
+            {
+                _progressDialogRelativeLayout.Dispose();
+            }
+            if (_progressDialogView != null)
+            {
+                _progressDialogView.Dispose();
+            }
+            if (_progressDialogMessage != null)
+            {
+                _progressDialogMessage.Dispose();
             }
 
-            Bitmap bitmap = BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
-                _achieve.ApiName+ ".PNG"
-                );
-
-            LinearLayout bonusPaperListLinearLayout = FindViewById<LinearLayout>(Resource.Id.bonuspaperlist_linearLayout);
-
-
-            if (_achieve.Bonuses.Count() == 0)
+            //Сторонний шрифт
+            if (_robotoLightFont != null)
             {
-                bonusPaperListLinearLayout.Visibility = ViewStates.Gone;
-            }
-                if (_achieve.Bonuses.Count() == 1)
-                {
-                    var bonus = _achieve.Bonuses.First();
-                    {
-                        LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-                        View bonusView = layoutInflater.Inflate(Resource.Layout.bonusonlistrowlayout, null);
-                        bonusView.LayoutParameters = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FillParent, RelativeLayout.LayoutParams.FillParent);
-                        ImageView bonusLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
-                        ImageView discountLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_BlueBonusImageView);
-                        ImageView giftLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_VioletBonusImageView);
-
-                        ImageView bonusDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_greendescbackgroundImageView);
-                        ImageView discountDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_bluedescbackgroundImageView);
-                        ImageView giftDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_violetdescbackgroundImageView);
-
-                        TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
-                        TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
-                        bonusName.SetTypeface(_font, TypefaceStyle.Normal);
-                        bonusDescr.SetTypeface(_font, TypefaceStyle.Normal);
-
-
-                        bonusDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
-
-                        bonusLineImage.Visibility = ViewStates.Invisible;
-                        discountLineImage.Visibility = ViewStates.Invisible;
-                        giftLineImage.Visibility = ViewStates.Invisible;
-
-                        bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                        discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                        giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
-
-                        bonusDescr.Visibility = ViewStates.Invisible;
-                        bonusName.Visibility = ViewStates.Invisible;
-
-                        if (bonus.Type == "discount")
-                        {
-                            bonusLineImage.Visibility = ViewStates.Invisible;
-                            discountLineImage.Visibility = ViewStates.Visible;
-                            giftLineImage.Visibility = ViewStates.Invisible;
-
-                            bonusPaperListLinearLayout.SetBackgroundColor(new Color(201, 238, 255, 89));
-
-                            bonusDescr.Visibility = ViewStates.Visible;
-                            bonusName.Visibility = ViewStates.Visible;
-
-                            bonusName.Text = "Скидка";
-                            if (!AppInfo.IsLocaleRu)
-                            {
-                                bonusName.Text = "Discount";
-                            }
-                            bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
-
-                            bonusPaperListLinearLayout.AddView(bonusView);
-                        }
-                        if (bonus.Type == "bonus")
-                        {
-                            bonusLineImage.Visibility = ViewStates.Visible;
-                            discountLineImage.Visibility = ViewStates.Invisible;
-                            giftLineImage.Visibility = ViewStates.Invisible;
-
-
-                            bonusPaperListLinearLayout.SetBackgroundColor(new Color(189, 255, 185, 127));
-
-                            bonusDescr.Visibility = ViewStates.Visible;
-                            bonusName.Visibility = ViewStates.Visible;
-
-                            bonusName.Text = "Бонус";
-                            if (!AppInfo.IsLocaleRu)
-                            {
-                                bonusName.Text = "Bonus";
-                            }
-                            bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
-
-                            bonusPaperListLinearLayout.AddView(bonusView);
-                        }
-                        if (bonus.Type == "present")
-                        {
-                            bonusLineImage.Visibility = ViewStates.Invisible;
-                            discountLineImage.Visibility = ViewStates.Invisible;
-                            giftLineImage.Visibility = ViewStates.Visible;
-
-                            bonusPaperListLinearLayout.SetBackgroundColor(new Color(255, 185, 245, 127));
-
-                            bonusDescr.Visibility = ViewStates.Visible;
-                            bonusName.Visibility = ViewStates.Visible;
-
-                            bonusName.Text = "Подарок";
-                            if (!AppInfo.IsLocaleRu)
-                            {
-                                bonusName.Text = "Present";
-                            }
-                            bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
-
-                            bonusPaperListLinearLayout.AddView(bonusView);
-                        }
-                    }
-                }
-                if (_achieve.Bonuses.Count() > 1)
-            {
-                foreach (var bonus in _achieve.Bonuses)
-                {
-                    LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(LayoutInflaterService);
-                    View bonusView = layoutInflater.Inflate(Resource.Layout.bonusonlistrowlayout, null);
-                    bonusView.LayoutParameters = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FillParent, RelativeLayout.LayoutParams.FillParent);
-                    ImageView bonusLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
-                    ImageView discountLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_BlueBonusImageView);
-                    ImageView giftLineImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_VioletBonusImageView);
-
-                    ImageView bonusDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_greendescbackgroundImageView);
-                    ImageView discountDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_bluedescbackgroundImageView);
-                    ImageView giftDescrBackgroundImage = (ImageView)bonusView.FindViewById(Resource.Id.badgewin_violetdescbackgroundImageView);
-
-                    TextView bonusName = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
-                    TextView bonusDescr = (TextView)bonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
-                    bonusName.SetTypeface(_font, TypefaceStyle.Normal);
-                    bonusDescr.SetTypeface(_font, TypefaceStyle.Normal);
-
-
-                    bonusDescr.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
-
-                    bonusLineImage.Visibility = ViewStates.Invisible;
-                    discountLineImage.Visibility = ViewStates.Invisible;
-                    giftLineImage.Visibility = ViewStates.Invisible;
-
-                    bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                    discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                    giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
-
-                    bonusDescr.Visibility = ViewStates.Invisible;
-                    bonusName.Visibility = ViewStates.Invisible;
-
-                    if (bonus.Type == "discount")
-                    {
-                        bonusLineImage.Visibility = ViewStates.Invisible;
-                        discountLineImage.Visibility = ViewStates.Visible;
-                        giftLineImage.Visibility = ViewStates.Invisible;
-
-                        bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                        discountDescrBackgroundImage.Visibility = ViewStates.Visible;
-                        giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
-
-                        bonusDescr.Visibility = ViewStates.Visible;
-                        bonusName.Visibility = ViewStates.Visible;
-
-                        bonusName.Text = "Скидка";
-                        if (!AppInfo.IsLocaleRu)
-                        {
-                            bonusName.Text = "Discount";
-                        }
-                        bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
-
-                        bonusPaperListLinearLayout.AddView(bonusView);
-                    }
-                    if (bonus.Type == "bonus")
-                    {
-                        bonusLineImage.Visibility = ViewStates.Visible;
-                        discountLineImage.Visibility = ViewStates.Invisible;
-                        giftLineImage.Visibility = ViewStates.Invisible;
-
-                        bonusDescrBackgroundImage.Visibility = ViewStates.Visible;
-                        discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                        giftDescrBackgroundImage.Visibility = ViewStates.Invisible;
-
-                        bonusDescr.Visibility = ViewStates.Visible;
-                        bonusName.Visibility = ViewStates.Visible;
-
-                        bonusName.Text = "Бонус";
-                        if (!AppInfo.IsLocaleRu)
-                        {
-                            bonusName.Text = "Bonus";
-                        }
-                        bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
-
-                        bonusPaperListLinearLayout.AddView(bonusView);
-                    }
-                    if (bonus.Type == "present")
-                    {
-                        bonusLineImage.Visibility = ViewStates.Invisible;
-                        discountLineImage.Visibility = ViewStates.Invisible;
-                        giftLineImage.Visibility = ViewStates.Visible;
-
-                        bonusDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                        discountDescrBackgroundImage.Visibility = ViewStates.Invisible;
-                        giftDescrBackgroundImage.Visibility = ViewStates.Visible;
-
-                        bonusDescr.Visibility = ViewStates.Visible;
-                        bonusName.Visibility = ViewStates.Visible;
-
-                        bonusName.Text = "Подарок";
-                        if (!AppInfo.IsLocaleRu)
-                        {
-                            bonusName.Text = "Present";
-                        }
-                        bonusDescr.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
-
-                        bonusPaperListLinearLayout.AddView(bonusView);
-                    }
-                }
+                _robotoLightFont.Dispose();
             }
 
-
-            badgeImageView.SetImageBitmap(bitmap);
-            badgeDescr.Text = _achieve.Description;
-
-            badgeReadyButton.Click += delegate
+            //Второстепенный поток
+            if (_asyncInitThread.ThreadState == ThreadState.Running)
             {
-                _vibe.Vibrate(50);
-                badgeReadyButtonFake.StartAnimation(buttonClickAnimation);
-                Finish();
-                StartActivity(typeof(MainScreenActivity));
-            };
+                _asyncInitThread.Abort();
+            }
+
+            //Объекты листа Бейджа
+            if (_badgeSheetBadgeImageView != null)
+            {
+                _badgeSheetBadgeImageView.Dispose();
+            }
+            if (_badgeSheetCloseImageButton != null)
+            {
+                _badgeSheetCloseImageButton.Dispose();
+            }
+            if (_badgeSheetCloseFakeImageButton != null)
+            {
+                _badgeSheetCloseFakeImageButton.Dispose();
+            }
+            if (_badgeSheetUserNameTextView != null)
+            {
+                _badgeSheetUserNameTextView.Dispose();
+            }
+            if (_badgeSheetDescrTextView != null)
+            {
+                _badgeSheetDescrTextView.Dispose();
+            }
+            if (_badgeSheetAnounceTextView != null)
+            {
+                _badgeSheetAnounceTextView.Dispose();
+            }
+            if (_badgeSheetBonusListLinearLayout != null)
+            {
+                _badgeSheetBonusListLinearLayout.Dispose();
+            }
+            if (_badgeSheetBonusView != null)
+            {
+                _badgeSheetBonusView.Dispose();
+            }
+            if (_badgeSheetBonusLineImageView != null)
+            {
+                _badgeSheetBonusLineImageView.Dispose();
+            }
+            if (_badgeSheetDiscountLineImageView != null)
+            {
+                _badgeSheetDiscountLineImageView.Dispose();
+            }
+            if (_badgeSheetPresentLineImageView != null)
+            {
+                _badgeSheetPresentLineImageView.Dispose();
+            }
+            if (_badgeSheetBonusDescrBackgroundImageView != null)
+            {
+                _badgeSheetBonusDescrBackgroundImageView.Dispose();
+            }
+            if (_badgeSheetDiscountDescrBackgroundImageView != null)
+            {
+                _badgeSheetDiscountDescrBackgroundImageView.Dispose();
+            }
+            if (_badgeSheetPresentDescrBackgroundImageView != null)
+            {
+                _badgeSheetPresentDescrBackgroundImageView.Dispose();
+            }
+            if (_badgeSheetBonusNameTextView != null)
+            {
+                _badgeSheetBonusNameTextView.Dispose();
+            }
+            if (_badgeSheetBonusDescrTextView != null)
+            {
+                _badgeSheetBonusDescrTextView.Dispose();
+            }
+
         }
 
-        void ShowAlertDialog()
-        {
-            _messageDialog = _messageDialogBuilder.Create();
-            _messageDialog.Show();
-        }
-
-        void treadStartVoid()
+        private void AsyncInitCallback()
         {
             try
             {
-                AppInfo._selectedCategoriesDictionary = new Dictionary<string, bool>();
-                AppInfo._selectedSubCategoriesDictionary = new Dictionary<string, bool>();
                 AppInfo._achievesInfo = new Achieves(AppInfo._access_token, AppInfo._user.ItsBetaUserId, AppInfo.IsLocaleRu);
             }
             catch
             {
-
                 _messageDialogBuilder.SetTitle("Ошибка");
                 _messageDialogBuilder.SetMessage("Не удалось подключиться. Проверьте состояние интернет подключения.");
                 if (!AppInfo.IsLocaleRu)
@@ -403,7 +274,6 @@ namespace itsbeta.achievements
                     _messageDialogBuilder.SetTitle("Error");
                     _messageDialogBuilder.SetMessage("Internet connection missing.");
                 }
-
 
                 if (AppInfo.IsLocaleRu)
                 {
@@ -430,7 +300,7 @@ namespace itsbeta.achievements
                 _progressDialogMessage.Text = "Loading Data..."
                 );
             }
-            
+
             Directory.CreateDirectory(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/");
 
             for (int i = 0; i < AppInfo._achievesInfo.CategoriesCount; i++)
@@ -440,7 +310,7 @@ namespace itsbeta.achievements
                     AppInfo._subcategCount++;
                     for (int k = 0; k < AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements.Count(); k++)
                     {
-                        AppInfo._badgesCount ++;
+                        AppInfo._badgesCount++;
 
                         AppInfo._bonusesCount += AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].Bonuses.Count();
 
@@ -455,7 +325,7 @@ namespace itsbeta.achievements
                             Bitmap bitmap;
                             try
                             {
-                                bitmap = GetImageBitmap(AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].PicUrl);
+                                bitmap = GetImageBitmapFromUrl(AppInfo._achievesInfo.CategoryArray[i].Projects[j].Achievements[k].PicUrl);
                             }
                             catch
                             {
@@ -477,10 +347,9 @@ namespace itsbeta.achievements
                                 return;
                             }
 
-
-
                             bitmap.Compress(
                             Bitmap.CompressFormat.Png, 10, fs);
+                            bitmap.Recycle();
                             bitmap.Dispose();
                             fs.Flush();
                             fs.Close();
@@ -497,10 +366,292 @@ namespace itsbeta.achievements
                 }
             }
 
-            RunOnUiThread(() => loadComplete.Text = "complete");
+            RunOnUiThread(() => OnDataLoadingComplete());
         }
 
-        private Bitmap GetImageBitmap(String url)
+        private void OnDataLoadingComplete()
+        {
+            if (!LoginWebActivity.isAppBadgeEarned)
+            {
+                RunOnUiThread(() => ShowBadgeSheet());
+            }
+            else
+            {
+                RunOnUiThread(() => _progressDialog.Hide());
+                Finish();
+                StartActivity(typeof(MainScreenActivity));
+            }
+        }
+
+        private void ShowBadgeSheet()
+        {
+            _progressDialog.Hide();
+            _fadeAnimation = AnimationUtils.LoadAnimation(this, global::Android.Resource.Animation.FadeIn);
+
+            SetContentView(Resource.Layout.firstbadgeactivitylayout);
+
+            _badgeSheetUserNameTextView     = FindViewById<TextView>(Resource.Id.firstbadgewin_usernameTextView);
+            _badgeSheetDescrTextView        = FindViewById<TextView>(Resource.Id.firstbadgewin_wonderdescrTextView);
+            _badgeSheetAnounceTextView = FindViewById<TextView>(Resource.Id.firstbadgewin_howTextView);
+
+            _badgeSheetBadgeImageView = FindViewById<ImageView>(Resource.Id.firstbadgewin_BadgeImageView);
+            _badgeSheetCloseImageButton = FindViewById<ImageButton>(Resource.Id.firstbadgewin_CloseImageButton);
+            _badgeSheetCloseFakeImageButton = FindViewById<ImageButton>(Resource.Id.firstbadgewin_CloseImageButtonFake);
+
+            _badgeSheetBonusListLinearLayout = FindViewById<LinearLayout>(Resource.Id.bonuspaperlist_linearLayout);
+
+
+            _badgeSheetUserNameTextView.SetTypeface(_robotoLightFont, TypefaceStyle.Normal);
+            _badgeSheetDescrTextView.SetTypeface(_robotoLightFont, TypefaceStyle.Normal);
+            _badgeSheetAnounceTextView.SetTypeface(_robotoLightFont, TypefaceStyle.Normal);
+
+            if (!AppInfo.IsLocaleRu)
+            {
+                _badgeSheetAnounceTextView.Text = "You got a new Badge";
+            }
+
+            if (AppInfo._user.Fullname != null)
+            {
+                _badgeSheetUserNameTextView.Text = AppInfo._user.Fullname;
+            }
+
+            Achieves.ParentCategory.ParentProject.Achieve _achieve = new Achieves.ParentCategory.ParentProject.Achieve();
+
+            foreach (var category in AppInfo._achievesInfo.CategoryArray)
+            {
+                foreach (var project in category.Projects)
+                {
+                    foreach (var achieve in project.Achievements)
+                    {
+                        if (achieve.FbId == ServiceItsBeta.PostOnFBBadgeFbId)
+                        {
+                            _achieve = achieve;
+                        }
+                    }
+                }
+            }
+
+            using (var d = BitmapFactory.DecodeFile(@"/data/data/ru.hintsolutions.itsbeta/cache/pictures/" + "achive" +
+                    _achieve.ApiName + ".PNG"))
+            {
+            _badgeSheetBadgeImageView.SetImageBitmap(d);
+            }
+
+            _badgeSheetDescrTextView.Text = _achieve.Description;
+
+            _badgeSheetCloseImageButton.Click += delegate
+            {
+                _vibe.Vibrate(50);
+                _badgeSheetCloseFakeImageButton.StartAnimation(_fadeAnimation);
+                Finish();
+                StartActivity(typeof(MainScreenActivity));
+            };
+
+
+
+            //Не показываем лист с бонусами
+            if (_achieve.Bonuses.Count() == 0)
+            {
+                _badgeSheetBonusListLinearLayout.Visibility = ViewStates.Gone;
+            }
+            #region Показываем лист с 1 бонусом
+            if (_achieve.Bonuses.Count() == 1)
+            {
+                var bonus = _achieve.Bonuses.First();
+                    
+                _badgeSheetBonusView = _baseLayoutInflater.Inflate(Resource.Layout.bonusonlistrowlayout, null);
+                _badgeSheetBonusView.LayoutParameters = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FillParent, RelativeLayout.LayoutParams.FillParent);
+                        
+                _badgeSheetBonusLineImageView                =  (ImageView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
+                _badgeSheetDiscountLineImageView             = (ImageView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_BlueBonusImageView);
+                _badgeSheetPresentLineImageView                 = (ImageView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_VioletBonusImageView);
+
+                _badgeSheetBonusDescrBackgroundImageView     = (ImageView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_greendescbackgroundImageView);
+                _badgeSheetDiscountDescrBackgroundImageView  = (ImageView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_bluedescbackgroundImageView);
+                _badgeSheetPresentDescrBackgroundImageView      = (ImageView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_violetdescbackgroundImageView);
+
+                _badgeSheetBonusNameTextView  = (TextView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
+                _badgeSheetBonusDescrTextView = (TextView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+
+                _badgeSheetBonusNameTextView.SetTypeface(_robotoLightFont, TypefaceStyle.Normal);
+                _badgeSheetBonusDescrTextView.SetTypeface(_robotoLightFont, TypefaceStyle.Normal);
+
+                _badgeSheetBonusDescrTextView.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
+
+                _badgeSheetBonusLineImageView.Visibility = ViewStates.Invisible;
+                _badgeSheetDiscountLineImageView.Visibility = ViewStates.Invisible;
+                _badgeSheetPresentLineImageView.Visibility = ViewStates.Invisible;
+
+                _badgeSheetBonusDescrBackgroundImageView.Visibility = ViewStates.Invisible;
+                _badgeSheetDiscountDescrBackgroundImageView.Visibility = ViewStates.Invisible;
+                _badgeSheetPresentDescrBackgroundImageView.Visibility = ViewStates.Invisible;
+
+                _badgeSheetBonusDescrTextView.Visibility = ViewStates.Invisible;
+                _badgeSheetBonusNameTextView.Visibility = ViewStates.Invisible;
+
+                if (bonus.Type == "discount")
+                {
+                    _badgeSheetBonusLineImageView.Visibility = ViewStates.Invisible;
+                    _badgeSheetDiscountLineImageView.Visibility = ViewStates.Visible;
+                    _badgeSheetPresentLineImageView.Visibility = ViewStates.Invisible;
+
+                    _badgeSheetBonusListLinearLayout.SetBackgroundColor(new Color(201, 238, 255, 86));
+
+                    _badgeSheetBonusDescrTextView.Visibility = ViewStates.Visible;
+                    _badgeSheetBonusNameTextView.Visibility = ViewStates.Visible;
+
+                    _badgeSheetBonusNameTextView.Text = "Скидка";
+                    if (!AppInfo.IsLocaleRu)
+                    {
+                        _badgeSheetBonusNameTextView.Text = "Discount";
+                    }
+                    _badgeSheetBonusDescrTextView.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
+
+                    _badgeSheetBonusListLinearLayout.AddView(_badgeSheetBonusView);
+                }
+                if (bonus.Type == "bonus")
+                {
+                    _badgeSheetBonusLineImageView.Visibility = ViewStates.Visible;
+                    _badgeSheetDiscountLineImageView.Visibility = ViewStates.Invisible;
+                    _badgeSheetPresentLineImageView.Visibility = ViewStates.Invisible;
+
+                    _badgeSheetBonusListLinearLayout.SetBackgroundColor(new Color(189, 255, 185, 120));
+
+                    _badgeSheetBonusDescrTextView.Visibility = ViewStates.Visible;
+                    _badgeSheetBonusNameTextView.Visibility = ViewStates.Visible;
+
+                    _badgeSheetBonusNameTextView.Text = "Бонус";
+                    if (!AppInfo.IsLocaleRu)
+                    {
+                        _badgeSheetBonusNameTextView.Text = "Bonus";
+                    }
+                    _badgeSheetBonusDescrTextView.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
+
+                    _badgeSheetBonusListLinearLayout.AddView(_badgeSheetBonusView);
+                }
+                if (bonus.Type == "present")
+                {
+                    _badgeSheetBonusLineImageView.Visibility = ViewStates.Invisible;
+                    _badgeSheetDiscountLineImageView.Visibility = ViewStates.Invisible;
+                    _badgeSheetPresentLineImageView.Visibility = ViewStates.Visible;
+
+                    _badgeSheetBonusListLinearLayout.SetBackgroundColor(new Color(255, 185, 245, 120));
+
+                    _badgeSheetBonusDescrTextView.Visibility = ViewStates.Visible;
+                    _badgeSheetBonusNameTextView.Visibility = ViewStates.Visible;
+
+                    _badgeSheetBonusNameTextView.Text = "Подарок";
+                    if (!AppInfo.IsLocaleRu)
+                    {
+                        _badgeSheetBonusNameTextView.Text = "Present";
+                    }
+                    _badgeSheetBonusDescrTextView.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
+
+                    _badgeSheetBonusListLinearLayout.AddView(_badgeSheetBonusView);
+                }
+                    
+            }
+            #endregion
+            
+            if (_achieve.Bonuses.Count() > 1)
+            {
+                foreach (var bonus in _achieve.Bonuses)
+                {
+                    _badgeSheetBonusView = _baseLayoutInflater.Inflate(Resource.Layout.bonusonlistrowlayout, null);
+                    _badgeSheetBonusView.LayoutParameters = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FillParent, RelativeLayout.LayoutParams.FillParent);
+
+                    _badgeSheetBonusLineImageView = (ImageView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_GreenBonusImageView);
+                    _badgeSheetDiscountLineImageView = (ImageView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_BlueBonusImageView);
+                    _badgeSheetPresentLineImageView = (ImageView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_VioletBonusImageView);
+
+                    _badgeSheetBonusDescrBackgroundImageView = (ImageView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_greendescbackgroundImageView);
+                    _badgeSheetDiscountDescrBackgroundImageView = (ImageView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_bluedescbackgroundImageView);
+                    _badgeSheetPresentDescrBackgroundImageView = (ImageView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_violetdescbackgroundImageView);
+
+                    _badgeSheetBonusNameTextView = (TextView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_bonusTextView);
+                    _badgeSheetBonusDescrTextView = (TextView)_badgeSheetBonusView.FindViewById(Resource.Id.badgewin_bonusdescrTextView);
+
+                    _badgeSheetBonusNameTextView.SetTypeface(_robotoLightFont, TypefaceStyle.Normal);
+                    _badgeSheetBonusDescrTextView.SetTypeface(_robotoLightFont, TypefaceStyle.Normal);
+
+                    _badgeSheetBonusDescrTextView.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
+
+                    _badgeSheetBonusLineImageView.Visibility = ViewStates.Invisible;
+                    _badgeSheetDiscountLineImageView.Visibility = ViewStates.Invisible;
+                    _badgeSheetPresentLineImageView.Visibility = ViewStates.Invisible;
+
+                    _badgeSheetBonusDescrBackgroundImageView.Visibility = ViewStates.Invisible;
+                    _badgeSheetDiscountDescrBackgroundImageView.Visibility = ViewStates.Invisible;
+                    _badgeSheetPresentDescrBackgroundImageView.Visibility = ViewStates.Invisible;
+
+                    _badgeSheetBonusDescrTextView.Visibility = ViewStates.Invisible;
+                    _badgeSheetBonusNameTextView.Visibility = ViewStates.Invisible;
+
+                    if (bonus.Type == "discount")
+                    {
+                        _badgeSheetBonusLineImageView.Visibility = ViewStates.Invisible;
+                        _badgeSheetDiscountLineImageView.Visibility = ViewStates.Visible;
+                        _badgeSheetPresentLineImageView.Visibility = ViewStates.Invisible;
+
+                        _badgeSheetBonusDescrTextView.Visibility = ViewStates.Visible;
+                        _badgeSheetBonusNameTextView.Visibility = ViewStates.Visible;
+
+                        _badgeSheetBonusNameTextView.Text = "Скидка";
+                        if (!AppInfo.IsLocaleRu)
+                        {
+                            _badgeSheetBonusNameTextView.Text = "Discount";
+                        }
+                        _badgeSheetBonusDescrTextView.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
+
+                        _badgeSheetBonusListLinearLayout.AddView(_badgeSheetBonusView);
+                    }
+                    if (bonus.Type == "bonus")
+                    {
+                        _badgeSheetBonusLineImageView.Visibility = ViewStates.Visible;
+                        _badgeSheetDiscountLineImageView.Visibility = ViewStates.Invisible;
+                        _badgeSheetPresentLineImageView.Visibility = ViewStates.Invisible;
+
+                        _badgeSheetBonusDescrTextView.Visibility = ViewStates.Visible;
+                        _badgeSheetBonusNameTextView.Visibility = ViewStates.Visible;
+
+                        _badgeSheetBonusNameTextView.Text = "Бонус";
+                        if (!AppInfo.IsLocaleRu)
+                        {
+                            _badgeSheetBonusNameTextView.Text = "Bonus";
+                        }
+                        _badgeSheetBonusDescrTextView.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
+
+                        _badgeSheetBonusListLinearLayout.AddView(_badgeSheetBonusView);
+                    }
+                    if (bonus.Type == "present")
+                    {
+                        _badgeSheetBonusLineImageView.Visibility = ViewStates.Invisible;
+                        _badgeSheetDiscountLineImageView.Visibility = ViewStates.Invisible;
+                        _badgeSheetPresentLineImageView.Visibility = ViewStates.Visible;
+
+                        _badgeSheetBonusDescrTextView.Visibility = ViewStates.Visible;
+                        _badgeSheetBonusNameTextView.Visibility = ViewStates.Visible;
+
+                        _badgeSheetBonusNameTextView.Text = "Подарок";
+                        if (!AppInfo.IsLocaleRu)
+                        {
+                            _badgeSheetBonusNameTextView.Text = "Present";
+                        }
+                        _badgeSheetBonusDescrTextView.SetText(Android.Text.Html.FromHtml(bonus.Description), TextView.BufferType.Spannable);
+
+                        _badgeSheetBonusListLinearLayout.AddView(_badgeSheetBonusView);
+                    }
+                }
+            }
+        }
+
+        private void ShowAlertDialog()
+        {
+            _messageDialog = _messageDialogBuilder.Create();
+            _messageDialog.Show();
+        }
+        
+        private Bitmap GetImageBitmapFromUrl(String url)
         {
             Bitmap bm = null;
 
@@ -517,7 +668,5 @@ namespace itsbeta.achievements
 
             return bm;
         }
-
-        public Achieves.ParentCategory.ParentProject.Achieve _achieve { get; set; }
     }
 }

@@ -1,12 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="itsbeta.achievements" expanded="True">
             <Node name="Resources" expanded="True">
-              <Node name="Layout" expanded="True" />
+              <Node name="Layout" expanded="True">
+                <Node name="bonusonlistrowlayout.xml" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
