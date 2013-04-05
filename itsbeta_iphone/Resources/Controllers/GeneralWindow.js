@@ -145,6 +145,65 @@ function onInitController(window, params)
 			winAdd.open();	
 		}
 	);
+	
+	// ----- PULL TO REFRESH ----- //
+	
+	var achivsWrapper = ui.preAchivs;
+	var tableHeader = TiTools.UI.Loader.load('Views/PullToRefresh.js');
+	tableHeader.lastUpdated.text = L('lastUpdated');
+	achivsWrapper.add(tableHeader.me); 
+	
+	var pulling   = false,
+		reloading = false;
+	
+	// event handlers
+	achivsWrapper.addEventListener('scroll', function(e) {
+		var offset = e.y;
+		
+		if(offset < -75.0 && !pulling && !reloading) {
+			pulling = true;
+			tableHeader.status.text = L('releaseToRefresh');
+		}
+		else if((offset > -75.0 && offset < 0) && pulling && !reloading) {
+			pulling = false;
+			tableHeader.status.text = L('pullToRefresh');
+		}
+	});
+	
+	achivsWrapper.addEventListener('dragEnd', function() {	
+		if(pulling && !reloading) {
+			reloading = true;
+			pulling = false;
+			tableHeader.status.text = L('refreshing');
+			achivsWrapper.updateLayout({
+				top: 92
+			});
+			beginReloading();
+		}
+	});
+	
+	//---------------------------------------------//
+	
+	function beginReloading() {			
+		setTimeout(endReloading, 3000);
+	}
+	
+	function endReloading() {			
+		achivsWrapper.animate({
+				top: 32
+			}, 
+			function() {
+				achivsWrapper.top = 32;
+			}
+		);
+		
+		reloading = false;
+		updatedTime = new Date();
+		tableHeader.status.text = L('pullToRefresh');
+		tableHeader.lastUpdated.text = L('lastUpdated');
+	}
+	
+	// ----- END PULL TO REFRESH ----- //
 }
 //---------------------------------------------//
 // Функции лентяйки
