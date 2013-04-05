@@ -716,7 +716,6 @@ function hideAchivs()
 		
 		for(var i = 0; i < tempAchivs.length; i++)
 		{
-			
 			if(tempAchivs[i].category == selectCategory || selectCategory == "null")
 			{
 				if(tempAchivs[i].project == selectProject || selectProject == "null")
@@ -780,7 +779,6 @@ function reloadAdd(data)
 				display_name: data.api_name,
 				total_badge: 10
 			});
-			
 		}
 	}
 	
