@@ -213,7 +213,6 @@ function onInitController(window, params)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
-	
 	Ti.App.addEventListener("actHide",function(event)
 	{
 		actIndicator(false);
