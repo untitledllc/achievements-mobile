@@ -64,7 +64,7 @@ module.exports = [
 									height: 28,
 									top: 7,		
 									left: 8,
-									image: "images/icons/Goblet.png"
+									image: "images/icons/Candy.png"
 								}	
 							},
 							{
