@@ -33,13 +33,10 @@ function onInitController(window, params)
 		}
 	);
 	
-	// ui.shadowClose.addEventListener("click",function(event)
-	// {
-		// if(String(event.source) == "[object TiUIScrollView]")
-		// {
-			// window.close();
-		// }
-	// });
+	ui.clickClose.addEventListener("click",function(event)
+	{
+		window.close();
+	});
 	
  }
 //---------------------------------------------//

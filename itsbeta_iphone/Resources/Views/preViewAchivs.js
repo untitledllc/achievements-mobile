@@ -3,7 +3,6 @@
  */
 module.exports = [
 	{
-		//outlet: "shadowClose",
 		style: {
 			className: "Ti.UI.View",
 			height: Ti.UI.FILL,
@@ -23,6 +22,16 @@ module.exports = [
 		},
 		subviews:
 		[
+			{
+				outlet: "clickClose",
+				style: {
+					className: "Ti.UI.View",
+					top: 0,
+					height: Ti.UI.FILL,
+					width: Ti.UI.FILL,
+					backgroundColor: "transparent"
+				}
+			},
 			{
 				outlet: "bonus",
 				style: {
@@ -94,8 +103,8 @@ module.exports = [
 					className: "Ti.UI.ImageView",
 					top: 30,
 					left: 5,
-					height: 130,
-					width: 130,
+					height: 100,
+					width: 100,
 					image: "images/FirstBadge.PNG"
 				}
 			}
