@@ -2,11 +2,11 @@
  * @author Gom_Dzhabbar
  */
 
-var TiTools = undefined;
-var ui = undefined;
-var achievements = undefined;
-var projects = undefined;
-var categories = undefined;
+var TiTools = undefined,
+	ui = undefined,
+	achievements = undefined,
+	projects = undefined,
+	categories = undefined;
 //---------------------------------------------//
 // Глобальные переменные для окна
 //---------------------------------------------//
@@ -75,18 +75,18 @@ function onInitController(window, params)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
-	var all = window.counter;
-	var bonus = 0;
-	var sub = 0;
-	var tempAchivs = [];
+	var all = window.counter,
+		bonus = 0,
+		sub = 0,
+		tempAchivs = [];
 	
 	for(var i = 0; i < achievements.length; i++)
 	{
 		var achievement = achievements[i];
 		var projects = achievement.projects;
 		
-		var statView = TiTools.UI.Loader.load("Views/Statistic.js", ui.list);
-		statView.category.text = (i+1) + ". " + achievements[i].display_name + ":";
+		// var statView = TiTools.UI.Loader.load("Views/Statistic.js", ui.list);
+		// statView.category.text = (i+1) + ". " + achievements[i].display_name + ":";
 			
 		for(var j = 0; j < projects.length; j++)
 		{
@@ -126,7 +126,7 @@ function onWindowOpen(window, event)
 				}
 			}
 			
-			statView.item.add(createProfileBadgeRow(project.display_name + " - " + project.total_badges)); //, Math.ceil(100*tempAchivs.length/project.total_badges)));
+			// statView.item.add(createProfileBadgeRow(project.display_name + " - " + project.total_badges)); //, Math.ceil(100*tempAchivs.length/project.total_badges)));
 		}
 	}
 	ui.all.text = ui.all.text + all;
