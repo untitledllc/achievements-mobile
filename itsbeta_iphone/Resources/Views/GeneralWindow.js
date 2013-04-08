@@ -96,6 +96,7 @@ module.exports = [
 						},
 						subviews: [
 							{
+								outlet: "typeProjectClick",
 								style: {
 									className: "Ti.UI.View",
 									width: Ti.UI.SIZE,
@@ -141,6 +142,7 @@ module.exports = [
 						},
 						subviews: [
 							{
+								outlet: "nameProjectClick",
 								style: {
 									className: "Ti.UI.View",
 									width: Ti.UI.SIZE,
