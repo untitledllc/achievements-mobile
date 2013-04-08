@@ -150,9 +150,9 @@ function onInitController(window, params)
 	// ----- PULL TO REFRESH ----- //
 	
 	var achivsWrapper = ui.preAchivs;
-	var tableHeader = TiTools.UI.Loader.load('Views/PullToRefresh.js');
-	tableHeader.lastUpdated.text = L('lastUpdated');
-	achivsWrapper.add(tableHeader.me); 
+	var pullToRefresh = TiTools.UI.Loader.load('Views/PullToRefresh.js');
+	pullToRefresh.hypno.start();
+	achivsWrapper.add(pullToRefresh.me); 
 	
 	var pulling   = false,
 		reloading = false;
@@ -163,11 +163,11 @@ function onInitController(window, params)
 		
 		if(offset < -75.0 && !pulling && !reloading) {
 			pulling = true;
-			tableHeader.status.text = L('releaseToRefresh');
+			pullToRefresh.status.text = L('releaseToRefresh');
 		}
 		else if((offset > -75.0 && offset < 0) && pulling && !reloading) {
 			pulling = false;
-			tableHeader.status.text = L('pullToRefresh');
+			pullToRefresh.status.text = L('pullToRefresh');
 		}
 	});
 	
@@ -175,10 +175,19 @@ function onInitController(window, params)
 		if(pulling && !reloading) {
 			reloading = true;
 			pulling = false;
-			tableHeader.status.text = L('refreshing');
-			achivsWrapper.updateLayout({
-				top: 92
-			});
+			pullToRefresh.status.text = L('refreshing');
+			// achivsWrapper.updateLayout({
+				// top: 92
+			// });
+			
+			// achivsWrapper.animate({
+					// top: 92
+				// }, 
+				// function() {
+					 achivsWrapper.top = 92;
+				// }
+			// );
+			// achivsWrapper.setContentOffset(-60);
 			beginReloading();
 		}
 	});
@@ -186,7 +195,7 @@ function onInitController(window, params)
 	//---------------------------------------------//
 	
 	function beginReloading() {			
-		setTimeout(endReloading, 3000);
+		setTimeout(endReloading, 5000);
 	}
 	
 	function endReloading() {			
@@ -200,8 +209,7 @@ function onInitController(window, params)
 		
 		reloading = false;
 		updatedTime = new Date();
-		tableHeader.status.text = L('pullToRefresh');
-		tableHeader.lastUpdated.text = L('lastUpdated');
+		pullToRefresh.status.text = L('pullToRefresh');
 	}
 	
 	// ----- END PULL TO REFRESH ----- //
