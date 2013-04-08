@@ -155,7 +155,7 @@ module.exports = [
 											className: "Ti.UI.Label",
 											height: 20,
 											width: 120,
-											textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
+											textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 											color: "#646464",
 											font: {fontSize: 15},
 											text: "Подкатегории"
