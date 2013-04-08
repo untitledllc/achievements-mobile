@@ -68,22 +68,18 @@ function onInitController(window, params)
 			{
 				massRow = [];
 				
-				category.display_name;
-				category.api_name;
-				category.display_name;
-				
 				var allRow = {
 					display_name: "Все",
 					api_name: "null",
 				};
 				//--- делаем первую ячейку "все категории"
-				createListRow(allRow,massRow);
+				createListRow(allRow, massRow);
 				
 				for(var i = 0; i < categories.length; i++)
 				{
 					category = categories[i];
 					//--строю одну ячейку--
-					createListRow(category,massRow,i);
+					createListRow(category, massRow, i);
 					//---------------------
 				}
 				ui.list.visible = true;
@@ -99,15 +95,8 @@ function onInitController(window, params)
 		}
 	});
 	
-	ui.placeListView.addEventListener("singletap", function(event)
-	{
-		undefClick();
-	});
-	
-	ui.placeListViewCancel.addEventListener("singletap", function(event)
-	{
-		undefClick();
-	});
+	ui.placeListView.addEventListener("singletap", undefClick);
+	ui.placeListViewCancel.addEventListener("singletap", undefClick);
 	
 	ui.nameProjectClick.addEventListener("singletap", function(event)
 	{
@@ -172,7 +161,17 @@ function onInitController(window, params)
 	});
 	
 	achivsWrapper.addEventListener('dragEnd', function() {	
+		
 		if(pulling && !reloading) {
+			achivsWrapper.animate({
+					top: 92,
+					duration: 500
+				}
+				// , 
+				// function() {
+				  		// achivsWrapper.top = 92;
+				// }
+			);
 			reloading = true;
 			pulling = false;
 			pullToRefresh.status.text = L('refreshing');
@@ -180,13 +179,7 @@ function onInitController(window, params)
 				// top: 92
 			// });
 			
-			// achivsWrapper.animate({
-					// top: 92
-				// }, 
-				// function() {
-					 achivsWrapper.top = 92;
-				// }
-			// );
+			
 			// achivsWrapper.setContentOffset(-60);
 			beginReloading();
 		}
@@ -200,15 +193,14 @@ function onInitController(window, params)
 	
 	function endReloading() {			
 		achivsWrapper.animate({
-				top: 32
+				top: 12
 			}, 
 			function() {
-				achivsWrapper.top = 32;
+				achivsWrapper.top = 12;
 			}
 		);
 		
 		reloading = false;
-		updatedTime = new Date();
 		pullToRefresh.status.text = L('pullToRefresh');
 	}
 	
@@ -233,8 +225,6 @@ function onWindowOpen(window, event)
 	var start = TiTools.Global.get("startAchivs");
 	if(start != undefined)
 	{
-		Ti.API.info('OPEN');
-		Ti.API.info(start);
 		var win = TiTools.UI.Controls.createWindow(
 			{
 				main : "Controllers/preViewAchivs.js",
@@ -263,7 +253,6 @@ function onWindowOpen(window, event)
 		for(var i = 0; i < tempAchivs.length; i++)
 		{
 			tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
-			Ti.API.info('del');
 		}
 		tempAchivs = [];
 		//-----------------
@@ -284,11 +273,11 @@ function createListAchivs(window,categiry)
 	ui.nameProject.text = "Подкатегории";
 	ui.typeProject.text = "Категории";
 	
-	for(var i = 0; i < achievements.length; i++)
+	for(var i = 0, I = achievements.length; i < I; i++)
 	{
-		for(var j = 0; j < achievements[i].projects.length; j++)
+		for(var j = 0, J = achievements[i].projects.length; j < J; j++)
 		{
-			for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
+			for(var k = 0, K = achievements[i].projects[j].achievements.length; k < K; k++)
 			{
 				if(achievements[i].projects[j].api_name == categiry || categiry == "null" || achievements[i].api_name == categiry)
 				{
@@ -296,8 +285,8 @@ function createListAchivs(window,categiry)
 					
 					// ---- список имен ачивок и время их выдачи --- //
 					lastAchivs.push({
-						date : achievement.create_time,
-						api_name : achievement.api_name
+						date: achievement.create_time,
+						api_name: achievement.api_name
 					});
 					// ---------------------------------------------//
 					
@@ -314,19 +303,19 @@ function createListAchivs(window,categiry)
 					
 					tempAchivs.push(row);
 					
-					for(var n = 0; n < achievement.bonuses.length; n++)
+					for(var n = 0, N = achievement.bonuses.length; n < N; n++)
 					{
 						var tempColor;
 						
-						if( achievement.bonuses[n].bonus_type == "bonus")
+						if(achievement.bonuses[n].bonus_type == "bonus")
 						{
 							tempColor = "red";
 						}
-						if( achievement.bonuses[n].bonus_type == "present")
+						if(achievement.bonuses[n].bonus_type == "present")
 						{
 							tempColor = "green";
 						}
-						if( achievement.bonuses[n].bonus_type == "discount")
+						if(achievement.bonuses[n].bonus_type == "discount")
 						{
 							tempColor = "gray";
 						}
@@ -350,31 +339,25 @@ function createListAchivs(window,categiry)
 					
 					row.viewAchivs.addEventListener("singletap",function(event)
 					{
-						Ti.API.info('Click window');
 						if(singlTap == false)
 						{
 							singlTap = true;
 							
 							var sourceData = event.source.data;
-							var win = TiTools.UI.Controls.createWindow(
-								{
-									main : "Controllers/preViewAchivs.js",
-									navBarHidden : true,
-									nameAchivs: sourceData.nameAchivs,
-									desc: sourceData.desc,
-									details: sourceData.details,
-									adv: sourceData.adv,
-									image: sourceData.image,
-									bonus: sourceData.bonus
-								}
-							);
+							var win = TiTools.UI.Controls.createWindow({
+								main: "Controllers/preViewAchivs.js",
+								navBarHidden: true,
+								nameAchivs: sourceData.nameAchivs,
+								desc: sourceData.desc,
+								details: sourceData.details,
+								adv: sourceData.adv,
+								image: sourceData.image,
+								bonus: sourceData.bonus
+							});
 							
-							win.addEventListener("close",function()
-								{
-									singlTap = false;
-									Ti.API.info('close window')
-								}
-							);
+							win.addEventListener("close",function() {
+								singlTap = false;
+							});
 							
 							win.initialize();
 							win.open();	
@@ -461,11 +444,11 @@ function createListName(window,category)
 				lastAchivsFunction(massRow);
 			}
 			
-			for(var i = 0; i < achievements.length; i++)
+			for(var i = 0, I = achievements.length; i < I; i++)
 			{
 				if(achievements[i].api_name == category || category == "null")
 				{
-					for(var j = 0; j < achievements[i].projects.length; j++)
+					for(var j = 0, J = achievements[i].projects.length; j < J; j++)
 					{
 						var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
 						massRow.push(row);
@@ -526,7 +509,7 @@ function reSaveAchivs(data)
 	
 	//---- собираем список категорий и список проектов -----//
 	counter = 0;
-	for(var i = 0; i < achievements.length; i++)
+	for(var i = 0, I = achievements.length; i < I; i++)
 	{
 		var achievement = achievements[i];
 		
@@ -537,7 +520,7 @@ function reSaveAchivs(data)
 			}
 		);
 		
-		for(var j = 0; j < achievement.projects.length; j++)
+		for(var j = 0, J = achievement.projects.length; j < J; j++)
 		{
 			var project = achievement.projects[j];
 			counter += project.achievements.length;
@@ -677,7 +660,7 @@ function undefClick()
 		ui.transparentView.hide();
 		
 		ui.list.visible = false;
-		for(var ii = 0; ii < massRow.length; ii++)
+		for(var ii = 0, length = massRow.length; ii < length; ii++)
 		{
 			massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
 		}
@@ -695,13 +678,13 @@ function hideAchivs()
 	
 	if(selectProject == "last")
 	{
-		for(var i = 0; i < tempAchivs.length; i++)
+		for(var i = 0, I = tempAchivs.length; i < I; i++)
 		{
 			tempAchivs[i].viewAchivs.height = 0;
 		}
-		for(var j = 0; j < lastAchivs.length && j < 10; j++)
+		for(var j = 0, J = lastAchivs.length; j < J && j < 10; j++)
 		{
-			for(var i = 0; i < tempAchivs.length; i++)
+			for(var i = 0, I = tempAchivs.length; i < I;  i++)
 			{
 				if(tempAchivs[i].api_name == lastAchivs[j].api_name)
 				{
@@ -721,7 +704,7 @@ function hideAchivs()
 	{
 		var heigthScroll = 0;
 		
-		for(var i = 0; i < tempAchivs.length; i++)
+		for(var i = 0, I = tempAchivs.length; i < I; i++)
 		{
 			if(tempAchivs[i].category == selectCategory || selectCategory == "null")
 			{
@@ -756,7 +739,7 @@ function reloadAdd(data)
 	var categoryDetected = false;
 	var projectDetected = false;
 	
-	for(var i = 0; i < categories.length; i++)
+	for(var i = 0, I = categories.length; i < I; i++)
 	{
 		if(categories[i].api_name == data.api_name)
 		{
@@ -772,7 +755,7 @@ function reloadAdd(data)
 		}
 	}
 	
-	for(var j = 0; j < projects.length; j++)
+	for(var j = 0, J = projects.length; j < J; j++)
 	{
 		if(projects[j].api_name == data.project.api_name)
 		{
@@ -823,7 +806,7 @@ function reloadAdd(data)
 	
 	tempAchivs.push(row);
 	
-	for(var n = 0; n < achievement.bonuses.length; n++)
+	for(var n = 0, N = achievement.bonuses.length; n < N; n++)
 	{
 		var tempColor;
 		
@@ -859,31 +842,25 @@ function reloadAdd(data)
 	
 	row.viewAchivs.addEventListener("singletap",function(event)
 	{
-		Ti.API.info('Click window');
 		if(singlTap == false)
 		{
 			singlTap = true;
 			
 			var sourceData = event.source.data;
-			var win = TiTools.UI.Controls.createWindow(
-				{
-					main : "Controllers/preViewAchivs.js",
-					navBarHidden : true,
-					nameAchivs: sourceData.nameAchivs,
-					desc: sourceData.desc,
-					details: sourceData.details,
-					adv: sourceData.adv,
-					image: sourceData.image,
-					bonus: sourceData.bonus
-				}
-			);
+			var win = TiTools.UI.Controls.createWindow({
+				main: "Controllers/preViewAchivs.js",
+				navBarHidden: true,
+				nameAchivs: sourceData.nameAchivs,
+				desc: sourceData.desc,
+				details: sourceData.details,
+				adv: sourceData.adv,
+				image: sourceData.image,
+				bonus: sourceData.bonus
+			});
 			
-			win.addEventListener("close",function()
-				{
-					singlTap = false;
-					Ti.API.info('close window')
-				}
-			);
+			win.addEventListener("close",function() {
+				singlTap = false;
+			});
 			
 			win.initialize();
 			win.open();	
@@ -937,7 +914,7 @@ function onWindowClose(window, event)
 //---------------------------------------------//
 
 module.exports = {
-	onInitController : onInitController, // Обязательный параметр
-	onWindowOpen : onWindowOpen,
-	onWindowClose : onWindowClose
+	onInitController: onInitController, // Обязательный параметр
+	onWindowOpen: onWindowOpen,
+	onWindowClose: onWindowClose
 };
