@@ -58,13 +58,29 @@ function onInitController(window, params)
 	decorateButton.call(
 		ui.logOut, 
 		function() {
-			Ti.Facebook.logout();
-			// clear cookies
-			var client = Ti.Network.createHTTPClient();
-			client.clearCookies('https://login.facebook.com');
 			
-			Ti.App.fireEvent("logout");
-			window.close();
+			var a = Titanium.UI.createAlertDialog({
+				title: " ",
+				message: "Выйти из вашего профиля?",
+				buttonNames: ["Да","Нет"],
+				cancel: 1,
+			});
+			
+			a.show();
+			
+			a.addEventListener("click",function(event)
+			{
+				if(event.index == 0)
+				{
+					Ti.Facebook.logout();
+					// clear cookies
+					var client = Ti.Network.createHTTPClient();
+					client.clearCookies('https://login.facebook.com');
+					
+					Ti.App.fireEvent("logout");
+					window.close();
+				}
+			});
 		}
 	);
 }
