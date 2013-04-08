@@ -39,15 +39,29 @@ module.exports = [
 				subviews:
 				[
 					{
-						outlet: "close",
+						outlet: "closeClick",
 						style: {
 							className: "Ti.UI.View",
-							top: 5,
-							right: 5,
-							height: 22,
-							width: 22,
-							backgroundImage: "images/buttons/Close.Normal.png"
-						}
+							top: 0,
+							right: 0,
+							height: 40,
+							width: 40,
+							backgroundColor: "transparent"
+						},
+						subviews:
+						[
+							{
+								outlet: "close",
+								style: {
+									className: "Ti.UI.View",
+									top: 5,
+									right: 5,
+									height: 22,
+									width: 22,
+									backgroundImage: "images/buttons/Close.Normal.png"
+								}
+							}
+						]
 					},
 					{
 						outlet: "nameAchivs",

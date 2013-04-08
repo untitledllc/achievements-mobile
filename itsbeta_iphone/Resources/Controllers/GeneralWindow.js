@@ -106,8 +106,8 @@ function onInitController(window, params)
 	});
 	
 	// add code
-	decorateButton.call(
-		ui.add,
+	decorateButtonChildren.call(
+		ui.addClick,
 		function() {
 			var winAdd = TiTools.UI.Controls.createWindow({
 				main: "Controllers/add.js",
@@ -120,8 +120,8 @@ function onInitController(window, params)
 	);
 	
 	// profile
-	decorateButton.call(
-		ui.profile,
+	decorateButtonChildren.call(
+		ui.profileClick,
 		function() {
 			var winAdd = TiTools.UI.Controls.createWindow({
 				main: "Controllers/Profile.js",
