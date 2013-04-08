@@ -46,8 +46,6 @@ function onInitController(window, params)
 	counter = window.counter;
 	info = window.info;
 	
-	Ti.API.info(achievements);
-	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/GeneralWindow.js", window);
 	itsbeta = require("Utils/Itsbeta");
@@ -145,11 +143,11 @@ function onInitController(window, params)
 	
 	var pulling   = false,
 		reloading = false;
-	
+	var t = 0;
 	// event handlers
 	achivsWrapper.addEventListener('scroll', function(e) {
 		var offset = e.y;
-		
+		t = offset;
 		if(offset < -75.0 && !pulling && !reloading) {
 			pulling = true;
 			pullToRefresh.status.text = L('releaseToRefresh');
@@ -163,24 +161,20 @@ function onInitController(window, params)
 	achivsWrapper.addEventListener('dragEnd', function() {	
 		
 		if(pulling && !reloading) {
+			Ti.API.info(t);
+			achivsWrapper.top = Math.abs(t)+32-80;
+			Ti.API.info(Math.abs(t)+32-80);
 			achivsWrapper.animate({
 					top: 92,
-					duration: 500
+					duration: 200
+				}, 
+				function() {
+			  		achivsWrapper.top = 92;
 				}
-				// , 
-				// function() {
-				  		// achivsWrapper.top = 92;
-				// }
 			);
 			reloading = true;
 			pulling = false;
 			pullToRefresh.status.text = L('refreshing');
-			// achivsWrapper.updateLayout({
-				// top: 92
-			// });
-			
-			
-			// achivsWrapper.setContentOffset(-60);
 			beginReloading();
 		}
 	});
@@ -225,18 +219,16 @@ function onWindowOpen(window, event)
 	var start = TiTools.Global.get("startAchivs");
 	if(start != undefined)
 	{
-		var win = TiTools.UI.Controls.createWindow(
-			{
-				main : "Controllers/preViewAchivs.js",
-				navBarHidden : true,
-				nameAchivs: start.display_name,
-				desc: start.desc,
-				details: start.details,
-				adv: start.adv,
-				image: start.pic,
-				bonus: start.bonuses
-			}
-		);
+		var win = TiTools.UI.Controls.createWindow({
+			main : "Controllers/preViewAchivs.js",
+			navBarHidden : true,
+			nameAchivs: start.display_name,
+			desc: start.desc,
+			details: start.details,
+			adv: start.adv,
+			image: start.pic,
+			bonus: start.bonuses
+		});
 		win.initialize();
 		win.open();	
 	}
@@ -356,18 +348,16 @@ function createListAchivs(window,categiry)
 			
 			if(tempNewAchivs != undefined)
 			{
-				var win = TiTools.UI.Controls.createWindow(
-					{
-						main : "Controllers/preViewAchivs.js",
-						navBarHidden : true,
-						nameAchivs: tempNewAchivs.display_name,
-						desc: tempNewAchivs.desc,
-						details: tempNewAchivs.details,
-						adv: tempNewAchivs.adv,
-						image: tempNewAchivs.pic,
-						bonus: tempNewAchivs.bonuses
-					}
-				);
+				var win = TiTools.UI.Controls.createWindow({
+					main: "Controllers/preViewAchivs.js",
+					navBarHidden: true,
+					nameAchivs: tempNewAchivs.display_name,
+					desc: tempNewAchivs.desc,
+					details: tempNewAchivs.details,
+					adv: tempNewAchivs.adv,
+					image: tempNewAchivs.pic,
+					bonus: tempNewAchivs.bonuses
+				});
 				win.initialize();
 				win.open();
 				
@@ -403,8 +393,6 @@ function createListAchivs(window,categiry)
 function delList(window, categiry)
 {
 	ui.preAchivs.hide();
-	
-	Ti.API.info('start___DEL');
 	
 	for(var i = 0; i < tempAchivs.length; i++)
 	{
