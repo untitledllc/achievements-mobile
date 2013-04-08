@@ -54,7 +54,7 @@ function onInitController(window, params)
 	
 	ui.counter.text = counter;
 	
-	ui.typeProject.addEventListener("click",function(event)
+	ui.typeProjectClick.addEventListener("click",function(event)
 	{
 		//вызываем прозрачную панель для борьбы с многокликом//
 		ui.transparentView.show();
@@ -109,7 +109,7 @@ function onInitController(window, params)
 		undefClick();
 	});
 	
-	ui.nameProject.addEventListener("singletap", function(event)
+	ui.nameProjectClick.addEventListener("singletap", function(event)
 	{
 		ui.transparentView.show();
 		ui.placeListViewCancel.show();
