@@ -136,18 +136,19 @@ function onInitController(window, params)
 	
 	// ----- PULL TO REFRESH ----- //
 	
-	var achivsWrapper = ui.preAchivs;
-	var pullToRefresh = TiTools.UI.Loader.load('Views/PullToRefresh.js');
-	pullToRefresh.hypno.start();
-	achivsWrapper.add(pullToRefresh.me); 
-	
-	var pulling   = false,
-		reloading = false;
-	var t = 0;
+	var achivsWrapper = ui.preAchivs,
+		pullToRefresh = TiTools.UI.Loader.load('Views/PullToRefresh.js'),
+		pulling       = false,
+		reloading     = false,
+		offset        = 0;
+		
+	achivsWrapper.add(pullToRefresh.me);
+	pullToRefresh.hypno.start(); 
+		
 	// event handlers
 	achivsWrapper.addEventListener('scroll', function(e) {
-		var offset = e.y;
-		t = offset;
+		offset = e.y;
+		
 		if(offset < -75.0 && !pulling && !reloading) {
 			pulling = true;
 			pullToRefresh.status.text = L('releaseToRefresh');
@@ -159,17 +160,14 @@ function onInitController(window, params)
 	});
 	
 	achivsWrapper.addEventListener('dragEnd', function() {	
-		
 		if(pulling && !reloading) {
-			Ti.API.info(t);
-			achivsWrapper.top = Math.abs(t)+32-80;
-			Ti.API.info(Math.abs(t)+32-80);
+			achivsWrapper.top = Math.abs(offset)-85;
 			achivsWrapper.animate({
-					top: 92,
+					top: 0,
 					duration: 200
 				}, 
 				function() {
-			  		achivsWrapper.top = 92;
+			  		achivsWrapper.top = 0;
 				}
 			);
 			reloading = true;
@@ -187,10 +185,10 @@ function onInitController(window, params)
 	
 	function endReloading() {			
 		achivsWrapper.animate({
-				top: 12
+				top: -85
 			}, 
 			function() {
-				achivsWrapper.top = 12;
+				achivsWrapper.top = -85;
 			}
 		);
 		

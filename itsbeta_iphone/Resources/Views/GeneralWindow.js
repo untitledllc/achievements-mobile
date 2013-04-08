@@ -19,7 +19,7 @@ module.exports = [
 					className: "Ti.UI.View",
 					top: 0,
 					height: 57,
-					zIndex: 10,
+					zIndex: 9,
 					backgroundImage: "images/navbar/Bg.png"
 				},
 				subviews:
@@ -110,6 +110,7 @@ module.exports = [
 					className: "Ti.UI.View",
 					top: -25,
 					height: 54,
+					zIndex: 6,
 					backgroundImage: "images/navbar/Selects.Bg.png"
 				},
 				subviews:
@@ -208,6 +209,7 @@ module.exports = [
 				style: {
 					className: "Ti.UI.View",
 					backgroundImage: "images/navbar/Selects.Bottom.png",
+					zIndex: 6,
 					height: 8
 				},
 				subviews: [
@@ -221,19 +223,19 @@ module.exports = [
 						}
 					}
 				]
+			},
+			{
+				outlet: "preAchivs",
+				style : {
+					className: "Ti.UI.ScrollView",
+					layout: "vertical",
+					top: -85,
+					height: Ti.UI.FILL,
+					width: Ti.UI.FILL,
+					zIndex: 5
+				}
 			}
 		]
-	},
-	{
-		outlet: "preAchivs",
-		style : {
-			className: "Ti.UI.ScrollView",
-			layout: "vertical",
-			top: 12,
-			height: Ti.UI.FILL,
-			width: Ti.UI.FILL,
-			zIndex: 10
-		}
 	},
 	{
 		outlet: "list",
