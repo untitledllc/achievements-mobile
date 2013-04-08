@@ -25,15 +25,29 @@ module.exports = [
 				subviews:
 				[
 					{
-						outlet: "profile",
+						outlet: "profileClick",
 						style : {
 							className: "Ti.UI.View",
-							top: 5,
-							left: 10,
-							width: 24,
-							height: 24,
-							backgroundImage: "images/buttons/Profile.Normal.png"
-						}
+							top: 0,
+							left: 0,
+							width: 40,
+							height: 40,
+							backgroundColor: "transparent"
+						},
+						subviews:
+						[
+							{
+								outlet: "profile",
+								style : {
+									className: "Ti.UI.View",
+									top: 5,
+									left: 10,
+									width: 24,
+									height: 24,
+									backgroundImage: "images/buttons/Profile.Normal.png"
+								}
+							}
+						]
 					},
 					{
 						style: {
@@ -65,15 +79,29 @@ module.exports = [
 						]
 					},
 					{
-						outlet: "add",
+						outlet: "addClick",
 						style : {
 							className: "Ti.UI.View",
-							top: 5,
-							right: 10,
-							height: 24,
-							width: 24,
-							backgroundImage: "images/buttons/Plus.Normal.png"
-						}
+							top: 0,
+							right: 0,
+							height: 40,
+							width: 40,
+							backgroundColor: "transparent"
+						},
+						subviews:
+						[
+							{
+								outlet: "add",
+								style : {
+									className: "Ti.UI.View",
+									top: 5,
+									right: 10,
+									height: 24,
+									width: 24,
+									backgroundImage: "images/buttons/Plus.Normal.png"
+								}
+							}
+						]
 					}
 				]
 			},

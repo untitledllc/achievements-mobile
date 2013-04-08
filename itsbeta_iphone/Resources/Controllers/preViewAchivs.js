@@ -26,8 +26,8 @@ function onInitController(window, params)
 	ui.act.show();
 	
 	// close button
-	decorateButton.call(
-		ui.close,
+	decorateButtonChildren.call(
+		ui.closeClick,
 		function() {
 			window.close();
 		}

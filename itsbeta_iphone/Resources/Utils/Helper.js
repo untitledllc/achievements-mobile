@@ -12,6 +12,20 @@ function decorateButton(onSingleTap) {
 	});
 }
 
+function decorateButtonChildren(onSingleTap) {
+	var me = this;
+	
+	me.addEventListener('touchstart', function() {
+		me.children[0].backgroundImage = me.children[0].backgroundImage.replace('Normal', 'Pressed');		
+	});
+	
+	me.addEventListener("singletap", onSingleTap);
+	
+	me.addEventListener('touchend', function() {
+		me.children[0].backgroundImage = me.children[0].backgroundImage.replace('Pressed', 'Normal');
+	});
+}
+
 function decorateNavbarButton(onSingleTap) {
 	var me       = this,
 		children = me.children;
