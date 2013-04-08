@@ -7,7 +7,6 @@ module.exports = {
 		className : "Ti.UI.View",
 		height: 50,
 		width: Ti.UI.FILL,
-		// backgroundColor: "white",
 		backgroundImage: "images/navbar/Selects.Bg.png"
 	},
 	subviews:
@@ -16,6 +15,8 @@ module.exports = {
 			outlet: "rowTextAchivs",
 			style : {
 				className : "Ti.UI.Label",
+				left: 15,
+				right: 15,
 				height: Ti.UI.SIZE,
 				width: Ti.UI.SIZE,
 				color: "#646464",
