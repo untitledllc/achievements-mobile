@@ -305,27 +305,8 @@ function createListAchivs(window,categiry)
 					
 					for(var n = 0, N = achievement.bonuses.length; n < N; n++)
 					{
-						var tempColor;
-						
-						if(achievement.bonuses[n].bonus_type == "bonus")
-						{
-							tempColor = "red";
-						}
-						if(achievement.bonuses[n].bonus_type == "present")
-						{
-							tempColor = "green";
-						}
-						if(achievement.bonuses[n].bonus_type == "discount")
-						{
-							tempColor = "gray";
-						}
-						
 						var bonus = preViewBonus(achievement.bonuses[n].bonus_type);
-						
-						if(bonus)
-						{
-							row.addBonus.add(bonus);
-						}
+						row.addBonus.add(bonus);
 					}
 					
 					row.viewAchivs.data = {
@@ -590,24 +571,6 @@ function actIndicator(param)
 		ui.act.hide();
 	}
 }
-function searchRow()
-{
-	// for(var i = 0; i < achievements.length; i++)
-	// {
-		// for(var j = 0; j < achievements[i].projects.length; j++)
-		// {
-			// for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
-			// {
-				// if(achievements[i].projects[j].achievements[k].badge_name != "itsbeta")
-				// {
-					// createListAchivs(window,"null");
-					// return;
-				// }
-			// }
-		// }
-	// }
-	//itsbeta.firstStart(info,itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs));
-}
 function createListRow(category,massRow)
 {
 	var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
@@ -808,27 +771,8 @@ function reloadAdd(data)
 	
 	for(var n = 0, N = achievement.bonuses.length; n < N; n++)
 	{
-		var tempColor;
-		
-		if( achievement.bonuses[n].bonus_type == "bonus")
-		{
-			tempColor = "red";
-		}
-		if( achievement.bonuses[n].bonus_type == "present")
-		{
-			tempColor = "green";
-		}
-		if( achievement.bonuses[n].bonus_type == "discount")
-		{
-			tempColor = "gray";
-		}
-		
 		var bonus = preViewBonus(achievement.bonuses[n].bonus_type);
-		
-		if(bonus)
-		{
-			row.addBonus.add(bonus);
-		}
+		row.addBonus.add(bonus);
 	}
 	
 	row.viewAchivs.data = {
