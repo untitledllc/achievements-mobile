@@ -51,7 +51,7 @@ function onInitController(window, params)
 	
 	decorateButton.call(
 		ui.infacebook, 
-		start(event)
+		start
 	);
 	
 	function start(event) // onSingleTap handler
