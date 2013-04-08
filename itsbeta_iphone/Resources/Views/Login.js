@@ -14,7 +14,7 @@ module.exports = [
 					className: "Ti.UI.ImageView",
 					height: 175,
 					width: 175,
-					image: "images/Logo.png",
+					image: "images/logos/Itsbeta.png",
 					zIndex: 10,
 					top: 15
 				}
@@ -62,7 +62,8 @@ module.exports = [
 									{
 										style: {
 											className: "Ti.UI.View",
-											layout: "horizontal"
+											layout: "horizontal",
+											height: Ti.UI.SIZE
 										}, 
 										subviews: [
 											{
@@ -71,18 +72,17 @@ module.exports = [
 													color: "#fff",
 													width: "52%",
 													textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
+													font: {fontSize: 15},
 													text: "Sign in with"
 												}
 											},
 											{
 												style: {
-													className: "Ti.UI.Label",
-													color: "#fff",
-													width: "45%",
-													left: "3%",
-													textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-													font: {fontWeight: "bold", fontSize: 18},
-													text: "facebook"
+													className: "Ti.UI.ImageView",
+													image: "images/logos/Facebook.png",
+													width: 74,
+													height: 22,
+													left: 2
 												}
 											}						
 										]	
