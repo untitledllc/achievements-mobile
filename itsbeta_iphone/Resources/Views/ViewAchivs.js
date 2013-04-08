@@ -15,14 +15,14 @@ module.exports = {
 				height: Ti.UI.SIZE,
 				layout: "horizontal",
 				touchEnabled: false,
-				bottom: -40
+				bottom: -20
 			},
 			subviews: [
 				{
 					style: {
 						className : "Ti.UI.View",
 						layout: "vertical",
-						width: "20%",
+						width: "30%",
 						height: Ti.UI.SIZE,
 						touchEnabled: false,
 						top: 0
@@ -33,9 +33,8 @@ module.exports = {
 							style: {
 								className: "Ti.UI.ImageView",
 								top: 10,
-								height: 60,
-								width: 60,
-								image: "images/FirstBadge.PNG",
+								width: 90,
+								height: 90,
 								touchEnabled: false
 							}
 						},
@@ -47,7 +46,7 @@ module.exports = {
 								text: "---",
 								color: "#5dbce2",
 								font: {
-									fontSize: 10
+									fontSize: 12
 								},
 								textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 								touchEnabled: false
@@ -59,7 +58,7 @@ module.exports = {
 					style: {
 						className : "Ti.UI.View",
 						layout: "vertical",
-						width: "70%",
+						width: "60%",
 						height: Ti.UI.SIZE,
 						touchEnabled: false,
 						top: 5
