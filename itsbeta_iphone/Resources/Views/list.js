@@ -28,8 +28,7 @@ module.exports = {
 				className : "Ti.UI.View",
 				bottom: 0,
 				height: 1,
-				width: Ti.UI.FILL,
-				backgroundColor: "#bebebe",
+				backgroundImage: "images/others/Divider.Horizontal.png",
 				touchEnabled: false
 			}
 		}

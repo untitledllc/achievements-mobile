@@ -110,7 +110,7 @@ module.exports = {
 			style: {
 				className: "Ti.UI.View",
 				height: 1,
-				backgroundColor: "gray",
+				backgroundImage: "images/others/Divider.Horizontal.png",
 				touchEnabled: false
 			}
 		}
