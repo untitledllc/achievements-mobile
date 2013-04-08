@@ -32,7 +32,7 @@ module.exports = [
 					bottom: 5,
 					height: Ti.UI.SIZE,
 					width: "90%",
-					backgroundImage: "images/bg/Panel.Popup.png",
+					backgroundImage: "images/bg/Panel.png",
 					backgroundLeftCap: 13,
 					backgroundTopCap: 13
 				},

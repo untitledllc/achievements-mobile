@@ -17,8 +17,8 @@ module.exports = [
 				style : {
 					className : "Ti.UI.View",
 					height: 50,
-					left: 2,
-					right: 2,
+					left: 4,
+					right: 4,
 					width: Ti.UI.SIZE,
 					backgroundColor: "transparent"
 				},
