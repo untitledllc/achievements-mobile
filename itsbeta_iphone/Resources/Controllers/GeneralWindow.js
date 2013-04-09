@@ -151,11 +151,11 @@ function onInitController(window, params)
 		
 		if(offset < -75.0 && !pulling && !reloading) {
 			pulling = true;
-			pullToRefresh.status.text = L('releaseToRefresh');
+			pullToRefresh.status.text = "Release to refresh";
 		}
 		else if((offset > -75.0 && offset < 0) && pulling && !reloading) {
 			pulling = false;
-			pullToRefresh.status.text = L('pullToRefresh');
+			pullToRefresh.status.text = "Pull to refresh";
 		}
 	});
 	
@@ -172,7 +172,7 @@ function onInitController(window, params)
 			);
 			reloading = true;
 			pulling = false;
-			pullToRefresh.status.text = L('refreshing');
+			pullToRefresh.status.text = "refreshing";
 			beginReloading();
 		}
 	});
@@ -193,7 +193,7 @@ function onInitController(window, params)
 		);
 		
 		reloading = false;
-		pullToRefresh.status.text = L('pullToRefresh');
+		pullToRefresh.status.text = "Pull to refresh";
 	}
 	
 	// ----- END PULL TO REFRESH ----- //
