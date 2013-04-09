@@ -109,10 +109,9 @@ module.exports = [
 				style : {
 					className: "Ti.UI.View",
 					layout: "vertical",
-					top: -375,
-					height: 420,
+					top: -395,
+					height: 440,
 					width: Ti.UI.FILL,
-					backgroundColor: "transparent",
 					zIndex: 11
 				},
 				subviews:
@@ -123,9 +122,10 @@ module.exports = [
 							className: "Ti.UI.ScrollView",
 							layout: "vertical",
 							top: 0,
-							height: 420,
+							height: 440,
 							width: Ti.UI.FILL,
-							backgroundColor: "transparent",
+							verticalBounce: false,
+							backgroundColor: "#f7f7f7",
 							zIndex: 11
 						}
 					}
@@ -204,7 +204,8 @@ module.exports = [
 								style: {
 									className: "Ti.UI.View",
 									width: Ti.UI.SIZE,
-									layout: "horizontal"
+									layout: "horizontal",
+									backgroundColor: "transparent"
 								},
 								subviews: [
 									{

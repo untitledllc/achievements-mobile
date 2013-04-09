@@ -17,6 +17,8 @@ var category = [];
 var tempNewAchivs = undefined;
 var selectCategory = "null";
 var selectProject = "null";
+var subCategoryClick = false;
+var placeListHeight = 0;
 
 var lastAchivs = [];
 var singlTap = false;
@@ -28,7 +30,7 @@ var animationEnd = Titanium.UI.createAnimation();
 animation.top = 55;
 animation.duration = 500;
 
-animationEnd.top = -375;
+animationEnd.top = -395;
 animationEnd.duration = 500;
 
 //---------------------------------------------//
@@ -62,6 +64,8 @@ function onInitController(window, params)
 		
 		ui.placeListViewCancel.show();
 		
+		placeListHeight = 0;
+		
 		if(ui.list != undefined)
 		{
 			if(ui.list.visible == false)
@@ -75,14 +79,28 @@ function onInitController(window, params)
 				//--- делаем первую ячейку "все категории"
 				createListRow(allRow, massRow);
 				
+				placeListHeight += 50;
+				
 				for(var i = 0; i < categories.length; i++)
 				{
+					placeListHeight += 50;
+					
 					category = categories[i];
 					//--строю одну ячейку--
 					createListRow(category, massRow, i);
 					//---------------------
 				}
 				ui.list.visible = true;
+				
+				if(placeListHeight > 400)
+				{
+					ui.placeList.height = 440;
+				}
+				else
+				{
+					ui.placeList.height = placeListHeight;
+				}
+				
 				ui.placeListView.animate(animation);
 				ui.transparentView.hide();
 			}
@@ -100,9 +118,14 @@ function onInitController(window, params)
 	
 	ui.nameProjectClick.addEventListener("singletap", function(event)
 	{
-		ui.transparentView.show();
-		ui.placeListViewCancel.show();
-		createListName(window, typeProject);
+		if(subCategoryClick == false)
+		{
+			subCategoryClick = true;
+			
+			ui.transparentView.show();
+			ui.placeListViewCancel.show();
+			createListName(window, typeProject);
+		}
 	});
 	
 	// add code
@@ -406,11 +429,13 @@ function createListName(window,category)
 {
 	if(ui.list.visible == false)
 		{
+			placeListHeight = 0;
 			massRow = [];
 			
 			if(category == "null")
 			{
 				lastAchivsFunction(massRow);
+				placeListHeight += 50;
 			}
 			
 			for(var i = 0, I = achievements.length; i < I; i++)
@@ -422,17 +447,23 @@ function createListName(window,category)
 						var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
 						massRow.push(row);
 						
+						placeListHeight += 50;
+						
 						row.rowTextAchivs.text = achievements[i].projects[j].display_name;
 						row.rowAchivs.api_name = achievements[i].projects[j].api_name;
 						row.rowAchivs.display_name = achievements[i].projects[j].display_name;
 						
 						row.rowAchivs.addEventListener("singletap",function(event)
 						{
+							subCategoryClick = false;
+							
 							selectProject = event.source.api_name;
 							actIndicator(true);
 							
 							var animationHandler = function() {
 								animationEnd.removeEventListener('complete',animationHandler);
+								
+								
 								
 								ui.transparentView.hide();
 								
@@ -454,6 +485,16 @@ function createListName(window,category)
 			}
 			
 			ui.transparentView.hide();
+			
+			if(placeListHeight > 400)
+			{
+				ui.placeList.height = 440;
+			}
+			else
+			{
+				ui.placeList.height = placeListHeight;
+			}
+			
 			ui.placeListView.animate(animation);
 			
 			ui.list.visible = true;
@@ -607,6 +648,8 @@ function undefClick()
 		
 	var animationHandler = function() {
 		animationEnd.removeEventListener('complete',animationHandler);
+		
+		subCategoryClick = false;
 		
 		ui.transparentView.hide();
 		
