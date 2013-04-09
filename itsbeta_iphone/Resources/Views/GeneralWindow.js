@@ -8,7 +8,6 @@ module.exports = [
 			top: 0,
 			height: Ti.UI.SIZE,
 			width: Ti.UI.FILL,
-			//layout: "vertical",
 			backgroundColor: "white"
 		},
 		subviews:
@@ -19,7 +18,6 @@ module.exports = [
 					top: 0,
 					height: 57,
 					zIndex: 9,
-				//	layout: "vertical",
 					backgroundImage: "images/navbar/Bg.png",
 					zIndex: 12
 				},
@@ -249,7 +247,6 @@ module.exports = [
 						style: {
 							className: "Ti.UI.View",
 							backgroundImage: "images/navbar/Selects.Divider.png",
-							//height: Ti.UI.SIZE,
 							width: 5,
 							bottom: 3
 						}

@@ -65,19 +65,27 @@ exports = {
 				width: 50,
 				height: 50,
 				repeatCount: 0,
-				top: 10
+				top: 5
 			}
 	 	},		
 	 	{
 	 		outlet: "status",
 	 		style: {
 	 			className: "Ti.UI.Label",
-	 			text: L("pullToRefresh"),
-				top: 60,
-				//bottom: 22,
+	 			text: "Pull to refresh",
+				top: 55,
 				color: "#737474",
-				font: {fontSize: "14pt", fontFamily: "BarnaulGroteskExtraBold-Reg"}
+				font: {fontSize: "14pt"}
 	 		}
-	 	}
+	 	},
+	 	{
+			style: {
+				className: "Ti.UI.View",
+				height: 3,
+				bottom: 0,
+				backgroundImage: "%ResourcesPath%images/others/Divider.Horizontal.png",
+				touchEnabled: false
+			}
+		}
 	]
 }

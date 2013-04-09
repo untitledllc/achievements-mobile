@@ -150,7 +150,6 @@ function onInitController(window, params)
 	// event handlers
 	achivsWrapper.addEventListener('scroll', function(e) {
 		offset = e.y;
-		
 		if(offset < -75.0 && !pulling && !reloading) {
 			pulling = true;
 			pullToRefresh.status.text = "Release to refresh";
@@ -163,18 +162,18 @@ function onInitController(window, params)
 	
 	achivsWrapper.addEventListener('dragEnd', function() {	
 		if(pulling && !reloading) {
-			achivsWrapper.top = Math.abs(offset)-85;
+			achivsWrapper.top = Math.abs(offset)+6;
 			achivsWrapper.animate({
-					top: 0,
+					top: 86,
 					duration: 200
 				}, 
 				function() {
-			  		achivsWrapper.top = 0;
+			  		achivsWrapper.top = 86;
 				}
 			);
 			reloading = true;
 			pulling = false;
-			pullToRefresh.status.text = "refreshing";
+			pullToRefresh.status.text = "Refreshing";
 			beginReloading();
 		}
 	});
@@ -187,10 +186,10 @@ function onInitController(window, params)
 	
 	function endReloading() {			
 		achivsWrapper.animate({
-				top: -85
+				top: 6
 			}, 
 			function() {
-				achivsWrapper.top = -85;
+				achivsWrapper.top = 6;
 			}
 		);
 		
