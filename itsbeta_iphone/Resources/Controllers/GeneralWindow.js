@@ -25,10 +25,10 @@ var singlTap = false;
 //---------------------------------------------//
 var animation = Titanium.UI.createAnimation();
 var animationEnd = Titanium.UI.createAnimation();
-animation.top = 90;
+animation.top = 55;
 animation.duration = 500;
 
-animationEnd.top = -260;
+animationEnd.top = -375;
 animationEnd.duration = 500;
 
 //---------------------------------------------//
@@ -51,6 +51,8 @@ function onInitController(window, params)
 	itsbeta = require("Utils/Itsbeta");
 	
 	ui.counter.text = counter;
+	
+	Ti.API.info(achievements);
 	
 	ui.typeProjectClick.addEventListener("click",function(event)
 	{
@@ -387,6 +389,7 @@ function createListAchivs(window,categiry)
 			return 0;
 		}
 	);
+	Ti.API.info(lastAchivs);
 }
 function delList(window, categiry)
 {

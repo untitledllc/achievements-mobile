@@ -15,8 +15,8 @@ module.exports = {
 			outlet: "rowTextAchivs",
 			style : {
 				className : "Ti.UI.Label",
-				left: 15,
-				right: 15,
+				// left: 15,
+				// right: 15,
 				height: Ti.UI.SIZE,
 				width: Ti.UI.SIZE,
 				color: "#646464",

@@ -8,9 +8,8 @@ module.exports = [
 			top: 0,
 			height: Ti.UI.SIZE,
 			width: Ti.UI.FILL,
-			layout: "vertical",
-			backgroundColor: "white",
-			zIndex: 12
+			//layout: "vertical",
+			backgroundColor: "white"
 		},
 		subviews:
 		[
@@ -20,7 +19,9 @@ module.exports = [
 					top: 0,
 					height: 57,
 					zIndex: 9,
-					backgroundImage: "images/navbar/Bg.png"
+				//	layout: "vertical",
+					backgroundImage: "images/navbar/Bg.png",
+					zIndex: 12
 				},
 				subviews:
 				[
@@ -106,9 +107,36 @@ module.exports = [
 				]
 			},
 			{
+				outlet: "placeListView",
 				style : {
 					className: "Ti.UI.View",
-					top: -25,
+					layout: "vertical",
+					top: -375,
+					height: 420,
+					width: Ti.UI.FILL,
+					backgroundColor: "transparent",
+					zIndex: 11
+				},
+				subviews:
+				[
+					{
+						outlet: "placeList",
+						style : {
+							className: "Ti.UI.ScrollView",
+							layout: "vertical",
+							top: 0,
+							height: 420,
+							width: Ti.UI.FILL,
+							backgroundColor: "transparent",
+							zIndex: 11
+						}
+					}
+				]
+			},
+			{
+				style : {
+					className: "Ti.UI.View",
+					top: 30,
 					height: 54,
 					zIndex: 6,
 					backgroundImage: "images/navbar/Selects.Bg.png"
@@ -136,7 +164,10 @@ module.exports = [
 										outlet: "typeProject",
 										style : {
 											className: "Ti.UI.Label",
+											height: 20,
+											width: 120,
 											color: "#646464",
+											textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 											font: {fontSize: 15},
 											text: "Категории"
 										}
@@ -209,6 +240,7 @@ module.exports = [
 				style: {
 					className: "Ti.UI.View",
 					backgroundImage: "images/navbar/Selects.Bottom.png",
+					top: 84,
 					zIndex: 6,
 					height: 8
 				},
@@ -229,7 +261,7 @@ module.exports = [
 				style : {
 					className: "Ti.UI.ScrollView",
 					layout: "vertical",
-					top: -85,
+					top: 6,
 					height: Ti.UI.FILL,
 					width: Ti.UI.FILL,
 					zIndex: 5
@@ -251,39 +283,12 @@ module.exports = [
 		}
 	},
 	{
-		outlet: "placeListView",
-		style : {
-			className: "Ti.UI.View",
-			layout: "vertical",
-			top: -248,
-			height: 355,
-			width: Ti.UI.FILL,
-			backgroundColor: "transparent",
-			zIndex: 10
-		},
-		subviews:
-		[
-			{
-				outlet: "placeList",
-				style : {
-					className: "Ti.UI.ScrollView",
-					layout: "vertical",
-					top: 0,
-					height: 355,
-					width: Ti.UI.FILL,
-					backgroundColor: "transparent",
-					zIndex: 10
-				}
-			}
-		]
-	},
-	{
 		outlet: "placeListViewCancel",
 		style : {
 			className: "Ti.UI.View",
 			layout: "vertical",
 			top: 0,
-			height: 107,
+			height: 45,
 			width: Ti.UI.FILL,
 			backgroundColor: "transparent",
 			visible: false,
