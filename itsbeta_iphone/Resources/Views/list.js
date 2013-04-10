@@ -7,7 +7,8 @@ module.exports = {
 		className : "Ti.UI.View",
 		height: 50,
 		width: Ti.UI.FILL,
-		backgroundImage: "images/navbar/Selects.Bg.png"
+		backgroundImage: "images/navbar/Selects.Bg.png",
+		lastRow: undefined
 	},
 	subviews:
 	[

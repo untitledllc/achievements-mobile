@@ -482,12 +482,25 @@ function createListName(window,category)
 					
 					placeListHeight += 50;
 					
+					if(selectProject == achievements[i].projectsApiName)
+					{
+						ui.placeList.lastRow = row.rowAchivs;
+						row.rowAchivs.backgroundImage = null;
+						row.rowAchivs.backgroundColor = "#7ed6f9";
+					}
 					row.rowTextAchivs.text = achievements[i].projectsDisplayName;
 					row.rowAchivs.api_name = achievements[i].projectsApiName;
 					row.rowAchivs.display_name = achievements[i].projectsDisplayName;
 					
 					row.rowAchivs.addEventListener("singletap",function(event)
 					{
+						if(ui.placeList.lastRow != undefined)
+						{
+							ui.placeList.lastRow.backgroundImage = TiTools.Filesystem.preprocessPath("%ResourcesPath%images/navbar/Selects.Bg.png");
+						}
+						event.source.backgroundImage = null;
+						event.source.backgroundColor = "#7ed6f9";
+						
 						subCategoryClick = false;
 						
 						selectProject = event.source.api_name;
@@ -495,8 +508,6 @@ function createListName(window,category)
 						
 						var animationHandler = function() {
 							animationEnd.removeEventListener('complete',animationHandler);
-							
-							
 							
 							ui.transparentView.hide();
 							
