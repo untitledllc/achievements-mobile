@@ -18,6 +18,7 @@ var tempNewAchivs = undefined;
 var selectCategory = "null";
 var selectProject = "null";
 var subCategoryClick = false;
+var newAchivsSсhema = [];
 var placeListHeight = 0;
 
 var lastAchivs = [];
@@ -54,7 +55,7 @@ function onInitController(window, params)
 	
 	ui.counter.text = counter;
 	
-	Ti.API.info(achievements);
+	//Ti.API.info(achievements);
 	
 	ui.typeProjectClick.addEventListener("click",function(event)
 	{
@@ -129,33 +130,48 @@ function onInitController(window, params)
 	});
 	
 	// add code
+	var tempDecorateClickAdd = false;
 	decorateButtonChildren.call(
 		ui.addClick,
 		function() {
-			var winAdd = TiTools.UI.Controls.createWindow({
-				main: "Controllers/add.js",
-				navBarHidden: true,
-				achievements: achievements
-			});
-			winAdd.initialize();
-			winAdd.open();	
+			if(tempDecorateClickAdd == false)
+			{
+				tempDecorateClickAdd = true;
+				var winAdd = TiTools.UI.Controls.createWindow({
+					main: "Controllers/add.js",
+					navBarHidden: true,
+					achievements: achievements
+				});
+				winAdd.initialize();
+				winAdd.addEventListener("close", function(event) {
+					tempDecorateClickAdd = false;
+				});
+				winAdd.open();
+			}
 		}
 	);
-	
 	// profile
+	var tempDecorateClickProfile = false;
 	decorateButtonChildren.call(
 		ui.profileClick,
 		function() {
-			var winAdd = TiTools.UI.Controls.createWindow({
-				main: "Controllers/Profile.js",
-				backgroundColor: "#fff",
-				navBarHidden: true,
-				info: info,
-				achievements: achievements,
-				counter: counter
-			});
-			winAdd.initialize();
-			winAdd.open();	
+			if(tempDecorateClickProfile == false)
+			{
+				tempDecorateClickProfile = true;
+				var winAdd = TiTools.UI.Controls.createWindow({
+					main: "Controllers/Profile.js",
+					backgroundColor: "#fff",
+					navBarHidden: true,
+					info: info,
+					achievements: achievements,
+					counter: counter
+				});
+				winAdd.initialize();
+				winAdd.addEventListener("close", function(event) {
+					tempDecorateClickProfile = false;
+				});
+				winAdd.open();	
+			}
 		}
 	);
 	
@@ -287,79 +303,74 @@ function createListAchivs(window,categiry)
 	ui.nameProject.text = "Подкатегории";
 	ui.typeProject.text = "Категории";
 	
-	for(var i = 0, I = achievements.length; i < I; i++)
+	
+	for(var i = 0, K = achievements.length; i < K; i++)
 	{
-		for(var j = 0, J = achievements[i].projects.length; j < J; j++)
+		if(achievements[i].projectsApiName == categiry || categiry == "null" || achievements[i].categoryApiName == categiry)
 		{
-			for(var k = 0, K = achievements[i].projects[j].achievements.length; k < K; k++)
+			var achievement = achievements[i];
+			
+			// ---- список имен ачивок и время их выдачи --- //
+			lastAchivs.push({
+				date: achievement.create_time,
+				api_name: achievement.achievApiName
+			});
+			// ---------------------------------------------//
+			
+			var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
+			
+			row.date.text = TiTools.DateTime.format(new Date(achievement.create_time), "$dd.$mm.$yyyy");
+			row.api_name = achievement.achievApiName,
+			row.image.image = achievement.achievPic;
+			row.name.text = achievement.achievDisplayName;
+			row.name.color = achievement.color;
+			row.desc.text = achievement.achievDesc;
+			row.category = achievement.categoryApiName;
+			row.project = achievement.projectsApiName;
+			
+			tempAchivs.push(row);
+			
+			for(var n = 0, N = achievement.achievBonuses.length; n < N; n++)
 			{
-				if(achievements[i].projects[j].api_name == categiry || categiry == "null" || achievements[i].api_name == categiry)
-				{
-					var achievement = achievements[i].projects[j].achievements[k];
-					
-					// ---- список имен ачивок и время их выдачи --- //
-					lastAchivs.push({
-						date: achievement.create_time,
-						api_name: achievement.api_name
-					});
-					// ---------------------------------------------//
-					
-					var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
-					
-					row.date.text = TiTools.DateTime.format(new Date(achievement.create_time), "$dd.$mm.$yyyy");
-					row.api_name = achievement.api_name,
-					row.image.image = achievement.pic;
-					row.name.text = achievement.display_name;
-					row.name.color = achievements[i].projects[j].color;
-					row.desc.text = achievement.desc;
-					row.category = achievements[i].api_name;
-					row.project = achievements[i].projects[j].api_name;
-					
-					tempAchivs.push(row);
-					
-					for(var n = 0, N = achievement.bonuses.length; n < N; n++)
-					{
-						var bonus = preViewBonus(achievement.bonuses[n].bonus_type);
-						row.addBonus.add(bonus);
-					}
-					
-					row.viewAchivs.data = {
-						image: achievement.pic,
-						nameAchivs: achievement.display_name,
-						desc: achievement.desc,
-						details: achievement.details,
-						adv: achievement.adv,
-						bonus: achievement.bonuses
-					}
-					
-					row.viewAchivs.addEventListener("singletap",function(event)
-					{
-						if(singlTap == false)
-						{
-							singlTap = true;
-							
-							var sourceData = event.source.data;
-							var win = TiTools.UI.Controls.createWindow({
-								main: "Controllers/preViewAchivs.js",
-								navBarHidden: true,
-								nameAchivs: sourceData.nameAchivs,
-								desc: sourceData.desc,
-								details: sourceData.details,
-								adv: sourceData.adv,
-								image: sourceData.image,
-								bonus: sourceData.bonus
-							});
-							
-							win.addEventListener("close",function() {
-								singlTap = false;
-							});
-							
-							win.initialize();
-							win.open();	
-						}
-					});
-				}
+				var bonus = preViewBonus(achievement.achievBonuses[n].bonus_type);
+				row.addBonus.add(bonus);
 			}
+			
+			row.viewAchivs.data = {
+				image: achievement.achievPic,
+				nameAchivs: achievement.achievDisplayName,
+				desc: achievement.achievDesc,
+				details: achievement.achievDetails,
+				adv: achievement.achievAdv,
+				bonus: achievement.achievBonuses
+			}
+			
+			row.viewAchivs.addEventListener("singletap",function(event)
+			{
+				if(singlTap == false)
+				{
+					singlTap = true;
+					
+					var sourceData = event.source.data;
+					var win = TiTools.UI.Controls.createWindow({
+						main: "Controllers/preViewAchivs.js",
+						navBarHidden: true,
+						nameAchivs: sourceData.nameAchivs,
+						desc: sourceData.desc,
+						details: sourceData.details,
+						adv: sourceData.adv,
+						image: sourceData.image,
+						bonus: sourceData.bonus
+					});
+					
+					win.addEventListener("close",function() {
+						singlTap = false;
+					});
+					
+					win.initialize();
+					win.open();	
+				}
+			});
 		}
 		if(i+1 == achievements.length)
 		{
@@ -411,7 +422,7 @@ function createListAchivs(window,categiry)
 			return 0;
 		}
 	);
-	Ti.API.info(lastAchivs);
+	//Ti.API.info(lastAchivs);
 }
 function delList(window, categiry)
 {
@@ -438,49 +449,66 @@ function createListName(window,category)
 				placeListHeight += 50;
 			}
 			
+			var tempListProject = [];
+			
 			for(var i = 0, I = achievements.length; i < I; i++)
 			{
-				if(achievements[i].api_name == category || category == "null")
+				var flagProject = false;
+				
+				if(achievements[i].categoryApiName == category || category == "null")
 				{
-					for(var j = 0, J = achievements[i].projects.length; j < J; j++)
+					for(var j = 0; j < tempListProject.length; j++)
 					{
-						var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
-						massRow.push(row);
-						
-						placeListHeight += 50;
-						
-						row.rowTextAchivs.text = achievements[i].projects[j].display_name;
-						row.rowAchivs.api_name = achievements[i].projects[j].api_name;
-						row.rowAchivs.display_name = achievements[i].projects[j].display_name;
-						
-						row.rowAchivs.addEventListener("singletap",function(event)
+						if(achievements[i].projectsApiName == tempListProject[j])
 						{
-							subCategoryClick = false;
-							
-							selectProject = event.source.api_name;
-							actIndicator(true);
-							
-							var animationHandler = function() {
-								animationEnd.removeEventListener('complete',animationHandler);
-								
-								
-								
-								ui.transparentView.hide();
-								
-								ui.typeProject.show();
-								ui.nameProject.show();
-								
-								ui.list.visible = false;
-								
-								ui.nameProject.text = event.source.display_name;
-								
-								hideAchivs();
-							};
-							
-							animationEnd.addEventListener('complete',animationHandler);
-							ui.placeListView.animate(animationEnd);
-						});
+							flagProject = true;
+							break;
+						}
 					}
+					
+					if(flagProject == true)
+					{
+						continue;
+					}
+					
+					tempListProject.push(achievements[i].projectsApiName);
+					
+					var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
+					massRow.push(row);
+					
+					placeListHeight += 50;
+					
+					row.rowTextAchivs.text = achievements[i].projectsDisplayName;
+					row.rowAchivs.api_name = achievements[i].projectsApiName;
+					row.rowAchivs.display_name = achievements[i].projectsDisplayName;
+					
+					row.rowAchivs.addEventListener("singletap",function(event)
+					{
+						subCategoryClick = false;
+						
+						selectProject = event.source.api_name;
+						actIndicator(true);
+						
+						var animationHandler = function() {
+							animationEnd.removeEventListener('complete',animationHandler);
+							
+							
+							
+							ui.transparentView.hide();
+							
+							ui.typeProject.show();
+							ui.nameProject.show();
+							
+							ui.list.visible = false;
+							
+							ui.nameProject.text = event.source.display_name;
+							
+							hideAchivs();
+						};
+						
+						animationEnd.addEventListener('complete',animationHandler);
+						ui.placeListView.animate(animationEnd);
+					});
 				}
 			}
 			
@@ -516,35 +544,113 @@ function reSaveAchivs(data)
 	achievements = JSON.parse(data.responseText);
 	categories = [];
 	projects = [];
+	counter = 0;
 	
 	//---- собираем список категорий и список проектов -----//
-	counter = 0;
-	for(var i = 0, I = achievements.length; i < I; i++)
+	// for(var i = 0, I = achievements.length; i < I; i++)
+	// {
+		// var achievement = achievements[i];
+// 		
+		// categories.push(
+			// {
+				// api_name: achievement.api_name,
+				// display_name: achievement.display_name
+			// }
+		// );
+// 		
+		// for(var j = 0, J = achievement.projects.length; j < J; j++)
+		// {
+			// var project = achievement.projects[j];
+			// counter += project.achievements.length;
+// 			
+			// projects.push(
+				// {
+					// api_name: project.api_name,
+					// display_name: project.display_name,
+					// total_badge: project.total_badge
+				// }
+			// );
+		// }
+	// }
+	
+	newAchivsSсhema = [];
+	
+	for(var i = 0, I = achievements.length; i < I ; i++)
 	{
-		var achievement = achievements[i];
+		var achivs = achievements[i];
 		
-		categories.push(
-			{
-				api_name: achievement.api_name,
-				display_name: achievement.display_name
-			}
-		);
+		categories.push({
+			api_name: achivs.api_name,
+			display_name: achivs.display_name
+		});
 		
-		for(var j = 0, J = achievement.projects.length; j < J; j++)
+		for(var j = 0, J = achivs.projects.length; j < J; j++)
 		{
-			var project = achievement.projects[j];
-			counter += project.achievements.length;
+			var achivsProject = achivs.projects[j];
 			
-			projects.push(
-				{
-					api_name: project.api_name,
-					display_name: project.display_name,
-					total_badge: project.total_badge
-				}
-			);
+			counter += achivsProject.achievements.length;
+			
+			projects.push({
+				api_name: achivsProject.api_name,
+				display_name: achivsProject.display_name,
+				total_badge: achivsProject.total_badge
+			});
+			
+			for(var k = 0, K = achivsProject.achievements.length; k < K; k++)
+			{
+				var achivsProjectAchiv = achivsProject.achievements[k];
+				
+				newAchivsSсhema.push({
+					categoryApiName: achivs.api_name,
+					categoryDisplayName: achivs.display_name,
+					projectsApiName: achivsProject.api_name,
+					projectsDisplayName: achivsProject.display_name,
+					color: achivsProject.color,
+					total_badges: achivsProject.total_badges,
+					achievApiName: achivsProjectAchiv.api_name,
+					create_time: achivsProjectAchiv.create_time,
+					achievDisplayName: achivsProjectAchiv.display_name,
+					achievBadgeName: achivsProjectAchiv.badge_name,
+					achievDesc: achivsProjectAchiv.desc,
+					achievDetails: achivsProjectAchiv.details,
+					achievAdv: achivsProjectAchiv.adv,
+					achievPic: achivsProjectAchiv.pic,
+					fb_id : achivsProjectAchiv.fb_id,
+					achievBonuses: achivsProjectAchiv.bonuses,
+				});
+			}
 		}
 	}
+	
+	newAchivsSсhema.sort(
+		function(a, b)
+		{
+			var date1 = Date();
+			var date2 = Date();
+			
+			date1 = a.create_time;
+			date2 = b.create_time;
+			
+			if(date1 != date2)
+			{
+				if(date1 < date2)
+				{
+					return 1;
+				}
+				else
+				{
+					return -1;
+				}
+			}
+			return 0;
+		}
+	);
+	Ti.API.info(newAchivsSсhema);
+	
+	
 	ui.counter.text = counter;
+	achievements = newAchivsSсhema;
+	
 	createListAchivs(window,"null");
 }
 function preViewBonus(type)
@@ -626,14 +732,9 @@ function createListRow(category,massRow)
 			ui.typeProject.show();
 			ui.nameProject.show();
 			ui.list.visible = false;
-			// for(var ii = 0; ii < massRow.length; ii++)
-			// {
-				// massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
-			// }
 			
 			ui.placeListView.animate(animationEnd);
 			Ti.API.info('++');
-			//delList(window,typeProject);
 			
 			hideAchivs();
 		};
@@ -728,122 +829,122 @@ function hideAchivs()
 	}
 }
 //--reload -- добавляем новую ачивку ---------------------------------------------------//
-function reloadAdd(data)
-{
-	var categoryDetected = false;
-	var projectDetected = false;
-	
-	for(var i = 0, I = categories.length; i < I; i++)
-	{
-		if(categories[i].api_name == data.api_name)
-		{
-			categoryDetected = true;
-			break;
-		}
-		if(i+1 == categories.length)
-		{
-			categories.push({
-				api_name: data.api_name,
-				display_name: data.api_name
-			});
-		}
-	}
-	
-	for(var j = 0, J = projects.length; j < J; j++)
-	{
-		if(projects[j].api_name == data.project.api_name)
-		{
-			projectDetected = true;
-			break;
-		}
-		if(i+1 == projects.length)
-		{
-			projects.push({
-				api_name: data.api_name,
-				display_name: data.api_name,
-				total_badge: 10
-			});
-		}
-	}
-	
-	// --- поиск места куда вставить ачивку ----////
-	
-	// for(var i = 0; i < achievements.length; i++)
+// function reloadAdd(data)
+// {
+	// var categoryDetected = false;
+	// var projectDetected = false;
+// 	
+	// for(var i = 0, I = categories.length; i < I; i++)
 	// {
-		// if(achievements[i].api_name)
+		// if(categories[i].api_name == data.api_name)
 		// {
-			// for(var j = 0; j < achievements[i].projects.length; j++)
-			// {
-				// for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
-				// {
-					// if(achievements[i].projects[j].api_name == categiry || categiry == "null" || achievements[i].api_name == categiry)
-					// {
-					// }
-				// }
-			// }
+			// categoryDetected = true;
+			// break;
+		// }
+		// if(i+1 == categories.length)
+		// {
+			// categories.push({
+				// api_name: data.api_name,
+				// display_name: data.api_name
+			// });
 		// }
 	// }
-	
-	//// ------ создание  ачивки -----////
-	var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
-	
-	var achievement = data;
-	
-	//row.date.text = TiTools.DateTime.format(new Date(achievement.create_time), "$dd.$mm.$yyyy");
-	
-	row.image.image = achievement.pic;
-	row.name.text = achievement.display_name;
-	row.name.color = achievement.project.color;
-	row.desc.text = achievement.desc;
-	row.category = achievement.api_name;
-	row.project = achievement.project.api_name;
-	
-	tempAchivs.push(row);
-	
-	for(var n = 0, N = achievement.bonuses.length; n < N; n++)
-	{
-		var bonus = preViewBonus(achievement.bonuses[n].bonus_type);
-		row.addBonus.add(bonus);
-	}
-	
-	row.viewAchivs.data = {
-		image: achievement.pic,
-		nameAchivs: achievement.display_name,
-		desc: achievement.desc,
-		details: achievement.details,
-		adv: achievement.adv,
-		bonus: achievement.bonuses
-	}
-	
-	row.viewAchivs.addEventListener("singletap",function(event)
-	{
-		if(singlTap == false)
-		{
-			singlTap = true;
-			
-			var sourceData = event.source.data;
-			var win = TiTools.UI.Controls.createWindow({
-				main: "Controllers/preViewAchivs.js",
-				navBarHidden: true,
-				nameAchivs: sourceData.nameAchivs,
-				desc: sourceData.desc,
-				details: sourceData.details,
-				adv: sourceData.adv,
-				image: sourceData.image,
-				bonus: sourceData.bonus
-			});
-			
-			win.addEventListener("close",function() {
-				singlTap = false;
-			});
-			
-			win.initialize();
-			win.open();	
-		}
-	});
-	///------------------------------/////
-	
-}
+// 	
+	// for(var j = 0, J = projects.length; j < J; j++)
+	// {
+		// if(projects[j].api_name == data.project.api_name)
+		// {
+			// projectDetected = true;
+			// break;
+		// }
+		// if(i+1 == projects.length)
+		// {
+			// projects.push({
+				// api_name: data.api_name,
+				// display_name: data.api_name,
+				// total_badge: 10
+			// });
+		// }
+	// }
+// 	
+	// // --- поиск места куда вставить ачивку ----////
+// 	
+	// // for(var i = 0; i < achievements.length; i++)
+	// // {
+		// // if(achievements[i].api_name)
+		// // {
+			// // for(var j = 0; j < achievements[i].projects.length; j++)
+			// // {
+				// // for(var k = 0; k < achievements[i].projects[j].achievements.length; k++)
+				// // {
+					// // if(achievements[i].projects[j].api_name == categiry || categiry == "null" || achievements[i].api_name == categiry)
+					// // {
+					// // }
+				// // }
+			// // }
+		// // }
+	// // }
+// 	
+	// //// ------ создание  ачивки -----////
+	// var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
+// 	
+	// var achievement = data;
+// 	
+	// //row.date.text = TiTools.DateTime.format(new Date(achievement.create_time), "$dd.$mm.$yyyy");
+// 	
+	// row.image.image = achievement.pic;
+	// row.name.text = achievement.display_name;
+	// row.name.color = achievement.project.color;
+	// row.desc.text = achievement.desc;
+	// row.category = achievement.api_name;
+	// row.project = achievement.project.api_name;
+// 	
+	// tempAchivs.push(row);
+// 	
+	// for(var n = 0, N = achievement.bonuses.length; n < N; n++)
+	// {
+		// var bonus = preViewBonus(achievement.bonuses[n].bonus_type);
+		// row.addBonus.add(bonus);
+	// }
+// 	
+	// row.viewAchivs.data = {
+		// image: achievement.pic,
+		// nameAchivs: achievement.display_name,
+		// desc: achievement.desc,
+		// details: achievement.details,
+		// adv: achievement.adv,
+		// bonus: achievement.bonuses
+	// }
+// 	
+	// row.viewAchivs.addEventListener("singletap",function(event)
+	// {
+		// if(singlTap == false)
+		// {
+			// singlTap = true;
+// 			
+			// var sourceData = event.source.data;
+			// var win = TiTools.UI.Controls.createWindow({
+				// main: "Controllers/preViewAchivs.js",
+				// navBarHidden: true,
+				// nameAchivs: sourceData.nameAchivs,
+				// desc: sourceData.desc,
+				// details: sourceData.details,
+				// adv: sourceData.adv,
+				// image: sourceData.image,
+				// bonus: sourceData.bonus
+			// });
+// 			
+			// win.addEventListener("close",function() {
+				// singlTap = false;
+			// });
+// 			
+			// win.initialize();
+			// win.open();	
+		// }
+	// });
+	// ///------------------------------/////
+// 	
+// }
 ///--- 10 последних ачивок --- ///
 function lastAchivsFunction(massRow)
 {

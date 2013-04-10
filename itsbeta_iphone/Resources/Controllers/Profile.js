@@ -47,10 +47,15 @@ function onInitController(window, params)
 	ui.profileInfo.text = pName;
 	
 	// back
+	var tempDecorateClickExit = false;
 	decorateNavbarButton.call(
 		ui.back, 
 		function() {
-			window.close();
+			if(tempDecorateClickExit == false)
+			{
+				tempDecorateClickExit = true;
+				window.close();
+			}
 		}
 	);
 	
@@ -96,29 +101,26 @@ function onWindowOpen(window, event)
 		sub = 0,
 		tempAchivs = [];
 	
-	for(var i = 0; i < achievements.length; i++)
-	{
-		var achievement = achievements[i];
-		var projects = achievement.projects;
-		
-		// var statView = TiTools.UI.Loader.load("Views/Statistic.js", ui.list);
-		// statView.category.text = (i+1) + ". " + achievements[i].display_name + ":";
-			
-		for(var j = 0; j < projects.length; j++)
-		{
-			var project = projects[j];
-			
+	// for(var i = 0; i < achievements.length; i++)
+	// {
+		// var achievement = achievements[i];
+		// var projects = achievement.projects;
+// 		
+		// for(var j = 0; j < projects.length; j++)
+		// {
+			// var project = projects[j];
+// 			
 			tempAchivs = [];
-			tempAchivs.push(project.achievements[0].badge_name);
+			tempAchivs.push(achievements[0].achievBadgeName);
 			
-			for(var k = 0; k < project.achievements.length; k++)
+			for(var k = 0; k < achievements.length; k++)
 			{
-				var projectAchievement = project.achievements[k];
+				var projectAchievement = achievements[k];
 				var flagPush = true;
 				
 				for(var index = 0; index < tempAchivs.length; index++)
 				{
-					if(tempAchivs[index] == projectAchievement.badge_name)
+					if(tempAchivs[index] == projectAchievement.achievBadgeName)
 					{
 						flagPush = false;
 					}
@@ -126,12 +128,12 @@ function onWindowOpen(window, event)
 				
 				if(flagPush == true)
 				{
-					tempAchivs.push(projectAchievement.badge_name);
+					tempAchivs.push(projectAchievement.achievBadgeName);
 				}
 				
-				for(var n = 0; n < projectAchievement.bonuses.length; n++)
+				for(var n = 0; n < projectAchievement.achievBonuses.length; n++)
 				{
-					if(projectAchievement.bonuses[n].bonus_type == "bonus")
+					if(projectAchievement.achievBonuses[n].bonus_type == "bonus")
 					{
 						bonus++;
 					}
@@ -141,10 +143,8 @@ function onWindowOpen(window, event)
 					}
 				}
 			}
-			
-			// statView.item.add(createProfileBadgeRow(project.display_name + " - " + project.total_badges)); //, Math.ceil(100*tempAchivs.length/project.total_badges)));
-		}
-	}
+		// }
+	// }
 	ui.all.text = ui.all.text + all;
 	ui.bonus.text = ui.bonus.text + bonus;
 	ui.sub.text = ui.sub.text + sub ;

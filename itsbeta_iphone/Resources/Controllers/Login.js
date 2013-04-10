@@ -49,9 +49,18 @@ function onInitController(window, params)
 		start();
 	}
 	
+	var tempDecorateClickFb = false;
 	decorateButton.call(
 		ui.infacebook, 
-		start
+		function()
+		{
+			if(tempDecorateClickFb == false)
+			{
+				tempDecorateClickFb = true;
+				start();
+				tempDecorateClickFb = false;
+			}
+		}
 	);
 	
 	function start(event) // onSingleTap handler
@@ -183,44 +192,130 @@ function saveAchivs(data)
 	
 	//---- собираем список категорий и список проектов -----//
 	
-	for(var i = 0; i < achievements.length; i++)
+	// for(var i = 0; i < achievements.length; i++)
+	// {
+		// var achievement = achievements[i];
+// 		
+		// categories.push({
+			// api_name: achievement.api_name,
+			// display_name: achievement.display_name
+		// });
+// 		
+		// for(var j = 0; j < achievement.projects.length; j++)
+		// {
+			// var project = achievement.projects[j];
+			// counter += project.achievements.length;
+// 			
+			// projects.push({
+				// api_name: project.api_name,
+				// display_name: project.display_name,
+				// total_badge: project.total_badge
+			// });
+		// }
+	// }
+	
+	///------------------ новая схема хранения ачивок ------///
+		
+	var newAchivsSсhema = [];
+	
+	for(var i = 0, I = achievements.length; i < I ; i++)
 	{
-		var achievement = achievements[i];
+		var achivs = achievements[i];
 		
 		categories.push({
-			api_name: achievement.api_name,
-			display_name: achievement.display_name
+			api_name: achivs.api_name,
+			display_name: achivs.display_name
 		});
 		
-		for(var j = 0; j < achievement.projects.length; j++)
+		for(var j = 0, J = achivs.projects.length; j < J; j++)
 		{
-			var project = achievement.projects[j];
-			counter += project.achievements.length;
+			var achivsProject = achivs.projects[j];
+			
+			counter += achivsProject.achievements.length;
 			
 			projects.push({
-				api_name: project.api_name,
-				display_name: project.display_name,
-				total_badge: project.total_badge
+				api_name: achivsProject.api_name,
+				display_name: achivsProject.display_name,
+				total_badge: achivsProject.total_badge
 			});
+			
+			for(var k = 0, K = achivsProject.achievements.length; k < K; k++)
+			{
+				var achivsProjectAchiv = achivsProject.achievements[k];
+				
+				newAchivsSсhema.push({
+					categoryApiName: achivs.api_name,
+					categoryDisplayName: achivs.display_name,
+					projectsApiName: achivsProject.api_name,
+					projectsDisplayName: achivsProject.display_name,
+					color: achivsProject.color,
+					total_badges: achivsProject.total_badges,
+					achievApiName: achivsProjectAchiv.api_name,
+					create_time: achivsProjectAchiv.create_time,
+					achievDisplayName: achivsProjectAchiv.display_name,
+					achievBadgeName: achivsProjectAchiv.badge_name,
+					achievDesc: achivsProjectAchiv.desc,
+					achievDetails: achivsProjectAchiv.details,
+					achievAdv: achivsProjectAchiv.adv,
+					achievPic: achivsProjectAchiv.pic,
+					fb_id : achivsProjectAchiv.fb_id,
+					achievBonuses: achivsProjectAchiv.bonuses,
+				});
+			}
+		}
+		if(i+1 == I)
+		{
+			newAchivsSсhema.sort(
+				function(a, b)
+				{
+					var date1 = Date();
+					var date2 = Date();
+					
+					date1 = a.create_time;
+					date2 = b.create_time;
+					
+					if(date1 != date2)
+					{
+						if(date1 < date2)
+						{
+							return 1;
+						}
+						else
+						{
+							return -1;
+						}
+					}
+					return 0;
+				}
+			);
+			Ti.API.info(newAchivsSсhema);
+			
+			//-----------------------------------------------------////
+			
+			//------------------------------------------------------//
+			
+			Ti.API.info(newAchivsSсhema.length); 
+			
+			
+			var win = TiTools.UI.Controls.createWindow(
+				{
+					main: "Controllers/GeneralWindow.js",
+					navBarHidden: true,
+					info: info,
+					achievements: newAchivsSсhema,
+					categories: categories,
+					projects: projects,
+					counter: counter,
+					backgroundColor: "white"
+				}
+			);
+			win.initialize();
+			win.open();
 		}
 	}
 	
-	//------------------------------------------------------//
 	
-	var win = TiTools.UI.Controls.createWindow(
-		{
-			main: "Controllers/GeneralWindow.js",
-			navBarHidden: true,
-			info: info,
-			achievements: achievements,
-			categories: categories,
-			projects: projects,
-			counter: counter,
-			backgroundColor: "white"
-		}
-	);
-	win.initialize();
-	win.open();
+	
 	actIndicator(false);
 }
 
