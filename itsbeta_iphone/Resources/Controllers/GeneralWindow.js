@@ -59,6 +59,8 @@ function onInitController(window, params)
 	
 	ui.typeProjectClick.addEventListener("click",function(event)
 	{
+		ui.typeProjectClick.backgroundImage = TiTools.Filesystem.preprocessPath("%ResourcesPath%images/others/Categories_press.png");
+		
 		//вызываем прозрачную панель для борьбы с многокликом//
 		ui.transparentView.show();
 		//---------------------------------------------------//
@@ -117,10 +119,12 @@ function onInitController(window, params)
 	ui.placeListView.addEventListener("singletap", undefClick);
 	ui.placeListViewCancel.addEventListener("singletap", undefClick);
 	
-	ui.nameProjectClick.addEventListener("singletap", function(event)
+	ui.nameProjectClick.addEventListener("click", function(event)
 	{
 		if(subCategoryClick == false)
 		{
+			ui.nameProjectClick.backgroundImage = TiTools.Filesystem.preprocessPath("%ResourcesPath%images/others/Categories_press.png");
+			
 			subCategoryClick = true;
 			
 			ui.transparentView.show();
@@ -717,6 +721,8 @@ function createListRow(category,massRow)
 						
 	row.rowAchivs.addEventListener("singletap",function(event)
 	{
+		ui.typeProjectClick.backgroundImage = null;
+		
 		ui.nameProject.text = "Подкатегории";
 		selectProject = "null";
 		
@@ -744,7 +750,9 @@ function createListRow(category,massRow)
 	});
 }
 function undefClick()
-{
+{	
+	ui.typeProjectClick.backgroundImage = null;
+	ui.nameProjectClick.backgroundImage = null;
 	ui.placeListViewCancel.hide();
 		
 	var animationHandler = function() {
