@@ -46,7 +46,7 @@ module.exports = [
 									className: "Ti.UI.Label",
 									top: 25,
 									color: "#646464",
-									text: "Collect all your achievements",
+									textid: "label_collect_all",
 									font: {fontSize: 14}
 								}
 							},
@@ -73,7 +73,7 @@ module.exports = [
 													width: "52%",
 													textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
 													font: {fontSize: 15},
-													text: "Sign in with"
+													textid: "button_sign_in"
 												}
 											},
 											{

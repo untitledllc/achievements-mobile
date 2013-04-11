@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<!-- buttons -->
+	<string name="button_back">Назад</string>
+	<string name="button_cancel">Отмена</string>
+	<string name="button_enter_code">Ввести код</string>
+	<string name="button_use_qr_reader">Использовать QR-ридер</string>
+	<string name="button_done">Готово</string>
+	<string name="button_sign_in">Войти через</string>
+	
+	<!-- labels -->
+	
+		<!-- login -->
+			<string name="label_collect_all">Собери все достижения</string>
+		<!-- profile -->
+			<string name="label_profile">ПРОФИЛЬ</string>
+			<string name="label_statistic">Статистика:</string>
+			<string name="label_all_badges">Бейджи:</string>
+			<string name="label_bonuses">Бонусы:</string>
+			<string name="label_subcategories">Подкатегории:</string>
+		<!-- add -->
+			<string name="label_add">ДОБАВИТЬ</string>
+</resources>

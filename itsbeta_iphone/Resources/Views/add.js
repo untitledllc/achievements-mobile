@@ -53,7 +53,7 @@ module.exports = [
 									{
 										style: {
 											className: "Ti.UI.Label",
-											text: "Back",
+											textid: "button_back",
 											color: "#646464",
 											height: Ti.UI.FILL,
 											bottom: 2,
@@ -84,7 +84,7 @@ module.exports = [
 								style : {
 									className: "Ti.UI.Label",
 									color: "#7ed6f9",
-									text: "ADD",
+									textid: "label_add",
 									font: {fontSize: 20, fontWeight: "bold"}
 								}
 							}
@@ -124,7 +124,7 @@ module.exports = [
 										fontSize : 16
 									},
 									color: "#fff",
-									text: "Использовать QR-ридер"
+									textid: "button_use_qr_reader"
 								}
 							}
 						]
@@ -148,7 +148,7 @@ module.exports = [
 										fontSize : 16
 									},
 									color: "#fff",
-									text: "Ввести код"
+									textid: "button_enter_code"
 								}
 							}
 						]

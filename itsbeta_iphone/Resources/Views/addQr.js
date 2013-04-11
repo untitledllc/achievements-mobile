@@ -42,7 +42,7 @@ module.exports = {
 						{
 							style: {
 								className: "Ti.UI.Label",
-								text: "Cancel",
+								textid: "button_cancel",
 								color: "#646464",
 								height: Ti.UI.FILL,
 								bottom: 2,

@@ -751,7 +751,6 @@ function updateEmptyBlockHeight()
 		var badge = badges[i];
 		if(badge.height !== 0) {
 			totalBlocksHeight += badge.toImage().height;
-			Ti.API.info(badge.toImage().height);
 		}
 	}
 	

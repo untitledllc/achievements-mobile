@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	<string name="welcome">Welcome to %s!</string>
+	<!-- buttons -->
+	<string name="button_back">Back</string>
+	<string name="button_cancel">Cancel</string>
+	<string name="button_enter_code">Enter code</string>
+	<string name="button_use_qr_reader">Use QR-reader</string>
+	<string name="button_done">Done</string>
+	<string name="button_sign_in">Sign in with</string>
+	
+	<!-- labels -->
+	
+		<!-- login -->
+			<string name="label_collect_all">Collect all your achievements</string>
+		<!-- profile -->
+			<string name="label_profile">PROFILE</string>
+			<string name="label_statistic">Statistic:</string>
+			<string name="label_all_badges">All badges:</string>
+			<string name="label_bonuses">Bonuses:</string>
+			<string name="label_subcategories">Subcategories:</string>
+		<!-- add -->
+			<string name="label_add">ADD</string>
 </resources>

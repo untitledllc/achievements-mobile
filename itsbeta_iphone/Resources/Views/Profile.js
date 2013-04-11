@@ -43,7 +43,7 @@ module.exports = [
 							{
 								style: {
 									className: "Ti.UI.Label",
-									text: "Back",
+									textid: "button_back",
 									color: "#646464",
 									height: Ti.UI.FILL,
 									bottom: 2,
@@ -74,7 +74,7 @@ module.exports = [
 						style : {
 							className: "Ti.UI.Label",
 							color: "#7ed6f9",
-							text: "PROFILE",
+							textid: "label_profile",
 							font: {fontSize: 20, fontWeight: "bold"}
 						}
 					}
@@ -170,7 +170,7 @@ module.exports = [
 						fontSize : 20
 					},
 					color: "#625f5e",
-					text: "Statistic:"
+					textid: "label_statistic"
 				}
 			},
 			{
@@ -205,7 +205,7 @@ module.exports = [
 											font : {
 												fontSize : 12
 											},
-											text: "All Badges:"
+											textid: "label_all_badges"
 										}
 									},
 									{
@@ -249,7 +249,7 @@ module.exports = [
 											font: {
 												fontSize: 12
 											},
-											text: "Bonuses:"
+											textid: "label_bonuses"
 										}
 									},
 									{
@@ -294,7 +294,7 @@ module.exports = [
 											font : {
 												fontSize : 12
 											},
-											text: "Subcategories:"
+											textid: "label_subcategories"
 										}
 									},
 									{

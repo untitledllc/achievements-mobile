@@ -53,7 +53,7 @@ module.exports = [
 									{
 										style: {
 											className: "Ti.UI.Label",
-											text: "Cancel",
+											textid: "button_cancel",
 											color: "#646464",
 											height: Ti.UI.FILL,
 											bottom: 2,
@@ -84,7 +84,7 @@ module.exports = [
 								style : {
 									className: "Ti.UI.Label",
 									color: "#7ed6f9",
-									text: "ADD",
+									textid: "label_add",
 									font: {fontSize: 20, fontWeight: "bold"}
 								}
 							}
@@ -120,7 +120,7 @@ module.exports = [
 									{
 										style: {
 											className: "Ti.UI.Label",
-											text: "Done",
+											textid: "button_done",
 											color: "#646464",
 											height: Ti.UI.FILL,
 											bottom: 2,
