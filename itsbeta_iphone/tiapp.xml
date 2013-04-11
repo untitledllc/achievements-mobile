@@ -13,7 +13,7 @@
     <url>http://</url>
     <description>not specified</description>
     <copyright>2013 by Rod</copyright>
-    <icon>appicon.png</icon>
+    <icon>Icon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
     <statusbar-style>default</statusbar-style>
