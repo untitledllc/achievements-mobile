@@ -82,6 +82,7 @@ namespace itsbeta.achievements
                 addCodeDescrTextView.Text = "Confirmation a code is a process for which is given a badge.";
                 addCodeTitleTextView.Text = "Enter code";
                 _wrongCodeDialogReadyButton.Text = "Ok";
+                addBadgeCancelButton.Text = "Cancel";
                 addCodeCancelButton.Text = "Cancel";
                 addCodeReadyButton.Text = "Ok";
             }
@@ -785,7 +786,6 @@ namespace itsbeta.achievements
 
             if (found)
             {
-                this.RunOnUiThread(() => Toast.MakeText(this, result.Text, ToastLength.Long).Show());
                 this.RunOnUiThread(() => _qrFoundEventVoid(result.Text));
             }
         }

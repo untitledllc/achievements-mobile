@@ -66,7 +66,7 @@ namespace itsbeta.achievements
             {
                 loginButton.StartAnimation(buttonClickAnimation);
                 vibe.Vibrate(50);
-                OnDestroy();
+                Finish();
                 StartActivity(typeof(LoginWebActivity));
             };
         }

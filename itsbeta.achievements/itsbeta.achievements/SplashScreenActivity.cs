@@ -65,7 +65,7 @@ namespace itsbeta.achievements
             //timer.Stop();
             _freezeTimer.Stop();
             StartActivity(typeof(LoginActivity));
-            OnDestroy();
+            Finish();
         }
 
 

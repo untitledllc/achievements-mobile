@@ -86,7 +86,9 @@
     <AndroidResource Include="Resources\Drawable\NavBar_icon_refresh_norm.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\AndroidManifest.xml" />
+    <Content Include="Properties\AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <AndroidResource Include="Resources\Layout\addbadgemenulayoutlayout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
