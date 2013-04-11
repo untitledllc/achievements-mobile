@@ -6,6 +6,19 @@ TiTools.initLibraries(); //Первичная загрузка всех библ
 
 //---------------------------------------------//
 
+var flurry = require('ti.flurry');
+
+flurry.debugLogEnabled = false;
+flurry.eventLoggingEnabled = true;
+
+flurry.initialize('R9V3S4D27Z86VQ3B37F3');
+
+flurry.reportOnClose = true;
+flurry.sessionReportsOnPauseEnabled = true;
+flurry.secureTransportEnabled = false;
+
+//---------------------------------------------//
+
 if(TiTools.Platform.isAndroid == true)
 {
 	//TiTools.UI.Preset.load("Presets/Common.js");
