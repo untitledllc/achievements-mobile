@@ -64,6 +64,21 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:itsbeta_wp7.ChatPage">
+            <summary>
+            Description for ActivatePage.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ChatPage.#ctor">
+            <summary>
+            Initializes a new instance of the ActivatePage class.
+            </summary>
+        </member>
+        <member name="M:itsbeta_wp7.ChatPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="M:facebook_windows_phone_sample.Pages.FacebookInfoPage.InitializeComponent">
             <summary>
             InitializeComponent
@@ -318,6 +333,320 @@
             <summary>
               Looks up a localized string similar to years.
             </summary>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.Init(System.String,System.String,System.String,System.String,System.Boolean)">
+            Pubnub instance initialization function
+            
+            @param string publishKey.
+            @param string subscribeKey.
+            @param string secretKey.
+            @param bool sslOn
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.#ctor(System.String,System.String,System.String,System.String,System.Boolean)">
+            PubNub 3.0 API
+            
+            Prepare Pubnub messaging class initial state
+            
+            @param string publishKey.
+            @param string subscribeKey.
+            @param string secretKey.
+            @param bool sslOn
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.#ctor(System.String,System.String)">
+            PubNub 2.0 Compatibility
+            
+            Prepare Pubnub messaging class initial state
+            
+            @param string publishKey.
+            @param string subscribeKey.
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.#ctor(System.String,System.String,System.String)">
+            <summary>
+            PubNub without SSL
+            Prepare Pubnub messaging class initial state
+            </summary>
+            <param name="publishKey"></param>
+            <param name="subscribeKey"></param>
+            <param name="secretKey"></param>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.history(System.String,System.Int32)">
+            <summary>
+            History (Obsolete)
+            Load history from a channel
+            </summary>
+            <param name="channel"></param>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.DetailedHistory(System.String,System.Int64,System.Int64,System.Int32,System.Boolean,System.Action{System.Object})">
+            Detailed History
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.Publish(System.String,System.Object,System.Action{System.Object})">
+            <summary>
+            Publish
+            Send a message to a channel
+            </summary>
+            <param name="channel"></param>
+            <param name="message"></param>
+            <param name="userCallback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.Subscribe(System.String,System.Action{System.Object},System.Action{System.Object})">
+            <summary>
+            Subscribe
+            Listen for a message on a channel
+            </summary>
+            <param name="channel"></param>
+            <param name="userCallback"></param>
+            <param name="connectCallback"></param>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.MultiplexInternalCallback``1(PubNubMessaging.Core.ResponseType,System.Object,System.Action{``0},System.Action{``0})">
+            <summary>
+            Check the response of the REST API and call for re-subscribe
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type"></param>
+            <param name="multiplexResult"></param>
+            <param name="userCallback"></param>
+            <param name="connectCallback"></param>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.Unsubscribe(System.String,System.Action{System.Object},System.Action{System.Object},System.Action{System.Object})">
+            <summary>
+            To unsubscribe a channel
+            </summary>
+            <param name="channel"></param>
+            <param name="userCallback"></param>
+            <param name="connectCallback"></param>
+            <param name="disconnectCallback"></param>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.Unsubscribe``1(System.String,System.Action{``0},System.Action{``0},System.Action{``0})">
+            <summary>
+            To unsubscribe a channel
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="channel"></param>
+            <param name="userCallback"></param>
+            <param name="connectCallback"></param>
+            <param name="disconnectCallback"></param>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.MultiChannelSubscribeRequest``1(PubNubMessaging.Core.ResponseType,System.String[],System.Object,System.Action{``0},System.Action{``0},System.Boolean)">
+            <summary>
+            Multi-Channel Subscribe Request - private method for Subscribe
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type"></param>
+            <param name="channels"></param>
+            <param name="timetoken"></param>
+            <param name="userCallback"></param>
+            <param name="connectCallback"></param>
+            <param name="reconnect"></param>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.Presence(System.String,System.Action{System.Object},System.Action{System.Object})">
+            <summary>
+            Presence
+            Listen for a presence message on a channel or comma delimited channels
+            </summary>
+            <param name="channel"></param>
+            <param name="userCallback"></param>
+            <param name="connectCallback"></param>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.Time(System.Action{System.Object})">
+            <summary>
+            Time
+            Timestamp from PubNub Cloud
+            </summary>
+            <param name="userCallback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.ProcessRequest(System.Collections.Generic.List{System.String},PubNubMessaging.Core.ResponseType)">
+            <summary>
+            Http Get Request process
+            </summary>
+            <param name="urlComponents"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.WrapResultBasedOnResponseType(PubNubMessaging.Core.ResponseType,System.String,System.String[],System.Boolean,System.Int64)">
+            <summary>
+            Gets the result by wrapping the json response based on the request
+            </summary>
+            <param name="type"></param>
+            <param name="jsonString"></param>
+            <param name="channels"></param>
+            <param name="reconnect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.GetChannelName(System.Collections.Generic.List{System.String},PubNubMessaging.Core.ResponseType)">
+            <summary>
+            Retrieves the channel name from the url components
+            </summary>
+            <param name="urlComponents"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.SerializeToJsonString(System.Object)">
+            <summary>
+            Serialize the given object into JSON string
+            </summary>
+            <param name="objectToSerialize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.DeserializeToListOfObject(System.String)">
+            <summary>
+            Deserialize JSON string into List of Objects
+            </summary>
+            <param name="jsonString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.TranslateDateTimeToPubnubUnixNanoSeconds(System.DateTime)">
+            <summary>
+            Convert the UTC/GMT DateTime to Unix Nano Seconds format
+            </summary>
+            <param name="dotNetUTCDateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.TranslatePubnubUnixNanoSecondsToDateTime(System.Int64)">
+            <summary>
+            Convert the Unix Nano Seconds format time to UTC/GMT DateTime
+            </summary>
+            <param name="unixNanoSecondTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.EnableSimulateNetworkFailForTestingOnly">
+            <summary>
+            FOR TESTING ONLY - To Enable Simulation of Network Non-Availability
+            </summary>
+        </member>
+        <member name="M:PubNubMessaging.Core.Pubnub.DisableSimulateNetworkFailForTestingOnly">
+            <summary>
+            FOR TESTING ONLY - To Disable Simulation of Network Non-Availability
+            </summary>
+        </member>
+        <member name="T:PubNubMessaging.Core.MD5CryptoServiceProvider">
+            <summary>
+            MD5 Service provider
+            </summary>
+        </member>
+        <member name="T:PubNubMessaging.Core.MD5">
+            <summary>
+            MD5 messaging-digest algorithm is a widely used cryptographic hash function that produces 128-bit hash value.
+            </summary>
+        </member>
+        <member name="M:PubNubMessaging.Core.MD5.ROTATE_LEFT(System.UInt32,System.Byte)">
+            <summary>
+            rotates x left n bits.
+            </summary>
+            <param name="x"></param>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PubNubMessaging.Core.MD5.FF(System.UInt32@,System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.Byte,System.UInt32)">
+            FF, GG, HH, and II transformations 
+            for rounds 1, 2, 3, and 4.
+            Rotation is separate from addition to prevent re-computation.
+        </member>
+        <member name="F:PubNubMessaging.Core.MD5.state">
+            <summary>
+            state (ABCD)
+            </summary>
+        </member>
+        <member name="F:PubNubMessaging.Core.MD5.count">
+            <summary>
+            number of bits, modulo 2^64 (LSB first)
+            </summary>
+        </member>
+        <member name="F:PubNubMessaging.Core.MD5.buffer">
+            <summary>
+            input buffer
+            </summary>
+        </member>
+        <member name="M:PubNubMessaging.Core.MD5.Initialize">
+            <summary>
+            MD5 initialization. Begins an MD5 operation, writing a new context.
+            </summary>
+            <remarks>
+            The RFC named it "MD5Init"
+            </remarks>
+        </member>
+        <member name="M:PubNubMessaging.Core.MD5.HashCore(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            MD5 block update operation. Continues an MD5 message-digest
+            operation, processing another message block, and updating the
+            context.
+            </summary>
+            <param name="input"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <remarks>The RFC Named it MD5Update</remarks>
+        </member>
+        <member name="M:PubNubMessaging.Core.MD5.HashFinal">
+            <summary>
+            MD5 finalization. Ends an MD5 message-digest operation, writing the
+            the message digest and zeroizing the context.
+            </summary>
+            <returns>message digest</returns>
+            <remarks>The RFC named it MD5Final</remarks>
+        </member>
+        <member name="M:PubNubMessaging.Core.MD5.Transform(System.Byte[],System.Int32)">
+            <summary>
+            MD5 basic transformation. Transforms state based on 64 bytes block.
+            </summary>
+            <param name="block"></param>
+            <param name="offset"></param>
+        </member>
+        <member name="M:PubNubMessaging.Core.MD5.Encode(System.Byte[],System.Int32,System.UInt32[],System.Int32,System.Int32)">
+            <summary>
+            Encodes input (uint) into output (byte). Assumes len is
+             multiple of 4.
+            </summary>
+            <param name="output"></param>
+            <param name="outputOffset"></param>
+            <param name="input"></param>
+            <param name="inputOffset"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:PubNubMessaging.Core.MD5.Decode(System.UInt32[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Decodes input (byte) into output (uint). Assumes len is
+            a multiple of 4.
+            </summary>
+            <param name="output"></param>
+            <param name="outputOffset"></param>
+            <param name="input"></param>
+            <param name="inputOffset"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:PubNubMessaging.Core.PubnubCrypto.ComputeHash(System.String,System.Security.Cryptography.HashAlgorithm)">
+            <summary>
+            Computes the hash using the specified algo
+            </summary>
+            <returns>
+            The hash.
+            </returns>
+            <param name='input'>
+            Input string
+            </param>
+            <param name='algorithm'>
+            Algorithm to use for Hashing
+            </param>
+        </member>
+        <member name="M:PubNubMessaging.Core.PubnubCrypto.EncryptOrDecrypt(System.Boolean,System.String)">
+            EncryptOrDecrypt
+            
+            Basic function for encrypt or decrypt a string
+            for encrypt type = true
+            for decrypt type = false
+        </member>
+        <member name="M:PubNubMessaging.Core.PubnubCrypto.EncodeNonAsciiCharacters(System.String)">
+            <summary>
+            Encodes the non ASCII characters.
+            </summary>
+            <returns>
+            The non ASCII characters.
+            </returns>
+            <param name='value'>
+            Value.
+            </param>
         </member>
         <member name="T:ControlTiltEffect.TiltEffect">
             <summary>

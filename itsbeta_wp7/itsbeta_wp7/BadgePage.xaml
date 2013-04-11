@@ -134,8 +134,11 @@
                             </Grid>
                     </Border>
                 </Grid>
-                
-                <telerikData:RadJumpList 
+
+                    <Button Style="{StaticResource ActivateButtonStyle}" 
+                                Content="Чат" Name="ChatButton" Click="ChatButton_Click"/>
+
+                    <telerikData:RadJumpList 
                 EmptyContentTemplate="{StaticResource NoDataListTemlate}"
                 x:Name="AllBonuses"      
                     Margin="0,0,10,0"

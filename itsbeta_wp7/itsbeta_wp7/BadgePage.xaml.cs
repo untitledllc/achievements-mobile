@@ -52,6 +52,15 @@ namespace itsbeta_wp7
             }
             catch { };
         }
+
+        private void ChatButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/ChatPage.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
     }
 
 
