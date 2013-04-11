@@ -82,12 +82,8 @@ function onInitController(window, params)
 				//--- делаем первую ячейку "все категории"
 				createListRow(allRow, massRow);
 				
-				placeListHeight += 50;
-				
 				for(var i = 0; i < categories.length; i++)
 				{
-					placeListHeight += 50;
-					
 					category = categories[i];
 					//--строю одну ячейку--
 					createListRow(category, massRow, i);
@@ -95,9 +91,28 @@ function onInitController(window, params)
 				}
 				ui.list.visible = true;
 				
-				if(placeListHeight > 400)
+				if(selectCategory != "null")
 				{
-					ui.placeList.height = 440;
+					for(var n = 0, N = massRow.length; n < N; n++)
+					{
+						if(selectCategory == massRow[n].rowAchivs.api_name)
+						{
+							ui.placeList.add(massRow[n].rowAchivs);
+							break;
+						}
+					}
+					for(var n = 0, N = massRow.length; n < N; n++)
+					{
+						if(selectCategory != massRow[n].rowAchivs.api_name)
+						{
+							ui.placeList.add(massRow[n].rowAchivs);
+						}
+					}
+				}
+				
+				if(placeListHeight >  Ti.Platform.displayCaps.platformHeight - 55)
+				{
+					ui.placeList.height = Ti.Platform.displayCaps.platformHeight - 75;
 				}
 				else
 				{
@@ -430,7 +445,6 @@ function createListAchivs(window,categiry)
 			return 0;
 		}
 	);
-	//Ti.API.info(lastAchivs);
 }
 function delList(window, categiry)
 {
@@ -481,8 +495,16 @@ function createListName(window,category)
 					
 					tempListProject.push(achievements[i].projectsApiName);
 					
-					var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
-					massRow.push(row);
+					if(selectProject == "null")
+					{
+						var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
+						massRow.push(row);
+					}
+					else
+					{
+						var row = TiTools.UI.Loader.load("Views/list.js");
+						massRow.push(row);
+					}
 					
 					placeListHeight += 50;
 					
@@ -522,6 +544,11 @@ function createListName(window,category)
 							
 							ui.nameProject.text = event.source.display_name;
 							
+							for(var i = 0, I = ui.placeList.children.length; I > 0; I--)
+							{
+								ui.placeList.remove(ui.placeList.children[I-1]);
+							}
+							
 							hideAchivs();
 						};
 						
@@ -531,16 +558,37 @@ function createListName(window,category)
 				}
 			}
 			
+			if(selectProject != "null")
+			{
+				for(var n = 0, N = massRow.length; n < N; n++)
+				{
+					if(selectProject == massRow[n].rowAchivs.api_name)
+					{
+						ui.placeList.add(massRow[n].rowAchivs);
+						break;
+					}
+				}
+				for(var n = 0, N = massRow.length; n < N; n++)
+				{
+					if(selectProject != massRow[n].rowAchivs.api_name)
+					{
+						ui.placeList.add(massRow[n].rowAchivs);
+					}
+				}
+			}
+			
 			ui.transparentView.hide();
 			
-			if(placeListHeight > 400)
+			if(placeListHeight >  Ti.Platform.displayCaps.platformHeight - 55)
 			{
-				ui.placeList.height = 440;
+				ui.placeList.height = Ti.Platform.displayCaps.platformHeight - 75;
 			}
 			else
 			{
 				ui.placeList.height = placeListHeight;
 			}
+			
+			Ti.API.info(ui.placeList.height);
 			
 			ui.placeListView.animate(animation);
 			
@@ -564,33 +612,6 @@ function reSaveAchivs(data)
 	categories = [];
 	projects = [];
 	counter = 0;
-	
-	//---- собираем список категорий и список проектов -----//
-	// for(var i = 0, I = achievements.length; i < I; i++)
-	// {
-		// var achievement = achievements[i];
-// 		
-		// categories.push(
-			// {
-				// api_name: achievement.api_name,
-				// display_name: achievement.display_name
-			// }
-		// );
-// 		
-		// for(var j = 0, J = achievement.projects.length; j < J; j++)
-		// {
-			// var project = achievement.projects[j];
-			// counter += project.achievements.length;
-// 			
-			// projects.push(
-				// {
-					// api_name: project.api_name,
-					// display_name: project.display_name,
-					// total_badge: project.total_badge
-				// }
-			// );
-		// }
-	// }
 	
 	newAchivsSсhema = [];
 	
@@ -727,8 +748,25 @@ function actIndicator(param)
 }
 function createListRow(category,massRow)
 {
-	var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
-	massRow.push(row);
+	if(selectCategory == "null")
+	{
+		var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
+		massRow.push(row);
+	}
+	else
+	{
+		var row = TiTools.UI.Loader.load("Views/list.js");
+		massRow.push(row);
+	}
+	
+	placeListHeight += 50;
+	
+	if(selectCategory == category.api_name)
+	{
+		ui.placeList.lastRow = row.rowAchivs;
+		row.rowAchivs.backgroundImage = null;
+		row.rowAchivs.backgroundColor = "#7ed6f9";
+	}
 	
 	row.rowTextAchivs.text = category.display_name;
 	row.rowAchivs.api_name = category.api_name;
@@ -736,6 +774,13 @@ function createListRow(category,massRow)
 						
 	row.rowAchivs.addEventListener("singletap",function(event)
 	{
+		if(ui.placeList.lastRow != undefined)
+		{
+			ui.placeList.lastRow.backgroundImage = TiTools.Filesystem.preprocessPath("%ResourcesPath%images/navbar/Selects.Bg.png");
+		}
+		event.source.backgroundImage = null;
+		event.source.backgroundColor = "#7ed6f9";
+		
 		ui.typeProjectClick.backgroundImage = null;
 		
 		ui.nameProject.text = "Подкатегории";
@@ -756,6 +801,11 @@ function createListRow(category,massRow)
 			
 			ui.placeListView.animate(animationEnd);
 			Ti.API.info('++');
+			
+			for(var i = 0, I = ui.placeList.children.length; I > 0; I--)
+			{
+				ui.placeList.remove(ui.placeList.children[I-1]);
+			}
 			
 			hideAchivs();
 		};
@@ -778,9 +828,14 @@ function undefClick()
 		ui.transparentView.hide();
 		
 		ui.list.visible = false;
-		for(var ii = 0, length = massRow.length; ii < length; ii++)
+		// for(var ii = 0, length = massRow.length; ii < length; ii++)
+		// {
+			// massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+		// }
+		
+		for(var i = 0, I = ui.placeList.children.length; I > 0; I--)
 		{
-			massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
+			ui.placeList.remove(ui.placeList.children[I-1]);
 		}
 		
 		ui.placeListView.animate(animationEnd);
@@ -971,8 +1026,16 @@ function hideAchivs()
 ///--- 10 последних ачивок --- ///
 function lastAchivsFunction(massRow)
 {
-	var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
-	massRow.push(row);
+	if(selectProject == "null")
+	{
+		var row = TiTools.UI.Loader.load("Views/list.js", ui.placeList);
+		massRow.push(row);
+	}
+	else
+	{
+		var row = TiTools.UI.Loader.load("Views/list.js");
+		massRow.push(row);
+	}
 	
 	row.rowTextAchivs.text = "Последние";
 	row.rowAchivs.api_name = "last";
