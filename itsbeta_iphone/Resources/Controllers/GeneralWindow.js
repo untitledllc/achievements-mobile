@@ -20,6 +20,7 @@ var selectProject = "null";
 var subCategoryClick = false;
 var newAchivsSсhema = [];
 var placeListHeight = 0;
+var emptyBlock;
 
 var lastAchivs = [];
 var singlTap = false;
@@ -311,7 +312,6 @@ function createListAchivs(window,categiry)
 	ui.nameProject.text = "Подкатегории";
 	ui.typeProject.text = "Категории";
 	
-	
 	for(var i = 0, K = achievements.length; i < K; i++)
 	{
 		if(achievements[i].projectsApiName == categiry || categiry == "null" || achievements[i].categoryApiName == categiry)
@@ -406,6 +406,14 @@ function createListAchivs(window,categiry)
 			}
 		}
 	}
+	
+	emptyBlock = TiTools.UI.Controls.createView({
+		height: 0
+	});
+	ui.preAchivs.add(emptyBlock);
+	
+	updateEmptyBlockHeight();
+	
 	///---------сортируем по дате -----////
 	lastAchivs.sort(
 		function(a, b)
@@ -712,6 +720,32 @@ function preViewBonus(type)
 	
 	return bonus;
 }
+// update empty block height	
+function updateEmptyBlockHeight()
+{
+	var totalBlocksHeight = 0;
+		badges 			  = ui.preAchivs.children;
+	
+	for(var i=0, len=badges.length; i<len-1; i++) {
+		var badge = badges[i];
+		if(badge.height !== 0) {
+			totalBlocksHeight += badge.toImage().height;
+			Ti.API.info(badge.toImage().height);
+		}
+	}
+	
+	var emptyBlockHeight = Ti.Platform.displayCaps.platformHeight - totalBlocksHeight - 20;
+	
+	if(emptyBlockHeight > 0) {
+		emptyBlock.updateLayout({
+			height: emptyBlockHeight
+		});
+	} else {
+		emptyBlock.updateLayout({
+			height: 0
+		});
+	}	
+}
 function actIndicator(param)
 {
 	if(param == true)
@@ -850,6 +884,7 @@ function hideAchivs()
 			}
 		}
 	}
+	updateEmptyBlockHeight();
 }
 //--reload -- добавляем новую ачивку ---------------------------------------------------//
 // function reloadAdd(data)
