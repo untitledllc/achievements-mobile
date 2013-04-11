@@ -1,6 +1,6 @@
-﻿<xapCache source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\itsbeta_wp8_Debug_AnyCPU.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="01.04.2013 16:28:29">
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\obj\Debug\itsbeta_wp7.dll" archivePath="itsbeta_wp7.dll" lastWriteTime="01.04.2013 16:28:26" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\obj\Debug\ru-RU\itsbeta_wp7.resources.dll" archivePath="ru-RU\itsbeta_wp7.resources.dll" lastWriteTime="01.04.2013 16:28:26" />
+﻿<xapCache source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\itsbeta_wp8_Debug_AnyCPU.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="02.04.2013 16:57:27">
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\obj\Debug\itsbeta_wp7.dll" archivePath="itsbeta_wp7.dll" lastWriteTime="02.04.2013 16:57:24" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\obj\Debug\ru-RU\itsbeta_wp7.resources.dll" archivePath="ru-RU\itsbeta_wp7.resources.dll" lastWriteTime="02.04.2013 16:57:24" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\icons\appbar.add.rest.png" archivePath="icons\appbar.add.rest.png" lastWriteTime="29.08.2011 23:47:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\icons\appbar.cancel.rest.png" archivePath="icons\appbar.cancel.rest.png" lastWriteTime="29.08.2011 23:47:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\icons\appbar.check.rest.png" archivePath="icons\appbar.check.rest.png" lastWriteTime="29.08.2011 23:47:42" />
@@ -12,7 +12,7 @@
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Libs\Silverlight_ZXing_Core.dll" archivePath="Libs\Silverlight_ZXing_Core.dll" lastWriteTime="12.02.2013 1:41:56" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\MVVMLight.Nuget.Readme.txt" archivePath="MVVMLight.Nuget.Readme.txt" lastWriteTime="08.03.2013 11:10:15" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="06.03.2013 19:03:26" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="01.04.2013 14:38:05" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="02.04.2013 16:04:52" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\BugSense.dll" archivePath="BugSense.dll" lastWriteTime="01.03.2013 13:00:51" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\Coding4Fun.Toolkit.Audio.dll" archivePath="Coding4Fun.Toolkit.Audio.dll" lastWriteTime="17.02.2013 17:22:24" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\Coding4Fun.Toolkit.Controls.dll" archivePath="Coding4Fun.Toolkit.Controls.dll" lastWriteTime="17.02.2013 17:22:24" />
@@ -46,19 +46,9 @@
   <file source="C:\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Core.dll" archivePath="Telerik.Windows.Core.dll" lastWriteTime="19.02.2013 10:10:08" />
   <file source="C:\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Data.dll" archivePath="Telerik.Windows.Data.dll" lastWriteTime="19.02.2013 10:10:48" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\WPExtensions.dll" archivePath="WPExtensions.dll" lastWriteTime="27.02.2013 14:42:39" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\Facebook.xml" archivePath="Facebook.xml" lastWriteTime="11.02.2013 14:19:25" />
   <file source="C:\Program Files (x86)\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WP71\GalaSoft.MvvmLight.Extras.WP71.xml" archivePath="GalaSoft.MvvmLight.Extras.WP71.xml" lastWriteTime="28.10.2012 10:36:54" />
   <file source="C:\Program Files (x86)\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WP71\GalaSoft.MvvmLight.WP71.xml" archivePath="GalaSoft.MvvmLight.WP71.xml" lastWriteTime="28.10.2012 10:36:54" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\ImageTools.xml" archivePath="ImageTools.xml" lastWriteTime="08.03.2013 12:27:35" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\ImageTools.Controls.xml" archivePath="ImageTools.Controls.xml" lastWriteTime="08.03.2013 12:27:35" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\ImageTools.Filtering.xml" archivePath="ImageTools.Filtering.xml" lastWriteTime="08.03.2013 12:27:35" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\ImageTools.IO.Bmp.xml" archivePath="ImageTools.IO.Bmp.xml" lastWriteTime="08.03.2013 12:27:35" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\ImageTools.IO.Gif.xml" archivePath="ImageTools.IO.Gif.xml" lastWriteTime="08.03.2013 12:27:35" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\ImageTools.IO.Png.xml" archivePath="ImageTools.IO.Png.xml" lastWriteTime="08.03.2013 12:27:35" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\ImageTools.Utils.xml" archivePath="ImageTools.Utils.xml" lastWriteTime="08.03.2013 12:27:35" />
   <file source="C:\Program Files (x86)\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WP71\Microsoft.Practices.ServiceLocation.xml" archivePath="Microsoft.Practices.ServiceLocation.xml" lastWriteTime="25.10.2012 1:44:22" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\Newtonsoft.Json.xml" archivePath="Newtonsoft.Json.xml" lastWriteTime="11.02.2013 14:21:29" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp8\itsbeta_wp8\Bin\Debug\RestSharp.WindowsPhone.xml" archivePath="RestSharp.WindowsPhone.xml" lastWriteTime="11.02.2013 14:23:57" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Expression\Blend\Windows Phone\v7.1\Libraries\System.Windows.Interactivity.xml" archivePath="System.Windows.Interactivity.xml" lastWriteTime="17.08.2011 2:30:36" />
   <file source="C:\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Controls.Chart.xml" archivePath="Telerik.Windows.Controls.Chart.xml" lastWriteTime="19.02.2013 10:11:06" />
   <file source="C:\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Controls.Data.xml" archivePath="Telerik.Windows.Controls.Data.xml" lastWriteTime="19.02.2013 10:10:52" />

@@ -184,21 +184,70 @@ NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
             };
         }
 
+        ProximityDevice device, device2, device3, device4, device5, device6;
+
         private async void NFCButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                ProximityDevice device = ProximityDevice.GetDefault();
+                device = ProximityDevice.GetDefault();
+                device.DeviceArrived += DeviceArrived;
+                device.DeviceDeparted += DeviceDeparted;
+
+                device2 = ProximityDevice.GetDefault();
+                device2.DeviceArrived += DeviceArrived;
+                device2.DeviceDeparted += DeviceDeparted;
+
+                device3 = ProximityDevice.GetDefault();
+                device3.DeviceArrived += DeviceArrived;
+                device3.DeviceDeparted += DeviceDeparted;
+
+                device4 = ProximityDevice.GetDefault();
+                device4.DeviceArrived += DeviceArrived;
+                device4.DeviceDeparted += DeviceDeparted;
+
+                device5 = ProximityDevice.GetDefault();
+                device5.DeviceArrived += DeviceArrived;
+                device5.DeviceDeparted += DeviceDeparted;
+
+                device6 = ProximityDevice.GetDefault();
+                device6.DeviceArrived += DeviceArrived;
+                device6.DeviceDeparted += DeviceDeparted;
+
                 if (device != null)
                 {
-                    long Id = device.SubscribeForMessage("NDEF", messageReceived);
+                        long Id = 0;
+                        Id = device.SubscribeForMessage("NDEF", messageReceived);
+                        Id = device2.SubscribeForMessage("Windows", messageReceived);
+                        Id = device3.SubscribeForMessage("WindowsUri", messageReceived);
+                        Id = device4.SubscribeForMessage("WindowsMime", messageReceived);
+                        Id = device5.SubscribeForMessage("LaunchApp:WriteTag", messageReceived);
+                        Id = device6.SubscribeForMessage("WriteableTag", messageReceived);
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
-                        {
-                            MessageBox.Show("Published Message. ID is " + Id.ToString());
-                        });
+                    {
+                        //MessageBox.Show("Published Message. ID is " + Id.ToString());
+                    });
                 }
             }
             catch { };
+        }
+
+        private void DeviceArrived(ProximityDevice sender)
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    // this event occurs when I am tapping any of my tags (tried 5 different Mifare Ultralight/Classic)
+                    MessageBox.Show("tapping" + sender.DeviceId.ToString());
+                });
+        }
+
+        private void DeviceDeparted(ProximityDevice sender)
+        {
+            // this event occurs when I am moving away any tag
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    MessageBox.Show("away"+sender.DeviceId.ToString());
+                });
         }
 
         private async void messageReceived(ProximityDevice sender, ProximityMessage message)
