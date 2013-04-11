@@ -1370,16 +1370,6 @@
             </summary>
             <param name="propertyName"></param>
         </member>
-        <member name="M:GalaSoft.MvvmLight.ObservableObject.RaisePropertyChanging(System.String)">
-            <summary>
-            Raises the PropertyChanging event if needed.
-            </summary>
-            <remarks>If the propertyName parameter
-            does not correspond to an existing property on the current class, an
-            exception is thrown in DEBUG configuration only.</remarks>
-            <param name="propertyName">The name of the property that
-            changed.</param>
-        </member>
         <member name="M:GalaSoft.MvvmLight.ObservableObject.RaisePropertyChanged(System.String)">
             <summary>
             Raises the PropertyChanged event if needed.
@@ -1389,15 +1379,6 @@
             exception is thrown in DEBUG configuration only.</remarks>
             <param name="propertyName">The name of the property that
             changed.</param>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.ObservableObject.RaisePropertyChanging``1(System.Linq.Expressions.Expression{System.Func{``0}})">
-            <summary>
-            Raises the PropertyChanging event if needed.
-            </summary>
-            <typeparam name="T">The type of the property that
-            changes.</typeparam>
-            <param name="propertyExpression">An expression identifying the property
-            that changes.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.ObservableObject.RaisePropertyChanged``1(System.Linq.Expressions.Expression{System.Func{``0}})">
             <summary>
@@ -1455,19 +1436,9 @@
             Occurs after a property value changes.
             </summary>
         </member>
-        <member name="E:GalaSoft.MvvmLight.ObservableObject.PropertyChanging">
-            <summary>
-            Occurs before a property value changes.
-            </summary>
-        </member>
         <member name="P:GalaSoft.MvvmLight.ObservableObject.PropertyChangedHandler">
             <summary>
             Provides access to the PropertyChanged event handler to derived classes.
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.ObservableObject.PropertyChangingHandler">
-            <summary>
-            Provides access to the PropertyChanging event handler to derived classes.
             </summary>
         </member>
         <member name="T:GalaSoft.MvvmLight.Threading.DispatcherHelper">

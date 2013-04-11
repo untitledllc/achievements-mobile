@@ -19,21 +19,22 @@
     <AssemblyPart x:Name="ImageTools.IO.Png" Source="ImageTools.IO.Png.dll" />
     <AssemblyPart x:Name="ImageTools.Utils" Source="ImageTools.Utils.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
+    <AssemblyPart x:Name="Microsoft.Practices.ServiceLocation" Source="Microsoft.Practices.ServiceLocation.dll" />
     <AssemblyPart x:Name="MSPToolkit" Source="MSPToolkit.dll" />
     <AssemblyPart x:Name="Newtonsoft.Json" Source="Newtonsoft.Json.dll" />
     <AssemblyPart x:Name="PhoneCodeContractsAssemblies" Source="PhoneCodeContractsAssemblies.dll" />
     <AssemblyPart x:Name="RestSharp.WindowsPhone" Source="RestSharp.WindowsPhone.dll" />
     <AssemblyPart x:Name="Silverlight_ZXing_Core" Source="Silverlight_ZXing_Core.dll" />
+    <AssemblyPart x:Name="System.Threading.Tasks.WP71" Source="System.Threading.Tasks.WP71.dll" />
     <AssemblyPart x:Name="System.Windows.Interactivity" Source="System.Windows.Interactivity.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Controls.Chart" Source="Telerik.Windows.Controls.Chart.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Controls.Data" Source="Telerik.Windows.Controls.Data.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Controls.DataVisualization" Source="Telerik.Windows.Controls.DataVisualization.dll" />
+    <AssemblyPart x:Name="Telerik.Windows.Controls.Input" Source="Telerik.Windows.Controls.Input.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Controls.Primitives" Source="Telerik.Windows.Controls.Primitives.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Core" Source="Telerik.Windows.Core.dll" />
     <AssemblyPart x:Name="Telerik.Windows.Data" Source="Telerik.Windows.Data.dll" />
     <AssemblyPart x:Name="WPExtensions" Source="WPExtensions.dll" />
-    <AssemblyPart x:Name="Microsoft.Practices.ServiceLocation" Source="Microsoft.Practices.ServiceLocation.dll" />
     <AssemblyPart Source="ru-RU/itsbeta_wp7.resources.dll" />
-    <AssemblyPart Source="zh-CN/itsbeta_wp7.resources.dll" />
   </Deployment.Parts>
 </Deployment>

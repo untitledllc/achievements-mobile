@@ -1813,6 +1813,11 @@
             this property will be set as the value of DurationX and DurationY.
             </summary>
         </member>
+        <member name="P:Telerik.Windows.Controls.RadScaleAnimation.AnimationOrigin">
+            <summary>
+            Gets or sets the render transform origin of the animated element.
+            </summary>
+        </member>
         <member name="P:Telerik.Windows.Controls.RadScaleAnimation.DurationX">
             <summary>
             Gets or sets the duration of the X animation.
