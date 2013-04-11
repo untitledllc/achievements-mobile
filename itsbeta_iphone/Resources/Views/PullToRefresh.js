@@ -79,6 +79,17 @@ exports = {
 	 		}
 	 	},
 	 	{
+	 		outlet: "refreshing",
+	 		style: {
+	 			className: "Ti.UI.Label",
+	 			text: "Refreshing",
+	 			visible: false,
+				top: 55,
+				color: "#737474",
+				font: {fontSize: "14pt"}
+	 		}
+	 	},
+	 	{
 			style: {
 				className: "Ti.UI.View",
 				height: 3,

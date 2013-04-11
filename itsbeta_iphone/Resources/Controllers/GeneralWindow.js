@@ -193,11 +193,11 @@ function onInitController(window, params)
 	// event handlers
 	achivsWrapper.addEventListener('scroll', function(e) {
 		offset = e.y;
-		if(offset < -75.0 && !pulling && !reloading) {
+		if(offset < -80.0 && !pulling && !reloading) {
 			pulling = true;
 			pullToRefresh.status.text = "Release to refresh";
 		}
-		else if((offset > -75.0 && offset < 0) && pulling && !reloading) {
+		else if((offset > -80.0 && offset < 0) && pulling && !reloading) {
 			pulling = false;
 			pullToRefresh.status.text = "Pull to refresh";
 		}
@@ -216,7 +216,9 @@ function onInitController(window, params)
 			);
 			reloading = true;
 			pulling = false;
-			pullToRefresh.status.text = "Refreshing";
+			//pullToRefresh.status.text = "Refreshing";
+			pullToRefresh.status.hide();
+			pullToRefresh.refreshing.show();
 			beginReloading();
 		}
 	});
@@ -238,6 +240,8 @@ function onInitController(window, params)
 		
 		reloading = false;
 		pullToRefresh.status.text = "Pull to refresh";
+		pullToRefresh.refreshing.hide();
+		pullToRefresh.status.show();
 	}
 	
 	// ----- END PULL TO REFRESH ----- //
