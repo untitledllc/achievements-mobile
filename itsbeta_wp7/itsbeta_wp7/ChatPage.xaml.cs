@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Microsoft.Phone.Tasks;
 using System;
+using System.Linq;
+using Microsoft.Devices;
 
 namespace itsbeta_wp7
 {
@@ -47,11 +49,11 @@ namespace itsbeta_wp7
         string uuid = ViewModelLocator.UserStatic.FacebookId;
         bool resumeOnReconnect = false;
 
-        int subscribeTimeoutInSeconds;
-        int operationTimeoutInSeconds;
-        int networkMaxRetries;
-        int networkRetryIntervalInSeconds;
-        int heartbeatIntervalInSeconds;
+        int subscribeTimeoutInSeconds = 10;
+        int operationTimeoutInSeconds = 10;
+        int networkMaxRetries = 10;
+        int networkRetryIntervalInSeconds = 1;
+        int heartbeatIntervalInSeconds = 1;
 
         private ObservableCollection<Message> _messages = new ObservableCollection<Message>();
         public ObservableCollection<Message> Messages
@@ -65,20 +67,29 @@ namespace itsbeta_wp7
                 return _messages;
             }
         }
+        public ObservableCollection<Message> MessagesReversed
+        {
+            get
+            {
+                return new ObservableCollection<Message>(_messages.Reverse());
+            }
+            private set
+            {
+            }
+        }
 
         private void PhoneApplicationPage_Loaded_1(object sender, System.Windows.RoutedEventArgs e)
         {
             this.MessagesList.ItemsSource = Messages;
 
             pubnub = new Pubnub(PublishKey, SubscribeKey, secretKey, cipherKey, ssl);
-            pubnub.SessionUUID = ViewModelLocator.MainStatic.CurrentAchieve.Badge_name;
-            /*pubnub.SubscribeTimeout = subscribeTimeoutInSeconds;
+            pubnub.SessionUUID = ViewModelLocator.UserStatic.FacebookId;
+            pubnub.SubscribeTimeout = subscribeTimeoutInSeconds;
             pubnub.NonSubscribeTimeout = operationTimeoutInSeconds;
             pubnub.NetworkCheckMaxRetries = networkMaxRetries;
             pubnub.NetworkCheckRetryInterval = networkRetryIntervalInSeconds;
             pubnub.HeartbeatInterval = heartbeatIntervalInSeconds;
-            pubnub.EnableResumeOnReconnect = resumeOnReconnect;*/
-
+            pubnub.EnableResumeOnReconnect = resumeOnReconnect;
             pubnub.Subscribe<string>(ViewModelLocator.MainStatic.CurrentAchieve.Badge_name, PubnubCallbackResult, PubnubConnectCallbackResult);
         }
 
@@ -93,6 +104,11 @@ namespace itsbeta_wp7
                         {
                             Message item = JsonConvert.DeserializeObject<Message>(o[0].ToString());
                             Messages.Add(item);
+                            //ChatScroll.ScrollToVerticalOffset(ChatScroll.ScrollableHeight + ChatScroll.ExtentHeight + 40);
+                            MessagesList.BringIntoView(item);
+
+                            VibrateController vibrate = VibrateController.Default;
+                            vibrate.Start(TimeSpan.FromMilliseconds(100));
                         };
                     }
                     catch { };                   
@@ -106,7 +122,7 @@ namespace itsbeta_wp7
                 () =>
                 {
                     //JObject o = JObject.Parse(result.ToString());
-                    //Messages.Add(result.ToString());
+                    MessageBox.Show(result.ToString());
                     //Messages.Add("Успешное подключение к чату.");
                 }
                 );
