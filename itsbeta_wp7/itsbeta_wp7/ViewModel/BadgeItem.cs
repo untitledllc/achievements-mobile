@@ -194,7 +194,7 @@ namespace itsbeta_wp7.ViewModel
 
         private string _api_name = "";
         /// <summary>
-        /// Api_name бонуса
+        /// Api_name бейджа
         /// </summary>
         public string Api_name
         {

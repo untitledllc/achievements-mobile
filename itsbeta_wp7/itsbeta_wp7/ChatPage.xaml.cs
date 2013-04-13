@@ -4,6 +4,11 @@ using PubNubMessaging.Core;
 using System.Windows;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Microsoft.Phone.Tasks;
+using System;
 
 namespace itsbeta_wp7
 {
@@ -23,8 +28,13 @@ namespace itsbeta_wp7
         private void SendTextButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             string publishedMessage = this.TestOutput.Text;
-            pubnub.Publish<string>(ViewModelLocator.MainStatic.CurrentAchieve.Api_name, publishedMessage, PubnubCallbackResult);
-            Messages.Add(string.Format("messaage: {0}", publishedMessage));
+            pubnub.Publish<string>(ViewModelLocator.MainStatic.CurrentAchieve.Badge_name, new Message()
+            { 
+                FacebookId = ViewModelLocator.UserStatic.FacebookId ,
+                Text = publishedMessage,
+                Name = ViewModelLocator.UserStatic.Name
+            }, PubnubCallbackResult);
+            //Messages.Add(string.Format("messaage: {0}", publishedMessage));
         }
 
         Pubnub pubnub;
@@ -43,8 +53,8 @@ namespace itsbeta_wp7
         int networkRetryIntervalInSeconds;
         int heartbeatIntervalInSeconds;
 
-        private ObservableCollection<string> _messages = new ObservableCollection<string>();
-        public ObservableCollection<string> Messages
+        private ObservableCollection<Message> _messages = new ObservableCollection<Message>();
+        public ObservableCollection<Message> Messages
         {
             set
             {
@@ -61,7 +71,7 @@ namespace itsbeta_wp7
             this.MessagesList.ItemsSource = Messages;
 
             pubnub = new Pubnub(PublishKey, SubscribeKey, secretKey, cipherKey, ssl);
-            pubnub.SessionUUID = uuid;
+            pubnub.SessionUUID = ViewModelLocator.MainStatic.CurrentAchieve.Badge_name;
             /*pubnub.SubscribeTimeout = subscribeTimeoutInSeconds;
             pubnub.NonSubscribeTimeout = operationTimeoutInSeconds;
             pubnub.NetworkCheckMaxRetries = networkMaxRetries;
@@ -69,15 +79,23 @@ namespace itsbeta_wp7
             pubnub.HeartbeatInterval = heartbeatIntervalInSeconds;
             pubnub.EnableResumeOnReconnect = resumeOnReconnect;*/
 
-            pubnub.Subscribe<string>(ViewModelLocator.MainStatic.CurrentAchieve.Api_name, PubnubCallbackResult, PubnubConnectCallbackResult);
+            pubnub.Subscribe<string>(ViewModelLocator.MainStatic.CurrentAchieve.Badge_name, PubnubCallbackResult, PubnubConnectCallbackResult);
         }
 
         private void PubnubCallbackResult(string result)
         {
-            Deployment.Current.Dispatcher.BeginInvoke(
-                () =>
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    Messages.Add(result);
+                    try
+                    {
+                        JArray o = JArray.Parse(result.ToString());
+                        if (o[1].ToString() != "Sent")
+                        {
+                            Message item = JsonConvert.DeserializeObject<Message>(o[0].ToString());
+                            Messages.Add(item);
+                        };
+                    }
+                    catch { };                   
                 }
                 );
         }
@@ -87,10 +105,77 @@ namespace itsbeta_wp7
             Deployment.Current.Dispatcher.BeginInvoke(
                 () =>
                 {
-                    Messages.Add(result);
+                    //JObject o = JObject.Parse(result.ToString());
+                    //Messages.Add(result.ToString());
+                    //Messages.Add("Успешное подключение к чату.");
                 }
                 );
         }
 
+        private void MessagesList_ItemTap(object sender, Telerik.Windows.Controls.ListBoxItemTapEventArgs e)
+        {
+            Message item = (e.Item.Content as Message);
+            WebBrowserTask webTask = new WebBrowserTask();
+            webTask.Uri = new Uri("http://facebook.com/"+item.FacebookId.ToString());
+            webTask.Show();
+        }
+
+    }
+
+
+    public class Message
+    {
+        public Message() {
+        }
+
+        private string _text = "";
+        public string Text
+        {
+            get
+            {
+                return _text;
+            }
+            set
+            {
+                _text = value;
+            }
+        }
+
+        private string _facebookId = "";
+        public string FacebookId
+        {
+            get
+            {
+                return _facebookId;
+            }
+            set
+            {
+                _facebookId = value;
+            }
+        }
+
+        private string _name = "";
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
+
+        public string TextWithName
+        {
+            get
+            {
+                return this.Name+": "+this.Text;
+            }
+            private set
+            {
+            }
+        }
     }
 }

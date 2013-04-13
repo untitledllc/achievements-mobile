@@ -91,10 +91,10 @@
                 EmptyContentTemplate="{StaticResource NoDataListTemlate}"
                 x:Name="MessagesList"                                          
                 IsPullToRefreshEnabled="False" 
-                PullToRefreshIndicatorStyle="{StaticResource PullToRefreshIndicatorControlStyle1}">
+                PullToRefreshIndicatorStyle="{StaticResource PullToRefreshIndicatorControlStyle1}" ItemTap="MessagesList_ItemTap">
                             <telerikData:RadJumpList.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding}" TextWrapping="Wrap"
+                                        <TextBlock Text="{Binding TextWithName}" TextWrapping="Wrap"
                                                Style="{StaticResource OtherLightTextblockStyle}" 
                                                Foreground="Black"
                                                Margin="0,4,0,0" />       

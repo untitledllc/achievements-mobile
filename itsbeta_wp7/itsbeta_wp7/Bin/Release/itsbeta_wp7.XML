@@ -992,7 +992,7 @@
         </member>
         <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Api_name">
             <summary>
-            Api_name бонуса
+            Api_name бейджа
             </summary>
         </member>
         <member name="P:itsbeta_wp7.ViewModel.BadgeAllItem.Bonuses">

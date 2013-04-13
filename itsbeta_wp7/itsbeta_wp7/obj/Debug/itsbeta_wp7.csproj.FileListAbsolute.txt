@@ -89,7 +89,6 @@ C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Debug\de-DE\Telerik.Windows.Controls.Primitives.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Debug\fr-FR\Telerik.Windows.Controls.Primitives.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Debug\it-IT\Telerik.Windows.Controls.Primitives.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Debug\itsbeta_wp7.csprojResolveAssemblyReference.cache
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Debug\itsbeta_wp7.g.resources
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Debug\itsbeta_wp7.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Debug\itsbeta_wp7.pdb
@@ -169,3 +168,4 @@ C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Debug\fr-FR\Telerik.Windows.Controls.Input.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\Bin\Debug\it-IT\Telerik.Windows.Controls.Input.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Debug\ChatPage.g.cs
+C:\Users\m0rg0_000\Documents\GitHub\achievements-mobile\itsbeta_wp7\itsbeta_wp7\obj\Debug\itsbeta_wp7.csprojResolveAssemblyReference.cache
