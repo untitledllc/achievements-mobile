@@ -12,6 +12,7 @@ using Android.Widget;
 using Android.Content.PM;
 using System.IO;
 using System.Timers;
+using FlurryLib;
 
 namespace itsbeta.achievements
 {
@@ -21,6 +22,7 @@ namespace itsbeta.achievements
     public class SplashScreenActivity : Activity
     {
         private Timer _freezeTimer;
+        FlurryClient _flurryClient;
 
         protected override void OnDestroy()
         {
@@ -30,6 +32,8 @@ namespace itsbeta.achievements
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            _flurryClient = new FlurryClient();
 
             AppInfo._badgesCount = 0;
             AppInfo._subcategCount = 0;
@@ -68,6 +72,24 @@ namespace itsbeta.achievements
             Finish();
         }
 
+        protected override void OnStart()
+        {
+            base.OnStart();
+            try
+            {
+                _flurryClient.OnStartActivity(this);
+            }
+            catch { }
+        }
 
+        protected override void OnStop()
+        {
+            base.OnStop();
+            try
+            {
+            _flurryClient.OnStopActivity(this);
+            }
+            catch { }
+        }
     }
 }

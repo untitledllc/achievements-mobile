@@ -16,6 +16,7 @@ using System.IO;
 using System.Collections;
 using itsbeta.achievements.gui;
 using Android.Graphics;
+using FlurryLib;
 
 namespace itsbeta.achievements
 {
@@ -25,6 +26,7 @@ namespace itsbeta.achievements
     {
         Animation buttonClickAnimation;
         public static ProfileActivity _context;
+        FlurryClient _flurryClient;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -33,6 +35,7 @@ namespace itsbeta.achievements
             SetContentView(Resource.Layout.profilescreenactivitylayout);
             TextView profileTitle = FindViewById<TextView>(Resource.Id.profilescr_profiletextView);
 
+            _flurryClient = new FlurryClient();
 
             
 
@@ -154,6 +157,26 @@ namespace itsbeta.achievements
             }
 
             return age.ToString();
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            try
+            {
+                _flurryClient.OnStartActivity(this);
+            }
+            catch { }
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            try
+            {
+                _flurryClient.OnStopActivity(this);
+            }
+            catch { }
         }
     }
 }

@@ -13,7 +13,6 @@ namespace itsbeta.achievements.gui
     {
         private List<SubCategoriesListData> Items;
         Button _checkButton;
-        int refCount =0;
         public SubCategoriesListItemAdapter(Context context, int textViewResourceId,
             List<SubCategoriesListData> items)
             : base(context, textViewResourceId, items)

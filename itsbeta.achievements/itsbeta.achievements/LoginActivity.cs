@@ -10,6 +10,7 @@ using Android.Content.PM;
 using Android.Webkit;
 using Android.Views.Animations;
 using System.IO;
+using FlurryLib;
 
 namespace itsbeta.achievements
 {
@@ -18,10 +19,13 @@ namespace itsbeta.achievements
     public class LoginActivity : Activity
     {
         Animation buttonClickAnimation;
+        FlurryClient _flurryClient;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            _flurryClient = new FlurryClient();
             AppInfo._display = WindowManager.DefaultDisplay;
             
             AppInfo.IsLocaleRu = false;
@@ -69,6 +73,27 @@ namespace itsbeta.achievements
                 Finish();
                 StartActivity(typeof(LoginWebActivity));
             };
+        }
+
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            try
+            {
+                _flurryClient.OnStartActivity(this);
+            }
+            catch { }
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            try
+            {
+                _flurryClient.OnStopActivity(this);
+            }
+            catch { }
         }
     }
 }

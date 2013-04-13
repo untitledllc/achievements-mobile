@@ -16,6 +16,7 @@ using System.Text.RegularExpressions;
 using ItsBeta.WebControls;
 using ItsBeta.Core;
 using System.Threading;
+using FlurryLib;
 
 namespace itsbeta.achievements
 {
@@ -23,6 +24,9 @@ namespace itsbeta.achievements
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class LoginWebActivity : Activity
     {
+
+        FlurryClient _flurryClient;
+
         //static ProgressDialog mDialog;
         public static bool isPlayerExist;
         public static bool isAppBadgeEarned;
@@ -46,6 +50,8 @@ namespace itsbeta.achievements
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            _flurryClient = new FlurryClient();
+
             _context = this;
             _loginError = new TextView(this);
 
@@ -297,6 +303,27 @@ namespace itsbeta.achievements
                     }
                 }
             }
+        }
+
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            try
+            {
+                _flurryClient.OnStartActivity(this);
+            }
+            catch { }
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            try
+            {
+                _flurryClient.OnStopActivity(this);
+            }
+            catch { }
         }
     }
 }

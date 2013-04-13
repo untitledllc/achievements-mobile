@@ -52,8 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppInfo.cs" />
-    <Compile Include="CrasherTestApplication.cs" />
     <Compile Include="FirstBadgeActivity.cs" />
+    <Compile Include="FlurryClient.cs" />
     <Compile Include="Gui\AchievementsListItemAdapter.cs" />
     <Compile Include="Gui\CategoriesListItemAdapter.cs" />
     <Compile Include="Gui\ListData.cs" />
@@ -69,7 +69,6 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashScreenActivity.cs" />
-    <Compile Include="TestAppCustomDataReportProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Roboto-Light.ttf" />
@@ -86,6 +85,7 @@
     <AndroidResource Include="Resources\Drawable\NavBar_icon_refresh_norm.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidJavaLibrary Include="FlurryAgent.jar" />
     <Content Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -198,10 +198,6 @@
     <ProjectReference Include="..\..\libs\itsbeta\itsbeta\itsbeta.csproj">
       <Project>{F0E325C3-8C23-4FC5-ACCE-402E4F37671C}</Project>
       <Name>itsbeta</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\libs\Mono.Android.Crasher\Mono.Android.Crasher.csproj">
-      <Project>{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}</Project>
-      <Name>Mono.Android.Crasher</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\libs\QR Reader\ZXing.Net.Mobile.MonoForAndroid.csproj">
       <Project>{D72228AC-C356-4E1A-B56F-91C9A25F7286}</Project>

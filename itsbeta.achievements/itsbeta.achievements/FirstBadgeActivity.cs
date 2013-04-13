@@ -15,6 +15,7 @@ using ItsBeta.Core;
 using System.IO;
 using System.Threading;
 using Android.Graphics;
+using FlurryLib;
 
 namespace itsbeta.achievements
 {
@@ -22,6 +23,9 @@ namespace itsbeta.achievements
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public class FirstBadgeActivity : Activity
     {
+
+        FlurryClient _flurryClient;
+
         #region Base Activity Global Objects
         //Анимация и вибрация нажатия на кнопки
         Animation _fadeAnimation;
@@ -72,7 +76,7 @@ namespace itsbeta.achievements
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
+            _flurryClient = new FlurryClient();
 
             if (Java.Util.Locale.Default.DisplayLanguage == "русский")
             {
@@ -667,6 +671,27 @@ namespace itsbeta.achievements
             stream.Close();
 
             return bm;
+        }
+
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            try
+            {
+                _flurryClient.OnStartActivity(this);
+            }
+            catch { }
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            try
+            {
+                _flurryClient.OnStopActivity(this);
+            }
+            catch { }
         }
     }
 }

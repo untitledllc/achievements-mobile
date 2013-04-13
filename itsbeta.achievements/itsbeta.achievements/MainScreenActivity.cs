@@ -18,6 +18,7 @@ using ItsBeta.Core;
 using System.Threading;
 using ZXing.Mobile;
 using Android.Views.InputMethods;
+using FlurryLib;
 
 namespace itsbeta.achievements
 {
@@ -25,6 +26,8 @@ namespace itsbeta.achievements
                 ScreenOrientation = ScreenOrientation.Portrait)]
     public partial class MainScreenActivity : Activity
     {
+        FlurryClient _flurryClient;
+
         static Animation _buttonClickAnimation;
         static Animation _fadeoutClickAnimation;
         static Button _inactiveListButton;
@@ -56,6 +59,10 @@ namespace itsbeta.achievements
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+
+            _flurryClient = new FlurryClient();
+
+
             _context = this;
             SetContentView(Resource.Layout.secondscreenactivitylayout);
             _font = Typeface.CreateFromAsset(this.Assets, "Roboto-Light.ttf");  
@@ -245,6 +252,59 @@ namespace itsbeta.achievements
             {
                 base.OnBackPressed();
             }
+        }
+
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            try
+            {
+                _flurryClient.OnStartActivity(this);
+                _flurryClient.setReportLocation(true);
+                _flurryClient.setUserId(AppInfo._user.ItsBetaUserId);
+                _flurryClient.setAge(GetUserAge(AppInfo._user.BirthDate));
+            }
+            catch { }
+        }
+
+        int GetUserAge(string date)
+        {
+            int daynow = DateTime.Now.Day;
+            int monthnow = DateTime.Now.Month;
+            int yearnow = DateTime.Now.Year;
+
+            var inputdate = date.Split('/');
+
+            int inputday;
+            int inputmonth;
+            int inputyear;
+
+            int.TryParse(inputdate[1], out inputday);
+            int.TryParse(inputdate[0], out inputmonth);
+            int.TryParse(inputdate[2], out inputyear);
+
+            int age = yearnow - inputyear;
+            if (inputmonth > monthnow)
+            {
+                age--;
+            }
+            if (inputmonth == monthnow && inputday > daynow)
+            {
+                age--;
+            }
+
+            return age;
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            try
+            {
+                _flurryClient.OnStopActivity(this);
+            }
+            catch { }
         }
     }
 }

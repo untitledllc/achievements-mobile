@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="internalOnly" package="ru.hintsolutions.itsbeta" android:versionCode="1" android:versionName="1.0">
-  <uses-sdk android:targetSdkVersion="10" />
-  <application android:label="itsbeta" android:icon="@drawable/Icon_128">
-  </application>
-  <uses-permission android:name="android.permission.CAMERA" />
-  <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.VIBRATE" />
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.DELETE_CACHE_FILES" />
-
-  <uses-permission android:name="android.permission.READ_LOGS" />
-  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-sdk android:targetSdkVersion="10" />
+	<application android:label="itsbeta" android:icon="@drawable/Icon_128"></application>
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.DELETE_CACHE_FILES" />
+	<uses-permission android:name="android.permission.READ_LOGS" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 </manifest>

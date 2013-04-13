@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zxing.monoandroid", "..\lib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "itsbeta", "..\libs\itsbeta\itsbeta\itsbeta.csproj", "{F0E325C3-8C23-4FC5-ACCE-402E4F37671C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Android.Crasher", "..\libs\Mono.Android.Crasher\Mono.Android.Crasher.csproj", "{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZXing.Net.Mobile.MonoForAndroid", "..\libs\QR Reader\ZXing.Net.Mobile.MonoForAndroid.csproj", "{D72228AC-C356-4E1A-B56F-91C9A25F7286}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{F0E325C3-8C23-4FC5-ACCE-402E4F37671C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0E325C3-8C23-4FC5-ACCE-402E4F37671C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0E325C3-8C23-4FC5-ACCE-402E4F37671C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D72228AC-C356-4E1A-B56F-91C9A25F7286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D72228AC-C356-4E1A-B56F-91C9A25F7286}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D72228AC-C356-4E1A-B56F-91C9A25F7286}.Release|Any CPU.ActiveCfg = Release|Any CPU
