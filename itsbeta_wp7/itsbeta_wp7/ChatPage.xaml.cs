@@ -107,7 +107,7 @@ namespace itsbeta_wp7
             pubnub.HeartbeatInterval = heartbeatIntervalInSeconds;
             pubnub.EnableResumeOnReconnect = resumeOnReconnect;
             pubnub.Subscribe<string>(ViewModelLocator.MainStatic.CurrentAchieve.Badge_name, PubnubCallbackResult, PubnubConnectCallbackResult);
-            pubnub.DetailedHistory<string>(channel, 10, PubnubHistoryCallbackResult);
+            pubnub.DetailedHistory<string>(channel, 20, PubnubHistoryCallbackResult);
         }
 
         private void PubnubHistoryCallbackResult(string result)
@@ -121,9 +121,13 @@ namespace itsbeta_wp7
                         JArray history = JArray.Parse(messages_array);
                         foreach (var item in history)
                         {
-                            Message message_item = JsonConvert.DeserializeObject<Message>(item.ToString());
-                            Messages.Add(message_item);
-                            MessagesList.BringIntoView(message_item);
+                            try
+                            {
+                                Message message_item = JsonConvert.DeserializeObject<Message>(item.ToString());
+                                Messages.Add(message_item);
+                                MessagesList.BringIntoView(message_item);
+                            }
+                            catch { };
                         };
                         VibrateController vibrate = VibrateController.Default;
                         vibrate.Start(TimeSpan.FromMilliseconds(100));
