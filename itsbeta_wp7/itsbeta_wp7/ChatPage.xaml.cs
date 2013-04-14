@@ -27,20 +27,36 @@ namespace itsbeta_wp7
             InitializeComponent();
         }
 
+         
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            pubnub.Unsubscribe<string>(channel, PubnubCallbackResult, PubnubConnectCallbackResult, PubnubDisconnectCallbackResult);
+        }
+
+        private void PubnubDisconnectCallbackResult(string result)
+        {
+        }
+
         private void SendTextButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            SendMessage();
+        }
+
+        private void SendMessage() {
             string publishedMessage = this.TestOutput.Text;
+            this.TestOutput.Text = "";
             pubnub.Publish<string>(ViewModelLocator.MainStatic.CurrentAchieve.Badge_name, new Message()
             { 
                 FacebookId = ViewModelLocator.UserStatic.FacebookId ,
                 Text = publishedMessage,
                 Name = ViewModelLocator.UserStatic.Name
             }, PubnubCallbackResult);
-            //Messages.Add(string.Format("messaage: {0}", publishedMessage));
         }
 
+
         Pubnub pubnub;
-        string channel = "";
+        string channel = ViewModelLocator.MainStatic.CurrentAchieve.Badge_name;
         bool ssl = false;
         string SubscribeKey = "sub-c-fc890f04-a2a8-11e2-a387-12313f022c90";
         string PublishKey = "pub-c-a920b269-83ea-4c11-bd99-726d17dd1966";
@@ -91,6 +107,29 @@ namespace itsbeta_wp7
             pubnub.HeartbeatInterval = heartbeatIntervalInSeconds;
             pubnub.EnableResumeOnReconnect = resumeOnReconnect;
             pubnub.Subscribe<string>(ViewModelLocator.MainStatic.CurrentAchieve.Badge_name, PubnubCallbackResult, PubnubConnectCallbackResult);
+            pubnub.DetailedHistory<string>(channel, 10, PubnubHistoryCallbackResult);
+        }
+
+        private void PubnubHistoryCallbackResult(string result)
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    try
+                    {
+                        JArray o = JArray.Parse(result.ToString());
+                        string messages_array = o[0].ToString();
+                        JArray history = JArray.Parse(messages_array);
+                        foreach (var item in history)
+                        {
+                            Message message_item = JsonConvert.DeserializeObject<Message>(item.ToString());
+                            Messages.Add(message_item);
+                            MessagesList.BringIntoView(message_item);
+                        };
+                        VibrateController vibrate = VibrateController.Default;
+                        vibrate.Start(TimeSpan.FromMilliseconds(100));
+                    }
+                    catch { };
+                });
         }
 
         private void PubnubCallbackResult(string result)
@@ -122,7 +161,7 @@ namespace itsbeta_wp7
                 () =>
                 {
                     //JObject o = JObject.Parse(result.ToString());
-                    MessageBox.Show(result.ToString());
+                    //MessageBox.Show(result.ToString());
                     //Messages.Add("Успешное подключение к чату.");
                 }
                 );
@@ -134,6 +173,13 @@ namespace itsbeta_wp7
             WebBrowserTask webTask = new WebBrowserTask();
             webTask.Uri = new Uri("http://facebook.com/"+item.FacebookId.ToString());
             webTask.Show();
+        }
+
+        private void TestOutput_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key==System.Windows.Input.Key.Enter) {
+                SendMessage();
+            };
         }
 
     }

@@ -79,21 +79,26 @@
                         <ImageBrush ImageSource="/itsbeta_wp7;component/images/Paper_middle.png" />
                     </Grid.Background>
 
-                    <StackPanel Margin="30,-30,30,0">                        
+                    <StackPanel Margin="30,-30,30,0" Canvas.ZIndex="2">                        
                         <!--<ScrollViewer HorizontalContentAlignment="Stretch" Name="ChatScroll">
                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                             ScrollViewer.VerticalScrollBarVisibility="Disabled"  -->
-                            <telerikData:RadJumpList Height="400" 
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="390" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                        
+                        <telerikData:RadJumpList Height="390" 
+                                Grid.Row="0"
+                                Canvas.ZIndex="2"
                                 Margin="0,0,0,0" Width="Auto"           
-                                ScrollViewer.ManipulationMode="System"
-                                EmptyContentTemplate="{StaticResource NoDataListTemlate}"
                                 x:Name="MessagesList"                                          
                                 IsPullToRefreshEnabled="False" 
-                                VerticalAlignment="Top"
-                                EmptyContent=" "
+                                EmptyContent=""                                                 
                                 PullToRefreshIndicatorStyle="{StaticResource PullToRefreshIndicatorControlStyle1}" 
                                 ItemTap="MessagesList_ItemTap" 
-                                HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top" EmptyContentDisplayMode="DataSourceNull">
+                                EmptyContentDisplayMode="DataSourceNull">
                             <telerikData:RadJumpList.ItemTemplate>
                                 <DataTemplate>
                                         <TextBlock Text="{Binding TextWithName}" TextWrapping="Wrap"
@@ -103,10 +108,14 @@
                             </telerikData:RadJumpList.ItemTemplate>
                         </telerikData:RadJumpList>
                         <!--</ScrollViewer>-->
-                        <TextBox Name="TestOutput" TextWrapping="Wrap" Text=""/>
+                        <StackPanel Grid.Row="1">
+                        <TextBox Name="TestOutput" 
+                                 TextWrapping="Wrap" Text="" KeyDown="TestOutput_KeyDown"/>
                         <Button Style="{StaticResource ActivateButtonStyle}" 
                                 Click="SendTextButton_Click" Margin="0,-10,0,0"
                                 Content="Написать" Name="SendButton"/>
+                        </StackPanel>
+                        </Grid>
                     </StackPanel>
                 </Grid>
 
