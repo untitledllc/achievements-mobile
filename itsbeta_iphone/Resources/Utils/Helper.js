@@ -13,16 +13,17 @@ function decorateButton(onSingleTap) {
 }
 
 function decorateButtonChildren(onSingleTap) {
-	var me = this;
+	var me = this,
+		child = me.children[0];
 	
 	me.addEventListener('touchstart', function() {
-		me.children[0].backgroundImage = me.children[0].backgroundImage.replace('Normal', 'Pressed');		
+		child.backgroundImage = child.backgroundImage.replace('Normal', 'Pressed');		
 	});
 	
 	me.addEventListener("singletap", onSingleTap);
 	
 	me.addEventListener('touchend', function() {
-		me.children[0].backgroundImage = me.children[0].backgroundImage.replace('Pressed', 'Normal');
+		child.backgroundImage = child.backgroundImage.replace('Pressed', 'Normal');
 	});
 }
 
