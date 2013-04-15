@@ -12,6 +12,11 @@
 	
 		<!-- login -->
 			<string name="label_collect_all">Собери все достижения</string>
+		<!-- general -->
+			<string name="label_categories">Категории</string>
+			<string name="label_subcategories">Подкатегории</string>
+			<string name="label_last">Последние</string>
+			<string name="label_all">Все</string>
 		<!-- profile -->
 			<string name="label_profile">ПРОФИЛЬ</string>
 			<string name="label_statistic">Статистика:</string>

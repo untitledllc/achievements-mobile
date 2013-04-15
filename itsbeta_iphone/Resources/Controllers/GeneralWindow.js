@@ -77,7 +77,7 @@ function onInitController(window, params)
 				massRow = [];
 				
 				var allRow = {
-					display_name: "Все",
+					display_name: L("label_all"),
 					api_name: "null",
 				};
 				//--- делаем первую ячейку "все категории"
@@ -324,8 +324,8 @@ function createListAchivs(window,categiry)
 	ui.preAchivs.hide();
 	actIndicator(true);
 	
-	ui.nameProject.text = "Подкатегории";
-	ui.typeProject.text = "Категории";
+	ui.nameProject.text = L("label_subcategories");
+	ui.typeProject.text = L("label_categories");
 	
 	for(var i = 0, K = achievements.length; i < K; i++)
 	{
@@ -816,7 +816,7 @@ function createListRow(category,massRow)
 		
 		ui.typeProjectClick.backgroundImage = null;
 		
-		ui.nameProject.text = "Подкатегории";
+		ui.nameProject.text = L("label_subcategories");
 		selectProject = "null";
 		
 		actIndicator(true);
@@ -1071,9 +1071,9 @@ function lastAchivsFunction(massRow)
 		massRow.push(row);
 	}
 	
-	row.rowTextAchivs.text = "Последние";
+	row.rowTextAchivs.text = L("label_last");
 	row.rowAchivs.api_name = "last";
-	row.rowAchivs.display_name = "Последние";
+	row.rowAchivs.display_name =  L("label_last");
 	
 	row.rowAchivs.addEventListener("singletap",function(event)
 	{

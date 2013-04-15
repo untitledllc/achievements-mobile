@@ -167,7 +167,7 @@ module.exports = [
 											color: "#646464",
 											textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 											font: {fontSize: 15},
-											text: "Категории"
+											textid: "label_categories"
 										}
 									},
 									{
@@ -217,7 +217,7 @@ module.exports = [
 											textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 											color: "#646464",
 											font: {fontSize: 15},
-											text: "Подкатегории"
+											textid: "label_subcategories"
 										}
 									},
 									{

@@ -12,6 +12,11 @@
 	
 		<!-- login -->
 			<string name="label_collect_all">Collect all your achievements</string>
+		<!-- general -->
+			<string name="label_categories">Categories</string>
+			<string name="label_subcategories">Subcategories</string>
+			<string name="label_last">Last</string>
+			<string name="label_all">All</string>
 		<!-- profile -->
 			<string name="label_profile">PROFILE</string>
 			<string name="label_statistic">Statistic:</string>
