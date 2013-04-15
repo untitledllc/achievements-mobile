@@ -288,7 +288,7 @@ function saveAchivs(data)
 					return 0;
 				}
 			);
-			Ti.API.info(newAchivsSсhema);
+			//Ti.API.info(newAchivsSсhema);
 			
 			//-----------------------------------------------------////
 			

@@ -243,6 +243,7 @@ function onInitController(window, params)
 	
 	function beginReloading() {			
 		setTimeout(endReloading, 5000);
+		Ti.App.fireEvent("reload");
 	}
 	
 	function endReloading() {			
@@ -297,17 +298,21 @@ function onWindowOpen(window, event)
 	
 	Ti.App.addEventListener("reload",function(event){
 		// ---- delete ----
-		ui.preAchivs.hide();
+		//ui.preAchivs.hide();
 		actIndicator(true);
 		tempNewAchivs = event.data;
 		
 		// -- не дописана, оптимизаия ----////
 		//reloadAdd(tempNewAchivs);
 		
-		for(var i = 0; i < tempAchivs.length; i++)
-		{
-			tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
-		}
+		// for(var i = 0; i < tempAchivs.length; i++)
+		// {
+			// tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
+		// }
+		for(var i = ui.preAchivs.children.length; i > 1; i--)
+			{
+				ui.preAchivs.remove(ui.preAchivs.children[i-1]);
+			}
 		tempAchivs = [];
 		//-----------------
 		// get achievements by user id
@@ -321,7 +326,7 @@ function onWindowOpen(window, event)
 ///-----сосдание списка ачивок-----//
 function createListAchivs(window,categiry)
 {
-	ui.preAchivs.hide();
+	//ui.preAchivs.hide();
 	actIndicator(true);
 	
 	ui.nameProject.text = L("label_subcategories");
@@ -693,7 +698,7 @@ function reSaveAchivs(data)
 			return 0;
 		}
 	);
-	Ti.API.info(newAchivsSсhema);
+	//Ti.API.info(newAchivsSсhema);
 	
 	
 	ui.counter.text = counter;
