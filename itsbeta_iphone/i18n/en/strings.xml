@@ -22,7 +22,11 @@
 			<string name="label_statistic">Statistic:</string>
 			<string name="label_all_badges">All badges:</string>
 			<string name="label_bonuses">Bonuses:</string>
-			<string name="label_subcategories">Subcategories:</string>
+			<string name="label_profile_subcategories">Subcategories:</string>
+			<string name="label_attention">Attention</string>
+			<string name="label_confirm_logout">Do you really want to exit?</string>
+			<string name="label_yes">Yes</string>/string>
+			<string name="label_no">No</string>
 		<!-- add -->
 			<string name="label_add">ADD</string>
 </resources>

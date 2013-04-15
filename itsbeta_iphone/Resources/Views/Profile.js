@@ -294,7 +294,7 @@ module.exports = [
 											font : {
 												fontSize : 12
 											},
-											textid: "label_subcategories"
+											textid: "label_profile_subcategories"
 										}
 									},
 									{

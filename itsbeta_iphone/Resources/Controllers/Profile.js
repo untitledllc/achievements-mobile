@@ -65,9 +65,9 @@ function onInitController(window, params)
 		function() {
 			
 			var a = Titanium.UI.createAlertDialog({
-				title: " ",
-				message: "Выйти из вашего профиля?",
-				buttonNames: ["Да","Нет"],
+				title: L("label_attention"),
+				message: L("label_confirm_logout"),
+				buttonNames: [L("label_yes"),L("label_no")],
 				cancel: 1,
 			});
 			

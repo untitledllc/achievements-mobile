@@ -22,7 +22,11 @@
 			<string name="label_statistic">Статистика:</string>
 			<string name="label_all_badges">Бейджи:</string>
 			<string name="label_bonuses">Бонусы:</string>
-			<string name="label_subcategories">Подкатегории:</string>
+			<string name="label_profile_subcategories">Подкатегории:</string>
+			<string name="label_attention">Внимание</string>
+			<string name="label_confirm_logout">Вы действительно хотите выйти?</string>
+			<string name="label_yes">Да</string>/string>
+			<string name="label_no">Нет</string>
 		<!-- add -->
 			<string name="label_add">ДОБАВИТЬ</string>
 </resources>
