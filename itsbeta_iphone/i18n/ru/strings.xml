@@ -17,6 +17,10 @@
 			<string name="label_subcategories">Подкатегории</string>
 			<string name="label_last">Последние</string>
 			<string name="label_all">Все</string>
+			<!-- pull to refresh -->
+				<string name="label_pull_to_refresh">Потяните вниз</string>
+				<string name="label_release_to_refresh">Отпустите для обновления</string>
+				<string name="label_refreshing">Обновление</string>
 		<!-- profile -->
 			<string name="label_profile">ПРОФИЛЬ</string>
 			<string name="label_statistic">Статистика:</string>

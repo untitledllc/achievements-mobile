@@ -211,11 +211,11 @@ function onInitController(window, params)
 		offset = e.y;
 		if(offset < -80.0 && !pulling && !reloading) {
 			pulling = true;
-			pullToRefresh.status.text = "Release to refresh";
+			pullToRefresh.status.text = L("label_release_to_refresh");
 		}
 		else if((offset > -80.0 && offset < 0) && pulling && !reloading) {
 			pulling = false;
-			pullToRefresh.status.text = "Pull to refresh";
+			pullToRefresh.status.text = L("label_pull_to_refresh");
 		}
 	});
 	
@@ -255,7 +255,7 @@ function onInitController(window, params)
 		);
 		
 		reloading = false;
-		pullToRefresh.status.text = "Pull to refresh";
+		pullToRefresh.status.text = L("label_pull_to_refresh");
 		pullToRefresh.refreshing.hide();
 		pullToRefresh.status.show();
 	}

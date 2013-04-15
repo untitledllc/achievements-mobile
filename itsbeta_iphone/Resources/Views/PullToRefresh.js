@@ -72,7 +72,7 @@ exports = {
 	 		outlet: "status",
 	 		style: {
 	 			className: "Ti.UI.Label",
-	 			text: "Pull to refresh",
+	 			textid: "label_pull_to_refresh",
 				top: 55,
 				color: "#737474",
 				font: {fontSize: "14pt"}
@@ -82,7 +82,7 @@ exports = {
 	 		outlet: "refreshing",
 	 		style: {
 	 			className: "Ti.UI.Label",
-	 			text: "Refreshing",
+	 			textid: "label_refreshing",
 	 			visible: false,
 				top: 55,
 				color: "#737474",
