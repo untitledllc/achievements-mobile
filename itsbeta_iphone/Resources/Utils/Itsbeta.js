@@ -73,8 +73,6 @@ function getAchievementsByUid(uid, successCallback)
 }
 function firstStart(info)
 {
-	Ti.API.info(info);
-	
 	query(
 		{
 			params: {
@@ -89,14 +87,9 @@ function firstStart(info)
 		}, 
 		function(response) // success
 		{
-			Ti.API.info('ok');
-			Ti.API.info(response.responseText);
-			
 			var temp = JSON.parse(response.responseText);
 			if(temp.error == undefined)
 			{
-				Ti.API.info('Start!!!');
-				
 				if(temp.id != undefined)
 				{
 					/////----------------
@@ -110,11 +103,7 @@ function firstStart(info)
 						}, 
 						function(response) // success
 						{
-							Ti.API.info('ok');
-							Ti.API.info(response.responseText);
-							
 							TiTools.Global.set("startAchivs", JSON.parse(response.responseText));
-							
 							Ti.App.fireEvent("complite");
 						},
 						function(response) // playerid failure
@@ -127,7 +116,6 @@ function firstStart(info)
 			}
 			else
 			{
-				Ti.API.info('no_START');
 				Ti.App.fireEvent("complite");
 			}
 		},
