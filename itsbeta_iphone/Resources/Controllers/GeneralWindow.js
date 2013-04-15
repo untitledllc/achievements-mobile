@@ -835,9 +835,9 @@ function createListRow(category,massRow)
 			ui.placeListView.animate(animationEnd);
 			Ti.API.info('++');
 			
-			for(var i = 0, I = ui.placeList.children.length; I > 0; I--)
+			for(var i = ui.placeList.children.length; i > 0; i--)
 			{
-				ui.placeList.remove(ui.placeList.children[I-1]);
+				ui.placeList.remove(ui.placeList.children[i-1]);
 			}
 			
 			hideAchivs();
@@ -866,9 +866,9 @@ function undefClick()
 			// massRow[ii].rowAchivs.superview.remove(massRow[ii].rowAchivs);
 		// }
 		
-		for(var i = 0, I = ui.placeList.children.length; I > 0; I--)
+		for(var i = ui.placeList.children.length; i > 0; i--)
 		{
-			ui.placeList.remove(ui.placeList.children[I-1]);
+			ui.placeList.remove(ui.placeList.children[i-1]);
 		}
 		
 		ui.placeListView.animate(animationEnd);
