@@ -33,4 +33,6 @@
 			<string name="label_no">Нет</string>
 		<!-- add -->
 			<string name="label_add">ДОБАВИТЬ</string>
+	 <!-- others -->
+		<string name="error">Ошибка</string>
 </resources>

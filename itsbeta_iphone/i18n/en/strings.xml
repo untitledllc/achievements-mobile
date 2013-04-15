@@ -33,4 +33,7 @@
 			<string name="label_no">No</string>
 		<!-- add -->
 			<string name="label_add">ADD</string>
+			
+	<!-- others -->
+		<string name="error">Error</string>
 </resources>
