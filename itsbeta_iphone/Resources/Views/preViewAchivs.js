@@ -98,15 +98,27 @@ module.exports = [
 				]
 			},
 			{
-				outlet: "image",
 				style: {
-					className: "Ti.UI.ImageView",
+					className: "Ti.UI.View",
 					top: 10,
 					left: 5,
-					height: "30%",
-					width: "45%",
-					//image: "images/FirstBadge.PNG"
-				}
+					width: 130,
+					height: 130,
+					touchEnabled: false,
+					
+				},
+				subviews:
+				[
+					{
+						outlet: "image",
+						style: {
+							className: "Ti.UI.ImageView",
+							width: "100%",
+							height: "100%",
+							touchEnabled: false,
+						}
+					}
+				]
 			}
 		]
 	},

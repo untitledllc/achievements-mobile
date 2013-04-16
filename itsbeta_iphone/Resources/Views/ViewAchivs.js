@@ -5,14 +5,14 @@ module.exports = {
 	outlet: "viewAchivs",
 	style : {
 		className : "Ti.UI.View",
-		height: 150,
+		height: Ti.UI.SIZE,
 		layout: "vertical"
 	},
 	subviews: [
 		{
 			style : {
 				className : "Ti.UI.View",
-				height: Ti.UI.FILL,
+				height: Ti.UI.SIZE,
 				layout: "horizontal",
 				touchEnabled: false,
 				bottom: -20
@@ -23,20 +23,32 @@ module.exports = {
 						className : "Ti.UI.View",
 						layout: "vertical",
 						width: "30%",
-						height: Ti.UI.FILL,
+						height: Ti.UI.SIZE,
 						touchEnabled: false,
 						top: 0
 					},
 					subviews: [
 						{
-							outlet: "image",
 							style: {
-								className: "Ti.UI.ImageView",
+								className: "Ti.UI.View",
 								top: 10,
-								width: "100%",
-								height: "50%",
+								width: 90,
+								height: 90,
 								touchEnabled: false,
-							}
+								
+							},
+							subviews:
+							[
+								{
+									outlet: "image",
+									style: {
+										className: "Ti.UI.ImageView",
+										width: "100%",
+										height: "100%",
+										touchEnabled: false,
+									}
+								}
+							]
 						},
 						{
 							outlet: "date",
@@ -59,7 +71,7 @@ module.exports = {
 						className : "Ti.UI.View",
 						layout: "vertical",
 						width: "60%",
-						height: Ti.UI.FILL,
+						height: Ti.UI.SIZE,
 						touchEnabled: false,
 						top: 5
 					},
@@ -99,7 +111,7 @@ module.exports = {
 						layout: "vertical",
 						top: 3,
 						right: 0,
-						height: Ti.UI.FILL,
+						height: Ti.UI.SIZE,
 						touchEnabled: false
 					}
 				}
@@ -108,7 +120,6 @@ module.exports = {
 		{
 			style: {
 				className: "Ti.UI.View",
-				top: -15,
 				height: 3,
 				backgroundImage: "%ResourcesPath%images/others/Divider.Horizontal.png",
 				touchEnabled: false
