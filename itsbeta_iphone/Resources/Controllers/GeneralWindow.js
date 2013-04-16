@@ -14,6 +14,7 @@ var counter = 0;
 var itsbeta = undefined;
 var massRow = [];
 var category = [];
+var oldTime = undefined;
 var tempNewAchivs = undefined;
 var selectCategory = "null";
 var selectProject = "null";
@@ -49,6 +50,9 @@ function onInitController(window, params)
 	projects = window.projects;
 	counter = window.counter;
 	info = window.info;
+	oldTime = window.oldTime;
+	
+	Ti.API.info('oldTime ' +  oldTime);
 	
 	// Загрузка контента окна
 	ui = TiTools.UI.Loader.load("Views/GeneralWindow.js", window);
@@ -243,7 +247,7 @@ function onInitController(window, params)
 	
 	function beginReloading() {			
 		setTimeout(endReloading, 5000);
-		Ti.App.fireEvent("reload");
+		Ti.App.fireEvent("pull");
 	}
 	
 	function endReloading() {			
@@ -321,12 +325,18 @@ function onWindowOpen(window, event)
 		
 	});
 	
+	Ti.App.addEventListener("pull",function(event){
+		
+		itsbeta.getAchievementsRefresh(info.fbuid, insertPull ,oldTime);
+		
+	});
+	
 	createListAchivs(window,"null");
 }
 ///-----сосдание списка ачивок-----//
 function createListAchivs(window,categiry)
 {
-	//ui.preAchivs.hide();
+	ui.preAchivs.hide();
 	actIndicator(true);
 	
 	ui.nameProject.text = L("label_subcategories");
@@ -458,6 +468,85 @@ function createListAchivs(window,categiry)
 			return 0;
 		}
 	);
+}
+
+// если есть новые ачивки после обновления струкрурируем их и пересоздаем скрол
+ 
+function insertPull(data)
+{
+	//Ti.API.info( JSON.parse(data.responseText));
+	achievements = JSON.parse(data.responseText)
+	var tempNewAchivs = [];
+	
+	for(var i = 0, I = achievements.length; i < I ; i++)
+	{
+		var achivs = achievements[i];
+		
+		categories.push({
+			api_name: achivs.api_name,
+			display_name: achivs.display_name
+		});
+		
+		for(var j = 0, J = achivs.projects.length; j < J; j++)
+		{
+			var achivsProject = achivs.projects[j];
+			
+			counter += achivsProject.achievements.length;
+			
+			projects.push({
+				api_name: achivsProject.api_name,
+				display_name: achivsProject.display_name,
+				total_badge: achivsProject.total_badge
+			});
+			
+			for(var k = 0, K = achivsProject.achievements.length; k < K; k++)
+			{
+				var achivsProjectAchiv = achivsProject.achievements[k];
+				
+				tempNewAchivs.push({
+					categoryApiName: achivs.api_name,
+					categoryDisplayName: achivs.display_name,
+					projectsApiName: achivsProject.api_name,
+					projectsDisplayName: achivsProject.display_name,
+					color: achivsProject.color,
+					total_badges: achivsProject.total_badges,
+					achievApiName: achivsProjectAchiv.api_name,
+					create_time: achivsProjectAchiv.create_time,
+					achievDisplayName: achivsProjectAchiv.display_name,
+					achievBadgeName: achivsProjectAchiv.badge_name,
+					achievDesc: achivsProjectAchiv.desc,
+					achievDetails: achivsProjectAchiv.details,
+					achievAdv: achivsProjectAchiv.adv,
+					achievPic: achivsProjectAchiv.pic,
+					fb_id : achivsProjectAchiv.fb_id,
+					achievBonuses: achivsProjectAchiv.bonuses,
+				});
+			}
+		}
+		if(i+1 == I)
+		{
+			if(tempNewAchivs.length > 1)
+			{
+				//alert("ЕСТЬ НОВЫЕ АЧИВКИ!");
+				ui.preAchivs.hide();
+				actIndicator(true);
+				
+				for(var i = ui.preAchivs.children.length; i > 1; i--)
+				{
+					ui.preAchivs.remove(ui.preAchivs.children[i-1]);
+				}
+				
+				tempAchivs 	= [];
+				
+				itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
+			}
+			else
+			{
+				alert("нет новых ачивок");
+			}
+		}
+		
+	}
 }
 function delList(window, categiry)
 {

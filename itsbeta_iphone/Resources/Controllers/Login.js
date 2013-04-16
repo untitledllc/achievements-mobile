@@ -16,6 +16,7 @@ var itsbeta;
 var achievements = [];
 var newCategories = [];
 var newProjects = [];
+var oldTime = undefined;
 var counter = 0;
 
 var ui = undefined;
@@ -265,6 +266,7 @@ function saveAchivs(data)
 		}
 		if(i+1 == I)
 		{
+			
 			newAchivsSсhema.sort(
 				function(a, b)
 				{
@@ -288,6 +290,7 @@ function saveAchivs(data)
 					return 0;
 				}
 			);
+			
 			//Ti.API.info(newAchivsSсhema);
 			
 			//-----------------------------------------------------////
@@ -295,7 +298,7 @@ function saveAchivs(data)
 			//------------------------------------------------------//
 			
 			Ti.API.info(newAchivsSсhema.length); 
-			
+			oldTime = newAchivsSсhema[0].create_time;
 			
 			var win = TiTools.UI.Controls.createWindow(
 				{
@@ -306,7 +309,8 @@ function saveAchivs(data)
 					categories: categories,
 					projects: projects,
 					counter: counter,
-					backgroundColor: "white"
+					backgroundColor: "white",
+					oldTime: oldTime
 				}
 			);
 			win.initialize();

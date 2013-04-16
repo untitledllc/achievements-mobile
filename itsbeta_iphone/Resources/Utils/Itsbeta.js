@@ -7,7 +7,7 @@ var ITSBETA_ACCESS_TOKEN = "8e6b3a7b47c3346cb7e4db42c88519bc";
 function query(params, successCallback, failureCallback)
 {
 	timeOut();
-	
+	Ti.API.info(params);
 	TiTools.HTTP.response(
 		{
 			reguest: {
@@ -49,7 +49,7 @@ function getAchievementsByUid(uid, successCallback)
 		function(response) // success
 		{
 			var playerId = JSON.parse(response.responseText).player_id;
-		
+			TiTools.Global.set("playerId", playerId);
 			query(
 				{
 					params: {
@@ -66,6 +66,30 @@ function getAchievementsByUid(uid, successCallback)
 			);
 		},
 		function(response) // playerid failure
+		{
+			Ti.API.info("error");
+		}
+	);
+}
+function getAchievementsRefresh(uid, successCallback,time)
+{
+	var params = undefined;
+	Ti.API.info('--------');
+	Ti.API.info(time);
+	
+	params = {
+		player_id : TiTools.Global.get("playerId"),
+		access_token : ITSBETA_ACCESS_TOKEN,
+		updated_at : time
+	};
+		
+	query(
+		{
+			params: params,
+			url : "http://www.itsbeta.com/s/info/achievements.json"
+		}, 
+		successCallback,   // success
+		function(response) // achievements failure
 		{
 			Ti.API.info("error");
 		}
@@ -313,5 +337,6 @@ module.exports = {
 	postActivCode: postActivCode,
 	postActiv: postActiv,
 	query: query,
-	getAchievementsByUid: getAchievementsByUid
+	getAchievementsByUid: getAchievementsByUid,
+	getAchievementsRefresh: getAchievementsRefresh
 }
