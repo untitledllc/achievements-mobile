@@ -101,11 +101,11 @@ module.exports = [
 				outlet: "image",
 				style: {
 					className: "Ti.UI.ImageView",
-					top: 30,
+					top: 10,
 					left: 5,
-					height: 130,
-					width: 130,
-					image: "images/FirstBadge.PNG"
+					height: "30%",
+					width: "45%",
+					//image: "images/FirstBadge.PNG"
 				}
 			}
 		]
