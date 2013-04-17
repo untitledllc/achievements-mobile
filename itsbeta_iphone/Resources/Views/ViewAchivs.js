@@ -59,7 +59,8 @@ module.exports = {
 								text: "---",
 								color: "#5dbce2",
 								font: {
-									fontSize: 12
+									fontSize: 12,
+									fontFamily: "Helvetica-Light"
 								},
 								textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 								touchEnabled: false
@@ -85,6 +86,10 @@ module.exports = {
 								left: 10,
 								right: 10,
 								color: "red",
+								font:{
+									fontSize: 16,
+									fontFamily: "Helvetica"
+								},
 								touchEnabled: false
 							}
 						},
@@ -98,7 +103,8 @@ module.exports = {
 								text : "...",
 								color: "#777575",
 								font : {
-									fontSize : 13
+									fontSize : 13,
+									fontFamily: "Helvetica"
 								},
 								touchEnabled: false
 							}
