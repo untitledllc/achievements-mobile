@@ -169,7 +169,7 @@ module.exports = [
 					font : {
 						fontSize : 20
 					},
-					color: "#625f5e",
+					color: "#949494",
 					textid: "label_statistic"
 				}
 			},
