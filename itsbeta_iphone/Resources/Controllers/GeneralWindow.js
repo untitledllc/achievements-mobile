@@ -302,7 +302,8 @@ function onWindowOpen(window, event)
 	
 	Ti.App.addEventListener("reload",function(event){
 		// ---- delete ----
-		//ui.preAchivs.hide();
+		
+		ui.preAchivs.hide();
 		actIndicator(true);
 		tempNewAchivs = event.data;
 		
@@ -313,11 +314,11 @@ function onWindowOpen(window, event)
 		// {
 			// tempAchivs[i].viewAchivs.superview.remove(tempAchivs[i].viewAchivs);
 		// }
-		for(var i = ui.preAchivs.children.length; i > 1; i--)
-			{
-				ui.preAchivs.remove(ui.preAchivs.children[i-1]);
-			}
-		tempAchivs = [];
+		// for(var i = ui.preAchivs.children.length; i > 1; i--)
+			// {
+				// ui.preAchivs.remove(ui.preAchivs.children[i-1]);
+			// }
+		// tempAchivs = [];
 		//-----------------
 		// get achievements by user id
 		
@@ -412,6 +413,7 @@ function createListAchivs(window,categiry)
 		}
 		if(i+1 == achievements.length)
 		{
+			Ti.API.info('Закончили построение ачивок \n открывается окно полученой ачивки');
 			ui.preAchivs.show();
 			actIndicator(false);
 			
@@ -475,7 +477,7 @@ function createListAchivs(window,categiry)
 function insertPull(data)
 {
 	//Ti.API.info( JSON.parse(data.responseText));
-	achievements = JSON.parse(data.responseText)
+	var tempAchievements = JSON.parse(data.responseText)
 	var tempNewAchivs = [];
 	
 	for(var i = 0, I = achievements.length; i < I ; i++)
@@ -527,7 +529,6 @@ function insertPull(data)
 		{
 			if(tempNewAchivs.length > 1)
 			{
-				//alert("ЕСТЬ НОВЫЕ АЧИВКИ!");
 				ui.preAchivs.hide();
 				actIndicator(true);
 				
@@ -539,10 +540,6 @@ function insertPull(data)
 				tempAchivs 	= [];
 				
 				itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
-			}
-			else
-			{
-				alert("нет новых ачивок");
 			}
 		}
 		
@@ -710,90 +707,104 @@ function saveIdUser(data)
 }
 function reSaveAchivs(data)
 {
-	achievements = JSON.parse(data.responseText);
-	categories = [];
-	projects = [];
-	counter = 0;
-	
-	newAchivsSсhema = [];
-	
-	for(var i = 0, I = achievements.length; i < I ; i++)
-	{
-		var achivs = achievements[i];
-		
-		categories.push({
-			api_name: achivs.api_name,
-			display_name: achivs.display_name
-		});
-		
-		for(var j = 0, J = achivs.projects.length; j < J; j++)
+	Ti.API.info('Выполняется удаление ачивок.')
+	tempAchivs = [];
+	Ti.API.info('ui.preAchivs.children.length = ' + ui.preAchivs.children.length );
+	for(var ii = ui.preAchivs.children.length; ii > 1; ii--)
 		{
-			var achivsProject = achivs.projects[j];
+			ui.preAchivs.remove(ui.preAchivs.children[ii-1]);
 			
-			counter += achivsProject.achievements.length;
-			
-			projects.push({
-				api_name: achivsProject.api_name,
-				display_name: achivsProject.display_name,
-				total_badge: achivsProject.total_badge
-			});
-			
-			for(var k = 0, K = achivsProject.achievements.length; k < K; k++)
+			if(ii-1 == 1)
 			{
-				var achivsProjectAchiv = achivsProject.achievements[k];
+				Ti.API.info('Удаление закончилось \n Идет построение ачивок.')
+				ii = 2;
 				
-				newAchivsSсhema.push({
-					categoryApiName: achivs.api_name,
-					categoryDisplayName: achivs.display_name,
-					projectsApiName: achivsProject.api_name,
-					projectsDisplayName: achivsProject.display_name,
-					color: achivsProject.color,
-					total_badges: achivsProject.total_badges,
-					achievApiName: achivsProjectAchiv.api_name,
-					create_time: achivsProjectAchiv.create_time,
-					achievDisplayName: achivsProjectAchiv.display_name,
-					achievBadgeName: achivsProjectAchiv.badge_name,
-					achievDesc: achivsProjectAchiv.desc,
-					achievDetails: achivsProjectAchiv.details,
-					achievAdv: achivsProjectAchiv.adv,
-					achievPic: achivsProjectAchiv.pic,
-					fb_id : achivsProjectAchiv.fb_id,
-					achievBonuses: achivsProjectAchiv.bonuses,
-				});
+				achievements = JSON.parse(data.responseText);
+				categories = [];
+				projects = [];
+				counter = 0;
+				
+				newAchivsSсhema = [];
+				
+				for(var i = 0, I = achievements.length; i < I ; i++)
+				{
+					var achivs = achievements[i];
+					
+					categories.push({
+						api_name: achivs.api_name,
+						display_name: achivs.display_name
+					});
+					
+					for(var j = 0, J = achivs.projects.length; j < J; j++)
+					{
+						var achivsProject = achivs.projects[j];
+						
+						counter += achivsProject.achievements.length;
+						
+						projects.push({
+							api_name: achivsProject.api_name,
+							display_name: achivsProject.display_name,
+							total_badge: achivsProject.total_badge
+						});
+						
+						for(var k = 0, K = achivsProject.achievements.length; k < K; k++)
+						{
+							var achivsProjectAchiv = achivsProject.achievements[k];
+							
+							newAchivsSсhema.push({
+								categoryApiName: achivs.api_name,
+								categoryDisplayName: achivs.display_name,
+								projectsApiName: achivsProject.api_name,
+								projectsDisplayName: achivsProject.display_name,
+								color: achivsProject.color,
+								total_badges: achivsProject.total_badges,
+								achievApiName: achivsProjectAchiv.api_name,
+								create_time: achivsProjectAchiv.create_time,
+								achievDisplayName: achivsProjectAchiv.display_name,
+								achievBadgeName: achivsProjectAchiv.badge_name,
+								achievDesc: achivsProjectAchiv.desc,
+								achievDetails: achivsProjectAchiv.details,
+								achievAdv: achivsProjectAchiv.adv,
+								achievPic: achivsProjectAchiv.pic,
+								fb_id : achivsProjectAchiv.fb_id,
+								achievBonuses: achivsProjectAchiv.bonuses,
+							});
+						}
+					}
+				}
+				
+				newAchivsSсhema.sort(
+					function(a, b)
+					{
+						var date1 = Date();
+						var date2 = Date();
+						
+						date1 = a.create_time;
+						date2 = b.create_time;
+						
+						if(date1 != date2)
+						{
+							if(date1 < date2)
+							{
+								return 1;
+							}
+							else
+							{
+								return -1;
+							}
+						}
+						return 0;
+					}
+				);
+				//Ti.API.info(newAchivsSсhema);
+				
+				
+				ui.counter.text = counter;
+				achievements = newAchivsSсhema;
+				
+				createListAchivs(window,"null");
 			}
 		}
-	}
-	
-	newAchivsSсhema.sort(
-		function(a, b)
-		{
-			var date1 = Date();
-			var date2 = Date();
-			
-			date1 = a.create_time;
-			date2 = b.create_time;
-			
-			if(date1 != date2)
-			{
-				if(date1 < date2)
-				{
-					return 1;
-				}
-				else
-				{
-					return -1;
-				}
-			}
-			return 0;
-		}
-	);
-	//Ti.API.info(newAchivsSсhema);
-	
-	
-	ui.counter.text = counter;
-	achievements = newAchivsSсhema;
-	
-	createListAchivs(window,"null");
 }
 function preViewBonus(type)
 {

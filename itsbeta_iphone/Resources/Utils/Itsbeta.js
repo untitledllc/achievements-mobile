@@ -7,7 +7,7 @@ var ITSBETA_ACCESS_TOKEN = "8e6b3a7b47c3346cb7e4db42c88519bc";
 function query(params, successCallback, failureCallback)
 {
 	timeOut();
-	Ti.API.info(params);
+	
 	TiTools.HTTP.response(
 		{
 			reguest: {
@@ -74,8 +74,6 @@ function getAchievementsByUid(uid, successCallback)
 function getAchievementsRefresh(uid, successCallback,time)
 {
 	var params = undefined;
-	Ti.API.info('--------');
-	Ti.API.info(time);
 	
 	params = {
 		player_id : TiTools.Global.get("playerId"),
