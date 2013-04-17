@@ -212,6 +212,7 @@ module.exports = [
 										outlet: "all",
 										style: {
 											className: "Ti.UI.Label",
+											top: 7,
 											left: 0,
 											color: "#fff",
 											font: {
@@ -256,6 +257,7 @@ module.exports = [
 										outlet: "bonus",
 										style: {
 											className: "Ti.UI.Label",
+											top: 7,
 											left: 0,
 											color: "#fff",
 											font: {
@@ -301,6 +303,7 @@ module.exports = [
 										outlet: "sub",
 										style: {
 											className: "Ti.UI.Label",
+											top: 7,
 											left: 0,
 											color: "#fff",
 											font: {
