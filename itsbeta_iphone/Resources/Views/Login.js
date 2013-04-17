@@ -54,6 +54,7 @@ module.exports = [
 								outlet: "infacebook",
 								style: {
 									className: "Ti.UI.View",
+									top: 70,
 									height: 46,
 									width: 248,
 									backgroundImage: "images/buttons/Facebook.Normal.png"
