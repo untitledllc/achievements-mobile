@@ -32,6 +32,7 @@ module.exports = {
 							style: {
 								className: "Ti.UI.View",
 								top: 10,
+								left: 3,
 								width: 90,
 								height: 90,
 								touchEnabled: false,
