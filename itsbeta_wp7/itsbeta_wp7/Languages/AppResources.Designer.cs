@@ -196,6 +196,15 @@ namespace itsbeta_wp7 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chat.
+        /// </summary>
+        public static string chat_title {
+            get {
+                return ResourceManager.GetString("chat_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Collect all your achievements.
         /// </summary>
         public static string collect_all_your_achieves {

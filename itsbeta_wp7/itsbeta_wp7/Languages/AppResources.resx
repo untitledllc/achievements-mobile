@@ -249,4 +249,7 @@
   <data name="ErrorCantActivate" xml:space="preserve">
     <value>Can't activate achieve!</value>
   </data>
+  <data name="chat_title" xml:space="preserve">
+    <value>Chat</value>
+  </data>
 </root>

@@ -136,7 +136,7 @@
                 </Grid>
 
                     <Button Style="{StaticResource ActivateButtonStyle}" 
-                                Content="Чат" Name="ChatButton" Click="ChatButton_Click"/>
+                                Content="Чат" Name="ChatButton" Click="ChatButton_Click" Height="86"/>
 
                     <telerikData:RadJumpList 
                 EmptyContentTemplate="{StaticResource NoDataListTemlate}"

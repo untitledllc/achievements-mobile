@@ -30,8 +30,26 @@ namespace itsbeta_wp7
          
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
-            base.OnNavigatedFrom(e);
             pubnub.Unsubscribe<string>(channel, PubnubCallbackResult, PubnubConnectCallbackResult, PubnubDisconnectCallbackResult);
+            base.OnNavigatedFrom(e);
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            this.MessagesList.ItemsSource = Messages;
+
+            pubnub = new Pubnub(PublishKey, SubscribeKey, secretKey, cipherKey, ssl);
+            pubnub.SessionUUID = ViewModelLocator.UserStatic.FacebookId;
+            pubnub.SubscribeTimeout = subscribeTimeoutInSeconds;
+            pubnub.NonSubscribeTimeout = operationTimeoutInSeconds;
+            pubnub.NetworkCheckMaxRetries = networkMaxRetries;
+            pubnub.NetworkCheckRetryInterval = networkRetryIntervalInSeconds;
+            pubnub.HeartbeatInterval = heartbeatIntervalInSeconds;
+            pubnub.EnableResumeOnReconnect = resumeOnReconnect;
+            pubnub.Subscribe<string>(channel, PubnubCallbackResult, PubnubConnectCallbackResult);
+            pubnub.DetailedHistory<string>(channel, 20, PubnubHistoryCallbackResult);
+
+            base.OnNavigatedTo(e);
         }
 
         private void PubnubDisconnectCallbackResult(string result)
@@ -50,7 +68,8 @@ namespace itsbeta_wp7
             { 
                 FacebookId = ViewModelLocator.UserStatic.FacebookId ,
                 Text = publishedMessage,
-                Name = ViewModelLocator.UserStatic.Name
+                Name = ViewModelLocator.UserStatic.Name,
+                MessageSendDate = DateTime.Now
             }, PubnubCallbackResult);
         }
 
@@ -96,18 +115,6 @@ namespace itsbeta_wp7
 
         private void PhoneApplicationPage_Loaded_1(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.MessagesList.ItemsSource = Messages;
-
-            pubnub = new Pubnub(PublishKey, SubscribeKey, secretKey, cipherKey, ssl);
-            pubnub.SessionUUID = ViewModelLocator.UserStatic.FacebookId;
-            pubnub.SubscribeTimeout = subscribeTimeoutInSeconds;
-            pubnub.NonSubscribeTimeout = operationTimeoutInSeconds;
-            pubnub.NetworkCheckMaxRetries = networkMaxRetries;
-            pubnub.NetworkCheckRetryInterval = networkRetryIntervalInSeconds;
-            pubnub.HeartbeatInterval = heartbeatIntervalInSeconds;
-            pubnub.EnableResumeOnReconnect = resumeOnReconnect;
-            pubnub.Subscribe<string>(ViewModelLocator.MainStatic.CurrentAchieve.Badge_name, PubnubCallbackResult, PubnubConnectCallbackResult);
-            pubnub.DetailedHistory<string>(channel, 20, PubnubHistoryCallbackResult);
         }
 
         private void PubnubHistoryCallbackResult(string result)
@@ -154,7 +161,9 @@ namespace itsbeta_wp7
                             vibrate.Start(TimeSpan.FromMilliseconds(100));
                         };
                     }
-                    catch { };                   
+                    catch(Exception ex) {
+                        //MessageBox.Show(ex.Message);
+                    };                   
                 }
                 );
         }
@@ -173,10 +182,7 @@ namespace itsbeta_wp7
 
         private void MessagesList_ItemTap(object sender, Telerik.Windows.Controls.ListBoxItemTapEventArgs e)
         {
-            Message item = (e.Item.Content as Message);
-            WebBrowserTask webTask = new WebBrowserTask();
-            webTask.Uri = new Uri("http://facebook.com/"+item.FacebookId.ToString());
-            webTask.Show();
+
         }
 
         private void TestOutput_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -184,6 +190,14 @@ namespace itsbeta_wp7
             if (e.Key==System.Windows.Input.Key.Enter) {
                 SendMessage();
             };
+        }
+
+        private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Message item = (this.MessagesList.SelectedItem as Message);
+            WebBrowserTask webTask = new WebBrowserTask();
+            webTask.Uri = new Uri("http://facebook.com/" + item.FacebookId.ToString());
+            webTask.Show();
         }
 
     }
@@ -206,6 +220,20 @@ namespace itsbeta_wp7
                 _text = value;
             }
         }
+
+        private DateTime _messageSendDate = DateTime.Now;
+        public DateTime MessageSendDate
+        {
+            get
+            {
+                return _messageSendDate;
+            }
+            set
+            {
+                _messageSendDate = value;
+            }
+        }
+
 
         private string _facebookId = "";
         public string FacebookId
@@ -238,6 +266,33 @@ namespace itsbeta_wp7
             get
             {
                 return this.Name+": "+this.Text;
+            }
+            private set
+            {
+            }
+        }
+
+        public string NameForList
+        {
+            get
+            {
+                return "[" + MessageSendDate.ToString("d.m HH:mm") + "] " + this.Name + ":";
+            }
+            private set
+            {
+            }
+        }
+
+        public string TextColor
+        {
+            get
+            {
+                string color = "#FF000000";
+                if (FacebookId == ViewModelLocator.UserStatic.FacebookId)
+                {
+                    color = "#FF569db7";
+                };
+                return color;
             }
             private set
             {

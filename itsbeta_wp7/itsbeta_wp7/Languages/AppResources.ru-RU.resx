@@ -246,4 +246,7 @@
   <data name="ErrorCantActivate" xml:space="preserve">
     <value>Не удалось активировать достижение!</value>
   </data>
+  <data name="chat_title" xml:space="preserve">
+    <value>Чат</value>
+  </data>
 </root>

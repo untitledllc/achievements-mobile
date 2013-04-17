@@ -189,6 +189,11 @@
               Looks up a localized string similar to categories.
             </summary>
         </member>
+        <member name="P:itsbeta_wp7.AppResources.chat_title">
+            <summary>
+              Looks up a localized string similar to Chat.
+            </summary>
+        </member>
         <member name="P:itsbeta_wp7.AppResources.collect_all_your_achieves">
             <summary>
               Looks up a localized string similar to Collect all your achievements.
