@@ -95,7 +95,7 @@ module.exports = [
 			{
 				style : {
 					className: "Ti.UI.View",
-					top: 30,
+					top: 15,
 					height: 300,
 					width: "90%",
 					layout: "vertical",
