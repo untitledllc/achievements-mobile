@@ -607,24 +607,23 @@ function createListName(window,category)
 					
 					placeListHeight += 50;
 					
-					if(selectProject == achievements[i].projectsApiName)
+					if(selectProject == achievements[i].projectsApiName) 
 					{
-						ui.placeList.lastRow = row.rowAchivs;
-						row.rowAchivs.backgroundImage = null;
-						row.rowAchivs.backgroundColor = "#7ed6f9";
+						ui.placeList.lastRow = row.rowTextAchivs;
+						row.rowTextAchivs.color = "#7ed6f9";
 					}
 					row.rowTextAchivs.text = achievements[i].projectsDisplayName;
 					row.rowAchivs.api_name = achievements[i].projectsApiName;
 					row.rowAchivs.display_name = achievements[i].projectsDisplayName;
+					row.rowAchivs.rowTextAchivs = row.rowTextAchivs;
 					
 					row.rowAchivs.addEventListener("singletap",function(event)
 					{
 						if(ui.placeList.lastRow != undefined)
 						{
-							ui.placeList.lastRow.backgroundImage = TiTools.Filesystem.preprocessPath("%ResourcesPath%images/navbar/Selects.Bg.png");
+							ui.placeList.lastRow.color = "#646464";
 						}
-						event.source.backgroundImage = null;
-						event.source.backgroundColor = "#7ed6f9";
+						event.source.rowTextAchivs.color = "#7ed6f9";
 						
 						subCategoryClick = false;
 						
@@ -901,23 +900,22 @@ function createListRow(category,massRow)
 	
 	if(selectCategory == category.api_name)
 	{
-		ui.placeList.lastRow = row.rowAchivs;
-		row.rowAchivs.backgroundImage = null;
-		row.rowAchivs.backgroundColor = "#7ed6f9";
+		ui.placeList.lastRow = row.rowTextAchivs;
+		row.rowTextAchivs.color = "#7ed6f9";
 	}
 	
 	row.rowTextAchivs.text = category.display_name;
 	row.rowAchivs.api_name = category.api_name;
 	row.rowAchivs.display_name = category.display_name;
+	row.rowAchivs.rowTextAchivs = row.rowTextAchivs;
 						
 	row.rowAchivs.addEventListener("singletap",function(event)
 	{
 		if(ui.placeList.lastRow != undefined)
 		{
-			ui.placeList.lastRow.backgroundImage = TiTools.Filesystem.preprocessPath("%ResourcesPath%images/navbar/Selects.Bg.png");
+			ui.placeList.lastRow.color = "#646464";
 		}
-		event.source.backgroundImage = null;
-		event.source.backgroundColor = "#7ed6f9";
+		event.source.rowTextAchivs.color = "#7ed6f9";
 		
 		ui.typeProjectClick.backgroundImage = null;
 		
