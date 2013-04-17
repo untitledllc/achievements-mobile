@@ -33,6 +33,7 @@
 			<string name="label_no">Нет</string>
 		<!-- add -->
 			<string name="label_add">ДОБАВИТЬ</string>
+					<string name="label_add_code_hint">Введите код</string>
 	 <!-- others -->
 		<string name="error">Ошибка</string>
 </resources>

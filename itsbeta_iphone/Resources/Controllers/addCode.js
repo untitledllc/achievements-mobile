@@ -65,6 +65,9 @@ function actIndicator(param)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
+	ui.code.hintText = L("label_add_code_hint");
+	ui.code.focus();
+	
 	Ti.App.addEventListener("actHide",function(event)
 	{
 		actIndicator(false);

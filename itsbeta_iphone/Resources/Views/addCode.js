@@ -145,7 +145,7 @@ module.exports = [
 				style : {
 					className: "Ti.UI.View",
 					top: 15,
-					height: 300,
+					height: 150,
 					width: "90%",
 					layout: "vertical",
 					backgroundImage: "images/bg/Panel.png",

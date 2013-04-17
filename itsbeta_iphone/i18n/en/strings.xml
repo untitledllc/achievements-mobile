@@ -33,7 +33,7 @@
 			<string name="label_no">No</string>
 		<!-- add -->
 			<string name="label_add">ADD</string>
-			
+								<string name="label_add_code_hint">Еnter the code</string>
 	<!-- others -->
 		<string name="error">Error</string>
 </resources>
