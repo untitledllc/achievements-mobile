@@ -789,7 +789,7 @@ function reSaveAchivs(data)
 				);
 				//Ti.API.info(newAchivsSсhema);
 				
-				
+				oldTime = newAchivsSсhema[0].create_time;
 				ui.counter.text = counter;
 				achievements = newAchivsSсhema;
 				
