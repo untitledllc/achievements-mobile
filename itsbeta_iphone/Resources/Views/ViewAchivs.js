@@ -6,7 +6,8 @@ module.exports = {
 	style : {
 		className : "Ti.UI.View",
 		height: Ti.UI.SIZE,
-		layout: "vertical"
+		layout: "vertical",
+		backgroundColor: "#f7f7f7"
 	},
 	subviews: [
 		{

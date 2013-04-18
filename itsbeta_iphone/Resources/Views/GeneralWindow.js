@@ -8,7 +8,7 @@ module.exports = [
 			top: 0,
 			height: Ti.UI.SIZE,
 			width: Ti.UI.FILL,
-			backgroundColor: "white"
+			backgroundColor: "#ededed"
 		},
 		subviews:
 		[
@@ -262,6 +262,7 @@ module.exports = [
 					top: 6,
 					height: Ti.UI.FILL,
 					width: Ti.UI.FILL,
+					backgroundColor: "#ededed",
 					zIndex: 5
 				}
 			}
