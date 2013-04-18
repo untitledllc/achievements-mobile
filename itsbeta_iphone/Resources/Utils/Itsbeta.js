@@ -24,11 +24,22 @@ function query(params, successCallback, failureCallback)
 			success: function(success)
 			{ 
 				clearTimeout(time);
+				Ti.API.info('finish_query')
 				successCallback(success);
 			},
 			failure: function(failure)
 			{ 
+				Ti.API.info('finish_query_failed');
+				
 				clearTimeout(time);
+				
+				Ti.UI.createAlertDialog({
+						message: "Ошибка!",
+						title: "Информация"
+					}).show();
+					
+				Ti.App.fireEvent("actHide");
+					
 				failureCallback(success);
 			}
 		}
@@ -74,7 +85,7 @@ function getAchievementsByUid(uid, successCallback)
 function getAchievementsRefresh(uid, successCallback,time)
 {
 	var params = undefined;
-	
+	Ti.API.info('getAchievementsRefresh')
 	params = {
 		player_id : TiTools.Global.get("playerId"),
 		access_token : ITSBETA_ACCESS_TOKEN,
@@ -196,17 +207,12 @@ function postActiv(data)//Активация по qr-коду активации
 				
 				if(temp.error == undefined)
 				{
-					// Ti.UI.createAlertDialog({
-						// message: "Выполнено!",
-						// title: "Информация"
-					// }).show();
-					
 					Ti.App.fireEvent("reload",{data : temp});
 					
 					Ti.App.fireEvent("CloseAdd");
 				}
 				else
-				{
+				{c
 					Ti.UI.createAlertDialog({
 						message: "Ошибка!",
 						title: "Информация"
@@ -217,26 +223,7 @@ function postActiv(data)//Активация по qr-коду активации
 			},
 			failure: function(failure)
 			{
-				clearTimeout(time);
 				
-				var temp = JSON.parse(success.responseText);
-				
-				if(temp.error == undefined)
-				{
-					Ti.UI.createAlertDialog({
-						message: "Ошибка!",
-						title: "Информация"
-					}).show();
-				}
-				else
-				{
-					Ti.UI.createAlertDialog({
-						message: "Ошибка!",
-						title: "Информация"
-					}).show();
-				}
-				
-				Ti.App.fireEvent("actHide");
 			}
 		}
 	);
@@ -290,26 +277,7 @@ function postActivCode(tempCode)//Активация по коду актива�
 			},
 			failure: function(failure)
 			{
-				clearTimeout(time);
 				
-				var temp = JSON.parse(success.responseText);
-				
-				if(temp.error == undefined)
-				{
-					Ti.UI.createAlertDialog({
-						message: "Ошибка!",
-						title: "Информация"
-					}).show();
-				}
-				else
-				{
-					Ti.UI.createAlertDialog({
-						message: "Ошибка!",
-						title: "Информация"
-					}).show();
-				}
-				
-				Ti.App.fireEvent("actHide");
 			}
 		}
 	);

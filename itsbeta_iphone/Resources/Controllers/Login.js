@@ -77,52 +77,62 @@ function onInitController(window, params)
 						var fbuid = Titanium.Facebook.uid; 
 						accessToken = Titanium.Facebook.accessToken;
 						var myQuery = "SELECT name, birthday_date,current_location FROM user WHERE uid = "+fbuid;
-					
-						Titanium.Facebook.request('fql.query', {query: myQuery},  function(x)
+						
+						try
 						{
-							try
+							Titanium.Facebook.request('fql.query', {query: myQuery},  function(x)
 							{
-								var results = JSON.parse(x.result);
-								var profile = results[0];
-								
-								info = {
-									fbuid: fbuid,
-									accessToken: accessToken
-								};
+								Ti.API.info("error " + x.error);
+								Ti.API.info("success " + x.success);
+								try
+								{
+									var results = JSON.parse(x.result);
+									var profile = results[0];
 									
-								info.name     = (profile.name) ? profile.name : null;	
-								info.birthday = (profile.birthday_date) ? profile.birthday_date : null;	
-								if(profile.current_location != undefined) {
-									info.city    = (profile.current_location.city) ? profile.current_location.city : null;	
-									info.country = (profile.current_location.country) ? profile.current_location.country : null;
+									info = {
+										fbuid: fbuid,
+										accessToken: accessToken
+									};
+										
+									info.name     = (profile.name) ? profile.name : null;	
+									info.birthday = (profile.birthday_date) ? profile.birthday_date : null;	
+									if(profile.current_location != undefined) {
+										info.city    = (profile.current_location.city) ? profile.current_location.city : null;	
+										info.country = (profile.current_location.country) ? profile.current_location.country : null;
+									}
+									
+									TiTools.Global.set("info", info);
+								}
+								catch(e)
+								{
+									info = {
+										fbuid: fbuid,
+										accessToken: accessToken,
+										name: "",
+										birthday: "",
+										city: "",
+										country: ""
+									};
+									TiTools.Global.set("info", info);
 								}
 								
-								TiTools.Global.set("info", info);
-							}
-							catch(e)
-							{
-								info = {
-									fbuid: fbuid,
-									accessToken: accessToken,
-									name: "",
-									birthday: "",
-									city: "",
-									country: ""
-								};
-								TiTools.Global.set("info", info);
-							}
-							
-							// get achievements by user id
-							itsbeta.firstStart(info);
-							
-							var first = function()
-							{
-								Ti.App.removeEventListener("complite",first);
+								// get achievements by user id
+								itsbeta.firstStart(info);
 								
-								itsbeta.getAchievementsByUid(fbuid, saveAchivs);
-							}
-							Ti.App.addEventListener("complite",first);
-						});
+								var first = function()
+								{
+									Ti.App.removeEventListener("complite",first);
+									
+									itsbeta.getAchievementsByUid(fbuid, saveAchivs);
+								}
+								Ti.App.addEventListener("complite",first);
+							});
+						}
+						catch(e)
+						{
+							Ti.API.info('fb catch   -------');
+							Ti.API.info(e);
+						}
 					};
 					
 					if(!Titanium.Facebook.loggedIn)
