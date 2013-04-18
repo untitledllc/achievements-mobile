@@ -280,6 +280,8 @@ function onWindowOpen(window, event)
 	});
 	
 	Ti.App.addEventListener("logout",function(event){
+		Ti.App.removeEventListener("reload",reload);
+		Ti.App.removeEventListener("pull",pull);
 		window.close();
 	});
 	
@@ -300,24 +302,25 @@ function onWindowOpen(window, event)
 		win.open();	
 	}
 	
-	Ti.App.addEventListener("reload",function(event){
-		// ---- delete ----
-		
+	var reload = function(event)
+	{
 		ui.preAchivs.hide();
 		actIndicator(true);
 		tempNewAchivs = event.data;
 		
-		// get achievements by user id
-		
 		itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
-		
-	});
+	}
 	
-	Ti.App.addEventListener("pull",function(event){
-		
+	Ti.App.addEventListener("reload",reload);
+	
+	
+	
+	var pull = function(event)
+	{
 		itsbeta.getAchievementsRefresh(info.fbuid, insertPull ,oldTime);
-		
-	});
+	}
+	
+	Ti.App.addEventListener("pull",pull);
 	
 	createListAchivs(window,"null");
 }
@@ -466,27 +469,13 @@ function insertPull(data)
 	Ti.API.info( "insertPull");
 	var tempAchievements = JSON.parse(data.responseText)
 	var tempNewAchivs = [];
-	
 	for(var i = 0, I = tempAchievements.length; i < I ; i++)
 	{
 		var achivs = tempAchievements[i];
 		
-		categories.push({
-			api_name: achivs.api_name,
-			display_name: achivs.display_name
-		});
-		
 		for(var j = 0, J = achivs.projects.length; j < J; j++)
 		{
 			var achivsProject = achivs.projects[j];
-			
-			counter += achivsProject.achievements.length;
-			
-			projects.push({
-				api_name: achivsProject.api_name,
-				display_name: achivsProject.display_name,
-				total_badge: achivsProject.total_badge
-			});
 			
 			for(var k = 0, K = achivsProject.achievements.length; k < K; k++)
 			{
