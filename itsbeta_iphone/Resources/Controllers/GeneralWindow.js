@@ -313,47 +313,52 @@ function onWindowOpen(window, event)
 		tempNewAchivs = event.data;
 		Ti.API.info(event.data);
 		// поиск категории из нашего списка, если есть то пропускаем, иначе добавляем
-		// if(searchApiName(projects,event.data.project.api_name) == 0)
-		// {
-			// Ti.API.info('project ---')
-			// projects.push({
-				// api_name: event.data.project.api_name,
-				// display_name: event.data.project.display_name,
-				// total_badge: event.data.total_badge
-			// });
-// 			
-			// if(searchApiName(categories,event.data.category.api_name) == 0)
-			// {
-				// Ti.API.info('categori ---')
-				// categories.push({
-					// api_name: event.data.category.api_name,
-					// display_name: event.data.category.display_name
-				// });
-			// }
-		// }
-		// var achievement = {
-			// categoryApiName: event.data.category.api_name,
-			// categoryDisplayName: event.data.category.display_name,
-			// projectsApiName: event.data.project.api_name,
-			// projectsDisplayName: event.data.project.display_name,
-			// color: event.data.project.color,
-			// total_badges: event.data.total_badges,
-			// achievApiName: event.data.api_name,
-			// create_time: event.data.create_time,
-			// achievDisplayName: event.data.display_name,
-			// achievBadgeName: event.data.api_name,
-			// achievDesc: event.data.desc,
-			// achievDetails: event.data.details,
-			// achievAdv: event.data.adv,
-			// achievPic: event.data.pic,
-			// fb_id : event.data.fb_id,
-			// achievBonuses: event.data.bonuses,
-		// };
-// 		
-		// achievements.unshift(achievement);
-// 		
-		// tableData.unshift(createTableViewRow(achievement));
-// 		
+		if(searchApiName(projects,event.data.project.api_name) == 0)
+		{
+			Ti.API.info('project ---')
+			projects.push({
+				api_name: event.data.project.api_name,
+				display_name: event.data.project.display_name,
+				total_badge: event.data.total_badge
+			});
+			
+			if(searchApiName(categories,event.data.category.api_name) == 0)
+			{
+				Ti.API.info('categori ---')
+				categories.push({
+					api_name: event.data.category.api_name,
+					display_name: event.data.category.display_name
+				});
+			}
+		}
+		
+		var achievement = {
+			categoryApiName: event.data.category.api_name,
+			categoryDisplayName: event.data.category.display_name,
+			projectsApiName: event.data.project.api_name,
+			projectsDisplayName: event.data.project.display_name,
+			color: event.data.project.color,
+			total_badges: event.data.total_badges,
+			achievApiName: event.data.api_name,
+			create_time: event.data.create_time,
+			achievDisplayName: event.data.display_name,
+			achievBadgeName: event.data.api_name,
+			achievDesc: event.data.desc,
+			achievDetails: event.data.details,
+			achievAdv: event.data.adv,
+			achievPic: event.data.pic,
+			fb_id : event.data.fb_id,
+			achievBonuses: event.data.bonuses,
+		};
+		
+		achievements.unshift(achievement);
+		var row = createTableViewRow(achievement)
+		
+		table.insertRowBefore(0,row);
+		
+		tableData.unshift(row);
+		
+		
 		if(tempNewAchivs != undefined)
 		{
 			Ti.API.info('!!!sleeeeeeeeep!!')
