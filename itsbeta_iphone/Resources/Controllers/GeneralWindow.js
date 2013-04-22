@@ -47,6 +47,8 @@ function onInitController(window, params)
 {
 	TiTools = require("TiTools/TiTools");
 	
+	tableData = [];
+	
 	achievements = window.achievements;
 	categories = window.categories;
 	projects = window.projects;
