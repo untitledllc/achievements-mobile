@@ -257,12 +257,13 @@ module.exports = [
 			{
 				outlet: "preAchivs",
 				style : {
-					className: "Ti.UI.ScrollView",
+					className: "Ti.UI.TableView",
 					layout: "vertical",
-					top: 6,
+					top: 90,
 					height: Ti.UI.FILL,
 					width: Ti.UI.FILL,
 					backgroundColor: "#ededed",
+					visible: false,
 					zIndex: 5
 				}
 			}

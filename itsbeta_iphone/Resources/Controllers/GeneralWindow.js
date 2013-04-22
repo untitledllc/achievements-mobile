@@ -23,6 +23,9 @@ var newAchivsSсhema = [];
 var placeListHeight = 0;
 var emptyBlock;
 
+var table = undefined;
+var tableData = [];
+
 var lastAchivs = [];
 var singlTap = false;
 //---------------------------------------------//
@@ -199,71 +202,71 @@ function onInitController(window, params)
 		}
 	);
 	
-	// ----- PULL TO REFRESH ----- //
+	// // ----- PULL TO REFRESH ----- //
+// 	
+	// var achivsWrapper = ui.preAchivs,
+		// pullToRefresh = TiTools.UI.Loader.load('Views/PullToRefresh.js'),
+		// pulling       = false,
+		// reloading     = false,
+		// offset        = 0;
+// 		
+	// achivsWrapper.add(pullToRefresh.me);
+	// pullToRefresh.hypno.start(); 
+// 		
+	// // event handlers
+	// achivsWrapper.addEventListener('scroll', function(e) {
+		// offset = e.y;
+		// if(offset < -80.0 && !pulling && !reloading) {
+			// pulling = true;
+			// pullToRefresh.status.text = L("label_release_to_refresh");
+		// }
+		// else if((offset > -80.0 && offset < 0) && pulling && !reloading) {
+			// pulling = false;
+			// pullToRefresh.status.text = L("label_pull_to_refresh");
+		// }
+	// });
+// 	
+	// achivsWrapper.addEventListener('dragEnd', function() {	
+		// if(pulling && !reloading) {
+			// achivsWrapper.top = Math.abs(offset)+6;
+			// achivsWrapper.animate({
+					// top: 86,
+					// duration: 200
+				// }, 
+				// function() {
+			  		// achivsWrapper.top = 86;
+				// }
+			// );
+			// reloading = true;
+			// pulling = false;
+			// //pullToRefresh.status.text = "Refreshing";
+			// pullToRefresh.status.hide();
+			// pullToRefresh.refreshing.show();
+			// beginReloading();
+		// }
+	// });
+// 	
+	// //---------------------------------------------//
 	
-	var achivsWrapper = ui.preAchivs,
-		pullToRefresh = TiTools.UI.Loader.load('Views/PullToRefresh.js'),
-		pulling       = false,
-		reloading     = false,
-		offset        = 0;
-		
-	achivsWrapper.add(pullToRefresh.me);
-	pullToRefresh.hypno.start(); 
-		
-	// event handlers
-	achivsWrapper.addEventListener('scroll', function(e) {
-		offset = e.y;
-		if(offset < -80.0 && !pulling && !reloading) {
-			pulling = true;
-			pullToRefresh.status.text = L("label_release_to_refresh");
-		}
-		else if((offset > -80.0 && offset < 0) && pulling && !reloading) {
-			pulling = false;
-			pullToRefresh.status.text = L("label_pull_to_refresh");
-		}
-	});
-	
-	achivsWrapper.addEventListener('dragEnd', function() {	
-		if(pulling && !reloading) {
-			achivsWrapper.top = Math.abs(offset)+6;
-			achivsWrapper.animate({
-					top: 86,
-					duration: 200
-				}, 
-				function() {
-			  		achivsWrapper.top = 86;
-				}
-			);
-			reloading = true;
-			pulling = false;
-			//pullToRefresh.status.text = "Refreshing";
-			pullToRefresh.status.hide();
-			pullToRefresh.refreshing.show();
-			beginReloading();
-		}
-	});
-	
-	//---------------------------------------------//
-	
-	function beginReloading() {			
-		setTimeout(endReloading, 5000);
-		Ti.App.fireEvent("pull");
-	}
-	
-	function endReloading() {			
-		achivsWrapper.animate({
-				top: 6
-			}, 
-			function() {
-				achivsWrapper.top = 6;
-			}
-		);
-		
-		reloading = false;
-		pullToRefresh.status.text = L("label_pull_to_refresh");
-		pullToRefresh.refreshing.hide();
-		pullToRefresh.status.show();
-	}
+	// function beginReloading() {			
+		// setTimeout(endReloading, 5000);
+		// Ti.App.fireEvent("pull");
+	// }
+// 	
+	// function endReloading() {			
+		// achivsWrapper.animate({
+				// top: 6
+			// }, 
+			// function() {
+				// achivsWrapper.top = 6;
+			// }
+		// );
+// 		
+		// reloading = false;
+		// pullToRefresh.status.text = L("label_pull_to_refresh");
+		// pullToRefresh.refreshing.hide();
+		// pullToRefresh.status.show();
+	// }
 	
 	// ----- END PULL TO REFRESH ----- //
 }
@@ -333,6 +336,43 @@ function createListAchivs(window,categiry)
 	ui.nameProject.text = L("label_subcategories");
 	ui.typeProject.text = L("label_categories");
 	
+	table = Ti.UI.createTableView({
+		backgroundColor: "#f7f7f7",
+		separatorStyle: Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
+	});
+	ui.preAchivs.add(table);
+	
+	table.addEventListener("singletap",function(event)
+	{
+		Ti.API.info(event);
+		if(event.index != undefined)
+		{
+			if(singlTap == false)
+			{
+				singlTap = true;
+				
+				var sourceData = event.source.data;
+				var win = TiTools.UI.Controls.createWindow({
+					main: "Controllers/preViewAchivs.js",
+					navBarHidden: true,
+					nameAchivs: sourceData.nameAchivs,
+					desc: sourceData.desc,
+					details: sourceData.details,
+					adv: sourceData.adv,
+					image: sourceData.image,
+					bonus: sourceData.bonus
+				});
+				
+				win.addEventListener("close",function() {
+					singlTap = false;
+				});
+				
+				win.initialize();
+				win.open();	
+			}
+		}
+	});
+	
 	for(var i = 0, K = achievements.length; i < K; i++)
 	{
 		if(achievements[i].projectsApiName == categiry || categiry == "null" || achievements[i].categoryApiName == categiry)
@@ -346,7 +386,18 @@ function createListAchivs(window,categiry)
 			});
 			// ---------------------------------------------//
 			
-			var row = TiTools.UI.Loader.load("Views/ViewAchivs.js", ui.preAchivs);
+			
+			var rowTemp = Ti.UI.createTableViewRow({
+				className: 'row',
+				objName: 'row',
+				touchEnabled: true,
+				height: Ti.UI.SIZE,
+				achievement : achievement
+			});
+			
+			var row = TiTools.UI.Loader.load("Views/ViewAchivs.js",rowTemp);
+			
+			tableData.push(rowTemp);
 			
 			row.date.text = TiTools.DateTime.format(new Date(achievement.create_time), "$dd.$mm.$yyyy");
 			row.api_name = achievement.achievApiName,
@@ -371,38 +422,16 @@ function createListAchivs(window,categiry)
 				desc: achievement.achievDesc,
 				details: achievement.achievDetails,
 				adv: achievement.achievAdv,
-				bonus: achievement.achievBonuses
+				bonus: achievement.achievBonuses,
+				row : rowTemp
 			}
 			
-			row.viewAchivs.addEventListener("singletap",function(event)
-			{
-				if(singlTap == false)
-				{
-					singlTap = true;
-					
-					var sourceData = event.source.data;
-					var win = TiTools.UI.Controls.createWindow({
-						main: "Controllers/preViewAchivs.js",
-						navBarHidden: true,
-						nameAchivs: sourceData.nameAchivs,
-						desc: sourceData.desc,
-						details: sourceData.details,
-						adv: sourceData.adv,
-						image: sourceData.image,
-						bonus: sourceData.bonus
-					});
-					
-					win.addEventListener("close",function() {
-						singlTap = false;
-					});
-					
-					win.initialize();
-					win.open();	
-				}
-			});
+			
 		}
 		if(i+1 == achievements.length)
 		{
+			table.data = tableData;
+			
 			Ti.API.info('Закончили построение ачивок \n открывается окно полученой ачивки');
 			ui.preAchivs.show();
 			actIndicator(false);
@@ -432,7 +461,6 @@ function createListAchivs(window,categiry)
 	emptyBlock = TiTools.UI.Controls.createView({
 		height: 0
 	});
-	ui.preAchivs.add(emptyBlock);
 	
 	updateEmptyBlockHeight();
 	
@@ -508,13 +536,6 @@ function insertPull(data)
 				Ti.API.info('есть новые ачивки');
 				ui.preAchivs.hide();
 				actIndicator(true);
-				
-				// for(var i = ui.preAchivs.children.length; i > 1; i--)
-				// {
-					// ui.preAchivs.remove(ui.preAchivs.children[i-1]);
-				// }
-// 				
-				// tempAchivs 	= [];
 				
 				itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
 			}
@@ -960,65 +981,43 @@ function undefClick()
 }
 function hideAchivs()
 {
-	ui.preAchivs.hide();
+	var tempTableData = tableData;
+	var newData = [];
 	
 	if(selectProject == "last")
 	{
-		for(var i = 0, I = tempAchivs.length; i < I; i++)
+		for(var i = 0, I = tempTableData.length; i < I && i < 10; i++)
 		{
-			tempAchivs[i].viewAchivs.height = 0;
-		}
-		for(var j = 0, J = lastAchivs.length; j < J && j < 10; j++)
-		{
-			for(var i = 0, I = tempAchivs.length; i < I;  i++)
-			{
-				if(tempAchivs[i].api_name == lastAchivs[j].api_name)
-				{
-					tempAchivs[i].viewAchivs.height = Ti.UI.SIZE;
-				}
-			}
+			newData.push(tempTableData[i]);
 			
-			if(j+1 == tempAchivs.length || j+1 == 10)
+			if(i+1 == I || i + 1 == 10)
 			{
-				ui.preAchivs.updateLayout({contentHeight: Ti.UI.SIZE});
-				ui.preAchivs.show();
+				table.data = newData;
+				table.scrollToIndex(0);
 				actIndicator(false);
 			}
 		}
 	}
 	else
 	{
-		var heigthScroll = 0;
-		
-		for(var i = 0, I = tempAchivs.length; i < I; i++)
+		for(var i = 0, I = tempTableData.length; i < I; i++)
 		{
-			if(tempAchivs[i].category == selectCategory || selectCategory == "null")
+			if(tempTableData[i].achievement.categoryApiName == selectCategory || selectCategory == "null")
 			{
-				if(tempAchivs[i].project == selectProject || selectProject == "null")
+				if(tempTableData[i].achievement.projectsApiName == selectProject || selectProject == "null")
 				{
-					tempAchivs[i].viewAchivs.height = Ti.UI.SIZE;
-					heigthScroll++;
-				}
-				else
-				{
-					tempAchivs[i].viewAchivs.height = 0;
+					newData.push(tempTableData[i]);
 				}
 			}
-			else
+			if(i+1 == I)
 			{
-				tempAchivs[i].viewAchivs.height = 0;
-			}
-			if(i+1 == tempAchivs.length)
-			{
-				heigthScroll++;
-				ui.preAchivs.updateLayout({contentHeight: Ti.UI.SIZE});
-				
-				ui.preAchivs.show();
+				table.data = newData;
+				table.scrollToIndex(0);
 				actIndicator(false);
 			}
 		}
 	}
-	updateEmptyBlockHeight();
+	
 }
 ///--- 10 последних ачивок --- ///
 function lastAchivsFunction(massRow)
