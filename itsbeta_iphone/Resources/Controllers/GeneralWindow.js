@@ -392,6 +392,7 @@ function createListAchivs(window,categiry)
 				objName: 'row',
 				touchEnabled: true,
 				height: Ti.UI.SIZE,
+				selectedBackgroundColor: "transparent",
 				achievement : achievement
 			});
 			
