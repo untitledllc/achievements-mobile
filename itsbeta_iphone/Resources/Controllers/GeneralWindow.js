@@ -1,7 +1,6 @@
 /**
  * @author Gom_Dzhabbar
  */
-
 var TiTools = undefined;
 var ui = undefined;
 var tempAchivs = [];
@@ -315,9 +314,6 @@ function onWindowOpen(window, event)
 	}
 	
 	Ti.App.addEventListener("reload",reload);
-	
-	
-	
 	var pull = function(event)
 	{
 		itsbeta.getAchievementsRefresh(info.fbuid, insertPull ,oldTime);
@@ -344,7 +340,6 @@ function createListAchivs(window,categiry)
 	
 	table.addEventListener("singletap",function(event)
 	{
-		Ti.API.info(event);
 		if(event.index != undefined)
 		{
 			if(singlTap == false)
@@ -463,7 +458,6 @@ function createListAchivs(window,categiry)
 		height: 0
 	});
 	
-	updateEmptyBlockHeight();
 	
 	///---------сортируем по дате -----////
 	lastAchivs.sort(
@@ -798,7 +792,6 @@ function reSaveAchivs(data)
 						return 0;
 					}
 				);
-				//Ti.API.info(newAchivsSсhema);
 				
 				oldTime = newAchivsSсhema[0].create_time;
 				ui.counter.text = counter;
@@ -848,31 +841,7 @@ function preViewBonus(type)
 	
 	return bonus;
 }
-// update empty block height	
-function updateEmptyBlockHeight()
-{
-	var totalBlocksHeight = 0;
-		badges 			  = ui.preAchivs.children;
-	
-	for(var i=0, len=badges.length; i<len-1; i++) {
-		var badge = badges[i];
-		if(badge.height !== 0) {
-			totalBlocksHeight += badge.toImage().height;
-		}
-	}
-	
-	var emptyBlockHeight = Ti.Platform.displayCaps.platformHeight - totalBlocksHeight - 20;
-	
-	if(emptyBlockHeight > 0) {
-		emptyBlock.updateLayout({
-			height: emptyBlockHeight
-		});
-	} else {
-		emptyBlock.updateLayout({
-			height: 0
-		});
-	}	
-}
+
 function actIndicator(param)
 {
 	if(param == true)
