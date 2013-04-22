@@ -3,6 +3,7 @@
  */
 module.exports = [
 	{
+		outlet:"qwerty",
 		style : {
 			className: "Ti.UI.View",
 			top: 0,

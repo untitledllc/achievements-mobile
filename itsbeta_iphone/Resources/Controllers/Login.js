@@ -203,28 +203,6 @@ function saveAchivs(data)
 	
 	//---- собираем список категорий и список проектов -----//
 	
-	// for(var i = 0; i < achievements.length; i++)
-	// {
-		// var achievement = achievements[i];
-// 		
-		// categories.push({
-			// api_name: achievement.api_name,
-			// display_name: achievement.display_name
-		// });
-// 		
-		// for(var j = 0; j < achievement.projects.length; j++)
-		// {
-			// var project = achievement.projects[j];
-			// counter += project.achievements.length;
-// 			
-			// projects.push({
-				// api_name: project.api_name,
-				// display_name: project.display_name,
-				// total_badge: project.total_badge
-			// });
-		// }
-	// }
-	
 	///------------------ новая схема хранения ачивок ------///
 		
 	var newAchivsSсhema = [];
@@ -300,10 +278,6 @@ function saveAchivs(data)
 					return 0;
 				}
 			);
-			
-			//Ti.API.info(newAchivsSсhema);
-			
-			//-----------------------------------------------------////
 			
 			//------------------------------------------------------//
 			

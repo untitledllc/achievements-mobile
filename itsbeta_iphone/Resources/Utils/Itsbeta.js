@@ -207,9 +207,10 @@ function postActiv(data)//Активация по qr-коду активации
 				
 				if(temp.error == undefined)
 				{
+					Ti.App.fireEvent("CloseAdd");
+					
 					Ti.App.fireEvent("reload",{data : temp});
 					
-					Ti.App.fireEvent("CloseAdd");
 				}
 				else
 				{c
@@ -257,13 +258,13 @@ function postActivCode(tempCode)//Активация по коду актива�
 			{
 				clearTimeout(time);
 				Ti.API.info('ok');
-				Ti.API.info(success.responseText);
+				//Ti.API.info(success.responseText);
 				
 				var temp = JSON.parse(success.responseText);
 				if(temp.error == undefined)
 				{
-					Ti.App.fireEvent("reload",{data : temp});
 					Ti.App.fireEvent("CloseAdd");
+					Ti.App.fireEvent("reload",{data : temp});
 				}
 				else
 				{
