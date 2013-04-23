@@ -305,10 +305,6 @@ function onWindowOpen(window, event)
 	
 	table.headerPullView = rowPull;
 	
-	table.addEventListener("scroll",function(event){
-		Ti.API.info(event.contentOffset.y);
-	});
-	
 	var pulling = false;
 	var reloading = false;
 	var offset = 0;
@@ -342,10 +338,10 @@ function onWindowOpen(window, event)
 		{
 			reloading = true;
 			pulling = false;
+			pullToRefresh.status.hide();
 			table.setContentInsets({top:65},{animated:true});
 			pullToRefresh.refreshing.show();
 			beginReloading();
-			pullToRefresh.status.hide();
 		}
 	});
 	
@@ -353,6 +349,7 @@ function onWindowOpen(window, event)
 	{
 		// just mock out the reload
 		setTimeout(endReloading,2000);
+		itsbeta.getAchievementsRefresh(info.fbuid, insertPull ,oldTime);
 	}
 	 
 	function endReloading()
@@ -374,7 +371,7 @@ function onWindowOpen(window, event)
 	
 	Ti.App.addEventListener("logout",function(event){
 		Ti.App.removeEventListener("reload",reload);
-		Ti.App.removeEventListener("pull",pull);
+		//Ti.App.removeEventListener("pull",pull);
 		window.close();
 	});
 	
@@ -478,12 +475,12 @@ function onWindowOpen(window, event)
 	
 	Ti.App.addEventListener("reload",reload);
 	
-	var pull = function(event)
-	{
-		itsbeta.getAchievementsRefresh(info.fbuid, insertPull ,oldTime);
-	}
+	// var pull = function(event)
+	// {
+		// itsbeta.getAchievementsRefresh(info.fbuid, insertPull ,oldTime);
+	// }
 	
-	Ti.App.addEventListener("pull",pull);
+	//Ti.App.addEventListener("pull",pull);
 	
 	createListAchivs(window,"null");
 }
@@ -686,10 +683,68 @@ function insertPull(data)
 			if(tempNewAchivs.length > 1)
 			{
 				Ti.API.info('есть новые ачивки');
-				ui.preAchivs.hide();
-				actIndicator(true);
 				
-				itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
+				for(var n = 0, N = tempNewAchivs.length; n < N; n++)
+				{
+					if(searchApiName(projects,tempNewAchivs[n].projectsApiName) == 0)
+					{
+						Ti.API.info('project ---')
+						projects.push({
+							api_name: tempNewAchivs[n].projectsApiName,
+							display_name: tempNewAchivs[n].projectsDisplayName,
+							total_badge: tempNewAchivs[n].total_badges
+						});
+						
+						if(searchApiName(categories,tempNewAchivs[n].categoryApiName) == 0)
+						{
+							Ti.API.info('categori ---')
+							categories.push({
+								api_name: tempNewAchivs[n].categoryApiName,
+								display_name: tempNewAchivs[n].categoryDisplayName
+							});
+						}
+					}
+				}
+				
+				//---- сортируем ----//
+				Ti.API.info('сортируем');
+				tempNewAchivs.sort(
+					function(a, b)
+					{
+						var date1 = Date();
+						var date2 = Date();
+						
+						date1 = a.create_time;
+						date2 = b.create_time;
+						
+						if(date1 != date2)
+						{
+							if(date1 < date2)
+							{
+								return 1;
+							}
+							else
+							{
+								return -1;
+							}
+						}
+						return 0;
+					}
+				);
+				
+				oldTime = tempNewAchivs[0].create_time;
+				
+				for(var n = 0, N = tempNewAchivs.length - 2; n <= N; N--)
+				{
+					Ti.API.info('вставили ячейку ' + N);
+					var row = createTableViewRow(tempNewAchivs[N]);
+					
+					tableData.unshift(row);
+					achievements.unshift(tempNewAchivs[N]);
+					
+					table.insertRowBefore(0,row);
+				}
+				
 			}
 			else
 			{
