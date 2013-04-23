@@ -74,7 +74,7 @@ module.exports = {
 						className: "Ti.UI.Label",
 						color: "#7ed6f9",
 						text: "QR",
-						font: {fontSize: 20, fontWeight: "bold"}
+						font: {fontSize: 16, fontWeight: "bold"}
 					}
 				}
 			]

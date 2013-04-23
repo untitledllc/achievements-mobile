@@ -75,7 +75,7 @@ module.exports = [
 							className: "Ti.UI.Label",
 							color: "#7ed6f9",
 							textid: "label_profile",
-							font: {fontSize: 18, fontWeight: "bold"}
+							font: {fontSize: 16, fontWeight: "bold"}
 						}
 					}
 				]
