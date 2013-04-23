@@ -321,12 +321,12 @@ function onWindowOpen(window, event)
 	table.addEventListener('scroll',function(e)
 	{
 		offset = e.contentOffset.y;
-		if (offset <= -65.0 && !pulling)
+		if (offset <= -75.0 && !pulling)
 		{
 			pulling = true;
 			 pullToRefresh.status.text = L("label_release_to_refresh");
 		}
-		else if (pulling && offset > -65.0 && offset < 0)
+		else if (pulling && offset > -75.0 && offset < 0)
 		{
 			pulling = false;
 			pullToRefresh.status.text = L("label_pull_to_refresh");
@@ -338,7 +338,7 @@ function onWindowOpen(window, event)
 		Ti.API.info('reloading ' + reloading);
 		Ti.API.info('e.contentOffset.y ' + offset);
 		
-		if (pulling && !reloading && offset <= -65.0)
+		if (pulling && !reloading && offset <= -75.0)
 		{
 			reloading = true;
 			pulling = false;
