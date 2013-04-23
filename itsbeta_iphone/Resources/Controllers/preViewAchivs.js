@@ -21,6 +21,7 @@ function onInitController(window, params)
 	ui = TiTools.UI.Loader.load("Views/preViewAchivs.js", window);
 	ui.image.image = window.image;
 	ui.nameAchivs.text = window.nameAchivs;
+	ui.nameAchivs.color = window.color;
 	ui.textAchivs.text = window.textAchivs;
 	
 	ui.act.show();
@@ -46,17 +47,19 @@ function onInitController(window, params)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
+	
+	
 	var webview = Titanium.UI.createWebView({
 		left: 5,
 		height: Ti.UI.SIZE,
 		width: 220,
-		html:  TiTools.Global.get("htmlWrapBefore") + window.details.replace("&nbsp;","") + window.adv.replace("&nbsp;","") + TiTools.Global.get("htmlWrapAfter"),
+		html:  TiTools.Global.get("htmlWrapBefore") + "<body style=\"color:#777575\">" + window.details.replace(/&nbsp;/g,"").replace(/<p>/g," ").replace(/<\/p>/g," ") + window.adv.replace(/&nbsp;/g,"").replace(/<p>/g," ").replace(/<\/p>/g," ") + TiTools.Global.get("htmlWrapAfter"),
 		disableBounce: true
 	});
 	
-	Ti.API.info(window.details.replace("&nbsp;",""));
+	Ti.API.info(window.details.replace(/&nbsp;/g,"").replace(/<p>/g,"").replace(/<\/p>/g,""));
 	Ti.API.info('--------')
-	Ti.API.info(window.adv.replace("&nbsp;",""))
+	Ti.API.info(window.adv.replace(/&nbsp;/g,"").replace(/<p>/g,"").replace(/<\/p>/g,""));
 	webview.addEventListener("load",function(){
 		ui.shadowClose.show();
 		ui.act.hide();

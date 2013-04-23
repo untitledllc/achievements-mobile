@@ -123,11 +123,22 @@ module.exports = [
 							className: "Ti.UI.ScrollView",
 							layout: "vertical",
 							top: 0,
-							height: 440,
+							height: 430,
 							width: Ti.UI.FILL,
 							verticalBounce: false,
 							backgroundColor: "#f7f7f7",
 							zIndex: 11
+						}
+					},
+					{
+						outlet: "separator",
+						style : {
+							className: "Ti.UI.View",
+							top: -10,
+							height: 16,
+							width: Ti.UI.FILL,
+							backgroundImage: "images/navbar/Selects.Bottom.png",
+							zIndex: 12
 						}
 					}
 				]

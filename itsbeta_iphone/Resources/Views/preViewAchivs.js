@@ -80,7 +80,8 @@ module.exports = [
 							left: 20,
 							height: 20,
 							width: 220,
-							text: "Крутая ачивка"
+							text: "Крутая ачивка",
+							color: "#777575"
 						}
 					},
 					{

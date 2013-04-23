@@ -85,7 +85,7 @@ function onInitController(window, params)
 		
 		ui.placeListViewCancel.show();
 		
-		placeListHeight = 0;
+		placeListHeight = 10;
 		
 		if(ui.list != undefined)
 		{
@@ -107,6 +107,7 @@ function onInitController(window, params)
 					createListRow(category, massRow, i);
 					//---------------------
 				}
+				
 				ui.list.visible = true;
 				
 				if(selectCategory != "null")
@@ -512,7 +513,8 @@ function createListAchivs(window,categiry)
 					details: sourceData.details,
 					adv: sourceData.adv,
 					image: sourceData.image,
-					bonus: sourceData.bonus
+					bonus: sourceData.bonus,
+					color: sourceData.color
 				});
 				
 				win.addEventListener("close",function() {
@@ -635,7 +637,8 @@ function createTableViewRow(achievement)
 		details: achievement.achievDetails,
 		adv: achievement.achievAdv,
 		bonus: achievement.achievBonuses,
-		row : rowTemp
+		row : rowTemp,
+		color: achievement.color
 	};
 	
 	return rowTemp;
@@ -783,7 +786,7 @@ function createListName(window,category)
 {
 	if(ui.list.visible == false)
 		{
-			placeListHeight = 0;
+			placeListHeight = 10;
 			massRow = [];
 			
 			if(category == "null")

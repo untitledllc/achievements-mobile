@@ -49,6 +49,7 @@ module.exports = [
 					bottom: 20,
 					height: Ti.UI.SIZE,
 					width: Ti.UI.FILL,
+					color: "#777575",
 					font : {
 						fontSize : 13
 					},
