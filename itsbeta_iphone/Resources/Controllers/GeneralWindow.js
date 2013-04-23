@@ -453,9 +453,7 @@ function onWindowOpen(window, event)
 		selectProject = "null";
 		
 		hideAchivs();
-		
-		//table.insertRowBefore(0,row);
-		
+		//---------------------------------
 		if(tempNewAchivs != undefined)
 		{
 			sleep(500);
@@ -484,18 +482,13 @@ function onWindowOpen(window, event)
 	
 	Ti.App.addEventListener("reload",reload);
 	
-	// var pull = function(event)
-	// {
-		// itsbeta.getAchievementsRefresh(info.fbuid, insertPull ,oldTime);
-	// }
-	
-	//Ti.App.addEventListener("pull",pull);
-	
 	createListAchivs(window,"null");
 }
 ///-----сосдание списка ачивок-----//
 function createListAchivs(window,categiry)
 {
+	Ti.API.info('createListAchivs-----------');
+	
 	ui.preAchivs.hide();
 	actIndicator(true);
 	
@@ -754,7 +747,15 @@ function insertPull(data)
 					tableData.unshift(row);
 					achievements.unshift(tempNewAchivs[N]);
 					
-					table.insertRowBefore(0,row);
+					Ti.API.info('selectCategory ' + selectCategory + " selectProject " + selectProject);
+					
+					if(selectCategory == "null" || selectCategory == tempNewAchivs[N].categoryApiName)
+					{
+						if(selectProject == "null" || selectProject == tempNewAchivs[N].projectsApiName)
+						{
+							table.insertRowBefore(0,row);
+						}
+					}
 				}
 				
 			}
