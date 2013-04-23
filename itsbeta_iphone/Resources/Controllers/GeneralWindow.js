@@ -358,6 +358,8 @@ function onWindowOpen(window, event)
 		
 		tableData.unshift(row);
 		
+		counter++;
+		ui.counter.text = counter;
 		
 		if(tempNewAchivs != undefined)
 		{

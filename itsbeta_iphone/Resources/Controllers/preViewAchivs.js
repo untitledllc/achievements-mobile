@@ -50,10 +50,13 @@ function onWindowOpen(window, event)
 		left: 5,
 		height: Ti.UI.SIZE,
 		width: 220,
-		html:  TiTools.Global.get("htmlWrapBefore") + window.details + window.adv + TiTools.Global.get("htmlWrapAfter"),
+		html:  TiTools.Global.get("htmlWrapBefore") + window.details.replace("&nbsp;","") + window.adv.replace("&nbsp;","") + TiTools.Global.get("htmlWrapAfter"),
 		disableBounce: true
 	});
 	
+	Ti.API.info(window.details.replace("&nbsp;",""));
+	Ti.API.info('--------')
+	Ti.API.info(window.adv.replace("&nbsp;",""))
 	webview.addEventListener("load",function(){
 		ui.shadowClose.show();
 		ui.act.hide();
