@@ -24,6 +24,7 @@ var emptyBlock;
 
 var table = undefined;
 var tableData = [];
+var rowPull = undefined;
 
 var lastAchivs = [];
 var singlTap = false;
@@ -64,7 +65,15 @@ function onInitController(window, params)
 	
 	ui.counter.text = counter;
 	
-	//Ti.API.info(achievements);
+	// сделали табличку ----------------------------------------//
+	
+	table = Ti.UI.createTableView({
+		backgroundColor: "#f7f7f7",
+		separatorStyle: Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
+	});
+	ui.preAchivs.add(table);
+	
+	//---------------------------------------------------------//
 	
 	ui.typeProjectClick.addEventListener("click",function(event)
 	{
@@ -278,6 +287,86 @@ function onInitController(window, params)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
+	//-----создаем ячейку для пула рефреша -------///
+	rowPull  = Ti.UI.createView({
+		height: 200,
+		width: Ti.UI.FILL,
+		backgroundColor: "#ededed",
+	});
+	
+	rowPull2  = Ti.UI.createView({
+		bottom: 0,
+		height: 70,
+		width: Ti.UI.FILL,
+		backgroundColor: "blue",
+	});
+	
+	rowPull.add(rowPull2);
+	
+	table.headerPullView = rowPull;
+	
+	table.addEventListener("scroll",function(event){
+		Ti.API.info(event.contentOffset.y);
+	});
+	
+	var pulling = false;
+	var reloading = false;
+	var offset = 0;
+	var pullToRefresh = TiTools.UI.Loader.load('Views/PullToRefresh.js');
+	
+	rowPull2.add(pullToRefresh.me);
+	
+	pullToRefresh.hypno.start(); 
+	
+	table.addEventListener('scroll',function(e)
+	{
+		offset = e.contentOffset.y;
+		if (offset <= -65.0 && !pulling)
+		{
+			pulling = true;
+			 pullToRefresh.status.text = L("label_release_to_refresh");
+		}
+		else if (pulling && offset > -65.0 && offset < 0)
+		{
+			pulling = false;
+			pullToRefresh.status.text = L("label_pull_to_refresh");
+		}
+	});
+	table.addEventListener('dragEnd',function(e)
+	{
+		Ti.API.info('pulling ' + pulling);
+		Ti.API.info('reloading ' + reloading);
+		Ti.API.info('e.contentOffset.y ' + offset);
+		
+		if (pulling && !reloading && offset <= -65.0)
+		{
+			reloading = true;
+			pulling = false;
+			table.setContentInsets({top:65},{animated:true});
+			pullToRefresh.refreshing.show();
+			beginReloading();
+			pullToRefresh.status.hide();
+		}
+	});
+	
+	function beginReloading()
+	{
+		// just mock out the reload
+		setTimeout(endReloading,2000);
+	}
+	 
+	function endReloading()
+	{
+	 
+		// when you're done, just reset
+		table.setContentInsets({top:0},{animated:true});
+		reloading = false;
+		pullToRefresh.refreshing.hide();
+		pullToRefresh.status.text = L("label_pull_to_refresh");
+		pullToRefresh.status.show();
+	}
+	//--------------------------------------------///
+	
 	Ti.App.addEventListener("actHide",function(event)
 	{
 		actIndicator(false);
@@ -363,9 +452,8 @@ function onWindowOpen(window, event)
 		
 		if(tempNewAchivs != undefined)
 		{
-			Ti.API.info('!!!sleeeeeeeeep!!')
 			sleep(500);
-			Ti.API.info('!!!!!!')
+			
 			var win = TiTools.UI.Controls.createWindow({
 				main: "Controllers/preViewAchivs.js",
 				navBarHidden: true,
@@ -377,7 +465,6 @@ function onWindowOpen(window, event)
 				bonus: tempNewAchivs.bonuses
 			});
 			win.initialize();
-			//window.add(win);
 			win.open();
 			
 			Ti.API.info('open');
@@ -387,8 +474,6 @@ function onWindowOpen(window, event)
 		
 		ui.preAchivs.show();
 		actIndicator(false);
-		
-		//itsbeta.getAchievementsByUid(info.fbuid, reSaveAchivs);
 	}
 	
 	Ti.App.addEventListener("reload",reload);
@@ -410,12 +495,6 @@ function createListAchivs(window,categiry)
 	
 	ui.nameProject.text = L("label_subcategories");
 	ui.typeProject.text = L("label_categories");
-	
-	table = Ti.UI.createTableView({
-		backgroundColor: "#f7f7f7",
-		separatorStyle: Titanium.UI.iPhone.TableViewSeparatorStyle.NONE
-	});
-	ui.preAchivs.add(table);
 	
 	table.addEventListener("singletap",function(event)
 	{
