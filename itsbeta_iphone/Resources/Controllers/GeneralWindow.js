@@ -440,12 +440,21 @@ function onWindowOpen(window, event)
 		achievements.unshift(achievement);
 		var row = createTableViewRow(achievement)
 		
-		table.insertRowBefore(0,row);
-		
 		tableData.unshift(row);
 		
 		counter++;
 		ui.counter.text = counter;
+		
+		// ачивки показываются по умолчанию
+		
+		ui.typeProject.text = L("label_all");
+		selectCategory = "null";
+		ui.nameProject.text = L("label_subcategories");
+		selectProject = "null";
+		
+		hideAchivs();
+		
+		//table.insertRowBefore(0,row);
 		
 		if(tempNewAchivs != undefined)
 		{
@@ -738,6 +747,9 @@ function insertPull(data)
 				{
 					Ti.API.info('вставили ячейку ' + N);
 					var row = createTableViewRow(tempNewAchivs[N]);
+					
+					counter++;
+					ui.counter.text = counter;
 					
 					tableData.unshift(row);
 					achievements.unshift(tempNewAchivs[N]);
