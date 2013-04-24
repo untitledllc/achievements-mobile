@@ -81,7 +81,9 @@ module.exports = [
 							height: 20,
 							width: 220,
 							text: "Крутая ачивка",
-							color: "#777575"
+							color: "#777575",
+							font: {fontSize: 18, fontWeight: "regular",fontFamily: "Helvetica"}
+							
 						}
 					},
 					{

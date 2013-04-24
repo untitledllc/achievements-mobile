@@ -50,9 +50,7 @@ module.exports = [
 					height: Ti.UI.SIZE,
 					width: Ti.UI.FILL,
 					color: "#777575",
-					font : {
-						fontSize : 13
-					},
+					font: {fontSize: 16, fontWeight: "regular",fontFamily: "Helvetica"},
 					text: "Бонусkjghvhgvjhgvhjgv"
 				}
 			}

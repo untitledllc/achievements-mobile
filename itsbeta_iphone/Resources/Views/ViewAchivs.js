@@ -76,7 +76,7 @@ module.exports = {
 						width: "60%",
 						height: Ti.UI.SIZE,
 						touchEnabled: false,
-						top: 5
+						top: 0
 					},
 					subviews: [
 						{
@@ -117,7 +117,7 @@ module.exports = {
 					style: {
 						className: "Ti.UI.View",
 						layout: "vertical",
-						top: 15,
+						top: 10,
 						right: 0,
 						height: Ti.UI.SIZE,
 						touchEnabled: false

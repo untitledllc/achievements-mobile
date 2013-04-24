@@ -53,7 +53,7 @@ function onWindowOpen(window, event)
 		left: 5,
 		height: Ti.UI.SIZE,
 		width: 220,
-		html:  TiTools.Global.get("htmlWrapBefore") + "<style> @font-face {font-family: Helvetica; src: url(Helvetica.dfont);} </style>"  +  "<body style=\"color:#777575\">" + window.details.replace(/&nbsp;/g,"").replace(/<p>/g," ").replace(/<\/p>/g," ") + window.adv.replace(/&nbsp;/g,"").replace(/<p>/g," ").replace(/<\/p>/g," ") + TiTools.Global.get("htmlWrapAfter"),
+		html:  TiTools.Global.get("htmlWrapBefore") + "<body style=\"color:#777575\">" + window.details.replace(/&nbsp;/g,"").replace(/<p>/g," ").replace(/<\/p>/g," ") + window.adv.replace(/&nbsp;/g,"").replace(/<p>/g," ").replace(/<\/p>/g," ") + TiTools.Global.get("htmlWrapAfter"),
 		disableBounce: true
 	});
 	
