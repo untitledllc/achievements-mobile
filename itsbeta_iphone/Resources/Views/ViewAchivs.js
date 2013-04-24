@@ -88,7 +88,7 @@ module.exports = {
 								right: 10,
 								color: "red",
 								font:{
-									fontSize: 22,
+									fontSize: 19,
 									fontFamily: "Helvetica"
 								},
 								touchEnabled: false
