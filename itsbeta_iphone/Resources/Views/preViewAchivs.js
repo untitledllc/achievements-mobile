@@ -78,7 +78,7 @@ module.exports = [
 							className: "Ti.UI.Label",
 							top: 30,
 							left: 20,
-							height: 20,
+							height: Ti.UI.SIZE,
 							width: 220,
 							text: "Крутая ачивка",
 							color: "#777575",

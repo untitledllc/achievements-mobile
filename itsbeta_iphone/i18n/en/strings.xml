@@ -34,6 +34,7 @@
 		<!-- add -->
 			<string name="label_add">ADD</string>
 								<string name="label_add_code_hint">Еnter the code</string>
+																<string name="label_add_text">You can get the code from our partners</string>
 	<!-- others -->
 		<string name="error">Error</string>
 </resources>

@@ -174,7 +174,21 @@ module.exports = [
 								}
 							}
 						]
+					},
+					{
+						style : {
+							className: "Ti.UI.Label",
+							top: 10,
+							left: 20,
+							right: 20,
+							height: Ti.UI.SIZE,
+							width: "90%",
+							textid: "label_add_text",
+							color: "#777575",
+							font: {fontSize: 13, fontWeight: "regular",fontFamily: "Helvetica"}
+						}
 					}
+
 				]
 			}
 		]

@@ -85,7 +85,7 @@ function onInitController(window, params)
 		
 		ui.placeListViewCancel.show();
 		
-		placeListHeight = 10;
+		placeListHeight = 3;
 		
 		if(ui.list != undefined)
 		{
@@ -786,7 +786,7 @@ function createListName(window,category)
 {
 	if(ui.list.visible == false)
 		{
-			placeListHeight = 10;
+			placeListHeight = 3;
 			massRow = [];
 			
 			if(category == "null")

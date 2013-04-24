@@ -123,7 +123,7 @@ module.exports = [
 							className: "Ti.UI.ScrollView",
 							layout: "vertical",
 							top: 0,
-							height: 430,
+							height: 420,
 							width: Ti.UI.FILL,
 							verticalBounce: false,
 							backgroundColor: "#f7f7f7",
@@ -188,7 +188,8 @@ module.exports = [
 											image: "images/navbar/Arrow.png",
 											left: 5,
 											width: 13,
-											height: 13
+											height: 13,
+											visible: false
 										}
 									}
 								]
@@ -238,7 +239,8 @@ module.exports = [
 											image: "images/navbar/Arrow.png",
 											left: 5,
 											width: 13,
-											height: 13
+											height: 13,
+											visible: false
 										}
 									}
 								]

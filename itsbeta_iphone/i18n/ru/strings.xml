@@ -34,6 +34,7 @@
 		<!-- add -->
 			<string name="label_add">ДОБАВИТЬ</string>
 					<string name="label_add_code_hint">Введите код</string>
+								<string name="label_add_text">Код можно найти на чеках, листовках и т.п. наших партнеров</string>
 	 <!-- others -->
 		<string name="error">Ошибка</string>
 </resources>
