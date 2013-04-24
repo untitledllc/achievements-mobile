@@ -33,11 +33,17 @@ var singlTap = false;
 //---------------------------------------------//
 var animation = Titanium.UI.createAnimation();
 var animationEnd = Titanium.UI.createAnimation();
+var animationEndOther = Titanium.UI.createAnimation();
+
+
 animation.top = 55;
 animation.duration = 500;
 
 animationEnd.top = -395;
-animationEnd.duration = 500;
+animationEnd.duration = 2000;
+
+animationEndOther.top = -395;
+animationEndOther.duration = 500;
 
 //---------------------------------------------//
 // Обязательные функции
@@ -150,7 +156,14 @@ function onInitController(window, params)
 		}
 	});
 	
-	ui.placeListView.addEventListener("singletap", undefClick);
+	//ui.placeListView.addEventListener("singletap", undefClick);
+	ui.placeListView.addEventListener("singletap",function(event){
+		Ti.API.info(event);
+		if(event.y > placeListHeight)
+		{
+			undefClick();
+		}
+	});
 	ui.placeListViewCancel.addEventListener("singletap", undefClick);
 	
 	ui.nameProjectClick.addEventListener("click", function(event)
@@ -1160,11 +1173,11 @@ function undefClick()
 	ui.placeListViewCancel.hide();
 		
 	var animationHandler = function() {
-		animationEnd.removeEventListener('complete',animationHandler);
+		animationEndOther.removeEventListener('complete',animationHandler);
 		
 		subCategoryClick = false;
 		
-		ui.transparentView.hide();
+		//ui.transparentView.hide();
 		
 		ui.list.visible = false;
 		
@@ -1173,12 +1186,12 @@ function undefClick()
 			ui.placeList.remove(ui.placeList.children[i-1]);
 		}
 		
-		ui.placeListView.animate(animationEnd);
+		ui.placeListView.animate(animationEndOther);
 	};
 	
-	animationEnd.addEventListener('complete',animationHandler);
+	animationEndOther.addEventListener('complete',animationHandler);
 	
-	ui.placeListView.animate(animationEnd);
+	ui.placeListView.animate(animationEndOther);
 }
 function hideAchivs()
 {
