@@ -40,7 +40,7 @@ animation.top = 55;
 animation.duration = 500;
 
 animationEnd.top = -395;
-animationEnd.duration = 2000;
+animationEnd.duration = 500;
 
 animationEndOther.top = -395;
 animationEndOther.duration = 500;
