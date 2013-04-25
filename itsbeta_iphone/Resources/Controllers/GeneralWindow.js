@@ -857,6 +857,9 @@ function createListName(window,category)
 					
 					row.rowAchivs.addEventListener("singletap",function(event)
 					{
+						ui.typeProjectClick.backgroundImage = null;
+						ui.nameProjectClick.backgroundImage = null;
+						
 						if(ui.placeList.lastRow != undefined)
 						{
 							ui.placeList.lastRow.color = "#646464";
@@ -1134,6 +1137,7 @@ function createListRow(category,massRow)
 		event.source.rowTextAchivs.color = "#7ed6f9";
 		
 		ui.typeProjectClick.backgroundImage = null;
+		
 		
 		ui.nameProject.text = L("label_subcategories");
 		selectProject = "null";

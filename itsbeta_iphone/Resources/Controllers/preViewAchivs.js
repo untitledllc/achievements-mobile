@@ -51,8 +51,10 @@ function onWindowOpen(window, event)
 	
 	var webview = Titanium.UI.createWebView({
 		left: 5,
+		right: 20,
 		height: Ti.UI.SIZE,
-		width: 220,
+	//	width: 220,
+		bottom: 20,
 		html:  TiTools.Global.get("htmlWrapBefore") + "<body style=\"color:#777575\">" + window.details.replace(/&nbsp;/g,"").replace(/<p>/g," ").replace(/<\/p>/g," ") + window.adv.replace(/&nbsp;/g,"").replace(/<p>/g," ").replace(/<\/p>/g," ") + TiTools.Global.get("htmlWrapAfter"),
 		disableBounce: true
 	});

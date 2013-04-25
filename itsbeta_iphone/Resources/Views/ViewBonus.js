@@ -44,9 +44,9 @@ module.exports = [
 				outlet: "desc",
 				style : {
 					className : "Ti.UI.Label",
-					top: 20,
+					top: 8,
 					left: 15,
-					bottom: 20,
+					bottom: 8,
 					height: Ti.UI.SIZE,
 					width: 260,
 					color: "#777575",

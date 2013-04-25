@@ -34,7 +34,7 @@ function query(params, successCallback, failureCallback)
 				clearTimeout(time);
 				
 				Ti.UI.createAlertDialog({
-						message: "Ошибка!",
+						message: "Ошибка выполнения запроса!",
 						title: "Информация"
 					}).show();
 					
@@ -215,7 +215,7 @@ function postActiv(data)//Активация по qr-коду активации
 				else
 				{c
 					Ti.UI.createAlertDialog({
-						message: "Ошибка!",
+						message: "Ошибка выполнения запроса!",
 						title: "Информация"
 					}).show();
 					
@@ -269,7 +269,7 @@ function postActivCode(tempCode)//Активация по коду актива�
 				else
 				{
 					Ti.UI.createAlertDialog({
-						message: "Ошибка!",
+						message: "Ошибка выполнения запроса!",
 						title: "Информация"
 					}).show();
 					
