@@ -110,10 +110,11 @@ module.exports = [
 				style : {
 					className: "Ti.UI.View",
 					layout: "vertical",
-					top: -395,
-					height: 440,
+					top: -455,
+					height: 500,
 					width: Ti.UI.FILL,
-					zIndex: 11
+					zIndex: 11,
+					backgroundColor: "transparent"
 				},
 				subviews:
 				[

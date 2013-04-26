@@ -39,10 +39,10 @@ var animationEndOther = Titanium.UI.createAnimation();
 animation.top = 55;
 animation.duration = 500;
 
-animationEnd.top = -395;
+animationEnd.top = -455;
 animationEnd.duration = 500;
 
-animationEndOther.top = -395;
+animationEndOther.top = -455;
 animationEndOther.duration = 500;
 
 //---------------------------------------------//
@@ -138,6 +138,7 @@ function onInitController(window, params)
 				if(placeListHeight >  Ti.Platform.displayCaps.platformHeight - 55)
 				{
 					ui.placeList.height = Ti.Platform.displayCaps.platformHeight - 75;
+					//ui.placeListView.height = Ti.Platform.displayCaps.platformHeight - 75;
 				}
 				else
 				{
@@ -156,7 +157,6 @@ function onInitController(window, params)
 		}
 	});
 	
-	//ui.placeListView.addEventListener("singletap", undefClick);
 	ui.placeListView.addEventListener("singletap",function(event){
 		Ti.API.info(event);
 		if(event.y > placeListHeight)
@@ -225,74 +225,6 @@ function onInitController(window, params)
 			}
 		}
 	);
-	
-	// // ----- PULL TO REFRESH ----- //
-// 	
-	// var achivsWrapper = ui.preAchivs,
-		// pullToRefresh = TiTools.UI.Loader.load('Views/PullToRefresh.js'),
-		// pulling       = false,
-		// reloading     = false,
-		// offset        = 0;
-// 		
-	// achivsWrapper.add(pullToRefresh.me);
-	// pullToRefresh.hypno.start(); 
-// 		
-	// // event handlers
-	// achivsWrapper.addEventListener('scroll', function(e) {
-		// offset = e.y;
-		// if(offset < -80.0 && !pulling && !reloading) {
-			// pulling = true;
-			// pullToRefresh.status.text = L("label_release_to_refresh");
-		// }
-		// else if((offset > -80.0 && offset < 0) && pulling && !reloading) {
-			// pulling = false;
-			// pullToRefresh.status.text = L("label_pull_to_refresh");
-		// }
-	// });
-// 	
-	// achivsWrapper.addEventListener('dragEnd', function() {	
-		// if(pulling && !reloading) {
-			// achivsWrapper.top = Math.abs(offset)+6;
-			// achivsWrapper.animate({
-					// top: 86,
-					// duration: 200
-				// }, 
-				// function() {
-			  		// achivsWrapper.top = 86;
-				// }
-			// );
-			// reloading = true;
-			// pulling = false;
-			// //pullToRefresh.status.text = "Refreshing";
-			// pullToRefresh.status.hide();
-			// pullToRefresh.refreshing.show();
-			// beginReloading();
-		// }
-	// });
-// 	
-	// //---------------------------------------------//
-	
-	// function beginReloading() {			
-		// setTimeout(endReloading, 5000);
-		// Ti.App.fireEvent("pull");
-	// }
-// 	
-	// function endReloading() {			
-		// achivsWrapper.animate({
-				// top: 6
-			// }, 
-			// function() {
-				// achivsWrapper.top = 6;
-			// }
-		// );
-// 		
-		// reloading = false;
-		// pullToRefresh.status.text = L("label_pull_to_refresh");
-		// pullToRefresh.refreshing.hide();
-		// pullToRefresh.status.show();
-	// }
-	
-	// ----- END PULL TO REFRESH ----- //
 }
 //---------------------------------------------//
 // Функции лентяйки
