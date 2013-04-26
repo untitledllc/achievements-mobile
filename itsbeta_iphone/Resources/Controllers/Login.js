@@ -139,6 +139,7 @@ function onInitController(window, params)
 					{	
 						actIndicator(true);
 						singlTap = false;
+						
 						Ti.Facebook.authorize();
 						
 						var log = function(e) 
@@ -156,12 +157,12 @@ function onInitController(window, params)
 								singlTap = false;
 							} else if (e.cancelled) {
 								
+								actIndicator(false);
 								Ti.Facebook.logout();
 								// clear cookies
 								var client = Ti.Network.createHTTPClient();
 								client.clearCookies('https://login.facebook.com');
 					
-								actIndicator(false);
 							}
 						}
 						

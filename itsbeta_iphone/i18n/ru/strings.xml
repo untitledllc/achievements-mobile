@@ -39,6 +39,8 @@
 	 			<string name="error_info">Информация!</string>
 	 			<string name="error1">Ошибка загрузки достижений!</string>
 	 				 			<string name="error2">Ошибка соединения!</string>
+	 				 		<string name="error3">Неправильный qr код!</string>
+	 				<string name="error4">Неправильный код!</string>
 	 <!-- others -->
 		<string name="error">Ошибка</string>
 </resources>
