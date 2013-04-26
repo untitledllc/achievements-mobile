@@ -73,7 +73,8 @@ module.exports = [
 									left: 16,
 									right: 16,
 									height: 16,
-									backgroundImage: "images/paper/Paper_background_topMiddle.png"
+									backgroundImage: "images/paper/Paper_background_topMiddle.png",
+									backgroundRepeat: true
 								}
 							},
 							{
@@ -95,7 +96,8 @@ module.exports = [
 									//top: "auto",
 									height: Ti.UI.FILL,
 									bottom: 16,
-									backgroundImage: "images/paper/Paper_background_middleLeft.png"
+									backgroundImage: "images/paper/Paper_background_middleLeft.png",
+									backgroundRepeat: true
 								}
 							},
 							{
@@ -119,7 +121,8 @@ module.exports = [
 									//top: "auto",
 									height: Ti.UI.FILL,
 									bottom: 16,
-									backgroundImage: "images/paper/Paper_background_middleRight.png"
+									backgroundImage: "images/paper/Paper_background_middleRight.png",
+									backgroundRepeat: true
 								}
 							},
 							{
@@ -141,7 +144,8 @@ module.exports = [
 									right: 16,
 									height: 16,
 									bottom: 0,
-									backgroundImage: "images/paper/Paper_background_bottomMiddle.png"
+									backgroundImage: "images/paper/Paper_background_bottomMiddle.png",
+									backgroundRepeat: true
 								}
 							},
 							{
