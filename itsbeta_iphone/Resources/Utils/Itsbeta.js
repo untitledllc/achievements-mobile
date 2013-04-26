@@ -34,8 +34,8 @@ function query(params, successCallback, failureCallback)
 				clearTimeout(time);
 				
 				Ti.UI.createAlertDialog({
-						message: "Ошибка выполнения запроса!",
-						title: "Информация"
+						title: L("error_info"),
+						message: L("error2")
 					}).show();
 					
 				Ti.App.fireEvent("actHide");
@@ -215,8 +215,8 @@ function postActiv(data)//Активация по qr-коду активации
 				else
 				{c
 					Ti.UI.createAlertDialog({
-						message: "Ошибка выполнения запроса!",
-						title: "Информация"
+						title: L("error_info"),
+						message: L("error2")
 					}).show();
 					
 					Ti.App.fireEvent("actHide");
@@ -269,8 +269,8 @@ function postActivCode(tempCode)//Активация по коду актива�
 				else
 				{
 					Ti.UI.createAlertDialog({
-						message: "Ошибка выполнения запроса!",
-						title: "Информация"
+						title: L("error_info"),
+						message: L("error2")
 					}).show();
 					
 					Ti.App.fireEvent("actHide");
@@ -291,7 +291,12 @@ function timeOut()
 	{
 		Ti.API.info(time);
 		TiTools.HTTP.abort();
-		alert('Ошибка выполнения запроса!');
+		
+		Ti.UI.createAlertDialog({
+			title: L("error_info"),
+			message: L("error2")
+		}).show();
+					
 		Ti.API.info('abort');
 		Ti.App.fireEvent("hideActive");
 		Ti.App.fireEvent("actHide");

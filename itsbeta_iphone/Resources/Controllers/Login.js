@@ -147,8 +147,12 @@ function onInitController(window, params)
 							if (e.success) {
 								fQuery();
 							} else if (e.error) {
-								alert(e.error);
+								Ti.UI.createAlertDialog({
+									title: L("error_info"),
+									message: L("error2")
+								}).show();
 								actIndicator(false);
+								singlTap = false;
 							} else if (e.cancelled) {
 								actIndicator(false);
 							}
@@ -166,10 +170,11 @@ function onInitController(window, params)
 				else
 				{
 					Ti.UI.createAlertDialog({
-						title: "Информация!",
-						message: "Отсутствует интернет!"
+						title: L("error_info"),
+						message: L("error2")
 					}).show();
 					actIndicator(false);
+					singlTap = false;
 				}
 			}
 		}
@@ -197,7 +202,12 @@ function saveAchivs(data)
 	catch(e)
 	{
 		actIndicator(false);
-		alert("Ошибка загрузки достижений.");
+		
+		Ti.UI.createAlertDialog({
+			title: L("error_info"),
+			message: L("error1")
+		}).show();
+		
 		return;
 	}
 	

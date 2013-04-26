@@ -385,7 +385,6 @@ function onWindowOpen(window, event)
 	
 	Ti.App.addEventListener("logout",function(event){
 		Ti.App.removeEventListener("reload",reload);
-		//Ti.App.removeEventListener("pull",pull);
 		window.close();
 	});
 	
@@ -450,6 +449,8 @@ function onWindowOpen(window, event)
 			fb_id : event.data.fb_id,
 			achievBonuses: event.data.bonuses,
 		};
+		
+		oldTime = event.data.create_time;
 		
 		achievements.unshift(achievement);
 		var row = createTableViewRow(achievement)
