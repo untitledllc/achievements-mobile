@@ -136,7 +136,7 @@ function onInitController(window, params)
 					};
 					
 					if(!Titanium.Facebook.loggedIn)
-					{
+					{	
 						actIndicator(true);
 						singlTap = false;
 						Ti.Facebook.authorize();
@@ -144,6 +144,7 @@ function onInitController(window, params)
 						var log = function(e) 
 						{
 							Ti.Facebook.removeEventListener('login',log);
+							Ti.API.info(e);
 							if (e.success) {
 								fQuery();
 							} else if (e.error) {
@@ -154,6 +155,12 @@ function onInitController(window, params)
 								actIndicator(false);
 								singlTap = false;
 							} else if (e.cancelled) {
+								
+								Ti.Facebook.logout();
+								// clear cookies
+								var client = Ti.Network.createHTTPClient();
+								client.clearCookies('https://login.facebook.com');
+					
 								actIndicator(false);
 							}
 						}
