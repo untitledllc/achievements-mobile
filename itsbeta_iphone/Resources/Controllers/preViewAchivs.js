@@ -55,13 +55,13 @@ function onWindowOpen(window, event)
 		height: Ti.UI.SIZE,
 	//	width: 220,
 		bottom: 20,
-		html:  TiTools.Global.get("htmlWrapBefore") + "<body style=\"color:#777575\">" + window.details.replace(/&nbsp;/g,"").replace(/<p>/g,"<br>").replace(/<\/p>/g," ") + window.adv.replace(/&nbsp;/g,"").replace(/<p>/g,"<br>").replace(/<\/p>/g," ") + TiTools.Global.get("htmlWrapAfter"),
+		html:  TiTools.Global.get("htmlWrapBefore") + "<body style=\"color:#777575\">" + window.details.replace(/&nbsp;/g," ").replace(/<p>/g,"<br>").replace(/<\/p>/g," ") + window.adv.replace(/&nbsp;/g," ").replace(/<p>/g,"<br>").replace(/<\/p>/g," ") + TiTools.Global.get("htmlWrapAfter"),
 		disableBounce: true
 	});
 	
-	Ti.API.info(window.details.replace(/&nbsp;/g,"").replace(/<p>/g,"").replace(/<\/p>/g,""));
+	Ti.API.info(window.details);
 	Ti.API.info('--------')
-	Ti.API.info(window.adv.replace(/&nbsp;/g,"").replace(/<p>/g,"").replace(/<\/p>/g,""));
+	Ti.API.info(window.adv);
 	webview.addEventListener("load",function(){
 		ui.shadowClose.show();
 		ui.act.hide();

@@ -80,7 +80,7 @@ function onInitController(window, params)
 	scanWin.add(TiTools.UI.Controls.createLabel({
 		color: "#625f5e",
 		font: {fontSize: 20},
-		text: "Подождите..."
+		textid: "label_add_load"
 	}));
 
 	// load the Scandit SDK module
