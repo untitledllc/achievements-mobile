@@ -150,7 +150,7 @@ function onInitController(window, params)
 								fQuery();
 							} else if (e.error) {
 								Ti.UI.createAlertDialog({
-									title: L("error_info"),
+									//title: L("error_info"),
 									message: L("error2")
 								}).show();
 								actIndicator(false);
@@ -178,7 +178,7 @@ function onInitController(window, params)
 				else
 				{
 					Ti.UI.createAlertDialog({
-						title: L("error_info"),
+						//title: L("error_info"),
 						message: L("error2")
 					}).show();
 					actIndicator(false);
@@ -212,7 +212,7 @@ function saveAchivs(data)
 		actIndicator(false);
 		
 		Ti.UI.createAlertDialog({
-			title: L("error_info"),
+			//title: L("error_info"),
 			message: L("error1")
 		}).show();
 		

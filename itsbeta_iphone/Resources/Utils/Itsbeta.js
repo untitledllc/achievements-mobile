@@ -34,7 +34,7 @@ function query(params, successCallback, failureCallback)
 				clearTimeout(time);
 				
 				Ti.UI.createAlertDialog({
-						title: L("error_info"),
+						//title: L("error_info"),
 						message: L("error2")
 					}).show();
 					
@@ -216,7 +216,7 @@ function postActiv(data)//Активация по qr-коду активации
 				{
 					clearTimeout(time);
 					Ti.UI.createAlertDialog({
-						title: L("error_info"),
+						//title: L("error_info"),
 						message: L("error3")
 					}).show();
 					
@@ -270,7 +270,7 @@ function postActivCode(tempCode)//Активация по коду актива�
 				else
 				{
 					Ti.UI.createAlertDialog({
-						title: L("error_info"),
+						//title: L("error_info"),
 						message: L("error4")
 					}).show();
 					
@@ -294,7 +294,7 @@ function timeOut()
 		TiTools.HTTP.abort();
 		
 		Ti.UI.createAlertDialog({
-			title: L("error_info"),
+			//title: L("error_info"),
 			message: L("error2")
 		}).show();
 					
