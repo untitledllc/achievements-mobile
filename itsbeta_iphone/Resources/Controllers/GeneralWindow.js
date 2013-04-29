@@ -63,6 +63,7 @@ function onInitController(window, params)
 	info = window.info;
 	oldTime = window.oldTime;
 	
+	Ti.API.info(info);
 	Ti.API.info('oldTime ' +  oldTime);
 	
 	// Загрузка контента окна
@@ -138,7 +139,6 @@ function onInitController(window, params)
 				if(placeListHeight >  Ti.Platform.displayCaps.platformHeight - 55)
 				{
 					ui.placeList.height = Ti.Platform.displayCaps.platformHeight - 75;
-					//ui.placeListView.height = Ti.Platform.displayCaps.platformHeight - 75;
 				}
 				else
 				{
@@ -339,31 +339,32 @@ function onWindowOpen(window, event)
 	
 	var reload = function(event)
 	{
-		ui.preAchivs.hide();
+		//ui.preAchivs.hide();
 		actIndicator(true);
-		tempNewAchivs = event.data;
+		//tempNewAchivs = event.data;
 		Ti.API.info(event.data);
-		// поиск категории из нашего списка, если есть то пропускаем, иначе добавляем
-		if(searchApiName(projects,event.data.project.api_name) == 0)
-		{
-			Ti.API.info('project ---')
-			projects.push({
-				api_name: event.data.project.api_name,
-				display_name: event.data.project.display_name,
-				total_badge: event.data.total_badge
-			});
-			
-			if(searchApiName(categories,event.data.category.api_name) == 0)
-			{
-				Ti.API.info('categori ---')
-				categories.push({
-					api_name: event.data.category.api_name,
-					display_name: event.data.category.display_name
-				});
-			}
-		}
 		
-		var achievement = {
+		// поиск категории из нашего списка, если есть то пропускаем, иначе добавляем
+		// if(searchApiName(projects,event.data.project.api_name) == 0)
+		// {
+			// Ti.API.info('project ---')
+			// projects.push({
+				// api_name: event.data.project.api_name,
+				// display_name: event.data.project.display_name,
+				// total_badge: event.data.total_badge
+			// });
+// 			
+			// if(searchApiName(categories,event.data.category.api_name) == 0)
+			// {
+				// Ti.API.info('categori ---')
+				// categories.push({
+					// api_name: event.data.category.api_name,
+					// display_name: event.data.category.display_name
+				// });
+			// }
+		// }
+		
+		tempNewAchivs = {
 			categoryApiName: event.data.category.api_name,
 			categoryDisplayName: event.data.category.display_name,
 			projectsApiName: event.data.project.api_name,
@@ -382,15 +383,15 @@ function onWindowOpen(window, event)
 			achievBonuses: event.data.bonuses,
 		};
 		
-		oldTime = event.data.create_time;
+		//oldTime = event.data.create_time;
 		
-		achievements.unshift(achievement);
-		var row = createTableViewRow(achievement)
+		//achievements.unshift(achievement);
+		//var row = createTableViewRow(achievement)
 		
-		tableData.unshift(row);
+		//tableData.unshift(row);
 		
-		counter++;
-		ui.counter.text = counter;
+		// counter++;
+		// ui.counter.text = counter;
 		
 		// ачивки показываются по умолчанию
 		
@@ -398,33 +399,16 @@ function onWindowOpen(window, event)
 		selectCategory = "null";
 		ui.nameProject.text = L("label_subcategories");
 		selectProject = "null";
+		typeProject = "null"
 		
-		hideAchivs();
+		//---- показываес все ячейки по умолчанию -------///
+		hideAchivsMode();
+		//-----------------------------------------------///
+		
+		itsbeta.getAchievementsRefresh(info.fbuid, insertPull ,oldTime);
+		
 		//---------------------------------
-		if(tempNewAchivs != undefined)
-		{
-			sleep(500);
-			
-			var win = TiTools.UI.Controls.createWindow({
-				main: "Controllers/preViewAchivs.js",
-				navBarHidden: true,
-				nameAchivs: tempNewAchivs.display_name,
-				desc: tempNewAchivs.desc,
-				details: tempNewAchivs.details,
-				adv: tempNewAchivs.adv,
-				image: tempNewAchivs.pic,
-				bonus: tempNewAchivs.bonuses
-			});
-			win.initialize();
-			win.open();
-			
-			Ti.API.info('open');
-			
-			tempNewAchivs = undefined;
-		}
 		
-		ui.preAchivs.show();
-		actIndicator(false);
 	}
 	
 	Ti.App.addEventListener("reload",reload);
@@ -596,7 +580,7 @@ function insertPull(data)
 {
 	Ti.API.info( "insertPull");
 	var tempAchievements = JSON.parse(data.responseText)
-	var tempNewAchivs = [];
+	var tempNewAchivs1 = [];
 	for(var i = 0, I = tempAchievements.length; i < I ; i++)
 	{
 		var achivs = tempAchievements[i];
@@ -609,7 +593,7 @@ function insertPull(data)
 			{
 				var achivsProjectAchiv = achivsProject.achievements[k];
 				
-				tempNewAchivs.push({
+				tempNewAchivs1.push({
 					categoryApiName: achivs.api_name,
 					categoryDisplayName: achivs.display_name,
 					projectsApiName: achivsProject.api_name,
@@ -631,27 +615,29 @@ function insertPull(data)
 		}
 		if(i+1 == I)
 		{
-			if(tempNewAchivs.length > 1)
+			if(tempNewAchivs1.length > 1)
 			{
 				Ti.API.info('есть новые ачивки');
+				Ti.API.info(tempNewAchivs1);
+				Ti.API.info('----------------------')
 				
-				for(var n = 0, N = tempNewAchivs.length; n < N; n++)
+				for(var n = 0, N = tempNewAchivs1.length; n < N; n++)
 				{
-					if(searchApiName(projects,tempNewAchivs[n].projectsApiName) == 0)
+					if(searchApiName(projects,tempNewAchivs1[n].projectsApiName) == 0)
 					{
 						Ti.API.info('project ---')
 						projects.push({
-							api_name: tempNewAchivs[n].projectsApiName,
-							display_name: tempNewAchivs[n].projectsDisplayName,
-							total_badge: tempNewAchivs[n].total_badges
+							api_name: tempNewAchivs1[n].projectsApiName,
+							display_name: tempNewAchivs1[n].projectsDisplayName,
+							total_badge: tempNewAchivs1[n].total_badges
 						});
 						
-						if(searchApiName(categories,tempNewAchivs[n].categoryApiName) == 0)
+						if(searchApiName(categories,tempNewAchivs1[n].categoryApiName) == 0)
 						{
 							Ti.API.info('categori ---')
 							categories.push({
-								api_name: tempNewAchivs[n].categoryApiName,
-								display_name: tempNewAchivs[n].categoryDisplayName
+								api_name: tempNewAchivs1[n].categoryApiName,
+								display_name: tempNewAchivs1[n].categoryDisplayName
 							});
 						}
 					}
@@ -659,7 +645,7 @@ function insertPull(data)
 				
 				//---- сортируем ----//
 				Ti.API.info('сортируем');
-				tempNewAchivs.sort(
+				tempNewAchivs1.sort(
 					function(a, b)
 					{
 						var date1 = Date();
@@ -683,28 +669,57 @@ function insertPull(data)
 					}
 				);
 				
-				oldTime = tempNewAchivs[0].create_time;
+				oldTime = tempNewAchivs1[0].create_time;
 				
-				for(var n = 0, N = tempNewAchivs.length - 2; n <= N; N--)
+				for(var n = 0, N = tempNewAchivs1.length - 2; n <= N; N--)
 				{
 					Ti.API.info('вставили ячейку ' + N);
-					var row = createTableViewRow(tempNewAchivs[N]);
+					var row = createTableViewRow(tempNewAchivs1[N]);
 					
 					counter++;
 					ui.counter.text = counter;
 					
 					tableData.unshift(row);
-					achievements.unshift(tempNewAchivs[N]);
+					achievements.unshift(tempNewAchivs1[N]);
 					
 					Ti.API.info('selectCategory ' + selectCategory + " selectProject " + selectProject);
 					
-					if(selectCategory == "null" || selectCategory == tempNewAchivs[N].categoryApiName)
+					if(selectCategory == "null" || selectCategory == tempNewAchivs1[N].categoryApiName)
 					{
-						if(selectProject == "null" || selectProject == tempNewAchivs[N].projectsApiName)
+						if(selectProject == "null" || selectProject == tempNewAchivs1[N].projectsApiName)
 						{
 							table.insertRowBefore(0,row);
 						}
 					}
+					
+					if(tempNewAchivs != undefined)
+					{
+						Ti.API.info('-------------achivs--------------');
+						Ti.API.info(tempNewAchivs);
+						
+						sleep(500);
+						
+						var win = TiTools.UI.Controls.createWindow({
+							main: "Controllers/preViewAchivs.js",
+							navBarHidden: true,
+							nameAchivs: tempNewAchivs.achievDisplayName,
+							desc: tempNewAchivs.achievDesc,
+							details: tempNewAchivs.achievDetails,
+							adv: tempNewAchivs.achievAdv,
+							image: tempNewAchivs.achievPic,
+							bonus: tempNewAchivs.achievBonuses
+						});
+						win.initialize();
+						win.open();
+						
+						Ti.API.info('open');
+						
+						tempNewAchivs = undefined;
+					}
+					
+					ui.preAchivs.show();
+					actIndicator(false);
+					
 				}
 				
 			}
@@ -1169,6 +1184,67 @@ function hideAchivs()
 		}
 	}
 	
+}
+function hideAchivs()
+{
+	var tempTableData = tableData;
+	var newData = [];
+	
+	if(selectProject == "last")
+	{
+		for(var i = 0, I = tempTableData.length; i < I && i < 10; i++)
+		{
+			newData.push(tempTableData[i]);
+			
+			if(i+1 == I || i + 1 == 10)
+			{
+				table.data = newData;
+				table.scrollToIndex(0);
+				actIndicator(false);
+			}
+		}
+	}
+	else
+	{
+		for(var i = 0, I = tempTableData.length; i < I; i++)
+		{
+			if(tempTableData[i].achievement.categoryApiName == selectCategory || selectCategory == "null")
+			{
+				if(tempTableData[i].achievement.projectsApiName == selectProject || selectProject == "null")
+				{
+					newData.push(tempTableData[i]);
+				}
+			}
+			if(i+1 == I)
+			{
+				table.data = newData;
+				table.scrollToIndex(0);
+				actIndicator(false);
+			}
+		}
+	}
+	
+}
+function hideAchivsMode()
+{
+	var tempTableData = tableData;
+	var newData = [];
+	
+	for(var i = 0, I = tempTableData.length; i < I; i++)
+	{
+		if(tempTableData[i].achievement.categoryApiName == selectCategory || selectCategory == "null")
+		{
+			if(tempTableData[i].achievement.projectsApiName == selectProject || selectProject == "null")
+			{
+				newData.push(tempTableData[i]);
+			}
+		}
+		if(i+1 == I)
+		{
+			table.data = newData;
+			table.scrollToIndex(0);
+		}
+	}
 }
 ///--- 10 последних ачивок --- ///
 function lastAchivsFunction(massRow)

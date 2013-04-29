@@ -47,7 +47,9 @@ function onInitController(window, params)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
-	
+	Ti.API.info(window.details);
+	Ti.API.info('--------')
+	Ti.API.info(window.adv);
 	
 	var webview = Titanium.UI.createWebView({
 		left: 5,
@@ -59,9 +61,7 @@ function onWindowOpen(window, event)
 		disableBounce: true
 	});
 	
-	Ti.API.info(window.details);
-	Ti.API.info('--------')
-	Ti.API.info(window.adv);
+	
 	webview.addEventListener("load",function(){
 		ui.shadowClose.show();
 		ui.act.hide();

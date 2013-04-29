@@ -27,7 +27,7 @@ module.exports = [
 				style: {
 					className: "Ti.UI.View",
 					top: 0,
-					height: Ti.UI.FILL,
+					height: "101%",
 					width: Ti.UI.FILL,
 					backgroundColor: "transparent"
 				}
