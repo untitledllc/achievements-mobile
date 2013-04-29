@@ -217,7 +217,7 @@ function postActiv(data)//Активация по qr-коду активации
 					clearTimeout(time);
 					Ti.UI.createAlertDialog({
 						title: L("error_info"),
-						message: L("error4")
+						message: L("error3")
 					}).show();
 					
 					Ti.App.fireEvent("actHide");
@@ -271,7 +271,7 @@ function postActivCode(tempCode)//Активация по коду актива�
 				{
 					Ti.UI.createAlertDialog({
 						title: L("error_info"),
-						message: L("error2")
+						message: L("error4")
 					}).show();
 					
 					Ti.App.fireEvent("actHide");
