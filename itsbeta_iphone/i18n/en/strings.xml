@@ -37,11 +37,11 @@
 																<string name="label_add_text">You can get the code from our partners</string>
 																								<string name="label_add_load">Wait...</string>
 																	 <!-- alert -->
-	 			<string name="error_info">Information!</string>
-	 			<string name="error1">Error loading achievements!</string>
-	 				 			<string name="error2">Connection Error!</string>
-		 		<string name="error3">Invalid qr code!</string>
-				<string name="error4">Invalid code!</string>
+	 			<string name="error_info">Information</string>
+	 			<string name="error1">Error loading achievements</string>
+	 				 			<string name="error2">Connection Error</string>
+		 		<string name="error3">Invalid qr code</string>
+				<string name="error4">Invalid code</string>
 	<!-- others -->
 		<string name="error">Error</string>
 </resources>

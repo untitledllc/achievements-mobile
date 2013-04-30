@@ -65,7 +65,8 @@ function getAchievementsByUid(uid, successCallback)
 				{
 					params: {
 						player_id : playerId,
-						access_token : ITSBETA_ACCESS_TOKEN
+						access_token : ITSBETA_ACCESS_TOKEN,
+						locale : Titanium.Locale.currentLanguage
 					},
 					url : "http://www.itsbeta.com/s/info/achievements.json"
 				}, 

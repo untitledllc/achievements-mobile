@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
+provisioning_profiles/adhoc/03F500F0-6816-4833-B759-8D4A7BBE3935/appid=ru.hintsolutions.itsbeta
+provisioning_profiles/adhoc/03F500F0-6816-4833-B759-8D4A7BBE3935/name=itsbeta iTunes
+provisioning_profiles/adhoc/03F500F0-6816-4833-B759-8D4A7BBE3935/uuid=03F500F0-6816-4833-B759-8D4A7BBE3935
 provisioning_profiles/adhoc/6DDEFE32-FE85-4238-B58E-5A52361534CB/appid=ru.hintsolutions.itsbeta
 provisioning_profiles/adhoc/6DDEFE32-FE85-4238-B58E-5A52361534CB/name=itsbeta AdHoc
 provisioning_profiles/adhoc/6DDEFE32-FE85-4238-B58E-5A52361534CB/uuid=6DDEFE32-FE85-4238-B58E-5A52361534CB
