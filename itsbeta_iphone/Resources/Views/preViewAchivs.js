@@ -16,9 +16,10 @@ module.exports = [
 		style: {
 			className: "Ti.UI.ScrollView",
 			height: Ti.UI.FILL,
+			contentHeight: "auto",
 			width: Ti.UI.FILL,
 			backgroundColor: "transparent",
-			visible: false
+			visible: false,
 		},
 		subviews:
 		[
@@ -226,7 +227,7 @@ module.exports = [
 									bottom: 0,
 									backgroundColor: "transparent",
 									height: Ti.UI.SIZE,
-									width: Ti.UI.SIZE,
+									width: Ti.UI.FILL,
 								}
 							}
 						]

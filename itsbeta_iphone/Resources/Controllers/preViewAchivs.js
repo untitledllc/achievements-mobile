@@ -47,9 +47,11 @@ function onInitController(window, params)
 // Обработчик при открытии окна
 function onWindowOpen(window, event)
 {
-	Ti.API.info(window.details);
+	//Ti.API.info(window.details);
 	Ti.API.info('--------')
-	Ti.API.info(window.adv);
+	//Ti.API.info(window.adv);
+	
+	var temp = TiTools.Global.get("htmlWrapBefore") + "<p>" + window.details.replace(/&nbsp;/g," ").replace(/<p>/g,"<br>").replace(/<\/p>/g," ") + window.adv.replace(/&nbsp;/g," ").replace(/<p>/g,"<br>").replace(/<\/p>/g," ") +"</p>"+ TiTools.Global.get("htmlWrapAfter");
 	
 	var webview = Titanium.UI.createWebView({
 		left: 5,
@@ -57,7 +59,7 @@ function onWindowOpen(window, event)
 		height: Ti.UI.SIZE,
 	//	width: 220,
 		bottom: 20,
-		html:  TiTools.Global.get("htmlWrapBefore") + "<body style=\"color:#777575\">" + window.details.replace(/&nbsp;/g," ").replace(/<p>/g,"<br>").replace(/<\/p>/g," ") + window.adv.replace(/&nbsp;/g," ").replace(/<p>/g,"<br>").replace(/<\/p>/g," ") + TiTools.Global.get("htmlWrapAfter"),
+		html:  temp,
 		disableBounce: true
 	});
 	
@@ -98,6 +100,7 @@ function onWindowOpen(window, event)
 	}));
 	
 	ui.textAchivs.add(webview);
+	
 }
 
 // Обработчик при закрытии окна

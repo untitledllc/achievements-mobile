@@ -62,7 +62,7 @@ window.open();
 
 //---------------------------------------------//
 
-TiTools.Global.set("htmlWrapBefore", '<html><head><style> @font-face {font-family: HelveticaN; src: url(Helvetica.dfont);} body{ font-size: 11pt; background-color: #f1efe4; margin: 0; font-family: Helvetica; }a{color: #7ed6f9; } </style> <script type="text/javascript">window.onload=function(){var links=document.querySelectorAll("a"),i=0,len=links.length;while(i<len){links[i++].addEventListener("click", function(evt){evt.preventDefault();this.href && Ti.App.fireEvent("linkClicked",{url:this.href});},false);}};</script></head><body>');
+TiTools.Global.set("htmlWrapBefore", '<html><head><style> @font-face {font-family: HelveticaN; src: url(Helvetica.dfont);} body{  background-color: #f1efe4; margin: 0; font-family: Helvetica; }a{color: #7ed6f9; font-size: 15 } p{color:#777575; font-size: 15} </style> <script type="text/javascript">window.onload=function(){var links=document.querySelectorAll("a"),i=0,len=links.length;while(i<len){links[i++].addEventListener("click", function(evt){evt.preventDefault();this.href && Ti.App.fireEvent("linkClicked",{url:this.href});},false);}};</script></head><body>');
 TiTools.Global.set("htmlWrapAfter", '</body></html>');
 
 Ti.App.addEventListener("linkClicked", function(param)
