@@ -149,5 +149,45 @@ namespace facebook_windows_phone_sample.Pages
             fb.GetAsync("me");
 
         }
+
+        private void webBrowser1_Navigating(object sender, NavigatingEventArgs e)
+        {
+            try
+            {
+                FacebookOAuthResult oauthResult;
+                if (e.Uri.AbsolutePath == "/ru/")
+                {
+                    try
+                    {
+                        ViewModelLocator.UserStatic.FacebookId = "";
+                        ViewModelLocator.UserStatic.FacebookToken = "";
+                        ViewModelLocator.UserStatic.Cleanup();
+                        ViewModelLocator.MainStatic.Cleanup();
+                        //MessageBox.Show("Выход осуществлен.");
+                        NavigationService.Navigate(new Uri("/LoginPage.xaml", UriKind.Relative));
+                    }
+                    catch { };
+                }
+                else
+                {
+                    if (!_fb.TryParseOAuthCallbackUrl(e.Uri, out oauthResult))
+                    {
+                        return;
+                    }
+
+                    if (oauthResult.IsSuccess)
+                    {
+                        var accessToken = oauthResult.AccessToken;
+                        LoginSucceded(accessToken);
+                    }
+                    else
+                    {
+                        // user cancelled
+                        MessageBox.Show(oauthResult.ErrorDescription);
+                    }
+                };
+            }
+            catch { };
+        }
     }
 }
