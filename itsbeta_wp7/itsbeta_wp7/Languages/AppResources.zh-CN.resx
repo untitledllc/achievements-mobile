@@ -159,11 +159,17 @@
   <data name="collect_all_your_achieves" xml:space="preserve">
     <value>收集所有的成就</value>
   </data>
+  <data name="Do_you_want_to_quit" xml:space="preserve">
+    <value>你要退出吗？</value>
+  </data>
   <data name="enter_code" xml:space="preserve">
     <value>输入验证码</value>
   </data>
   <data name="enter_using_facebook" xml:space="preserve">
     <value>登录使用</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>出口</value>
   </data>
   <data name="facebook_singup" xml:space="preserve">
     <value>Facebook登录</value>
@@ -212,5 +218,11 @@
   </data>
   <data name="years234" xml:space="preserve">
     <value>岁月</value>
+  </data>
+  <data name="exit_button_image" xml:space="preserve">
+    <value>/itsbeta_wp7;component/images/Profile_logout_btn_norm_en.png</value>
+  </data>
+  <data name="exit_button_image_press" xml:space="preserve">
+    <value>/itsbeta_wp7;component/images/Profile_logout_btn_press_en.png</value>
   </data>
 </root>

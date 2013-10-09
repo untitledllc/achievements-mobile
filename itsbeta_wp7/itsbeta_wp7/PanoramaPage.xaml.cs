@@ -113,8 +113,8 @@ NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
             {
                 var messagePrompt = new MessagePrompt
                 {
-                    Title = "Выход",
-                    Message = "Вы хотите выйти?",
+                    Title = AppResources.Exit,
+                    Message = AppResources.Do_you_want_to_quit,
                     IsCancelVisible = true
                 };
                 messagePrompt.ActionPopUpButtons.FirstOrDefault().Click += new RoutedEventHandler(customButton_Click);

@@ -249,4 +249,16 @@
   <data name="chat_title" xml:space="preserve">
     <value>Чат</value>
   </data>
+  <data name="Do_you_want_to_quit" xml:space="preserve">
+    <value>Вы хотите выйти?</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="exit_button_image" xml:space="preserve">
+    <value>/itsbeta_wp7;component/images/Profile_logout_btn_norm.png</value>
+  </data>
+  <data name="exit_button_image_press" xml:space="preserve">
+    <value>/itsbeta_wp7;component/images/Profile_logout_btn_press.png</value>
+  </data>
 </root>

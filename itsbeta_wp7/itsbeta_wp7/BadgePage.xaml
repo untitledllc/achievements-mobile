@@ -136,6 +136,7 @@
                 </Grid>
 
                     <Button Style="{StaticResource ActivateButtonStyle}" 
+                            Visibility="Collapsed"
                                 Content="Чат" Name="ChatButton" Click="ChatButton_Click" Height="86"/>
 
                     <telerikData:RadJumpList 

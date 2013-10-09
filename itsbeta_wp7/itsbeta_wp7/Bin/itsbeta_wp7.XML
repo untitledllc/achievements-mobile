@@ -204,6 +204,11 @@
               Looks up a localized string similar to Discount.
             </summary>
         </member>
+        <member name="P:itsbeta_wp7.AppResources.Do_you_want_to_quit">
+            <summary>
+              Looks up a localized string similar to Do you want to quit?.
+            </summary>
+        </member>
         <member name="P:itsbeta_wp7.AppResources.enter_code">
             <summary>
               Looks up a localized string similar to Enter code.
@@ -222,6 +227,21 @@
         <member name="P:itsbeta_wp7.AppResources.ErrorCantActivate">
             <summary>
               Looks up a localized string similar to Can&apos;t activate achieve!.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.Exit">
+            <summary>
+              Looks up a localized string similar to Exit.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.exit_button_image">
+            <summary>
+              Looks up a localized string similar to /itsbeta_wp7;component/images/Profile_logout_btn_norm_en.png.
+            </summary>
+        </member>
+        <member name="P:itsbeta_wp7.AppResources.exit_button_image_press">
+            <summary>
+              Looks up a localized string similar to /itsbeta_wp7;component/images/Profile_logout_btn_press_en.png.
             </summary>
         </member>
         <member name="P:itsbeta_wp7.AppResources.facebook_singup">

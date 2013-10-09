@@ -188,9 +188,10 @@
                                 Margin="0,-10,20,0"
                                 Grid.Column="1" Grid.Row="1"                                
                                 ButtonShape="Image" 
-                                RestStateImageSource="/itsbeta_wp7;component/images/Profile_logout_btn_norm.png" 
+                                RestStateImageSource="{Binding Path=LocalizedResources.exit_button_image, Source={StaticResource LocalizedStrings}}" 
                                 HorizontalAlignment="Right" 
-                                PressedStateImageSource="/itsbeta_wp7;component/images/Profile_logout_btn_press.png" Click="RadImageButton_Click" />
+                                PressedStateImageSource="{Binding Path=LocalizedResources.exit_button_image_press, Source={StaticResource LocalizedStrings}}" 
+                                Click="RadImageButton_Click" />
                         </Grid>
 
                         <StackPanel Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
